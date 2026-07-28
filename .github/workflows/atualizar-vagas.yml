@@ -1,0 +1,36 @@
+name: Atualizar vagas
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Preparar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rodar o coletor
+        run: python3 coletor.py
+
+      - name: Salvar as vagas atualizadas
+        run: |
+          git config user.name "Robô de Vagas"
+          git config user.email "actions@github.com"
+          git add vagas.json
+          if git diff --staged --quiet; then
+            echo "Nenhuma mudança nas vagas hoje."
+          else
+            git commit -m "Atualização automática de vagas"
+            git push
+          fi
