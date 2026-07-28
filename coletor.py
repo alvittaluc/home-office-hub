@@ -56,8 +56,18 @@ BUSCAS_AGREGADOR = [
 ]
 
 # Ligue/desligue cada agregador aqui:
-USAR_JOBICY = True
-USAR_REMOTEOK = True
+# (DESLIGADOS: traziam vagas genéricas fora da área de IA/dados/anotação)
+USAR_JOBICY = False
+USAR_REMOTEOK = False
+
+# ─── FASE 3: SCRAPERS (empresas sem API) ───
+# Estes "leem" o site da empresa. Podem ser bloqueados em servidores de
+# nuvem (GitHub) — se falharem lá, rode no seu PC.
+USAR_ONEFORMA = True
+# abrir_incertos: abre páginas "Selected Locations" p/ confirmar Brasil.
+# True = mais preciso e um pouco mais lento. False = rápido, só pega
+# as vagas "Worldwide" e as que citam Brasil no título.
+ONEFORMA_ABRIR_INCERTOS = True
 
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
@@ -321,6 +331,42 @@ def buscar_remoteok() -> list:
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  SCRAPER — OneForma (via módulo scraper_oneforma.py)
+# ═══════════════════════════════════════════════════════════════════
+
+def buscar_oneforma() -> list:
+    """Chama o scraper da OneForma e converte para o formato padrão."""
+    try:
+        from scraper_oneforma import coletar_oneforma
+    except Exception as e:
+        print(f"  → OneForma: módulo não encontrado ({str(e)[:40]})")
+        return []
+
+    try:
+        cruas = coletar_oneforma(max_paginas=8,
+                                 abrir_incertos=ONEFORMA_ABRIR_INCERTOS)
+    except Exception as e:
+        print(f"  → OneForma: falhou ({str(e)[:50]})")
+        return []
+
+    vagas = []
+    for v in cruas:
+        titulo = v["titulo"]
+        cat_id, badge = categorizar(titulo)
+        vagas.append({
+            "empresa": "oneforma",
+            "titulo": titulo,
+            "local": limpar_local(v.get("local", "")),
+            "categoria": cat_id,
+            "badge": badge,
+            "url": v["url"],
+            "commitment": "",
+            "fonte": "direto",
+        })
+    return vagas
+
+
+# ═══════════════════════════════════════════════════════════════════
 #  REMOVER DUPLICADAS
 # ═══════════════════════════════════════════════════════════════════
 
@@ -360,11 +406,17 @@ def main():
         todas += buscar_workable(nome, slug)
         time.sleep(1)
 
-    print("\n[3/3] Buscando em agregadores...")
+    print("\n[3/4] Buscando em agregadores...")
     if USAR_JOBICY:
         todas += buscar_jobicy()
     if USAR_REMOTEOK:
         todas += buscar_remoteok()
+    if not USAR_JOBICY and not USAR_REMOTEOK:
+        print("  (agregadores desligados)")
+
+    print("\n[4/4] Buscando em empresas via scraping...")
+    if USAR_ONEFORMA:
+        todas += buscar_oneforma()
 
     print(f"\n  Total bruto: {len(todas)} vagas")
     todas = remover_duplicadas(todas)
