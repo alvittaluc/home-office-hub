@@ -144,9 +144,60 @@ O GitHub às vezes esconde pastas que começam com ponto. Se o robô não aparec
 
 ## 🎯 Próximas fases (quando quiser)
 
-- **Fase 2:** plugar agregadores (Remotive, RemoteOK) → mais vagas de graça
-- **Fase 3:** scrapers para OneForma, Telus, CrowdGen
+- ~~**Fase 2:** agregadores~~ ❌ testado e desligado (traziam vagas genéricas fora da área)
+- **Fase 3:** scrapers para empresas sem API → **OneForma ✅ · Telus ✅** · CrowdGen a seguir
 - **Fase 4:** LinkedIn seguro via alertas de email + n8n
 - **Fase 5:** transformar em "app" instalável (PWA)
+
+---
+
+## 🆕 Fase 3 — Scrapers (OneForma já incluído!)
+
+Algumas empresas não têm API (Lever/Workable). Para elas, o coletor usa um
+**scraper** — um programa que "lê" o site da empresa e extrai as vagas.
+
+**Já incluído: OneForma** (`scraper_oneforma.py`)
+- Lê a página de vagas do OneForma (são ~64 vagas em 8 páginas)
+- Filtra só as do Brasil: aceita "Worldwide", rejeita "US only", e para as
+  "Selected Locations" **abre a página da vaga** para confirmar se cita Brasil
+- As vagas entram no site igual às outras, na seção "OneForma"
+
+**Ligar/desligar e ajustar velocidade** — no topo do `coletor.py`:
+```python
+USAR_ONEFORMA = True
+ONEFORMA_ABRIR_INCERTOS = True   # True = mais preciso (abre páginas incertas)
+                                 # False = mais rápido (só Worldwide + título BR)
+```
+
+### ⚠️ Importante sobre scrapers
+
+Diferente das APIs, um scraper pode ser **bloqueado quando roda no GitHub**
+(alguns sites recusam robôs vindos de servidores de nuvem). Se isso acontecer:
+
+1. Você verá no log do Actions algo como "OneForma: falhou" ou 0 vagas da OneForma
+2. Nesse caso, rode o coletor **no seu PC** de vez em quando:
+   ```
+   python coletor.py
+   ```
+   Isso atualiza o `vagas.json`, e aí você sobe esse arquivo pro GitHub
+3. As empresas com API (Welocalize, RWS, Toloka) continuam 100% automáticas no GitHub
+
+> 💡 O sistema é resiliente: se o scraper falhar, ele só pula a OneForma e mantém
+> todas as outras vagas. Nunca quebra o site.
+
+**Arquivo novo desta fase:** `scraper_oneforma.py` (precisa subir junto no GitHub)
+
+### Telus (também já incluída!) — `scraper_telus.py`
+
+A Telus carrega as vagas via JavaScript, mas descobrimos a **"API escondida"** dela:
+basta adicionar `.json` na URL de busca por país. O scraper usa isso e é
+**100% automático** (roda no GitHub sem problema, porque é uma chamada de dados simples).
+
+- Busca em: `jobs.telusdigital.com/search/jobs/in/country/brazil.json`
+- Já vem filtrado por Brasil (a própria URL filtra por país)
+- Ligar/desligar no `coletor.py`: `USAR_TELUS = True`
+
+**Arquivo novo:** `scraper_telus.py` (precisa subir junto no GitHub)
+
 
 Qualquer dúvida em qualquer passo, é só chamar! 🙂

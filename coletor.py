@@ -69,6 +69,9 @@ USAR_ONEFORMA = True
 # as vagas "Worldwide" e as que citam Brasil no título.
 ONEFORMA_ABRIR_INCERTOS = True
 
+# Telus: usa a API .json escondida (descoberta via F12). 100% automática.
+USAR_TELUS = True
+
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
 #  Uma vaga só entra se casar com um destes termos.
@@ -367,6 +370,41 @@ def buscar_oneforma() -> list:
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  SCRAPER — Telus (via módulo scraper_telus.py)
+# ═══════════════════════════════════════════════════════════════════
+
+def buscar_telus() -> list:
+    """Chama o scraper da Telus e converte para o formato padrão."""
+    try:
+        from scraper_telus import coletar_telus
+    except Exception as e:
+        print(f"  → Telus: módulo não encontrado ({str(e)[:40]})")
+        return []
+
+    try:
+        cruas = coletar_telus()
+    except Exception as e:
+        print(f"  → Telus: falhou ({str(e)[:50]})")
+        return []
+
+    vagas = []
+    for v in cruas:
+        titulo = v["titulo"]
+        cat_id, badge = categorizar(titulo)
+        vagas.append({
+            "empresa": "telus",
+            "titulo": titulo,
+            "local": limpar_local(v.get("local", "")),
+            "categoria": cat_id,
+            "badge": badge,
+            "url": v["url"],
+            "commitment": "",
+            "fonte": "direto",
+        })
+    return vagas
+
+
+# ═══════════════════════════════════════════════════════════════════
 #  REMOVER DUPLICADAS
 # ═══════════════════════════════════════════════════════════════════
 
@@ -417,6 +455,8 @@ def main():
     print("\n[4/4] Buscando em empresas via scraping...")
     if USAR_ONEFORMA:
         todas += buscar_oneforma()
+    if USAR_TELUS:
+        todas += buscar_telus()
 
     print(f"\n  Total bruto: {len(todas)} vagas")
     todas = remover_duplicadas(todas)
