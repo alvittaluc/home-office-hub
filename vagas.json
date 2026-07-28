@@ -1,0 +1,205 @@
+{
+  "atualizado_em": "2026-07-28T13:52:28.708680+00:00",
+  "atualizado_br": "28/07/2026 às 13:52",
+  "total": 22,
+  "vagas": [
+    {
+      "empresa": "welocalize",
+      "titulo": "English to Portuguese (Brazil) Patent Agency/Translator/LQA Reviewer",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/weloglobal/12511ff5-5083-49e9-b50a-13613d957e25",
+      "commitment": ""
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "German into Portuguese (Brazil) Patent Translators",
+      "local": "Remoto · Brasil / Alemanha",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/weloglobal/4ef463d3-bbef-4c50-86f3-96dd9fe81828",
+      "commitment": ""
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Circinus - Audio Contributor Portuguese (Brazil)",
+      "local": "Freelance · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/aba23d95-caff-4c63-96ac-ed40f4561a19",
+      "commitment": ""
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Italian Search & Data Labelling Rater - Project Andromeda Titawin",
+      "local": "Freelance · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/808cf834-d4be-476e-a178-74ec72f861dc",
+      "commitment": ""
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Maps Personalization Relevance Rater - Portuguese (Brazil)",
+      "local": "Freelance · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/7eae9741-9c26-4935-865f-977a39db5cb1",
+      "commitment": ""
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Scout Junior Quality Coordinator - Portuguese (Brazil)",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/6e0ac589-3fba-429a-8ce4-5c48a2cf0e2d",
+      "commitment": ""
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Ads Quality Rater - German (Brazil)",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/31bad8e4-811a-4d38-94ab-81b5238b017b",
+      "commitment": ""
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Ads Quality Rater - Italian (Brazil)",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/b782302b-3ac6-4069-b295-1b0eb194329c",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "AI Data Specialist - Portuguese (Brazil)",
+      "local": "Remoto · São Paulo",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/rws/72796483-2495-4299-b1c1-c95c3800006f",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "AI Dubber - Portuguese (Brazil) + French (France)",
+      "local": "Remoto · São Paulo",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/rws/e8278578-5004-4672-b545-a98f5bb28959",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "AI Dubber - Portuguese (Brazil) + German",
+      "local": "Remoto · São Paulo",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/rws/36bce243-ccfd-42a1-913c-516123dab165",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "AI Dubber - Portuguese (Brazil) + Italian",
+      "local": "Remoto · São Paulo",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/rws/8292e34d-fbc7-4153-80f3-19e19b0fb843",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Fandoms Subject Matter Expert (SME)",
+      "local": "Remoto · São Paulo",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/9a0d5c38-97e3-4124-b9cb-7401660fe01e",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - History Subject Matter Expert (SME)",
+      "local": "Remoto · São Paulo",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/3d2e529c-744a-4ed6-b04d-e8e416969a1b",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Home & Garden Subject Matter Expert (SME)",
+      "local": "Remoto · São Paulo",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/d5bcef39-c110-4aae-ad0c-1909e85ddd07",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Religion & Philosophy Subject Matter Expert (SME)",
+      "local": "Remoto · São Paulo",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/c6f4a7fe-986e-4367-8507-fb6c7be831b6",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Linguistic AI Auditor (Brazilian Portuguese)",
+      "local": "Remoto · São Paulo",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/rws/bf14d5a6-b9a1-4f1a-9f9d-041712e0da2f",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Games & Puzzles Subject Matter Expert (SME)",
+      "local": "Remoto · Rio de Janeiro",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/048f8c3e-e09f-4b13-81f7-a060584f45f0",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Literature & Linguistics Subject Matter Expert (SME)",
+      "local": "Remoto · Rio de Janeiro",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/rws/adf2ce84-802a-4ab8-aa91-8ea9d8883280",
+      "commitment": ""
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Speech AI Evaluation Specialist - Portuguese (Brazil)",
+      "local": "Remoto · Rio de Janeiro",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/rws/ecabff98-a1e1-40eb-9ca3-ffb7a1681ebc",
+      "commitment": ""
+    },
+    {
+      "empresa": "toloka",
+      "titulo": "First-Person AI Video Trainer",
+      "local": "Remoto · Brasil · Part-time",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://apply.workable.com/toloka-annotators/j/D0C5314F11/",
+      "commitment": ""
+    },
+    {
+      "empresa": "toloka",
+      "titulo": "AI Trainer - Freelance Data Annotator",
+      "local": "Remoto · SP / RJ / BH",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://apply.workable.com/toloka-annotators/j/870369E4B6/",
+      "commitment": ""
+    }
+  ]
+}

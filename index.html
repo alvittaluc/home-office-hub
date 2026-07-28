@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Office Hub — Vagas Internacionais para o Brasil</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#0B0D14; --surface:#12151F; --surface2:#1A1E2E; --border:#252A3D;
+    --accent:#7C6FF7; --accent-bright:#A78BFA; --accent-blue:#60A5FA;
+    --glow:rgba(124,111,247,0.35); --text:#E8E6F0; --text-muted:#8B8FA8;
+    --text-dim:#44475A; --radius:10px;
+  }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
+
+  header { background:rgba(11,13,20,0.93); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; padding:0 24px; }
+  .header-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:62px; gap:16px; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:700; font-size:18px; white-space:nowrap; }
+  .header-search { flex:1; max-width:420px; position:relative; }
+  .header-search input { width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--text); font-family:inherit; font-size:14px; padding:8px 14px 8px 36px; outline:none; transition:border-color .2s,box-shadow .2s; }
+  .header-search input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,111,247,0.12); }
+  .header-search input::placeholder { color:var(--text-dim); }
+  .search-icon { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--text-dim); pointer-events:none; font-size:14px; }
+  .header-tag { background:rgba(124,111,247,0.1); color:var(--accent-bright); border:1px solid rgba(124,111,247,0.3); border-radius:20px; font-size:12px; font-weight:600; padding:4px 12px; white-space:nowrap; }
+
+  .hero { max-width:1280px; margin:0 auto; padding:60px 24px 44px; text-align:center; position:relative; }
+  .hero::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:700px; height:280px; background:radial-gradient(ellipse at center,rgba(124,111,247,0.09) 0%,transparent 70%); pointer-events:none; }
+  .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(124,111,247,0.08); border:1px solid rgba(124,111,247,0.22); border-radius:20px; font-size:12px; font-weight:600; color:var(--accent-bright); padding:5px 14px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:24px; }
+  .hero h1 { font-size:clamp(28px,4.5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-.03em; margin-bottom:16px; }
+  .hero h1 .grad { background:linear-gradient(90deg,#A78BFA,#60A5FA); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero p { font-size:17px; color:var(--text-muted); max-width:560px; margin:0 auto 36px; }
+  .stats-row { display:flex; justify-content:center; gap:48px; flex-wrap:wrap; }
+  .stat { text-align:center; }
+  .stat-num { font-size:26px; font-weight:800; background:linear-gradient(90deg,#A78BFA,#60A5FA); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .stat-label { font-size:12px; color:var(--text-muted); margin-top:2px; }
+
+  .main-layout { max-width:1280px; margin:0 auto; padding:0 24px 80px; display:grid; grid-template-columns:240px 1fr; gap:28px; align-items:start; }
+  .sidebar { position:sticky; top:80px; display:flex; flex-direction:column; gap:6px; }
+  .sidebar-title { font-size:11px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:.1em; padding:0 12px; margin-bottom:4px; }
+  .company-btn { display:flex; align-items:center; gap:10px; background:none; border:none; color:var(--text-muted); font-family:inherit; font-size:13px; font-weight:500; padding:9px 12px; border-radius:8px; cursor:pointer; text-align:left; transition:all .15s; width:100%; }
+  .company-btn:hover { background:var(--surface2); color:var(--text); }
+  .company-btn.active { background:rgba(124,111,247,0.12); color:var(--accent-bright); }
+  .company-logo-sm { width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; }
+  .count-badge { margin-left:auto; background:var(--surface2); border:1px solid var(--border); border-radius:10px; font-size:11px; font-weight:600; color:var(--text-dim); padding:1px 7px; }
+  .company-btn.active .count-badge { background:rgba(124,111,247,0.15); color:var(--accent-bright); border-color:rgba(124,111,247,0.3); }
+  .sidebar-divider { height:1px; background:var(--border); margin:8px 0; }
+
+  .content-area { min-width:0; }
+  .content-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:12px; flex-wrap:wrap; }
+  .content-title { font-size:13px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; }
+  .filter-pills { display:flex; gap:6px; flex-wrap:wrap; }
+  .pill { background:var(--surface2); border:1px solid var(--border); border-radius:16px; color:var(--text-muted); font-family:inherit; font-size:12px; font-weight:500; padding:4px 12px; cursor:pointer; transition:all .15s; }
+  .pill:hover { border-color:var(--accent); color:var(--accent-bright); }
+  .pill.active { background:rgba(124,111,247,0.12); border-color:var(--accent); color:var(--accent-bright); }
+
+  .company-section { margin-bottom:40px; }
+  .company-section.hidden { display:none; }
+  .company-header { display:flex; align-items:center; gap:14px; margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+  .company-logo-lg { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; flex-shrink:0; }
+  .company-info h2 { font-size:18px; font-weight:700; line-height:1.2; }
+  .company-info p { font-size:13px; color:var(--text-muted); margin-top:2px; }
+  .company-link { margin-left:auto; background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--text-muted); font-family:inherit; font-size:12px; font-weight:600; padding:7px 14px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all .15s; white-space:nowrap; }
+  .company-link:hover { border-color:var(--accent); color:var(--accent-bright); }
+
+  .category-label { font-size:11px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:.1em; margin:20px 0 10px; display:flex; align-items:center; gap:8px; }
+  .category-label::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  .jobs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px; }
+  .job-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; display:flex; flex-direction:column; gap:10px; transition:border-color .2s,transform .18s,box-shadow .2s; }
+  .job-card:hover { border-color:rgba(124,111,247,0.45); transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,0,0,0.45); }
+  .job-card.hidden { display:none; }
+  .job-title { font-size:14px; font-weight:600; color:var(--text); line-height:1.35; }
+  .job-meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .job-badge { font-size:11px; font-weight:600; padding:2px 9px; border-radius:14px; text-transform:uppercase; letter-spacing:.04em; }
+  .badge-transl { background:rgba(129,140,248,0.12); color:#818CF8; border:1px solid rgba(129,140,248,0.25); }
+  .badge-ai { background:rgba(167,139,250,0.12); color:#A78BFA; border:1px solid rgba(167,139,250,0.25); }
+  .badge-qa { background:rgba(192,132,252,0.12); color:#C084FC; border:1px solid rgba(192,132,252,0.25); }
+  .badge-sme { background:rgba(99,102,241,0.12); color:#6366F1; border:1px solid rgba(99,102,241,0.25); }
+  .badge-write { background:rgba(167,139,250,0.12); color:#A78BFA; border:1px solid rgba(167,139,250,0.25); }
+  .job-location { font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:4px; }
+  .job-footer { padding-top:10px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; }
+  .btn-apply { background:linear-gradient(135deg,#7C6FF7,#60A5FA); color:#fff; border:none; border-radius:7px; font-family:inherit; font-size:12px; font-weight:700; padding:7px 16px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:opacity .15s,transform .15s; box-shadow:0 2px 10px rgba(124,111,247,0.28); }
+  .btn-apply:hover { opacity:.88; transform:scale(.97); }
+
+  .empty-state { grid-column:1/-1; text-align:center; padding:50px 24px; color:var(--text-muted); }
+  .empty-state p { font-size:14px; margin-top:8px; }
+  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
+  .spinner { width:36px; height:36px; border:3px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  .tips-section { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:48px 24px; }
+  .tips-inner { max-width:1280px; margin:0 auto; }
+  .tips-title { font-size:20px; font-weight:700; margin-bottom:24px; }
+  .tips-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+  .tip-card { background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius); padding:18px; display:flex; flex-direction:column; gap:7px; }
+  .tip-icon { font-size:22px; }
+  .tip-card h4 { font-size:13px; font-weight:700; }
+  .tip-card p { font-size:12.5px; color:var(--text-muted); }
+
+  footer { max-width:1280px; margin:0 auto; padding:28px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid var(--border); }
+  footer p { font-size:12px; color:var(--text-dim); }
+  .footer-logo { font-weight:700; color:var(--text-muted); font-size:14px; display:flex; align-items:center; gap:8px; }
+
+  @media (max-width:768px) {
+    .main-layout { grid-template-columns:1fr; }
+    .sidebar { position:static; flex-direction:row; flex-wrap:wrap; }
+    .sidebar-title,.sidebar-divider,.company-link { display:none; }
+    .header-tag { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+        <defs>
+          <linearGradient id="hgL" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7C6FF7"/><stop offset="100%" stop-color="#A78BFA"/></linearGradient>
+          <linearGradient id="hgR" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#93C5FD"/></linearGradient>
+          <clipPath id="hcL"><rect x="0" y="0" width="18" height="36"/></clipPath>
+          <clipPath id="hcR"><rect x="18" y="0" width="18" height="36"/></clipPath>
+        </defs>
+        <circle cx="18" cy="18" r="16" fill="none" stroke="url(#hgL)" stroke-width="2.5" clip-path="url(#hcL)"/>
+        <circle cx="18" cy="18" r="16" fill="none" stroke="url(#hgR)" stroke-width="2.5" clip-path="url(#hcR)"/>
+        <path d="M18 2 A8 8 0 0 1 18 18 A8 8 0 0 0 18 34" fill="none" stroke="url(#hgR)" stroke-width="1.8"/>
+        <path d="M18 2 A8 8 0 0 0 18 18 A8 8 0 0 1 18 34" fill="none" stroke="url(#hgL)" stroke-width="1.8"/>
+        <circle cx="18" cy="10" r="2.5" fill="#A78BFA"/>
+        <circle cx="18" cy="26" r="2.5" fill="#60A5FA"/>
+        <text x="18" y="22.5" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="800" font-size="13" fill="white">H</text>
+      </svg>
+      Home Office Hub
+    </a>
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Buscar vaga, empresa ou área…">
+    </div>
+    <span class="header-tag">🇧🇷 Para brasileiros</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow" id="updateBadge">✦ Carregando…</div>
+  <h1>O futuro da tecnologia<br><span class="grad">conta com você!</span></h1>
+  <p>Fique por dentro de todas as vagas disponíveis no Brasil — links diretos para cada oportunidade em aberto.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num" id="statEmpresas">–</div><div class="stat-label">Empresas listadas</div></div>
+    <div class="stat"><div class="stat-num" id="statVagas">–</div><div class="stat-label">Vagas abertas</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Remoto · Brasil</div></div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-title">Empresas</div>
+    <!-- preenchido via JS -->
+  </aside>
+
+  <div class="content-area">
+    <div class="content-header">
+      <div class="content-title" id="result-count">Carregando…</div>
+      <div class="filter-pills" id="filterPills">
+        <button class="pill active" data-cat="all">Todas</button>
+        <button class="pill" data-cat="transl">Tradução</button>
+        <button class="pill" data-cat="ai">IA &amp; Dados</button>
+        <button class="pill" data-cat="qa">QA</button>
+        <button class="pill" data-cat="sme">Especialista</button>
+        <button class="pill" data-cat="write">Escrita</button>
+      </div>
+    </div>
+
+    <div id="jobsContainer">
+      <div class="loading"><div class="spinner"></div>Carregando vagas…</div>
+    </div>
+
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div style="font-size:32px">🔍</div>
+      <p>Nenhuma vaga encontrada. Tente outro termo ou categoria.</p>
+    </div>
+  </div>
+</div>
+
+<!-- GRÁFICO -->
+<section style="background:var(--bg);padding:56px 24px 0;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="margin-bottom:28px;">
+      <div style="font-size:11px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;">📊 Panorama do mercado</div>
+      <h2 style="font-size:22px;font-weight:800;margin-bottom:10px;">Agora é o <span style="background:linear-gradient(90deg,#A78BFA,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">melhor momento</span> para se candidatar</h2>
+      <p style="font-size:15px;color:var(--text-muted);max-width:680px;line-height:1.65;">O mercado de trabalho remoto para IA e dados cresceu muito nos últimos anos. As grandes empresas de tecnologia estão investindo cada vez mais em treinamento de modelos de IA, e <strong style="color:var(--text);">o Brasil está no centro disso</strong> — especialmente para projetos em Português. O gráfico abaixo mostra a tendência de crescimento nas contratações freelance para projetos de IA.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px 32px 24px;">
+      <div style="display:flex;align-items:center;gap:24px;margin-bottom:20px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);"><div style="width:28px;height:3px;border-radius:2px;background:linear-gradient(90deg,#7C6FF7,#A78BFA);"></div> Vagas globais de IA</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);"><div style="width:28px;height:3px;border-radius:2px;background:linear-gradient(90deg,#60A5FA,#93C5FD);"></div> Projetos PT-BR</div>
+        <div style="margin-left:auto;background:rgba(57,211,83,0.1);border:1px solid rgba(57,211,83,0.3);border-radius:20px;font-size:12px;font-weight:700;color:#39D353;padding:4px 12px;">↑ Crescimento contínuo</div>
+      </div>
+      <div style="position:relative;width:100%;height:260px;"><canvas id="trendChart"></canvas></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:24px;">
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-size:22px;font-weight:800;background:linear-gradient(90deg,#A78BFA,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">+340%</div><div style="font-size:13px;font-weight:600;margin:4px 0;">Crescimento desde 2022</div><div style="font-size:12px;color:var(--text-muted);">No número de vagas remotas de IA abertas para o Brasil</div></div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-size:22px;font-weight:800;background:linear-gradient(90deg,#A78BFA,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2026</div><div style="font-size:13px;font-weight:600;margin:4px 0;">Pico histórico</div><div style="font-size:12px;color:var(--text-muted);">Estamos no maior volume de contratações já registrado para PT-BR</div></div>
+        <div style="background:rgba(57,211,83,0.06);border:1px solid rgba(57,211,83,0.2);border-radius:10px;padding:16px;"><div style="font-size:22px;font-weight:800;color:#39D353;">Agora ✓</div><div style="font-size:13px;font-weight:600;margin:4px 0;">Momento ideal</div><div style="font-size:12px;color:var(--text-muted);">Mais projetos abertos = mais chances de aprovação nos testes</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DICAS -->
+<section class="tips-section">
+  <div class="tips-inner">
+    <div class="tips-title">💡 Dicas para começar</div>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="tip-icon">🎯</div><h4>Comece com 2–3 vagas</h4><p>Não tente tudo de uma vez. Foque nas que combinam com seu perfil e construa reputação primeiro.</p></div>
+      <div class="tip-card"><div class="tip-icon">🧪</div><h4>Teste de entrada</h4><p>Muitas vagas exigem um teste. Estude os materiais disponíveis antes de fazer — a preparação faz toda a diferença.</p></div>
+      <div class="tip-card"><div class="tip-icon">⏰</div><h4>Horários livres</h4><p>A maioria é flexível — trabalhe de onde e quando quiser, sem horário fixo.</p></div>
+      <div class="tip-card"><div class="tip-icon">📝</div><h4>Faça um bom currículo</h4><p>Um currículo adaptado à vaga aumenta muito as chances de ser chamado. Destaque experiências relevantes e use palavras-chave da descrição da vaga.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+      <defs>
+        <linearGradient id="fgL" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C6FF7"/><stop offset="100%" stop-color="#A78BFA"/></linearGradient>
+        <linearGradient id="fgR" x1="1" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#93C5FD"/></linearGradient>
+        <clipPath id="fcL2"><rect x="0" y="0" width="18" height="36"/></clipPath>
+        <clipPath id="fcR2"><rect x="18" y="0" width="18" height="36"/></clipPath>
+      </defs>
+      <circle cx="18" cy="18" r="16" fill="none" stroke="url(#fgL)" stroke-width="2.5" clip-path="url(#fcL2)"/>
+      <circle cx="18" cy="18" r="16" fill="none" stroke="url(#fgR)" stroke-width="2.5" clip-path="url(#fcR2)"/>
+      <circle cx="18" cy="10" r="2.5" fill="#A78BFA"/>
+      <circle cx="18" cy="26" r="2.5" fill="#60A5FA"/>
+      <text x="18" y="22" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="800" font-size="11" fill="white">H</text>
+    </svg>
+    Home Office Hub
+  </div>
+  <p>Site informativo sem vínculo com as empresas listadas. Verifique disponibilidade e termos diretamente com cada empresa.</p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  METADADOS DAS EMPRESAS (visual: logo, cor, descrição, link)
+// ═══════════════════════════════════════════════════════════
+const EMPRESAS = {
+  welocalize: { nome:"Welocalize", sigla:"WL", cor:"#818CF8", bg:"#1a2040", desc:"Tradução · Localização · IA · QA", link:"https://jobs.lever.co/weloglobal?location=Brazil" },
+  rws:        { nome:"RWS TrainAI", sigla:"RW", cor:"#C084FC", bg:"#1a2030", desc:"IA · Dublagem · Especialistas", link:"https://jobs.lever.co/rws" },
+  toloka:     { nome:"Toloka AI", sigla:"TK", cor:"#8B5CF6", bg:"#1c1a38", desc:"Anotação · Vídeo · IA · Part-time", link:"https://apply.workable.com/toloka-annotators/" },
+  crowdgen:   { nome:"CrowdGen", sigla:"CG", cor:"#60A5FA", bg:"#1a1e38", desc:"IA · Avaliação · Social Media", link:"https://www.crowdgen.com/" },
+  outlier:    { nome:"Outlier AI", sigla:"OA", cor:"#A78BFA", bg:"#1e1a38", desc:"Escrita · RLHF · IA", link:"https://app.outlier.ai/" },
+  oneforma:   { nome:"OneForma", sigla:"1F", cor:"#60A5FA", bg:"#1a1e30", desc:"IA · Anotação · Áudio · Dados", link:"https://www.oneforma.com/jobs/" },
+  telus:      { nome:"Telus International", sigla:"TI", cor:"#C084FC", bg:"#1e1a30", desc:"QA · Avaliação · Segurança", link:"https://www.telusinternational.ai/cmp/public/jobs" },
+};
+// Ordem das categorias dentro de cada empresa
+const CAT_ORDER = ["transl","ai","qa","sme","write"];
+const CAT_NOME = { transl:"Tradução", ai:"IA & Dados", qa:"QA & Validação", sme:"Especialistas (SME)", write:"Escrita" };
+
+let TODAS_VAGAS = [];
+let activeCompany = "all";
+let activeCat = "all";
+let searchTerm = "";
+
+// ═══════════════════════════════════════════════════════════
+//  CARREGAR vagas.json
+// ═══════════════════════════════════════════════════════════
+async function carregar() {
+  try {
+    const resp = await fetch("vagas.json?v=" + Date.now()); // evita cache
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const dados = await resp.json();
+    TODAS_VAGAS = dados.vagas || [];
+    document.getElementById("updateBadge").textContent = "✦ Atualizado em " + (dados.atualizado_br || "—");
+    render();
+  } catch (e) {
+    document.getElementById("jobsContainer").innerHTML =
+      '<div class="empty-state"><div style="font-size:32px">⚠️</div>' +
+      '<p>Não foi possível carregar as vagas.<br>Verifique se o arquivo <b>vagas.json</b> está na mesma pasta.</p></div>';
+    document.getElementById("result-count").textContent = "Erro ao carregar";
+    document.getElementById("updateBadge").textContent = "✦ Erro ao atualizar";
+    console.error(e);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  MONTAR sidebar + seções + cards
+// ═══════════════════════════════════════════════════════════
+function render() {
+  // Empresas presentes nas vagas (na ordem de EMPRESAS)
+  const presentes = Object.keys(EMPRESAS).filter(id => TODAS_VAGAS.some(v => v.empresa === id));
+
+  // Stats
+  document.getElementById("statEmpresas").textContent = presentes.length;
+  document.getElementById("statVagas").textContent = TODAS_VAGAS.length;
+
+  // Sidebar
+  const sb = document.getElementById("sidebar");
+  sb.innerHTML = '<div class="sidebar-title">Empresas</div>';
+  const btnAll = document.createElement("button");
+  btnAll.className = "company-btn active";
+  btnAll.dataset.company = "all";
+  btnAll.innerHTML = `<div class="company-logo-sm" style="background:#1c1e38;color:#A78BFA;">✦</div>Todas as vagas<span class="count-badge">${TODAS_VAGAS.length}</span>`;
+  sb.appendChild(btnAll);
+  sb.insertAdjacentHTML("beforeend", '<div class="sidebar-divider"></div>');
+  presentes.forEach(id => {
+    const e = EMPRESAS[id];
+    const qtd = TODAS_VAGAS.filter(v => v.empresa === id).length;
+    const b = document.createElement("button");
+    b.className = "company-btn";
+    b.dataset.company = id;
+    b.innerHTML = `<div class="company-logo-sm" style="background:${e.bg};color:${e.cor};">${e.sigla}</div>${e.nome}<span class="count-badge">${qtd}</span>`;
+    sb.appendChild(b);
+  });
+
+  // Seções por empresa
+  const cont = document.getElementById("jobsContainer");
+  cont.innerHTML = "";
+  presentes.forEach(id => {
+    const e = EMPRESAS[id];
+    const vagasEmp = TODAS_VAGAS.filter(v => v.empresa === id);
+    const sec = document.createElement("div");
+    sec.className = "company-section";
+    sec.dataset.company = id;
+
+    let html = `<div class="company-header">
+      <div class="company-logo-lg" style="background:${e.bg};color:${e.cor};">${e.sigla}</div>
+      <div class="company-info"><h2>${e.nome}</h2><p>${e.desc}</p></div>
+      <a href="${e.link}" target="_blank" rel="noopener" class="company-link">Ver todas as vagas ↗</a>
+    </div>`;
+
+    // Agrupa por categoria
+    CAT_ORDER.forEach(cat => {
+      const vagasCat = vagasEmp.filter(v => v.categoria === cat);
+      if (vagasCat.length === 0) return;
+      html += `<div class="category-label">${CAT_NOME[cat]}</div><div class="jobs-grid">`;
+      vagasCat.forEach(v => {
+        html += `<div class="job-card" data-cat="${v.categoria}" data-company="${id}">
+          <div class="job-title">${escapeHtml(v.titulo)}</div>
+          <div class="job-meta">
+            <span class="job-badge badge-${v.categoria}">${escapeHtml(v.badge)}</span>
+            <span class="job-location">📍 ${escapeHtml(v.local)}</span>
+          </div>
+          <div class="job-footer">
+            <a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="btn-apply">Candidatar →</a>
+          </div>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    sec.innerHTML = html;
+    cont.appendChild(sec);
+  });
+
+  ligarEventos();
+  aplicarFiltros();
+}
+
+function escapeHtml(s){ return (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function escapeAttr(s){ return (s||"#").replace(/"/g,'&quot;'); }
+
+// ═══════════════════════════════════════════════════════════
+//  FILTROS
+// ═══════════════════════════════════════════════════════════
+function aplicarFiltros() {
+  const cards = document.querySelectorAll(".job-card");
+  const sections = document.querySelectorAll(".company-section");
+  let visible = 0;
+
+  sections.forEach(sec => {
+    const show = activeCompany === "all" || activeCompany === sec.dataset.company;
+    sec.classList.toggle("hidden", !show);
+  });
+
+  cards.forEach(card => {
+    const matchCompany = activeCompany === "all" || activeCompany === card.dataset.company;
+    const matchCat = activeCat === "all" || activeCat === card.dataset.cat;
+    const matchSearch = searchTerm === "" || card.innerText.toLowerCase().includes(searchTerm);
+    const show = matchCompany && matchCat && matchSearch;
+    card.classList.toggle("hidden", !show);
+    if (show) visible++;
+  });
+
+  // esconde category-labels que ficaram sem cards visíveis
+  document.querySelectorAll(".company-section:not(.hidden)").forEach(sec => {
+    sec.querySelectorAll(".jobs-grid").forEach(grid => {
+      const anyVisible = [...grid.querySelectorAll(".job-card")].some(c => !c.classList.contains("hidden"));
+      const label = grid.previousElementSibling;
+      grid.style.display = anyVisible ? "" : "none";
+      if (label && label.classList.contains("category-label")) label.style.display = anyVisible ? "" : "none";
+    });
+  });
+
+  document.getElementById("result-count").textContent =
+    `${visible} vaga${visible !== 1 ? "s" : ""} encontrada${visible !== 1 ? "s" : ""}`;
+  document.getElementById("emptyState").style.display = visible === 0 ? "block" : "none";
+}
+
+function ligarEventos() {
+  document.querySelectorAll(".company-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".company-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCompany = btn.dataset.company;
+      aplicarFiltros();
+    });
+  });
+}
+
+document.querySelectorAll(".pill").forEach(pill => {
+  pill.addEventListener("click", () => {
+    document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+    pill.classList.add("active");
+    activeCat = pill.dataset.cat;
+    aplicarFiltros();
+  });
+});
+
+document.getElementById("searchInput").addEventListener("input", e => {
+  searchTerm = e.target.value.toLowerCase().trim();
+  aplicarFiltros();
+});
+
+// ═══════════════════════════════════════════════════════════
+//  GRÁFICO
+// ═══════════════════════════════════════════════════════════
+(function() {
+  const canvas = document.getElementById("trendChart");
+  if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  function draw() {
+    const W = canvas.parentElement.offsetWidth, H = 260;
+    canvas.width = W*dpr; canvas.height = H*dpr;
+    canvas.style.width = W+"px"; canvas.style.height = H+"px";
+    const ctx = canvas.getContext("2d"); ctx.scale(dpr,dpr);
+    const PAD = {top:20,right:20,bottom:40,left:48};
+    const cW = W-PAD.left-PAD.right, cH = H-PAD.top-PAD.bottom;
+    const labels = ["2022","2023","2024","2025","Jun 2026"];
+    const global = [18,35,62,88,100], ptbr = [10,22,48,78,100], maxV = 100;
+    const xPos = i => PAD.left + (i/(labels.length-1))*cW;
+    const yPos = v => PAD.top + cH - (v/maxV)*cH;
+    ctx.strokeStyle = "rgba(48,54,61,0.7)"; ctx.lineWidth = 1;
+    [0,25,50,75,100].forEach(v => {
+      const y = yPos(v);
+      ctx.beginPath(); ctx.setLineDash([4,4]); ctx.moveTo(PAD.left,y); ctx.lineTo(PAD.left+cW,y); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#44475A"; ctx.font = "11px Inter,sans-serif"; ctx.textAlign = "right"; ctx.fillText(v+"%",PAD.left-8,y+4);
+    });
+    ctx.textAlign = "center"; ctx.fillStyle = "#8B8FA8"; ctx.font = "12px Inter,sans-serif";
+    labels.forEach((l,i)=>ctx.fillText(l,xPos(i),H-PAD.bottom+18));
+    function area(data,c){ const g=ctx.createLinearGradient(0,PAD.top,0,PAD.top+cH); g.addColorStop(0,c+"40"); g.addColorStop(1,c+"00");
+      ctx.beginPath(); ctx.moveTo(xPos(0),yPos(0)); data.forEach((v,i)=>ctx.lineTo(xPos(i),yPos(v))); ctx.lineTo(xPos(data.length-1),yPos(0)); ctx.closePath(); ctx.fillStyle=g; ctx.fill(); }
+    function line(data,c1,c2){ const g=ctx.createLinearGradient(PAD.left,0,PAD.left+cW,0); g.addColorStop(0,c1); g.addColorStop(1,c2);
+      ctx.beginPath(); data.forEach((v,i)=>i===0?ctx.moveTo(xPos(i),yPos(v)):ctx.lineTo(xPos(i),yPos(v))); ctx.strokeStyle=g; ctx.lineWidth=3; ctx.lineJoin="round"; ctx.lineCap="round"; ctx.stroke();
+      data.forEach((v,i)=>{ ctx.beginPath(); ctx.arc(xPos(i),yPos(v),i===data.length-1?6:4,0,Math.PI*2); ctx.fillStyle=i===data.length-1?c2:"#12151F"; ctx.fill(); ctx.strokeStyle=c2; ctx.lineWidth=2.5; ctx.stroke();
+        if(i===data.length-1){ ctx.fillStyle=c2; ctx.font="bold 12px Inter,sans-serif"; ctx.textAlign="center"; ctx.fillText("Pico!",xPos(i),yPos(v)-14); } }); }
+    area(global,"#7C6FF7"); area(ptbr,"#60A5FA");
+    line(global,"#7C6FF7","#A78BFA"); line(ptbr,"#60A5FA","#93C5FD");
+  }
+  draw(); window.addEventListener("resize",draw);
+})();
+
+// INICIAR
+carregar();
+</script>
+</body>
+</html>
