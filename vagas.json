@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-07-28T14:33:44.285304+00:00",
-  "atualizado_br": "28/07/2026 às 14:33",
+  "atualizado_em": "2026-07-28T18:49:07.475697+00:00",
+  "atualizado_br": "28/07/2026 às 18:49",
   "total": 46,
   "vagas": [
     {
@@ -264,258 +264,204 @@
       "fonte": "direto"
     },
     {
-      "empresa": "jobicy",
-      "empresa_real": "Welo Global",
-      "titulo": "Portuguese Accessibility Tester",
-      "local": "Remoto · Europe",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/149736-portuguese-accessibility-tester",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
+      "empresa": "oneforma",
+      "titulo": "Project Meteor | AI Response & Rubric Evaluation Worldwide Fixed Rate Per Hour Description: OneForma is looking for detail-oriented contributors to join Project Meteor, a remote AI evaluation project. Participants will review and improve AI-generated golden responses and evaluation rubrics to ensure they meet the highest quality standards and are free of critical (P0) errors. The work includes evaluating AI outputs for both open-ended and close-ended tasks using […]",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.oneforma.com/jobs/meteor/",
+      "commitment": "",
+      "fonte": "direto"
     },
     {
-      "empresa": "jobicy",
-      "empresa_real": "Welo Global",
-      "titulo": "French into Portuguese Financial Banking Translator",
-      "local": "Remoto · Europe",
+      "empresa": "oneforma",
+      "titulo": "Freya Project: Remote Podcast Transcription and Speech Annotation Selected Locations Fixed Rate Per Hour Join OneForma as a remote transcription and speech annotation specialist. Transcribe long-form podcast recordings to help train and evaluate voice recognition models. Paid hourly, fully remote, open across 29 languages and locales.",
+      "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
-      "url": "https://jobicy.com/jobs/146781-french-into-portuguese-financial-banking-translator",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "Signifyd",
-      "titulo": "Senior Enterprise Customer Success Manager",
-      "local": "Remoto · Brazil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/149749-senior-enterprise-customer-success-manager-2",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "Welo Global",
-      "titulo": "Brazilian Subject Matter Expert in Religion or Philosophy (PhD level)",
-      "local": "Remoto · Brasil",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobicy.com/jobs/147402-brazilian-subject-matter-expert-in-religion-or-philosophy-phd-level",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "Welo Global",
-      "titulo": "Brazilian Subject Matter Expert in Law and Ethics (PhD level)",
-      "local": "Remoto · Brasil",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobicy.com/jobs/147405-brazilian-subject-matter-expert-in-law-and-ethics-phd-level",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "Welo Global",
-      "titulo": "Brazilian Subject Matter Expert in Politics (PhD level)",
-      "local": "Remoto · Brasil",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobicy.com/jobs/147403-brazilian-subject-matter-expert-in-politics-phd-level",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "WATI",
-      "titulo": "Customer Success Manager - LATAM (One-to-Many)",
-      "local": "Remoto · Brazil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/147138-customer-success-manager-latam-one-to-many",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "BCD Travel",
-      "titulo": "Senior Travel Consultant ERM, Brazil",
-      "local": "Remoto · LATAM,  Brazil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/146275-senior-travel-consultant-erm-brazil",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "RevenueCat",
-      "titulo": "Senior Data Scientist, RC Capital",
-      "local": "Remoto · LATAM,  Canada,  USA",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/143120-senior-data-scientist-rc-capital",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "RevenueCat",
-      "titulo": "Senior Android SDK Engineer",
-      "local": "Remoto · EMEA,  LATAM,  Canada,  USA",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/144154-senior-android-sdk-engineer",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "Amazon.com",
-      "titulo": "Analista de Customer Service, Delivery Station Customer Support",
-      "local": "Remoto · Brazil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/147502-analista-de-customer-service-delivery-station-customer-support",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "GitLab",
-      "titulo": "Customer Success Engineer, LATAM (Spanish, Portugese)",
-      "local": "Remoto · Brazil,  Mexico,  USA",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/149641-customer-success-engineer-latam-spanish-portugese",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "Plain Concepts",
-      "titulo": "Golang Engineer",
-      "local": "Remoto · Brazil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/144179-golang-engineer",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "RevenueCat",
-      "titulo": "Content Marketing Manager, Organic Growth (SEO & AEO)",
-      "local": "Remoto · EMEA,  LATAM,  Canada,  USA",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/146002-senior-content-marketing-manager-narrative-comms",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "RevenueCat",
-      "titulo": "Head of Customer Success",
-      "local": "Remoto · EMEA,  LATAM,  Canada,  USA",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/149036-head-of-customer-success",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "Fortive",
-      "titulo": "Technical Customer Support",
-      "local": "Remoto · Brazil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/148930-technical-customer-support",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "jobicy",
-      "empresa_real": "Precision Medicine Group",
-      "titulo": "Clinical Trial Manager (LATAM)",
-      "local": "Remoto · Argentina,  Brazil,  Mexico",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobicy.com/jobs/148626-clinical-trial-manager-latam",
-      "commitment": [
-        "Full-Time"
-      ],
-      "fonte": "Jobicy"
-    },
-    {
-      "empresa": "remoteok",
-      "empresa_real": "SulAmÃ©rica",
-      "titulo": "Analista de Projetos Jr",
-      "local": "Remoto · Rio de Janeiro, Rio de Janeiro, Rio de Janeiro, Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://remoteOK.com/remote-jobs/remote-analista-de-projetos-jr-sulamerica-1135421",
+      "url": "https://www.oneforma.com/jobs/freya/",
       "commitment": "",
-      "fonte": "RemoteOK"
+      "fonte": "direto"
     },
     {
-      "empresa": "remoteok",
-      "empresa_real": "BuscarVagas - Empregos Brasil",
-      "titulo": "Monitor Operacional Cachoeirinha RS Vagas Profissionais",
-      "local": "Remoto · Cachoeirinha, Cachoeirinha, Rio Grande do Sul, Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://remoteOK.com/remote-jobs/remote-monitor-operacional-cachoeirinha-rs-vagas-profissionais-buscarvagas-empregos-brasil-1135516",
+      "empresa": "oneforma",
+      "titulo": "Project Hermes | AI Language Specialist Selected Locations Fixed Rate Per Hour Evaluate AI-generated responses, adapt content to sound natural and culturally appropriate for your language, write prompts, and improve AI outputs following detailed project guidelines.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/hermes/",
       "commitment": "",
-      "fonte": "RemoteOK"
+      "fonte": "direto"
     },
     {
-      "empresa": "remoteok",
-      "empresa_real": "TOTVS",
-      "titulo": "NegÃ³cios Analista de SoluÃ§Ãµes de NegÃ³cios JÃºnior",
-      "local": "Remoto · Brasil,",
+      "empresa": "oneforma",
+      "titulo": "Project Zeno | Speech Translation Data Quality Evaluation | Remote Worldwide Fixed Rate Per Approved Asset Review pre-translated text and pre-labeled named entities, evaluating the quality of both the translations and the entity annotations.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/project-zeno-speech-translation-data-quality-evaluation-remote/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Project Triangle | Remote Ego-Centric Video Data Collection Selected Locations Fixed Rate Per Approved Asset Help train AI systems to better understand how people perform everyday physical tasks in real home environments through high-quality first-person video recordings.",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.oneforma.com/jobs/project-triangle-dc/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "LELI – Review & Refine Machine Translations in Your Language Fixed Rate Per Source Word Review and post-edit machine-generated translations to ensure accuracy, fluency, and natural tone. Remote, flexible, per-word pay ($0.012–$0.033/word). 51 language pairs including Arabic, Chinese, Japanese, Korean, Spanish, French, German, and more. Apply now on OneForma.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/leli/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Kawaii – Audio Annotation and Speaker Identification Selected Locations Fixed Rate Per Hour Help train advanced speech recognition models by labeling conversational interactions in your native language.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/kawaii-audio-annotation-and-speaker-identification/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Vega Audio Data Collection Worldwide Fixed Rate Per Approved Asset Help us collect conversational speech data to support the improvement of voice technology systems.",
+      "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://remoteOK.com/remote-jobs/remote-negocios-analista-de-solucoes-de-negocios-junior-totvs-1135397",
+      "url": "https://www.oneforma.com/jobs/vega-audio-data-collection/",
       "commitment": "",
-      "fonte": "RemoteOK"
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Adaptation Worldwide Fixed Rate Per Approved Asset Support the training and improvement of AI language models by enhancing regional accuracy and overall quality of multilingual content.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/adaptation/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Fred Annotation Worldwide Fixed Rate Per Hour Help AI systems to accurately understand and respond to user requests with your annotations.",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.oneforma.com/jobs/fred-annotation/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Ava Audio Collection Fixed Rate Upon Completion Worldwide Record utterances in your native language and help make technology more inclusive.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/ava-audio-collection/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "BGN Audio Fixed Rate Upon Completion Worldwide Record scripted audios in your native language and shape the future of technology.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/bgn-audio/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Vega Audio Collection – QA Worldwide Fixed Rate Per Hour Help improve text quality with your language expertise.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/vega-audio-collection-qa/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Paragraph Level Acceptability Worldwide Fixed Rate Per Approved Asset Rate translations to help improve AI.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/paragraph-level-acceptability/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Amber Image Annotator – Phase 2 Worldwide Fixed Rate Per Hour Review and annotate images to improve AI.",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.oneforma.com/jobs/amber-image-annotator-phase-2/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "QA Specialist for Squirrel TSE Data Collection Worldwide Fixed Rate Per Hour Help train and refine AI systems in your native language.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/qa-specialist-for-squirrel-tse-data-collection/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Acceptability and Preference: Translation Raters Worldwide Fixed Rate Per Approved Asset Help us rate our client's translations.",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/acceptability-and-preference-translation-raters/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Apps and Music Grading Selected Locations Fixed Rate Per Approved Asset Help us improve apps to enhance user experience.",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.oneforma.com/jobs/apps-and-music-grading/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Long Context Acceptability Selected Locations Fixed Rate Per Approved Asset Help us identify and classify translation errors!",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/jobs/long-context-acceptability/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Internet Judging: Milky Way (Maps Evaluation) Selected Locations Fixed Rate Per Approved Asset Help us evaluate the quality of queries made by internet users while navigating through different map applications.",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.oneforma.com/jobs/internet-judging-milky-way-maps-evaluation/",
+      "commitment": "",
+      "fonte": "direto"
     }
   ]
 }
