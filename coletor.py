@@ -26,7 +26,20 @@ import urllib.parse
 import json
 import re
 import time
+import ssl
 from datetime import datetime, timezone
+
+# ─── Correção de SSL no Windows ───
+# O Python no Windows às vezes não consegue verificar certificados de sites
+# (erro "CERTIFICATE_VERIFY_FAILED"). Tentamos usar os certificados do sistema;
+# se não der, criamos um contexto que não trava por causa disso.
+try:
+    import certifi
+    _SSL_CTX = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    _SSL_CTX = ssl.create_default_context()
+    _SSL_CTX.check_hostname = False
+    _SSL_CTX.verify_mode = ssl.CERT_NONE
 
 # ═══════════════════════════════════════════════════════════════════
 #  CONFIGURAÇÃO — edite aqui para adicionar/remover empresas
@@ -69,12 +82,12 @@ USAR_ONEFORMA = True
 # as vagas "Worldwide" e as que citam Brasil no título.
 ONEFORMA_ABRIR_INCERTOS = True
 
-# Telus: usa a API .json escondida. FUNCIONA no seu PC, mas a Telus BLOQUEIA
-# o GitHub (Cloudflare → erro 403). Por isso o coletor detecta sozinho onde
-# está rodando: inclui a Telus no seu PC e pula no GitHub (sem erro feio).
-import os
-_RODANDO_NO_GITHUB = os.environ.get("GITHUB_ACTIONS") == "true"
-USAR_TELUS = not _RODANDO_NO_GITHUB   # True no PC, False no GitHub
+# Telus: usa a API .json escondida. Infelizmente a Telus usa Cloudflare e
+# BLOQUEIA tanto o GitHub quanto o Python no PC (só funciona abrindo a URL
+# .json no navegador manualmente). Por isso deixamos DESLIGADA por padrão —
+# o coletor preserva a vaga da Telus que você adicionar/mantiver no vagas.json.
+# Se um dia quiser tentar de novo, mude para True.
+USAR_TELUS = False
 
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
@@ -161,7 +174,7 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
     print(f"  → Lever: {slug} ...", end=" ")
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
             dados = json.loads(r.read().decode())
     except Exception as e:
         print(f"FALHOU ({str(e)[:40]})")
@@ -199,47 +212,81 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
 # ═══════════════════════════════════════════════════════════════════
 
 def buscar_workable(nome_interno: str, slug: str) -> list:
-    url = f"https://apply.workable.com/api/v1/widget/accounts/{slug}"
+    # ?details=true traz localização completa; a Workable pode ter várias vagas
+    url = f"https://apply.workable.com/api/v1/widget/accounts/{slug}?details=true"
     print(f"  → Workable: {slug} ...", end=" ")
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=30) as r:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                          "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+            "Accept": "application/json",
+        })
+        with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
             dados = json.loads(r.read().decode())
     except Exception as e:
         print(f"FALHOU ({str(e)[:40]})")
         return []
 
     jobs = dados.get("jobs", []) if isinstance(dados, dict) else []
+    total_bruto = len(jobs)
     vagas = []
     for v in jobs:
         titulo = v.get("title", "").strip()
-        local_obj = v.get("location", {}) or {}
-        # location pode vir como string ou objeto
-        if isinstance(local_obj, dict):
-            local = local_obj.get("location_str", "") or \
-                    ", ".join(filter(None, [local_obj.get("city", ""),
-                                            local_obj.get("country", "")]))
-        else:
-            local = str(local_obj)
         estado = v.get("state", "published")
-
         if estado and estado != "published":
             continue
-        if not texto_parece_brasil(titulo, local):
+
+        # A localização da Workable pode vir de VÁRIAS formas:
+        #  - location: {objeto} com country/city/location_str
+        #  - locations: [lista de objetos] (vaga para vários países)
+        #  - workplace: "remote" e telecommuting: true
+        locais_texto = []
+
+        # caso 1: location único (objeto ou string)
+        loc = v.get("location")
+        if isinstance(loc, dict):
+            locais_texto.append(loc.get("location_str", "") or "")
+            locais_texto.append(loc.get("country", "") or "")
+            locais_texto.append(loc.get("city", "") or "")
+        elif isinstance(loc, str):
+            locais_texto.append(loc)
+
+        # caso 2: locations (lista) — vaga aberta em vários países
+        locs = v.get("locations")
+        if isinstance(locs, list):
+            for L in locs:
+                if isinstance(L, dict):
+                    locais_texto.append(L.get("country", "") or "")
+                    locais_texto.append(L.get("city", "") or "")
+                    locais_texto.append(L.get("location_str", "") or "")
+                elif isinstance(L, str):
+                    locais_texto.append(L)
+
+        # junta tudo num texto só pra filtrar
+        local_completo = " ".join(t for t in locais_texto if t).strip()
+
+        # FILTRO BRASIL — checa título + todas as localizações
+        if not texto_parece_brasil(titulo, local_completo):
             continue
+
+        # decide o texto de exibição do local
+        if "brazil" in local_completo.lower() or "brasil" in local_completo.lower():
+            local_exib = "Remoto · Brasil"
+        else:
+            local_exib = limpar_local(local_completo)
 
         cat_id, badge = categorizar(titulo)
         vagas.append({
             "empresa": nome_interno,
             "titulo": titulo,
-            "local": limpar_local(local),
+            "local": local_exib,
             "categoria": cat_id,
             "badge": badge,
             "url": v.get("url") or v.get("shortlink") or "",
             "commitment": "",
             "fonte": "direto",
         })
-    print(f"{len(vagas)} vaga(s) BR de {len(jobs)} total")
+    print(f"{len(vagas)} vaga(s) BR de {total_bruto} total")
     return vagas
 
 
@@ -258,7 +305,7 @@ def buscar_jobicy() -> list:
         url = f"https://jobicy.com/api/v2/remote-jobs?count=50&tag={urllib.parse.quote(tag)}"
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-            with urllib.request.urlopen(req, timeout=30) as r:
+            with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
                 dados = json.loads(r.read().decode())
         except Exception:
             continue
@@ -300,7 +347,7 @@ def buscar_remoteok() -> list:
     url = "https://remoteok.com/api"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
             dados = json.loads(r.read().decode())
     except Exception as e:
         print(f"FALHOU ({str(e)[:40]})")
