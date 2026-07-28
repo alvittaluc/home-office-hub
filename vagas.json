@@ -1,79 +1,177 @@
 {
-  "atualizado_em": "2026-07-28T13:52:28.708680+00:00",
-  "atualizado_br": "28/07/2026 às 13:52",
-  "total": 22,
+  "atualizado_em": "2026-07-28T14:33:44.285304+00:00",
+  "atualizado_br": "28/07/2026 às 14:33",
+  "total": 46,
   "vagas": [
     {
       "empresa": "welocalize",
-      "titulo": "English to Portuguese (Brazil) Patent Agency/Translator/LQA Reviewer",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/weloglobal/12511ff5-5083-49e9-b50a-13613d957e25",
-      "commitment": ""
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "German into Portuguese (Brazil) Patent Translators",
-      "local": "Remoto · Brasil / Alemanha",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/weloglobal/4ef463d3-bbef-4c50-86f3-96dd9fe81828",
-      "commitment": ""
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Circinus - Audio Contributor Portuguese (Brazil)",
-      "local": "Freelance · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/aba23d95-caff-4c63-96ac-ed40f4561a19",
-      "commitment": ""
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Italian Search & Data Labelling Rater - Project Andromeda Titawin",
-      "local": "Freelance · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/808cf834-d4be-476e-a178-74ec72f861dc",
-      "commitment": ""
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Maps Personalization Relevance Rater - Portuguese (Brazil)",
-      "local": "Freelance · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/7eae9741-9c26-4935-865f-977a39db5cb1",
-      "commitment": ""
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Scout Junior Quality Coordinator - Portuguese (Brazil)",
-      "local": "Remoto · Brasil",
+      "titulo": "*Scout Junior Quality Coordinator - Portuguese (Brazil)",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/6e0ac589-3fba-429a-8ce4-5c48a2cf0e2d",
-      "commitment": ""
+      "commitment": "Remote",
+      "fonte": "direto"
     },
     {
       "empresa": "welocalize",
       "titulo": "Ads Quality Rater - German (Brazil)",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/31bad8e4-811a-4d38-94ab-81b5238b017b",
-      "commitment": ""
+      "commitment": "Remote",
+      "fonte": "direto"
     },
     {
       "empresa": "welocalize",
       "titulo": "Ads Quality Rater - Italian (Brazil)",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/b782302b-3ac6-4069-b295-1b0eb194329c",
-      "commitment": ""
+      "commitment": "Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Brazilian Subject Matter Expert in Law and Ethics",
+      "local": "Remoto · Remoto - Europe",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/weloglobal/86626b6c-7f94-477c-b844-552cefe927f4",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Brazilian Subject Matter Expert in Politics",
+      "local": "Remoto · Remoto - Europe",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/weloglobal/af2cd877-4e0a-4c40-b99d-a4ebf38b56fe",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Brazilian Subject Matter Expert in Religion or Philosophy",
+      "local": "Remoto · Remoto - Europe",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/weloglobal/390e87b4-96a8-4f54-a3c4-8d1daa0ae850",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Circinus - Audio Contributor Portuguese (Brazil)",
+      "local": "Remoto · Brazil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/aba23d95-caff-4c63-96ac-ed40f4561a19",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "English to Portuguese(Brazil) Patent Agency/Translator/LQA Reviewer",
+      "local": "Remoto · Brazil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/weloglobal/12511ff5-5083-49e9-b50a-13613d957e25",
+      "commitment": "Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "French into Portuguese Financial Banking Translator",
+      "local": "Remoto · Remoto - Europe",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/weloglobal/aeb21a75-e6c7-4eec-81dc-3a70318bd9cc",
+      "commitment": "Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "German Search & Data Labelling Rater - Project Andromeda Titawin",
+      "local": "Remoto · India",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/882fd234-3d3b-4f1e-aba1-552ba3524e68",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Italian Search & Data Labelling Rater - Project Andromeda Titawin",
+      "local": "Remoto · Brazil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/808cf834-d4be-476e-a178-74ec72f861dc",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Portuguese (Brazil) Quality Control Lead - Project Lyra",
+      "local": "Remoto · Brazil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/4cc2a43f-a3e8-4d84-9b8d-ee69598bd8bb",
+      "commitment": "Contract",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Portuguese Accessibility Tester",
+      "local": "Remoto · Remoto - Europe",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/7f043ad0-ba02-44c1-b163-0c75b3e7e3f3",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Project Epsilon - Portuguese (Brazil) Data Trainer",
+      "local": "Remoto · Brazil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/64a0c74c-57fb-482e-b9a2-cfaff52db6df",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Project Epsilon - Portuguese (Brazil) Quality Control Specialist",
+      "local": "Remoto · Brazil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/c9d76e98-60ed-4f2e-91cb-2f8d54441cfe",
+      "commitment": "Freelance",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Project Perseus | Data Labeling Associate - Portuguese (Brazil) Speakers (Human-in-the-Loop AI)",
+      "local": "Remoto · California",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/32423991-2b3f-4499-8905-ada86936e4f7",
+      "commitment": "Full Time",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Project Perseus | Speech & Voice AI Analyst - Portuguese (Brazil) Speakers",
+      "local": "Remoto · California",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/89050f99-2c6f-4490-a763-9ddc81c19549",
+      "commitment": "Full Time",
+      "fonte": "direto"
     },
     {
       "empresa": "rws",
@@ -82,34 +180,8 @@
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://jobs.lever.co/rws/72796483-2495-4299-b1c1-c95c3800006f",
-      "commitment": ""
-    },
-    {
-      "empresa": "rws",
-      "titulo": "AI Dubber - Portuguese (Brazil) + French (France)",
-      "local": "Remoto · São Paulo",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/rws/e8278578-5004-4672-b545-a98f5bb28959",
-      "commitment": ""
-    },
-    {
-      "empresa": "rws",
-      "titulo": "AI Dubber - Portuguese (Brazil) + German",
-      "local": "Remoto · São Paulo",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/rws/36bce243-ccfd-42a1-913c-516123dab165",
-      "commitment": ""
-    },
-    {
-      "empresa": "rws",
-      "titulo": "AI Dubber - Portuguese (Brazil) + Italian",
-      "local": "Remoto · São Paulo",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/rws/8292e34d-fbc7-4153-80f3-19e19b0fb843",
-      "commitment": ""
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
     },
     {
       "empresa": "rws",
@@ -118,43 +190,8 @@
       "categoria": "sme",
       "badge": "Especialista",
       "url": "https://jobs.lever.co/rws/9a0d5c38-97e3-4124-b9cb-7401660fe01e",
-      "commitment": ""
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - History Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/3d2e529c-744a-4ed6-b04d-e8e416969a1b",
-      "commitment": ""
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Home & Garden Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/d5bcef39-c110-4aae-ad0c-1909e85ddd07",
-      "commitment": ""
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Religion & Philosophy Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/c6f4a7fe-986e-4367-8507-fb6c7be831b6",
-      "commitment": ""
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Linguistic AI Auditor (Brazilian Portuguese)",
-      "local": "Remoto · São Paulo",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/rws/bf14d5a6-b9a1-4f1a-9f9d-041712e0da2f",
-      "commitment": ""
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
     },
     {
       "empresa": "rws",
@@ -163,16 +200,58 @@
       "categoria": "sme",
       "badge": "Especialista",
       "url": "https://jobs.lever.co/rws/048f8c3e-e09f-4b13-81f7-a060584f45f0",
-      "commitment": ""
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
     },
     {
       "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Literature & Linguistics Subject Matter Expert (SME)",
+      "titulo": "Brazilian Portuguese - Home & Garden Subject Matter Expert (SME)",
+      "local": "Remoto · São Paulo",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/d5bcef39-c110-4aae-ad0c-1909e85ddd07",
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Internet Culture Subject Matter Expert (SME)",
       "local": "Remoto · Rio de Janeiro",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/rws/adf2ce84-802a-4ab8-aa91-8ea9d8883280",
-      "commitment": ""
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/768d0459-fcde-4fe5-b6e2-2ae2d9f07b56",
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Law & Ethics Subject Matter Expert (SME)",
+      "local": "Remoto · Recife",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/c8d77692-dc67-4cb7-86f7-8fca806c6682",
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Religion & Philosophy Subject Matter Expert (SME)",
+      "local": "Remoto · São Paulo",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/c6f4a7fe-986e-4367-8507-fb6c7be831b6",
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Brazilian Portuguese - Sports Subject Matter Expert (SME)",
+      "local": "Remoto · São Paulo",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/rws/8123e349-8063-44ee-8317-1357fa49306d",
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
     },
     {
       "empresa": "rws",
@@ -181,25 +260,262 @@
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/rws/ecabff98-a1e1-40eb-9ca3-ffb7a1681ebc",
-      "commitment": ""
+      "commitment": "Temporary/Contract",
+      "fonte": "direto"
     },
     {
-      "empresa": "toloka",
-      "titulo": "First-Person AI Video Trainer",
-      "local": "Remoto · Brasil · Part-time",
+      "empresa": "jobicy",
+      "empresa_real": "Welo Global",
+      "titulo": "Portuguese Accessibility Tester",
+      "local": "Remoto · Europe",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/toloka-annotators/j/D0C5314F11/",
-      "commitment": ""
+      "url": "https://jobicy.com/jobs/149736-portuguese-accessibility-tester",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
     },
     {
-      "empresa": "toloka",
-      "titulo": "AI Trainer - Freelance Data Annotator",
-      "local": "Remoto · SP / RJ / BH",
+      "empresa": "jobicy",
+      "empresa_real": "Welo Global",
+      "titulo": "French into Portuguese Financial Banking Translator",
+      "local": "Remoto · Europe",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobicy.com/jobs/146781-french-into-portuguese-financial-banking-translator",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "Signifyd",
+      "titulo": "Senior Enterprise Customer Success Manager",
+      "local": "Remoto · Brazil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/toloka-annotators/j/870369E4B6/",
-      "commitment": ""
+      "url": "https://jobicy.com/jobs/149749-senior-enterprise-customer-success-manager-2",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "Welo Global",
+      "titulo": "Brazilian Subject Matter Expert in Religion or Philosophy (PhD level)",
+      "local": "Remoto · Brasil",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobicy.com/jobs/147402-brazilian-subject-matter-expert-in-religion-or-philosophy-phd-level",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "Welo Global",
+      "titulo": "Brazilian Subject Matter Expert in Law and Ethics (PhD level)",
+      "local": "Remoto · Brasil",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobicy.com/jobs/147405-brazilian-subject-matter-expert-in-law-and-ethics-phd-level",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "Welo Global",
+      "titulo": "Brazilian Subject Matter Expert in Politics (PhD level)",
+      "local": "Remoto · Brasil",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobicy.com/jobs/147403-brazilian-subject-matter-expert-in-politics-phd-level",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "WATI",
+      "titulo": "Customer Success Manager - LATAM (One-to-Many)",
+      "local": "Remoto · Brazil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/147138-customer-success-manager-latam-one-to-many",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "BCD Travel",
+      "titulo": "Senior Travel Consultant ERM, Brazil",
+      "local": "Remoto · LATAM,  Brazil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/146275-senior-travel-consultant-erm-brazil",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "RevenueCat",
+      "titulo": "Senior Data Scientist, RC Capital",
+      "local": "Remoto · LATAM,  Canada,  USA",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/143120-senior-data-scientist-rc-capital",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "RevenueCat",
+      "titulo": "Senior Android SDK Engineer",
+      "local": "Remoto · EMEA,  LATAM,  Canada,  USA",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/144154-senior-android-sdk-engineer",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "Amazon.com",
+      "titulo": "Analista de Customer Service, Delivery Station Customer Support",
+      "local": "Remoto · Brazil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/147502-analista-de-customer-service-delivery-station-customer-support",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "GitLab",
+      "titulo": "Customer Success Engineer, LATAM (Spanish, Portugese)",
+      "local": "Remoto · Brazil,  Mexico,  USA",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/149641-customer-success-engineer-latam-spanish-portugese",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "Plain Concepts",
+      "titulo": "Golang Engineer",
+      "local": "Remoto · Brazil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/144179-golang-engineer",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "RevenueCat",
+      "titulo": "Content Marketing Manager, Organic Growth (SEO & AEO)",
+      "local": "Remoto · EMEA,  LATAM,  Canada,  USA",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/146002-senior-content-marketing-manager-narrative-comms",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "RevenueCat",
+      "titulo": "Head of Customer Success",
+      "local": "Remoto · EMEA,  LATAM,  Canada,  USA",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/149036-head-of-customer-success",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "Fortive",
+      "titulo": "Technical Customer Support",
+      "local": "Remoto · Brazil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/148930-technical-customer-support",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "jobicy",
+      "empresa_real": "Precision Medicine Group",
+      "titulo": "Clinical Trial Manager (LATAM)",
+      "local": "Remoto · Argentina,  Brazil,  Mexico",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobicy.com/jobs/148626-clinical-trial-manager-latam",
+      "commitment": [
+        "Full-Time"
+      ],
+      "fonte": "Jobicy"
+    },
+    {
+      "empresa": "remoteok",
+      "empresa_real": "SulAmÃ©rica",
+      "titulo": "Analista de Projetos Jr",
+      "local": "Remoto · Rio de Janeiro, Rio de Janeiro, Rio de Janeiro, Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://remoteOK.com/remote-jobs/remote-analista-de-projetos-jr-sulamerica-1135421",
+      "commitment": "",
+      "fonte": "RemoteOK"
+    },
+    {
+      "empresa": "remoteok",
+      "empresa_real": "BuscarVagas - Empregos Brasil",
+      "titulo": "Monitor Operacional Cachoeirinha RS Vagas Profissionais",
+      "local": "Remoto · Cachoeirinha, Cachoeirinha, Rio Grande do Sul, Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://remoteOK.com/remote-jobs/remote-monitor-operacional-cachoeirinha-rs-vagas-profissionais-buscarvagas-empregos-brasil-1135516",
+      "commitment": "",
+      "fonte": "RemoteOK"
+    },
+    {
+      "empresa": "remoteok",
+      "empresa_real": "TOTVS",
+      "titulo": "NegÃ³cios Analista de SoluÃ§Ãµes de NegÃ³cios JÃºnior",
+      "local": "Remoto · Brasil,",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://remoteOK.com/remote-jobs/remote-negocios-analista-de-solucoes-de-negocios-junior-totvs-1135397",
+      "commitment": "",
+      "fonte": "RemoteOK"
     }
   ]
 }
