@@ -26,9 +26,20 @@ import time
 
 BASE_JSON = "https://jobs.telusdigital.com/search/jobs/in/country/brazil.json"
 JOB_URL = "https://jobs.telusdigital.com/jobs/{id}-{permalink}"
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-      "Accept": "application/json"}
+UA = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/javascript, */*; q=0.01",
+    "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
+    "Accept-Encoding": "identity",
+    # finge que a chamada veio de dentro do próprio site da Telus
+    "Referer": "https://jobs.telusdigital.com/search/jobs/in/country/brazil",
+    "X-Requested-With": "XMLHttpRequest",
+    "Connection": "keep-alive",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+}
 
 
 def _baixar_json(url, timeout=30):
