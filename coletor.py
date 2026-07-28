@@ -69,8 +69,12 @@ USAR_ONEFORMA = True
 # as vagas "Worldwide" e as que citam Brasil no título.
 ONEFORMA_ABRIR_INCERTOS = True
 
-# Telus: usa a API .json escondida (descoberta via F12). 100% automática.
-USAR_TELUS = True
+# Telus: usa a API .json escondida. FUNCIONA no seu PC, mas a Telus BLOQUEIA
+# o GitHub (Cloudflare → erro 403). Por isso o coletor detecta sozinho onde
+# está rodando: inclui a Telus no seu PC e pula no GitHub (sem erro feio).
+import os
+_RODANDO_NO_GITHUB = os.environ.get("GITHUB_ACTIONS") == "true"
+USAR_TELUS = not _RODANDO_NO_GITHUB   # True no PC, False no GitHub
 
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
@@ -426,6 +430,17 @@ def remover_duplicadas(vagas: list) -> list:
 #  PROGRAMA PRINCIPAL
 # ═══════════════════════════════════════════════════════════════════
 
+def _preservar_do_arquivo(empresa):
+    """Lê o vagas.json atual e devolve as vagas de uma empresa específica.
+    Usado para não perder vagas de fontes puladas (ex: Telus no GitHub)."""
+    try:
+        with open("vagas.json", "r", encoding="utf-8") as f:
+            dados = json.load(f)
+        return [v for v in dados.get("vagas", []) if v.get("empresa") == empresa]
+    except Exception:
+        return []
+
+
 def main():
     print("═" * 60)
     print("  HOME OFFICE HUB — Coletor de Vagas")
@@ -457,6 +472,15 @@ def main():
         todas += buscar_oneforma()
     if USAR_TELUS:
         todas += buscar_telus()
+    else:
+        # No GitHub a Telus é pulada. Para não "perder" as vagas da Telus
+        # que você coletou no seu PC, preservamos as que já estão no arquivo.
+        preservadas = _preservar_do_arquivo("telus")
+        if preservadas:
+            print(f"  → Telus: mantendo {len(preservadas)} vaga(s) do último PC")
+            todas += preservadas
+        else:
+            print("  → Telus: pulada (rode no seu PC para incluir)")
 
     print(f"\n  Total bruto: {len(todas)} vagas")
     todas = remover_duplicadas(todas)
