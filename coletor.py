@@ -22,6 +22,7 @@
 
 import urllib.request
 import urllib.error
+import urllib.parse
 import json
 import re
 import time
@@ -42,6 +43,21 @@ EMPRESAS_LEVER = {
 EMPRESAS_WORKABLE = {
     "toloka": "toloka-annotators",  # apply.workable.com/toloka-annotators
 }
+
+# ─── FASE 2: AGREGADORES ───
+# Estes trazem vagas de MUITAS empresas de uma vez (parte do "LinkedIn").
+# ATENÇÃO: as regras deles exigem CREDITAR A FONTE e LINKAR de volta.
+# Por isso cada vaga guarda o campo "fonte" e o link aponta pro agregador.
+#
+# Palavras que buscamos nos agregadores (foco em IA/dados/tradução PT-BR).
+BUSCAS_AGREGADOR = [
+    "portuguese", "brazil", "annotation", "ai trainer",
+    "data annotator", "transcription", "localization",
+]
+
+# Ligue/desligue cada agregador aqui:
+USAR_JOBICY = True
+USAR_REMOTEOK = True
 
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
@@ -106,11 +122,14 @@ def limpar_local(texto: str) -> str:
         return "Remoto · Brasil"
     texto = texto.replace("Remote", "Remoto").strip(" -–—/")
     low = texto.lower()
+    # Traduz termos genéricos de "qualquer lugar"
+    if low in ("anywhere", "worldwide", "global", "remote", "remoto"):
+        return "Remoto · Brasil"
     # Se menciona Brasil, formata bonito
     if "brazil" in low or "brasil" in low:
         return texto if "remoto" in low else f"Remoto · {texto}"
-    # Se é só "Remoto" ou vazio, assume Brasil (já passou no filtro)
-    if low in ("remoto", "", "remote"):
+    # Se é só vazio, assume Brasil (já passou no filtro)
+    if low == "":
         return "Remoto · Brasil"
     # Caso tenha uma cidade brasileira mas sem "Brasil"
     return f"Remoto · {texto}"
@@ -152,6 +171,7 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
             "badge": badge,
             "url": v.get("hostedUrl") or v.get("applyUrl") or "",
             "commitment": commitment,
+            "fonte": "direto",
         })
     print(f"{len(vagas)} vaga(s) BR de {len(dados)} total")
     return vagas
@@ -200,8 +220,103 @@ def buscar_workable(nome_interno: str, slug: str) -> list:
             "badge": badge,
             "url": v.get("url") or v.get("shortlink") or "",
             "commitment": "",
+            "fonte": "direto",
         })
     print(f"{len(vagas)} vaga(s) BR de {len(jobs)} total")
+    return vagas
+
+
+# ═══════════════════════════════════════════════════════════════════
+#  BUSCA — AGREGADORES (Fase 2)
+#  Regra: sempre creditar a fonte e linkar de volta ao agregador.
+# ═══════════════════════════════════════════════════════════════════
+
+def buscar_jobicy() -> list:
+    """Jobicy tem filtro por região — usamos geo apropriado + tags."""
+    print("  → Jobicy ...", end=" ")
+    vagas = []
+    vistos = set()
+    # Jobicy usa 'geo' por país/região; buscamos por tags relevantes
+    for tag in BUSCAS_AGREGADOR:
+        url = f"https://jobicy.com/api/v2/remote-jobs?count=50&tag={urllib.parse.quote(tag)}"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                dados = json.loads(r.read().decode())
+        except Exception:
+            continue
+        for v in dados.get("jobs", []):
+            titulo = (v.get("jobTitle") or "").strip()
+            empresa_nome = (v.get("companyName") or "").strip()
+            geo = (v.get("jobGeo") or "").strip()
+            excerpt = (v.get("jobExcerpt") or "")
+            job_id = v.get("id")
+
+            if job_id in vistos:
+                continue
+
+            # FILTRO BRASIL — checa título, geo, empresa e trecho
+            if not texto_parece_brasil(titulo, geo, empresa_nome, excerpt):
+                continue
+
+            vistos.add(job_id)
+            cat_id, badge = categorizar(titulo)
+            vagas.append({
+                "empresa": "jobicy",  # agrupa todas sob o agregador
+                "empresa_real": empresa_nome,
+                "titulo": titulo,
+                "local": limpar_local(geo),
+                "categoria": cat_id,
+                "badge": badge,
+                "url": v.get("url") or "",
+                "commitment": v.get("jobType", "") or "",
+                "fonte": "Jobicy",
+            })
+        time.sleep(1)
+    print(f"{len(vagas)} vaga(s) BR")
+    return vagas
+
+
+def buscar_remoteok() -> list:
+    """RemoteOK: um único feed grande. Filtramos localmente por Brasil."""
+    print("  → RemoteOK ...", end=" ")
+    url = "https://remoteok.com/api"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            dados = json.loads(r.read().decode())
+    except Exception as e:
+        print(f"FALHOU ({str(e)[:40]})")
+        return []
+
+    vagas = []
+    for v in dados:
+        # O primeiro item costuma ser um aviso legal (sem 'position')
+        if not isinstance(v, dict) or not v.get("position"):
+            continue
+        titulo = (v.get("position") or "").strip()
+        empresa_nome = (v.get("company") or "").strip()
+        local = (v.get("location") or "")
+        tags = " ".join(v.get("tags", []) or [])
+        desc = (v.get("description") or "")[:400]
+
+        # FILTRO BRASIL — RemoteOK é global, então filtro é essencial
+        if not texto_parece_brasil(titulo, local, empresa_nome, tags, desc):
+            continue
+
+        cat_id, badge = categorizar(titulo)
+        vagas.append({
+            "empresa": "remoteok",
+            "empresa_real": empresa_nome,
+            "titulo": titulo,
+            "local": limpar_local(local),
+            "categoria": cat_id,
+            "badge": badge,
+            "url": v.get("url") or "",
+            "commitment": "",
+            "fonte": "RemoteOK",
+        })
+    print(f"{len(vagas)} vaga(s) BR de {len(dados)} total")
     return vagas
 
 
@@ -213,7 +328,9 @@ def remover_duplicadas(vagas: list) -> list:
     vistas = set()
     unicas = []
     for v in vagas:
-        chave = (v["empresa"], v["titulo"].lower().strip())
+        # chave inclui empresa_real quando existe (agregadores)
+        ident = v.get("empresa_real") or v["empresa"]
+        chave = (ident.lower(), v["titulo"].lower().strip())
         if chave in vistas:
             continue
         vistas.add(chave)
@@ -233,15 +350,21 @@ def main():
 
     todas = []
 
-    print("[1/2] Buscando em empresas Lever...")
+    print("[1/3] Buscando em empresas Lever...")
     for nome, slug in EMPRESAS_LEVER.items():
         todas += buscar_lever(nome, slug)
         time.sleep(1)  # educado com a API
 
-    print("\n[2/2] Buscando em empresas Workable...")
+    print("\n[2/3] Buscando em empresas Workable...")
     for nome, slug in EMPRESAS_WORKABLE.items():
         todas += buscar_workable(nome, slug)
         time.sleep(1)
+
+    print("\n[3/3] Buscando em agregadores...")
+    if USAR_JOBICY:
+        todas += buscar_jobicy()
+    if USAR_REMOTEOK:
+        todas += buscar_remoteok()
 
     print(f"\n  Total bruto: {len(todas)} vagas")
     todas = remover_duplicadas(todas)

@@ -256,6 +256,8 @@ const EMPRESAS = {
   outlier:    { nome:"Outlier AI", sigla:"OA", cor:"#A78BFA", bg:"#1e1a38", desc:"Escrita · RLHF · IA", link:"https://app.outlier.ai/" },
   oneforma:   { nome:"OneForma", sigla:"1F", cor:"#60A5FA", bg:"#1a1e30", desc:"IA · Anotação · Áudio · Dados", link:"https://www.oneforma.com/jobs/" },
   telus:      { nome:"Telus International", sigla:"TI", cor:"#C084FC", bg:"#1e1a30", desc:"QA · Avaliação · Segurança", link:"https://www.telusinternational.ai/cmp/public/jobs" },
+  jobicy:     { nome:"Via Jobicy", sigla:"JB", cor:"#34D399", bg:"#12281f", desc:"Vagas de várias empresas · fonte: Jobicy", link:"https://jobicy.com/", agregador:true },
+  remoteok:   { nome:"Via RemoteOK", sigla:"RO", cor:"#34D399", bg:"#12281f", desc:"Vagas de várias empresas · fonte: RemoteOK", link:"https://remoteok.com/", agregador:true },
 };
 // Ordem das categorias dentro de cada empresa
 const CAT_ORDER = ["transl","ai","qa","sme","write"];
@@ -339,11 +341,18 @@ function render() {
       if (vagasCat.length === 0) return;
       html += `<div class="category-label">${CAT_NOME[cat]}</div><div class="jobs-grid">`;
       vagasCat.forEach(v => {
+        // Para vagas de agregador, mostra a empresa real + selo de fonte
+        const empresaReal = v.empresa_real ? `<div style="font-size:11px;color:var(--text-dim);margin-top:-4px;">🏢 ${escapeHtml(v.empresa_real)}</div>` : "";
+        const seloFonte = v.fonte && v.fonte !== "direto"
+          ? `<span style="font-size:10px;color:#34D399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:10px;padding:1px 7px;">via ${escapeHtml(v.fonte)}</span>`
+          : "";
         html += `<div class="job-card" data-cat="${v.categoria}" data-company="${id}">
           <div class="job-title">${escapeHtml(v.titulo)}</div>
+          ${empresaReal}
           <div class="job-meta">
             <span class="job-badge badge-${v.categoria}">${escapeHtml(v.badge)}</span>
             <span class="job-location">📍 ${escapeHtml(v.local)}</span>
+            ${seloFonte}
           </div>
           <div class="job-footer">
             <a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="btn-apply">Candidatar →</a>
