@@ -49,7 +49,7 @@ except Exception:
 EMPRESAS_LEVER = {
     "welocalize": "weloglobal",   # jobs.lever.co/weloglobal
     "rws":        "rws",          # jobs.lever.co/rws
-    # "crowdgen": "appen",        # descomente se quiser testar
+    "crowdgen":   "appen",        # jobs.lever.co/appen (CrowdGen by Appen)
 }
 
 # Empresas que usam WORKABLE (slug = nome na URL apply.workable.com/SLUG)
