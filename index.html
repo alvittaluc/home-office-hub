@@ -138,7 +138,7 @@
   .filter-btn:hover { background:var(--panel); color:var(--ink); }
   .filter-btn.active { background:var(--panel-2); border-color:var(--line); color:var(--ink); }
   .filter-btn .fb-sigla {
-    width:26px; height:26px; border-radius:7px; flex-shrink:0;
+    width:26px; height:26px; border-radius:7px; flex-shrink:0; overflow:hidden;
     display:grid; place-items:center; font-family:var(--mono); font-weight:600; font-size:10px;
   }
   .filter-btn .fb-count { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3); }
@@ -171,16 +171,16 @@
   /* seção de empresa */
   .company-section { margin-bottom:40px; scroll-margin-top:74px; }
   .co-header { display:flex; align-items:center; gap:13px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line-soft); }
-  .co-logo { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; font-family:var(--mono); font-weight:700; font-size:14px; flex-shrink:0; border:1px solid var(--line); }
+  .co-logo { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; font-family:var(--mono); font-weight:700; font-size:14px; flex-shrink:0; border:1px solid var(--line); overflow:hidden; }
+  .co-logo img { width:26px; height:26px; object-fit:contain; border-radius:5px; }
+  .fb-sigla img { width:17px; height:17px; object-fit:contain; border-radius:4px; }
   .co-meta { flex:1; min-width:0; }
   .co-meta h2 { font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.01em; }
   .co-meta p { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); margin-top:1px; }
-  .co-link { font-family:var(--mono); font-size:11.5px; color:var(--ink-2); border:1px solid var(--line); border-radius:8px; padding:7px 12px; transition:all .15s; white-space:nowrap; flex-shrink:0; }
-  .co-link:hover { border-color:var(--signal-dim); color:var(--signal); }
-  @media (max-width:520px){ .co-link span{ display:none; } }
 
-  .cat-group-label { font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin:20px 0 12px; display:flex; align-items:center; gap:9px; }
-  .cat-group-label::after { content:''; flex:1; height:1px; background:var(--line-soft); }
+  .cat-group-label { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--signal); margin:22px 0 13px; display:flex; align-items:center; gap:10px; }
+  .cat-group-label::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--signal); flex-shrink:0; }
+  .cat-group-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--signal-dim),transparent); }
 
   /* grade de vagas */
   .jobs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); gap:12px; }
@@ -234,11 +234,9 @@
   footer { border-top:1px solid var(--line); background:var(--bg-soft); }
   .footer-inner {
     max-width:1180px; margin:0 auto; padding:28px 20px;
-    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;
   }
   .footer-brand { display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:600; font-size:14px; }
-  .footer-note { font-family:var(--mono); font-size:11px; color:var(--ink-3); max-width:46ch; text-align:right; }
-  @media (max-width:640px){ .footer-note{ text-align:left; } }
 
   /* utilidades de scroll suave em foco */
   :focus-visible { outline:2px solid var(--signal); outline-offset:2px; border-radius:6px; }
@@ -274,7 +272,7 @@
 <section class="hero">
   <div class="hero-eyebrow">Vagas remotas · dados &amp; inteligência artificial</div>
   <h1>O trabalho que <span class="grad">ensina as máquinas</span> começa com você.</h1>
-  <p class="lead">Vagas internacionais de anotação de dados, avaliação e treino de IA — filtradas para quem está no Brasil. Atualizadas automaticamente, todos os dias.</p>
+  <p class="lead">Trabalhe com projetos de IA das maiores empresas do mundo, sem precisar sair de casa.</p>
 
   <div class="search-wrap">
     <span class="s-icon">⌕</span>
@@ -355,7 +353,6 @@
       </span>
       Home Office Hub
     </div>
-    <div class="footer-note">Hub informativo, sem vínculo com as empresas listadas. Confira disponibilidade e termos diretamente em cada fonte.</div>
   </div>
 </footer>
 
@@ -364,17 +361,17 @@
 //  METADADOS DAS EMPRESAS
 // ═══════════════════════════════════════════════════════════
 const EMPRESAS = {
-  welocalize: { nome:"Welocalize", sigla:"WL", cor:"#818CF8", bg:"#1a2040", desc:"Tradução · Localização · IA · QA", link:"https://jobs.lever.co/weloglobal?location=Brazil" },
-  rws:        { nome:"RWS TrainAI", sigla:"RW", cor:"#C084FC", bg:"#1a2030", desc:"IA · Dublagem · Especialistas", link:"https://jobs.lever.co/rws" },
-  toloka:     { nome:"Toloka AI", sigla:"TK", cor:"#8B5CF6", bg:"#1c1a38", desc:"Anotação · Vídeo · IA · Part-time", link:"https://apply.workable.com/toloka-annotators/" },
-  crowdgen:   { nome:"CrowdGen", sigla:"CG", cor:"#60A5FA", bg:"#1a1e38", desc:"IA · Avaliação · Social Media", link:"https://www.crowdgen.com/" },
-  outlier:    { nome:"Outlier AI", sigla:"OA", cor:"#A78BFA", bg:"#1e1a38", desc:"Escrita · RLHF · IA", link:"https://app.outlier.ai/" },
-  oneforma:   { nome:"OneForma", sigla:"1F", cor:"#60A5FA", bg:"#1a1e30", desc:"IA · Anotação · Áudio · Dados", link:"https://www.oneforma.com/jobs/" },
-  rexzone:    { nome:"Rex.zone", sigla:"RX", cor:"#F59E0B", bg:"#2a2010", desc:"IA · RLHF · Anotação · LLM", link:"https://www.rex.zone/open-opportunities" },
-  telus:      { nome:"Telus International", sigla:"TI", cor:"#C084FC", bg:"#1e1a30", desc:"QA · Avaliação · Segurança", link:"https://www.telusinternational.ai/cmp/public/jobs" },
-  linkedin:   { nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", desc:"Captadas dos alertas do LinkedIn", link:"https://www.linkedin.com/jobs/", agregador:true },
-  jobicy:     { nome:"Via Jobicy", sigla:"JB", cor:"#34D399", bg:"#12281f", desc:"Agregador · fonte: Jobicy", link:"https://jobicy.com/", agregador:true },
-  remoteok:   { nome:"Via RemoteOK", sigla:"RO", cor:"#34D399", bg:"#12281f", desc:"Agregador · fonte: RemoteOK", link:"https://remoteok.com/", agregador:true },
+  welocalize: { nome:"Welocalize", sigla:"WL", cor:"#818CF8", bg:"#1a2040", dom:"welocalize.com", desc:"Tradução · Localização · IA · QA", link:"https://jobs.lever.co/weloglobal?location=Brazil" },
+  rws:        { nome:"RWS TrainAI", sigla:"RW", cor:"#C084FC", bg:"#1a2030", dom:"rws.com", desc:"IA · Dublagem · Especialistas", link:"https://jobs.lever.co/rws" },
+  toloka:     { nome:"Toloka AI", sigla:"TK", cor:"#8B5CF6", bg:"#1c1a38", dom:"toloka.ai", desc:"Anotação · Vídeo · IA · Part-time", link:"https://apply.workable.com/toloka-annotators/" },
+  crowdgen:   { nome:"CrowdGen", sigla:"CG", cor:"#60A5FA", bg:"#1a1e38", dom:"crowdgen.com", desc:"IA · Avaliação · Social Media", link:"https://www.crowdgen.com/" },
+  outlier:    { nome:"Outlier AI", sigla:"OA", cor:"#A78BFA", bg:"#1e1a38", dom:"outlier.ai", desc:"Escrita · RLHF · IA", link:"https://app.outlier.ai/" },
+  oneforma:   { nome:"OneForma", sigla:"1F", cor:"#60A5FA", bg:"#1a1e30", dom:"oneforma.com", desc:"IA · Anotação · Áudio · Dados", link:"https://www.oneforma.com/jobs/" },
+  rexzone:    { nome:"Rex.zone", sigla:"RX", cor:"#F59E0B", bg:"#2a2010", dom:"rex.zone", desc:"IA · RLHF · Anotação · LLM", link:"https://www.rex.zone/open-opportunities" },
+  telus:      { nome:"Telus International", sigla:"TI", cor:"#C084FC", bg:"#1e1a30", dom:"telusinternational.com", desc:"QA · Avaliação · Segurança", link:"https://www.telusinternational.ai/cmp/public/jobs" },
+  linkedin:   { nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", dom:"linkedin.com", desc:"Captadas dos alertas do LinkedIn", link:"https://www.linkedin.com/jobs/", agregador:true },
+  jobicy:     { nome:"Via Jobicy", sigla:"JB", cor:"#34D399", bg:"#12281f", dom:"jobicy.com", desc:"Agregador · fonte: Jobicy", link:"https://jobicy.com/", agregador:true },
+  remoteok:   { nome:"Via RemoteOK", sigla:"RO", cor:"#34D399", bg:"#12281f", dom:"remoteok.com", desc:"Agregador · fonte: RemoteOK", link:"https://remoteok.com/", agregador:true },
 };
 const CAT_ORDER = ["transl","ai","qa","sme","write"];
 const CAT_NOME = { transl:"Tradução", ai:"IA & Dados", qa:"QA & Validação", sme:"Especialistas", write:"Escrita" };
@@ -426,7 +423,7 @@ function render() {
     const qtd = TODAS_VAGAS.filter(v => v.empresa === id).length;
     const b = document.createElement("button");
     b.className = "filter-btn"; b.dataset.company = id;
-    b.innerHTML = `<span class="fb-sigla" style="background:${e.bg};color:${e.cor};">${e.sigla}</span>${e.nome}<span class="fb-count">${qtd}</span>`;
+    b.innerHTML = `<span class="fb-sigla" style="background:${e.bg};">${logoHtml(e,26)}</span>${e.nome}<span class="fb-count">${qtd}</span>`;
     rail.appendChild(b);
   });
 
@@ -449,9 +446,8 @@ function render() {
     const sec = document.createElement("div");
     sec.className = "company-section"; sec.dataset.company = id;
     let html = `<div class="co-header">
-      <div class="co-logo" style="background:${e.bg};color:${e.cor};">${e.sigla}</div>
+      <div class="co-logo" style="background:${e.bg};">${logoHtml(e,42)}</div>
       <div class="co-meta"><h2>${e.nome}</h2><p>${e.desc}</p></div>
-      <a href="${e.link}" target="_blank" rel="noopener" class="co-link">ver fonte <span>↗</span></a>
     </div>`;
     CAT_ORDER.forEach(cat => {
       const vagasCat = vagasEmp.filter(v => v.categoria === cat);
@@ -481,6 +477,18 @@ function render() {
 
 function escapeHtml(s){ return (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function escapeAttr(s){ return (s||"#").replace(/"/g,'&quot;'); }
+
+// Monta o logo da empresa: tenta o favicon real; se falhar, mostra a sigla.
+function logoHtml(e, tamanho) {
+  const img = tamanho >= 40 ? 64 : 32;
+  if (e.dom) {
+    const src = `https://www.google.com/s2/favicons?domain=${e.dom}&sz=${img}`;
+    // onerror: se o favicon não carregar, troca pela sigla estilizada
+    return `<img src="${src}" alt="${escapeAttr(e.nome)}" loading="lazy"
+      onerror="this.parentNode.classList.add('no-logo');this.parentNode.textContent='${e.sigla}';this.parentNode.style.color='${e.cor}';">`;
+  }
+  return e.sigla;
+}
 
 function aplicarFiltros() {
   let visiveis = 0;
