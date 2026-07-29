@@ -89,6 +89,10 @@ ONEFORMA_ABRIR_INCERTOS = True
 # Se um dia quiser tentar de novo, mude para True.
 USAR_TELUS = False
 
+# Rex.zone (RemoExperts): API limpa, do nicho de IA/dados/anotação.
+# Filtra vagas que aceitam Brasil (countries "ALL" ou "Brazil") E são do nicho.
+USAR_REXZONE = True
+
 # ─── FASE 4: LINKEDIN via GMAIL ───
 # As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
 # planilha, e a planilha é publicada como CSV. O coletor lê esse CSV aqui.
@@ -574,6 +578,41 @@ def buscar_linkedin() -> list:
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  SCRAPER — Rex.zone (via módulo scraper_rexzone.py)
+# ═══════════════════════════════════════════════════════════════════
+
+def buscar_rexzone() -> list:
+    """Chama o scraper do Rex.zone e converte para o formato padrão."""
+    try:
+        from scraper_rexzone import coletar_rexzone
+    except Exception as e:
+        print(f"  → Rex.zone: módulo não encontrado ({str(e)[:40]})")
+        return []
+
+    try:
+        cruas = coletar_rexzone()
+    except Exception as e:
+        print(f"  → Rex.zone: falhou ({str(e)[:50]})")
+        return []
+
+    vagas = []
+    for v in cruas:
+        titulo = v["titulo"]
+        cat_id, badge = categorizar(titulo)
+        vagas.append({
+            "empresa": "rexzone",
+            "titulo": titulo,
+            "local": "Remoto · Brasil",
+            "categoria": cat_id,
+            "badge": badge,
+            "url": v["url"],
+            "commitment": "",
+            "fonte": "direto",
+        })
+    return vagas
+
+
+# ═══════════════════════════════════════════════════════════════════
 #  REMOVER DUPLICADAS
 # ═══════════════════════════════════════════════════════════════════
 
@@ -656,6 +695,8 @@ def main():
     print("\n[4/4] Buscando em empresas via scraping...")
     if USAR_ONEFORMA:
         todas += buscar_oneforma()
+    if USAR_REXZONE:
+        todas += buscar_rexzone()
     if USAR_TELUS:
         todas += buscar_telus()
     else:
