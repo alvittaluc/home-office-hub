@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-07-29T12:46:06.678411+00:00",
-  "atualizado_br": "29/07/2026 às 12:46",
-  "total": 59,
+  "atualizado_em": "2026-07-29T12:59:04.842119+00:00",
+  "atualizado_br": "29/07/2026 às 12:59",
+  "total": 43,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -115,32 +115,12 @@
     },
     {
       "empresa": "welocalize",
-      "titulo": "Portuguese (Portugal) Language Analyst - US-based",
-      "local": "Remoto · California",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/weloglobal/8c0c5fe5-4ce5-4362-a085-407b78004cf1",
-      "commitment": "",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "welocalize",
       "titulo": "Portuguese Accessibility Tester",
       "local": "Remoto · Remoto - Europe",
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://jobs.lever.co/weloglobal/7f043ad0-ba02-44c1-b163-0c75b3e7e3f3",
       "commitment": "Freelance-Remote",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Portuguese Creative UI and Marketing Linguist",
-      "local": "Remoto · United States",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/weloglobal/6b5f5b01-b8b8-415a-a916-8e259d815d4c",
-      "commitment": "Remote",
       "fonte": "direto"
     },
     {
@@ -161,146 +141,6 @@
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/c9d76e98-60ed-4f2e-91cb-2f8d54441cfe",
       "commitment": "Freelance",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Perseus | Data Labeling Associate - Portuguese (Brazil) Speakers (Human-in-the-Loop AI)",
-      "local": "Remoto · California",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/32423991-2b3f-4499-8905-ada86936e4f7",
-      "commitment": "Full Time",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Perseus | Data Labeling Associate - Portuguese (Portugal) Speakers (Human-in-the-Loop AI)",
-      "local": "Remoto · California",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/31148ca2-4e07-474e-b732-e0d7785925d7",
-      "commitment": "Full Time",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Perseus | Data Quality Analyst - Portuguese (Portugal) Speakers (Human-in-the-Loop AI)",
-      "local": "Remoto · California",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/fa9914ef-4f77-4d27-98db-f26393787a4c",
-      "commitment": "Full Time",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Perseus | Speech & Voice AI Analyst - Portuguese (Brazil) Speakers",
-      "local": "Remoto · California",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/89050f99-2c6f-4490-a763-9ddc81c19549",
-      "commitment": "Full Time",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Perseus | Speech & Voice AI Analyst - Portuguese (Portugal) Speakers",
-      "local": "Remoto · California",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/3931e48d-7d2e-4545-8499-466a8a7e5c30",
-      "commitment": "Full Time",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "AI Data Specialist - Portuguese (Brazil)",
-      "local": "Remoto · São Paulo",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/rws/72796483-2495-4299-b1c1-c95c3800006f",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Fandoms Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/9a0d5c38-97e3-4124-b9cb-7401660fe01e",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Games & Puzzles Subject Matter Expert (SME)",
-      "local": "Remoto · Rio de Janeiro",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/048f8c3e-e09f-4b13-81f7-a060584f45f0",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Home & Garden Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/d5bcef39-c110-4aae-ad0c-1909e85ddd07",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Internet Culture Subject Matter Expert (SME)",
-      "local": "Remoto · Rio de Janeiro",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/768d0459-fcde-4fe5-b6e2-2ae2d9f07b56",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Law & Ethics Subject Matter Expert (SME)",
-      "local": "Remoto · Recife",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/c8d77692-dc67-4cb7-86f7-8fca806c6682",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Religion & Philosophy Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/c6f4a7fe-986e-4367-8507-fb6c7be831b6",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Sports Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/8123e349-8063-44ee-8317-1357fa49306d",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Speech AI Evaluation Specialist - Portuguese (Brazil)",
-      "local": "Remoto · Rio de Janeiro",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/rws/ecabff98-a1e1-40eb-9ca3-ffb7a1681ebc",
-      "commitment": "Temporary/Contract",
       "fonte": "direto"
     },
     {
