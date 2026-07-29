@@ -3,250 +3,365 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home Office Hub — Vagas Internacionais para o Brasil</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Home Office Hub — Vagas de IA & Dados para o Brasil</title>
+<meta name="description" content="Vagas remotas internacionais de IA, anotação de dados e avaliação que aceitam brasileiros. Atualizado automaticamente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
   :root {
-    --bg:#0B0D14; --surface:#12151F; --surface2:#1A1E2E; --border:#252A3D;
-    --accent:#7C6FF7; --accent-bright:#A78BFA; --accent-blue:#60A5FA;
-    --glow:rgba(124,111,247,0.35); --text:#E8E6F0; --text-muted:#8B8FA8;
-    --text-dim:#44475A; --radius:10px;
+    /* Paleta: "laboratório de dados" — grafite profundo, ciano de sinal, âmbar de destaque */
+    --bg:#0A0C10;
+    --bg-soft:#0E1118;
+    --panel:#12161F;
+    --panel-2:#171C28;
+    --line:#232A38;
+    --line-soft:#1B212D;
+    --ink:#EAEDF3;
+    --ink-2:#9BA3B4;
+    --ink-3:#5A6376;
+    --signal:#3DD4C8;      /* ciano de sinal — cor de "dado vivo" */
+    --signal-dim:#1E6E68;
+    --amber:#FFB454;       /* âmbar — destaque de ação */
+    --violet:#8B7DF7;
+    --blue:#5B9DF9;
+    --grid:rgba(61,212,200,0.028);
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
   }
-  html { scroll-behavior:smooth; }
-  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
-
-  header { background:rgba(11,13,20,0.93); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; padding:0 24px; }
-  .header-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:62px; gap:16px; }
-  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:700; font-size:18px; white-space:nowrap; }
-  .header-search { flex:1; max-width:420px; position:relative; }
-  .header-search input { width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--text); font-family:inherit; font-size:14px; padding:8px 14px 8px 36px; outline:none; transition:border-color .2s,box-shadow .2s; }
-  .header-search input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,111,247,0.12); }
-  .header-search input::placeholder { color:var(--text-dim); }
-  .search-icon { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--text-dim); pointer-events:none; font-size:14px; }
-  .header-tag { background:rgba(124,111,247,0.1); color:var(--accent-bright); border:1px solid rgba(124,111,247,0.3); border-radius:20px; font-size:12px; font-weight:600; padding:4px 12px; white-space:nowrap; }
-
-  .hero { max-width:1280px; margin:0 auto; padding:60px 24px 44px; text-align:center; position:relative; }
-  .hero::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:700px; height:280px; background:radial-gradient(ellipse at center,rgba(124,111,247,0.09) 0%,transparent 70%); pointer-events:none; }
-  .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(124,111,247,0.08); border:1px solid rgba(124,111,247,0.22); border-radius:20px; font-size:12px; font-weight:600; color:var(--accent-bright); padding:5px 14px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:24px; }
-  .hero h1 { font-size:clamp(28px,4.5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-.03em; margin-bottom:16px; }
-  .hero h1 .grad { background:linear-gradient(90deg,#A78BFA,#60A5FA); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  .hero p { font-size:17px; color:var(--text-muted); max-width:560px; margin:0 auto 36px; }
-  .stats-row { display:flex; justify-content:center; gap:48px; flex-wrap:wrap; }
-  .stat { text-align:center; }
-  .stat-num { font-size:26px; font-weight:800; background:linear-gradient(90deg,#A78BFA,#60A5FA); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  .stat-label { font-size:12px; color:var(--text-muted); margin-top:2px; }
-
-  .main-layout { max-width:1280px; margin:0 auto; padding:0 24px 80px; display:grid; grid-template-columns:240px 1fr; gap:28px; align-items:start; }
-  .sidebar { position:sticky; top:80px; display:flex; flex-direction:column; gap:6px; }
-  .sidebar-title { font-size:11px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:.1em; padding:0 12px; margin-bottom:4px; }
-  .company-btn { display:flex; align-items:center; gap:10px; background:none; border:none; color:var(--text-muted); font-family:inherit; font-size:13px; font-weight:500; padding:9px 12px; border-radius:8px; cursor:pointer; text-align:left; transition:all .15s; width:100%; }
-  .company-btn:hover { background:var(--surface2); color:var(--text); }
-  .company-btn.active { background:rgba(124,111,247,0.12); color:var(--accent-bright); }
-  .company-logo-sm { width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; }
-  .count-badge { margin-left:auto; background:var(--surface2); border:1px solid var(--border); border-radius:10px; font-size:11px; font-weight:600; color:var(--text-dim); padding:1px 7px; }
-  .company-btn.active .count-badge { background:rgba(124,111,247,0.15); color:var(--accent-bright); border-color:rgba(124,111,247,0.3); }
-  .sidebar-divider { height:1px; background:var(--border); margin:8px 0; }
-
-  .content-area { min-width:0; }
-  .content-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:12px; flex-wrap:wrap; }
-  .content-title { font-size:13px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; }
-  .filter-pills { display:flex; gap:6px; flex-wrap:wrap; }
-  .pill { background:var(--surface2); border:1px solid var(--border); border-radius:16px; color:var(--text-muted); font-family:inherit; font-size:12px; font-weight:500; padding:4px 12px; cursor:pointer; transition:all .15s; }
-  .pill:hover { border-color:var(--accent); color:var(--accent-bright); }
-  .pill.active { background:rgba(124,111,247,0.12); border-color:var(--accent); color:var(--accent-bright); }
-
-  .company-section { margin-bottom:40px; }
-  .company-section.hidden { display:none; }
-  .company-header { display:flex; align-items:center; gap:14px; margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid var(--border); }
-  .company-logo-lg { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; flex-shrink:0; }
-  .company-info h2 { font-size:18px; font-weight:700; line-height:1.2; }
-  .company-info p { font-size:13px; color:var(--text-muted); margin-top:2px; }
-  .company-link { margin-left:auto; background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--text-muted); font-family:inherit; font-size:12px; font-weight:600; padding:7px 14px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all .15s; white-space:nowrap; }
-  .company-link:hover { border-color:var(--accent); color:var(--accent-bright); }
-
-  .category-label { font-size:11px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:.1em; margin:20px 0 10px; display:flex; align-items:center; gap:8px; }
-  .category-label::after { content:''; flex:1; height:1px; background:var(--border); }
-
-  .jobs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px; }
-  .job-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; display:flex; flex-direction:column; gap:10px; transition:border-color .2s,transform .18s,box-shadow .2s; }
-  .job-card:hover { border-color:rgba(124,111,247,0.45); transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,0,0,0.45); }
-  .job-card.hidden { display:none; }
-  .job-title { font-size:14px; font-weight:600; color:var(--text); line-height:1.35; }
-  .job-meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-  .job-badge { font-size:11px; font-weight:600; padding:2px 9px; border-radius:14px; text-transform:uppercase; letter-spacing:.04em; }
-  .badge-transl { background:rgba(129,140,248,0.12); color:#818CF8; border:1px solid rgba(129,140,248,0.25); }
-  .badge-ai { background:rgba(167,139,250,0.12); color:#A78BFA; border:1px solid rgba(167,139,250,0.25); }
-  .badge-qa { background:rgba(192,132,252,0.12); color:#C084FC; border:1px solid rgba(192,132,252,0.25); }
-  .badge-sme { background:rgba(99,102,241,0.12); color:#6366F1; border:1px solid rgba(99,102,241,0.25); }
-  .badge-write { background:rgba(167,139,250,0.12); color:#A78BFA; border:1px solid rgba(167,139,250,0.25); }
-  .job-location { font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:4px; }
-  .job-footer { padding-top:10px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; }
-  .btn-apply { background:linear-gradient(135deg,#7C6FF7,#60A5FA); color:#fff; border:none; border-radius:7px; font-family:inherit; font-size:12px; font-weight:700; padding:7px 16px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:opacity .15s,transform .15s; box-shadow:0 2px 10px rgba(124,111,247,0.28); }
-  .btn-apply:hover { opacity:.88; transform:scale(.97); }
-
-  .empty-state { grid-column:1/-1; text-align:center; padding:50px 24px; color:var(--text-muted); }
-  .empty-state p { font-size:14px; margin-top:8px; }
-  .loading { text-align:center; padding:60px 24px; color:var(--text-muted); }
-  .spinner { width:36px; height:36px; border:3px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
-  @keyframes spin { to { transform:rotate(360deg); } }
-
-  .tips-section { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:48px 24px; }
-  .tips-inner { max-width:1280px; margin:0 auto; }
-  .tips-title { font-size:20px; font-weight:700; margin-bottom:24px; }
-  .tips-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
-  .tip-card { background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius); padding:18px; display:flex; flex-direction:column; gap:7px; }
-  .tip-icon { font-size:22px; }
-  .tip-card h4 { font-size:13px; font-weight:700; }
-  .tip-card p { font-size:12.5px; color:var(--text-muted); }
-
-  footer { max-width:1280px; margin:0 auto; padding:28px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid var(--border); }
-  footer p { font-size:12px; color:var(--text-dim); }
-  .footer-logo { font-weight:700; color:var(--text-muted); font-size:14px; display:flex; align-items:center; gap:8px; }
-
-  @media (max-width:768px) {
-    .main-layout { grid-template-columns:1fr; }
-    .sidebar { position:static; flex-direction:row; flex-wrap:wrap; }
-    .sidebar-title,.sidebar-divider,.company-link { display:none; }
-    .header-tag { display:none; }
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body {
+    font-family:var(--body); background:var(--bg); color:var(--ink);
+    line-height:1.55; min-height:100vh; overflow-x:hidden;
+    background-image:
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:44px 44px;
+    background-position:center top;
   }
+  a { color:inherit; text-decoration:none; }
+  ::selection { background:var(--signal); color:#04110F; }
+
+  /* ─── HEADER ─── */
+  header {
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,12,16,0.85); backdrop-filter:blur(16px) saturate(1.4);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner {
+    max-width:1180px; margin:0 auto; padding:0 20px; height:60px;
+    display:flex; align-items:center; gap:18px;
+  }
+  .brand { display:flex; align-items:center; gap:11px; flex-shrink:0; }
+  .brand-mark {
+    width:34px; height:34px; position:relative; flex-shrink:0;
+    display:grid; place-items:center;
+  }
+  .brand-mark svg { width:34px; height:34px; display:block; }
+  .brand-name { font-family:var(--display); font-weight:700; font-size:16px; letter-spacing:-0.02em; }
+  .brand-name small { display:block; font-family:var(--mono); font-weight:400; font-size:9.5px; color:var(--signal); letter-spacing:0.14em; text-transform:uppercase; margin-top:-2px; }
+  .header-spacer { flex:1; }
+  .header-status {
+    font-family:var(--mono); font-size:11px; color:var(--ink-3);
+    display:flex; align-items:center; gap:7px; white-space:nowrap;
+  }
+  .status-dot { width:7px; height:7px; border-radius:50%; background:var(--signal); box-shadow:0 0 0 0 var(--signal); animation:pulse 2.4s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(61,212,200,0.5);} 70%{box-shadow:0 0 0 7px rgba(61,212,200,0);} 100%{box-shadow:0 0 0 0 rgba(61,212,200,0);} }
+  @media (max-width:640px){ .header-status .status-text{ display:none; } }
+
+  /* ─── HERO ─── */
+  .hero { max-width:1180px; margin:0 auto; padding:64px 20px 30px; position:relative; }
+  @media (max-width:640px){ .hero{ padding:40px 20px 22px; } }
+  .hero-eyebrow {
+    font-family:var(--mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--signal); margin-bottom:18px; display:flex; align-items:center; gap:9px;
+  }
+  .hero-eyebrow::before { content:''; width:26px; height:1px; background:var(--signal); }
+  .hero h1 {
+    font-family:var(--display); font-weight:700; letter-spacing:-0.03em;
+    font-size:clamp(30px,5.4vw,54px); line-height:1.04; max-width:16ch; margin-bottom:20px;
+  }
+  .hero h1 .grad {
+    background:linear-gradient(100deg,var(--signal),var(--blue) 60%,var(--violet));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero p.lead {
+    font-size:clamp(15px,2vw,18px); color:var(--ink-2); max-width:52ch; margin-bottom:32px;
+  }
+
+  /* barra de busca — protagonista */
+  .search-wrap { max-width:600px; position:relative; margin-bottom:16px; }
+  .search-wrap .s-icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--ink-3); font-size:17px; pointer-events:none; }
+  #busca {
+    width:100%; font-family:var(--body); font-size:16px; color:var(--ink);
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:13px; padding:16px 18px 16px 48px; outline:none;
+    transition:border-color .18s, box-shadow .18s, background .18s;
+  }
+  #busca::placeholder { color:var(--ink-3); }
+  #busca:focus { border-color:var(--signal-dim); background:var(--panel-2); box-shadow:0 0 0 4px rgba(61,212,200,0.1); }
+
+  /* chips de atalho rápido */
+  .quick-chips { display:flex; flex-wrap:wrap; gap:8px; max-width:600px; }
+  .quick-chip {
+    font-family:var(--mono); font-size:12px; color:var(--ink-2);
+    background:var(--panel); border:1px solid var(--line-soft);
+    padding:6px 13px; border-radius:8px; cursor:pointer; transition:all .16s;
+  }
+  .quick-chip:hover { border-color:var(--signal-dim); color:var(--signal); }
+
+  /* métricas — pequenas, tipo telemetria, não "número gigante" */
+  .telemetry { display:flex; gap:28px; margin-top:38px; flex-wrap:wrap; }
+  .telem-item { display:flex; flex-direction:column; gap:3px; }
+  .telem-num { font-family:var(--mono); font-weight:600; font-size:24px; color:var(--ink); letter-spacing:-0.01em; }
+  .telem-num .u { color:var(--signal); }
+  .telem-label { font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); }
+  .telem-sep { width:1px; background:var(--line); align-self:stretch; }
+  @media (max-width:640px){ .telem-sep{ display:none; } .telemetry{ gap:20px 28px; } }
+
+  /* ─── LAYOUT PRINCIPAL ─── */
+  .main { max-width:1180px; margin:0 auto; padding:30px 20px 80px; display:grid; grid-template-columns:236px 1fr; gap:30px; align-items:start; }
+  @media (max-width:860px){ .main{ grid-template-columns:1fr; gap:0; } }
+
+  /* filtros laterais */
+  .rail { position:sticky; top:76px; }
+  @media (max-width:860px){ .rail{ position:static; margin-bottom:8px; } }
+  .rail-title { font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 12px 4px; }
+  .filter-btn {
+    width:100%; display:flex; align-items:center; gap:10px; text-align:left;
+    font-family:var(--body); font-size:13.5px; color:var(--ink-2);
+    background:transparent; border:1px solid transparent; border-radius:9px;
+    padding:9px 11px; cursor:pointer; transition:all .15s; margin-bottom:2px;
+  }
+  .filter-btn:hover { background:var(--panel); color:var(--ink); }
+  .filter-btn.active { background:var(--panel-2); border-color:var(--line); color:var(--ink); }
+  .filter-btn .fb-sigla {
+    width:26px; height:26px; border-radius:7px; flex-shrink:0;
+    display:grid; place-items:center; font-family:var(--mono); font-weight:600; font-size:10px;
+  }
+  .filter-btn .fb-count { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+  .filter-btn.active .fb-count { color:var(--signal); }
+  .rail-divider { height:1px; background:var(--line-soft); margin:14px 4px; }
+
+  /* mobile: rail vira scroll horizontal */
+  @media (max-width:860px){
+    .rail-title{ display:none; }
+    #rail-empresas { display:flex; gap:8px; overflow-x:auto; padding:4px 0 12px; scrollbar-width:none; }
+    #rail-empresas::-webkit-scrollbar{ display:none; }
+    .rail-divider{ display:none; }
+    .filter-btn { width:auto; white-space:nowrap; flex-shrink:0; background:var(--panel); border-color:var(--line-soft); margin-bottom:0; }
+    .filter-btn .fb-count { margin-left:6px; }
+  }
+
+  /* categorias em pills no topo do conteúdo */
+  .cat-bar { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:22px; }
+  .cat-pill {
+    font-family:var(--mono); font-size:12px; color:var(--ink-2);
+    background:var(--panel); border:1px solid var(--line-soft);
+    padding:7px 14px; border-radius:20px; cursor:pointer; transition:all .15s;
+  }
+  .cat-pill:hover { border-color:var(--line); color:var(--ink); }
+  .cat-pill.active { background:var(--signal); border-color:var(--signal); color:#04110F; font-weight:600; }
+
+  .result-line { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-bottom:20px; }
+  .result-line b { color:var(--signal); font-weight:600; }
+
+  /* seção de empresa */
+  .company-section { margin-bottom:40px; scroll-margin-top:74px; }
+  .co-header { display:flex; align-items:center; gap:13px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line-soft); }
+  .co-logo { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; font-family:var(--mono); font-weight:700; font-size:14px; flex-shrink:0; border:1px solid var(--line); }
+  .co-meta { flex:1; min-width:0; }
+  .co-meta h2 { font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.01em; }
+  .co-meta p { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); margin-top:1px; }
+  .co-link { font-family:var(--mono); font-size:11.5px; color:var(--ink-2); border:1px solid var(--line); border-radius:8px; padding:7px 12px; transition:all .15s; white-space:nowrap; flex-shrink:0; }
+  .co-link:hover { border-color:var(--signal-dim); color:var(--signal); }
+  @media (max-width:520px){ .co-link span{ display:none; } }
+
+  .cat-group-label { font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin:20px 0 12px; display:flex; align-items:center; gap:9px; }
+  .cat-group-label::after { content:''; flex:1; height:1px; background:var(--line-soft); }
+
+  /* grade de vagas */
+  .jobs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); gap:12px; }
+  .job-card {
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
+    padding:16px 16px 14px; display:flex; flex-direction:column; gap:11px;
+    transition:border-color .16s, transform .16s, background .16s; position:relative; overflow:hidden;
+  }
+  .job-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--signal); opacity:0; transition:opacity .16s; }
+  .job-card:hover { border-color:var(--line); background:var(--panel-2); transform:translateY(-2px); }
+  .job-card:hover::before { opacity:1; }
+  .job-title { font-family:var(--display); font-weight:500; font-size:15px; line-height:1.3; color:var(--ink); }
+  .job-real { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:-5px; }
+  .job-tags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .tag {
+    font-family:var(--mono); font-size:10px; letter-spacing:0.02em; padding:3px 8px; border-radius:6px;
+    border:1px solid transparent;
+  }
+  .tag-cat { background:rgba(91,157,249,0.1); color:#8FBEFB; border-color:rgba(91,157,249,0.2); }
+  .tag-loc { background:var(--panel-2); color:var(--ink-2); border-color:var(--line-soft); }
+  .tag-src { background:rgba(61,212,200,0.08); color:var(--signal); border-color:rgba(61,212,200,0.22); }
+  .job-foot { margin-top:auto; padding-top:4px; }
+  .btn-apply {
+    display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-weight:500; font-size:12.5px;
+    color:var(--ink); background:var(--panel-2); border:1px solid var(--line);
+    border-radius:8px; padding:8px 14px; transition:all .16s; cursor:pointer;
+  }
+  .btn-apply:hover { background:var(--signal); border-color:var(--signal); color:#04110F; gap:10px; }
+  .btn-apply .arr { transition:transform .16s; }
+  .btn-apply:hover .arr { transform:translateX(2px); }
+
+  .empty-state { text-align:center; padding:70px 20px; color:var(--ink-3); font-family:var(--mono); font-size:13px; }
+  .empty-state .big { font-size:30px; margin-bottom:14px; }
+
+  /* ─── SEÇÃO "COMO FUNCIONA" (aprender) ─── */
+  .learn { max-width:1180px; margin:0 auto; padding:20px 20px 70px; }
+  .learn-head { margin-bottom:26px; }
+  .learn-eyebrow { font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); margin-bottom:8px; }
+  .learn-head h2 { font-family:var(--display); font-weight:600; font-size:clamp(21px,3vw,28px); letter-spacing:-0.02em; }
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+  .step {
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:13px; padding:20px;
+    position:relative; transition:border-color .16s;
+  }
+  .step:hover { border-color:var(--line); }
+  .step-num { font-family:var(--mono); font-size:11px; color:var(--signal); margin-bottom:12px; }
+  .step h3 { font-family:var(--display); font-weight:600; font-size:15.5px; margin-bottom:7px; }
+  .step p { font-size:13.5px; color:var(--ink-2); line-height:1.5; }
+
+  /* ─── FOOTER ─── */
+  footer { border-top:1px solid var(--line); background:var(--bg-soft); }
+  .footer-inner {
+    max-width:1180px; margin:0 auto; padding:28px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .footer-brand { display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:600; font-size:14px; }
+  .footer-note { font-family:var(--mono); font-size:11px; color:var(--ink-3); max-width:46ch; text-align:right; }
+  @media (max-width:640px){ .footer-note{ text-align:left; } }
+
+  /* utilidades de scroll suave em foco */
+  :focus-visible { outline:2px solid var(--signal); outline-offset:2px; border-radius:6px; }
+  @media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important; } html{ scroll-behavior:auto; } }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="#" class="logo">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-        <defs>
-          <linearGradient id="hgL" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7C6FF7"/><stop offset="100%" stop-color="#A78BFA"/></linearGradient>
-          <linearGradient id="hgR" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#93C5FD"/></linearGradient>
-          <clipPath id="hcL"><rect x="0" y="0" width="18" height="36"/></clipPath>
-          <clipPath id="hcR"><rect x="18" y="0" width="18" height="36"/></clipPath>
-        </defs>
-        <circle cx="18" cy="18" r="16" fill="none" stroke="url(#hgL)" stroke-width="2.5" clip-path="url(#hcL)"/>
-        <circle cx="18" cy="18" r="16" fill="none" stroke="url(#hgR)" stroke-width="2.5" clip-path="url(#hcR)"/>
-        <path d="M18 2 A8 8 0 0 1 18 18 A8 8 0 0 0 18 34" fill="none" stroke="url(#hgR)" stroke-width="1.8"/>
-        <path d="M18 2 A8 8 0 0 0 18 18 A8 8 0 0 1 18 34" fill="none" stroke="url(#hgL)" stroke-width="1.8"/>
-        <circle cx="18" cy="10" r="2.5" fill="#A78BFA"/>
-        <circle cx="18" cy="26" r="2.5" fill="#60A5FA"/>
-        <text x="18" y="22.5" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="800" font-size="13" fill="white">H</text>
-      </svg>
-      Home Office Hub
+    <a href="#" class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="32" height="32" rx="9" stroke="url(#g1)" stroke-width="1.5"/>
+          <circle cx="10" cy="17" r="2.4" fill="#3DD4C8"/>
+          <circle cx="17" cy="10.5" r="2.4" fill="#5B9DF9"/>
+          <circle cx="17" cy="23.5" r="2.4" fill="#8B7DF7"/>
+          <circle cx="24" cy="17" r="2.4" fill="#FFB454"/>
+          <path d="M12.2 15.8L15 11.7M12.2 18.2L15 22.3M19 10.9L21.9 15.2M19 23.1L21.9 18.8" stroke="#3DD4C8" stroke-width="1.2" stroke-opacity="0.5"/>
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#3DD4C8"/><stop offset="1" stop-color="#8B7DF7"/></linearGradient></defs>
+        </svg>
+      </span>
+      <span class="brand-name">Home Office Hub<small>Vagas de IA · Brasil</small></span>
     </a>
-    <div class="header-search">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Buscar vaga, empresa ou área…">
+    <div class="header-spacer"></div>
+    <div class="header-status">
+      <span class="status-dot"></span>
+      <span id="updateBadge" class="status-text">sincronizando…</span>
     </div>
-    <span class="header-tag">🇧🇷 Para brasileiros</span>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow" id="updateBadge">✦ Carregando…</div>
-  <h1>O futuro da tecnologia<br><span class="grad">conta com você!</span></h1>
-  <p>Fique por dentro de todas as vagas disponíveis no Brasil — links diretos para cada oportunidade em aberto.</p>
-  <div class="stats-row">
-    <div class="stat"><div class="stat-num" id="statEmpresas">–</div><div class="stat-label">Empresas listadas</div></div>
-    <div class="stat"><div class="stat-num" id="statVagas">–</div><div class="stat-label">Vagas abertas</div></div>
-    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Remoto · Brasil</div></div>
+  <div class="hero-eyebrow">Vagas remotas · dados &amp; inteligência artificial</div>
+  <h1>O trabalho que <span class="grad">ensina as máquinas</span> começa com você.</h1>
+  <p class="lead">Vagas internacionais de anotação de dados, avaliação e treino de IA — filtradas para quem está no Brasil. Atualizadas automaticamente, todos os dias.</p>
+
+  <div class="search-wrap">
+    <span class="s-icon">⌕</span>
+    <input id="busca" type="text" placeholder="Buscar por cargo, empresa ou área…" autocomplete="off">
+  </div>
+  <div class="quick-chips" id="quickChips"></div>
+
+  <div class="telemetry">
+    <div class="telem-item">
+      <span class="telem-num" id="statVagas">—</span>
+      <span class="telem-label">vagas abertas</span>
+    </div>
+    <div class="telem-sep"></div>
+    <div class="telem-item">
+      <span class="telem-num" id="statEmpresas">—</span>
+      <span class="telem-label">empresas</span>
+    </div>
+    <div class="telem-sep"></div>
+    <div class="telem-item">
+      <span class="telem-num">100<span class="u">%</span></span>
+      <span class="telem-label">remoto · brasil</span>
+    </div>
   </div>
 </section>
 
-<!-- MAIN -->
-<div class="main-layout">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-title">Empresas</div>
-    <!-- preenchido via JS -->
+<div class="main">
+  <aside class="rail">
+    <div class="rail-title">Filtrar por origem</div>
+    <div id="rail-empresas"></div>
   </aside>
 
-  <div class="content-area">
-    <div class="content-header">
-      <div class="content-title" id="result-count">Carregando…</div>
-      <div class="filter-pills" id="filterPills">
-        <button class="pill active" data-cat="all">Todas</button>
-        <button class="pill" data-cat="transl">Tradução</button>
-        <button class="pill" data-cat="ai">IA &amp; Dados</button>
-        <button class="pill" data-cat="qa">QA</button>
-        <button class="pill" data-cat="sme">Especialista</button>
-        <button class="pill" data-cat="write">Escrita</button>
-      </div>
-    </div>
-
-    <div id="jobsContainer">
-      <div class="loading"><div class="spinner"></div>Carregando vagas…</div>
-    </div>
-
-    <div class="empty-state" id="emptyState" style="display:none;">
-      <div style="font-size:32px">🔍</div>
-      <p>Nenhuma vaga encontrada. Tente outro termo ou categoria.</p>
-    </div>
+  <div>
+    <div class="cat-bar" id="catBar"></div>
+    <div class="result-line" id="result-count">carregando…</div>
+    <div id="jobsContainer"></div>
   </div>
 </div>
 
-<!-- GRÁFICO -->
-<section style="background:var(--bg);padding:56px 24px 0;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div style="margin-bottom:28px;">
-      <div style="font-size:11px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;">📊 Panorama do mercado</div>
-      <h2 style="font-size:22px;font-weight:800;margin-bottom:10px;">Agora é o <span style="background:linear-gradient(90deg,#A78BFA,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">melhor momento</span> para se candidatar</h2>
-      <p style="font-size:15px;color:var(--text-muted);max-width:680px;line-height:1.65;">O mercado de trabalho remoto para IA e dados cresceu muito nos últimos anos. As grandes empresas de tecnologia estão investindo cada vez mais em treinamento de modelos de IA, e <strong style="color:var(--text);">o Brasil está no centro disso</strong> — especialmente para projetos em Português. O gráfico abaixo mostra a tendência de crescimento nas contratações freelance para projetos de IA.</p>
+<section class="learn">
+  <div class="learn-head">
+    <div class="learn-eyebrow">Como começar</div>
+    <h2>Do zero à primeira vaga</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Comece com 2–3 vagas</h3>
+      <p>Não tente tudo de uma vez. Escolha as que combinam com seu perfil e construa reputação primeiro.</p>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px 32px 24px;">
-      <div style="display:flex;align-items:center;gap:24px;margin-bottom:20px;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);"><div style="width:28px;height:3px;border-radius:2px;background:linear-gradient(90deg,#7C6FF7,#A78BFA);"></div> Vagas globais de IA</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);"><div style="width:28px;height:3px;border-radius:2px;background:linear-gradient(90deg,#60A5FA,#93C5FD);"></div> Projetos PT-BR</div>
-        <div style="margin-left:auto;background:rgba(57,211,83,0.1);border:1px solid rgba(57,211,83,0.3);border-radius:20px;font-size:12px;font-weight:700;color:#39D353;padding:4px 12px;">↑ Crescimento contínuo</div>
-      </div>
-      <div style="position:relative;width:100%;height:260px;"><canvas id="trendChart"></canvas></div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:24px;">
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-size:22px;font-weight:800;background:linear-gradient(90deg,#A78BFA,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">+340%</div><div style="font-size:13px;font-weight:600;margin:4px 0;">Crescimento desde 2022</div><div style="font-size:12px;color:var(--text-muted);">No número de vagas remotas de IA abertas para o Brasil</div></div>
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-size:22px;font-weight:800;background:linear-gradient(90deg,#A78BFA,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2026</div><div style="font-size:13px;font-weight:600;margin:4px 0;">Pico histórico</div><div style="font-size:12px;color:var(--text-muted);">Estamos no maior volume de contratações já registrado para PT-BR</div></div>
-        <div style="background:rgba(57,211,83,0.06);border:1px solid rgba(57,211,83,0.2);border-radius:10px;padding:16px;"><div style="font-size:22px;font-weight:800;color:#39D353;">Agora ✓</div><div style="font-size:13px;font-weight:600;margin:4px 0;">Momento ideal</div><div style="font-size:12px;color:var(--text-muted);">Mais projetos abertos = mais chances de aprovação nos testes</div></div>
-      </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Faça o teste de entrada</h3>
+      <p>Quase toda vaga tem uma prova inicial. Estude os materiais e capriche — a preparação faz a diferença.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Adapte seu currículo</h3>
+      <p>Ajuste o CV a cada vaga, destacando experiências relevantes e as palavras-chave da descrição.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Trabalhe no seu ritmo</h3>
+      <p>A maioria é flexível: você escolhe quando e quanto trabalhar, de onde estiver no Brasil.</p>
     </div>
   </div>
 </section>
 
-<!-- DICAS -->
-<section class="tips-section">
-  <div class="tips-inner">
-    <div class="tips-title">💡 Dicas para começar</div>
-    <div class="tips-grid">
-      <div class="tip-card"><div class="tip-icon">🎯</div><h4>Comece com 2–3 vagas</h4><p>Não tente tudo de uma vez. Foque nas que combinam com seu perfil e construa reputação primeiro.</p></div>
-      <div class="tip-card"><div class="tip-icon">🧪</div><h4>Teste de entrada</h4><p>Muitas vagas exigem um teste. Estude os materiais disponíveis antes de fazer — a preparação faz toda a diferença.</p></div>
-      <div class="tip-card"><div class="tip-icon">⏰</div><h4>Horários livres</h4><p>A maioria é flexível — trabalhe de onde e quando quiser, sem horário fixo.</p></div>
-      <div class="tip-card"><div class="tip-icon">📝</div><h4>Faça um bom currículo</h4><p>Um currículo adaptado à vaga aumenta muito as chances de ser chamado. Destaque experiências relevantes e use palavras-chave da descrição da vaga.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-      <defs>
-        <linearGradient id="fgL" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C6FF7"/><stop offset="100%" stop-color="#A78BFA"/></linearGradient>
-        <linearGradient id="fgR" x1="1" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#93C5FD"/></linearGradient>
-        <clipPath id="fcL2"><rect x="0" y="0" width="18" height="36"/></clipPath>
-        <clipPath id="fcR2"><rect x="18" y="0" width="18" height="36"/></clipPath>
-      </defs>
-      <circle cx="18" cy="18" r="16" fill="none" stroke="url(#fgL)" stroke-width="2.5" clip-path="url(#fcL2)"/>
-      <circle cx="18" cy="18" r="16" fill="none" stroke="url(#fgR)" stroke-width="2.5" clip-path="url(#fcR2)"/>
-      <circle cx="18" cy="10" r="2.5" fill="#A78BFA"/>
-      <circle cx="18" cy="26" r="2.5" fill="#60A5FA"/>
-      <text x="18" y="22" text-anchor="middle" font-family="'Inter',sans-serif" font-weight="800" font-size="11" fill="white">H</text>
-    </svg>
-    Home Office Hub
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" style="width:26px;height:26px;">
+        <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px;">
+          <rect x="1" y="1" width="32" height="32" rx="9" stroke="url(#g2)" stroke-width="1.5"/>
+          <circle cx="10" cy="17" r="2.4" fill="#3DD4C8"/><circle cx="17" cy="10.5" r="2.4" fill="#5B9DF9"/>
+          <circle cx="17" cy="23.5" r="2.4" fill="#8B7DF7"/><circle cx="24" cy="17" r="2.4" fill="#FFB454"/>
+          <defs><linearGradient id="g2" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#3DD4C8"/><stop offset="1" stop-color="#8B7DF7"/></linearGradient></defs>
+        </svg>
+      </span>
+      Home Office Hub
+    </div>
+    <div class="footer-note">Hub informativo, sem vínculo com as empresas listadas. Confira disponibilidade e termos diretamente em cada fonte.</div>
   </div>
-  <p>Site informativo sem vínculo com as empresas listadas. Verifique disponibilidade e termos diretamente com cada empresa.</p>
 </footer>
 
 <script>
 // ═══════════════════════════════════════════════════════════
-//  METADADOS DAS EMPRESAS (visual: logo, cor, descrição, link)
+//  METADADOS DAS EMPRESAS
 // ═══════════════════════════════════════════════════════════
 const EMPRESAS = {
   welocalize: { nome:"Welocalize", sigla:"WL", cor:"#818CF8", bg:"#1a2040", desc:"Tradução · Localização · IA · QA", link:"https://jobs.lever.co/weloglobal?location=Brazil" },
@@ -257,108 +372,101 @@ const EMPRESAS = {
   oneforma:   { nome:"OneForma", sigla:"1F", cor:"#60A5FA", bg:"#1a1e30", desc:"IA · Anotação · Áudio · Dados", link:"https://www.oneforma.com/jobs/" },
   rexzone:    { nome:"Rex.zone", sigla:"RX", cor:"#F59E0B", bg:"#2a2010", desc:"IA · RLHF · Anotação · LLM", link:"https://www.rex.zone/open-opportunities" },
   telus:      { nome:"Telus International", sigla:"TI", cor:"#C084FC", bg:"#1e1a30", desc:"QA · Avaliação · Segurança", link:"https://www.telusinternational.ai/cmp/public/jobs" },
-  linkedin:   { nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", desc:"Vagas captadas dos alertas do LinkedIn", link:"https://www.linkedin.com/jobs/", agregador:true },
-  jobicy:     { nome:"Via Jobicy", sigla:"JB", cor:"#34D399", bg:"#12281f", desc:"Vagas de várias empresas · fonte: Jobicy", link:"https://jobicy.com/", agregador:true },
-  remoteok:   { nome:"Via RemoteOK", sigla:"RO", cor:"#34D399", bg:"#12281f", desc:"Vagas de várias empresas · fonte: RemoteOK", link:"https://remoteok.com/", agregador:true },
+  linkedin:   { nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", desc:"Captadas dos alertas do LinkedIn", link:"https://www.linkedin.com/jobs/", agregador:true },
+  jobicy:     { nome:"Via Jobicy", sigla:"JB", cor:"#34D399", bg:"#12281f", desc:"Agregador · fonte: Jobicy", link:"https://jobicy.com/", agregador:true },
+  remoteok:   { nome:"Via RemoteOK", sigla:"RO", cor:"#34D399", bg:"#12281f", desc:"Agregador · fonte: RemoteOK", link:"https://remoteok.com/", agregador:true },
 };
-// Ordem das categorias dentro de cada empresa
 const CAT_ORDER = ["transl","ai","qa","sme","write"];
-const CAT_NOME = { transl:"Tradução", ai:"IA & Dados", qa:"QA & Validação", sme:"Especialistas (SME)", write:"Escrita" };
+const CAT_NOME = { transl:"Tradução", ai:"IA & Dados", qa:"QA & Validação", sme:"Especialistas", write:"Escrita" };
 
-let TODAS_VAGAS = [];
-let activeCompany = "all";
-let activeCat = "all";
-let searchTerm = "";
+let TODAS_VAGAS = [], activeCompany = "all", activeCat = "all", searchTerm = "";
 
-// ═══════════════════════════════════════════════════════════
-//  CARREGAR vagas.json
-// ═══════════════════════════════════════════════════════════
 async function carregar() {
   try {
-    const resp = await fetch("vagas.json?v=" + Date.now()); // evita cache
+    const resp = await fetch("vagas.json?v=" + Date.now());
     if (!resp.ok) throw new Error("HTTP " + resp.status);
     const dados = await resp.json();
     TODAS_VAGAS = dados.vagas || [];
-    document.getElementById("updateBadge").textContent = "✦ Atualizado em " + (dados.atualizado_br || "—");
+    document.getElementById("updateBadge").textContent = "atualizado " + (dados.atualizado_br || "—");
     render();
   } catch (e) {
     document.getElementById("jobsContainer").innerHTML =
-      '<div class="empty-state"><div style="font-size:32px">⚠️</div>' +
-      '<p>Não foi possível carregar as vagas.<br>Verifique se o arquivo <b>vagas.json</b> está na mesma pasta.</p></div>';
-    document.getElementById("result-count").textContent = "Erro ao carregar";
-    document.getElementById("updateBadge").textContent = "✦ Erro ao atualizar";
+      '<div class="empty-state"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Verifique se o arquivo vagas.json está na mesma pasta.</p></div>';
+    document.getElementById("result-count").textContent = "erro ao carregar";
+    document.getElementById("updateBadge").textContent = "erro de sincronização";
     console.error(e);
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-//  MONTAR sidebar + seções + cards
-// ═══════════════════════════════════════════════════════════
 function render() {
-  // Empresas presentes nas vagas (na ordem de EMPRESAS)
   const presentes = Object.keys(EMPRESAS).filter(id => TODAS_VAGAS.some(v => v.empresa === id));
-
-  // Stats
   document.getElementById("statEmpresas").textContent = presentes.length;
   document.getElementById("statVagas").textContent = TODAS_VAGAS.length;
 
-  // Sidebar
-  const sb = document.getElementById("sidebar");
-  sb.innerHTML = '<div class="sidebar-title">Empresas</div>';
+  // chips de atalho (categorias com mais vagas)
+  const chips = document.getElementById("quickChips");
+  chips.innerHTML = "";
+  const termos = ["IA & Dados","Tradução","QA","Anotação","Remoto"];
+  termos.forEach(t => {
+    const c = document.createElement("div");
+    c.className = "quick-chip"; c.textContent = t;
+    c.onclick = () => { document.getElementById("busca").value = t; searchTerm = t.toLowerCase(); aplicarFiltros(); document.getElementById("busca").focus(); };
+    chips.appendChild(c);
+  });
+
+  // rail de empresas
+  const rail = document.getElementById("rail-empresas");
+  rail.innerHTML = "";
   const btnAll = document.createElement("button");
-  btnAll.className = "company-btn active";
-  btnAll.dataset.company = "all";
-  btnAll.innerHTML = `<div class="company-logo-sm" style="background:#1c1e38;color:#A78BFA;">✦</div>Todas as vagas<span class="count-badge">${TODAS_VAGAS.length}</span>`;
-  sb.appendChild(btnAll);
-  sb.insertAdjacentHTML("beforeend", '<div class="sidebar-divider"></div>');
+  btnAll.className = "filter-btn active"; btnAll.dataset.company = "all";
+  btnAll.innerHTML = `<span class="fb-sigla" style="background:rgba(61,212,200,0.12);color:#3DD4C8;">✦</span>Todas<span class="fb-count">${TODAS_VAGAS.length}</span>`;
+  rail.appendChild(btnAll);
   presentes.forEach(id => {
     const e = EMPRESAS[id];
     const qtd = TODAS_VAGAS.filter(v => v.empresa === id).length;
     const b = document.createElement("button");
-    b.className = "company-btn";
-    b.dataset.company = id;
-    b.innerHTML = `<div class="company-logo-sm" style="background:${e.bg};color:${e.cor};">${e.sigla}</div>${e.nome}<span class="count-badge">${qtd}</span>`;
-    sb.appendChild(b);
+    b.className = "filter-btn"; b.dataset.company = id;
+    b.innerHTML = `<span class="fb-sigla" style="background:${e.bg};color:${e.cor};">${e.sigla}</span>${e.nome}<span class="fb-count">${qtd}</span>`;
+    rail.appendChild(b);
   });
 
-  // Seções por empresa
+  // barra de categorias
+  const catBar = document.getElementById("catBar");
+  catBar.innerHTML = "";
+  const cats = [["all","Todas"]].concat(CAT_ORDER.filter(c => TODAS_VAGAS.some(v => v.categoria === c)).map(c => [c, CAT_NOME[c]]));
+  cats.forEach(([id,nome]) => {
+    const p = document.createElement("div");
+    p.className = "cat-pill" + (id === "all" ? " active" : ""); p.dataset.cat = id; p.textContent = nome;
+    catBar.appendChild(p);
+  });
+
+  // seções por empresa
   const cont = document.getElementById("jobsContainer");
   cont.innerHTML = "";
   presentes.forEach(id => {
     const e = EMPRESAS[id];
     const vagasEmp = TODAS_VAGAS.filter(v => v.empresa === id);
     const sec = document.createElement("div");
-    sec.className = "company-section";
-    sec.dataset.company = id;
-
-    let html = `<div class="company-header">
-      <div class="company-logo-lg" style="background:${e.bg};color:${e.cor};">${e.sigla}</div>
-      <div class="company-info"><h2>${e.nome}</h2><p>${e.desc}</p></div>
-      <a href="${e.link}" target="_blank" rel="noopener" class="company-link">Ver todas as vagas ↗</a>
+    sec.className = "company-section"; sec.dataset.company = id;
+    let html = `<div class="co-header">
+      <div class="co-logo" style="background:${e.bg};color:${e.cor};">${e.sigla}</div>
+      <div class="co-meta"><h2>${e.nome}</h2><p>${e.desc}</p></div>
+      <a href="${e.link}" target="_blank" rel="noopener" class="co-link">ver fonte <span>↗</span></a>
     </div>`;
-
-    // Agrupa por categoria
     CAT_ORDER.forEach(cat => {
       const vagasCat = vagasEmp.filter(v => v.categoria === cat);
-      if (vagasCat.length === 0) return;
-      html += `<div class="category-label">${CAT_NOME[cat]}</div><div class="jobs-grid">`;
+      if (!vagasCat.length) return;
+      html += `<div class="cat-group-label">${CAT_NOME[cat]}</div><div class="jobs-grid">`;
       vagasCat.forEach(v => {
-        // Para vagas de agregador, mostra a empresa real + selo de fonte
-        const empresaReal = v.empresa_real ? `<div style="font-size:11px;color:var(--text-dim);margin-top:-4px;">🏢 ${escapeHtml(v.empresa_real)}</div>` : "";
-        const seloFonte = v.fonte && v.fonte !== "direto"
-          ? `<span style="font-size:10px;color:#34D399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:10px;padding:1px 7px;">via ${escapeHtml(v.fonte)}</span>`
-          : "";
+        const real = v.empresa_real ? `<div class="job-real">↳ ${escapeHtml(v.empresa_real)}</div>` : "";
+        const src = (v.fonte && v.fonte !== "direto") ? `<span class="tag tag-src">via ${escapeHtml(v.fonte)}</span>` : "";
         html += `<div class="job-card" data-cat="${v.categoria}" data-company="${id}">
-          <div class="job-title">${escapeHtml(v.titulo)}</div>
-          ${empresaReal}
-          <div class="job-meta">
-            <span class="job-badge badge-${v.categoria}">${escapeHtml(v.badge)}</span>
-            <span class="job-location">📍 ${escapeHtml(v.local)}</span>
-            ${seloFonte}
+          <div class="job-title">${escapeHtml(v.titulo)}</div>${real}
+          <div class="job-tags">
+            <span class="tag tag-cat">${escapeHtml(v.badge)}</span>
+            <span class="tag tag-loc">${escapeHtml(v.local)}</span>${src}
           </div>
-          <div class="job-footer">
-            <a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="btn-apply">Candidatar →</a>
-          </div>
+          <div class="job-foot"><a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="btn-apply">Candidatar<span class="arr">→</span></a></div>
         </div>`;
       });
       html += `</div>`;
@@ -374,107 +482,58 @@ function render() {
 function escapeHtml(s){ return (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function escapeAttr(s){ return (s||"#").replace(/"/g,'&quot;'); }
 
-// ═══════════════════════════════════════════════════════════
-//  FILTROS
-// ═══════════════════════════════════════════════════════════
 function aplicarFiltros() {
-  const cards = document.querySelectorAll(".job-card");
-  const sections = document.querySelectorAll(".company-section");
-  let visible = 0;
-
-  sections.forEach(sec => {
-    const show = activeCompany === "all" || activeCompany === sec.dataset.company;
-    sec.classList.toggle("hidden", !show);
-  });
-
-  cards.forEach(card => {
-    const matchCompany = activeCompany === "all" || activeCompany === card.dataset.company;
-    const matchCat = activeCat === "all" || activeCat === card.dataset.cat;
-    const matchSearch = searchTerm === "" || card.innerText.toLowerCase().includes(searchTerm);
-    const show = matchCompany && matchCat && matchSearch;
-    card.classList.toggle("hidden", !show);
-    if (show) visible++;
-  });
-
-  // esconde category-labels que ficaram sem cards visíveis
-  document.querySelectorAll(".company-section:not(.hidden)").forEach(sec => {
-    sec.querySelectorAll(".jobs-grid").forEach(grid => {
-      const anyVisible = [...grid.querySelectorAll(".job-card")].some(c => !c.classList.contains("hidden"));
-      const label = grid.previousElementSibling;
-      grid.style.display = anyVisible ? "" : "none";
-      if (label && label.classList.contains("category-label")) label.style.display = anyVisible ? "" : "none";
+  let visiveis = 0;
+  document.querySelectorAll(".company-section").forEach(sec => {
+    const cid = sec.dataset.company;
+    const empOk = activeCompany === "all" || activeCompany === cid;
+    let secVis = 0;
+    sec.querySelectorAll(".job-card").forEach(card => {
+      const cat = card.dataset.cat;
+      const txt = card.textContent.toLowerCase();
+      const catOk = activeCat === "all" || activeCat === cat;
+      const buscaOk = !searchTerm || txt.includes(searchTerm);
+      const show = empOk && catOk && buscaOk;
+      card.style.display = show ? "" : "none";
+      if (show) { secVis++; visiveis++; }
     });
+    // esconde grupos de categoria vazios
+    sec.querySelectorAll(".cat-group-label").forEach(lbl => {
+      let grid = lbl.nextElementSibling;
+      const anyVis = grid && [...grid.querySelectorAll(".job-card")].some(c => c.style.display !== "none");
+      lbl.style.display = anyVis ? "" : "none";
+      if (grid) grid.style.display = anyVis ? "" : "none";
+    });
+    sec.style.display = (empOk && secVis > 0) ? "" : "none";
   });
-
-  document.getElementById("result-count").textContent =
-    `${visible} vaga${visible !== 1 ? "s" : ""} encontrada${visible !== 1 ? "s" : ""}`;
-  document.getElementById("emptyState").style.display = visible === 0 ? "block" : "none";
+  const rc = document.getElementById("result-count");
+  rc.innerHTML = `exibindo <b>${visiveis}</b> ${visiveis === 1 ? "vaga" : "vagas"}`;
+  const cont = document.getElementById("jobsContainer");
+  if (visiveis === 0 && TODAS_VAGAS.length) {
+    if (!document.getElementById("noRes")) {
+      const d = document.createElement("div");
+      d.id = "noRes"; d.className = "empty-state";
+      d.innerHTML = '<div class="big">◌</div><p>Nenhuma vaga encontrada com esses filtros.<br>Tente limpar a busca ou escolher outra categoria.</p>';
+      cont.appendChild(d);
+    }
+  } else { const nr = document.getElementById("noRes"); if (nr) nr.remove(); }
 }
 
 function ligarEventos() {
-  document.querySelectorAll(".company-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".company-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      activeCompany = btn.dataset.company;
-      aplicarFiltros();
-    });
+  document.querySelectorAll(".filter-btn").forEach(b => b.onclick = () => {
+    document.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active"); activeCompany = b.dataset.company; aplicarFiltros();
+  });
+  document.querySelectorAll(".cat-pill").forEach(p => p.onclick = () => {
+    document.querySelectorAll(".cat-pill").forEach(x => x.classList.remove("active"));
+    p.classList.add("active"); activeCat = p.dataset.cat; aplicarFiltros();
   });
 }
 
-document.querySelectorAll(".pill").forEach(pill => {
-  pill.addEventListener("click", () => {
-    document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
-    pill.classList.add("active");
-    activeCat = pill.dataset.cat;
-    aplicarFiltros();
-  });
+document.getElementById("busca").addEventListener("input", e => {
+  searchTerm = e.target.value.toLowerCase().trim(); aplicarFiltros();
 });
 
-document.getElementById("searchInput").addEventListener("input", e => {
-  searchTerm = e.target.value.toLowerCase().trim();
-  aplicarFiltros();
-});
-
-// ═══════════════════════════════════════════════════════════
-//  GRÁFICO
-// ═══════════════════════════════════════════════════════════
-(function() {
-  const canvas = document.getElementById("trendChart");
-  if (!canvas) return;
-  const dpr = window.devicePixelRatio || 1;
-  function draw() {
-    const W = canvas.parentElement.offsetWidth, H = 260;
-    canvas.width = W*dpr; canvas.height = H*dpr;
-    canvas.style.width = W+"px"; canvas.style.height = H+"px";
-    const ctx = canvas.getContext("2d"); ctx.scale(dpr,dpr);
-    const PAD = {top:20,right:20,bottom:40,left:48};
-    const cW = W-PAD.left-PAD.right, cH = H-PAD.top-PAD.bottom;
-    const labels = ["2022","2023","2024","2025","Jun 2026"];
-    const global = [18,35,62,88,100], ptbr = [10,22,48,78,100], maxV = 100;
-    const xPos = i => PAD.left + (i/(labels.length-1))*cW;
-    const yPos = v => PAD.top + cH - (v/maxV)*cH;
-    ctx.strokeStyle = "rgba(48,54,61,0.7)"; ctx.lineWidth = 1;
-    [0,25,50,75,100].forEach(v => {
-      const y = yPos(v);
-      ctx.beginPath(); ctx.setLineDash([4,4]); ctx.moveTo(PAD.left,y); ctx.lineTo(PAD.left+cW,y); ctx.stroke(); ctx.setLineDash([]);
-      ctx.fillStyle = "#44475A"; ctx.font = "11px Inter,sans-serif"; ctx.textAlign = "right"; ctx.fillText(v+"%",PAD.left-8,y+4);
-    });
-    ctx.textAlign = "center"; ctx.fillStyle = "#8B8FA8"; ctx.font = "12px Inter,sans-serif";
-    labels.forEach((l,i)=>ctx.fillText(l,xPos(i),H-PAD.bottom+18));
-    function area(data,c){ const g=ctx.createLinearGradient(0,PAD.top,0,PAD.top+cH); g.addColorStop(0,c+"40"); g.addColorStop(1,c+"00");
-      ctx.beginPath(); ctx.moveTo(xPos(0),yPos(0)); data.forEach((v,i)=>ctx.lineTo(xPos(i),yPos(v))); ctx.lineTo(xPos(data.length-1),yPos(0)); ctx.closePath(); ctx.fillStyle=g; ctx.fill(); }
-    function line(data,c1,c2){ const g=ctx.createLinearGradient(PAD.left,0,PAD.left+cW,0); g.addColorStop(0,c1); g.addColorStop(1,c2);
-      ctx.beginPath(); data.forEach((v,i)=>i===0?ctx.moveTo(xPos(i),yPos(v)):ctx.lineTo(xPos(i),yPos(v))); ctx.strokeStyle=g; ctx.lineWidth=3; ctx.lineJoin="round"; ctx.lineCap="round"; ctx.stroke();
-      data.forEach((v,i)=>{ ctx.beginPath(); ctx.arc(xPos(i),yPos(v),i===data.length-1?6:4,0,Math.PI*2); ctx.fillStyle=i===data.length-1?c2:"#12151F"; ctx.fill(); ctx.strokeStyle=c2; ctx.lineWidth=2.5; ctx.stroke();
-        if(i===data.length-1){ ctx.fillStyle=c2; ctx.font="bold 12px Inter,sans-serif"; ctx.textAlign="center"; ctx.fillText("Pico!",xPos(i),yPos(v)-14); } }); }
-    area(global,"#7C6FF7"); area(ptbr,"#60A5FA");
-    line(global,"#7C6FF7","#A78BFA"); line(ptbr,"#60A5FA","#93C5FD");
-  }
-  draw(); window.addEventListener("resize",draw);
-})();
-
-// INICIAR
 carregar();
 </script>
 </body>
