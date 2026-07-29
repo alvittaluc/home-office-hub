@@ -192,25 +192,55 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
         titulo = v.get("text", "").strip()
         cats = v.get("categories", {}) or {}
         local = cats.get("location", "") or ""
-        all_locs = " ".join(cats.get("allLocations", []) or [])
+        lista_locs = cats.get("allLocations", []) or []
+        all_locs = " ".join(lista_locs)
         commitment = cats.get("commitment", "") or ""
 
-        # FILTRO BRASIL (mais rígido, evita vagas de outros países):
-        # a vaga só entra se:
-        #   (a) o LOCAL PRINCIPAL da vaga é o Brasil, OU
-        #   (b) o TÍTULO menciona Brasil/Português explicitamente.
-        # Assim, vagas globais que só têm "Brazil" perdido na lista de vários
-        # países (ex: "Senior Engineer" US/UK/Brazil/India) NÃO entram.
-        local_baixo = local.lower()
-        local_eh_brasil = ("brazil" in local_baixo or "brasil" in local_baixo)
-        titulo_eh_brasil = any(t in titulo.lower() for t in
-                               ["brazil", "brasil", "portuguese", "português",
-                                "portugues", "pt-br", "brazilian"])
-        if not (local_eh_brasil or titulo_eh_brasil):
-            continue
-        # exclui Portugal explícito quando não é Brasil
-        if "portugal" in local_baixo and not local_eh_brasil and not \
-           any(t in titulo.lower() for t in ["brazil", "brasil", "brazilian"]):
+        # ─── FILTRO BRASIL (regra rígida, mas justa) ───
+        # A vaga entra se a localização permitir o Brasil (worldwide OU Brasil)
+        # E ela for relevante para o Brasil, evitando vagas de Portugal.
+        #
+        # "Portuguese" sozinho NÃO basta (pode ser Portugal). Mas a vaga entra se:
+        #   - a localização PRINCIPAL é o Brasil (mesmo título genérico), OU
+        #   - o título diz explicitamente Brasil/Brazilian Portuguese, OU
+        #   - é worldwide E o título é português-brasil
+        titulo_l = titulo.lower()
+        local_l = local.lower()
+        todos_locais = (local + " " + all_locs).lower()
+
+        # localização
+        local_principal_brasil = "brazil" in local_l or "brasil" in local_l
+        loc_tem_brasil = "brazil" in todos_locais or "brasil" in todos_locais
+        loc_worldwide = any(w in todos_locais for w in [
+            "worldwide", "anywhere", "global", "any location", "remote - global",
+        ])
+
+        # título menciona Brasil explicitamente
+        titulo_diz_brasil = any(t in titulo_l for t in [
+            "portuguese (brazil)", "brazilian portuguese", "portuguese brazil",
+            "português (brasil)", "pt-br", "ptbr", "(brazil)",
+            "brazil", "brasil", "brazilian",
+        ])
+        # título é português (genérico — pode ser Portugal)
+        titulo_portugues = "portuguese" in titulo_l or "português" in titulo_l
+
+        # localização é claramente só Portugal/fora (sem Brasil)
+        so_portugal = (("portugal" in todos_locais or "lisbon" in todos_locais
+                        or "porto" in todos_locais) and not loc_tem_brasil)
+
+        # ─── DECISÃO ───
+        entra = False
+        if local_principal_brasil:
+            # localizada no Brasil → entra (mesmo título genérico)
+            entra = True
+        elif titulo_diz_brasil and (loc_tem_brasil or loc_worldwide):
+            # título diz Brasil E localização permite → entra
+            entra = True
+        elif loc_worldwide and titulo_portugues and not so_portugal:
+            # worldwide + português (e não é só-Portugal) → entra
+            entra = True
+
+        if not entra or so_portugal:
             continue
 
         cat_id, badge = categorizar(titulo)
