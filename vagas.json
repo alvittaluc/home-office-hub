@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-07-29T12:59:04.842119+00:00",
-  "atualizado_br": "29/07/2026 às 12:59",
-  "total": 43,
+  "atualizado_em": "2026-07-29T13:19:51.857916+00:00",
+  "atualizado_br": "29/07/2026 às 13:19",
+  "total": 47,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -430,6 +430,46 @@
       "categoria": "qa",
       "badge": "QA",
       "url": "https://www.oneforma.com/jobs/internet-judging-milky-way-maps-evaluation/",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "rexzone",
+      "titulo": "Generalist AI Trainer (Visual Content)",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.rex.zone/open-opportunities",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "rexzone",
+      "titulo": "Generalist AI Trainer",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.rex.zone/open-opportunities",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "rexzone",
+      "titulo": "Function-based Code Annotator",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.rex.zone/open-opportunities",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "rexzone",
+      "titulo": "Repo-based Code Annotator",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.rex.zone/open-opportunities",
       "commitment": "",
       "fonte": "direto"
     }
