@@ -195,8 +195,22 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
         all_locs = " ".join(cats.get("allLocations", []) or [])
         commitment = cats.get("commitment", "") or ""
 
-        # FILTRO BRASIL
-        if not texto_parece_brasil(titulo, local, all_locs):
+        # FILTRO BRASIL (mais rígido, evita vagas de outros países):
+        # a vaga só entra se:
+        #   (a) o LOCAL PRINCIPAL da vaga é o Brasil, OU
+        #   (b) o TÍTULO menciona Brasil/Português explicitamente.
+        # Assim, vagas globais que só têm "Brazil" perdido na lista de vários
+        # países (ex: "Senior Engineer" US/UK/Brazil/India) NÃO entram.
+        local_baixo = local.lower()
+        local_eh_brasil = ("brazil" in local_baixo or "brasil" in local_baixo)
+        titulo_eh_brasil = any(t in titulo.lower() for t in
+                               ["brazil", "brasil", "portuguese", "português",
+                                "portugues", "pt-br", "brazilian"])
+        if not (local_eh_brasil or titulo_eh_brasil):
+            continue
+        # exclui Portugal explícito quando não é Brasil
+        if "portugal" in local_baixo and not local_eh_brasil and not \
+           any(t in titulo.lower() for t in ["brazil", "brasil", "brazilian"]):
             continue
 
         cat_id, badge = categorizar(titulo)

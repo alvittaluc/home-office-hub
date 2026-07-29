@@ -20,7 +20,17 @@ import urllib.request
 import urllib.parse
 import re
 import time
+import ssl
 import html as html_lib
+
+# Correção de SSL no Windows (ver explicação no coletor.py)
+try:
+    import certifi
+    _SSL_CTX = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    _SSL_CTX = ssl.create_default_context()
+    _SSL_CTX.check_hostname = False
+    _SSL_CTX.verify_mode = ssl.CERT_NONE
 
 BASE = "https://www.oneforma.com/jobs/"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -34,7 +44,7 @@ LOC_MUNDO = ["worldwide", "global", "anywhere", "all locations"]
 
 def _baixar(url, timeout=30):
     req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=timeout) as r:
+    with urllib.request.urlopen(req, timeout=timeout, context=_SSL_CTX) as r:
         return r.read().decode("utf-8", errors="ignore")
 
 
@@ -93,6 +103,18 @@ def _parse_vaga(texto_bruto):
     else:
         titulo = resto
         local = ""
+
+    # Limpeza de segurança: se por acaso sobrar "Selected Locations",
+    # "Worldwide", "Fixed Rate...", ou descrição grudada no título, corta.
+    # (mantém o nome do projeto completo, só remove o "lixo" do fim)
+    for marcador in ["Selected Locations", "Worldwide", "Global", "Anywhere",
+                     "Fixed Rate", "Per Hour", "Per Approved", "Description",
+                     "Join OneForma", "Paid hourly"]:
+        pos = titulo.find(marcador)
+        if pos > 10:  # só corta se houver título antes do marcador
+            titulo = titulo[:pos].strip()
+    # remove pontuação solta no fim (ex: "| ", "- ")
+    titulo = re.sub(r'[\s|,–—-]+$', '', titulo).strip()
 
     return categoria, titulo, local
 
