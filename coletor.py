@@ -89,6 +89,13 @@ ONEFORMA_ABRIR_INCERTOS = True
 # Se um dia quiser tentar de novo, mude para True.
 USAR_TELUS = False
 
+# ─── FASE 4: LINKEDIN via GMAIL ───
+# As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
+# planilha, e a planilha é publicada como CSV. O coletor lê esse CSV aqui.
+# Cole abaixo o link "publicar na web / CSV" da sua planilha:
+USAR_LINKEDIN = True
+LINKEDIN_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj6J6YOyu5ofZvOYuwbqnPAuTTXq5BD3FisRMd4fGEpsVYgDahOr6IFzKUIT5HUtSo3IVkPO5LspO7/pub?gid=300031726&single=true&output=csv"
+
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
 #  Uma vaga só entra se casar com um destes termos.
@@ -456,8 +463,95 @@ def buscar_telus() -> list:
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  FASE 4 — LINKEDIN (lê a planilha do Google publicada como CSV)
+# ═══════════════════════════════════════════════════════════════════
+
+def buscar_linkedin() -> list:
+    """Lê a planilha do Google (CSV) que o Apps Script preenche com as
+    vagas vindas dos alertas do LinkedIn. Colunas: titulo, url, capturado_em."""
+    import csv
+    import io
+
+    print("  → LinkedIn (planilha Google) ...", end=" ")
+    try:
+        req = urllib.request.Request(LINKEDIN_CSV_URL, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                          "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        })
+        with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
+            texto = r.read().decode("utf-8", errors="ignore")
+    except Exception as e:
+        print(f"FALHOU ({str(e)[:40]})")
+        return []
+
+    linhas = list(csv.reader(io.StringIO(texto)))
+    if not linhas:
+        print("0 (planilha vazia)")
+        return []
+
+    # primeira linha é cabeçalho (titulo, url, capturado_em)
+    cabecalho = [c.strip().lower() for c in linhas[0]]
+    try:
+        i_titulo = cabecalho.index("titulo")
+    except ValueError:
+        i_titulo = 0
+    try:
+        i_url = cabecalho.index("url")
+    except ValueError:
+        i_url = 1
+
+    vagas = []
+    for linha in linhas[1:]:
+        if len(linha) <= max(i_titulo, i_url):
+            continue
+        titulo = (linha[i_titulo] or "").strip()
+        url = (linha[i_url] or "").strip()
+        if not titulo or not url:
+            continue
+
+        # filtro Brasil (reforço — o Apps Script já filtra, mas garantimos)
+        if not texto_parece_brasil(titulo):
+            continue
+
+        cat_id, badge = categorizar(titulo)
+        vagas.append({
+            "empresa": "linkedin",
+            "titulo": titulo,
+            "local": "Remoto · Brasil",
+            "categoria": cat_id,
+            "badge": badge,
+            "url": url,
+            "commitment": "",
+            "fonte": "linkedin",
+        })
+
+    print(f"{len(vagas)} vaga(s)")
+    return vagas
+
+
+# ═══════════════════════════════════════════════════════════════════
 #  REMOVER DUPLICADAS
 # ═══════════════════════════════════════════════════════════════════
+
+def _normalizar_titulo(titulo: str) -> str:
+    """Normaliza o título para detectar a MESMA vaga anunciada em locais
+    diferentes. Ex: 'AI Trainer - São Paulo' e 'AI Trainer - Rio' viram igual."""
+    t = titulo.lower().strip()
+    # remove estados/cidades e marcadores de local comuns do fim/meio
+    locais = [
+        "são paulo", "sao paulo", "rio de janeiro", "minas gerais",
+        "belo horizonte", "brasília", "brasilia", "curitiba", "porto alegre",
+        "salvador", "recife", "fortaleza", "brazil", "brasil", "remoto",
+        "remote", "anywhere", "worldwide", "- sp", "- rj", "- mg", "(sp)",
+        "(rj)", "(mg)", "latam", "latin america",
+    ]
+    for loc in locais:
+        t = t.replace(loc, " ")
+    # remove pontuação de separação e espaços repetidos
+    t = re.sub(r"[-–—,|/()]+", " ", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    return t
+
 
 def remover_duplicadas(vagas: list) -> list:
     vistas = set()
@@ -465,7 +559,8 @@ def remover_duplicadas(vagas: list) -> list:
     for v in vagas:
         # chave inclui empresa_real quando existe (agregadores)
         ident = v.get("empresa_real") or v["empresa"]
-        chave = (ident.lower(), v["titulo"].lower().strip())
+        # usa título normalizado → mesma vaga em estados diferentes = 1 só
+        chave = (ident.lower(), _normalizar_titulo(v["titulo"]))
         if chave in vistas:
             continue
         vistas.add(chave)
@@ -528,6 +623,9 @@ def main():
             todas += preservadas
         else:
             print("  → Telus: pulada (rode no seu PC para incluir)")
+
+    if USAR_LINKEDIN:
+        todas += buscar_linkedin()
 
     print(f"\n  Total bruto: {len(todas)} vagas")
     todas = remover_duplicadas(todas)
