@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-07-29T12:33:33.473893+00:00",
-  "atualizado_br": "29/07/2026 às 12:33",
-  "total": 55,
+  "atualizado_em": "2026-07-29T12:46:06.678411+00:00",
+  "atualizado_br": "29/07/2026 às 12:46",
+  "total": 59,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -95,16 +95,6 @@
     },
     {
       "empresa": "welocalize",
-      "titulo": "German Search & Data Labelling Rater - Project Andromeda Titawin",
-      "local": "Remoto · India",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/882fd234-3d3b-4f1e-aba1-552ba3524e68",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "welocalize",
       "titulo": "Italian Search & Data Labelling Rater - Project Andromeda Titawin",
       "local": "Remoto · Brazil",
       "categoria": "qa",
@@ -125,12 +115,32 @@
     },
     {
       "empresa": "welocalize",
+      "titulo": "Portuguese (Portugal) Language Analyst - US-based",
+      "local": "Remoto · California",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/weloglobal/8c0c5fe5-4ce5-4362-a085-407b78004cf1",
+      "commitment": "",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
       "titulo": "Portuguese Accessibility Tester",
       "local": "Remoto · Remoto - Europe",
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://jobs.lever.co/weloglobal/7f043ad0-ba02-44c1-b163-0c75b3e7e3f3",
       "commitment": "Freelance-Remote",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Portuguese Creative UI and Marketing Linguist",
+      "local": "Remoto · United States",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/weloglobal/6b5f5b01-b8b8-415a-a916-8e259d815d4c",
+      "commitment": "Remote",
       "fonte": "direto"
     },
     {
@@ -165,11 +175,41 @@
     },
     {
       "empresa": "welocalize",
+      "titulo": "Project Perseus | Data Labeling Associate - Portuguese (Portugal) Speakers (Human-in-the-Loop AI)",
+      "local": "Remoto · California",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/31148ca2-4e07-474e-b732-e0d7785925d7",
+      "commitment": "Full Time",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Project Perseus | Data Quality Analyst - Portuguese (Portugal) Speakers (Human-in-the-Loop AI)",
+      "local": "Remoto · California",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/weloglobal/fa9914ef-4f77-4d27-98db-f26393787a4c",
+      "commitment": "Full Time",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
       "titulo": "Project Perseus | Speech & Voice AI Analyst - Portuguese (Brazil) Speakers",
       "local": "Remoto · California",
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://jobs.lever.co/weloglobal/89050f99-2c6f-4490-a763-9ddc81c19549",
+      "commitment": "Full Time",
+      "fonte": "direto"
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Project Perseus | Speech & Voice AI Analyst - Portuguese (Portugal) Speakers",
+      "local": "Remoto · California",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/3931e48d-7d2e-4545-8499-466a8a7e5c30",
       "commitment": "Full Time",
       "fonte": "direto"
     },
@@ -355,7 +395,7 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Project Meteor | AI Response & Rubric Evaluation Worldwide Fixed Rate Per Hour Description: OneForma is looking for detail-oriented contributors to join Project Meteor, a remote AI evaluation project. Participants will review and improve AI-generated golden responses and evaluation rubrics to ensure they meet the highest quality standards and are free of critical (P0) errors. The work includes evaluating AI outputs for both open-ended and close-ended tasks using […]",
+      "titulo": "Project Meteor | AI Response & Rubric Evaluation",
       "local": "Remoto · Brasil",
       "categoria": "qa",
       "badge": "QA",
@@ -365,17 +405,17 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Freya Project: Remote Podcast Transcription and Speech Annotation Selected Locations Fixed Rate Per Hour Join OneForma as a remote transcription and speech annotation specialist. Transcribe long-form podcast recordings to help train and evaluate voice recognition models. Paid hourly, fully remote, open across 29 languages and locales.",
+      "titulo": "Freya Project: Remote Podcast Transcription and Speech Annotation",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/freya/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "Project Hermes | AI Language Specialist Selected Locations Fixed Rate Per Hour Evaluate AI-generated responses, adapt content to sound natural and culturally appropriate for your language, write prompts, and improve AI outputs following detailed project guidelines.",
+      "titulo": "Project Hermes | AI Language Specialist",
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
@@ -385,7 +425,7 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Project Zeno | Speech Translation Data Quality Evaluation | Remote Worldwide Fixed Rate Per Approved Asset Review pre-translated text and pre-labeled named entities, evaluating the quality of both the translations and the entity annotations.",
+      "titulo": "Project Zeno | Speech Translation Data Quality Evaluation | Remote",
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
@@ -395,17 +435,17 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Project Triangle | Remote Ego-Centric Video Data Collection Selected Locations Fixed Rate Per Approved Asset Help train AI systems to better understand how people perform everyday physical tasks in real home environments through high-quality first-person video recordings.",
+      "titulo": "Project Triangle | Remote Ego-Centric Video Data Collection",
       "local": "Remoto · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/project-triangle-dc/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "LELI – Review & Refine Machine Translations in Your Language Fixed Rate Per Source Word Review and post-edit machine-generated translations to ensure accuracy, fluency, and natural tone. Remote, flexible, per-word pay ($0.012–$0.033/word). 51 language pairs including Arabic, Chinese, Japanese, Korean, Spanish, French, German, and more. Apply now on OneForma.",
+      "titulo": "LELI – Review & Refine Machine Translations in Your Language",
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
@@ -415,17 +455,17 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Kawaii – Audio Annotation and Speaker Identification Selected Locations Fixed Rate Per Hour Help train advanced speech recognition models by labeling conversational interactions in your native language.",
+      "titulo": "Kawaii – Audio Annotation and Speaker Identification",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/kawaii-audio-annotation-and-speaker-identification/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "Vega Audio Data Collection Worldwide Fixed Rate Per Approved Asset Help us collect conversational speech data to support the improvement of voice technology systems.",
+      "titulo": "Vega Audio Data Collection",
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
@@ -435,17 +475,17 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Adaptation Worldwide Fixed Rate Per Approved Asset Support the training and improvement of AI language models by enhancing regional accuracy and overall quality of multilingual content.",
+      "titulo": "Adaptation",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/adaptation/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "Fred Annotation Worldwide Fixed Rate Per Hour Help AI systems to accurately understand and respond to user requests with your annotations.",
+      "titulo": "Fred Annotation",
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
@@ -455,67 +495,67 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Ava Audio Collection Fixed Rate Upon Completion Worldwide Record utterances in your native language and help make technology more inclusive.",
+      "titulo": "Ava Audio Collection",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/ava-audio-collection/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "BGN Audio Fixed Rate Upon Completion Worldwide Record scripted audios in your native language and shape the future of technology.",
+      "titulo": "BGN Audio Fixed Rate Upon Completion",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/bgn-audio/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "Vega Audio Collection – QA Worldwide Fixed Rate Per Hour Help improve text quality with your language expertise.",
+      "titulo": "Vega Audio Collection – QA",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/vega-audio-collection-qa/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "Paragraph Level Acceptability Worldwide Fixed Rate Per Approved Asset Rate translations to help improve AI.",
+      "titulo": "Paragraph Level Acceptability",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/paragraph-level-acceptability/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "Amber Image Annotator – Phase 2 Worldwide Fixed Rate Per Hour Review and annotate images to improve AI.",
+      "titulo": "Amber Image Annotator – Phase 2",
       "local": "Remoto · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/amber-image-annotator-phase-2/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "QA Specialist for Squirrel TSE Data Collection Worldwide Fixed Rate Per Hour Help train and refine AI systems in your native language.",
+      "titulo": "QA Specialist for Squirrel TSE Data Collection",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "qa",
+      "badge": "QA",
       "url": "https://www.oneforma.com/jobs/qa-specialist-for-squirrel-tse-data-collection/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "Acceptability and Preference: Translation Raters Worldwide Fixed Rate Per Approved Asset Help us rate our client's translations.",
+      "titulo": "Acceptability and Preference: Translation Raters",
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
@@ -525,7 +565,7 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Apps and Music Grading Selected Locations Fixed Rate Per Approved Asset Help us improve apps to enhance user experience.",
+      "titulo": "Apps and Music Grading",
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
@@ -535,17 +575,17 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Long Context Acceptability Selected Locations Fixed Rate Per Approved Asset Help us identify and classify translation errors!",
+      "titulo": "Long Context Acceptability",
       "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
+      "categoria": "ai",
+      "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/long-context-acceptability/",
       "commitment": "",
       "fonte": "direto"
     },
     {
       "empresa": "oneforma",
-      "titulo": "Internet Judging: Milky Way (Maps Evaluation) Selected Locations Fixed Rate Per Approved Asset Help us evaluate the quality of queries made by internet users while navigating through different map applications.",
+      "titulo": "Internet Judging: Milky Way (Maps Evaluation)",
       "local": "Remoto · Brasil",
       "categoria": "qa",
       "badge": "QA",
