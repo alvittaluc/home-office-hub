@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-07-30T19:36:35.728080+00:00",
-  "atualizado_br": "30/07/2026 às 19:36",
-  "total": 46,
+  "atualizado_em": "2026-07-30T19:40:29.090137+00:00",
+  "atualizado_br": "30/07/2026 às 19:40",
+  "total": 47,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -462,6 +462,16 @@
       "url": "https://www.rex.zone/open-opportunities",
       "commitment": "",
       "fonte": "direto"
+    },
+    {
+      "empresa": "linkedin",
+      "titulo": "AI Data Annotation Specialist in Brazil",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.linkedin.com/jobs/view/4388385869/",
+      "commitment": "",
+      "fonte": "linkedin"
     }
   ]
 }
