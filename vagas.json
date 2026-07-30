@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-07-29T15:37:07.652788+00:00",
-  "atualizado_br": "29/07/2026 às 15:37",
-  "total": 47,
+  "atualizado_em": "2026-07-30T13:19:32.623090+00:00",
+  "atualizado_br": "30/07/2026 às 13:19",
+  "total": 46,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -151,16 +151,6 @@
       "badge": "QA",
       "url": "https://jobs.lever.co/appen/5ce6c3e1-4517-4978-b64f-4e2770d7353f",
       "commitment": "Independent Contractor - Project Based",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "toloka",
-      "titulo": "AI Trainer - Freelance Data Annotator",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/AF1FAC2434",
-      "commitment": "",
       "fonte": "direto"
     },
     {
