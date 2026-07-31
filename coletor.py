@@ -114,6 +114,53 @@ TERMOS_BRASIL = [
     "belo horizonte", "brasília", "brasilia",
 ]
 
+# Cidades e estados brasileiros — usado para reconhecer vagas que o Lever
+# marca só com a cidade (ex: "Recife", "Curitiba") sem dizer "Brazil".
+# Cobre as capitais e principais cidades + siglas de estado.
+CIDADES_ESTADOS_BR = [
+    # capitais
+    "são paulo", "sao paulo", "rio de janeiro", "belo horizonte",
+    "brasília", "brasilia", "salvador", "fortaleza", "recife",
+    "curitiba", "porto alegre", "manaus", "belém", "belem", "goiânia",
+    "goiania", "são luís", "sao luis", "maceió", "maceio", "natal",
+    "campo grande", "teresina", "joão pessoa", "joao pessoa", "aracaju",
+    "cuiabá", "cuiaba", "florianópolis", "florianopolis", "vitória",
+    "vitoria", "porto velho", "macapá", "macapa", "rio branco",
+    "boa vista", "palmas",
+    # outras cidades grandes / comuns em vagas
+    "campinas", "guarulhos", "são gonçalo", "sao goncalo", "duque de caxias",
+    "santo andré", "santo andre", "osasco", "sorocaba", "ribeirão preto",
+    "ribeirao preto", "uberlândia", "uberlandia", "contagem", "niterói",
+    "niteroi", "joinville", "londrina", "juiz de fora", "caxias do sul",
+    # estados por extenso
+    "acre", "alagoas", "amapá", "amapa", "amazonas", "bahia", "ceará",
+    "ceara", "espírito santo", "espirito santo", "goiás", "goias",
+    "maranhão", "maranhao", "mato grosso", "mato grosso do sul",
+    "minas gerais", "pará", "paraíba", "paraiba", "paraná", "parana",
+    "pernambuco", "piauí", "piaui", "rio grande do norte",
+    "rio grande do sul", "rondônia", "rondonia", "roraima",
+    "santa catarina", "sergipe", "tocantins", "distrito federal",
+    # siglas de estado (com separadores para evitar falsos positivos)
+    ", sp", ", rj", ", mg", ", rs", ", pr", ", sc", ", ba", ", pe",
+    ", ce", ", go", ", pa", ", ma", ", pb", ", es", ", df",
+]
+
+
+def local_eh_brasil(texto: str) -> bool:
+    """Reconhece se um texto de localização é do Brasil — inclusive quando
+    vem só com a cidade/estado (ex: 'Recife', 'Curitiba') sem dizer 'Brazil'."""
+    if not texto:
+        return False
+    t = texto.lower()
+    # Portugal explícito sem Brasil → não é
+    if ("portugal" in t or "lisbon" in t or "lisboa" in t) and \
+       not ("brazil" in t or "brasil" in t):
+        return False
+    if "brazil" in t or "brasil" in t:
+        return True
+    return any(cidade in t for cidade in CIDADES_ESTADOS_BR)
+
+
 # Termos que, se aparecerem SOZINHOS na localização, indicam que
 # NÃO é pra cá (evita pegar "Portugal", "Portuguese (Portugal)" etc.)
 TERMOS_EXCLUIR = [
@@ -239,9 +286,9 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
         local_l = local.lower()
         todos_locais = (local + " " + all_locs).lower()
 
-        # localização
-        local_principal_brasil = "brazil" in local_l or "brasil" in local_l
-        loc_tem_brasil = "brazil" in todos_locais or "brasil" in todos_locais
+        # localização (reconhece cidades/estados brasileiros, não só "Brazil")
+        local_principal_brasil = local_eh_brasil(local)
+        loc_tem_brasil = local_eh_brasil(todos_locais)
         loc_worldwide = any(w in todos_locais for w in [
             "worldwide", "anywhere", "global", "any location", "remote - global",
         ])
@@ -650,13 +697,10 @@ def _normalizar_titulo(titulo: str) -> str:
     """Normaliza o título para detectar a MESMA vaga anunciada em locais
     diferentes. Ex: 'AI Trainer - São Paulo' e 'AI Trainer - Rio' viram igual."""
     t = titulo.lower().strip()
-    # remove estados/cidades e marcadores de local comuns do fim/meio
-    locais = [
-        "são paulo", "sao paulo", "rio de janeiro", "minas gerais",
-        "belo horizonte", "brasília", "brasilia", "curitiba", "porto alegre",
-        "salvador", "recife", "fortaleza", "brazil", "brasil", "remoto",
-        "remote", "anywhere", "worldwide", "- sp", "- rj", "- mg", "(sp)",
-        "(rj)", "(mg)", "latam", "latin america",
+    # remove todas as cidades/estados brasileiros conhecidos + termos de local
+    locais = list(CIDADES_ESTADOS_BR) + [
+        "brazil", "brasil", "remoto", "remote", "anywhere", "worldwide",
+        "latam", "latin america", "(sp)", "(rj)", "(mg)",
     ]
     for loc in locais:
         t = t.replace(loc, " ")
