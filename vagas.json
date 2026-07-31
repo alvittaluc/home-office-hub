@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-07-30T19:40:29.090137+00:00",
-  "atualizado_br": "30/07/2026 às 19:40",
-  "total": 47,
+  "atualizado_em": "2026-07-31T15:50:19.250750+00:00",
+  "atualizado_br": "31/07/2026 às 15:50",
+  "total": 42,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -305,16 +305,6 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Vega Audio Data Collection",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/vega-audio-data-collection/",
-      "commitment": "",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "oneforma",
       "titulo": "Adaptation",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -345,41 +335,11 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "BGN Audio Fixed Rate Upon Completion",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/bgn-audio/",
-      "commitment": "",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "oneforma",
       "titulo": "Paragraph Level Acceptability",
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/paragraph-level-acceptability/",
-      "commitment": "",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Amber Image Annotator – Phase 2",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/amber-image-annotator-phase-2/",
-      "commitment": "",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "QA Specialist for Squirrel TSE Data Collection",
-      "local": "Remoto · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://www.oneforma.com/jobs/qa-specialist-for-squirrel-tse-data-collection/",
       "commitment": "",
       "fonte": "direto"
     },
@@ -400,16 +360,6 @@
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://www.oneforma.com/jobs/apps-and-music-grading/",
-      "commitment": "",
-      "fonte": "direto"
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Long Context Acceptability",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/long-context-acceptability/",
       "commitment": "",
       "fonte": "direto"
     },
