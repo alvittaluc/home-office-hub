@@ -202,6 +202,8 @@
   .tag-cat { background:rgba(91,157,249,0.1); color:#8FBEFB; border-color:rgba(91,157,249,0.2); }
   .tag-loc { background:var(--panel-2); color:var(--ink-2); border-color:var(--line-soft); }
   .tag-src { background:rgba(61,212,200,0.08); color:var(--signal); border-color:rgba(61,212,200,0.22); }
+  .tag-date { background:var(--panel-2); color:var(--ink-3); border-color:var(--line-soft); margin-left:auto; }
+  .tag-new { background:rgba(255,180,84,0.12); color:var(--amber); border-color:rgba(255,180,84,0.3); font-weight:600; }
   .job-foot { margin-top:auto; padding-top:4px; }
   .btn-apply {
     display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-weight:500; font-size:12.5px;
@@ -456,11 +458,12 @@ function render() {
       vagasCat.forEach(v => {
         const real = v.empresa_real ? `<div class="job-real">↳ ${escapeHtml(v.empresa_real)}</div>` : "";
         const src = (v.fonte && v.fonte !== "direto") ? `<span class="tag tag-src">via ${escapeHtml(v.fonte)}</span>` : "";
+        const dateBadge = badgeData(v);
         html += `<div class="job-card" data-cat="${v.categoria}" data-company="${id}">
           <div class="job-title">${escapeHtml(v.titulo)}</div>${real}
           <div class="job-tags">
             <span class="tag tag-cat">${escapeHtml(v.badge)}</span>
-            <span class="tag tag-loc">${escapeHtml(v.local)}</span>${src}
+            <span class="tag tag-loc">${escapeHtml(v.local)}</span>${src}${dateBadge}
           </div>
           <div class="job-foot"><a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="btn-apply">Candidatar<span class="arr">→</span></a></div>
         </div>`;
@@ -479,6 +482,24 @@ function escapeHtml(s){ return (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<'
 function escapeAttr(s){ return (s||"#").replace(/"/g,'&quot;'); }
 
 // Monta o logo da empresa: tenta o favicon real; se falhar, mostra a sigla.
+// Monta o selo de data: "há X dias" ou "Nova" (recentes), com base em data_ref.
+function badgeData(v) {
+  const d = v.data_ref || v.data_post || v.data_vista;
+  if (!d) return "";
+  const data = new Date(d + "T12:00:00Z");
+  if (isNaN(data)) return "";
+  const hoje = new Date();
+  const dias = Math.floor((hoje - data) / (1000 * 60 * 60 * 24));
+  if (dias < 0) return "";
+  let texto, classe = "tag-date";
+  if (dias <= 2) { texto = "nova"; classe = "tag-new"; }
+  else if (dias <= 7) { texto = `há ${dias} dias`; classe = "tag-new"; }
+  else if (dias <= 30) { texto = `há ${dias} dias`; }
+  else if (dias <= 60) { texto = "há +1 mês"; }
+  else { texto = "há +2 meses"; }
+  return `<span class="tag ${classe}">${texto}</span>`;
+}
+
 function logoHtml(e, tamanho) {
   const img = tamanho >= 40 ? 64 : 32;
   if (e.dom) {

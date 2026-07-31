@@ -176,6 +176,33 @@ def limpar_local(texto: str) -> str:
     return f"Remoto · {texto}"
 
 
+def normalizar_data(valor) -> str:
+    """Converte várias formas de data para 'YYYY-MM-DD'.
+    Aceita: timestamp em ms (Lever/Workable), string ISO (Rex.zone),
+    ou vazio. Retorna '' se não conseguir."""
+    if not valor:
+        return ""
+    try:
+        # timestamp numérico (ms desde 1970) — Lever e Workable usam isso
+        if isinstance(valor, (int, float)):
+            # se for muito grande, está em milissegundos
+            ts = valor / 1000 if valor > 1e11 else valor
+            return datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%d")
+        # string
+        s = str(valor).strip()
+        if not s:
+            return ""
+        # ISO tipo "2026-04-23T06:33:38.555Z" → pega só a data
+        if "T" in s:
+            return s.split("T")[0]
+        # já é YYYY-MM-DD
+        if len(s) >= 10 and s[4] == "-" and s[7] == "-":
+            return s[:10]
+    except Exception:
+        pass
+    return ""
+
+
 # ═══════════════════════════════════════════════════════════════════
 #  BUSCA — Lever
 # ═══════════════════════════════════════════════════════════════════
@@ -257,6 +284,7 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
             "url": v.get("hostedUrl") or v.get("applyUrl") or "",
             "commitment": commitment,
             "fonte": "direto",
+            "data_post": normalizar_data(v.get("createdAt")),
         })
     print(f"{len(vagas)} vaga(s) BR de {len(dados)} total")
     return vagas
@@ -340,6 +368,7 @@ def buscar_workable(nome_interno: str, slug: str) -> list:
             "url": v.get("url") or v.get("shortlink") or "",
             "commitment": "",
             "fonte": "direto",
+            "data_post": normalizar_data(v.get("published") or v.get("created_at")),
         })
     print(f"{len(vagas)} vaga(s) BR de {total_bruto} total")
     return vagas
@@ -608,6 +637,7 @@ def buscar_rexzone() -> list:
             "url": v["url"],
             "commitment": "",
             "fonte": "direto",
+            "data_post": normalizar_data(v.get("data_post")),
         })
     return vagas
 
@@ -715,6 +745,29 @@ def main():
     print(f"\n  Total bruto: {len(todas)} vagas")
     todas = remover_duplicadas(todas)
     print(f"  Após remover duplicadas: {len(todas)} vagas")
+
+    # ─── DATA DE PRIMEIRA APARIÇÃO ───
+    # Para vagas SEM data oficial (OneForma, LinkedIn), registramos quando o
+    # robô viu a vaga pela primeira vez. Lê o vagas.json anterior e mantém a
+    # data original das vagas que já existiam (para não "resetar" todo dia).
+    hoje = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    vistas_antes = {}
+    try:
+        with open("vagas.json", "r", encoding="utf-8") as f:
+            antigo = json.load(f)
+        for v in antigo.get("vagas", []):
+            chave = v.get("url") or v.get("titulo")
+            if chave and v.get("data_vista"):
+                vistas_antes[chave] = v["data_vista"]
+    except Exception:
+        pass
+
+    for v in todas:
+        chave = v.get("url") or v.get("titulo")
+        # data_vista = quando apareceu no hub (mantém a antiga se já existia)
+        v["data_vista"] = vistas_antes.get(chave, hoje)
+        # data_ref = a melhor data disponível: oficial se houver, senão a de aparição
+        v["data_ref"] = v.get("data_post") or v["data_vista"]
 
     # Monta a estrutura final
     resultado = {
