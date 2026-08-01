@@ -100,6 +100,12 @@ USAR_REXZONE = True
 USAR_LINKEDIN = True
 LINKEDIN_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj6J6YOyu5ofZvOYuwbqnPAuTTXq5BD3FisRMd4fGEpsVYgDahOr6IFzKUIT5HUtSo3IVkPO5LspO7/pub?gid=300031726&single=true&output=csv"
 
+# ─── RESUMO DAS VAGAS (função + requisitos + dica de currículo) ───
+# O robô gera um resumo de cada vaga e tenta traduzir para PT-BR (grátis).
+# Se a tradução falhar, mantém o texto original. Reaproveita resumos já
+# feitos para não reprocessar toda vez.
+USAR_RESUMOS = True
+
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
 #  Uma vaga só entra se casar com um destes termos.
@@ -140,10 +146,13 @@ CIDADES_ESTADOS_BR = [
     "pernambuco", "piauí", "piaui", "rio grande do norte",
     "rio grande do sul", "rondônia", "rondonia", "roraima",
     "santa catarina", "sergipe", "tocantins", "distrito federal",
-    # siglas de estado (com separadores para evitar falsos positivos)
-    ", sp", ", rj", ", mg", ", rs", ", pr", ", sc", ", ba", ", pe",
-    ", ce", ", go", ", pa", ", ma", ", pb", ", es", ", df",
 ]
+
+# Siglas de estado do Brasil — checadas separadamente com regex de fronteira
+# de palavra, para NÃO casar dentro de outras palavras (ex: "sp" em "Spain").
+SIGLAS_ESTADO_BR = ["sp", "rj", "mg", "rs", "pr", "sc", "ba", "pe",
+                    "ce", "go", "pa", "ma", "pb", "es", "df", "am",
+                    "rn", "al", "pi", "mt", "ms", "se", "to", "ro"]
 
 
 def local_eh_brasil(texto: str) -> bool:
@@ -158,7 +167,14 @@ def local_eh_brasil(texto: str) -> bool:
         return False
     if "brazil" in t or "brasil" in t:
         return True
-    return any(cidade in t for cidade in CIDADES_ESTADOS_BR)
+    # cidades/estados por nome
+    if any(cidade in t for cidade in CIDADES_ESTADOS_BR):
+        return True
+    # siglas de estado — só com fronteira de palavra (não casa "sp" em "Spain")
+    for sig in SIGLAS_ESTADO_BR:
+        if re.search(r'\b' + sig + r'\b', t):
+            return True
+    return False
 
 
 # Termos que, se aparecerem SOZINHOS na localização, indicam que
@@ -306,22 +322,47 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
         so_portugal = (("portugal" in todos_locais or "lisbon" in todos_locais
                         or "porto" in todos_locais) and not loc_tem_brasil)
 
-        # ─── DECISÃO ───
+        # ─── DECISÃO (mais rígida contra vagas de fora) ───
+        # O problema: vagas globais listam MUITOS países (Barcelona, Malta,
+        # Karachi...) e o Brasil aparece perdido na lista. Isso NÃO basta.
+        # A vaga só entra se o BRASIL for o foco de verdade:
         entra = False
+
+        # (1) localização PRINCIPAL é o Brasil → entra (o foco é BR)
         if local_principal_brasil:
-            # localizada no Brasil → entra (mesmo título genérico)
             entra = True
-        elif titulo_diz_brasil and (loc_tem_brasil or loc_worldwide):
-            # título diz Brasil E localização permite → entra
+        # (2) título diz explicitamente Brasil/Brazilian Portuguese → entra
+        #     (aqui o Brasil é o alvo, mesmo que rode em vários lugares)
+        elif titulo_diz_brasil:
             entra = True
+        # (3) worldwide/anywhere + título português → entra (aberto ao mundo)
         elif loc_worldwide and titulo_portugues and not so_portugal:
-            # worldwide + português (e não é só-Portugal) → entra
             entra = True
+
+        # Exclusão final: se a localização PRINCIPAL é claramente de outro país
+        # (não-Brasil e não-worldwide), rejeita mesmo que algo acima tenha dado
+        # True — evita "Localization QA em Barcelona" com Brazil escondido na lista.
+        local_principal_estrangeiro = (
+            local and not local_principal_brasil and not loc_worldwide
+            and not any(w in local_l for w in ["remote", "remoto"])
+        )
+        # mas se o título é explícito de Brasil, mantemos (ex: "PT-BR Rater" em
+        # vaga cujo local principal é a sede da empresa no exterior)
+        if local_principal_estrangeiro and not titulo_diz_brasil:
+            entra = False
 
         if not entra or so_portugal:
             continue
 
         cat_id, badge = categorizar(titulo)
+        # captura descrição e requisitos para o resumo
+        desc_txt = v.get("descriptionPlain") or v.get("description") or ""
+        req_txt = ""
+        for bloco in (v.get("lists") or []):
+            texto_bloco = bloco.get("content", "")
+            titulo_bloco = (bloco.get("text") or "").lower()
+            if any(k in titulo_bloco for k in ["require", "qualif", "look", "skill", "need"]):
+                req_txt += " " + texto_bloco
         vagas.append({
             "empresa": nome_interno,
             "titulo": titulo,
@@ -332,6 +373,8 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
             "commitment": commitment,
             "fonte": "direto",
             "data_post": normalizar_data(v.get("createdAt")),
+            "_desc": desc_txt,
+            "_req": req_txt,
         })
     print(f"{len(vagas)} vaga(s) BR de {len(dados)} total")
     return vagas
@@ -416,6 +459,8 @@ def buscar_workable(nome_interno: str, slug: str) -> list:
             "commitment": "",
             "fonte": "direto",
             "data_post": normalizar_data(v.get("published") or v.get("created_at")),
+            "_desc": v.get("description") or "",
+            "_req": v.get("requirements") or "",
         })
     print(f"{len(vagas)} vaga(s) BR de {total_bruto} total")
     return vagas
@@ -685,6 +730,9 @@ def buscar_rexzone() -> list:
             "commitment": "",
             "fonte": "direto",
             "data_post": normalizar_data(v.get("data_post")),
+            "_desc": v.get("desc") or "",
+            "_req": v.get("req") or "",
+            "_comp": v.get("comp") or "",
         })
     return vagas
 
@@ -812,6 +860,46 @@ def main():
         v["data_vista"] = vistas_antes.get(chave, hoje)
         # data_ref = a melhor data disponível: oficial se houver, senão a de aparição
         v["data_ref"] = v.get("data_post") or v["data_vista"]
+
+    # ─── RESUMO DAS VAGAS (função + requisitos + dica de CV) ───
+    # Reaproveita resumos já feitos (do vagas.json anterior) para não
+    # traduzir de novo o que já foi processado — economiza tempo.
+    if USAR_RESUMOS:
+        try:
+            from resumo_vagas import gerar_resumo
+            resumos_antes = {}
+            try:
+                for v in antigo.get("vagas", []):
+                    ch = v.get("url") or v.get("titulo")
+                    if ch and v.get("resumo"):
+                        resumos_antes[ch] = v["resumo"]
+            except Exception:
+                pass
+
+            novos, reaproveitados = 0, 0
+            print("\n  Gerando resumos das vagas...")
+            for v in todas:
+                chave = v.get("url") or v.get("titulo")
+                if chave in resumos_antes:
+                    v["resumo"] = resumos_antes[chave]
+                    reaproveitados += 1
+                else:
+                    v["resumo"] = gerar_resumo(
+                        v.get("titulo", ""),
+                        descricao=v.get("_desc", ""),
+                        requisitos=v.get("_req", ""),
+                        compensation=v.get("_comp", ""),
+                        commitment=v.get("commitment", ""),
+                    )
+                    novos += 1
+            print(f"    {novos} novos, {reaproveitados} reaproveitados")
+        except Exception as e:
+            print(f"  (resumos indisponíveis: {str(e)[:40]})")
+
+    # remove os campos temporários de descrição (não vão pro arquivo final)
+    for v in todas:
+        for campo in ("_desc", "_req", "_comp"):
+            v.pop(campo, None)
 
     # Monta a estrutura final
     resultado = {

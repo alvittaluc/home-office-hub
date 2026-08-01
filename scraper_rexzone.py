@@ -146,6 +146,9 @@ def coletar_rexzone():
             "url": LINK_BASE,   # a plataforma abre a vaga pela listagem
             "jobno": jobno,
             "data_post": v.get("publishTime") or "",
+            "desc": v.get("jobDescription") or "",
+            "req": v.get("requirements") or "",
+            "comp": v.get("compensation") or "",
         })
 
     print(f"{len(aprovadas)} vaga(s) BR de {total_bruto} total")

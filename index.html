@@ -213,6 +213,56 @@
   .btn-apply:hover { background:var(--signal); border-color:var(--signal); color:#04110F; gap:10px; }
   .btn-apply .arr { transition:transform .16s; }
   .btn-apply:hover .arr { transform:translateX(2px); }
+  .job-actions { display:flex; gap:8px; align-items:center; margin-top:auto; padding-top:4px; flex-wrap:wrap; }
+  .btn-info {
+    display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-weight:500; font-size:12px;
+    color:var(--ink-2); background:transparent; border:1px solid var(--line);
+    border-radius:8px; padding:8px 12px; transition:all .16s; cursor:pointer;
+  }
+  .btn-info:hover { border-color:var(--signal-dim); color:var(--signal); }
+
+  /* modal de informações da vaga */
+  .modal-overlay {
+    position:fixed; inset:0; z-index:200; background:rgba(6,8,12,0.78);
+    backdrop-filter:blur(6px); display:none; align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-overlay.open { display:flex; }
+  .modal {
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    max-width:560px; width:100%; max-height:85vh; overflow-y:auto;
+    padding:26px; position:relative; animation:modalIn .2s ease;
+  }
+  @keyframes modalIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;} }
+  .modal-close {
+    position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:8px;
+    background:var(--panel-2); border:1px solid var(--line); color:var(--ink-2);
+    font-size:16px; cursor:pointer; display:grid; place-items:center; transition:all .15s;
+  }
+  .modal-close:hover { border-color:var(--signal-dim); color:var(--signal); }
+  .modal-badge { font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--signal); margin-bottom:8px; }
+  .modal h3 { font-family:var(--display); font-weight:600; font-size:19px; line-height:1.25; margin-bottom:6px; padding-right:36px; }
+  .modal-co { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-bottom:20px; }
+  .modal-section { margin-bottom:18px; }
+  .modal-section h4 {
+    font-family:var(--mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-2); margin-bottom:7px; display:flex; align-items:center; gap:8px;
+  }
+  .modal-section h4::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--signal); }
+  .modal-section p { font-size:14px; color:var(--ink); line-height:1.6; }
+  .modal-dica { background:rgba(255,180,84,0.08); border:1px solid rgba(255,180,84,0.2); border-radius:10px; padding:14px 16px; }
+  .modal-dica h4 { color:var(--amber); }
+  .modal-dica h4::before { background:var(--amber); }
+  .modal-dica p { font-size:13.5px; color:var(--ink); }
+  .modal-meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+  .modal-meta .tag { font-size:11px; }
+  .modal-apply {
+    display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+    font-family:var(--mono); font-weight:600; font-size:14px; color:#04110F;
+    background:var(--signal); border:none; border-radius:10px; padding:13px; margin-top:8px;
+    cursor:pointer; transition:all .16s; text-decoration:none;
+  }
+  .modal-apply:hover { gap:11px; filter:brightness(1.08); }
+  .modal-nota { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); text-align:center; margin-top:12px; }
 
   .empty-state { text-align:center; padding:70px 20px; color:var(--ink-3); font-family:var(--mono); font-size:13px; }
   .empty-state .big { font-size:30px; margin-bottom:14px; }
@@ -358,6 +408,11 @@
   </div>
 </footer>
 
+<!-- Modal de informações da vaga -->
+<div class="modal-overlay" id="modalInfo" onclick="if(event.target===this)fecharInfo()">
+  <div class="modal" id="modalBox"></div>
+</div>
+
 <script>
 // ═══════════════════════════════════════════════════════════
 //  METADADOS DAS EMPRESAS
@@ -459,13 +514,20 @@ function render() {
         const real = v.empresa_real ? `<div class="job-real">↳ ${escapeHtml(v.empresa_real)}</div>` : "";
         const src = (v.fonte && v.fonte !== "direto") ? `<span class="tag tag-src">via ${escapeHtml(v.fonte)}</span>` : "";
         const dateBadge = badgeData(v);
+        const temResumo = v.resumo && (v.resumo.o_que_faz || v.resumo.requisitos || v.resumo.dica_cv);
+        const infoBtn = temResumo
+          ? `<button class="btn-info" onclick='abrirInfo(${JSON.stringify(vagaMini(v, e)).replace(/'/g, "&#39;")})'>ℹ informações</button>`
+          : "";
         html += `<div class="job-card" data-cat="${v.categoria}" data-company="${id}">
           <div class="job-title">${escapeHtml(v.titulo)}</div>${real}
           <div class="job-tags">
             <span class="tag tag-cat">${escapeHtml(v.badge)}</span>
             <span class="tag tag-loc">${escapeHtml(v.local)}</span>${src}${dateBadge}
           </div>
-          <div class="job-foot"><a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="btn-apply">Candidatar<span class="arr">→</span></a></div>
+          <div class="job-actions">
+            <a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="btn-apply">Candidatar<span class="arr">→</span></a>
+            ${infoBtn}
+          </div>
         </div>`;
       });
       html += `</div>`;
@@ -483,6 +545,47 @@ function escapeAttr(s){ return (s||"#").replace(/"/g,'&quot;'); }
 
 // Monta o logo da empresa: tenta o favicon real; se falhar, mostra a sigla.
 // Monta o selo de data: "há X dias" ou "Nova" (recentes), com base em data_ref.
+// Monta um objeto enxuto da vaga para passar ao modal (evita dados demais).
+function vagaMini(v, e) {
+  return {
+    titulo: v.titulo, empresa: (e && e.nome) || v.empresa, badge: v.badge,
+    local: v.local, url: v.url, resumo: v.resumo || {}
+  };
+}
+
+// Abre o modal com as informações da vaga.
+function abrirInfo(v) {
+  const r = v.resumo || {};
+  const box = document.getElementById("modalBox");
+  let secoes = "";
+  if (r.o_que_faz) secoes += `<div class="modal-section"><h4>O que você vai fazer</h4><p>${escapeHtml(r.o_que_faz)}</p></div>`;
+  if (r.requisitos) secoes += `<div class="modal-section"><h4>Requisitos</h4><p>${escapeHtml(r.requisitos)}</p></div>`;
+  if (r.dica_cv) secoes += `<div class="modal-section modal-dica"><h4>💡 Dica de currículo</h4><p>${escapeHtml(r.dica_cv)}</p></div>`;
+
+  let meta = "";
+  if (r.contrato) meta += `<span class="tag tag-loc">${escapeHtml(r.contrato)}</span>`;
+  if (r.remuneracao) meta += `<span class="tag tag-src">${escapeHtml(r.remuneracao)}</span>`;
+
+  box.innerHTML = `
+    <button class="modal-close" onclick="fecharInfo()">✕</button>
+    <div class="modal-badge">${escapeHtml(v.badge || "Vaga")}</div>
+    <h3>${escapeHtml(v.titulo)}</h3>
+    <div class="modal-co">${escapeHtml(v.empresa)} · ${escapeHtml(v.local || "Remoto · Brasil")}</div>
+    <div class="modal-meta"><span class="tag tag-loc">${escapeHtml(v.local || "Remoto · Brasil")}</span>${meta}</div>
+    ${secoes}
+    <a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="modal-apply">Candidatar para esta vaga →</a>
+    <div class="modal-nota">Resumo automático para orientação. Confira os detalhes completos na página oficial.</div>
+  `;
+  document.getElementById("modalInfo").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function fecharInfo() {
+  document.getElementById("modalInfo").classList.remove("open");
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", e => { if (e.key === "Escape") fecharInfo(); });
+
 function badgeData(v) {
   const d = v.data_ref || v.data_post || v.data_vista;
   if (!d) return "";
