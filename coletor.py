@@ -89,9 +89,8 @@ ONEFORMA_ABRIR_INCERTOS = True
 # Se um dia quiser tentar de novo, mude para True.
 USAR_TELUS = False
 
-# Rex.zone (RemoExperts): API limpa, do nicho de IA/dados/anotação.
-# Filtra vagas que aceitam Brasil (countries "ALL" ou "Brazil") E são do nicho.
-USAR_REXZONE = True
+# Rex.zone (RemoExperts): DESLIGADO — as vagas dele já chegam pelo LinkedIn.
+USAR_REXZONE = False
 
 # ─── FASE 4: LINKEDIN via GMAIL ───
 # As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
@@ -900,6 +899,12 @@ def main():
     for v in todas:
         for campo in ("_desc", "_req", "_comp"):
             v.pop(campo, None)
+
+    # dá um id único e estável a cada vaga (para a página individual)
+    import hashlib
+    for v in todas:
+        base = (v.get("url") or v.get("titulo") or "").encode("utf-8")
+        v["id"] = hashlib.md5(base).hexdigest()[:10]
 
     # Monta a estrutura final
     resultado = {

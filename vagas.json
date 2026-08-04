@@ -1,307 +1,70 @@
 {
-  "atualizado_em": "2026-08-04T16:21:52.606189+00:00",
-  "atualizado_br": "04/08/2026 às 16:21",
-  "total": 55,
+  "atualizado_em": "2026-07-31T23:07:05.803160+00:00",
+  "atualizado_br": "31/07/2026 às 23:07",
+  "total": 11,
   "vagas": [
     {
       "empresa": "welocalize",
-      "titulo": "*Scout Junior Quality Coordinator - Portuguese (Brazil)",
-      "local": "Remoto · Brazil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/6e0ac589-3fba-429a-8ce4-5c48a2cf0e2d",
-      "commitment": "Remote",
-      "fonte": "direto",
-      "data_post": "2023-02-10",
-      "data_vista": "2026-07-31",
-      "data_ref": "2023-02-10",
-      "resumo": {
-        "o_que_faz": "Review and evaluate AI-generated translations for quality and accuracy. Work remotely on flexible schedule, rating content in Portuguese.",
-        "requisitos": "Native Portuguese (Brazil). Advanced English (B2+). Attention to detail. Experience with translation is a plus.",
-        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Ads Quality Rater - German (Brazil)",
-      "local": "Remoto · Brazil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/31bad8e4-811a-4d38-94ab-81b5238b017b",
-      "commitment": "Remote",
-      "fonte": "direto",
-      "data_post": "2024-06-19",
-      "data_vista": "2026-08-01",
-      "data_ref": "2024-06-19",
-      "resumo": {
-        "o_que_faz": "Welo Data é uma empresa premiada de localização e transformação de dados. Administramos um dos maiores programas de classificação de anúncios do mundo e queremos que você participe! Como avaliador de qualidade de anúncios, você revisará e avaliará anúncios na Internet para ajudar a definir como os anúncios são entregues aos usuários finais. Em outras palavras, você dirá ao programa de IA quão bom ou…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "Remote",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Ads Quality Rater - Italian (Brazil)",
-      "local": "Remoto · Brazil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/b782302b-3ac6-4069-b295-1b0eb194329c",
-      "commitment": "Remote",
-      "fonte": "direto",
-      "data_post": "2024-07-08",
-      "data_vista": "2026-08-01",
-      "data_ref": "2024-07-08",
-      "resumo": {
-        "o_que_faz": "Welo Data é uma empresa premiada de localização e transformação de dados. Administramos um dos maiores programas de classificação de anúncios do mundo e queremos que você participe! Como avaliador de qualidade de anúncios, você revisará e avaliará anúncios na Internet para ajudar a definir como os anúncios são entregues aos usuários finais. Em outras palavras, você dirá ao programa de IA quão bom ou…",
-        "requisitos": "Fluência em italiano Forte compreensão de inglês (escrito e falado) Conhecimento confortável da cultura popular moderna Sistema de computador confiável e conexão à Internet Familiarizado com o uso de mecanismos de pesquisa on-line Assinar um Acordo de Não Divulgação padrão e um Acordo de Nível de Serviço",
-        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "Remote",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Brazilian Subject Matter Expert in Politics",
-      "local": "Remoto · Remoto - Europe",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/weloglobal/af2cd877-4e0a-4c40-b99d-a4ebf38b56fe",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto",
-      "data_post": "2026-06-17",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-06-17",
-      "resumo": {
-        "o_que_faz": "Sobre a Welo Global A Welo Global é líder em soluções multilíngues de IA, tecnologia e conteúdo, atendendo mais de 2.000 clientes em 300 idiomas. A empresa combina infraestrutura multilíngue em escala global, incluindo uma rede de mais de 500.000 linguistas e especialistas no domínio, com PNL avançada, linguística computacional e os melhores recursos da categoria…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "Freelance-Remote",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Brazilian Subject Matter Expert in Religion or Philosophy",
-      "local": "Remoto · Remoto - Europe",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/weloglobal/390e87b4-96a8-4f54-a3c4-8d1daa0ae850",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto",
-      "data_post": "2026-06-17",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-06-17",
-      "resumo": {
-        "o_que_faz": "Sobre a Welo Global A Welo Global é líder em soluções multilíngues de IA, tecnologia e conteúdo, atendendo mais de 2.000 clientes em 300 idiomas. A empresa combina infraestrutura multilíngue em escala global, incluindo uma rede de mais de 500.000 linguistas e especialistas no domínio, com PNL avançada, linguística computacional e os melhores recursos da categoria…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "Freelance-Remote",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Circinus - Audio Contributor Portuguese (Brazil)",
-      "local": "Remoto · Brazil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/aba23d95-caff-4c63-96ac-ed40f4561a19",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto",
-      "data_post": "2026-06-18",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-06-18",
-      "resumo": {
-        "o_que_faz": "Sobre a função: Ajude a avançar e aprimorar a IA e a tecnologia de voz gravando avisos curtos e com script em português. Valorizamos a sua contribuição e o impacto coletivo da IA. Principais responsabilidades Registrar 20 prompts de script (cada um com menos de um minuto) em nossa plataforma web Ler de forma clara e natural em português usando um laptop em um ambiente silencioso…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: familiaridade com IA generativa e modelos de linguagem; boa dicção e experiência com áudio/voz.",
-        "contrato": "Freelance-Remote",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "English to Brazilian portuguese Life Sciences Linguist",
-      "local": "Remoto · Brazil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/weloglobal/63657b79-7b06-49e0-8c99-2a77418306ab",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "data_vista": "2026-08-04",
-      "data_ref": "2026-08-04",
-      "resumo": {
-        "o_que_faz": "Sobre a Welo Life Sciences A Welo Life Sciences, uma marca Welo Global, é um parceiro especializado em idiomas e tecnologia que atende organizações farmacêuticas, CRO e de dispositivos médicos que operam em mercados globais regulamentados. Fornecemos soluções de tradução, validação linguística e localização prontas para regulamentação que apoiam ensaios clínicos...",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "Freelance-Remote",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "English to Portuguese(Brazil) Patent Agency/Translator/LQA Reviewer",
-      "local": "Remoto · Brazil",
+      "titulo": "English to Portuguese (Brazil) Patent Translator/LQA Reviewer",
+      "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
       "url": "https://jobs.lever.co/weloglobal/12511ff5-5083-49e9-b50a-13613d957e25",
-      "commitment": "Remote",
+      "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-06-15",
+      "data_post": "2026-07-30",
       "data_vista": "2026-07-31",
-      "data_ref": "2026-06-15",
+      "data_ref": "2026-07-30",
       "resumo": {
         "o_que_faz": "Review and evaluate AI-generated translations for quality and accuracy. Work remotely on flexible schedule, rating content in Portuguese.",
         "requisitos": "Native Portuguese (Brazil). Advanced English (B2+). Attention to detail. Experience with translation is a plus.",
         "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
         "contrato": "",
         "remuneracao": ""
-      }
+      },
+      "id": "3c1f28002b"
     },
     {
       "empresa": "welocalize",
-      "titulo": "Italian Search & Data Labelling Rater - Project Andromeda Titawin",
-      "local": "Remoto · Brazil",
+      "titulo": "Maps Personalization Relevance Rater - Portuguese (Brazil)",
+      "local": "Freelance · Brasil",
       "categoria": "qa",
       "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/808cf834-d4be-476e-a178-74ec72f861dc",
-      "commitment": "Freelance-Remote",
+      "url": "https://jobs.lever.co/weloglobal/7eae9741-9c26-4935-865f-977a39db5cb1",
+      "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-05-05",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-05-05",
+      "data_post": "2026-07-23",
+      "data_vista": "2026-07-31",
+      "data_ref": "2026-07-23",
       "resumo": {
-        "o_que_faz": "Visão geral do trabalho: Estamos procurando avaliadores de pesquisa e rotulagem de dados orientados a detalhes para apoiar um projeto de anotação de dados de IA focado em melhorar as experiências de pesquisa de comércio eletrônico. Nesta função, você avaliará a relevância dos resultados da pesquisa analisando as consultas dos clientes e combinando-as com os produtos apropriados. Seu trabalho será diretamente…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "Freelance-Remote",
+        "o_que_faz": "Review and evaluate AI-generated translations for quality and accuracy. Work remotely on flexible schedule, rating content in Portuguese.",
+        "requisitos": "Native Portuguese (Brazil). Advanced English (B2+). Attention to detail. Experience with translation is a plus.",
+        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
+        "contrato": "",
         "remuneracao": ""
-      }
+      },
+      "id": "bf2d93df09"
     },
     {
       "empresa": "welocalize",
-      "titulo": "Portuguese (Brazil) Quality Control Lead - Project Lyra",
-      "local": "Remoto · Brazil",
+      "titulo": "Scout Junior Quality Coordinator - Portuguese (Brazil)",
+      "local": "Remoto · Brasil",
       "categoria": "qa",
       "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/4cc2a43f-a3e8-4d84-9b8d-ee69598bd8bb",
-      "commitment": "Contract",
+      "url": "https://jobs.lever.co/weloglobal/6e0ac589-3fba-429a-8ce4-5c48a2cf0e2d",
+      "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-07-06",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-06",
+      "data_post": "2026-07-11",
+      "data_vista": "2026-07-31",
+      "data_ref": "2026-07-11",
       "resumo": {
-        "o_que_faz": "Visão geral Você é um profissional experiente em garantia de qualidade e apaixonado por qualidade linguística, IA e liderança de equipe? Estamos procurando um líder de controle de qualidade que fale português (Brasil) para participar de um programa de treinamento em IA em larga escala. Nesta função, você liderará a estratégia de qualidade para a localidade portuguesa (Brasil), garantindo…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "Contract",
+        "o_que_faz": "Review and evaluate AI-generated translations for quality and accuracy. Work remotely on flexible schedule, rating content in Portuguese.",
+        "requisitos": "Native Portuguese (Brazil). Advanced English (B2+). Attention to detail. Experience with translation is a plus.",
+        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
+        "contrato": "",
         "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Portuguese Accessibility Tester",
-      "local": "Remoto · Remoto - Europe",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/7f043ad0-ba02-44c1-b163-0c75b3e7e3f3",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto",
-      "data_post": "2026-07-24",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-24",
-      "resumo": {
-        "o_que_faz": "Sobre a Welocalize Welocalize, uma marca da Welo Global, atende equipes de localização por meio de soluções de conteúdo multilíngue habilitadas para IA que permitem às empresas operar e escalar globalmente. Welocalize combina IA, automação e experiência humana para apoiar empresas em mais de 300 idiomas, permitindo precisão, alinhamento cultural e…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com transcrição de áudio; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "Freelance-Remote",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Epsilon - Portuguese (Brazil) Data Trainer",
-      "local": "Remoto · Brazil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/64a0c74c-57fb-482e-b9a2-cfaff52db6df",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto",
-      "data_post": "2026-07-20",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-20",
-      "resumo": {
-        "o_que_faz": "Sobre a função Estamos procurando instrutores detalhistas para apoiar um projeto de anotação de dados de IA. Nesta função, você revisará perguntas pré-semeadas emparelhadas com imagens e fornecerá respostas \"de ouro\" precisas com base no que você observa na imagem. Esta é uma oportunidade baseada em tarefas e de fácil acesso, ideal para indivíduos que…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; atenção visual e experiência com conteúdo de imagem/vídeo.",
-        "contrato": "Freelance-Remote",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Epsilon - Portuguese (Brazil) Quality Control Specialist",
-      "local": "Remoto · Brazil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/weloglobal/c9d76e98-60ed-4f2e-91cb-2f8d54441cfe",
-      "commitment": "Freelance",
-      "fonte": "direto",
-      "data_post": "2026-07-20",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-20",
-      "resumo": {
-        "o_que_faz": "Sobre a função Estamos procurando um especialista em controle de qualidade (QC) orientado a detalhes para apoiar um projeto de anotação de dados de IA. Nesta função, você revisará o trabalho enviado pelos Instrutores – perguntas pré-semeadas emparelhadas com imagens e suas respostas “de ouro” correspondentes – para confirmar a precisão, consistência e aderência ao projeto…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; atenção visual e experiência com conteúdo de imagem/vídeo.",
-        "contrato": "Freelance",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Perseus | Data Labeling Associate - Portuguese (Brazil) Speakers (Human-in-the-Loop AI)",
-      "local": "Remoto · California",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/32423991-2b3f-4499-8905-ada86936e4f7",
-      "commitment": "Full Time",
-      "fonte": "direto",
-      "data_post": "2026-04-22",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-04-22",
-      "resumo": {
-        "o_que_faz": "Visão geral A Welo Data está procurando indivíduos perspicazes, curiosos e detalhistas para se juntarem à nossa equipe como Data Labeling Associate. Esta não é uma função de anotação tradicional. Você trabalhará diretamente com sistemas de IA de ponta – avaliando resultados, identificando lacunas e ajudando a melhorar o comportamento desses sistemas em cenários do mundo real. O…",
-        "requisitos": "Proficiência linguística de nível nativo e diploma universitário (bacharelado ou superior). B2 ou nível superior de inglês. 1–2 anos de experiência profissional em redação com fortes habilidades de redação estruturada Capacidade de aplicar regras e diretrizes de redação complexas de forma consistente Forte compreensão de segurança…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "Full Time",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Project Perseus | Speech & Voice AI Analyst - Portuguese (Brazil) Speakers",
-      "local": "Remoto · California",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/89050f99-2c6f-4490-a763-9ddc81c19549",
-      "commitment": "Full Time",
-      "fonte": "direto",
-      "data_post": "2026-07-16",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-16",
-      "resumo": {
-        "o_que_faz": "Visão geral A Welo Data está procurando indivíduos confiáveis ​​e orientados para os detalhes para se juntarem à nossa equipe como analistas de rotulagem de dados, oferecendo suporte a sistemas de IA de fala e voz. Esta é uma função de produção de alto impacto focada na construção de conjuntos de dados que alimentam sistemas de IA do mundo real. Você trabalhará com dados de áudio, fala e idioma, ajudando a garantir…",
-        "requisitos": "Fluência nativa em Português (Brasil) Fortes habilidades de comunicação escrita e fundamentos linguísticos 1 ano de experiência profissional em rotulagem de dados, anotação ou trabalho focado em conteúdo; ou um diploma de bacharel ou qualificação acadêmica equivalente em uma área relacionada. Capacidade de seguir detalhes…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; boa dicção e experiência com áudio/voz.",
-        "contrato": "Full Time",
-        "remuneracao": ""
-      }
+      },
+      "id": "65762fd387"
     },
     {
       "empresa": "rws",
@@ -309,159 +72,41 @@
       "local": "Remoto · São Paulo",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/rws/72796483-2495-4299-b1c1-c95c3800006f",
-      "commitment": "Temporary/Contract",
+      "url": "https://jobs.lever.co/rws/72796483",
+      "commitment": "",
       "fonte": "direto",
-      "data_post": "2025-09-16",
-      "data_vista": "2026-08-01",
-      "data_ref": "2025-09-16",
+      "data_post": "2026-07-29",
+      "data_vista": "2026-07-31",
+      "data_ref": "2026-07-29",
       "resumo": {
-        "o_que_faz": "Procuramos um especialista em dados de IA para apoiar a melhoria do conteúdo gerado por IA em inglês. Tipo de Trabalho: Freelance Local: Remoto no Brasil Horário de Trabalho: Meio período. Flexível, trabalhe quando quiser Data de início: Imediatamente Duração: Projeto de longo prazo Taxa: 6 USD/hora Ajude a moldar o futuro da IA ​​Você é um estudante, recente…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; boa dicção e experiência com áudio/voz.",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Fandoms Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/9a0d5c38-97e3-4124-b9cb-7401660fe01e",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto",
-      "data_post": "2026-05-08",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-05-08",
-      "resumo": {
-        "o_que_faz": "Visão Geral do Projeto Ajude a moldar o futuro da IA ​​no Brasil! Estamos construindo um benchmark de próxima geração para avaliar até que ponto os sistemas de IA lidam bem com questões complexas do mundo real em português brasileiro. Este projeto ajudará a melhorar a forma como a IA fornece respostas precisas, confiáveis ​​e conscientes do contexto para o mercado brasileiro. Estamos buscando brasileiros…",
-        "requisitos": "Proficiência nativa ou fluente em português brasileiro (pt-BR) 5–10+ anos de experiência profissional em uma área relevante Conhecimento comprovado através de formação acadêmica e/ou experiência no setor Fortes habilidades analíticas e capacidade de explicar conceitos complexos de maneira clara e estruturada…",
+        "o_que_faz": "Support the improvement of AI-generated content by performing data annotation, evaluation and pairwise comparisons.",
+        "requisitos": "Fluent English B2-C2. Experience in data annotation preferred. Bachelor's degree.",
         "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
+        "contrato": "",
+        "remuneracao": "$11 USD/hour"
+      },
+      "id": "bfea3b9a81"
     },
     {
       "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Games & Puzzles Subject Matter Expert (SME)",
-      "local": "Remoto · Rio de Janeiro",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/048f8c3e-e09f-4b13-81f7-a060584f45f0",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto",
-      "data_post": "2026-05-08",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-05-08",
-      "resumo": {
-        "o_que_faz": "Visão Geral do Projeto Ajude a moldar o futuro da IA ​​no Brasil! Estamos construindo um benchmark de próxima geração para avaliar até que ponto os sistemas de IA lidam bem com questões complexas do mundo real em português brasileiro. Este projeto ajudará a melhorar a forma como a IA fornece respostas precisas, confiáveis ​​e conscientes do contexto para o mercado brasileiro. Estamos buscando brasileiros…",
-        "requisitos": "Proficiência nativa ou fluente em português brasileiro (pt-BR) 5–10+ anos de experiência profissional em uma área relevante Conhecimento comprovado através de formação acadêmica e/ou experiência no setor Fortes habilidades analíticas e capacidade de explicar conceitos complexos de maneira clara e estruturada…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; conhecimento de programação (Python e afins).",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Home & Garden Subject Matter Expert (SME)",
+      "titulo": "Linguistic AI Auditor (Brazilian Portuguese)",
       "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/d5bcef39-c110-4aae-ad0c-1909e85ddd07",
-      "commitment": "Temporary/Contract",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/rws/bf14d5a6",
+      "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-05-05",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-05-05",
+      "data_post": "2026-07-19",
+      "data_vista": "2026-07-31",
+      "data_ref": "2026-07-19",
       "resumo": {
-        "o_que_faz": "Visão Geral do Projeto Ajude a moldar o futuro da IA ​​no Brasil! Estamos construindo um benchmark de próxima geração para avaliar até que ponto os sistemas de IA lidam bem com questões complexas do mundo real em português brasileiro. Este projeto ajudará a melhorar a forma como a IA fornece respostas precisas, confiáveis ​​e conscientes do contexto para o mercado brasileiro. Estamos buscando brasileiros…",
-        "requisitos": "Proficiência nativa ou fluente em português brasileiro (pt-BR) 5–10+ anos de experiência profissional em uma área relevante Conhecimento comprovado através de formação acadêmica e/ou experiência no setor Fortes habilidades analíticas e capacidade de explicar conceitos complexos de maneira clara e estruturada…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Internet Culture Subject Matter Expert (SME)",
-      "local": "Remoto · Rio de Janeiro",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/768d0459-fcde-4fe5-b6e2-2ae2d9f07b56",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto",
-      "data_post": "2026-05-08",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-05-08",
-      "resumo": {
-        "o_que_faz": "Visão Geral do Projeto Ajude a moldar o futuro da IA ​​no Brasil! Estamos construindo um benchmark de próxima geração para avaliar até que ponto os sistemas de IA lidam bem com questões complexas do mundo real em português brasileiro. Este projeto ajudará a melhorar a forma como a IA fornece respostas precisas, confiáveis ​​e conscientes do contexto para o mercado brasileiro. Estamos buscando brasileiros…",
-        "requisitos": "Proficiência nativa ou fluente em português brasileiro (pt-BR) 5–10+ anos de experiência profissional em uma área relevante Conhecimento comprovado através de formação acadêmica e/ou experiência no setor Fortes habilidades analíticas e capacidade de explicar conceitos complexos de maneira clara e estruturada…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Law & Ethics Subject Matter Expert (SME)",
-      "local": "Remoto · Recife",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/c8d77692-dc67-4cb7-86f7-8fca806c6682",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto",
-      "data_post": "2026-05-08",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-05-08",
-      "resumo": {
-        "o_que_faz": "Visão Geral do Projeto Ajude a moldar o futuro da IA ​​no Brasil! Estamos construindo um benchmark de próxima geração para avaliar até que ponto os sistemas de IA lidam bem com questões complexas do mundo real em português brasileiro. Este projeto ajudará a melhorar a forma como a IA fornece respostas precisas, confiáveis ​​e conscientes do contexto para o mercado brasileiro. Estamos buscando brasileiros…",
-        "requisitos": "Proficiência nativa ou fluente em português brasileiro (pt-BR) Doutorado em uma área relevante (obrigatório) 5–10+ anos de experiência profissional em uma área relevante Conhecimento comprovado através de formação acadêmica e/ou experiência no setor Fortes habilidades analíticas e capacidade de explicar…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; formação/experiência na área jurídica.",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Religion & Philosophy Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/c6f4a7fe-986e-4367-8507-fb6c7be831b6",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto",
-      "data_post": "2026-05-08",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-05-08",
-      "resumo": {
-        "o_que_faz": "Visão Geral do Projeto Ajude a moldar o futuro da IA ​​no Brasil! Estamos construindo um benchmark de próxima geração para avaliar até que ponto os sistemas de IA lidam bem com questões complexas do mundo real em português brasileiro. Este projeto ajudará a melhorar a forma como a IA fornece respostas precisas, confiáveis ​​e conscientes do contexto para o mercado brasileiro. Estamos buscando brasileiros…",
-        "requisitos": "Proficiência nativa ou fluente em português brasileiro (pt-BR) Doutorado em uma área relevante (obrigatório) 5–10+ anos de experiência profissional em uma área relevante Conhecimento comprovado através de formação acadêmica e/ou experiência no setor Fortes habilidades analíticas e capacidade de explicar…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; formação/experiência na área jurídica.",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rws",
-      "titulo": "Brazilian Portuguese - Sports Subject Matter Expert (SME)",
-      "local": "Remoto · São Paulo",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/rws/8123e349-8063-44ee-8317-1357fa49306d",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto",
-      "data_post": "2026-05-07",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-05-07",
-      "resumo": {
-        "o_que_faz": "Visão Geral do Projeto Ajude a moldar o futuro da IA ​​no Brasil! Estamos construindo um benchmark de próxima geração para avaliar até que ponto os sistemas de IA lidam bem com questões complexas do mundo real em português brasileiro. Este projeto ajudará a melhorar a forma como a IA fornece respostas precisas, confiáveis ​​e conscientes do contexto para o mercado brasileiro. Estamos buscando brasileiros…",
-        "requisitos": "Proficiência nativa ou fluente em português brasileiro (pt-BR) 5–10+ anos de experiência profissional em uma área relevante Conhecimento comprovado através de formação acadêmica e/ou experiência no setor Fortes habilidades analíticas e capacidade de explicar conceitos complexos de maneira clara e estruturada…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; formação/experiência na área jurídica.",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
+        "o_que_faz": "Support the improvement of AI-generated content by performing data annotation, evaluation and pairwise comparisons.",
+        "requisitos": "Fluent English B2-C2. Experience in data annotation preferred. Bachelor's degree.",
+        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
+        "contrato": "",
+        "remuneracao": "$11 USD/hour"
+      },
+      "id": "75ecb4e9e3"
     },
     {
       "empresa": "rws",
@@ -469,199 +114,83 @@
       "local": "Remoto · Rio de Janeiro",
       "categoria": "qa",
       "badge": "QA",
-      "url": "https://jobs.lever.co/rws/ecabff98-a1e1-40eb-9ca3-ffb7a1681ebc",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto",
-      "data_post": "2026-06-09",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-06-09",
-      "resumo": {
-        "o_que_faz": "Procuramos Especialista em Avaliação de Speech AI para apoiar a melhoria do conteúdo gerado por IA em Português (Brasil). Tipo de Trabalho: Freelance Local: Brasil (trabalhar em casa) Horário de Trabalho: Meio período - 10+ horas por semana. Flexível – trabalhe quando quiser. Data de início: Imediatamente Duração: Taxa TBC: 6 USD por hora Ajude a moldar o…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; familiaridade com IA generativa e modelos de linguagem.",
-        "contrato": "Temporary/Contract",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "crowdgen",
-      "titulo": "Social Media Ads Evaluator (Native English Speaker)",
-      "local": "Remoto · Brazil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.lever.co/appen/5ce6c3e1-4517-4978-b64f-4e2770d7353f",
-      "commitment": "Independent Contractor - Project Based",
-      "fonte": "direto",
-      "data_post": "2026-06-19",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-06-19",
-      "resumo": {
-        "o_que_faz": "Descrição da vaga: Estamos buscando um falante nativo de inglês residente no Brasil para ingressar na comunidade Appen como avaliador de anúncios em mídias sociais. Nesta função de Contratante Independente, você avaliará a relevância, adequação e precisão dos anúncios em mídias sociais, contribuindo com insights valiosos para melhorar a publicidade online…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "Independent Contractor - Project Based",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "toloka",
-      "titulo": "AI Trainer - Freelance Data Annotator",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/468930B682",
+      "url": "https://jobs.lever.co/rws/ecabff98",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-07-30",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-30",
+      "data_post": "2026-06-26",
+      "data_vista": "2026-07-31",
+      "data_ref": "2026-06-26",
       "resumo": {
-        "o_que_faz": "Por favor, envie seu currículo em inglês e indique seu nível de inglês. Na Toloka, conectamos pessoas inteligentes e curiosas de todo o mundo com tarefas online freelance que treinam e melhoram a inteligência artificial. O que fazemos Os Toloka Annotators conectam indivíduos com projetos de IA generativa dos principais inovadores tecnológicos. Nossa missão…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; familiaridade com IA generativa e modelos de linguagem.",
+        "o_que_faz": "Support the improvement of AI-generated content by performing data annotation, evaluation and pairwise comparisons.",
+        "requisitos": "Fluent English B2-C2. Experience in data annotation preferred. Bachelor's degree.",
+        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; boa dicção e experiência com áudio/voz.",
         "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "toloka",
-      "titulo": "Colaborador(a) de Coleta de Vídeos - Projeto de IA (Freelance / Remoto)",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/421DFF025A",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-07-09",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-09",
-      "resumo": {
-        "o_que_faz": "Esta é uma oportunidade baseada em projetos em uma plataforma de treinamento de IA. Sem horário fixo, sem compromisso além do que se encaixa na sua rotina. Gravou, ganhou. Sobre a Função Estamos procurando pessoas para gravar vídeos em primeira pessoa de atividades domésticas do dia a dia. Você fixa o smartphone na cabeça, segue sua…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: conhecimento de programação (Python e afins).",
-        "contrato": "",
-        "remuneracao": ""
-      }
+        "remuneracao": "$11 USD/hour"
+      },
+      "id": "311c1ffb89"
     },
     {
       "empresa": "toloka",
       "titulo": "First-Person AI Video Trainer",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brasil · Part-time",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/B7F6FE489F",
+      "url": "https://apply.workable.com/toloka-annotators/j/D0C5314F11/",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-06-05",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-06-05",
+      "data_post": "2026-07-27",
+      "data_vista": "2026-07-31",
+      "data_ref": "2026-07-27",
       "resumo": {
-        "o_que_faz": "Esta é uma oportunidade baseada em projeto em uma plataforma de treinamento de IA – não um trabalho. Sem horários fixos, sem compromisso além do que cabe na sua agenda. Você grava, você é pago. Sobre a função Procuramos pessoas para gravar vídeos de ponto de vista das atividades domésticas cotidianas. Você monta seu smartphone na cabeça, segue sua rotina e…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: atenção a detalhes e experiência avaliando conteúdo; boa dicção e experiência com áudio/voz; atenção visual e experiência com conteúdo de imagem/vídeo.",
+        "o_que_faz": "Record short first-person videos following provided scenarios to help train AI models. Flexible part-time remote work.",
+        "requisitos": "Smartphone with good camera. Reliable internet. Attention to detail.",
+        "dica_cv": "Destaque no currículo: atenção visual e experiência com conteúdo de imagem/vídeo.",
         "contrato": "",
         "remuneracao": ""
-      }
+      },
+      "id": "b6ed4332a9"
     },
     {
       "empresa": "toloka",
-      "titulo": "Freelance Annotator (English) - AI Trainer",
-      "local": "Remoto · Brasil",
+      "titulo": "AI Trainer - Freelance Data Annotator",
+      "local": "Remoto · SP / RJ / BH",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/1351298448",
+      "url": "https://apply.workable.com/toloka-annotators/j/870369E4B6/",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-07-30",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-30",
+      "data_post": "2026-07-13",
+      "data_vista": "2026-07-31",
+      "data_ref": "2026-07-13",
       "resumo": {
-        "o_que_faz": "Por favor, envie seu currículo em inglês e indique seu nível de inglês. Na Toloka, conectamos pessoas inteligentes e curiosas de todo o mundo com tarefas online freelance que treinam e melhoram a inteligência artificial. O que fazemos Os Toloka Annotators conectam indivíduos com projetos de IA generativa dos principais inovadores tecnológicos. Nossa missão…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; familiaridade com IA generativa e modelos de linguagem.",
+        "o_que_faz": "Record short first-person videos following provided scenarios to help train AI models. Flexible part-time remote work.",
+        "requisitos": "Smartphone with good camera. Reliable internet. Attention to detail.",
+        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção visual e experiência com conteúdo de imagem/vídeo.",
         "contrato": "",
         "remuneracao": ""
-      }
+      },
+      "id": "948a6066bf"
     },
     {
-      "empresa": "toloka",
-      "titulo": "Freelance: Grave Vídeos para Treinar IA",
+      "empresa": "crowdgen",
+      "titulo": "Social Media Ads Evaluator (Native English Speaker)",
       "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/540EC4059F",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/appen/5ce6c3e1",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-07-28",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-28",
+      "data_post": "2026-07-25",
+      "data_vista": "2026-07-31",
+      "data_ref": "2026-07-25",
       "resumo": {
-        "o_que_faz": "Esta é uma oportunidade baseada em projetos em uma plataforma de treinamento de IA. Sem horário fixo, sem compromisso além do que se encaixa na sua rotina. Gravou, ganhou. Sobre a Função Estamos procurando pessoas para gravar vídeos em primeira pessoa de atividades domésticas do dia a dia. Você fixa o smartphone na cabeça, segue sua…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: conhecimento de programação (Python e afins).",
+        "o_que_faz": "Evaluate social media ads for relevance and quality, providing ratings according to guidelines.",
+        "requisitos": "Native English speaker. Social media familiarity. Attention to detail.",
+        "dica_cv": "Destaque no currículo: atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
         "contrato": "",
         "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "toloka",
-      "titulo": "Gravação de Vídeos em Casa - Freelance",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/315C0BB462",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-07-06",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-06",
-      "resumo": {
-        "o_que_faz": "Esta é uma oportunidade baseada em projetos em uma plataforma de treinamento de IA. Sem horário fixo, sem compromisso além do que se encaixa na sua rotina. Gravou, ganhou. Sobre a Função Estamos procurando pessoas para gravar vídeos em primeira pessoa de atividades domésticas do dia a dia. Você fixa o smartphone na cabeça, segue sua…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: conhecimento de programação (Python e afins).",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "toloka",
-      "titulo": "POV Video Recording Job - Cooking, Cleaning, Daily Tasks",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/DA146098F7",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-07-28",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-28",
-      "resumo": {
-        "o_que_faz": "Procurando uma maneira flexível de ganhar renda extra? Estamos convidando as pessoas a participar de um emocionante projeto de treinamento em IA, gravando atividades reais do dia a dia, no conforto da sua casa. Sem estúdio, sem equipamento especial – apenas você, seu smartphone e sua rotina diária. Grave sempre que for conveniente para você, usando seu próprio dispositivo…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: boa dicção e experiência com áudio/voz; atenção visual e experiência com conteúdo de imagem/vídeo; nível de inglês (mencione seu nível: B2, C1, etc.).",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "toloka",
-      "titulo": "Record Your Daily Routine & Get Paid - AI Training (Remote)",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/D4039D6025",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-07-28",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-07-28",
-      "resumo": {
-        "o_que_faz": "Esta é uma oportunidade baseada em projeto em uma plataforma de treinamento de IA – não um trabalho. Sem horários fixos, sem compromisso além do que cabe na sua agenda. Você grava, você é pago. Sobre a função Procuramos pessoas para gravar vídeos de ponto de vista das atividades domésticas cotidianas. Você monta seu smartphone na cabeça, segue sua rotina e…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: atenção a detalhes e experiência avaliando conteúdo; boa dicção e experiência com áudio/voz; atenção visual e experiência com conteúdo de imagem/vídeo.",
-        "contrato": "",
-        "remuneracao": ""
-      }
+      },
+      "id": "a653baef02"
     },
     {
       "empresa": "oneforma",
@@ -672,6 +201,7 @@
       "url": "https://www.oneforma.com/jobs/meteor/",
       "commitment": "",
       "fonte": "direto",
+      "data_post": "",
       "data_vista": "2026-07-28",
       "data_ref": "2026-07-28",
       "resumo": {
@@ -680,410 +210,29 @@
         "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; experiência com transcrição de áudio; atenção a detalhes e experiência avaliando conteúdo.",
         "contrato": "",
         "remuneracao": ""
-      }
+      },
+      "id": "ed0334c066"
     },
     {
-      "empresa": "oneforma",
-      "titulo": "Freya Project: Remote Podcast Transcription and Speech Annotation",
+      "empresa": "linkedin",
+      "titulo": "AI Data Annotator Portuguese Brazil",
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/freya/",
+      "url": "https://www.linkedin.com/jobs/view/123/",
       "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; experiência com transcrição de áudio; boa dicção e experiência com áudio/voz.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Project Hermes | AI Language Specialist",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.oneforma.com/jobs/hermes/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque experiências relevantes à área da vaga e seu nível de inglês.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Project Zeno | Speech Translation Data Quality Evaluation | Remote",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.oneforma.com/jobs/project-zeno-speech-translation-data-quality-evaluation-remote/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo; boa dicção e experiência com áudio/voz.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Project Triangle | Remote Ego-Centric Video Data Collection",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/project-triangle-dc/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: atenção visual e experiência com conteúdo de imagem/vídeo.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "LELI – Review & Refine Machine Translations in Your Language",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.oneforma.com/jobs/leli/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Kawaii – Audio Annotation and Speaker Identification",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/kawaii-audio-annotation-and-speaker-identification/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; boa dicção e experiência com áudio/voz.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Adaptation",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/adaptation/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque experiências relevantes à área da vaga e seu nível de inglês.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Fred Annotation",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/fred-annotation/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
+      "fonte": "linkedin",
+      "data_post": "",
+      "data_vista": "2026-07-30",
+      "data_ref": "2026-07-30",
       "resumo": {
         "o_que_faz": "",
         "requisitos": "",
         "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados.",
         "contrato": "",
         "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Ava Audio Collection",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/ava-audio-collection/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: boa dicção e experiência com áudio/voz.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Paragraph Level Acceptability",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/paragraph-level-acceptability/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque experiências relevantes à área da vaga e seu nível de inglês.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Acceptability and Preference: Translation Raters",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.oneforma.com/jobs/acceptability-and-preference-translation-raters/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Apps and Music Grading",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/jobs/apps-and-music-grading/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque experiências relevantes à área da vaga e seu nível de inglês.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Internet Judging: Milky Way (Maps Evaluation)",
-      "local": "Remoto · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://www.oneforma.com/jobs/internet-judging-milky-way-maps-evaluation/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rexzone",
-      "titulo": "Generalist AI Trainer (Visual Content)",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.rex.zone/open-opportunities",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-01-28",
-      "data_vista": "2026-07-31",
-      "data_ref": "2026-01-28",
-      "resumo": {
-        "o_que_faz": "Create high-quality training data and evaluate AI responses across diverse topics. Act as adversarial user to find model flaws.",
-        "requisitos": "Native/near-native English. Experience as AI Trainer or Data Annotator. Analytical skills.",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; formação/experiência na área jurídica.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rexzone",
-      "titulo": "Generalist AI Trainer",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.rex.zone/open-opportunities",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2025-09-18",
-      "data_vista": "2026-07-31",
-      "data_ref": "2025-09-18",
-      "resumo": {
-        "o_que_faz": "Create high-quality training data and evaluate AI responses across diverse topics. Act as adversarial user to find model flaws.",
-        "requisitos": "Native/near-native English. Experience as AI Trainer or Data Annotator. Analytical skills.",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; formação/experiência na área jurídica.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rexzone",
-      "titulo": "Function-based Code Annotator",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.rex.zone/open-opportunities",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2025-09-15",
-      "data_vista": "2026-07-31",
-      "data_ref": "2025-09-15",
-      "resumo": {
-        "o_que_faz": "Create high-quality training data and evaluate AI responses across diverse topics. Act as adversarial user to find model flaws.",
-        "requisitos": "Native/near-native English. Experience as AI Trainer or Data Annotator. Analytical skills.",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; formação/experiência na área jurídica.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rexzone",
-      "titulo": "Repo-based Code Annotator",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.rex.zone/open-opportunities",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2025-09-15",
-      "data_vista": "2026-07-31",
-      "data_ref": "2025-09-15",
-      "resumo": {
-        "o_que_faz": "Create high-quality training data and evaluate AI responses across diverse topics. Act as adversarial user to find model flaws.",
-        "requisitos": "Native/near-native English. Experience as AI Trainer or Data Annotator. Analytical skills.",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; formação/experiência na área jurídica.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "linkedin",
-      "titulo": "AI Data Annotation Specialist in Brazil Rex.zone · Brasil (Remoto) US$ 30-US$ 50 por hora",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.linkedin.com/jobs/view/4388385869/",
-      "commitment": "",
-      "fonte": "linkedin",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "linkedin",
-      "titulo": "AI Researcher – Multilingual Data Jobgether · Brasil (Remoto) Candidatura simplificada",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.linkedin.com/jobs/view/4445161007/",
-      "commitment": "",
-      "fonte": "linkedin",
-      "data_vista": "2026-08-04",
-      "data_ref": "2026-08-04",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque experiências relevantes à área da vaga e seu nível de inglês.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "linkedin",
-      "titulo": "Computational Linguist Omilia · Brasil (Remoto) Candidatura simplificada",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.linkedin.com/jobs/view/4444439277/",
-      "commitment": "",
-      "fonte": "linkedin",
-      "data_vista": "2026-08-04",
-      "data_ref": "2026-08-04",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização.",
-        "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "linkedin",
-      "titulo": "AI Data Annotation Specialist in Brazil",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.linkedin.com/jobs/view/4388385869/",
-      "commitment": "",
-      "fonte": "linkedin",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-08-01",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados.",
-        "contrato": "",
-        "remuneracao": ""
-      }
+      },
+      "id": "1de1c7100f"
     }
   ]
 }
