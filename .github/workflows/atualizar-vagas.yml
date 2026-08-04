@@ -27,7 +27,8 @@ jobs:
         run: |
           git config user.name "Robô de Vagas"
           git config user.email "actions@github.com"
-          git add vagas.json
+          git add vagas.json vagas_para_resumo.json
+          if [ -f resumos.json ]; then git add resumos.json; fi
           if git diff --staged --quiet; then
             echo "Nenhuma mudança nas vagas hoje."
           else
