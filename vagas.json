@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-03T16:59:02.332853+00:00",
-  "atualizado_br": "03/08/2026 às 16:59",
-  "total": 52,
+  "atualizado_em": "2026-08-04T16:21:52.606189+00:00",
+  "atualizado_br": "04/08/2026 às 16:21",
+  "total": 55,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -125,6 +125,26 @@
     },
     {
       "empresa": "welocalize",
+      "titulo": "English to Brazilian portuguese Life Sciences Linguist",
+      "local": "Remoto · Brazil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.lever.co/weloglobal/63657b79-7b06-49e0-8c99-2a77418306ab",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto",
+      "data_post": "2026-08-04",
+      "data_vista": "2026-08-04",
+      "data_ref": "2026-08-04",
+      "resumo": {
+        "o_que_faz": "Sobre a Welo Life Sciences A Welo Life Sciences, uma marca Welo Global, é um parceiro especializado em idiomas e tecnologia que atende organizações farmacêuticas, CRO e de dispositivos médicos que operam em mercados globais regulamentados. Fornecemos soluções de tradução, validação linguística e localização prontas para regulamentação que apoiam ensaios clínicos...",
+        "requisitos": "",
+        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
+        "contrato": "Freelance-Remote",
+        "remuneracao": ""
+      }
+    },
+    {
+      "empresa": "welocalize",
       "titulo": "English to Portuguese(Brazil) Patent Agency/Translator/LQA Reviewer",
       "local": "Remoto · Brazil",
       "categoria": "transl",
@@ -140,26 +160,6 @@
         "requisitos": "Native Portuguese (Brazil). Advanced English (B2+). Attention to detail. Experience with translation is a plus.",
         "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo; nível de inglês (mencione seu nível: B2, C1, etc.).",
         "contrato": "",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "French into Portuguese Financial Banking Translator",
-      "local": "Remoto · Remoto - Europe",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/weloglobal/aeb21a75-e6c7-4eec-81dc-3a70318bd9cc",
-      "commitment": "Remote",
-      "fonte": "direto",
-      "data_post": "2026-06-10",
-      "data_vista": "2026-08-01",
-      "data_ref": "2026-06-10",
-      "resumo": {
-        "o_que_faz": "Como parceiro confiável de transformação global, a Welocalize acelera a jornada de negócios globais, permitindo que marcas e empresas alcancem, envolvam e aumentem públicos internacionais. A Welocalize oferece serviços de transformação de conteúdo multilíngue em tradução, localização e adaptação para mais de 250 idiomas com uma rede crescente de…",
-        "requisitos": "Experiência mínima de 3 anos em tradução e revisão de conteúdo no assunto especificado. Proficiente em todas as áreas de atuação: Bancário, Operações Financeiras. Experiência anterior com documentos financeiros/econômicos/bancários será uma vantagem. Bem versado em diversas ferramentas de tradução e terminologia…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "Remote",
         "remuneracao": ""
       }
     },
@@ -1005,6 +1005,63 @@
         "o_que_faz": "Create high-quality training data and evaluate AI responses across diverse topics. Act as adversarial user to find model flaws.",
         "requisitos": "Native/near-native English. Experience as AI Trainer or Data Annotator. Analytical skills.",
         "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; atenção a detalhes e experiência avaliando conteúdo; formação/experiência na área jurídica.",
+        "contrato": "",
+        "remuneracao": ""
+      }
+    },
+    {
+      "empresa": "linkedin",
+      "titulo": "AI Data Annotation Specialist in Brazil Rex.zone · Brasil (Remoto) US$ 30-US$ 50 por hora",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.linkedin.com/jobs/view/4388385869/",
+      "commitment": "",
+      "fonte": "linkedin",
+      "data_vista": "2026-08-01",
+      "data_ref": "2026-08-01",
+      "resumo": {
+        "o_que_faz": "",
+        "requisitos": "",
+        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados.",
+        "contrato": "",
+        "remuneracao": ""
+      }
+    },
+    {
+      "empresa": "linkedin",
+      "titulo": "AI Researcher – Multilingual Data Jobgether · Brasil (Remoto) Candidatura simplificada",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.linkedin.com/jobs/view/4445161007/",
+      "commitment": "",
+      "fonte": "linkedin",
+      "data_vista": "2026-08-04",
+      "data_ref": "2026-08-04",
+      "resumo": {
+        "o_que_faz": "",
+        "requisitos": "",
+        "dica_cv": "Destaque experiências relevantes à área da vaga e seu nível de inglês.",
+        "contrato": "",
+        "remuneracao": ""
+      }
+    },
+    {
+      "empresa": "linkedin",
+      "titulo": "Computational Linguist Omilia · Brasil (Remoto) Candidatura simplificada",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.linkedin.com/jobs/view/4444439277/",
+      "commitment": "",
+      "fonte": "linkedin",
+      "data_vista": "2026-08-04",
+      "data_ref": "2026-08-04",
+      "resumo": {
+        "o_que_faz": "",
+        "requisitos": "",
+        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização.",
         "contrato": "",
         "remuneracao": ""
       }
