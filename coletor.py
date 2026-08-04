@@ -105,6 +105,10 @@ LINKEDIN_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj6J6YOyu5o
 # feitos para não reprocessar toda vez.
 USAR_RESUMOS = True
 
+# Gera um arquivo extra (vagas_para_resumo.json) com as descrições completas
+# das vagas, para você enviar ao assistente e receber resumos de qualidade.
+GERAR_ARQUIVO_ANALISE = True
+
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
 #  Uma vaga só entra se casar com um destes termos.
@@ -860,12 +864,34 @@ def main():
         # data_ref = a melhor data disponível: oficial se houver, senão a de aparição
         v["data_ref"] = v.get("data_post") or v["data_vista"]
 
+    # dá um id único e estável a cada vaga (usado nos resumos e na página)
+    import hashlib
+    for v in todas:
+        base = (v.get("url") or v.get("titulo") or "").encode("utf-8")
+        v["id"] = hashlib.md5(base).hexdigest()[:10]
+
     # ─── RESUMO DAS VAGAS (função + requisitos + dica de CV) ───
-    # Reaproveita resumos já feitos (do vagas.json anterior) para não
-    # traduzir de novo o que já foi processado — economiza tempo.
+    # Prioridade: (1) resumo de qualidade que EU gerei (resumos.json),
+    #             (2) resumo reaproveitado do vagas.json anterior,
+    #             (3) resumo automático gerado agora.
     if USAR_RESUMOS:
         try:
             from resumo_vagas import gerar_resumo
+
+            # (1) carrega resumos de qualidade feitos pelo assistente, se houver
+            resumos_qualidade = {}
+            try:
+                with open("resumos.json", "r", encoding="utf-8") as f:
+                    rq = json.load(f)
+                for item in rq.get("vagas", rq if isinstance(rq, list) else []):
+                    if item.get("id") and item.get("resumo"):
+                        resumos_qualidade[item["id"]] = item["resumo"]
+                if resumos_qualidade:
+                    print(f"  ({len(resumos_qualidade)} resumos de qualidade carregados de resumos.json)")
+            except Exception:
+                pass
+
+            # (2) resumos reaproveitados do vagas.json anterior
             resumos_antes = {}
             try:
                 for v in antigo.get("vagas", []):
@@ -875,11 +901,15 @@ def main():
             except Exception:
                 pass
 
-            novos, reaproveitados = 0, 0
+            novos, reaproveitados, qualidade = 0, 0, 0
             print("\n  Gerando resumos das vagas...")
             for v in todas:
+                vid = v.get("id")
                 chave = v.get("url") or v.get("titulo")
-                if chave in resumos_antes:
+                if vid and vid in resumos_qualidade:
+                    v["resumo"] = resumos_qualidade[vid]
+                    qualidade += 1
+                elif chave in resumos_antes:
                     v["resumo"] = resumos_antes[chave]
                     reaproveitados += 1
                 else:
@@ -891,20 +921,40 @@ def main():
                         commitment=v.get("commitment", ""),
                     )
                     novos += 1
-            print(f"    {novos} novos, {reaproveitados} reaproveitados")
+            print(f"    {qualidade} de qualidade, {reaproveitados} reaproveitados, {novos} automáticos")
         except Exception as e:
             print(f"  (resumos indisponíveis: {str(e)[:40]})")
+
+    # ─── ARQUIVO PARA ANÁLISE (com descrições completas) ───
+    # Salva um arquivo separado que MANTÉM a descrição completa de cada vaga.
+    # É este que você me envia quando quiser que eu gere resumos de qualidade.
+    # As vagas do LinkedIn não têm descrição, então ficam de fora deste arquivo.
+    if GERAR_ARQUIVO_ANALISE:
+        para_analise = []
+        for v in todas:
+            desc = v.get("_desc", "")
+            req = v.get("_req", "")
+            if not desc and not req:
+                continue  # sem descrição (ex: LinkedIn) → não adianta enviar
+            para_analise.append({
+                "id": v["id"],
+                "empresa": v["empresa"],
+                "titulo": v["titulo"],
+                "url": v["url"],
+                "descricao": desc,
+                "requisitos": req,
+                "remuneracao": v.get("_comp", ""),
+            })
+        with open("vagas_para_resumo.json", "w", encoding="utf-8") as f:
+            json.dump({"total": len(para_analise), "vagas": para_analise},
+                      f, ensure_ascii=False, indent=2)
+        print(f"\n  ✓ Arquivo de análise: 'vagas_para_resumo.json' "
+              f"({len(para_analise)} vagas com descrição)")
 
     # remove os campos temporários de descrição (não vão pro arquivo final)
     for v in todas:
         for campo in ("_desc", "_req", "_comp"):
             v.pop(campo, None)
-
-    # dá um id único e estável a cada vaga (para a página individual)
-    import hashlib
-    for v in todas:
-        base = (v.get("url") or v.get("titulo") or "").encode("utf-8")
-        v["id"] = hashlib.md5(base).hexdigest()[:10]
 
     # Monta a estrutura final
     resultado = {
