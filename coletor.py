@@ -595,6 +595,7 @@ def buscar_oneforma() -> list:
             "url": v["url"],
             "commitment": "",
             "fonte": "direto",
+            "_desc": v.get("desc", ""),
         })
     return vagas
 
@@ -934,13 +935,17 @@ def main():
         for v in todas:
             desc = v.get("_desc", "")
             req = v.get("_req", "")
-            if not desc and not req:
-                continue  # sem descrição (ex: LinkedIn) → não adianta enviar
+            # inclui todas as vagas que tenham título; só pula as que não têm
+            # nada além do título E vêm do LinkedIn (onde não há como enriquecer).
+            if not desc and not req and v.get("fonte") == "linkedin":
+                continue
             para_analise.append({
                 "id": v["id"],
                 "empresa": v["empresa"],
                 "titulo": v["titulo"],
                 "url": v["url"],
+                "local": v.get("local", ""),
+                "categoria_badge": v.get("badge", ""),
                 "descricao": desc,
                 "requisitos": req,
                 "remuneracao": v.get("_comp", ""),

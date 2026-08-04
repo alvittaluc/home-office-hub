@@ -161,6 +161,40 @@ def _decidir_brasil(titulo, local, url, abrir_incertos=True):
     return False
 
 
+def _extrair_descricao(texto_bruto, categoria, titulo, local):
+    """Extrai a descrição da vaga do texto bruto do OneForma.
+    O texto bruto tem: categoria+título+local(2x)+pagamento(2x)+DESCRIÇÃO+'Learn more'.
+    Pegamos o que vem depois dos marcadores de pagamento."""
+    t = texto_bruto
+    # remove "Learn more" do fim
+    t = re.sub(r'\s*Learn more\s*$', '', t).strip()
+    # procura o fim dos metadados (após o tipo de pagamento repetido)
+    # os padrões de pagamento comuns aparecem 2x seguidas
+    marcadores = [
+        r'Fixed Rate Per Hour Fixed Rate Per Hour',
+        r'Fixed Rate Per Approved Asset Fixed Rate Per Approved Asset',
+        r'Per Hour Per Hour',
+        r'Per Approved Asset Per Approved Asset',
+    ]
+    for m in marcadores:
+        match = re.search(m, t)
+        if match:
+            desc = t[match.end():].strip()
+            # tira "Description:" ou "Description" do início se houver
+            desc = re.sub(r'^Description:?\s*', '', desc).strip()
+            if len(desc) > 20:
+                return desc
+    # fallback: pega o texto após o título e local
+    resto = t
+    for parte in [categoria, titulo, local]:
+        if parte:
+            idx = resto.find(parte)
+            if idx >= 0:
+                resto = resto[idx + len(parte):]
+    resto = resto.strip()
+    return resto if len(resto) > 20 else ""
+
+
 def coletar_oneforma(max_paginas=8, abrir_incertos=True, pausa=1.0):
     """Retorna vagas do OneForma JÁ FILTRADAS para o Brasil.
 
@@ -184,8 +218,10 @@ def coletar_oneforma(max_paginas=8, abrir_incertos=True, pausa=1.0):
             cat, titulo, local = _parse_vaga(v["texto_bruto"])
             if not titulo:
                 continue
+            # extrai a descrição: o texto após remover categoria+título+local
+            desc = _extrair_descricao(v["texto_bruto"], cat, titulo, local)
             cruas.append({"categoria_of": cat, "titulo": titulo,
-                          "local": local, "url": v["url"]})
+                          "local": local, "url": v["url"], "desc": desc})
         time.sleep(pausa)
 
     # dedup por url
