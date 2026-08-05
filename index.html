@@ -49,18 +49,19 @@
     border:1px solid var(--line-soft); border-radius:14px; overflow:hidden; position:relative;
     background:var(--line-soft);
   }
-  .fila-wrap::after {
-    content:''; position:absolute; right:0; top:0; bottom:0; width:46px; pointer-events:none;
-    background:linear-gradient(90deg,transparent,var(--bg)); opacity:0; transition:opacity .2s;
+  /* véus nas pontas, para o giro não terminar em corte seco */
+  .fila-wrap::before, .fila-wrap::after {
+    content:''; position:absolute; top:0; bottom:0; width:52px; pointer-events:none; z-index:2;
   }
-  .fila-wrap.tem-mais::after { opacity:.9; }
+  .fila-wrap::before { left:0;  background:linear-gradient(90deg,var(--bg),transparent); }
+  .fila-wrap::after  { right:0; background:linear-gradient(270deg,var(--bg),transparent); }
   .logo-fila {
-    display:flex; gap:1px; overflow-x:auto; scroll-behavior:smooth;
-    scroll-snap-type:x mandatory; scrollbar-width:none; -ms-overflow-style:none;
+    display:flex; gap:1px; overflow-x:auto;
+    scrollbar-width:none; -ms-overflow-style:none;
   }
   .logo-fila::-webkit-scrollbar { display:none; }
   .logo-item {
-    flex:0 0 calc((100% - 7px) / 8); scroll-snap-align:start;
+    flex:0 0 calc((100% - 7px) / 8);
     background:var(--bg-soft); padding:22px 12px; display:flex; flex-direction:column;
     align-items:center; gap:10px; transition:background .16s; text-align:center;
   }
@@ -520,13 +521,21 @@ montarLayout("inicio");
 
   // Faixa: todas as empresas, as com mais vagas primeiro. Sem contagem, só o nome.
   const fila = document.getElementById("logoFila");
-  if (fila) {
+  if (fila && todas.length) {
     const ordenadas = [...todas].sort((a,b) => conta(b.id) - conta(a.id));
-    fila.innerHTML = ordenadas.map(e => `<a class="logo-item" href="empresas.html#${e.id}">
+    const cartao = (e, clone) => `<a class="logo-item" href="empresas.html#${e.id}"${clone ? ' aria-hidden="true" tabindex="-1"' : ""}>
         <span class="lg" style="background:${e.bg};">${logoHtml(e,36)}</span>
         <span class="nm">${esc(e.nome)}</span>
-      </a>`).join("");
-    ligarCarrossel();
+      </a>`;
+
+    // Repete a lista o suficiente para o giro nunca mostrar espaço vazio.
+    // Com 8 visíveis, duas voltas bastam a partir de 8 empresas.
+    const voltas = Math.max(2, Math.ceil(8 / ordenadas.length) + 1);
+    let html = "";
+    for (let i = 0; i < voltas; i++) html += ordenadas.map(e => cartao(e, i > 0)).join("");
+    fila.innerHTML = html;
+
+    ligarCarrossel(voltas);
   }
 
   // Cartões: só as marcadas como destaque no empresas.json
@@ -544,26 +553,63 @@ montarLayout("inicio");
   }
 })();
 
-// setas da faixa de empresas: rolam de página em página
-function ligarCarrossel(){
+/* Carrossel infinito da faixa de empresas.
+   A lista é repetida algumas vezes no HTML. Quando o giro passa do
+   comprimento de uma volta, a posição volta ao começo sem que se perceba,
+   porque o que está na tela é idêntico. As setas empurram o alvo, e a
+   posição corre atrás dele suavemente. */
+function ligarCarrossel(voltas){
   const fila = document.getElementById("logoFila");
-  const wrap = document.getElementById("filaWrap");
   const ant  = document.getElementById("setaAnt");
   const prox = document.getElementById("setaProx");
-  if (!fila || !ant || !prox) return;
+  if (!fila) return;
 
-  function atualizar(){
-    const fim = fila.scrollWidth - fila.clientWidth - 4;
-    ant.disabled  = fila.scrollLeft <= 4;
-    prox.disabled = fila.scrollLeft >= fim;
-    if (wrap) wrap.classList.toggle("tem-mais", fila.scrollLeft < fim);
-  }
+  const VELOCIDADE = 0.32;   // pixels por quadro, uns 19px por segundo
+  const SUAVIDADE  = 0.11;   // o quanto a posição se aproxima do alvo a cada quadro
+  const parado = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let posicao = 0, alvo = 0, umaVolta = 0, sobreAFaixa = false, arrastando = false;
+
+  const medir = () => { umaVolta = fila.scrollWidth / voltas; };
+  medir();
+  window.addEventListener("resize", () => {
+    medir();
+    posicao = alvo = fila.scrollLeft;
+  });
+
+  // as setas continuam funcionando, empurrando quase uma tela por clique
   const passo = () => fila.clientWidth * 0.9;
-  ant.onclick  = () => fila.scrollBy({ left: -passo(), behavior: "smooth" });
-  prox.onclick = () => fila.scrollBy({ left:  passo(), behavior: "smooth" });
-  fila.addEventListener("scroll", atualizar, { passive: true });
-  window.addEventListener("resize", atualizar);
-  atualizar();
+  if (ant)  { ant.disabled = false;  ant.onclick  = () => { alvo -= passo(); }; }
+  if (prox) { prox.disabled = false; prox.onclick = () => { alvo += passo(); }; }
+
+  // para de girar enquanto o visitante olha ou usa a faixa
+  fila.addEventListener("pointerenter", () => sobreAFaixa = true);
+  fila.addEventListener("pointerleave", () => sobreAFaixa = false);
+  fila.addEventListener("focusin",  () => sobreAFaixa = true);
+  fila.addEventListener("focusout", () => sobreAFaixa = false);
+
+  // no celular, solta o controle para o dedo e retoma de onde parou
+  fila.addEventListener("pointerdown", () => arrastando = true);
+  const soltar = () => {
+    if (!arrastando) return;
+    arrastando = false;
+    posicao = alvo = fila.scrollLeft;
+  };
+  window.addEventListener("pointerup", soltar);
+  window.addEventListener("pointercancel", soltar);
+
+  function quadro(){
+    if (umaVolta > 0 && !arrastando) {
+      if (!sobreAFaixa && !parado) alvo += VELOCIDADE;
+      posicao += (alvo - posicao) * SUAVIDADE;
+      // a emenda: some de um lado e volta do outro
+      if (posicao >= umaVolta) { posicao -= umaVolta; alvo -= umaVolta; }
+      if (posicao < 0)         { posicao += umaVolta; alvo += umaVolta; }
+      fila.scrollLeft = posicao;
+    }
+    requestAnimationFrame(quadro);
+  }
+  requestAnimationFrame(quadro);
 }
 </script>
 </body>

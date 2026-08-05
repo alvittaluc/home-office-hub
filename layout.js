@@ -31,7 +31,7 @@ function montarLayout(ativa) {
   header.innerHTML = `
     <div class="hd">
       <a href="index.html" class="brand" aria-label="Home Office Hub, página inicial">
-        <span class="brand-mark">${marca(40)}</span>
+        <span class="brand-mark">${marca(32)}</span>
         <span class="brand-name">Home Office Hub</span>
       </a>
       <button class="hd-toggle" id="hdToggle" aria-label="Abrir menu" aria-expanded="false">
@@ -57,7 +57,7 @@ function montarLayout(ativa) {
   footer.innerHTML = `
     <div class="ft">
       <div>
-        <div class="ft-brand"><span class="brand-mark" style="width:36px;height:36px;">${marca(36)}</span>Home Office Hub</div>
+        <div class="ft-brand"><span class="brand-mark" style="width:30px;height:30px;">${marca(30)}</span>Home Office Hub</div>
         <p class="ft-desc">Trabalho remoto com inteligência artificial, dados e tradução, para quem mora no Brasil.</p>
       </div>
       <div>
