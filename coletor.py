@@ -226,6 +226,43 @@ def local_eh_brasil(texto: str) -> bool:
     return False
 
 
+# Termos que indicam localização aberta ao mundo todo.
+# Usado tanto no filtro quanto na hora de escrever o local na tela.
+TERMOS_WORLDWIDE = [
+    "worldwide", "anywhere", "global", "any location",
+    "remote - global", "remote, worldwide", "mundial",
+]
+
+# Palavras que aparecem na localização mas NÃO nomeiam lugar nenhum.
+# Servem para descobrir se, tirando esse ruído, sobrou o nome de um país.
+_RUIDO_LOCAL = [
+    "remote", "remoto", "home office", "home-based", "homebased",
+    "hybrid", "híbrido", "onsite", "on-site", "presencial",
+    "full time", "full-time", "part time", "part-time",
+    "freelance", "contract", "flexible",
+]
+
+
+def local_nomeia_lugar(texto: str) -> str:
+    """Tira o ruído ('Remote', traços, vírgulas, 'Worldwide') e devolve o que
+    sobrou. Se sobrar alguma coisa, a localização nomeia um lugar de verdade.
+
+    'Remote'            → ''          (genérico)
+    'Remote, Worldwide' → ''          (aberto ao mundo)
+    'California'        → 'california' (nomeia lugar)
+    'Remote - Europe'   → 'europe'     (nomeia lugar)
+    """
+    if not texto:
+        return ""
+    t = texto.lower()
+    for termo in TERMOS_WORLDWIDE:
+        t = t.replace(termo, " ")
+    for palavra in _RUIDO_LOCAL:
+        t = t.replace(palavra, " ")
+    t = re.sub(r"[^a-zà-ÿ]+", " ", t)
+    return t.strip()
+
+
 # Termos que, se aparecerem SOZINHOS na localização, indicam que
 # NÃO é pra cá (evita pegar "Portugal", "Portuguese (Portugal)" etc.)
 TERMOS_EXCLUIR = [
@@ -278,8 +315,13 @@ def limpar_local(texto: str) -> str:
     # Traduz termos genéricos de "qualquer lugar"
     if low in ("anywhere", "worldwide", "global", "remote", "remoto"):
         return "Remoto · Brasil"
-    # Se menciona Brasil, formata bonito
+    # Já começa com "Remoto" → não prefixa de novo, senão sai
+    # "Remoto · Remoto - Europe". Só troca o traço pelo separador do site.
+    if low.startswith("remoto"):
+        return texto.replace(" - ", " · ").replace(" – ", " · ")
+    # Se menciona Brasil, formata bonito (e em português, o site é pt-BR)
     if "brazil" in low or "brasil" in low:
+        texto = re.sub(r"\bBrazil\b", "Brasil", texto, flags=re.IGNORECASE)
         return texto if "remoto" in low else f"Remoto · {texto}"
     # Se é só vazio, assume Brasil (já passou no filtro)
     if low == "":
@@ -354,9 +396,9 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
         # localização (reconhece cidades/estados brasileiros, não só "Brazil")
         local_principal_brasil = local_eh_brasil(local)
         loc_tem_brasil = local_eh_brasil(todos_locais)
-        loc_worldwide = any(w in todos_locais for w in [
-            "worldwide", "anywhere", "global", "any location", "remote - global",
-        ])
+        loc_worldwide = any(w in todos_locais for w in TERMOS_WORLDWIDE)
+        # vaga presencial nunca serve para o hub, que é só de trabalho remoto
+        eh_presencial = (v.get("workplaceType") or "").lower() in ("onsite", "on-site")
 
         # título menciona Brasil explicitamente
         titulo_diz_brasil = any(t in titulo_l for t in [
@@ -388,20 +430,34 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
         elif loc_worldwide and titulo_portugues and not so_portugal:
             entra = True
 
-        # Exclusão final: se a localização PRINCIPAL é claramente de outro país
-        # (não-Brasil e não-worldwide), rejeita mesmo que algo acima tenha dado
-        # True — evita "Localization QA em Barcelona" com Brazil escondido na lista.
-        local_principal_estrangeiro = (
-            local and not local_principal_brasil and not loc_worldwide
-            and not any(w in local_l for w in ["remote", "remoto"])
-        )
-        # mas se o título é explícito de Brasil, mantemos (ex: "PT-BR Rater" em
-        # vaga cujo local principal é a sede da empresa no exterior)
-        if local_principal_estrangeiro and not titulo_diz_brasil:
+        # ─── Exclusão final: o local nomeia um lugar que não é o Brasil ───
+        # Antes o título explícito de Brasil salvava a vaga. Não dá mais: o
+        # "Project Perseus | Data Labeling - Portuguese (Brazil) Speakers" da
+        # Welocalize dizia isso no título e era 100% PRESENCIAL na Califórnia,
+        # exigindo autorização de trabalho nos EUA.
+        #
+        # Regra atual: se, tirando o ruído ("Remote", traços), sobra o nome de
+        # um lugar e esse lugar não é o Brasil, a vaga só entra se a lista
+        # completa de locais abrir para o mundo. Só "Brazil" perdido no meio de
+        # uma lista grande de países não vale (era o caso Barcelona/Malta).
+        lugar_citado = local_nomeia_lugar(local)
+        local_estrangeiro = bool(lugar_citado) and not local_principal_brasil
+
+        if local_estrangeiro and not loc_worldwide:
             entra = False
 
-        if not entra or so_portugal:
+        if not entra or so_portugal or eh_presencial:
             continue
+
+        # ─── Texto do local na tela ───
+        # Vaga aberta ao mundo virava "Remoto · Remote - Europe", que fica feio
+        # e ainda por cima engana, porque ela aceita o Brasil.
+        if local_principal_brasil:
+            local_exib = limpar_local(local)
+        elif loc_worldwide:
+            local_exib = "Remoto · Mundial"
+        else:
+            local_exib = limpar_local(local)
 
         cat_id, badge = categorizar(titulo)
         # captura descrição e requisitos para o resumo
@@ -415,7 +471,7 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
         vagas.append({
             "empresa": nome_interno,
             "titulo": titulo,
-            "local": limpar_local(local),
+            "local": local_exib,
             "categoria": cat_id,
             "badge": badge,
             "url": v.get("hostedUrl") or v.get("applyUrl") or "",
