@@ -85,14 +85,6 @@
 
   .ficha-acoes { display:flex; gap:9px; flex-wrap:wrap; align-items:center; }
   .areas-linha { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:18px; }
-
-  /* outras plataformas */
-  .outras { max-width:var(--wrap); margin:0 auto; padding:20px 20px 20px; }
-  .outras-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:12px; margin-top:22px; }
-  .outra { display:flex; gap:13px; align-items:flex-start; }
-  .outra .logo-box { width:38px; height:38px; background:var(--panel-2); }
-  .outra h3 { font-family:var(--display); font-weight:600; font-size:15px; margin-bottom:5px; }
-  .outra p { font-size:13px; color:var(--ink-2); line-height:1.5; }
 </style>
 </head>
 <body>
@@ -112,14 +104,6 @@
   <div id="fichas"></div>
 </div>
 
-<section class="outras">
-  <hr class="rule" style="margin-bottom:34px;">
-  <div class="eyebrow">Também no mercado</div>
-  <h2 class="sec">Plataformas que ainda não estão no hub</h2>
-  <p class="lead" style="margin-top:12px;">Estas empresas atuam no mesmo setor e vale conhecer. Ainda não coletamos vagas delas de forma automática, seja porque não publicam lista aberta, seja porque a seleção é feita direto na plataforma.</p>
-  <div class="outras-grid" id="outrasGrid"></div>
-</section>
-
 <script src="layout.js"></script>
 <script>
 montarLayout("empresas");
@@ -131,7 +115,7 @@ const ROTULO_COLETA = {
 };
 
 (async function(){
-  let base = { empresas: [], outras_plataformas: [] }, dados = { vagas: [] };
+  let base = { empresas: [] }, dados = { vagas: [] };
   try { base = await lerEmpresas(); } catch(e) { console.error("empresas.json", e); }
   try { dados = await lerVagas(); selo(dados); } catch(e) { console.error("vagas.json", e); }
 
@@ -199,13 +183,6 @@ const ROTULO_COLETA = {
       </div>
     </article>`;
   }).join("");
-
-  // outras plataformas
-  document.getElementById("outrasGrid").innerHTML = (base.outras_plataformas || []).map(o =>
-    `<a class="card outra" href="${esc(o.site)}" target="_blank" rel="noopener">
-      <span class="logo-box">${logoHtml({dom:o.dom,nome:o.nome,sigla:(o.nome||"?").slice(0,2).toUpperCase(),cor:"#9BA3B4"},38)}</span>
-      <div><h3>${esc(o.nome)} ↗</h3><p>${esc(o.desc)}</p></div>
-    </a>`).join("");
 
   // trilho acompanha a rolagem
   const links = [...document.querySelectorAll("#trilhoLista a")];

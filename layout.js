@@ -11,28 +11,18 @@ const ABAS = [
   { id: "guia",     nome: "Como funciona", href: "como-funciona.html" },
 ];
 
-function marcaSvg(id, tam) {
-  return `<svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:${tam}px;height:${tam}px;">
-    <rect x="1" y="1" width="32" height="32" rx="9" stroke="url(#${id})" stroke-width="1.5"/>
-    <circle cx="10" cy="17" r="2.4" fill="#3DD4C8"/>
-    <circle cx="17" cy="10.5" r="2.4" fill="#5B9DF9"/>
-    <circle cx="17" cy="23.5" r="2.4" fill="#8B7DF7"/>
-    <circle cx="24" cy="17" r="2.4" fill="#FFB454"/>
-    <path d="M12.2 15.8L15 11.7M12.2 18.2L15 22.3M19 10.9L21.9 15.2M19 23.1L21.9 18.8" stroke="#3DD4C8" stroke-width="1.2" stroke-opacity="0.5"/>
-    <defs><linearGradient id="${id}" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#3DD4C8"/><stop offset="1" stop-color="#8B7DF7"/></linearGradient></defs>
-  </svg>`;
+/* A marca é o arquivo logo.png, que precisa estar na mesma pasta dos HTML.
+   Para trocar a logo no futuro, basta substituir esse arquivo. */
+function marca(tam) {
+  return `<img src="logo.png" alt="Home Office Hub" width="${tam}" height="${tam}"
+    style="width:${tam}px;height:${tam}px;display:block;object-fit:contain;">`;
 }
 
 function montarLayout(ativa) {
   // ── ícone da aba do navegador ──
   const ico = document.createElement("link");
   ico.rel = "icon";
-  ico.href = "data:image/svg+xml," + encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34">
-      <rect width="34" height="34" rx="9" fill="#0A0C10"/>
-      <circle cx="10" cy="17" r="2.6" fill="#3DD4C8"/><circle cx="17" cy="10.5" r="2.6" fill="#5B9DF9"/>
-      <circle cx="17" cy="23.5" r="2.6" fill="#8B7DF7"/><circle cx="24" cy="17" r="2.6" fill="#FFB454"/>
-    </svg>`);
+  ico.href = "logo.png";
   document.head.appendChild(ico);
 
   // ── cabeçalho ──
@@ -41,7 +31,7 @@ function montarLayout(ativa) {
   header.innerHTML = `
     <div class="hd">
       <a href="index.html" class="brand" aria-label="Home Office Hub, página inicial">
-        <span class="brand-mark">${marcaSvg("mk1", 32)}</span>
+        <span class="brand-mark">${marca(38)}</span>
         <span class="brand-name">Home Office Hub<small>Vagas de IA · Brasil</small></span>
       </a>
       <button class="hd-toggle" id="hdToggle" aria-label="Abrir menu" aria-expanded="false">
@@ -71,7 +61,7 @@ function montarLayout(ativa) {
   footer.innerHTML = `
     <div class="ft">
       <div>
-        <div class="ft-brand"><span class="brand-mark" style="width:26px;height:26px;">${marcaSvg("mk2", 26)}</span>Home Office Hub</div>
+        <div class="ft-brand"><span class="brand-mark" style="width:34px;height:34px;">${marca(34)}</span>Home Office Hub</div>
         <p class="ft-desc">Vagas remotas internacionais de inteligência artificial, dados e tradução que aceitam quem mora no Brasil. Curadoria diária e automática.</p>
       </div>
       <div>

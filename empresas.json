@@ -59,7 +59,7 @@
       "curto": "Braço de dados de IA de uma das maiores empresas de conteúdo do mundo. É onde aparecem mais vagas de especialista por área de formação.",
       "o_que_voce_faz": "Coleta de dados de texto, áudio, imagem e vídeo, anotação e rotulagem, validação humana de saídas de modelo, engenharia de prompt, RLHF e red teaming. Projetos com especialista de área pagam mais.",
       "bom_para": "Quem tem diploma ou experiência profissional em uma área específica, como direito, saúde, engenharia, finanças ou programação.",
-      "como_entrar": "Também publica na plataforma Lever. Um detalhe importante: a RWS anuncia por cidade, então a mesma vaga aparece como São Paulo, Recife, Curitiba e assim por diante. No nosso hub elas já vêm agrupadas em uma só.",
+      "como_entrar": "Também publica na plataforma Lever. Um detalhe importante: a RWS anuncia por cidade, então a mesma vaga aparece como São Paulo, Recife, Curitiba e assim por diante. Aqui elas já aparecem agrupadas em uma só, para você não se candidatar duas vezes à mesma coisa.",
       "pagamento": "Por projeto ou por hora, conforme o contrato. Definido no momento da contratação.",
       "clientes": "Oracle, SAP, HP, Accenture, Snowflake, Porsche",
       "atencao": "Se você tem formação em alguma área técnica, diga isso no currículo. É o que separa as vagas comuns das de especialista, que pagam bem mais."
@@ -92,7 +92,7 @@
       "como_entrar": "Cadastro gratuito. Algumas tarefas ficam liberadas de imediato. Exames de qualificação dentro da plataforma destravam projetos especializados, que pagam mais.",
       "pagamento": "Duas vezes por mês. O período de 1 a 15 é pago por volta do dia 20, e o de 16 ao fim do mês por volta do dia 5. Saída via Payoneer ou PayPal.",
       "clientes": "Laboratórios de IA e empresas de tecnologia",
-      "atencao": "As tarefas da Toloka e da Toloka Annotators migraram para a plataforma Mindrift. Quem já tinha conta foi transferido junto com saldo e histórico, sem precisar se cadastrar de novo. As vagas formais continuam saindo pelo Workable, que é o que o nosso robô lê."
+      "atencao": ""
     },
     {
       "id": "oneforma",
@@ -154,7 +154,7 @@
       "como_entrar": "Você navega pelos projetos abertos e se candidata aos que combinam com seu perfil. Quase todo projeto tem uma etapa de qualificação antes de liberar o trabalho pago.",
       "pagamento": "Pagamento até o dia 14 de cada mês, referente ao mês anterior. As formas variam por país e incluem transferência bancária local, PayPal, Payoneer e Airtm. Na maior parte das vezes, em dólar.",
       "clientes": "Grandes empresas de tecnologia e laboratórios de IA",
-      "atencao": "Confirme endereço, verifique o celular por código e configure a forma de pagamento antes de terminar o primeiro projeto, senão o repasse fica travado."
+      "atencao": "A CrowdGen costuma anunciar os projetos direto na plataforma dela, e nem tudo aparece em site de vaga. Vale criar conta e deixar o perfil completo, porque é o cadastro que libera a lista de projetos compatíveis com você e dá acesso mais rápido aos que abrem."
     },
     {
       "id": "telus",
@@ -185,7 +185,7 @@
       "como_entrar": "Cadastro no portal de contribuidores, seguido de teste de qualificação. O processo é conhecido por ser mais longo que o das outras, com material de estudo e prova em etapas.",
       "pagamento": "Por hora ou por tarefa, conforme o projeto, com repasse mensal.",
       "clientes": "Grandes buscadores e plataformas de conteúdo",
-      "atencao": "O site da TELUS foi refeito em 2026 e voltou a permitir leitura automática. As vagas agora chegam ao hub direto da fonte, e não mais só pelos alertas do LinkedIn."
+      "atencao": ""
     },
     {
       "id": "outlier",
@@ -208,14 +208,14 @@
         "RLHF",
         "Especialistas de área"
       ],
-      "resumo": "Plataforma operada pela Scale AI, voltada a quem tem formação superior. Paga acima da média do setor, mas é também a mais exigente na entrada. Avaliação de 4,1 de 5 no Trustpilot, com mais de 3 mil avaliações de participantes.",
-      "curto": "Plataforma da Scale AI, voltada a quem tem formação superior. Paga acima da média do setor, mas é também a mais exigente na entrada.",
+      "resumo": "Plataforma operada pela Scale AI, com projetos de escrita, avaliação e correção de respostas de IA. Paga acima da média do setor. A parte de especialista pede formação superior, mas há frentes que não exigem diploma. Avaliação de 4,1 de 5 no Trustpilot, com mais de 3 mil avaliações de participantes.",
+      "curto": "Plataforma da Scale AI, com pagamento semanal. Tem projeto de especialista e também frentes abertas a quem não tem graduação.",
       "o_que_voce_faz": "Escrever perguntas difíceis que confundem o modelo e dar a resposta correta, criar critérios de correção e ranquear respostas geradas por IA.",
-      "bom_para": "Quem tem graduação ou pós e conhecimento técnico forte em alguma área. Não é o melhor primeiro passo para quem está começando.",
+      "bom_para": "Quem escreve bem e gosta de raciocinar sobre problemas difíceis. Tem projeto para quem vem de área técnica e também frentes abertas a quem não tem graduação.",
       "como_entrar": "Criar perfil, importar habilidades, verificar identidade e passar por validação de conhecimento. O processo leva de 30 a 90 minutos. Exigem documento válido e celular do próprio país, currículo e perfil no LinkedIn.",
       "pagamento": "Semanal, com bônus por qualidade. Sem exigência de horas mínimas.",
       "clientes": "Laboratórios de IA de ponta",
-      "atencao": "Pedem no mínimo nível de graduação, e dão preferência a quem tem pós. Se você ainda não tem diploma, comece por Toloka, OneForma ou CrowdGen e volte aqui depois."
+      "atencao": "Nem todo projeto exige diploma. Os de especialista pedem formação superior, mas existem frentes de escrita, revisão e avaliação abertas a quem não tem graduação. Vale criar o perfil e conferir o que aparece para você antes de descartar."
     },
     {
       "id": "meridial",
@@ -297,51 +297,43 @@
         "Tradução",
         "Avaliação de busca"
       ],
-      "resumo": "Alignerr é a rede de especialistas da Labelbox, uma das empresas mais conhecidas de rotulagem de dados. A plataforma anuncia média de 80 dólares por hora, com faixas que variam bastante conforme o projeto. Publica a mesma vaga separada por país, então o nosso robô fica só com a versão do Brasil e com o anúncio mais recente de cada uma.",
+      "resumo": "Alignerr é a rede de especialistas da Labelbox, uma das empresas mais conhecidas de rotulagem de dados. A plataforma anuncia média de 80 dólares por hora, com faixas que variam bastante conforme o projeto. Publica a mesma vaga separada por país, então aqui você vê só a versão aberta ao Brasil, no anúncio mais recente.",
       "curto": "Rede de especialistas da Labelbox. Faixas de pagamento altas e vagas separadas por país.",
       "o_que_voce_faz": "Avaliar e comparar respostas de modelos, escrever tarefas de treino e revisar conteúdo em português brasileiro.",
       "bom_para": "Quem quer faixas de pagamento mais altas e tem disponibilidade flexível.",
       "como_entrar": "Cadastro no site e candidatura direta na vaga, com etapa de avaliação.",
       "pagamento": "Por hora, em faixas informadas na vaga.",
       "clientes": "Clientes da Labelbox e laboratórios de IA"
-    }
-  ],
-  "outras_plataformas": [
+    },
     {
+      "id": "mercor",
       "nome": "Mercor",
+      "sigla": "MC",
+      "cor": "#34D399",
+      "bg": "#12281f",
       "dom": "mercor.com",
-      "desc": "Conecta especialistas a tarefas de feedback e RLHF. Seleção por entrevista.",
-      "site": "https://www.mercor.com/"
-    },
-    {
-      "nome": "Handshake AI",
-      "dom": "joinhandshake.com",
-      "desc": "Liga especialistas de área a fluxos de avaliação que exigem formação específica.",
-      "site": "https://joinhandshake.ai/"
-    },
-    {
-      "nome": "Surge AI",
-      "dom": "surgehq.ai",
-      "desc": "Rotulagem de dados, moderação de conteúdo e avaliação de modelos.",
-      "site": "https://www.surgehq.ai/"
-    },
-    {
-      "nome": "Invisible Technologies",
-      "dom": "invisible.co",
-      "desc": "Serviços gerenciados de treinamento de IA, com processo mais estruturado e menos escolha de tarefa.",
-      "site": "https://www.invisible.co/"
-    },
-    {
-      "nome": "Centific",
-      "dom": "centific.com",
-      "desc": "Empresa dona da OneForma. Também contrata direto para projetos corporativos.",
-      "site": "https://www.centific.com/"
-    },
-    {
-      "nome": "Appen",
-      "dom": "appen.com",
-      "desc": "Empresa mãe da CrowdGen, com vagas corporativas além dos projetos avulsos.",
-      "site": "https://www.appen.com/"
+      "desc": "IA · RLHF · Especialistas",
+      "link": "https://work.mercor.com/",
+      "site": "https://www.mercor.com/",
+      "tipo": "Marketplace de especialistas para treino de IA",
+      "fundada": "Empresa nova, cresceu junto com o mercado de dados de IA",
+      "sede": "São Francisco, Estados Unidos",
+      "porte": "Rede global de especialistas trabalhando para laboratórios de IA",
+      "coleta": "monitorando",
+      "destaque": false,
+      "areas": [
+        "IA & Dados",
+        "RLHF",
+        "Especialista"
+      ],
+      "resumo": "Plataforma que liga especialistas a projetos de treino e avaliação de modelos de IA, incluindo RLHF e comparação de respostas. A seleção é feita por entrevista dentro da própria plataforma, e não por candidatura a vaga publicada, o que muda bastante o formato em relação às outras da lista.",
+      "curto": "Liga especialistas a projetos de treino e avaliação de IA. A seleção é por entrevista na própria plataforma, não por vaga publicada.",
+      "o_que_voce_faz": "Avaliar e comparar respostas de modelos, escrever e revisar material de treino e participar de projetos que pedem conhecimento de uma área específica.",
+      "bom_para": "Quem tem experiência profissional demonstrável em alguma área e se sai bem em entrevista, inclusive em inglês.",
+      "como_entrar": "Cadastro no site com currículo e perfil profissional, seguido de entrevista dentro da plataforma. A partir daí ela oferece os projetos que combinam com o seu perfil.",
+      "pagamento": "Por hora de projeto, com valor definido conforme a área e a senioridade.",
+      "clientes": "Laboratórios de IA",
+      "atencao": "Ainda não temos coleta automática das vagas dela, porque a seleção não passa por lista pública. Entramos pelo site oficial. Também não é toda temporada que há projeto em português brasileiro."
     }
   ]
 }
