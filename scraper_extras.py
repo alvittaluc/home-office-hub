@@ -415,10 +415,20 @@ def coletar_micro1(pausa=1.0, buscar_descricao=True):
         time.sleep(0.4)
 
     if not houve_resposta:
-        # mostra o motivo de verdade, senão não dá para consertar pelo log
-        print("FALHOU")
-        for msg in erros:
-            print(f"      · {msg}")
+        bloqueio = any("HTTP 403" in m for m in erros)
+        if bloqueio:
+            # 403 do nginx em TODAS as buscas = bloqueio por endereço de IP.
+            # A micro1 checa a localização de quem acessa (a página dela chama
+            # ipinfo.io e ipify) e recusa servidor de nuvem. Do PC de casa
+            # funciona normalmente. É o mesmo caso que a TELUS já foi.
+            print("BLOQUEADA (403)")
+            print("      · A micro1 recusa acesso de servidor de nuvem.")
+            print("      · Rode o coletor no seu PC para atualizar esta fonte.")
+            print("      · As vagas da rodada anterior serão preservadas.")
+        else:
+            print("FALHOU")
+            for msg in erros:
+                print(f"      · {msg}")
         return []
 
     vagas = []

@@ -24,6 +24,7 @@ import urllib.request
 import urllib.error
 import urllib.parse
 import json
+import os
 import re
 import time
 import ssl
@@ -97,8 +98,19 @@ USAR_REXZONE = False
 USAR_MERIDIAL = True
 # micro1: API por busca de palavra. A descrição só existe na página da vaga,
 # então o robô abre uma página por vaga. São poucas, o custo é baixo.
+#
+# ATENÇÃO: a micro1 BLOQUEIA servidor de nuvem. No GitHub ela responde 403 em
+# tudo. Do seu PC funciona normalmente. Por isso o padrão abaixo é pular a
+# micro1 quando o robô está rodando no GitHub, e rodar quando está no seu PC.
+# As vagas dela são preservadas entre as rodadas, então nada some do site.
+# Se um dia a micro1 parar de bloquear, mude MICRO1_SO_NO_PC para False.
 USAR_MICRO1 = True
+MICRO1_SO_NO_PC = True
 MICRO1_BUSCAR_DESCRICAO = True
+
+# Detecta se estamos rodando dentro do GitHub Actions (o GitHub define essa
+# variável sozinho). No seu PC ela não existe.
+RODANDO_NO_GITHUB = os.environ.get("GITHUB_ACTIONS") == "true"
 # Alignerr (Labelbox): repete muito o mesmo anúncio, um por país. O robô abre
 # cada vaga para descobrir o país verdadeiro e fica com a mais recente.
 USAR_ALIGNERR = True
@@ -924,11 +936,21 @@ def main():
     for ligada, funcao, nome in (
         (USAR_TELUS, buscar_telus_api, "telus"),
         (USAR_MERIDIAL, buscar_meridial, "meridial"),
-        (USAR_MICRO1, buscar_micro1, "micro1"),
+        (USAR_MICRO1 and not (MICRO1_SO_NO_PC and RODANDO_NO_GITHUB),
+         buscar_micro1, "micro1"),
         (USAR_ALIGNERR, buscar_alignerr, "alignerr"),
     ):
         if not ligada:
-            print(f"  → {nome}: desligada nas configurações")
+            if nome == "micro1" and RODANDO_NO_GITHUB:
+                print("  → micro1: pulada no GitHub (ela bloqueia servidor "
+                      "de nuvem). Rode no seu PC para atualizar.")
+            else:
+                print(f"  → {nome}: desligada nas configurações")
+            preservadas = _preservar_do_arquivo(nome)
+            if preservadas:
+                print(f"      · mantendo {len(preservadas)} vaga(s) "
+                      f"da última rodada")
+                todas += preservadas
             continue
         novas = funcao()
         if novas:
