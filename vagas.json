@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-05T11:37:50.480039+00:00",
-  "atualizado_br": "05/08/2026 às 11:37",
-  "total": 37,
+  "atualizado_em": "2026-08-05T12:14:20.205864+00:00",
+  "atualizado_br": "05/08/2026 às 12:14",
+  "total": 50,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -183,14 +183,7 @@
       "data_post": "2026-06-03",
       "data_vista": "2026-08-05",
       "data_ref": "2026-06-03",
-      "id": "7845a05fd7",
-      "resumo": {
-        "o_que_faz": "Ajude a moldar o futuro da IA ​​Você é apaixonado por linguagem, tecnologia e qualidade de dados? Junte-se à nossa comunidade global de especialistas em IA e contribua para o desenvolvimento de sistemas de IA generativa de próxima geração usados ​​por milhões de pessoas em todo o mundo. Procuramos profissionais detalhistas com experiência em anotação, conteúdo…",
-        "requisitos": "Proficiência de nível nativo em Português (Brasil) Fortes habilidades de comunicação escrita em Inglês Excelente atenção aos detalhes e pensamento analítico Experiência em anotação, revisão de conteúdo, garantia de qualidade, rotulagem de dados, localização ou áreas relacionadas Capacidade de trabalhar de forma independente e seguir…",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados; fluência no idioma e experiência com tradução/localização; atenção a detalhes e experiência avaliando conteúdo.",
-        "contrato": "Freelance-Remote",
-        "remuneracao": ""
-      }
+      "id": "7845a05fd7"
     },
     {
       "empresa": "welocalize",
@@ -624,14 +617,7 @@
       "data_post": "2026-08-05",
       "data_vista": "2026-08-05",
       "data_ref": "2026-08-05",
-      "id": "957c1a3bbd",
-      "resumo": {
-        "o_que_faz": "Esta é uma oportunidade baseada em projetos em uma plataforma de treinamento de IA. Sem horário fixo, sem compromisso além do que se encaixa na sua rotina. Gravou, ganhou. Sobre a Função Estamos procurando pessoas para gravar vídeos em primeira pessoa de atividades domésticas do dia a dia. Você fixa o smartphone na cabeça, segue sua…",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: conhecimento de programação (Python e afins).",
-        "contrato": "",
-        "remuneracao": ""
-      }
+      "id": "957c1a3bbd"
     },
     {
       "empresa": "toloka",
@@ -697,6 +683,175 @@
       }
     },
     {
+      "empresa": "oneforma",
+      "titulo": "Multilingual Podcast Transcription And Speech Annotator",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.oneforma.com/projects/multilingual-podcast-transcription-and-speech-annotator/",
+      "commitment": "Flexible; weekly task releases",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "7b295ec70d"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Multilingual AI Response And Rubric Evaluator",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.oneforma.com/projects/multilingual-ai-response-and-rubric-evaluator/",
+      "commitment": "Flexible",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "acf12782f3"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Multilingual AI Response Evaluator And Prompt Writer",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.oneforma.com/projects/multilingual-ai-response-evaluator-and-prompt-writer/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "6f2ebe9288"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Bilingual Speech Translation Quality Evaluator",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/projects/bilingual-speech-translation-quality-evaluator/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "a184926e68"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "First-Person Video Recorder",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.oneforma.com/projects/first-person-video-recorder/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "f8167497cc"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Multilingual Machine Translation Post-Editor",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/projects/multilingual-machine-translation-post-editor/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "6abc0e2134"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Multilingual Audio Conversation Annotator",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.oneforma.com/projects/multilingual-audio-conversation-annotator/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "249881e9ce"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Regional Language Adaptation Specialist",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/projects/regional-language-adaptation-specialist/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "b829d5a8c6"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Multilingual Intent And Response Annotator",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.oneforma.com/projects/multilingual-intent-and-response-annotator/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "1f09f5a758"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Paragraph-Level Translation Quality Rater",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/projects/paragraph-level-translation-quality-rater/",
+      "commitment": "2 hours per day",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "5bfee496ec"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Bilingual Translation Quality Rater",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.oneforma.com/projects/bilingual-translation-quality-rater/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "e368eb27d4"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "App Store And Music Search Evaluator",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.oneforma.com/projects/app-store-and-music-search-evaluator/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "ac49a71bee"
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Local Maps Search Evaluator",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.oneforma.com/projects/local-maps-search-evaluator/",
+      "commitment": "10 hours per week",
+      "fonte": "direto",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
+      "id": "d1856cbd96"
+    },
+    {
       "empresa": "linkedin",
       "titulo": "AI Data Annotation Specialist in Brazil Rex.zone · Brasil (Remoto) US$ 30-US$ 50 por hora",
       "local": "Remoto · Brasil",
@@ -707,14 +862,7 @@
       "fonte": "linkedin",
       "data_vista": "2026-08-04",
       "data_ref": "2026-08-04",
-      "id": "6bceb2d4e0",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados.",
-        "contrato": "",
-        "remuneracao": ""
-      }
+      "id": "6bceb2d4e0"
     },
     {
       "empresa": "linkedin",
@@ -727,14 +875,7 @@
       "fonte": "linkedin",
       "data_vista": "2026-08-04",
       "data_ref": "2026-08-04",
-      "id": "89a77f8162",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque experiências relevantes à área da vaga e seu nível de inglês.",
-        "contrato": "",
-        "remuneracao": ""
-      }
+      "id": "89a77f8162"
     },
     {
       "empresa": "linkedin",
@@ -747,14 +888,7 @@
       "fonte": "linkedin",
       "data_vista": "2026-08-04",
       "data_ref": "2026-08-04",
-      "id": "add1922187",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: fluência no idioma e experiência com tradução/localização.",
-        "contrato": "",
-        "remuneracao": ""
-      }
+      "id": "add1922187"
     },
     {
       "empresa": "linkedin",
@@ -767,14 +901,7 @@
       "fonte": "linkedin",
       "data_vista": "2026-08-04",
       "data_ref": "2026-08-04",
-      "id": "6bceb2d4e0",
-      "resumo": {
-        "o_que_faz": "",
-        "requisitos": "",
-        "dica_cv": "Destaque no currículo: experiência com anotação/rotulagem de dados.",
-        "contrato": "",
-        "remuneracao": ""
-      }
+      "id": "6bceb2d4e0"
     }
   ]
 }
