@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-05T16:08:44.308223+00:00",
-  "atualizado_br": "05/08/2026 às 13:08",
-  "total": 75,
+  "atualizado_em": "2026-08-05T16:10:31.392286+00:00",
+  "atualizado_br": "05/08/2026 às 16:10",
+  "total": 74,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -916,20 +916,6 @@
         "requisitos": "Morar na região avaliada há pelo menos cinco anos e conhecer bem bairros, comércios e vias. Disponibilidade de aproximadamente dez horas semanais de forma constante. Atenção a detalhe e capacidade de seguir diretrizes extensas sem mudar o critério ao longo do tempo. Internet estável, leitura de inglês para os guias e cadastro aprovado na OneForma.",
         "dica_cv": "Diga com clareza a cidade e o bairro onde mora e há quantos anos, porque é o requisito central da vaga. Demonstre conhecimento local com uma frase concreta, do tipo conhecer bem o comércio e os pontos de referência da sua região. Confirme a disponibilidade de dez horas semanais e destaque qualquer experiência com Google Maps, Waze, cadastro de estabelecimentos, entregas ou pesquisa de campo."
       }
-    },
-    {
-      "empresa": "telus",
-      "titulo": "AI Response Rating and Evaluation - Portuguese (Brazil)",
-      "local": "Remoto · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129041",
-      "commitment": "freelancer",
-      "fonte": "direto",
-      "data_post": "2026-07-28",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-07-28",
-      "id": "7d9136c1e0"
     },
     {
       "empresa": "telus",

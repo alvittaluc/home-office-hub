@@ -1,5 +1,5 @@
 {
-  "total": 26,
+  "total": 19,
   "vagas": [
     {
       "id": "61b2cad839",
@@ -9,17 +9,6 @@
       "local": "Remoto · Brasil",
       "categoria_badge": "IA & Dados",
       "descricao": "<p><strong>Looking for a flexible way to earn extra income?</strong></p><p>We're inviting people to take part in an exciting AI training project by recording real, everyday activities from the comfort of your home. No studio, no special equipment — just you, your smartphone, and your daily routine.</p><p>Record whenever it's convenient for you, using your own device, while doing everyday tasks like cooking, cleaning, organizing spaces, doing laundry, or other household chores. Videos are recorded POV-style (point-of-view), simply from your own perspective.</p><p></p><p><strong>What we offer:</strong></p><ul><li>Remote, flexible work</li><li><strong>$6 USD</strong> per hour of approved content</li><li>Bonus for your first approved hour</li><li>No previous experience required</li></ul><p></p><p><strong>Requirements:</strong></p><ul><li>iPhone 12 or newer, Google Pixel 6+, or Samsung Galaxy S21+ or newer</li><li>Basic level of English</li><li>Internet access</li></ul><p>Your recordings will help train the next generation of AI and robotics systems.</p>",
-      "requisitos": "",
-      "remuneracao": ""
-    },
-    {
-      "id": "7d9136c1e0",
-      "empresa": "telus",
-      "titulo": "AI Response Rating and Evaluation - Portuguese (Brazil)",
-      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129041",
-      "local": "Remoto · Brasil",
-      "categoria_badge": "QA",
-      "descricao": "Participants to assess artificial intelligence outputs for quality, accuracy, and relevance according to detailed guidelines, providing critical feedback to improve machine learning models for search engines, chatbots, or recommendation systems. \n\n Responsibilities include reviewing datasets, rating AI-generated content (text, images, etc.) and ensuring compliance with standards. The work will be executed in the customer tool and the user will be provided with instructions to login and execute the task. \n\n Payment: \n • $6.25 USD/hour \n• Paid via Hyperwallet after approval",
       "requisitos": "",
       "remuneracao": ""
     },
@@ -187,72 +176,6 @@
       "descricao": "Are you a STEM expert fluent in Portuguese (Brazil), eager to shape the future of AI? Large‑scale language models are evolving from clever chatbots into powerful engines of scientific discovery and technical problem-solving. With high‑quality training data, tomorrow’s AI can democratize world‑class education, keep pace with cutting‑edge research, and streamline work for engineers, scientists, and analysts everywhere. That training data begins with you—we need your expertise to help power the next generation of AI.\n\n We’re looking for STEM specialists who live and breathe mathematics, physics, chemistry, engineering, data science, computer science, and scientific computing. You’ll challenge advanced language models on topics like thermodynamics, mechanics, calculus, statistics, materials science, electronics, algorithm design, and quantitative modeling—documenting every failure mode so we can harden model reasoning.\n\n On a typical day, you will converse with the model on real-world STEM problem-solving scenarios and theoretical technical questions, verify factual accuracy and logical soundness, capture reproducible error traces, and suggest improvements to our prompt engineering and evaluation metrics.\n\n A bachelor’s or master’s degree in a STEM discipline is ideal; published research, engineering design experience, data analysis projects, or coding portfolios signal fit. Clear, metacognitive communication—“showing your work”—is essential.\n\n Ready to turn your STEM expertise into the knowledge base for tomorrow’s AI? Apply today and start teaching the model that will teach the world.\n\n We offer a pay range of $8-to- $65 per hour, with the exact rate determined after evaluating your experience, expertise, and geographic location. Final offer amounts may vary from the pay range listed above. As a contractor you’ll supply a secure computer and high‑speed internet; company‑sponsored benefits such as health insurance and PTO do not apply.\n\n Job title: STEM Specialist (Fluent in Portuguese – Brazil) – AI Trainer\nEmployment type: Contract\nWorkplace type: Remote\nSeniority level: Mid‑Senior Level",
       "requisitos": "",
       "remuneracao": ""
-    },
-    {
-      "id": "86ed8a6806",
-      "empresa": "micro1",
-      "titulo": "Portuguese Audio Recording Expert (Brazil)",
-      "url": "https://jobs.micro1.ai/post/065d39e1-31ac-4a73-9bae-bf5bdaaf2b7c",
-      "local": "Remoto · Brasil",
-      "categoria_badge": "Especialista",
-      "descricao": "Habilidades pedidas: Audio recording.",
-      "requisitos": "Audio recording",
-      "remuneracao": "USD 20-40 / hora"
-    },
-    {
-      "id": "068eb483dd",
-      "empresa": "micro1",
-      "titulo": "Portuguese Language Expert (Brazil)",
-      "url": "https://jobs.micro1.ai/post/0e19dc4e-47f0-4245-b315-a41795cfd171",
-      "local": "Remoto · Brasil",
-      "categoria_badge": "Tradução",
-      "descricao": "Habilidades pedidas: Data Annotation, Bilingual Proficiency, Linguistics.",
-      "requisitos": "Data Annotation, Bilingual Proficiency, Linguistics",
-      "remuneracao": "USD 30-65 / hora"
-    },
-    {
-      "id": "94d2431bc6",
-      "empresa": "micro1",
-      "titulo": "Business Document Expert (Portuguese Speaker)",
-      "url": "https://jobs.micro1.ai/post/dee2f9e0-a108-412f-b87e-3c048ed2b0ad",
-      "local": "Remoto · Brasil",
-      "categoria_badge": "Especialista",
-      "descricao": "Habilidades pedidas: Business Analysis & Communication, Advanced Office Suite Proficiency, Attention to Detail.",
-      "requisitos": "Business Analysis & Communication, Advanced Office Suite Proficiency, Attention to Detail",
-      "remuneracao": "USD 20-70 / hora"
-    },
-    {
-      "id": "ffbd002f51",
-      "empresa": "micro1",
-      "titulo": "Marketing Documents Specialist (Portuguese)",
-      "url": "https://jobs.micro1.ai/post/90a071b7-bd9a-4806-b315-5bd67a1af25c",
-      "local": "Remoto · Brasil",
-      "categoria_badge": "IA & Dados",
-      "descricao": "Habilidades pedidas: Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Marketing, Marketing documentation, Portuguese language proficiency.",
-      "requisitos": "Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Marketing, Marketing documentation, Portuguese language proficiency",
-      "remuneracao": "USD 10-55 / hora"
-    },
-    {
-      "id": "f5c305fe0e",
-      "empresa": "micro1",
-      "titulo": "HR Documents Specialist (Portuguese)",
-      "url": "https://jobs.micro1.ai/post/b7f7a6c4-e3f7-460e-95ab-9c0567d396a3",
-      "local": "Remoto · Brasil",
-      "categoria_badge": "IA & Dados",
-      "descricao": "Habilidades pedidas: Microsoft Word, Microsoft Excel, Microsoft PowerPoint, HR, Human resources documentation, Portuguese language proficiency.",
-      "requisitos": "Microsoft Word, Microsoft Excel, Microsoft PowerPoint, HR, Human resources documentation, Portuguese language proficiency",
-      "remuneracao": "USD 10-45 / hora"
-    },
-    {
-      "id": "bba13babf0",
-      "empresa": "micro1",
-      "titulo": "Financial Documents Specialist (Portuguese)",
-      "url": "https://jobs.micro1.ai/post/4e16eb9a-93c8-49da-b88d-f6744a2a3fa9",
-      "local": "Remoto · Brasil",
-      "categoria_badge": "IA & Dados",
-      "descricao": "Habilidades pedidas: Microsoft Word, Microsoft Excel, Microsoft PowerPoint, finance, financial documents, portuguese language proficiency.",
-      "requisitos": "Microsoft Word, Microsoft Excel, Microsoft PowerPoint, finance, financial documents, portuguese language proficiency",
-      "remuneracao": "USD 10-45 / hora"
     },
     {
       "id": "94d3206e73",
