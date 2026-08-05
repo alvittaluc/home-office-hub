@@ -1,0 +1,465 @@
+{
+  "total": 46,
+  "vagas": [
+    {
+      "id": "65762fd387",
+      "resumo": {
+        "o_que_faz": "Atuar como coordenador(a) júnior de qualidade num projeto de Search Quality Rating (avaliação da qualidade de resultados de busca). Você coordena tarefas feitas em português (Brasil) e inglês (EUA), apoiando a equipe do projeto.",
+        "requisitos": "Fluência total em português (Brasil) e bom domínio de inglês. Morar no Brasil. Conhecer bem a cultura pop brasileira. Dedicação exclusiva ao programa de Search Quality (não pode ter atuado em avaliação de anúncios/Ads).",
+        "dica_cv": "Destaque: experiência com avaliação/qualidade de conteúdo, organização e coordenação de tarefas, e seu nível de inglês (mencione B2/C1). Deixe claro que mora no Brasil.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "9717d686e3",
+      "resumo": {
+        "o_que_faz": "Como Avaliador(a) de Qualidade de Anúncios (Ads Quality Rater), você analisa e classifica anúncios da internet para ajudar a melhorar como eles são exibidos aos usuários. Nesta vaga, os anúncios são revisados em inglês e alemão.",
+        "requisitos": "Fluência em alemão e bom domínio de inglês (escrito e falado). Conhecimento de cultura pop moderna. Computador e internet confiáveis. Familiaridade com buscadores online.",
+        "dica_cv": "Esta vaga exige ALEMÃO. Só vale a pena se você fala alemão. Destaque: fluência em alemão, nível de inglês, e familiaridade com internet/buscadores.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "54a0bc5b99",
+      "resumo": {
+        "o_que_faz": "Como Avaliador(a) de Qualidade de Anúncios (Ads Quality Rater), você analisa e classifica anúncios da internet para melhorar como são exibidos. Nesta vaga, os anúncios são revisados em inglês e italiano.",
+        "requisitos": "Fluência em italiano e bom domínio de inglês (escrito e falado). Conhecimento de cultura pop. Computador e internet confiáveis. Familiaridade com buscadores.",
+        "dica_cv": "Esta vaga exige ITALIANO. Só vale a pena se você fala italiano. Destaque: fluência em italiano, nível de inglês, e familiaridade com internet/buscadores.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "06487cf875",
+      "resumo": {
+        "o_que_faz": "Atuar como Especialista (SME) brasileiro em Política, contribuindo com conhecimento aprofundado para projetos de IA multilíngue. Você ajuda a criar e validar conteúdo especializado na sua área.",
+        "requisitos": "Conhecimento aprofundado em Política (formação e/ou experiência na área). Português nativo. Bom inglês. Capacidade de explicar conceitos complexos de forma clara.",
+        "dica_cv": "Destaque: sua formação/experiência em Política ou ciências sociais, capacidade analítica e de escrita, e nível de inglês.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "c726db3087",
+      "resumo": {
+        "o_que_faz": "Atuar como Especialista (SME) brasileiro em Religião ou Filosofia, contribuindo com conhecimento aprofundado para projetos de IA. Você cria e valida conteúdo especializado na sua área de domínio.",
+        "requisitos": "Conhecimento aprofundado em Religião ou Filosofia (formação e/ou experiência). Português nativo. Bom inglês. Capacidade de explicar conceitos complexos com clareza.",
+        "dica_cv": "Destaque: sua formação/experiência em Filosofia, Teologia ou Ciências da Religião, capacidade analítica e de escrita, e nível de inglês.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "fa3a732642",
+      "resumo": {
+        "o_que_faz": "Gravar áudios curtos em português para ajudar a treinar tecnologias de voz e IA. Você grava 20 frases roteirizadas (cada uma com menos de 1 minuto) numa plataforma web, lendo de forma clara e natural.",
+        "requisitos": "Português (Brasil) nativo. Ler com clareza e naturalidade. Ter um notebook e um ambiente interno silencioso para gravar. Seguir as instruções e cumprir o prazo.",
+        "dica_cv": "Vaga simples, ótima para começar. Destaque: boa dicção, português nativo, e que tem ambiente silencioso e equipamento para gravar. Não precisa de experiência prévia.",
+        "contrato": "Freelance · Remoto · Tarefa pontual",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "15bd87fb94",
+      "resumo": {
+        "o_que_faz": "Atuar como Linguista de Ciências da Vida (Life Sciences), traduzindo e validando conteúdo de inglês para português (Brasil) na área farmacêutica e médica: ensaios clínicos, farmacovigilância, assuntos regulatórios e rotulagem.",
+        "requisitos": "Português (Brasil) nativo e inglês avançado. Experiência com tradução na área de saúde/farmacêutica/médica. Conhecimento de terminologia técnica da área.",
+        "dica_cv": "Destaque: experiência com tradução técnica, formação ou experiência em saúde/farmácia/biomedicina, e nível de inglês avançado. Mencione conhecimento de terminologia médica.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "3c1f28002b",
+      "resumo": {
+        "o_que_faz": "Traduzir e revisar (LQA) patentes de inglês para português (Brasil), com foco em conteúdo técnico e científico, especialmente da área biológica. Você adapta linguagem científica complexa mantendo a precisão.",
+        "requisitos": "Formação superior em linguística, tradução, biologia ou áreas afins. 2+ anos de experiência em tradução ou avaliação de qualidade linguística, de preferência com patentes ou conteúdo técnico. Inglês (en-US) excelente. Domínio de terminologia biológica.",
+        "dica_cv": "Destaque: diploma na área, 2+ anos com tradução técnica/patentes, domínio de terminologia científica (especialmente biologia), e inglês avançado. É uma vaga mais sênior.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "6a1c04e20b",
+      "resumo": {
+        "o_que_faz": "Como Avaliador(a) de Busca e Rotulagem de Dados (Search & Data Labeling Rater), você avalia a relevância de resultados de busca em e-commerce: analisa o que o cliente procurou e verifica se os produtos mostrados fazem sentido. Nesta vaga o foco é o idioma italiano.",
+        "requisitos": "Fluência em italiano. Bom inglês. Atenção a detalhes. Entender a intenção por trás de buscas de clientes e identificar tipos e atributos de produtos.",
+        "dica_cv": "Esta vaga é para o idioma ITALIANO. Só vale se você fala italiano. Destaque: fluência em italiano, atenção a detalhes e familiaridade com compras online.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "8a51e9699d",
+      "resumo": {
+        "o_que_faz": "Liderar a qualidade (Quality Control Lead) do locale português (Brasil) num grande programa de treinamento de IA. Você define a estratégia de qualidade, orienta revisores, e garante padrões altos e aplicação consistente das diretrizes.",
+        "requisitos": "Experiência sólida em garantia de qualidade linguística. Português (Brasil) nativo. Paixão por qualidade de linguagem, IA e liderança de equipe. Experiência coordenando/coaching de revisores.",
+        "dica_cv": "Vaga de liderança (mais sênior). Destaque: experiência em QA/controle de qualidade linguística, liderança ou coordenação de equipes, e conhecimento de anotação de dados para IA.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "3b0b2359f6",
+      "resumo": {
+        "o_que_faz": "Atuar como Testador(a) de Acessibilidade, validando a acessibilidade de conteúdo digital localizado em português (páginas web, aplicativos e documentos), como falante nativo do idioma.",
+        "requisitos": "Português nativo. Conhecimento de acessibilidade digital é um diferencial. Atenção a detalhes de conteúdo localizado.",
+        "dica_cv": "Destaque: conhecimento ou interesse em acessibilidade digital, português nativo, e experiência com testes ou revisão de conteúdo web/apps.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "65e5914d72",
+      "resumo": {
+        "o_que_faz": "Como Treinador(a) de Dados (Data Trainer) do Projeto Epsilon, você analisa perguntas pré-definidas junto com imagens e fornece as respostas 'douradas' (corretas) com base no que observa. Trabalho por tarefas, ideal para quem é meticuloso.",
+        "requisitos": "Português (Brasil). Atenção a detalhes e capacidade de seguir instruções detalhadas com consistência. Não exige experiência prévia específica.",
+        "dica_cv": "Boa vaga de entrada. Destaque: atenção a detalhes, capacidade de seguir instruções, e português nativo. Ideal para quem está começando na área de dados/IA.",
+        "contrato": "Freelance · Remoto · Por tarefa",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "f171495197",
+      "resumo": {
+        "o_que_faz": "Como Especialista de Controle de Qualidade (QC) do Projeto Epsilon, você revisa o trabalho dos Trainers — perguntas com imagens e suas respostas 'douradas' — conferindo precisão, consistência e aderência às diretrizes do projeto.",
+        "requisitos": "Português (Brasil). Ser muito meticuloso e observador, com habilidade de identificar erros e inconsistências que passam despercebidos. Seguir diretrizes do projeto.",
+        "dica_cv": "Destaque: atenção a detalhes acima da média, experiência com revisão/conferência de trabalho, e capacidade de aplicar diretrizes com consistência.",
+        "contrato": "Freelance · Remoto · Por tarefa",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "3f23aefbfc",
+      "resumo": {
+        "o_que_faz": "Como Associado(a) de Rotulagem de Dados (Human-in-the-Loop AI), você trabalha diretamente com sistemas de IA de ponta: avalia respostas, identifica falhas e ajuda a melhorar o comportamento dos modelos. Vai além de anotação tradicional — exige pensamento crítico.",
+        "requisitos": "Proficiência nativa em português (Brasil) e diploma universitário (bacharelado ou superior). Inglês B2 ou acima. 1–2 anos de experiência com escrita profissional estruturada. Aplicar regras e diretrizes complexas com consistência.",
+        "dica_cv": "Destaque: diploma universitário, experiência com escrita profissional/estruturada (1–2 anos), inglês B2+, e curiosidade/pensamento crítico sobre IA.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "503d5a2f4d",
+      "resumo": {
+        "o_que_faz": "Como Analista de IA de Fala e Voz (Data Labeling Analyst), você trabalha com dados de áudio, fala e linguagem, ajudando a garantir que os modelos de IA sejam treinados com dados precisos e bem estruturados. Foco em execução com qualidade.",
+        "requisitos": "Fluência nativa em português (Brasil). Boa comunicação escrita. 1 ano de experiência em rotulagem/anotação de dados OU diploma de bacharelado em área relacionada. Seguir instruções detalhadas.",
+        "dica_cv": "Destaque: português nativo, 1 ano de experiência com anotação/rotulagem (ou diploma relacionado), boa escrita e atenção a detalhes. Mencione interesse por dados de áudio/voz.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "68fe02f200",
+      "resumo": {
+        "o_que_faz": "Como Especialista de Dados de IA (AI Data Specialist), você realiza tarefas diversas relacionadas a dados para melhorar conteúdo gerado por IA em inglês: coleta de dados, avaliação e comparação de respostas. Trabalho flexível, você escolhe quando trabalhar.",
+        "requisitos": "Inglês fluente (a maior parte do trabalho é em inglês). Aberto a estudantes, recém-formados, pais/mães em casa, e profissionais buscando trabalho remoto flexível. Interesse em IA.",
+        "dica_cv": "Ótima vaga de entrada e flexível. Destaque: nível de inglês (importante), atenção a detalhes, e interesse por IA. Não precisa de experiência prévia.",
+        "contrato": "Freelance · Meio período · Remoto",
+        "remuneracao": "US$ 6/hora"
+      }
+    },
+    {
+      "id": "694144617d",
+      "resumo": {
+        "o_que_faz": "Como Especialista (SME) em Fandoms (fãs de cultura pop, séries, jogos etc.), você cria conteúdo de perguntas e respostas de nível especializado em português brasileiro, para avaliar como a IA lida com questões complexas do mercado brasileiro. Vai muito além de rotulagem básica.",
+        "requisitos": "Português brasileiro (pt-BR) nativo ou fluente. 5–10+ anos de experiência profissional na área. Expertise comprovada (formação acadêmica e/ou experiência). Forte capacidade analítica e de escrita.",
+        "dica_cv": "Vaga sênior de especialista. Destaque: seus 5+ anos de experiência com cultura pop/fandoms, capacidade de escrita e análise, e conhecimento profundo do tema. Mostre domínio real do assunto.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "6d1b1eafe5",
+      "resumo": {
+        "o_que_faz": "Como Especialista (SME) em Jogos e Quebra-cabeças, você cria conteúdo de perguntas e respostas de nível especializado em português brasileiro, testando o raciocínio avançado da IA. Requer conhecimento profundo do tema e boa escrita.",
+        "requisitos": "Português brasileiro (pt-BR) nativo ou fluente. 5–10+ anos de experiência na área. Expertise comprovada. Forte capacidade analítica e de explicar conceitos complexos com clareza.",
+        "dica_cv": "Vaga sênior. Destaque: experiência profunda com jogos/quebra-cabeças (5+ anos), capacidade de escrita estruturada e análise. Demonstre domínio real do assunto.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "0f6bfdd93c",
+      "resumo": {
+        "o_que_faz": "Como Especialista (SME) em Casa e Jardim, você cria conteúdo de perguntas e respostas de nível especializado em português brasileiro, para testar como a IA lida com questões complexas do tema. Vai além da rotulagem básica.",
+        "requisitos": "Português brasileiro (pt-BR) nativo ou fluente. 5–10+ anos de experiência na área. Expertise comprovada (formação e/ou experiência). Forte capacidade analítica e de escrita.",
+        "dica_cv": "Vaga sênior de especialista. Destaque: experiência com o tema Casa e Jardim (paisagismo, decoração, jardinagem, reformas), capacidade de escrita e análise.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "cf4251c39f",
+      "resumo": {
+        "o_que_faz": "Como Especialista (SME) em Cultura da Internet (memes, desafios, entrevistas de rua), você cria conteúdo de perguntas e respostas especializado em português brasileiro, testando o raciocínio da IA sobre o tema.",
+        "requisitos": "Português brasileiro (pt-BR) nativo ou fluente. 5–10+ anos de experiência na área. Expertise comprovada. Forte capacidade analítica e de escrita.",
+        "dica_cv": "Vaga sênior. Destaque: conhecimento profundo de cultura da internet, redes sociais e tendências, além de boa escrita e capacidade analítica.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "40a2a76d39",
+      "resumo": {
+        "o_que_faz": "Como Especialista (SME) em Direito e Ética, você cria conteúdo de perguntas e respostas de nível especializado em português brasileiro, testando o raciocínio jurídico e ético da IA. Requer domínio profundo da área.",
+        "requisitos": "Português brasileiro (pt-BR) nativo ou fluente. DOUTORADO (PhD) na área — obrigatório. 5–10+ anos de experiência. Forte capacidade analítica e de escrita.",
+        "dica_cv": "Vaga sênior que EXIGE doutorado. Só vale se você tem PhD em Direito ou área ética/filosófica. Destaque: seu doutorado, experiência jurídica e capacidade analítica.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "7d8ae3cb3c",
+      "resumo": {
+        "o_que_faz": "Como Especialista (SME) em Religião e Filosofia, você cria conteúdo de perguntas e respostas de nível especializado em português brasileiro, testando o raciocínio da IA no tema. Requer domínio profundo.",
+        "requisitos": "Português brasileiro (pt-BR) nativo ou fluente. DOUTORADO (PhD) na área — obrigatório. 5–10+ anos de experiência. Forte capacidade analítica e de escrita.",
+        "dica_cv": "Vaga sênior que EXIGE doutorado. Só vale se você tem PhD em Filosofia, Teologia ou Ciências da Religião. Destaque: seu doutorado e experiência acadêmica.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "62b4a0647b",
+      "resumo": {
+        "o_que_faz": "Como Especialista (SME) em Esportes (equipamentos, clubes, eventos), você cria conteúdo de perguntas e respostas especializado em português brasileiro, testando o raciocínio da IA no tema esportivo.",
+        "requisitos": "Português brasileiro (pt-BR) nativo ou fluente. 5–10+ anos de experiência na área. Expertise comprovada. Forte capacidade analítica e de escrita.",
+        "dica_cv": "Vaga sênior. Destaque: conhecimento profundo de esportes (regras, história, clubes, eventos), experiência na área (jornalismo esportivo, educação física etc.) e boa escrita.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "74d6837adc",
+      "resumo": {
+        "o_que_faz": "Como Especialista em Avaliação de IA de Fala (Speech AI Evaluation Specialist), você participa de conversas de voz curtas para ajudar a melhorar o conteúdo de IA em português (Brasil). Trabalho flexível, você escolhe seus horários.",
+        "requisitos": "Português (Brasil). Aberto a estudantes, recém-formados, pais/mães em casa e profissionais buscando trabalho remoto. Disponibilidade de 10+ horas por semana. Interesse em IA.",
+        "dica_cv": "Boa vaga de entrada e flexível. Destaque: português nativo, boa dicção/comunicação falada, e disponibilidade. Não exige experiência prévia. Mencione seu nível de inglês.",
+        "contrato": "Freelance · Meio período (10+ h/semana) · Remoto",
+        "remuneracao": "US$ 6/hora"
+      }
+    },
+    {
+      "id": "39334285e8",
+      "resumo": {
+        "o_que_faz": "Como Anotador(a) de Dados freelancer (AI Trainer), você realiza tarefas online que treinam e melhoram a inteligência artificial, conectando-se a projetos de IA generativa de grandes empresas de tecnologia.",
+        "requisitos": "Enviar currículo em inglês e indicar seu nível de inglês. Ser curioso e detalhista. Trabalho 100% flexível e por projeto.",
+        "dica_cv": "IMPORTANTE: envie o currículo em inglês e indique seu nível. Destaque: nível de inglês, atenção a detalhes e interesse por IA. Boa vaga de entrada.",
+        "contrato": "Freelance · Remoto · Por projeto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "4537baa3f6",
+      "resumo": {
+        "o_que_faz": "Gravar vídeos em primeira pessoa de atividades domésticas do dia a dia (cozinhar, limpar, organizar). Você fixa o smartphone na cabeça, segue sua rotina normal, e a câmera captura o que você vê. Esses vídeos treinam IA e robôs.",
+        "requisitos": "Ter um smartphone com boa câmera. Fazer as atividades domésticas do dia a dia. Sem horário fixo — grava quando quiser. Não precisa de experiência.",
+        "dica_cv": "Vaga super simples, sem exigência de experiência ou inglês. Destaque: ter smartphone com boa câmera e disponibilidade. Ideal para começar a ganhar com IA sem qualificação técnica.",
+        "contrato": "Freelance · Remoto · Por projeto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "baaa0bd5ab",
+      "resumo": {
+        "o_que_faz": "Gravar vídeos em primeira pessoa (POV) de atividades domésticas do dia a dia. Você monta o smartphone na cabeça, segue sua rotina, e a câmera captura o que você vê. Os vídeos ajudam a treinar IA e robôs a entender como pessoas interagem com objetos.",
+        "requisitos": "Smartphone. Fazer atividades domésticas normalmente. Sem horário fixo, sem compromisso além do que couber na sua rotina.",
+        "dica_cv": "Vaga simples, sem exigência técnica. Destaque: ter smartphone e disponibilidade. Boa porta de entrada para trabalhar com dados de IA.",
+        "contrato": "Freelance · Remoto · Por projeto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "be3191b0f1",
+      "resumo": {
+        "o_que_faz": "Como Anotador(a) freelancer (AI Trainer) com foco em inglês, você faz tarefas online que treinam e melhoram a IA, em projetos de IA generativa de grandes empresas de tecnologia.",
+        "requisitos": "Enviar currículo em inglês e indicar seu nível de inglês. Bom nível de inglês (as tarefas são em inglês). Ser curioso e detalhista.",
+        "dica_cv": "Envie o currículo em inglês. Esta vaga exige um bom nível de inglês. Destaque: seu nível de inglês, atenção a detalhes e interesse por IA.",
+        "contrato": "Freelance · Remoto · Por projeto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "3785cf8e1d",
+      "resumo": {
+        "o_que_faz": "Gravar vídeos em primeira pessoa de atividades domésticas do dia a dia. Você fixa o smartphone na cabeça, segue sua rotina, e a câmera grava o que você vê. Os vídeos treinam sistemas de IA e robôs. 'Gravou, ganhou.'",
+        "requisitos": "Smartphone. Fazer as atividades do dia a dia normalmente. Sem horário fixo. Sem necessidade de experiência.",
+        "dica_cv": "Vaga simples, sem exigência técnica nem de inglês. Destaque: ter smartphone e disponibilidade para gravar sua rotina. Ideal para iniciantes.",
+        "contrato": "Freelance · Remoto · Por projeto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "a6ff0997a8",
+      "resumo": {
+        "o_que_faz": "Gravar vídeos em casa (freelance) de atividades cotidianas para treinar IA. Sem horário fixo, você grava quando for conveniente, usando seu próprio celular, enquanto faz tarefas do dia a dia.",
+        "requisitos": "Smartphone próprio. Fazer atividades domésticas do dia a dia. Disponibilidade flexível. Sem necessidade de experiência.",
+        "dica_cv": "Vaga simples, sem exigência técnica. Destaque: ter smartphone e disponibilidade. Boa opção para renda extra sem qualificação prévia.",
+        "contrato": "Freelance · Remoto · Por projeto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "4afbbe4e4e",
+      "resumo": {
+        "o_que_faz": "Gravar vídeos em estilo POV (primeira pessoa) fazendo atividades reais do dia a dia em casa: cozinhar, limpar, organizar, lavar roupa. Sem estúdio nem equipamento especial — só você, seu celular e sua rotina. Projeto de treinamento de IA.",
+        "requisitos": "Smartphone próprio. Fazer atividades domésticas normalmente. Gravar quando for conveniente. Sem experiência necessária.",
+        "dica_cv": "Vaga simples e flexível. Destaque: ter smartphone e disponibilidade. Não precisa de inglês nem experiência — ótima para começar.",
+        "contrato": "Freelance · Remoto · Por projeto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "6f88e04885",
+      "resumo": {
+        "o_que_faz": "Gravar sua rotina diária e ganhar por isso, num projeto de treinamento de IA (remoto). Você grava vídeos em primeira pessoa de atividades domésticas, que ajudam a treinar IA e robôs a entender interações reais com objetos.",
+        "requisitos": "Smartphone. Fazer atividades do dia a dia normalmente. Sem horário fixo nem compromisso além do que couber na sua rotina.",
+        "dica_cv": "Vaga simples, sem exigência técnica. Destaque: ter smartphone e disponibilidade para gravar. Boa porta de entrada no trabalho com dados de IA.",
+        "contrato": "Freelance · Remoto · Por projeto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "ed0334c066",
+      "resumo": {
+        "o_que_faz": "No Projeto Meteor, você revisa e melhora respostas 'douradas' geradas por IA e as rubricas de avaliação, garantindo que atendam aos mais altos padrões de qualidade e não tenham erros críticos. Avalia saídas de IA em tarefas abertas e fechadas.",
+        "requisitos": "Atenção a detalhes. Capacidade de avaliar conteúdo seguindo rubricas e diretrizes. Bom inglês (o conteúdo tende a ser em inglês).",
+        "dica_cv": "Destaque: atenção a detalhes, experiência avaliando/revisando conteúdo, e nível de inglês. Trabalho por hora, mundialmente aberto (aceita Brasil).",
+        "contrato": "Remoto · Pagamento por hora",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "63aa686c16",
+      "resumo": {
+        "o_que_faz": "No Projeto Freya, você atua como especialista em transcrição e anotação de fala: transcreve gravações longas de podcasts para ajudar a treinar e avaliar modelos de reconhecimento de voz. Pagamento por hora, 100% remoto.",
+        "requisitos": "Boa audição e português nativo. Atenção a detalhes. Aberto a 29 idiomas e locais (inclui Brasil). Internet confiável.",
+        "dica_cv": "Destaque: boa capacidade de escuta e digitação, atenção a detalhes, e português nativo. Experiência com transcrição é um diferencial. Vaga boa para começar.",
+        "contrato": "Remoto · Pagamento por hora",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "aeab5f21d1",
+      "resumo": {
+        "o_que_faz": "No Projeto Hermes, como Especialista de Linguagem de IA, você avalia respostas geradas por IA, adapta conteúdo para soar natural e culturalmente adequado ao seu idioma, escreve prompts e melhora as saídas da IA seguindo diretrizes detalhadas.",
+        "requisitos": "Português (Brasil) nativo. Boa escrita e sensibilidade cultural. Atenção a detalhes e capacidade de seguir diretrizes. Bom inglês ajuda.",
+        "dica_cv": "Destaque: português nativo com boa escrita, sensibilidade cultural, e familiaridade com IA generativa. Mencione seu nível de inglês.",
+        "contrato": "Remoto · Pagamento por hora",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "bdd44d0e62",
+      "resumo": {
+        "o_que_faz": "No Projeto Zeno, você revisa textos pré-traduzidos e entidades nomeadas pré-marcadas, avaliando a qualidade das traduções e das anotações de entidades. Foco em avaliação de qualidade de tradução de fala.",
+        "requisitos": "Português (Brasil) nativo e bom inglês. Atenção a detalhes. Familiaridade com tradução é um diferencial.",
+        "dica_cv": "Destaque: fluência em português e inglês, experiência com tradução ou revisão, e atenção a detalhes. Pagamento por item aprovado.",
+        "contrato": "Remoto · Pagamento por item aprovado",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "369b016e71",
+      "resumo": {
+        "o_que_faz": "No Projeto Triangle, você grava vídeos em primeira pessoa (ego-cêntricos) de alta qualidade, ajudando a treinar sistemas de IA a entender como as pessoas realizam tarefas físicas do dia a dia em ambientes domésticos reais.",
+        "requisitos": "Smartphone/câmera para gravar em primeira pessoa. Fazer tarefas físicas do dia a dia. Atenção às diretrizes de gravação. Sem experiência necessária.",
+        "dica_cv": "Vaga simples de gravação. Destaque: ter equipamento para gravar e disponibilidade. Não precisa de inglês nem experiência técnica.",
+        "contrato": "Remoto · Pagamento por item aprovado",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "4de0959bb1",
+      "resumo": {
+        "o_que_faz": "No projeto LELI, você revisa e faz pós-edição de traduções geradas por máquina, garantindo precisão, fluência e tom natural. São 51 pares de idiomas disponíveis (incluindo português).",
+        "requisitos": "Fluência no seu idioma nativo e no idioma de origem da tradução. Atenção à qualidade da tradução. Experiência com tradução/revisão é um diferencial.",
+        "dica_cv": "Destaque: fluência nos idiomas que domina, experiência com tradução ou pós-edição, e atenção a detalhes. Pagamento por palavra (US$ 0,012–0,033/palavra).",
+        "contrato": "Remoto · Pagamento por palavra",
+        "remuneracao": "US$ 0,012–0,033/palavra"
+      }
+    },
+    {
+      "id": "b9d0cf15f8",
+      "resumo": {
+        "o_que_faz": "No projeto Kawaii, você ajuda a treinar modelos avançados de reconhecimento de fala, rotulando interações de conversa no seu idioma nativo (anotação de áudio e identificação de quem fala).",
+        "requisitos": "Português nativo e boa audição. Atenção a detalhes. Internet confiável. Experiência com áudio é um diferencial.",
+        "dica_cv": "Destaque: português nativo, boa capacidade de escuta e atenção a detalhes. Experiência com transcrição/áudio ajuda. Pagamento por hora.",
+        "contrato": "Remoto · Pagamento por hora",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "0555e249d8",
+      "resumo": {
+        "o_que_faz": "No projeto Adaptation, você apoia o treinamento de modelos de linguagem de IA, melhorando a precisão regional e a qualidade geral de conteúdo multilíngue (adaptação de conteúdo para o português do Brasil).",
+        "requisitos": "Português (Brasil) nativo com boa sensibilidade regional/cultural. Atenção a detalhes. Boa escrita.",
+        "dica_cv": "Destaque: português nativo com domínio das variações regionais brasileiras, boa escrita e atenção a detalhes.",
+        "contrato": "Remoto · Pagamento por item aprovado",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "332793d261",
+      "resumo": {
+        "o_que_faz": "No projeto Fred Annotation, você faz anotações que ajudam sistemas de IA a entender e responder com precisão às solicitações dos usuários.",
+        "requisitos": "Atenção a detalhes. Capacidade de seguir diretrizes de anotação. Português nativo; bom inglês ajuda.",
+        "dica_cv": "Destaque: atenção a detalhes, capacidade de seguir instruções, e familiaridade com IA. Vaga de anotação, boa para começar. Pagamento por hora.",
+        "contrato": "Remoto · Pagamento por hora",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "7fb14c51c4",
+      "resumo": {
+        "o_que_faz": "No projeto Ava Audio Collection, você grava frases/falas no seu idioma nativo, ajudando a tornar a tecnologia mais inclusiva. Pagamento ao concluir o conjunto de gravações.",
+        "requisitos": "Português nativo e boa dicção. Ambiente silencioso e equipamento para gravar áudio. Sem experiência necessária.",
+        "dica_cv": "Vaga simples de gravação de voz. Destaque: boa dicção, português nativo, e ter ambiente/equipamento para gravar. Ideal para iniciantes.",
+        "contrato": "Remoto · Pagamento por conclusão",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "42322df71b",
+      "resumo": {
+        "o_que_faz": "No projeto Paragraph Level Acceptability, você avalia traduções (em nível de parágrafo) para ajudar a melhorar a IA, dando notas de aceitabilidade.",
+        "requisitos": "Fluência no idioma avaliado e bom inglês. Atenção a detalhes. Familiaridade com tradução ajuda.",
+        "dica_cv": "Destaque: fluência em português e inglês, atenção a detalhes e experiência com tradução/revisão. Pagamento por item aprovado.",
+        "contrato": "Remoto · Pagamento por item aprovado",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "989dd286c6",
+      "resumo": {
+        "o_que_faz": "Como Avaliador(a) de Tradução (Acceptability and Preference), você ajuda a avaliar as traduções do cliente, indicando aceitabilidade e preferência entre opções.",
+        "requisitos": "Fluência no idioma avaliado e bom inglês. Atenção a detalhes. Bom senso linguístico.",
+        "dica_cv": "Destaque: fluência em português e inglês, sensibilidade linguística e atenção a detalhes. Experiência com tradução é um diferencial.",
+        "contrato": "Remoto · Pagamento por item aprovado",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "3ea0ccaaef",
+      "resumo": {
+        "o_que_faz": "No projeto Apps and Music Grading, você ajuda a melhorar aplicativos e serviços de música, avaliando/classificando conteúdo para aprimorar a experiência do usuário.",
+        "requisitos": "Atenção a detalhes. Familiaridade com apps e serviços de música. Português nativo; bom inglês ajuda.",
+        "dica_cv": "Destaque: familiaridade com apps e streaming de música, atenção a detalhes, e seu nível de inglês. Vaga tranquila para começar.",
+        "contrato": "Remoto · Pagamento por item aprovado",
+        "remuneracao": ""
+      }
+    },
+    {
+      "id": "feda5202b1",
+      "resumo": {
+        "o_que_faz": "No projeto Milky Way (Internet Judging / Maps Evaluation), você avalia a qualidade de buscas feitas por usuários em aplicativos de mapas, ajudando a melhorar a experiência de navegação.",
+        "requisitos": "Conhecimento da sua região/localidades no Brasil. Atenção a detalhes. Familiaridade com apps de mapas. Bom inglês ajuda.",
+        "dica_cv": "Destaque: bom conhecimento geográfico do Brasil e da sua região, familiaridade com Google Maps/apps de mapas, e atenção a detalhes.",
+        "contrato": "Remoto · Pagamento por item aprovado",
+        "remuneracao": ""
+      }
+    }
+  ]
+}
