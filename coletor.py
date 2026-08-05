@@ -887,18 +887,64 @@ def main():
     # SOMENTE resumos de qualidade, escritos à mão, vindos do resumos.json.
     # Nada de resumo automático: ele cortava o texto e deixava reticências.
     # Vaga sem resumo manual simplesmente não mostra a seção de detalhes.
+    # resumos_ok fica False se o resumos.json existir mas estiver quebrado.
+    # Nesse caso NÃO regeramos o vagas_para_resumo.json, senão o arquivo sairia
+    # com todas as vagas e você refaria trabalho que já está pronto.
+    resumos_ok = True
+
     if USAR_RESUMOS:
-        resumos_qualidade = {}
-        try:
-            with open("resumos.json", "r", encoding="utf-8") as f:
-                rq = json.load(f)
-            for item in rq.get("vagas", rq if isinstance(rq, list) else []):
-                if item.get("id") and item.get("resumo"):
-                    resumos_qualidade[item["id"]] = item["resumo"]
-        except FileNotFoundError:
+        def _ler_resumos(caminho):
+            """Lê um arquivo de resumos e devolve {id: resumo}.
+            Devolve (dicionario, existe, deu_erro)."""
+            try:
+                with open(caminho, "r", encoding="utf-8") as f:
+                    rq = json.load(f)
+            except FileNotFoundError:
+                return {}, False, False
+            except Exception as e:
+                print(f"\n  ⚠ ERRO ao ler {caminho}: {str(e)[:80]}")
+                return {}, True, True
+            itens = rq.get("vagas", []) if isinstance(rq, dict) else rq
+            saida = {}
+            for item in itens or []:
+                if isinstance(item, dict) and item.get("id") and item.get("resumo"):
+                    saida[item["id"]] = item["resumo"]
+            return saida, True, False
+
+        # 1) resumos já consolidados
+        resumos_qualidade, tinha_arquivo, deu_erro = _ler_resumos("resumos.json")
+        if deu_erro:
+            resumos_ok = False
+        elif not tinha_arquivo:
             print("\n  (resumos.json não encontrado — nenhuma vaga terá resumo)")
-        except Exception as e:
-            print(f"\n  (erro ao ler resumos.json: {str(e)[:50]})")
+
+        # 2) resumos novos que você acabou de subir (arquivo pequeno, só as
+        #    vagas que estavam pendentes). Eles são JUNTADOS aos antigos,
+        #    nunca substituem o arquivo inteiro.
+        novos, tinha_novos, erro_novos = _ler_resumos("resumos_novos.json")
+        if erro_novos:
+            resumos_ok = False
+        elif tinha_novos:
+            so_novos = [i for i in novos if i not in resumos_qualidade]
+            atualizados = [i for i in novos if i in resumos_qualidade]
+            resumos_qualidade.update(novos)   # id repetido = correção, vale o novo
+            print(f"\n  ✓ resumos_novos.json: {len(so_novos)} novo(s), "
+                  f"{len(atualizados)} atualizado(s). Total agora: "
+                  f"{len(resumos_qualidade)}")
+
+            # 3) grava o consolidado de volta no resumos.json
+            if not deu_erro:
+                consolidado = [{"id": i, "resumo": r}
+                               for i, r in resumos_qualidade.items()]
+                with open("resumos.json", "w", encoding="utf-8") as f:
+                    json.dump({"total": len(consolidado), "vagas": consolidado},
+                              f, ensure_ascii=False, indent=2)
+                # zera o arquivo de entrada para deixar claro que já foi absorvido
+                with open("resumos_novos.json", "w", encoding="utf-8") as f:
+                    json.dump({"total": 0, "vagas": []}, f,
+                              ensure_ascii=False, indent=2)
+                print(f"  ✓ resumos.json consolidado com "
+                      f"{len(consolidado)} resumo(s)")
 
         com_resumo, sem_resumo = 0, []
         for v in todas:
@@ -923,14 +969,26 @@ def main():
     # Salva um arquivo separado que MANTÉM a descrição completa de cada vaga.
     # É este que você me envia quando quiser que eu gere resumos de qualidade.
     # As vagas do LinkedIn não têm descrição, então ficam de fora deste arquivo.
-    if GERAR_ARQUIVO_ANALISE:
+    # TRAVAS DE SEGURANÇA antes de regerar o arquivo:
+    #  · USAR_RESUMOS desligado = não sabemos quem já tem resumo
+    #  · resumos_ok False = o resumos.json existe mas não pôde ser lido
+    # Em qualquer um dos casos o arquivo antigo é MANTIDO como está.
+    if GERAR_ARQUIVO_ANALISE and not USAR_RESUMOS:
+        print("\n  ⚠ USAR_RESUMOS está desligado. O vagas_para_resumo.json "
+              "foi mantido como estava (não dá para saber quem já tem resumo).")
+    elif GERAR_ARQUIVO_ANALISE and not resumos_ok:
+        print("\n  ⚠ Falha ao ler os resumos. O vagas_para_resumo.json foi "
+              "MANTIDO como estava, para você não refazer resumos prontos.")
+    elif GERAR_ARQUIVO_ANALISE:
         para_analise = []
         for v in todas:
             desc = v.get("_desc", "")
             req = v.get("_req", "")
-            # inclui todas as vagas que tenham título; só pula as que não têm
-            # nada além do título E vêm do LinkedIn (onde não há como enriquecer).
-            if not desc and not req and v.get("fonte") == "linkedin":
+            # LinkedIn fica SEMPRE de fora: ainda não fazemos resumo para lá.
+            if v.get("fonte") == "linkedin" or v.get("empresa") == "linkedin":
+                continue
+            # sem nenhum texto para resumir, não adianta mandar
+            if not desc and not req:
                 continue
             # pula as que JÁ têm resumo de qualidade: assim o arquivo traz
             # apenas as vagas novas, que ainda precisam de resumo.
