@@ -593,9 +593,10 @@ def buscar_oneforma() -> list:
             "categoria": cat_id,
             "badge": badge,
             "url": v["url"],
-            "commitment": "",
+            "commitment": v.get("horario", ""),
             "fonte": "direto",
             "_desc": v.get("desc", ""),
+            "_comp": v.get("pagamento", ""),
         })
     return vagas
 
@@ -820,7 +821,18 @@ def main():
 
     print("\n[4/4] Buscando em empresas via scraping...")
     if USAR_ONEFORMA:
-        todas += buscar_oneforma()
+        vagas_of = buscar_oneforma()
+        if vagas_of:
+            todas += vagas_of
+        else:
+            # O site da OneForma é lido por scraping e pode falhar (bloqueio,
+            # timeout, mudança de layout). Nesse caso, mantemos as vagas da
+            # última execução em vez de deixá-las sumir do site.
+            preservadas_of = _preservar_do_arquivo("oneforma")
+            if preservadas_of:
+                print(f"  → OneForma: scraper não retornou nada, "
+                      f"mantendo {len(preservadas_of)} vaga(s) da última vez")
+                todas += preservadas_of
     if USAR_REXZONE:
         todas += buscar_rexzone()
     if USAR_TELUS:
@@ -872,59 +884,40 @@ def main():
         v["id"] = hashlib.md5(base).hexdigest()[:10]
 
     # ─── RESUMO DAS VAGAS (função + requisitos + dica de CV) ───
-    # Prioridade: (1) resumo de qualidade que EU gerei (resumos.json),
-    #             (2) resumo reaproveitado do vagas.json anterior,
-    #             (3) resumo automático gerado agora.
+    # SOMENTE resumos de qualidade, escritos à mão, vindos do resumos.json.
+    # Nada de resumo automático: ele cortava o texto e deixava reticências.
+    # Vaga sem resumo manual simplesmente não mostra a seção de detalhes.
     if USAR_RESUMOS:
+        resumos_qualidade = {}
         try:
-            from resumo_vagas import gerar_resumo
-
-            # (1) carrega resumos de qualidade feitos pelo assistente, se houver
-            resumos_qualidade = {}
-            try:
-                with open("resumos.json", "r", encoding="utf-8") as f:
-                    rq = json.load(f)
-                for item in rq.get("vagas", rq if isinstance(rq, list) else []):
-                    if item.get("id") and item.get("resumo"):
-                        resumos_qualidade[item["id"]] = item["resumo"]
-                if resumos_qualidade:
-                    print(f"  ({len(resumos_qualidade)} resumos de qualidade carregados de resumos.json)")
-            except Exception:
-                pass
-
-            # (2) resumos reaproveitados do vagas.json anterior
-            resumos_antes = {}
-            try:
-                for v in antigo.get("vagas", []):
-                    ch = v.get("url") or v.get("titulo")
-                    if ch and v.get("resumo"):
-                        resumos_antes[ch] = v["resumo"]
-            except Exception:
-                pass
-
-            novos, reaproveitados, qualidade = 0, 0, 0
-            print("\n  Gerando resumos das vagas...")
-            for v in todas:
-                vid = v.get("id")
-                chave = v.get("url") or v.get("titulo")
-                if vid and vid in resumos_qualidade:
-                    v["resumo"] = resumos_qualidade[vid]
-                    qualidade += 1
-                elif chave in resumos_antes:
-                    v["resumo"] = resumos_antes[chave]
-                    reaproveitados += 1
-                else:
-                    v["resumo"] = gerar_resumo(
-                        v.get("titulo", ""),
-                        descricao=v.get("_desc", ""),
-                        requisitos=v.get("_req", ""),
-                        compensation=v.get("_comp", ""),
-                        commitment=v.get("commitment", ""),
-                    )
-                    novos += 1
-            print(f"    {qualidade} de qualidade, {reaproveitados} reaproveitados, {novos} automáticos")
+            with open("resumos.json", "r", encoding="utf-8") as f:
+                rq = json.load(f)
+            for item in rq.get("vagas", rq if isinstance(rq, list) else []):
+                if item.get("id") and item.get("resumo"):
+                    resumos_qualidade[item["id"]] = item["resumo"]
+        except FileNotFoundError:
+            print("\n  (resumos.json não encontrado — nenhuma vaga terá resumo)")
         except Exception as e:
-            print(f"  (resumos indisponíveis: {str(e)[:40]})")
+            print(f"\n  (erro ao ler resumos.json: {str(e)[:50]})")
+
+        com_resumo, sem_resumo = 0, []
+        for v in todas:
+            vid = v.get("id")
+            if vid and vid in resumos_qualidade:
+                v["resumo"] = resumos_qualidade[vid]
+                com_resumo += 1
+            else:
+                v.pop("resumo", None)
+                sem_resumo.append(v)
+
+        print(f"\n  Resumos: {com_resumo} com resumo, "
+              f"{len(sem_resumo)} sem resumo ainda")
+        if sem_resumo:
+            print("  Vagas aguardando resumo:")
+            for v in sem_resumo[:20]:
+                print(f"    · [{v.get('id')}] {v.get('titulo','')[:60]}")
+            if len(sem_resumo) > 20:
+                print(f"    · (e mais {len(sem_resumo) - 20})")
 
     # ─── ARQUIVO PARA ANÁLISE (com descrições completas) ───
     # Salva um arquivo separado que MANTÉM a descrição completa de cada vaga.
@@ -938,6 +931,10 @@ def main():
             # inclui todas as vagas que tenham título; só pula as que não têm
             # nada além do título E vêm do LinkedIn (onde não há como enriquecer).
             if not desc and not req and v.get("fonte") == "linkedin":
+                continue
+            # pula as que JÁ têm resumo de qualidade: assim o arquivo traz
+            # apenas as vagas novas, que ainda precisam de resumo.
+            if v.get("resumo"):
                 continue
             para_analise.append({
                 "id": v["id"],
@@ -953,8 +950,12 @@ def main():
         with open("vagas_para_resumo.json", "w", encoding="utf-8") as f:
             json.dump({"total": len(para_analise), "vagas": para_analise},
                       f, ensure_ascii=False, indent=2)
-        print(f"\n  ✓ Arquivo de análise: 'vagas_para_resumo.json' "
-              f"({len(para_analise)} vagas com descrição)")
+        if para_analise:
+            print(f"\n  ✓ Arquivo de análise: 'vagas_para_resumo.json' "
+                  f"({len(para_analise)} vaga(s) SEM resumo — envie ao Claude)")
+        else:
+            print("\n  ✓ Todas as vagas já têm resumo. "
+                  "Nada a enviar ao Claude desta vez.")
 
     # remove os campos temporários de descrição (não vão pro arquivo final)
     for v in todas:
