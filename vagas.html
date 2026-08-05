@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vagas abertas — Home Office Hub</title>
-<meta name="description" content="Todas as vagas remotas internacionais de IA, anotação de dados, avaliação e tradução abertas para quem mora no Brasil. Atualizado automaticamente todos os dias.">
+<meta name="description" content="Todas as vagas remotas internacionais de IA, anotação de dados, avaliação e tradução abertas para quem mora no Brasil.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
@@ -106,15 +106,20 @@
   .vaga .tit { font-family:var(--display); font-weight:500; font-size:15px; line-height:1.3; }
   .vaga .real { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:-5px; }
   .vaga .tags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
-  .tag.data { margin-left:auto; color:var(--ink-3); }
-  .acoes { display:flex; gap:8px; align-items:center; margin-top:auto; padding-top:4px; flex-wrap:wrap; }
-  .btn-sm { font-size:12px; padding:8px 13px; }
+  .tag.data { color:var(--ink-3); }
+  .vaga .mais {
+    margin-top:auto; padding-top:8px; font-family:var(--mono); font-size:11.5px;
+    color:var(--ink-3); display:inline-flex; align-items:center; gap:6px; transition:color .16s;
+  }
+  .vaga .mais .arr { transition:transform .16s; }
+  .vaga:hover .mais { color:var(--signal); }
+  .vaga:hover .mais .arr { transform:translateX(3px); }
 </style>
 </head>
 <body>
 
 <section class="topo">
-  <div class="eyebrow">Lista completa · atualizada todo dia</div>
+  <div class="eyebrow">Lista completa</div>
   <h1>Vagas abertas para quem mora no Brasil</h1>
   <p class="lead">Só entra o que aceita residentes do Brasil e português brasileiro. Cada vaga leva direto para a página oficial da empresa, sem intermediário.</p>
 
@@ -174,7 +179,6 @@ async function iniciar() {
     document.getElementById("lista").innerHTML =
       '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Verifique se o arquivo vagas.json está na mesma pasta.</p></div>';
     document.getElementById("contagem").textContent = "erro ao carregar";
-    const b = document.getElementById("updateBadge"); if (b) b.textContent = "erro de sincronização";
     console.error(e);
   }
 }
@@ -256,17 +260,14 @@ function render() {
       daCat.forEach(v => {
         const real = v.empresa_real ? `<div class="real">↳ ${esc(v.empresa_real)}</div>` : "";
         const src = (v.fonte && v.fonte !== "direto") ? `<span class="tag sig">via ${esc(v.fonte)}</span>` : "";
-        html += `<div class="vaga" data-cat="${v.categoria}" data-emp="${id}">
+        html += `<a class="vaga" href="vaga.html?id=${encodeURIComponent(v.id||"")}" data-cat="${v.categoria}" data-emp="${id}">
           <div class="tit">${esc(v.titulo)}</div>${real}
           <div class="tags">
             <span class="tag blu">${esc(v.badge)}</span>
             <span class="tag">${esc(v.local)}</span>${src}${seloData(v)}
           </div>
-          <div class="acoes">
-            <a href="vaga.html?id=${encodeURIComponent(v.id||"")}" class="btn ghost btn-sm">ver detalhes</a>
-            <a href="${esc(v.url)}" target="_blank" rel="noopener" class="btn btn-sm">Candidatar <span class="arr">→</span></a>
-          </div>
-        </div>`;
+          <span class="mais">ver detalhes <span class="arr">→</span></span>
+        </a>`;
       });
       html += `</div>`;
     });

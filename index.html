@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home Office Hub — Trabalho remoto com IA e dados para quem mora no Brasil</title>
-<meta name="description" content="Entenda o que é o trabalho de anotação, avaliação de IA e tradução, conheça as empresas que contratam brasileiros e veja as vagas abertas. Atualizado todos os dias.">
+<meta name="description" content="Entenda o que é o trabalho de anotação, avaliação de IA e tradução, conheça as empresas que contratam brasileiros e veja as vagas abertas para quem mora no Brasil.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
@@ -177,7 +177,13 @@
   .emp-top h3 { font-family:var(--display); font-weight:600; font-size:16.5px; letter-spacing:-0.015em; }
   .emp-top p { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:2px; }
   .emp-card > p.d { font-size:13.5px; color:var(--ink-2); line-height:1.55; }
-  .emp-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:auto; padding-top:4px; }
+  .emp-mais {
+    margin-top:auto; padding-top:6px; font-family:var(--mono); font-size:11.5px;
+    color:var(--ink-3); transition:color .16s; display:inline-flex; align-items:center; gap:6px;
+  }
+  .emp-card:hover .emp-mais { color:var(--signal); }
+  .emp-card:hover .emp-mais .arr { transform:translateX(3px); }
+  .emp-mais .arr { transition:transform .16s; }
 
   /* ─── PASSOS ─── */
   .passos-sec { max-width:var(--wrap); margin:0 auto; padding:76px 20px 20px; }
@@ -221,28 +227,27 @@
       <line x1="0" y1="22" x2="1000" y2="22" stroke="#1B212D" stroke-width="1"/>
 
       <g>
-        <rect class="lbl-box" x="72" y="8"  width="160" height="28" rx="8"/>
-        <text class="lbl" x="152" y="27" text-anchor="middle">Empresas globais</text>
-        <rect class="lbl-box" x="272" y="8" width="168" height="28" rx="8"/>
-        <text class="lbl" x="356" y="27" text-anchor="middle">Plataformas de IA</text>
-        <rect class="lbl-box" x="576" y="8" width="148" height="28" rx="8"/>
-        <text class="lbl" x="650" y="27" text-anchor="middle">Alertas de vaga</text>
-        <rect class="lbl-box" x="781" y="8" width="160" height="28" rx="8"/>
-        <text class="lbl" x="861" y="27" text-anchor="middle">Busca diária</text>
+        <rect class="lbl-box" x="86" y="8"  width="132" height="28" rx="8"/>
+        <text class="lbl" x="152" y="27" text-anchor="middle">Anotação</text>
+        <rect class="lbl-box" x="288" y="8" width="136" height="28" rx="8"/>
+        <text class="lbl" x="356" y="27" text-anchor="middle">Avaliação</text>
+        <rect class="lbl-box" x="584" y="8" width="132" height="28" rx="8"/>
+        <text class="lbl" x="650" y="27" text-anchor="middle">Tradução</text>
+        <rect class="lbl-box" x="795" y="8" width="132" height="28" rx="8"/>
+        <text class="lbl" x="861" y="27" text-anchor="middle">Coleta</text>
       </g>
 
       <path class="linha" d="M152,36 C152,190 500,150 500,250"/>
       <path class="linha" d="M356,36 C356,170 500,160 500,250"/>
       <path class="linha" d="M650,36 C650,170 500,160 500,250"/>
       <path class="linha" d="M861,36 C861,190 500,150 500,250"/>
-      <path class="linha" d="M500,250 L500,300"/>
+      <path d="M500,250 L500,312" stroke="#3DD4C8" stroke-width="1.2" stroke-opacity="0.42" fill="none"/>
 
-      <path class="pulso" d="M152,36 C152,190 500,150 500,250 L500,300"/>
-      <path class="pulso" d="M861,36 C861,190 500,150 500,250 L500,300" style="animation-delay:1.8s"/>
+      <path class="pulso" d="M152,36 C152,190 500,150 500,250 L500,312"/>
+      <path class="pulso" d="M861,36 C861,190 500,150 500,250 L500,312" style="animation-delay:1.8s"/>
 
-      <circle cx="500" cy="300" r="5" fill="#3DD4C8"/>
-      <circle cx="500" cy="300" r="11" fill="#3DD4C8" opacity="0.12"/>
-      <text class="lbl" x="500" y="328" text-anchor="middle" style="fill:#3DD4C8;">uma lista só, filtrada para o Brasil</text>
+      <circle cx="500" cy="312" r="5" fill="#3DD4C8"/>
+      <circle cx="500" cy="312" r="11" fill="#3DD4C8" opacity="0.12"/>
     </svg>
   </div>
 </section>
@@ -268,9 +273,8 @@
     Todo modelo de inteligência artificial precisa de gente para ensinar, corrigir
     e avaliar o que ele produz. Esse trabalho é feito por pessoas comuns, de casa,
     em regime flexível, e é pago em dólar ou euro.<br><br>
-    O Home Office Hub varre todos os dias as fontes oficiais dessas empresas e
-    filtra só o que aceita quem mora no Brasil e fala português brasileiro.
-    Nada de vaga de Portugal disfarçada, nada de link morto.
+    Reunimos aqui as oportunidades abertas a quem mora no Brasil e fala português
+    brasileiro, com o perfil de cada empresa e o caminho para entrar em cada uma.
   </p>
 </section>
 
@@ -468,7 +472,7 @@
 <section class="cta-sec">
   <div class="cta-box">
     <h2 class="sec">Pronto para a primeira candidatura?</h2>
-    <p>A lista é atualizada automaticamente todos os dias, direto das fontes oficiais das empresas. Sem intermediário, sem taxa e sem cadastro.</p>
+    <p>Cada vaga leva direto para a página oficial da empresa. Sem intermediário, sem taxa e sem cadastro.</p>
     <div class="cta-acoes">
       <a href="vagas.html" class="btn primary">Ver vagas abertas <span class="arr">→</span></a>
       <a href="como-funciona.html" class="btn">Ler o guia completo</a>
@@ -528,20 +532,15 @@ montarLayout("inicio");
   // Cartões: só as marcadas como destaque no empresas.json
   const grid = document.getElementById("empGrid");
   if (grid) {
-    grid.innerHTML = todas.filter(e => e.destaque).slice(0,6).map(e => {
-      const q = conta(e.id);
-      return `<a class="card emp-card" href="empresas.html#${e.id}">
+    grid.innerHTML = todas.filter(e => e.destaque).slice(0,6).map(e =>
+      `<a class="card emp-card" href="empresas.html#${e.id}">
         <div class="emp-top">
           <span class="logo-box" style="background:${e.bg};">${logoHtml(e,42)}</span>
           <div><h3>${esc(e.nome)}</h3><p>${esc(e.sede)}</p></div>
         </div>
         <p class="d">${esc(e.curto || e.resumo)}</p>
-        <div class="emp-tags">
-          ${q ? `<span class="tag sig">${q} ${q === 1 ? "vaga aberta" : "vagas abertas"}</span>` : `<span class="tag">sem vaga hoje</span>`}
-          ${(e.areas||[]).slice(0,2).map(a => `<span class="tag">${esc(a)}</span>`).join("")}
-        </div>
-      </a>`;
-    }).join("");
+        <span class="emp-mais">ver perfil <span class="arr">→</span></span>
+      </a>`).join("");
   }
 })();
 

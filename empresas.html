@@ -13,8 +13,6 @@
   .topo { max-width:var(--wrap); margin:0 auto; padding:52px 20px 30px; }
   .topo h1 { font-family:var(--display); font-weight:700; letter-spacing:-0.032em; font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:14px; max-width:18ch; }
   .topo p.lead { margin-bottom:26px; }
-  .resumo-linha { display:flex; gap:26px; flex-wrap:wrap; font-family:var(--mono); font-size:12px; color:var(--ink-3); }
-  .resumo-linha b { color:var(--signal); font-weight:600; }
 
   .corpo { max-width:var(--wrap); margin:0 auto; padding:0 20px 60px; display:grid; grid-template-columns:210px 1fr; gap:40px; align-items:start; }
   @media (max-width:960px){ .corpo{ grid-template-columns:1fr; gap:0; } }
@@ -30,7 +28,6 @@
   .trilho a.on { background:var(--panel-2); color:var(--ink); box-shadow:inset 0 0 0 1px var(--line); }
   .trilho a .pt { width:6px; height:6px; border-radius:50%; background:var(--line); flex-shrink:0; }
   .trilho a.on .pt { background:var(--signal); }
-  .trilho a .q { margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); }
 
   /* ficha da empresa */
   .ficha {
@@ -93,7 +90,6 @@
   <div class="eyebrow">Quem está no mercado</div>
   <h1>As empresas que contratam brasileiros para treinar IA</h1>
   <p class="lead">Antes de clicar em candidatar, vale saber com quem você vai trabalhar. Aqui está o perfil de cada empresa que aparece no hub: o que ela faz, que tipo de projeto oferece, como é o processo de entrada e como o pagamento chega até você.</p>
-  <div class="resumo-linha" id="resumoLinha">carregando…</div>
 </section>
 
 <div class="corpo">
@@ -108,47 +104,24 @@
 <script>
 montarLayout("empresas");
 
-const ROTULO_COLETA = {
-  auto:        { txt:"coleta automática", cls:"sig" },
-  linkedin:    { txt:"chega via LinkedIn", cls:"" },
-  monitorando: { txt:"monitorando", cls:"" }
-};
-
 (async function(){
-  let base = { empresas: [] }, dados = { vagas: [] };
+  let base = { empresas: [] };
   try { base = await lerEmpresas(); } catch(e) { console.error("empresas.json", e); }
-  try { dados = await lerVagas(); selo(dados); } catch(e) { console.error("vagas.json", e); }
 
-  const conta = id => (dados.vagas || []).filter(v => v.empresa === id).length;
   const lista = base.empresas || [];
 
-  // linha de resumo
-  const comVaga = lista.filter(e => conta(e.id) > 0).length;
-  document.getElementById("resumoLinha").innerHTML =
-    `<span><b>${lista.length}</b> empresas no radar</span>
-     <span><b>${comVaga}</b> com vaga aberta hoje</span>
-     <span><b>${(dados.vagas||[]).length}</b> vagas no total</span>`;
-
   // trilho lateral
-  document.getElementById("trilhoLista").innerHTML = lista.map(e => {
-    const q = conta(e.id);
-    return `<a href="#${e.id}" data-alvo="${e.id}"><span class="pt"></span>${esc(e.nome)}<span class="q">${q || "·"}</span></a>`;
-  }).join("");
+  document.getElementById("trilhoLista").innerHTML = lista.map(e =>
+    `<a href="#${e.id}" data-alvo="${e.id}"><span class="pt"></span>${esc(e.nome)}</a>`).join("");
 
   // fichas
   document.getElementById("fichas").innerHTML = lista.map(e => {
-    const q = conta(e.id);
-    const r = ROTULO_COLETA[e.coleta] || ROTULO_COLETA.monitorando;
     return `<article class="ficha" id="${e.id}">
       <div class="ficha-topo">
         <span class="logo-box" style="background:${e.bg};">${logoHtml(e,54)}</span>
         <div class="id">
           <h2>${esc(e.nome)}</h2>
           <div class="sub">${esc(e.tipo)} · ${esc(e.sede)}</div>
-        </div>
-        <div class="st">
-          ${q ? `<span class="tag sig">${q} ${q === 1 ? "vaga aberta" : "vagas abertas"}</span>` : `<span class="tag">sem vaga hoje</span>`}
-          <span class="tag ${r.cls}">${r.txt}</span>
         </div>
       </div>
       <div class="ficha-corpo">
@@ -175,10 +148,8 @@ const ROTULO_COLETA = {
         ${e.atencao ? `<div class="aviso"><span class="ic">▲</span><p><b>Atenção.</b> ${esc(e.atencao)}</p></div>` : ""}
 
         <div class="ficha-acoes">
-          ${q ? `<a href="vagas.html?empresa=${e.id}" class="btn primary">Ver as ${q} ${q === 1 ? "vaga" : "vagas"} <span class="arr">→</span></a>`
-               : `<a href="vagas.html" class="btn">Ver todas as vagas <span class="arr">→</span></a>`}
+          <a href="vagas.html?empresa=${e.id}" class="btn primary">Ver vagas desta empresa <span class="arr">→</span></a>
           <a href="${esc(e.site)}" target="_blank" rel="noopener" class="btn ghost">Site oficial ↗</a>
-          <a href="${esc(e.link)}" target="_blank" rel="noopener" class="btn ghost">Página de vagas ↗</a>
         </div>
       </div>
     </article>`;

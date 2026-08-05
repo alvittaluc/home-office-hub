@@ -58,15 +58,11 @@ header.site {
   display:flex; align-items:center; gap:14px;
 }
 .brand { display:flex; align-items:center; gap:11px; flex-shrink:0; }
-.brand-mark { width:38px; height:38px; display:grid; place-items:center; flex-shrink:0; }
+.brand-mark { width:40px; height:40px; display:grid; place-items:center; flex-shrink:0; }
 .brand-mark img, .brand-mark svg { display:block; }
 .brand { transition:opacity .16s; }
 .brand:hover { opacity:.85; }
-.brand-name { font-family:var(--display); font-weight:700; font-size:15.5px; letter-spacing:-0.02em; white-space:nowrap; }
-.brand-name small {
-  display:block; font-family:var(--mono); font-weight:400; font-size:9px;
-  color:var(--signal); letter-spacing:0.14em; text-transform:uppercase; margin-top:-2px;
-}
+.brand-name { font-family:var(--display); font-weight:700; font-size:16.5px; letter-spacing:-0.02em; white-space:nowrap; }
 
 /* navegação em abas */
 nav.tabs { display:flex; align-items:center; gap:2px; margin-left:16px; }
@@ -81,16 +77,6 @@ nav.tabs a.on::before {
   background:var(--signal); margin-right:7px; vertical-align:1.5px;
 }
 .hd-spacer { flex:1; }
-.hd-status {
-  font-family:var(--mono); font-size:11px; color:var(--ink-3);
-  display:flex; align-items:center; gap:7px; white-space:nowrap;
-}
-.dot { width:7px; height:7px; border-radius:50%; background:var(--signal); animation:pulse 2.4s infinite; flex-shrink:0; }
-@keyframes pulse {
-  0%{box-shadow:0 0 0 0 rgba(61,212,200,0.5);}
-  70%{box-shadow:0 0 0 7px rgba(61,212,200,0);}
-  100%{box-shadow:0 0 0 0 rgba(61,212,200,0);}
-}
 
 /* botão sanduíche, só no celular */
 .hd-toggle {
@@ -102,7 +88,6 @@ nav.tabs a.on::before {
 
 @media (max-width:900px){
   .hd { height:58px; gap:10px; }
-  .hd-status { display:none; }
   .hd-toggle { display:flex; margin-left:auto; }
   nav.tabs {
     position:absolute; top:58px; left:0; right:0; margin:0;
@@ -198,7 +183,7 @@ footer.site { border-top:1px solid var(--line); background:var(--bg-soft); margi
   max-width:var(--wrap); margin:0 auto; padding:16px 20px 26px;
   border-top:1px solid var(--line-soft);
   font-family:var(--mono); font-size:11px; color:var(--ink-3);
-  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  display:flex; justify-content:flex-start; gap:12px; flex-wrap:wrap;
 }
 
 /* ─────────────── AUXILIARES ─────────────── */

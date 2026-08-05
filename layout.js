@@ -31,8 +31,8 @@ function montarLayout(ativa) {
   header.innerHTML = `
     <div class="hd">
       <a href="index.html" class="brand" aria-label="Home Office Hub, página inicial">
-        <span class="brand-mark">${marca(38)}</span>
-        <span class="brand-name">Home Office Hub<small>Vagas de IA · Brasil</small></span>
+        <span class="brand-mark">${marca(40)}</span>
+        <span class="brand-name">Home Office Hub</span>
       </a>
       <button class="hd-toggle" id="hdToggle" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -41,10 +41,6 @@ function montarLayout(ativa) {
         ${ABAS.map(a => `<a href="${a.href}"${a.id === ativa ? ' class="on" aria-current="page"' : ""}>${a.nome}</a>`).join("")}
       </nav>
       <div class="hd-spacer"></div>
-      <div class="hd-status">
-        <span class="dot"></span>
-        <span id="updateBadge">sincronizando…</span>
-      </div>
     </div>`;
   document.body.prepend(header);
 
@@ -61,8 +57,8 @@ function montarLayout(ativa) {
   footer.innerHTML = `
     <div class="ft">
       <div>
-        <div class="ft-brand"><span class="brand-mark" style="width:34px;height:34px;">${marca(34)}</span>Home Office Hub</div>
-        <p class="ft-desc">Vagas remotas internacionais de inteligência artificial, dados e tradução que aceitam quem mora no Brasil. Curadoria diária e automática.</p>
+        <div class="ft-brand"><span class="brand-mark" style="width:36px;height:36px;">${marca(36)}</span>Home Office Hub</div>
+        <p class="ft-desc">Trabalho remoto com inteligência artificial, dados e tradução, para quem mora no Brasil.</p>
       </div>
       <div>
         <h4>Navegar</h4>
@@ -88,14 +84,12 @@ function montarLayout(ativa) {
       </div>
     </div>
     <div class="ft-bottom">
-      <span>Home Office Hub · curadoria independente</span>
-      <span id="ftUpdate">atualizado diariamente</span>
+      <span>Home Office Hub</span>
     </div>`;
   document.body.appendChild(footer);
 }
 
-/* Lê o vagas.json uma vez e devolve os dados.
-   Usado pelo selo de atualização do cabeçalho e pelas contagens ao vivo. */
+/* Lê o vagas.json uma vez e devolve os dados. */
 let _cacheVagas = null;
 async function lerVagas() {
   if (_cacheVagas) return _cacheVagas;
@@ -111,12 +105,9 @@ async function lerEmpresas() {
   return await resp.json();
 }
 
-function selo(dados) {
-  const b = document.getElementById("updateBadge");
-  if (b) b.textContent = "atualizado " + (dados.atualizado_br || "hoje");
-  const f = document.getElementById("ftUpdate");
-  if (f && dados.atualizado_br) f.textContent = "última coleta: " + dados.atualizado_br;
-}
+/* Mantida vazia de propósito: as páginas ainda chamam selo(), mas o site
+   não exibe mais data de atualização em lugar nenhum. */
+function selo() {}
 
 function esc(s) {
   return (s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));

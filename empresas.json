@@ -1,6 +1,6 @@
 {
   "atualizado": "2026-08-05",
-  "nota": "Arquivo mantido a mao. Nao e gerado pelo robo. Editar aqui muda o site inteiro (index, empresas e vagas).",
+  "nota": "Arquivo dos perfis de empresa, mantido a mao. Editar aqui muda a pagina inicial, a de empresas e a de vagas de uma vez so.",
   "empresas": [
     {
       "id": "welocalize",
@@ -333,7 +333,7 @@
       "como_entrar": "Cadastro no site com currículo e perfil profissional, seguido de entrevista dentro da plataforma. A partir daí ela oferece os projetos que combinam com o seu perfil.",
       "pagamento": "Por hora de projeto, com valor definido conforme a área e a senioridade.",
       "clientes": "Laboratórios de IA",
-      "atencao": "Ainda não temos coleta automática das vagas dela, porque a seleção não passa por lista pública. Entramos pelo site oficial. Também não é toda temporada que há projeto em português brasileiro."
+      "atencao": "A entrada não é por vaga publicada, e sim por entrevista dentro da plataforma. Por isso ela aparece aqui pelo site oficial. Também não é toda temporada que há projeto em português brasileiro, então vale deixar o perfil pronto e acompanhar."
     }
   ]
 }
