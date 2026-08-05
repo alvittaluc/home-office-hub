@@ -101,6 +101,13 @@ function erro(msg) {
   const v = (dados.vagas || []).find(x => x.id === id);
   if (!v) { cont.innerHTML = erro("Esta vaga não está mais disponível.<br>Ela pode ter sido preenchida ou expirado."); return; }
 
+  // Vaga do LinkedIn não tem página de detalhe própria. Se alguém chegar aqui
+  // por link antigo ou favorito, mandamos direto para o anúncio original.
+  if ((v.empresa === "linkedin" || v.fonte === "linkedin") && v.url) {
+    location.replace(v.url);
+    return;
+  }
+
   const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#888", bg:"#222", desc:"" };
   const r = v.resumo || {};
   document.title = v.titulo + " — Home Office Hub";

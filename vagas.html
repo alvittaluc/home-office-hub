@@ -260,13 +260,24 @@ function render() {
       daCat.forEach(v => {
         const real = v.empresa_real ? `<div class="real">↳ ${esc(v.empresa_real)}</div>` : "";
         const src = (v.fonte && v.fonte !== "direto") ? `<span class="tag sig">via ${esc(v.fonte)}</span>` : "";
-        html += `<a class="vaga" href="vaga.html?id=${encodeURIComponent(v.id||"")}" data-cat="${v.categoria}" data-emp="${id}">
+
+        // Vagas do LinkedIn não têm resumo próprio, então o cartão leva
+        // direto para o anúncio original, em outra aba.
+        const daLista = v.empresa === "linkedin" || v.fonte === "linkedin";
+        const destino = daLista
+          ? `href="${esc(v.url)}" target="_blank" rel="noopener"`
+          : `href="vaga.html?id=${encodeURIComponent(v.id||"")}"`;
+        const rotulo = daLista
+          ? `abrir no LinkedIn <span class="arr">↗</span>`
+          : `ver detalhes <span class="arr">→</span>`;
+
+        html += `<a class="vaga" ${destino} data-cat="${v.categoria}" data-emp="${id}">
           <div class="tit">${esc(v.titulo)}</div>${real}
           <div class="tags">
             <span class="tag blu">${esc(v.badge)}</span>
             <span class="tag">${esc(v.local)}</span>${src}${seloData(v)}
           </div>
-          <span class="mais">ver detalhes <span class="arr">→</span></span>
+          <span class="mais">${rotulo}</span>
         </a>`;
       });
       html += `</div>`;
