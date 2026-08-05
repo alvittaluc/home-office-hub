@@ -82,15 +82,26 @@ USAR_ONEFORMA = True
 # as vagas "Worldwide" e as que citam Brasil no título.
 ONEFORMA_ABRIR_INCERTOS = True
 
-# Telus: usa a API .json escondida. Infelizmente a Telus usa Cloudflare e
-# BLOQUEIA tanto o GitHub quanto o Python no PC (só funciona abrindo a URL
-# .json no navegador manualmente). Por isso deixamos DESLIGADA por padrão —
-# o coletor preserva a vaga da Telus que você adicionar/mantiver no vagas.json.
-# Se um dia quiser tentar de novo, mude para True.
-USAR_TELUS = False
+# Telus: LIGADA de novo em agosto de 2026. O site foi refeito, saiu o
+# Cloudflare e apareceu uma API pública de verdade. O melhor: cada vaga traz
+# o idioma exato ("Portuguese (Brazil)"), então o filtro não precisa adivinhar.
+# O scraper antigo (scraper_telus.py) ficou obsoleto e não é mais usado.
+USAR_TELUS = True
 
 # Rex.zone (RemoExperts): DESLIGADO — as vagas dele já chegam pelo LinkedIn.
 USAR_REXZONE = False
+
+# ─── FONTES NOVAS (agosto de 2026, no módulo scraper_extras.py) ───
+# Meridial: o site meridial.ai é vitrine, por baixo é Greenhouse (quadro
+# "agency"). API pública, com descrição completa e data de publicação.
+USAR_MERIDIAL = True
+# micro1: API por busca de palavra. A descrição só existe na página da vaga,
+# então o robô abre uma página por vaga. São poucas, o custo é baixo.
+USAR_MICRO1 = True
+MICRO1_BUSCAR_DESCRICAO = True
+# Alignerr (Labelbox): repete muito o mesmo anúncio, um por país. O robô abre
+# cada vaga para descobrir o país verdadeiro e fica com a mais recente.
+USAR_ALIGNERR = True
 
 # ─── FASE 4: LINKEDIN via GMAIL ───
 # As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
@@ -704,6 +715,69 @@ def buscar_linkedin() -> list:
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  FONTES NOVAS — Meridial, TELUS, micro1 e Alignerr
+#  (toda a lógica de rede e de filtro vive em scraper_extras.py)
+# ═══════════════════════════════════════════════════════════════════
+
+def _buscar_extra(nome_interno, nome_funcao, **kwargs) -> list:
+    """Ponte entre o scraper_extras.py e o formato padrão do coletor.
+
+    Uma função só serve as quatro fontes porque todas devolvem a mesma
+    estrutura de dicionário. Se o módulo não existir ou a fonte falhar,
+    devolve lista vazia e o coletor preserva as vagas da rodada anterior.
+    """
+    try:
+        import scraper_extras
+        funcao = getattr(scraper_extras, nome_funcao)
+    except Exception as e:
+        print(f"  → {nome_interno}: módulo não encontrado ({str(e)[:40]})")
+        return []
+
+    try:
+        cruas = funcao(**kwargs)
+    except Exception as e:
+        print(f"  → {nome_interno}: falhou ({str(e)[:50]})")
+        return []
+
+    vagas = []
+    for v in cruas:
+        titulo = v["titulo"]
+        cat_id, badge = categorizar(titulo)
+        vagas.append({
+            "empresa": nome_interno,
+            "titulo": titulo,
+            "local": limpar_local(v.get("local", "")) or "Remoto",
+            "categoria": cat_id,
+            "badge": badge,
+            "url": v["url"],
+            "commitment": v.get("horario", ""),
+            "fonte": "direto",
+            "data_post": normalizar_data(v.get("data_post")),
+            "_desc": v.get("desc", ""),
+            "_req": v.get("requisitos", ""),
+            "_comp": v.get("pagamento", ""),
+        })
+    return vagas
+
+
+def buscar_meridial() -> list:
+    return _buscar_extra("meridial", "coletar_meridial")
+
+
+def buscar_micro1() -> list:
+    return _buscar_extra("micro1", "coletar_micro1",
+                         buscar_descricao=MICRO1_BUSCAR_DESCRICAO)
+
+
+def buscar_alignerr() -> list:
+    return _buscar_extra("alignerr", "coletar_alignerr")
+
+
+def buscar_telus_api() -> list:
+    return _buscar_extra("telus", "coletar_telus")
+
+
+# ═══════════════════════════════════════════════════════════════════
 #  SCRAPER — Rex.zone (via módulo scraper_rexzone.py)
 # ═══════════════════════════════════════════════════════════════════
 
@@ -835,17 +909,28 @@ def main():
                 todas += preservadas_of
     if USAR_REXZONE:
         todas += buscar_rexzone()
-    if USAR_TELUS:
-        todas += buscar_telus()
-    else:
-        # No GitHub a Telus é pulada. Para não "perder" as vagas da Telus
-        # que você coletou no seu PC, preservamos as que já estão no arquivo.
-        preservadas = _preservar_do_arquivo("telus")
-        if preservadas:
-            print(f"  → Telus: mantendo {len(preservadas)} vaga(s) do último PC")
-            todas += preservadas
+
+    # ─── Fontes novas de agosto de 2026 ───
+    # Todas seguem a mesma proteção: se a fonte não responder, mantemos as
+    # vagas da rodada anterior em vez de deixá-las sumir do site.
+    for ligada, funcao, nome in (
+        (USAR_TELUS, buscar_telus_api, "telus"),
+        (USAR_MERIDIAL, buscar_meridial, "meridial"),
+        (USAR_MICRO1, buscar_micro1, "micro1"),
+        (USAR_ALIGNERR, buscar_alignerr, "alignerr"),
+    ):
+        if not ligada:
+            print(f"  → {nome}: desligada nas configurações")
+            continue
+        novas = funcao()
+        if novas:
+            todas += novas
         else:
-            print("  → Telus: pulada (rode no seu PC para incluir)")
+            preservadas = _preservar_do_arquivo(nome)
+            if preservadas:
+                print(f"  → {nome}: não retornou nada, "
+                      f"mantendo {len(preservadas)} vaga(s) da última vez")
+                todas += preservadas
 
     if USAR_LINKEDIN:
         todas += buscar_linkedin()
