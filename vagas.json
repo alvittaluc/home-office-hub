@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-05T15:13:03.565877+00:00",
-  "atualizado_br": "05/08/2026 às 15:13",
-  "total": 65,
+  "atualizado_em": "2026-08-05T15:24:33.364180+00:00",
+  "atualizado_br": "05/08/2026 às 15:24",
+  "total": 67,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -916,6 +916,34 @@
       "data_vista": "2026-08-05",
       "data_ref": "2026-03-03",
       "id": "00e551eb08"
+    },
+    {
+      "empresa": "telus",
+      "titulo": "GenAI Multilingual Specialist — LLM/VLM Evaluation & SFT Expert",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/128676",
+      "commitment": "freelancer",
+      "fonte": "direto",
+      "data_post": "2026-05-07",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-05-07",
+      "id": "92f48d01d6"
+    },
+    {
+      "empresa": "telus",
+      "titulo": "Global AI Language Labeler (Transcription & QA) – Multiple Locations",
+      "local": "Remoto · Brasil",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/128645",
+      "commitment": "freelancer",
+      "fonte": "direto",
+      "data_post": "2026-04-16",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-04-16",
+      "id": "a237c23edf"
     },
     {
       "empresa": "meridial",

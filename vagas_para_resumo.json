@@ -1,5 +1,5 @@
 {
-  "total": 16,
+  "total": 18,
   "vagas": [
     {
       "id": "00e551eb08",
@@ -11,6 +11,28 @@
       "descricao": "About the Role \n\n We are inviting parents and guardians of teenagers aged 13–17 to take part in a short, secure online participation task.\n As part of a global effort to better protect children online, this task supports the development of safer internet technologies, including age verification systems that prevent access to harmful or age-inappropriate content.\n The task involves confirming basic information for identity verification and can be completed from home in around 30 minutes. It is a simple data collection process designed to support secure, privacy-focused age verification systems.\n\n About Us: \n\n We are a team dedicated to safeguarding children and society online . Our solutions help platforms follow regulations, build trust, and keep their communities safe.\n Your participation helps make the internet safer for children and families while supporting responsible and secure online safety solutions.",
       "requisitos": "",
       "remuneracao": "USD 20 / por unit"
+    },
+    {
+      "id": "92f48d01d6",
+      "empresa": "telus",
+      "titulo": "GenAI Multilingual Specialist — LLM/VLM Evaluation & SFT Expert",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/128676",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "QA",
+      "descricao": "We are currently seeking language experts with native or fluent proficiency in: \n\n • Thai\n• French (France)\n• Vietnamese\n• Malay\n• Japanese\n• Korean\n• Indonesian\n• Arabic (Gulf)\n• Spanish (Mexico)\n• Portuguese (Brazil)\n• Tagalog\n\n About the Role: \n\n At TELUS Digital, we help the world’s leading organizations build safer, smarter, and more reliable AI systems. As a GenAI Multilingual Specialist — LLM/VLM Evaluation & SFT Expert, you will support the development and evaluation of next-generation Large Language Models (LLMs) and Vision-Language Models (VLMs).\n\n Your role is to act as the “human reasoning layer” behind AI systems by evaluating multilingual AI-generated content for factual accuracy, logical consistency, instruction adherence, and cultural relevance. You will work across multilingual Supervised Fine-Tuning (SFT), rubric-based scoring, fact verification, and multimodal (image + text) evaluation workflows.\n\n Responsibilities \n\n • Evaluate AI Outputs\n• Review AI-generated responses for quality, reasoning accuracy, factual correctness, and compliance with project guidelines.\n• Create and evaluate multilingual Supervised Fine-Tuning (SFT) data to improve AI model performance across multiple languages and domains.\n• Perform Multimodal (VLM) Assessment\n• Analyze relationships between images and text outputs to evaluate contextual accuracy and multimodal reasoning quality.\n• Apply Rubric-Based Scoring\n• Assess outputs using structured scoring frameworks and standardized evaluation rubrics.\n• Conduct Research & Fact Verification\n• Verify claims using authoritative sources and apply citation standards to distinguish factual information from unsupported assertions.\n• Escalate Edge Cases\n• Identify ambiguous outputs, policy concerns, and reasoning inconsistencies that require escalation or additional review.\n• Maintain Operational Accuracy\n• Follow complex project SOPs and quality standards consistently across high-volume evaluation workflows.",
+      "requisitos": "",
+      "remuneracao": "USD 4.5 / por hour"
+    },
+    {
+      "id": "a237c23edf",
+      "empresa": "telus",
+      "titulo": "Global AI Language Labeler (Transcription & QA) – Multiple Locations",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/128645",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "Tradução",
+      "descricao": "Our global AI Community is a vibrant network of 1+ million contributors from diverse backgrounds who help our customers collect, enhance, train, translate, and localize content to build better AI models. Become part of our growing community and make an impact by supporting the machine learning models of some of the world’s largest brands.\n\n Join our exciting new project as a Global Language Labeler! \n\n Task: Audio Speech Recognition - Transcription and QA Training details: To be confirmed\n\n Live Production Details: \n\n • Start Date: Immediate availability required (End of April). Shortlisted applicants will receive confirmation via email.\n• Duration: Approximately 4 weeks.\n• Required Availability: 5+ hours per day\n• Compensation: 4.5-23 USD per hour. (Depending on the language and locale)\n\n Target Languages & Markets: We are actively hiring native speakers for the following regions.\n\n Please specify your native language in your application: \n\n • English (Romania, Philippines, United States, United Kingdom)\n• Tagalog (Philippines)\n• Indonesian (Indonesia)\n• Malay (Malaysia)\n• Portuguese (Brazil)\n• Spanish (Mexico)\n• Thai (Thailand)\n• Vietnamese (Vietnam)\n• French (France)\n• German (Germany)\n• Italian (Italy)\n• Japanese (Japan)\n• Korean (Korea)\n• Russian (Kazakhstan)\n• Arabic (Egypt)\n\n Requirements: \n\n • 18+ years old.\n• Native-level proficiency in one of the target languages listed above.\n• English B2 (Advanced) level for system navigation and guidelines.\n• Previous experience in Transcription or Annotation is required.\n• Avid social media user.\n• Hardware: Laptop or desktop with Windows 10 (or higher) or Mac with newest iOS. (Note: Tasks cannot be performed on a computer).\n• Steady, high-speed internet connection and a high-quality headset (earphones).",
+      "requisitos": "",
+      "remuneracao": "USD 4.5 / por hour"
     },
     {
       "id": "d00bc7297c",
