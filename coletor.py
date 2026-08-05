@@ -84,9 +84,16 @@ USAR_ONEFORMA = True
 ONEFORMA_ABRIR_INCERTOS = True
 
 # Telus: LIGADA de novo em agosto de 2026. O site foi refeito, saiu o
-# Cloudflare e apareceu uma API pública de verdade. O melhor: cada vaga traz
-# o idioma exato ("Portuguese (Brazil)"), então o filtro não precisa adivinhar.
+# Cloudflare e apareceu uma API pública de verdade. Cada vaga traz o idioma
+# exato ("Portuguese (Brazil)"), então o filtro não precisa adivinhar.
 # O scraper antigo (scraper_telus.py) ficou obsoleto e não é mais usado.
+#
+# ATENÇÃO: a API da TELUS filtra pelo PAÍS DE QUEM CHAMA, descoberto pelo
+# endereço de IP. Do Brasil ela devolve 107 vagas, com as exclusivas do Brasil
+# incluídas. Do servidor do GitHub, que fica nos Estados Unidos, ela devolve
+# 116 vagas diferentes, sem as do Brasil. Não dá para forçar: testamos mandar
+# country, region, language_ids e keyword no corpo, e a API ignora todos.
+# Por isso a TELUS também entra na lista de fontes que só rodam no seu PC.
 USAR_TELUS = True
 
 # Rex.zone (RemoExperts): DESLIGADO — as vagas dele já chegam pelo LinkedIn.
@@ -99,18 +106,34 @@ USAR_MERIDIAL = True
 # micro1: API por busca de palavra. A descrição só existe na página da vaga,
 # então o robô abre uma página por vaga. São poucas, o custo é baixo.
 #
-# ATENÇÃO: a micro1 BLOQUEIA servidor de nuvem. No GitHub ela responde 403 em
-# tudo. Do seu PC funciona normalmente. Por isso o padrão abaixo é pular a
-# micro1 quando o robô está rodando no GitHub, e rodar quando está no seu PC.
-# As vagas dela são preservadas entre as rodadas, então nada some do site.
-# Se um dia a micro1 parar de bloquear, mude MICRO1_SO_NO_PC para False.
+# ATENÇÃO: a micro1 BLOQUEIA servidor de nuvem, com erro 403 em tudo.
+# Do seu PC funciona normalmente.
 USAR_MICRO1 = True
-MICRO1_SO_NO_PC = True
 MICRO1_BUSCAR_DESCRICAO = True
+
+# ─── FONTES QUE SÓ FUNCIONAM DIREITO NO SEU PC ───
+# Duas fontes tratam servidor de nuvem de forma diferente do seu computador:
+#
+#   micro1 → recusa com 403. Não devolve nada.
+#   telus  → devolve, mas as vagas ERRADAS. A API filtra pelo país do IP, e do
+#            servidor americano do GitHub as vagas exclusivas do Brasil somem.
+#
+# A telus é o caso mais traiçoeiro dos dois, porque ela não dá erro nenhum.
+# Ela simplesmente traz um conjunto parecido, só que sem as vagas brasileiras,
+# e a rodada do GitHub sobrescreveria as vagas boas que você coletou no PC.
+#
+# Por isso o robô PULA essas duas quando roda no GitHub e preserva o que foi
+# coletado da última vez. Para atualizá-las, rode o rodar-coletor.bat no PC.
+FONTES_SO_NO_PC = {"micro1", "telus"}
 
 # Detecta se estamos rodando dentro do GitHub Actions (o GitHub define essa
 # variável sozinho). No seu PC ela não existe.
 RODANDO_NO_GITHUB = os.environ.get("GITHUB_ACTIONS") == "true"
+
+
+def so_roda_no_pc(nome):
+    """Diz se esta fonte deve ser pulada nesta execução."""
+    return RODANDO_NO_GITHUB and nome in FONTES_SO_NO_PC
 # Alignerr (Labelbox): repete muito o mesmo anúncio, um por país. O robô abre
 # cada vaga para descobrir o país verdadeiro e fica com a mais recente.
 USAR_ALIGNERR = True
@@ -934,16 +957,18 @@ def main():
     # Todas seguem a mesma proteção: se a fonte não responder, mantemos as
     # vagas da rodada anterior em vez de deixá-las sumir do site.
     for ligada, funcao, nome in (
-        (USAR_TELUS, buscar_telus_api, "telus"),
+        (USAR_TELUS and not so_roda_no_pc("telus"), buscar_telus_api, "telus"),
         (USAR_MERIDIAL, buscar_meridial, "meridial"),
-        (USAR_MICRO1 and not (MICRO1_SO_NO_PC and RODANDO_NO_GITHUB),
-         buscar_micro1, "micro1"),
+        (USAR_MICRO1 and not so_roda_no_pc("micro1"), buscar_micro1, "micro1"),
         (USAR_ALIGNERR, buscar_alignerr, "alignerr"),
     ):
         if not ligada:
-            if nome == "micro1" and RODANDO_NO_GITHUB:
-                print("  → micro1: pulada no GitHub (ela bloqueia servidor "
-                      "de nuvem). Rode no seu PC para atualizar.")
+            if so_roda_no_pc(nome):
+                motivo = ("bloqueia servidor de nuvem" if nome == "micro1"
+                          else "do GitHub a API devolve as vagas erradas, "
+                               "sem as exclusivas do Brasil")
+                print(f"  → {nome}: pulada no GitHub ({motivo}). "
+                      f"Rode no seu PC para atualizar.")
             else:
                 print(f"  → {nome}: desligada nas configurações")
             preservadas = _preservar_do_arquivo(nome)
