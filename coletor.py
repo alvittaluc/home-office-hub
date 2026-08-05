@@ -757,6 +757,14 @@ def _buscar_extra(nome_interno, nome_funcao, **kwargs) -> list:
             "_req": v.get("requisitos", ""),
             "_comp": v.get("pagamento", ""),
         })
+
+    # Lista o que passou no filtro. São poucas vagas por fonte, e ver o título
+    # no log é o que permite comparar com o que o site da empresa mostra.
+    # Foi assim que descobrimos que a TELUS trazia menos vagas do que devia.
+    for v in vagas:
+        marca = "" if v["_desc"] else "  (SEM DESCRIÇÃO)"
+        print(f"      · {v['titulo'][:64]}{marca}")
+
     return vagas
 
 

@@ -73,18 +73,54 @@ TEMPO_LIMITE = 30
 #  FERRAMENTAS COMUNS
 # ═══════════════════════════════════════════════════════════════════
 
-def _baixar(url, corpo=None, tipo_json=True):
-    """Faz a requisição e devolve o texto. Se corpo for informado, vira POST."""
-    cabecalho = {"User-Agent": UA, "Accept": "*/*", "Accept-Language": "en-US,en;q=0.9"}
+def _baixar(url, corpo=None, tipo_json=True, origem=None, tentativas=3):
+    """Faz a requisição e devolve o resultado. Se corpo for informado, vira POST.
+
+    Manda cabeçalhos de navegador de verdade. Várias dessas APIs recusam
+    requisição "pelada", que é o jeito padrão do Python, e devolvem 403.
+    O parâmetro origem preenche Origin e Referer, que alguns servidores exigem.
+
+    Em caso de erro, levanta uma exceção com o motivo REAL (código HTTP e um
+    pedaço da resposta), não só "falhou". Sem isso não dá para consertar nada
+    olhando o log do GitHub.
+    """
+    cabecalho = {
+        "User-Agent": UA,
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Cache-Control": "no-cache",
+    }
+    if origem:
+        cabecalho["Origin"] = origem
+        cabecalho["Referer"] = origem + "/"
     dados = None
     if corpo is not None:
         dados = json.dumps(corpo).encode("utf-8")
         cabecalho["Content-Type"] = "application/json"
-    req = urllib.request.Request(url, data=dados, headers=cabecalho)
-    with urllib.request.urlopen(req, timeout=TEMPO_LIMITE, context=_SSL_CTX) as r:
-        bruto = r.read()
-    texto = bruto.decode("utf-8", errors="replace")
-    return json.loads(texto) if tipo_json else texto
+
+    ultimo_erro = None
+    for tentativa in range(1, tentativas + 1):
+        req = urllib.request.Request(url, data=dados, headers=cabecalho)
+        try:
+            with urllib.request.urlopen(req, timeout=TEMPO_LIMITE,
+                                        context=_SSL_CTX) as r:
+                bruto = r.read()
+            texto = bruto.decode("utf-8", errors="replace")
+            return json.loads(texto) if tipo_json else texto
+        except urllib.error.HTTPError as e:
+            try:
+                corpo_erro = e.read().decode("utf-8", errors="replace")[:160]
+            except Exception:
+                corpo_erro = ""
+            ultimo_erro = RuntimeError(f"HTTP {e.code} — {corpo_erro}")
+            # 4xx não melhora tentando de novo (a não ser 429, que é excesso)
+            if e.code < 500 and e.code != 429:
+                raise ultimo_erro
+        except Exception as e:
+            ultimo_erro = RuntimeError(f"{type(e).__name__}: {str(e)[:120]}")
+        if tentativa < tentativas:
+            time.sleep(1.5 * tentativa)
+    raise ultimo_erro
 
 
 def limpar_html(texto):
@@ -271,7 +307,8 @@ def coletar_telus(max_paginas=6):
     todas, total = [], None
     try:
         for pagina in range(1, max_paginas + 1):
-            resposta = _baixar(URL_TELUS, corpo={"page": pagina, "limit": 100})
+            resposta = _baixar(URL_TELUS, corpo={"page": pagina, "limit": 100},
+                               origem="https://www.telusinternational.ai")
             lote = resposta.get("data") or []
             todas += lote
             pag = resposta.get("pagination") or {}
@@ -334,7 +371,8 @@ TERMOS_MICRO1 = ["brazil", "brasil", "portuguese"]
 def _descricao_micro1(url):
     """Abre a página da vaga e tenta extrair a descrição."""
     try:
-        pagina = _baixar(url, tipo_json=False)
+        pagina = _baixar(url, tipo_json=False,
+                         origem="https://jobs.micro1.ai", tentativas=2)
     except Exception:
         return ""
     # o texto costuma vir dentro de um JSON embutido na página
@@ -358,13 +396,16 @@ def coletar_micro1(pausa=1.0, buscar_descricao=True):
     print("  → micro1 ...", end=" ")
     brutas, ids_vistos = [], set()
     houve_resposta = False
+    erros = []
 
     for termo in TERMOS_MICRO1:
         try:
             resposta = _baixar(URL_MICRO1.format(termo=termo),
-                               corpo=CORPO_MICRO1)
+                               corpo=CORPO_MICRO1,
+                               origem="https://www.micro1.ai")
             houve_resposta = True
-        except Exception:
+        except Exception as e:
+            erros.append(f"{termo}: {e}")
             continue
         for v in (resposta.get("data") or []):
             jid = v.get("job_id")
@@ -374,7 +415,10 @@ def coletar_micro1(pausa=1.0, buscar_descricao=True):
         time.sleep(0.4)
 
     if not houve_resposta:
-        print("FALHOU (nenhuma busca respondeu)")
+        # mostra o motivo de verdade, senão não dá para consertar pelo log
+        print("FALHOU")
+        for msg in erros:
+            print(f"      · {msg}")
         return []
 
     vagas = []
@@ -431,7 +475,8 @@ TERMOS_ALIGNERR = ["portuguese", "brazil"]
 def _detalhe_alignerr(url):
     """Abre a página da vaga e lê o __NEXT_DATA__, que traz país e datas."""
     try:
-        pagina = _baixar(url, tipo_json=False)
+        pagina = _baixar(url, tipo_json=False,
+                         origem="https://www.alignerr.com", tentativas=2)
     except Exception:
         return {}
     m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
@@ -455,12 +500,15 @@ def coletar_alignerr(pausa=0.6):
     print("  → Alignerr ...", end=" ")
     brutas, ids_vistos = [], set()
     houve_resposta = False
+    erros = []
 
     for termo in TERMOS_ALIGNERR:
         try:
-            resposta = _baixar(URL_ALIGNERR.format(termo=termo))
+            resposta = _baixar(URL_ALIGNERR.format(termo=termo),
+                               origem="https://www.alignerr.com")
             houve_resposta = True
-        except Exception:
+        except Exception as e:
+            erros.append(f"{termo}: {e}")
             continue
         for v in (resposta.get("jobs") or []):
             jid = v.get("id")
@@ -470,7 +518,9 @@ def coletar_alignerr(pausa=0.6):
         time.sleep(0.4)
 
     if not houve_resposta:
-        print("FALHOU (nenhuma busca respondeu)")
+        print("FALHOU")
+        for msg in erros:
+            print(f"      · {msg}")
         return []
 
     candidatas = []
