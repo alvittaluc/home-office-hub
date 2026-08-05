@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empresas que contratam brasileiros — Home Office Hub</title>
+<meta name="description" content="Quem é quem no mercado de dados e inteligência artificial: Welocalize, RWS TrainAI, Toloka, OneForma, CrowdGen, TELUS e Outlier. O que fazem, como entrar e como pagam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<style>
+  .topo { max-width:var(--wrap); margin:0 auto; padding:52px 20px 30px; }
+  .topo h1 { font-family:var(--display); font-weight:700; letter-spacing:-0.032em; font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:14px; max-width:18ch; }
+  .topo p.lead { margin-bottom:26px; }
+  .resumo-linha { display:flex; gap:26px; flex-wrap:wrap; font-family:var(--mono); font-size:12px; color:var(--ink-3); }
+  .resumo-linha b { color:var(--signal); font-weight:600; }
+
+  .corpo { max-width:var(--wrap); margin:0 auto; padding:0 20px 60px; display:grid; grid-template-columns:210px 1fr; gap:40px; align-items:start; }
+  @media (max-width:960px){ .corpo{ grid-template-columns:1fr; gap:0; } }
+
+  .trilho { position:sticky; top:86px; padding-top:6px; }
+  @media (max-width:960px){ .trilho{ display:none; } }
+  .trilho h4 { font-family:var(--mono); font-size:10.5px; letter-spacing:0.11em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px; font-weight:500; }
+  .trilho a {
+    display:flex; align-items:center; gap:9px; font-size:13px; color:var(--ink-2);
+    padding:8px 10px; border-radius:8px; transition:all .15s;
+  }
+  .trilho a:hover { background:var(--panel); color:var(--ink); }
+  .trilho a.on { background:var(--panel-2); color:var(--ink); box-shadow:inset 0 0 0 1px var(--line); }
+  .trilho a .pt { width:6px; height:6px; border-radius:50%; background:var(--line); flex-shrink:0; }
+  .trilho a.on .pt { background:var(--signal); }
+  .trilho a .q { margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); }
+
+  /* ficha da empresa */
+  .ficha {
+    border:1px solid var(--line-soft); border-radius:16px; background:var(--panel);
+    margin-bottom:18px; overflow:hidden; scroll-margin-top:82px;
+  }
+  .ficha-topo {
+    display:flex; align-items:flex-start; gap:16px; padding:24px;
+    border-bottom:1px solid var(--line-soft);
+    background:linear-gradient(160deg,var(--panel-2),transparent 70%);
+  }
+  .ficha-topo .logo-box { width:54px; height:54px; }
+  .ficha-topo .id { flex:1; min-width:0; }
+  .ficha-topo h2 { font-family:var(--display); font-weight:600; font-size:22px; letter-spacing:-0.02em; }
+  .ficha-topo .sub { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); margin-top:3px; }
+  .ficha-topo .st { display:flex; flex-direction:column; align-items:flex-end; gap:7px; flex-shrink:0; }
+  @media (max-width:640px){
+    .ficha-topo { flex-wrap:wrap; padding:20px; }
+    .ficha-topo .st { flex-direction:row; align-items:center; width:100%; }
+  }
+
+  .ficha-corpo { padding:22px 24px 24px; }
+  @media (max-width:640px){ .ficha-corpo{ padding:18px 20px 20px; } }
+  .ficha-corpo > p.resumo { font-size:14.5px; color:var(--ink-2); line-height:1.65; margin-bottom:20px; max-width:74ch; }
+
+  .dados {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px;
+    background:var(--line-soft); border:1px solid var(--line-soft); border-radius:11px;
+    overflow:hidden; margin-bottom:22px;
+  }
+  .dado { background:var(--bg-soft); padding:13px 14px; }
+  .dado .k { font-family:var(--mono); font-size:9.5px; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-3); margin-bottom:5px; }
+  .dado .v { font-size:12.5px; color:var(--ink); line-height:1.45; }
+
+  .blocos { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+  @media (max-width:720px){ .blocos{ grid-template-columns:1fr; } }
+  .bloco { background:rgba(255,255,255,0.014); border:1px solid var(--line-soft); border-radius:11px; padding:16px 17px; }
+  .bloco h4 {
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--signal); margin-bottom:9px; font-weight:500; display:flex; align-items:center; gap:8px;
+  }
+  .bloco h4::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--signal); }
+  .bloco p { font-size:13.5px; color:var(--ink-2); line-height:1.6; }
+
+  .aviso {
+    display:flex; gap:12px; align-items:flex-start; padding:14px 16px; border-radius:11px;
+    background:rgba(255,180,84,0.06); border:1px solid rgba(255,180,84,0.22); margin-bottom:20px;
+  }
+  .aviso .ic { color:var(--amber); font-size:14px; line-height:1.3; flex-shrink:0; }
+  .aviso p { font-size:13.5px; color:var(--ink-2); line-height:1.6; }
+  .aviso b { color:var(--amber); font-weight:600; }
+
+  .ficha-acoes { display:flex; gap:9px; flex-wrap:wrap; align-items:center; }
+  .areas-linha { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:18px; }
+
+  /* outras plataformas */
+  .outras { max-width:var(--wrap); margin:0 auto; padding:20px 20px 20px; }
+  .outras-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:12px; margin-top:22px; }
+  .outra { display:flex; gap:13px; align-items:flex-start; }
+  .outra .logo-box { width:38px; height:38px; background:var(--panel-2); }
+  .outra h3 { font-family:var(--display); font-weight:600; font-size:15px; margin-bottom:5px; }
+  .outra p { font-size:13px; color:var(--ink-2); line-height:1.5; }
+</style>
+</head>
+<body>
+
+<section class="topo">
+  <div class="eyebrow">Quem está no mercado</div>
+  <h1>As empresas que contratam brasileiros para treinar IA</h1>
+  <p class="lead">Antes de clicar em candidatar, vale saber com quem você vai trabalhar. Aqui está o perfil de cada empresa que aparece no hub: o que ela faz, que tipo de projeto oferece, como é o processo de entrada e como o pagamento chega até você.</p>
+  <div class="resumo-linha" id="resumoLinha">carregando…</div>
+</section>
+
+<div class="corpo">
+  <aside class="trilho">
+    <h4>Empresas</h4>
+    <div id="trilhoLista"></div>
+  </aside>
+  <div id="fichas"></div>
+</div>
+
+<section class="outras">
+  <hr class="rule" style="margin-bottom:34px;">
+  <div class="eyebrow">Também no mercado</div>
+  <h2 class="sec">Plataformas que ainda não estão no hub</h2>
+  <p class="lead" style="margin-top:12px;">Estas empresas atuam no mesmo setor e vale conhecer. Ainda não coletamos vagas delas de forma automática, seja porque não publicam lista aberta, seja porque a seleção é feita direto na plataforma.</p>
+  <div class="outras-grid" id="outrasGrid"></div>
+</section>
+
+<script src="layout.js"></script>
+<script>
+montarLayout("empresas");
+
+const ROTULO_COLETA = {
+  auto:        { txt:"coleta automática", cls:"sig" },
+  linkedin:    { txt:"chega via LinkedIn", cls:"" },
+  monitorando: { txt:"monitorando", cls:"" }
+};
+
+(async function(){
+  let base = { empresas: [], outras_plataformas: [] }, dados = { vagas: [] };
+  try { base = await lerEmpresas(); } catch(e) { console.error("empresas.json", e); }
+  try { dados = await lerVagas(); selo(dados); } catch(e) { console.error("vagas.json", e); }
+
+  const conta = id => (dados.vagas || []).filter(v => v.empresa === id).length;
+  const lista = base.empresas || [];
+
+  // linha de resumo
+  const comVaga = lista.filter(e => conta(e.id) > 0).length;
+  document.getElementById("resumoLinha").innerHTML =
+    `<span><b>${lista.length}</b> empresas no radar</span>
+     <span><b>${comVaga}</b> com vaga aberta hoje</span>
+     <span><b>${(dados.vagas||[]).length}</b> vagas no total</span>`;
+
+  // trilho lateral
+  document.getElementById("trilhoLista").innerHTML = lista.map(e => {
+    const q = conta(e.id);
+    return `<a href="#${e.id}" data-alvo="${e.id}"><span class="pt"></span>${esc(e.nome)}<span class="q">${q || "·"}</span></a>`;
+  }).join("");
+
+  // fichas
+  document.getElementById("fichas").innerHTML = lista.map(e => {
+    const q = conta(e.id);
+    const r = ROTULO_COLETA[e.coleta] || ROTULO_COLETA.monitorando;
+    return `<article class="ficha" id="${e.id}">
+      <div class="ficha-topo">
+        <span class="logo-box" style="background:${e.bg};">${logoHtml(e,54)}</span>
+        <div class="id">
+          <h2>${esc(e.nome)}</h2>
+          <div class="sub">${esc(e.tipo)} · ${esc(e.sede)}</div>
+        </div>
+        <div class="st">
+          ${q ? `<span class="tag sig">${q} ${q === 1 ? "vaga aberta" : "vagas abertas"}</span>` : `<span class="tag">sem vaga hoje</span>`}
+          <span class="tag ${r.cls}">${r.txt}</span>
+        </div>
+      </div>
+      <div class="ficha-corpo">
+        <p class="resumo">${esc(e.resumo)}</p>
+
+        <div class="areas-linha">
+          ${(e.areas||[]).map(a => `<span class="tag blu">${esc(a)}</span>`).join("")}
+        </div>
+
+        <div class="dados">
+          <div class="dado"><div class="k">Fundação</div><div class="v">${esc(e.fundada)}</div></div>
+          <div class="dado"><div class="k">Sede</div><div class="v">${esc(e.sede)}</div></div>
+          <div class="dado"><div class="k">Porte</div><div class="v">${esc(e.porte)}</div></div>
+          <div class="dado"><div class="k">Clientes conhecidos</div><div class="v">${esc(e.clientes)}</div></div>
+        </div>
+
+        <div class="blocos">
+          <div class="bloco"><h4>O que você faz</h4><p>${esc(e.o_que_voce_faz)}</p></div>
+          <div class="bloco"><h4>Como entrar</h4><p>${esc(e.como_entrar)}</p></div>
+          <div class="bloco"><h4>Como paga</h4><p>${esc(e.pagamento)}</p></div>
+          <div class="bloco"><h4>Boa para quem</h4><p>${esc(e.bom_para || "")}</p></div>
+        </div>
+
+        ${e.atencao ? `<div class="aviso"><span class="ic">▲</span><p><b>Atenção.</b> ${esc(e.atencao)}</p></div>` : ""}
+
+        <div class="ficha-acoes">
+          ${q ? `<a href="vagas.html?empresa=${e.id}" class="btn primary">Ver as ${q} ${q === 1 ? "vaga" : "vagas"} <span class="arr">→</span></a>`
+               : `<a href="vagas.html" class="btn">Ver todas as vagas <span class="arr">→</span></a>`}
+          <a href="${esc(e.site)}" target="_blank" rel="noopener" class="btn ghost">Site oficial ↗</a>
+          <a href="${esc(e.link)}" target="_blank" rel="noopener" class="btn ghost">Página de vagas ↗</a>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+
+  // outras plataformas
+  document.getElementById("outrasGrid").innerHTML = (base.outras_plataformas || []).map(o =>
+    `<a class="card outra" href="${esc(o.site)}" target="_blank" rel="noopener">
+      <span class="logo-box">${logoHtml({dom:o.dom,nome:o.nome,sigla:(o.nome||"?").slice(0,2).toUpperCase(),cor:"#9BA3B4"},38)}</span>
+      <div><h3>${esc(o.nome)} ↗</h3><p>${esc(o.desc)}</p></div>
+    </a>`).join("");
+
+  // trilho acompanha a rolagem
+  const links = [...document.querySelectorAll("#trilhoLista a")];
+  const obs = new IntersectionObserver(ent => {
+    ent.forEach(e => { if (e.isIntersecting) links.forEach(l => l.classList.toggle("on", l.dataset.alvo === e.target.id)); });
+  }, { rootMargin: "-30% 0px -60% 0px" });
+  document.querySelectorAll(".ficha").forEach(f => obs.observe(f));
+
+  // se veio com âncora na URL, rola até lá depois de montar
+  if (location.hash) {
+    const alvo = document.getElementById(location.hash.slice(1));
+    if (alvo) setTimeout(() => alvo.scrollIntoView({ behavior:"smooth", block:"start" }), 120);
+  }
+})();
+</script>
+</body>
+</html>

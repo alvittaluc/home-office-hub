@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vagas abertas — Home Office Hub</title>
+<meta name="description" content="Todas as vagas remotas internacionais de IA, anotação de dados, avaliação e tradução abertas para quem mora no Brasil. Atualizado automaticamente todos os dias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<style>
+  .topo { max-width:var(--wrap); margin:0 auto; padding:52px 20px 24px; }
+  .topo h1 { font-family:var(--display); font-weight:700; letter-spacing:-0.032em; font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:14px; }
+  .topo p.lead { margin-bottom:28px; }
+
+  .busca-wrap { max-width:600px; position:relative; margin-bottom:14px; }
+  .busca-wrap .s-icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--ink-3); font-size:17px; pointer-events:none; }
+  #busca {
+    width:100%; font-family:var(--body); font-size:16px; color:var(--ink);
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:13px; padding:16px 18px 16px 48px; outline:none;
+    transition:border-color .18s, box-shadow .18s, background .18s;
+  }
+  #busca::placeholder { color:var(--ink-3); }
+  #busca:focus { border-color:var(--signal-dim); background:var(--panel-2); box-shadow:0 0 0 4px rgba(61,212,200,0.1); }
+
+  .chips { display:flex; flex-wrap:wrap; gap:8px; max-width:640px; }
+  .chip {
+    font-family:var(--mono); font-size:12px; color:var(--ink-2);
+    background:var(--panel); border:1px solid var(--line-soft);
+    padding:6px 13px; border-radius:8px; cursor:pointer; transition:all .16s;
+  }
+  .chip:hover { border-color:var(--signal-dim); color:var(--signal); }
+
+  .telemetria { display:flex; gap:28px; margin-top:32px; flex-wrap:wrap; }
+  .tl { display:flex; flex-direction:column; gap:3px; }
+  .tl-n { font-family:var(--mono); font-weight:600; font-size:23px; letter-spacing:-0.01em; }
+  .tl-n .u { color:var(--signal); }
+  .tl-l { font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); }
+  .tl-sep { width:1px; background:var(--line); align-self:stretch; }
+  @media (max-width:640px){ .tl-sep{ display:none; } .telemetria{ gap:18px 26px; } }
+
+  .corpo { max-width:var(--wrap); margin:0 auto; padding:26px 20px 70px; display:grid; grid-template-columns:236px 1fr; gap:30px; align-items:start; }
+  @media (max-width:900px){ .corpo{ grid-template-columns:1fr; gap:0; } }
+
+  .rail { position:sticky; top:80px; }
+  @media (max-width:900px){ .rail{ position:static; margin-bottom:6px; } }
+  .rail-title { font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 12px 4px; }
+  .filtro {
+    width:100%; display:flex; align-items:center; gap:10px; text-align:left;
+    font-family:var(--body); font-size:13.5px; color:var(--ink-2);
+    background:transparent; border:1px solid transparent; border-radius:9px;
+    padding:9px 11px; cursor:pointer; transition:all .15s; margin-bottom:2px;
+  }
+  .filtro:hover { background:var(--panel); color:var(--ink); }
+  .filtro.on { background:var(--panel-2); border-color:var(--line); color:var(--ink); }
+  .filtro .fs { width:26px; height:26px; border-radius:7px; flex-shrink:0; overflow:hidden; display:grid; place-items:center; font-family:var(--mono); font-weight:600; font-size:10px; }
+  .filtro .fs img { width:16px; height:16px; object-fit:contain; border-radius:4px; }
+  .filtro .fc { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+  .filtro.on .fc { color:var(--signal); }
+
+  @media (max-width:900px){
+    .rail-title{ display:none; }
+    #railEmpresas { display:flex; gap:8px; overflow-x:auto; padding:4px 0 12px; scrollbar-width:none; }
+    #railEmpresas::-webkit-scrollbar{ display:none; }
+    .filtro { width:auto; white-space:nowrap; flex-shrink:0; background:var(--panel); border-color:var(--line-soft); margin-bottom:0; }
+    .filtro .fc { margin-left:6px; }
+  }
+
+  .cat-bar { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:22px; }
+  .cat-pill {
+    font-family:var(--mono); font-size:12px; color:var(--ink-2);
+    background:var(--panel); border:1px solid var(--line-soft);
+    padding:7px 14px; border-radius:20px; cursor:pointer; transition:all .15s;
+  }
+  .cat-pill:hover { border-color:var(--line); color:var(--ink); }
+  .cat-pill.on { background:var(--signal); border-color:var(--signal); color:#04110F; font-weight:600; }
+
+  .contagem { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-bottom:20px; }
+  .contagem b { color:var(--signal); font-weight:600; }
+
+  .sec-emp { margin-bottom:40px; scroll-margin-top:78px; }
+  .co-head { display:flex; align-items:center; gap:13px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line-soft); }
+  .co-head .logo-box { width:42px; height:42px; }
+  .co-head .m { flex:1; min-width:0; }
+  .co-head h2 { font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.015em; }
+  .co-head p { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); margin-top:1px; }
+  .co-head a.saber { font-family:var(--mono); font-size:11px; color:var(--ink-3); white-space:nowrap; transition:color .15s; }
+  .co-head a.saber:hover { color:var(--signal); }
+  @media (max-width:520px){ .co-head a.saber{ display:none; } }
+
+  .grupo-cat { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--signal); margin:22px 0 13px; display:flex; align-items:center; gap:10px; }
+  .grupo-cat::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--signal); flex-shrink:0; }
+  .grupo-cat::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--signal-dim),transparent); }
+
+  .grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); gap:12px; }
+  .vaga {
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
+    padding:16px 16px 14px; display:flex; flex-direction:column; gap:11px;
+    transition:border-color .16s, transform .16s, background .16s; position:relative; overflow:hidden;
+  }
+  .vaga::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--signal); opacity:0; transition:opacity .16s; }
+  .vaga:hover { border-color:var(--line); background:var(--panel-2); transform:translateY(-2px); }
+  .vaga:hover::before { opacity:1; }
+  .vaga .tit { font-family:var(--display); font-weight:500; font-size:15px; line-height:1.3; }
+  .vaga .real { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:-5px; }
+  .vaga .tags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .tag.data { margin-left:auto; color:var(--ink-3); }
+  .acoes { display:flex; gap:8px; align-items:center; margin-top:auto; padding-top:4px; flex-wrap:wrap; }
+  .btn-sm { font-size:12px; padding:8px 13px; }
+</style>
+</head>
+<body>
+
+<section class="topo">
+  <div class="eyebrow">Lista completa · atualizada todo dia</div>
+  <h1>Vagas abertas para quem mora no Brasil</h1>
+  <p class="lead">Só entra o que aceita residentes do Brasil e português brasileiro. Cada vaga leva direto para a página oficial da empresa, sem intermediário.</p>
+
+  <div class="busca-wrap">
+    <span class="s-icon">⌕</span>
+    <input id="busca" type="text" placeholder="Buscar por cargo, empresa ou área…" autocomplete="off">
+  </div>
+  <div class="chips" id="chips"></div>
+
+  <div class="telemetria">
+    <div class="tl"><span class="tl-n" id="stVagas">—</span><span class="tl-l">vagas abertas</span></div>
+    <div class="tl-sep"></div>
+    <div class="tl"><span class="tl-n" id="stEmpresas">—</span><span class="tl-l">empresas</span></div>
+    <div class="tl-sep"></div>
+    <div class="tl"><span class="tl-n" id="stNovas">—</span><span class="tl-l">novas na semana</span></div>
+    <div class="tl-sep"></div>
+    <div class="tl"><span class="tl-n">100<span class="u">%</span></span><span class="tl-l">remoto · brasil</span></div>
+  </div>
+</section>
+
+<div class="corpo">
+  <aside class="rail">
+    <div class="rail-title">Filtrar por origem</div>
+    <div id="railEmpresas"></div>
+  </aside>
+  <div>
+    <div class="cat-bar" id="catBar"></div>
+    <div class="contagem" id="contagem">carregando…</div>
+    <div id="lista"></div>
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script>
+montarLayout("vagas");
+
+const CAT_ORDEM = ["transl","ai","qa","sme","write"];
+const CAT_NOME  = { transl:"Tradução", ai:"IA & Dados", qa:"QA & Validação", sme:"Especialistas", write:"Escrita" };
+
+let EMPRESAS = {}, TODAS = [], fEmpresa = "all", fCat = "all", termo = "";
+
+async function iniciar() {
+  try {
+    const base = await lerEmpresas();
+    (base.empresas || []).forEach(e => EMPRESAS[e.id] = e);
+  } catch (e) { console.error("empresas.json", e); }
+
+  // agregadores que não têm perfil próprio
+  EMPRESAS.linkedin = EMPRESAS.linkedin || { id:"linkedin", nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", dom:"linkedin.com", desc:"Captadas dos alertas do LinkedIn", agregador:true };
+
+  try {
+    const dados = await lerVagas();
+    TODAS = dados.vagas || [];
+    selo(dados);
+    render();
+  } catch (e) {
+    document.getElementById("lista").innerHTML =
+      '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Verifique se o arquivo vagas.json está na mesma pasta.</p></div>';
+    document.getElementById("contagem").textContent = "erro ao carregar";
+    const b = document.getElementById("updateBadge"); if (b) b.textContent = "erro de sincronização";
+    console.error(e);
+  }
+}
+
+function diasDe(v) {
+  const d = v.data_ref || v.data_post || v.data_vista;
+  if (!d) return null;
+  const data = new Date(d + "T12:00:00Z");
+  if (isNaN(data)) return null;
+  const dias = Math.floor((new Date() - data) / 86400000);
+  return dias < 0 ? null : dias;
+}
+
+function seloData(v) {
+  const dias = diasDe(v);
+  if (dias === null) return "";
+  if (dias <= 2)  return '<span class="tag amb data">nova</span>';
+  if (dias <= 7)  return `<span class="tag amb data">há ${dias} dias</span>`;
+  if (dias <= 30) return `<span class="tag data">há ${dias} dias</span>`;
+  if (dias <= 60) return '<span class="tag data">há +1 mês</span>';
+  return '<span class="tag data">há +2 meses</span>';
+}
+
+function render() {
+  const presentes = Object.keys(EMPRESAS).filter(id => TODAS.some(v => v.empresa === id));
+  document.getElementById("stEmpresas").textContent = presentes.length;
+  document.getElementById("stVagas").textContent = TODAS.length;
+  document.getElementById("stNovas").textContent = TODAS.filter(v => { const d = diasDe(v); return d !== null && d <= 7; }).length;
+
+  const chips = document.getElementById("chips");
+  chips.innerHTML = "";
+  ["IA & Dados","Tradução","QA","Anotação","Português"].forEach(t => {
+    const c = document.createElement("div");
+    c.className = "chip"; c.textContent = t;
+    c.onclick = () => { document.getElementById("busca").value = t; termo = t.toLowerCase(); filtrar(); };
+    chips.appendChild(c);
+  });
+
+  const rail = document.getElementById("railEmpresas");
+  rail.innerHTML = "";
+  const todas = document.createElement("button");
+  todas.className = "filtro" + (fEmpresa === "all" ? " on" : ""); todas.dataset.emp = "all";
+  todas.innerHTML = `<span class="fs" style="background:rgba(61,212,200,0.12);color:#3DD4C8;">✦</span>Todas<span class="fc">${TODAS.length}</span>`;
+  rail.appendChild(todas);
+  presentes.forEach(id => {
+    const e = EMPRESAS[id];
+    const q = TODAS.filter(v => v.empresa === id).length;
+    const b = document.createElement("button");
+    b.className = "filtro" + (fEmpresa === id ? " on" : ""); b.dataset.emp = id;
+    b.innerHTML = `<span class="fs" style="background:${e.bg};">${logoHtml(e,26)}</span>${esc(e.nome)}<span class="fc">${q}</span>`;
+    rail.appendChild(b);
+  });
+
+  const catBar = document.getElementById("catBar");
+  catBar.innerHTML = "";
+  [["all","Todas as áreas"]].concat(CAT_ORDEM.filter(c => TODAS.some(v => v.categoria === c)).map(c => [c, CAT_NOME[c]]))
+    .forEach(([id,nome]) => {
+      const p = document.createElement("div");
+      p.className = "cat-pill" + (id === fCat ? " on" : ""); p.dataset.cat = id; p.textContent = nome;
+      catBar.appendChild(p);
+    });
+
+  const lista = document.getElementById("lista");
+  lista.innerHTML = "";
+  presentes.forEach(id => {
+    const e = EMPRESAS[id];
+    const daEmpresa = TODAS.filter(v => v.empresa === id);
+    const sec = document.createElement("div");
+    sec.className = "sec-emp"; sec.dataset.emp = id;
+    let html = `<div class="co-head">
+      <span class="logo-box" style="background:${e.bg};">${logoHtml(e,42)}</span>
+      <div class="m"><h2>${esc(e.nome)}</h2><p>${esc(e.desc || "")}</p></div>
+      ${e.agregador ? "" : `<a class="saber" href="empresas.html#${e.id}">sobre a empresa ↗</a>`}
+    </div>`;
+    CAT_ORDEM.forEach(cat => {
+      const daCat = daEmpresa.filter(v => v.categoria === cat);
+      if (!daCat.length) return;
+      html += `<div class="grupo-cat">${CAT_NOME[cat]}</div><div class="grade">`;
+      daCat.forEach(v => {
+        const real = v.empresa_real ? `<div class="real">↳ ${esc(v.empresa_real)}</div>` : "";
+        const src = (v.fonte && v.fonte !== "direto") ? `<span class="tag sig">via ${esc(v.fonte)}</span>` : "";
+        html += `<div class="vaga" data-cat="${v.categoria}" data-emp="${id}">
+          <div class="tit">${esc(v.titulo)}</div>${real}
+          <div class="tags">
+            <span class="tag blu">${esc(v.badge)}</span>
+            <span class="tag">${esc(v.local)}</span>${src}${seloData(v)}
+          </div>
+          <div class="acoes">
+            <a href="vaga.html?id=${encodeURIComponent(v.id||"")}" class="btn ghost btn-sm">ver detalhes</a>
+            <a href="${esc(v.url)}" target="_blank" rel="noopener" class="btn btn-sm">Candidatar <span class="arr">→</span></a>
+          </div>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    sec.innerHTML = html;
+    lista.appendChild(sec);
+  });
+
+  ligar();
+  filtrar();
+}
+
+function filtrar() {
+  let visiveis = 0;
+  document.querySelectorAll(".sec-emp").forEach(sec => {
+    const empOk = fEmpresa === "all" || fEmpresa === sec.dataset.emp;
+    let n = 0;
+    sec.querySelectorAll(".vaga").forEach(card => {
+      const catOk = fCat === "all" || fCat === card.dataset.cat;
+      const buscaOk = !termo || card.textContent.toLowerCase().includes(termo);
+      const mostra = empOk && catOk && buscaOk;
+      card.style.display = mostra ? "" : "none";
+      if (mostra) { n++; visiveis++; }
+    });
+    sec.querySelectorAll(".grupo-cat").forEach(lbl => {
+      const grade = lbl.nextElementSibling;
+      const algum = grade && [...grade.querySelectorAll(".vaga")].some(c => c.style.display !== "none");
+      lbl.style.display = algum ? "" : "none";
+      if (grade) grade.style.display = algum ? "" : "none";
+    });
+    sec.style.display = (empOk && n > 0) ? "" : "none";
+  });
+  document.getElementById("contagem").innerHTML = `exibindo <b>${visiveis}</b> ${visiveis === 1 ? "vaga" : "vagas"}`;
+  const lista = document.getElementById("lista");
+  if (visiveis === 0 && TODAS.length) {
+    if (!document.getElementById("semRes")) {
+      const d = document.createElement("div");
+      d.id = "semRes"; d.className = "vazio";
+      d.innerHTML = '<div class="big">◌</div><p>Nenhuma vaga encontrada com esses filtros.<br>Tente limpar a busca ou escolher outra área.</p>';
+      lista.appendChild(d);
+    }
+  } else { const s = document.getElementById("semRes"); if (s) s.remove(); }
+}
+
+function ligar() {
+  document.querySelectorAll(".filtro").forEach(b => b.onclick = () => {
+    document.querySelectorAll(".filtro").forEach(x => x.classList.remove("on"));
+    b.classList.add("on"); fEmpresa = b.dataset.emp; filtrar();
+  });
+  document.querySelectorAll(".cat-pill").forEach(p => p.onclick = () => {
+    document.querySelectorAll(".cat-pill").forEach(x => x.classList.remove("on"));
+    p.classList.add("on"); fCat = p.dataset.cat; filtrar();
+  });
+}
+
+document.getElementById("busca").addEventListener("input", e => {
+  termo = e.target.value.toLowerCase().trim(); filtrar();
+});
+
+// aceita vagas.html?cat=ai e vagas.html?empresa=oneforma vindos dos links do site
+const params = new URLSearchParams(location.search);
+if (params.get("cat")) fCat = params.get("cat");
+if (params.get("empresa")) fEmpresa = params.get("empresa");
+
+iniciar();
+</script>
+</body>
+</html>

@@ -4,205 +4,139 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detalhes da vaga — Home Office Hub</title>
+<meta name="description" content="Detalhes da vaga: o que você vai fazer, requisitos e dica de currículo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
 <style>
-  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-  :root {
-    --bg:#0A0C10; --bg-soft:#0E1118; --panel:#12161F; --panel-2:#171C28;
-    --line:#232A38; --line-soft:#1B212D; --ink:#EAEDF3; --ink-2:#9BA3B4; --ink-3:#5A6376;
-    --signal:#3DD4C8; --signal-dim:#1E6E68; --amber:#FFB454; --violet:#8B7DF7; --blue:#5B9DF9;
-    --grid:rgba(61,212,200,0.028);
-    --mono:'JetBrains Mono',ui-monospace,monospace; --display:'Space Grotesk',sans-serif; --body:'Inter',sans-serif;
+  .pagina { max-width:840px; margin:0 auto; padding:30px 20px 60px; }
+  .voltar { display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12.5px; color:var(--ink-2); margin-bottom:24px; transition:color .15s; }
+  .voltar:hover { color:var(--signal); }
+
+  .cabeca { border-bottom:1px solid var(--line-soft); padding-bottom:24px; margin-bottom:28px; }
+  .cabeca .cat { font-family:var(--mono); font-size:11px; letter-spacing:0.09em; text-transform:uppercase; color:var(--signal); margin-bottom:12px; }
+  .cabeca h1 { font-family:var(--display); font-weight:700; font-size:clamp(23px,4vw,33px); line-height:1.18; letter-spacing:-0.025em; margin-bottom:16px; }
+  .co-linha { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .co-linha .logo-box { width:40px; height:40px; }
+  .co-linha .nm { font-family:var(--display); font-weight:600; font-size:15px; }
+  .co-linha .sb { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); }
+  .co-linha a.sobre { margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--ink-3); transition:color .15s; }
+  .co-linha a.sobre:hover { color:var(--signal); }
+  .metas { display:flex; gap:8px; flex-wrap:wrap; margin-top:18px; }
+  .metas .tag { font-size:11.5px; padding:5px 11px; }
+
+  .parte { margin-bottom:26px; }
+  .parte h2 {
+    font-family:var(--mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-2); margin-bottom:12px; display:flex; align-items:center; gap:9px;
   }
-  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
-  body {
-    font-family:var(--body); background:var(--bg); color:var(--ink); line-height:1.6; min-height:100vh;
-    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-    background-size:44px 44px;
-  }
-  a { color:inherit; text-decoration:none; }
-  ::selection { background:var(--signal); color:#04110F; }
+  .parte h2::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--signal); flex-shrink:0; }
+  .parte p { font-size:15.5px; color:var(--ink); line-height:1.72; }
 
-  header { position:sticky; top:0; z-index:100; background:rgba(10,12,16,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--line); }
-  .header-inner { max-width:820px; margin:0 auto; padding:0 20px; height:60px; display:flex; align-items:center; gap:12px; }
-  .brand { display:flex; align-items:center; gap:11px; }
-  .brand-mark svg { width:32px; height:32px; display:block; }
-  .brand-name { font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:-0.02em; }
-  .brand-name small { display:block; font-family:var(--mono); font-weight:400; font-size:9px; color:var(--signal); letter-spacing:0.14em; text-transform:uppercase; margin-top:-2px; }
+  .dica { background:rgba(255,180,84,0.07); border:1px solid rgba(255,180,84,0.22); border-radius:13px; padding:20px 22px; }
+  .dica h2 { color:var(--amber); }
+  .dica h2::before { background:var(--amber); }
 
-  .wrap { max-width:820px; margin:0 auto; padding:30px 20px 70px; }
-  .back { display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12.5px; color:var(--ink-2); margin-bottom:24px; transition:color .15s; }
-  .back:hover { color:var(--signal); }
-
-  .job-head { border-bottom:1px solid var(--line-soft); padding-bottom:24px; margin-bottom:28px; }
-  .job-badge { font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--signal); margin-bottom:12px; }
-  h1 { font-family:var(--display); font-weight:700; font-size:clamp(23px,4vw,32px); line-height:1.2; letter-spacing:-0.02em; margin-bottom:14px; }
-  .co-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-  .co-logo { width:38px; height:38px; border-radius:9px; display:grid; place-items:center; overflow:hidden; border:1px solid var(--line); font-family:var(--mono); font-weight:700; font-size:12px; }
-  .co-logo img { width:24px; height:24px; object-fit:contain; border-radius:5px; }
-  .co-name { font-family:var(--display); font-weight:600; font-size:15px; }
-  .co-sub { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); }
-
-  .meta-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:18px; }
-  .tag { font-family:var(--mono); font-size:11.5px; padding:5px 11px; border-radius:7px; border:1px solid transparent; }
-  .tag-loc { background:var(--panel-2); color:var(--ink-2); border-color:var(--line-soft); }
-  .tag-date { background:var(--panel-2); color:var(--ink-3); border-color:var(--line-soft); }
-  .tag-new { background:rgba(255,180,84,0.12); color:var(--amber); border-color:rgba(255,180,84,0.3); font-weight:600; }
-  .tag-comp { background:rgba(61,212,200,0.08); color:var(--signal); border-color:rgba(61,212,200,0.22); }
-
-  .section { margin-bottom:28px; }
-  .section h2 { font-family:var(--mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-2); margin-bottom:12px; display:flex; align-items:center; gap:9px; }
-  .section h2::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--signal); flex-shrink:0; }
-  .section p { font-size:15.5px; color:var(--ink); line-height:1.7; }
-
-  .dica-box { background:rgba(255,180,84,0.07); border:1px solid rgba(255,180,84,0.22); border-radius:13px; padding:20px 22px; }
-  .dica-box h2 { color:var(--amber); }
-  .dica-box h2::before { background:var(--amber); }
-  .dica-box p { font-size:15px; }
-
-  .apply-bar { position:sticky; bottom:0; background:linear-gradient(transparent, var(--bg) 30%); padding:24px 0 8px; margin-top:36px; }
-  .btn-apply-big {
+  .barra { position:sticky; bottom:0; background:linear-gradient(transparent,var(--bg) 32%); padding:24px 0 10px; margin-top:34px; }
+  .candidatar {
     display:flex; align-items:center; justify-content:center; gap:9px; width:100%;
     font-family:var(--mono); font-weight:600; font-size:15px; color:#04110F;
-    background:var(--signal); border:none; border-radius:12px; padding:16px; cursor:pointer;
-    transition:all .16s;
+    background:var(--signal); border:none; border-radius:12px; padding:16px; transition:all .16s;
   }
-  .btn-apply-big:hover { gap:12px; filter:brightness(1.08); }
+  .candidatar:hover { gap:13px; filter:brightness(1.08); }
   .nota { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); text-align:center; margin-top:14px; }
-
-  .loading, .erro { text-align:center; padding:80px 20px; font-family:var(--mono); color:var(--ink-3); }
-  .loading .big, .erro .big { font-size:34px; margin-bottom:16px; }
-
-  @media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important; } }
+  .ajuda { margin-top:26px; text-align:center; font-size:13px; color:var(--ink-3); }
+  .ajuda a { color:var(--signal); }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <a href="index.html" class="brand">
-      <span class="brand-mark">
-        <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="32" height="32" rx="9" stroke="url(#g1)" stroke-width="1.5"/>
-          <circle cx="10" cy="17" r="2.4" fill="#3DD4C8"/><circle cx="17" cy="10.5" r="2.4" fill="#5B9DF9"/>
-          <circle cx="17" cy="23.5" r="2.4" fill="#8B7DF7"/><circle cx="24" cy="17" r="2.4" fill="#FFB454"/>
-          <path d="M12.2 15.8L15 11.7M12.2 18.2L15 22.3M19 10.9L21.9 15.2M19 23.1L21.9 18.8" stroke="#3DD4C8" stroke-width="1.2" stroke-opacity="0.5"/>
-          <defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#3DD4C8"/><stop offset="1" stop-color="#8B7DF7"/></linearGradient></defs>
-        </svg>
-      </span>
-      <span class="brand-name">Home Office Hub<small>Vagas de IA · Brasil</small></span>
-    </a>
-  </div>
-</header>
-
-<div class="wrap">
-  <a href="index.html" class="back">← voltar para todas as vagas</a>
-  <div id="conteudo">
-    <div class="loading"><div class="big">◌</div><p>Carregando vaga…</p></div>
-  </div>
+<div class="pagina">
+  <a href="vagas.html" class="voltar">← voltar para todas as vagas</a>
+  <div id="conteudo"><div class="vazio"><div class="big">◌</div><p>Carregando vaga…</p></div></div>
 </div>
 
+<script src="layout.js"></script>
 <script>
-const EMPRESAS = {
-  welocalize: { nome:"Welocalize", sigla:"WL", cor:"#818CF8", bg:"#1a2040", dom:"welocalize.com", desc:"Tradução · Localização · IA · QA" },
-  rws:        { nome:"RWS TrainAI", sigla:"RW", cor:"#C084FC", bg:"#1a2030", dom:"rws.com", desc:"IA · Dublagem · Especialistas" },
-  toloka:     { nome:"Toloka AI", sigla:"TK", cor:"#8B5CF6", bg:"#1c1a38", dom:"toloka.ai", desc:"Anotação · Vídeo · IA · Part-time" },
-  crowdgen:   { nome:"CrowdGen", sigla:"CG", cor:"#60A5FA", bg:"#1a1e38", dom:"crowdgen.com", desc:"IA · Avaliação · Social Media" },
-  oneforma:   { nome:"OneForma", sigla:"1F", cor:"#60A5FA", bg:"#1a1e30", dom:"oneforma.com", desc:"IA · Anotação · Áudio · Dados" },
-  telus:      { nome:"Telus International", sigla:"TI", cor:"#C084FC", bg:"#1e1a30", dom:"telusinternational.com", desc:"QA · Avaliação · Segurança" },
-  linkedin:   { nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", dom:"linkedin.com", desc:"Captadas dos alertas do LinkedIn" },
-};
+montarLayout("vagas");
 
-function escapeHtml(s){ return (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function escapeAttr(s){ return (s||"#").replace(/"/g,'&quot;'); }
+let EMPRESAS = {};
 
-function logoHtml(e) {
-  if (e && e.dom) {
-    return `<img src="https://www.google.com/s2/favicons?domain=${e.dom}&sz=64" alt="${escapeAttr(e.nome)}"
-      onerror="this.parentNode.textContent='${e.sigla}';this.parentNode.style.color='${e.cor}';">`;
-  }
-  return (e && e.sigla) || "?";
-}
-
-function badgeData(v) {
+function seloData(v) {
   const d = v.data_ref || v.data_post || v.data_vista;
   if (!d) return "";
   const data = new Date(d + "T12:00:00Z");
   if (isNaN(data)) return "";
-  const dias = Math.floor((new Date() - data) / (1000*60*60*24));
+  const dias = Math.floor((new Date() - data) / 86400000);
   if (dias < 0) return "";
-  let texto, classe = "tag-date";
-  if (dias <= 2) { texto = "nova"; classe = "tag-new"; }
-  else if (dias <= 7) { texto = `há ${dias} dias`; classe = "tag-new"; }
-  else if (dias <= 30) { texto = `há ${dias} dias`; }
-  else if (dias <= 60) { texto = "há +1 mês"; }
-  else { texto = "há +2 meses"; }
-  return `<span class="tag ${classe}">${texto}</span>`;
+  if (dias <= 2)  return '<span class="tag amb">nova</span>';
+  if (dias <= 7)  return `<span class="tag amb">há ${dias} dias</span>`;
+  if (dias <= 30) return `<span class="tag">há ${dias} dias</span>`;
+  if (dias <= 60) return '<span class="tag">há +1 mês</span>';
+  return '<span class="tag">há +2 meses</span>';
 }
 
-function getParam(nome){ return new URLSearchParams(window.location.search).get(nome); }
+function erro(msg) {
+  return `<div class="vazio"><div class="big">◌</div><p>${msg}</p>
+    <p style="margin-top:18px;"><a href="vagas.html" style="color:var(--signal);">← ver todas as vagas</a></p></div>`;
+}
 
-async function carregar() {
-  const id = getParam("id");
+(async function(){
+  const id = new URLSearchParams(location.search).get("id");
   const cont = document.getElementById("conteudo");
-  if (!id) { cont.innerHTML = erroHtml("Vaga não especificada."); return; }
+
   try {
-    const resp = await fetch("vagas.json?v=" + Date.now());
-    const dados = await resp.json();
-    const v = (dados.vagas || []).find(x => x.id === id);
-    if (!v) { cont.innerHTML = erroHtml("Esta vaga não está mais disponível.<br>Ela pode ter sido preenchida ou expirado."); return; }
-    render(v);
-  } catch (e) {
-    cont.innerHTML = erroHtml("Não foi possível carregar a vaga agora.");
-    console.error(e);
-  }
-}
+    const base = await lerEmpresas();
+    (base.empresas || []).forEach(e => EMPRESAS[e.id] = e);
+  } catch (e) { console.error("empresas.json", e); }
+  EMPRESAS.linkedin = EMPRESAS.linkedin || { id:"linkedin", nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", dom:"linkedin.com", desc:"Captada dos alertas do LinkedIn", agregador:true };
 
-function erroHtml(msg){
-  return `<div class="erro"><div class="big">◌</div><p>${msg}</p>
-    <p style="margin-top:18px;"><a href="index.html" style="color:var(--signal);">← ver todas as vagas</a></p></div>`;
-}
+  if (!id) { cont.innerHTML = erro("Vaga não especificada."); return; }
 
-function render(v) {
+  let dados;
+  try { dados = await lerVagas(); selo(dados); }
+  catch (e) { cont.innerHTML = erro("Não foi possível carregar a vaga agora."); console.error(e); return; }
+
+  const v = (dados.vagas || []).find(x => x.id === id);
+  if (!v) { cont.innerHTML = erro("Esta vaga não está mais disponível.<br>Ela pode ter sido preenchida ou expirado."); return; }
+
   const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#888", bg:"#222", desc:"" };
   const r = v.resumo || {};
   document.title = v.titulo + " — Home Office Hub";
 
-  let secoes = "";
-  if (r.o_que_faz) secoes += `<div class="section"><h2>O que você vai fazer</h2><p>${escapeHtml(r.o_que_faz)}</p></div>`;
-  if (r.requisitos) secoes += `<div class="section"><h2>Requisitos</h2><p>${escapeHtml(r.requisitos)}</p></div>`;
-  if (r.dica_cv) secoes += `<div class="section dica-box"><h2>💡 Dica de currículo</h2><p>${escapeHtml(r.dica_cv)}</p></div>`;
-  if (!secoes) secoes = `<div class="section"><p style="color:var(--ink-3);">Esta vaga não tem um resumo detalhado. Clique em candidatar para ver todos os detalhes na página oficial.</p></div>`;
+  let partes = "";
+  if (r.o_que_faz)  partes += `<div class="parte"><h2>O que você vai fazer</h2><p>${esc(r.o_que_faz)}</p></div>`;
+  if (r.requisitos) partes += `<div class="parte"><h2>Requisitos</h2><p>${esc(r.requisitos)}</p></div>`;
+  if (r.dica_cv)    partes += `<div class="parte dica"><h2>Dica de currículo</h2><p>${esc(r.dica_cv)}</p></div>`;
+  if (!partes) partes = `<div class="parte"><p style="color:var(--ink-3);font-size:14.5px;">Esta vaga ainda não tem resumo detalhado. Clique em candidatar para ver todos os detalhes na página oficial da empresa.</p></div>`;
 
-  let comp = "";
-  if (r.remuneracao) comp = `<span class="tag tag-comp">${escapeHtml(r.remuneracao)}</span>`;
-  let contrato = "";
-  if (r.contrato) contrato = `<span class="tag tag-loc">${escapeHtml(r.contrato)}</span>`;
-
-  document.getElementById("conteudo").innerHTML = `
-    <div class="job-head">
-      <div class="job-badge">${escapeHtml(v.badge || "Vaga")}</div>
-      <h1>${escapeHtml(v.titulo)}</h1>
-      <div class="co-row">
-        <div class="co-logo" style="background:${e.bg};color:${e.cor};">${logoHtml(e)}</div>
-        <div><div class="co-name">${escapeHtml(e.nome)}</div><div class="co-sub">${escapeHtml(e.desc)}</div></div>
+  cont.innerHTML = `
+    <div class="cabeca">
+      <div class="cat">${esc(v.badge || "Vaga")}</div>
+      <h1>${esc(v.titulo)}</h1>
+      <div class="co-linha">
+        <span class="logo-box" style="background:${e.bg};color:${e.cor};">${logoHtml(e,40)}</span>
+        <div><div class="nm">${esc(e.nome)}</div><div class="sb">${esc(e.desc || "")}</div></div>
+        ${e.agregador ? "" : `<a class="sobre" href="empresas.html#${e.id}">sobre a empresa ↗</a>`}
       </div>
-      <div class="meta-tags">
-        <span class="tag tag-loc">${escapeHtml(v.local || "Remoto · Brasil")}</span>
-        ${contrato}${comp}${badgeData(v)}
+      <div class="metas">
+        <span class="tag">${esc(v.local || "Remoto · Brasil")}</span>
+        ${r.contrato ? `<span class="tag">${esc(r.contrato)}</span>` : ""}
+        ${r.remuneracao ? `<span class="tag sig">${esc(r.remuneracao)}</span>` : ""}
+        ${seloData(v)}
       </div>
     </div>
-    ${secoes}
-    <div class="apply-bar">
-      <a href="${escapeAttr(v.url)}" target="_blank" rel="noopener" class="btn-apply-big">Candidatar para esta vaga →</a>
-      <div class="nota">Você será direcionado à página oficial da vaga. Resumo automático para orientação.</div>
+    ${partes}
+    <div class="barra">
+      <a href="${esc(v.url)}" target="_blank" rel="noopener" class="candidatar">Candidatar para esta vaga →</a>
+      <div class="nota">Você vai para a página oficial da vaga, sem intermediário.</div>
     </div>
-  `;
-}
-
-carregar();
+    <div class="ajuda">
+      Primeira vez nessa área? Leia o <a href="como-funciona.html#curriculo">guia de currículo</a>
+      e veja <a href="como-funciona.html#pagamento">como o pagamento chega ao Brasil</a>.
+    </div>`;
+})();
 </script>
 </body>
 </html>
