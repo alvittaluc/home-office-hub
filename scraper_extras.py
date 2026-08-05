@@ -111,20 +111,44 @@ _PORTUGUES = re.compile(r"\b(portuguese|português|portugues)\b", re.I)
 # Portugal explícito (precisa ser rejeitado)
 _PORTUGAL = re.compile(r"\bportugal\b", re.I)
 
+# Português do Brasil ESCRITO POR EXTENSO. Usado só na descrição.
+# Precisa ser estreito de propósito: na descrição, um "brazil" solto costuma
+# ser conversa fiada ("nossos clientes no Brasil"), e não a língua do projeto.
+# Já "Portuguese (Brazil)" numa lista de idiomas é sinal forte de que o
+# projeto aceita brasileiro.
+_PT_BRASIL = re.compile(
+    r"portuguese\s*[\(\-–:]?\s*brazil"
+    r"|brazilian\s+portuguese"
+    r"|portugu[êe]s\s*[\(\-–:]?\s*brasil"
+    r"|pt[\s\-_]?br\b",
+    re.I,
+)
 
-def aceita_brasil(titulo, local, idioma=""):
+
+def aceita_brasil(titulo, local, idioma="", descricao=""):
     """Regra única de curadoria, igual à do coletor.py.
 
     Entra se:
       1. o local é o Brasil, ou
       2. o título ou o idioma dizem Brasil / brazilian portuguese / pt-br, ou
-      3. o local é aberto ao mundo E o título ou o idioma são de português
+      3. o local é aberto ao mundo E o título ou o idioma são de português, ou
+      4. a DESCRIÇÃO pede português do Brasil por extenso
 
     E é rejeitada sempre que Portugal aparecer sem o Brasil junto.
+
+    A regra 4 existe por causa das vagas multilíngues. A TELUS, por exemplo,
+    tem vagas com título em inglês e idioma "English Global" que trazem uma
+    lista de idiomas no corpo do anúncio, com "Portuguese (Brazil)" no meio.
+    Elas aceitam brasileiro, mas nada no título entrega isso. Sem essa regra
+    o robô achava 1 vaga onde o site mostra 4.
+
+    A descrição precisa vir SEM HTML. Na TELUS existem tags no meio de
+    "Portuguese (Brazil)", então testar o HTML cru não encontra nada.
     """
     titulo = titulo or ""
     local = local or ""
     idioma = idioma or ""
+    descricao = descricao or ""
     juntos = f"{titulo} {idioma}"
 
     diz_brasil = bool(_BRASIL.search(juntos))
@@ -140,6 +164,14 @@ def aceita_brasil(titulo, local, idioma=""):
 
     local_mundo = bool(_MUNDO.search(local)) or not local.strip()
     if local_mundo and _PORTUGUES.search(juntos):
+        return True
+
+    # Última chance: o corpo do anúncio pede português do Brasil.
+    # Só vale quando o local NÃO é um país estrangeiro específico. Sem essa
+    # trava, uma vaga presa aos Estados Unidos entraria só porque cita
+    # "Brazilian Portuguese" no meio do texto. É a mesma proteção que o
+    # coletor.py já faz com as vagas do Lever.
+    if local_mundo and descricao and _PT_BRASIL.search(descricao):
         return True
 
     return False
@@ -207,14 +239,15 @@ def coletar_meridial():
         local = ((v.get("location") or {}).get("name") or "").strip()
         if not titulo:
             continue
-        if not aceita_brasil(titulo, local):
+        desc = limpar_html(v.get("content", ""))
+        if not aceita_brasil(titulo, local, descricao=desc):
             continue
 
         vagas.append({
             "titulo": titulo,
             "url": v.get("absolute_url") or "",
             "local": local_em_portugues(local),
-            "desc": limpar_html(v.get("content", "")),
+            "desc": desc,
             "data_post": (v.get("first_published") or "")[:10],
             "pagamento": "",
             "horario": "",
@@ -258,7 +291,10 @@ def coletar_telus(max_paginas=6):
         local = "Remoto" if (v.get("job_type") == "remote") else ""
         if not titulo:
             continue
-        if not aceita_brasil(titulo, local, idioma):
+        # a descrição precisa entrar limpa: a TELUS coloca tags HTML no meio
+        # de "Portuguese (Brazil)", então o texto cru não casa com nada
+        desc = limpar_html(v.get("description", ""))
+        if not aceita_brasil(titulo, local, idioma, descricao=desc):
             continue
 
         comp = v.get("compensation") or {}
@@ -272,7 +308,7 @@ def coletar_telus(max_paginas=6):
             "url": URL_TELUS_VAGA.format(id=v.get("id")),
             "local": "Remoto · Brasil",
             "idioma": idioma,
-            "desc": limpar_html(v.get("description", "")),
+            "desc": desc,
             "data_post": (v.get("ctime") or "")[:10],
             "pagamento": pagamento,
             "horario": (v.get("employment_type") or "").replace("_", " "),
@@ -448,16 +484,17 @@ def coletar_alignerr(pausa=0.6):
         local = (det.get("location") or "").strip()
         if not titulo:
             continue
-        if not aceita_brasil(titulo, local):
+        desc = limpar_html(det.get("longDescription")
+                           or det.get("htmlLongDescription")
+                           or v.get("description", ""))
+        if not aceita_brasil(titulo, local, descricao=desc):
             continue
 
         candidatas.append({
             "titulo": titulo,
             "url": url,
             "local": local_em_portugues(local),
-            "desc": limpar_html(det.get("longDescription")
-                                or det.get("htmlLongDescription")
-                                or v.get("description", "")),
+            "desc": desc,
             "requisitos": limpar_html(det.get("shortDescription") or ""),
             # firstPostDate é a republicação mais recente; createdAt é antigo
             "data_post": (det.get("firstPostDate")
