@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-05T19:21:01.157231+00:00",
-  "atualizado_br": "05/08/2026 às 19:21",
-  "total": 74,
+  "atualizado_em": "2026-08-05T19:24:18.182292+00:00",
+  "atualizado_br": "05/08/2026 às 16:24",
+  "total": 75,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -919,6 +919,20 @@
     },
     {
       "empresa": "telus",
+      "titulo": "AI Response Rating and Evaluation - Portuguese (Brazil)",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129041",
+      "commitment": "freelancer",
+      "fonte": "direto",
+      "data_post": "2026-07-28",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-07-28",
+      "id": "7d9136c1e0"
+    },
+    {
+      "empresa": "telus",
       "titulo": "Parent Safety Contributor – Protect Teens Online (EU, UK, US, Brazil, Australia, Canada)",
       "local": "Remoto · Brasil",
       "categoria": "qa",
@@ -1091,13 +1105,13 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4707905101",
+      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4788685101",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2025-11-07",
+      "data_post": "2026-02-23",
       "data_vista": "2026-08-05",
-      "data_ref": "2025-11-07",
-      "id": "40bde685a9"
+      "data_ref": "2026-02-23",
+      "id": "8a110bdc35"
     },
     {
       "empresa": "meridial",
