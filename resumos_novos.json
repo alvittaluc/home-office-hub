@@ -1,4 +1,133 @@
 {
-  "total": 0,
-  "vagas": []
+  "total": 16,
+  "vagas": [
+    {
+      "id": "7845a05fd7",
+      "resumo": {
+        "o_que_faz": "Você revisa, anota e avalia conteúdo em português do Brasil que serve de material de treino para sistemas de IA generativa usados no mundo todo. O dia a dia mistura anotação de dados, revisão de texto e controle de qualidade em projetos multilíngues e multimídia, sempre seguindo um guia de instruções detalhado. É contrato freelancer de 4 semanas, 100% remoto, com pagamento de US$ 4 por hora.",
+        "requisitos": "Português do Brasil em nível nativo e inglês escrito suficiente para entender guias e se comunicar com o time. Muita atenção a detalhe, pensamento analítico e autonomia para trabalhar sozinho seguindo regras extensas. Pede experiência em anotação, revisão de conteúdo, controle de qualidade, rotulagem de dados, localização ou área parecida. Já ter mexido com conteúdo multilíngue, multimídia ou de IA é diferencial forte.",
+        "dica_cv": "Currículo em inglês, de uma página. Logo no resumo do topo escreva que você é falante nativo de português do Brasil com inglês avançado, porque é o primeiro filtro do recrutador. Depois liste qualquer experiência de revisão, tradução, transcrição, moderação ou digitação com números concretos, no estilo \"revisei em média 80 textos por dia com 98% de aprovação\". Se já trabalhou em plataformas como Appen, Telus, Toloka ou Welocalize, cite o nome do projeto e o tipo de tarefa."
+      }
+    },
+    {
+      "id": "957c1a3bbd",
+      "resumo": {
+        "o_que_faz": "Você grava vídeos em primeira pessoa das suas tarefas domésticas comuns, como cozinhar, lavar louça, dobrar roupa, arrumar a casa, cuidar do jardim ou passear com o cachorro. O celular fica preso na altura da testa, levemente inclinado para baixo, e registra o que os seus olhos veem e o que as suas mãos fazem. Esses vídeos ensinam robôs e sistemas de IA a entender como as pessoas manipulam objetos no mundo real. É trabalho por projeto, sem horário fixo: você grava quando quiser, envia pelo aplicativo e recebe pelo que foi aprovado, até o equivalente a US$ 6 por hora.",
+        "requisitos": "Smartphone que grave em 1080p ou mais, com 30 FPS ou mais e lente grande angular (0.5x). A vaga cita iPhone 12 ou mais novo, Google Pixel 6 ou superior e Samsung Galaxy S21 ou superior. Você precisa de um suporte de cabeça para fixar o aparelho na altura dos olhos e vai usar o aplicativo \"D&A\" para gravar e enviar tudo. Os vídeos precisam ter no mínimo 15 segundos, imagem nítida, estável e bem iluminada, mostrando tarefas reais, sem pausas longas nem movimentos forçados.",
+        "dica_cv": "Aqui o currículo pesa pouco, o que decide é o equipamento e a qualidade do envio. Deixe claro o modelo exato do seu celular e que ele tem lente 0.5x. Se já fez gravação de vídeo, coleta de dados, fotografia ou qualquer trabalho por tarefa em plataforma, cite em uma linha. Antes de gravar de verdade, faça um teste de 30 segundos e assista para conferir foco, iluminação e se as suas mãos aparecem no quadro, porque vídeo reprovado não é pago."
+      }
+    },
+    {
+      "id": "88d9311fb4",
+      "resumo": {
+        "o_que_faz": "É o mesmo projeto de gravação de rotina da Toloka, nesta versão anunciada em inglês. Você prende o celular na cabeça, faz suas atividades domésticas normalmente e a câmera registra tudo em primeira pessoa, para treinar IA e robôs a entender como as pessoas interagem com objetos em casa. Sem horário fixo e sem meta obrigatória: você escolhe as sessões que couberem na sua rotina, envia pelo aplicativo e recebe até o equivalente a US$ 6 por hora, conforme o projeto.",
+        "requisitos": "Smartphone capaz de gravar 1080p ou superior a 30 FPS ou mais, com lente grande angular (0.5x), do tipo iPhone 12 ou mais novo, Pixel 6 ou superior e Galaxy S21 ou superior. Suporte para fixar o aparelho na testa ou na altura dos olhos, com leve inclinação para baixo para as mãos aparecerem. Uso obrigatório do aplicativo \"D&A\" e vídeos claros, estáveis, bem iluminados e com pelo menos 15 segundos. Como o anúncio e as instruções estão em inglês, é bom ler o idioma com tranquilidade.",
+        "dica_cv": "Se você se candidatar às duas versões deste projeto, use os mesmos dados para não parecer cadastro duplicado. Escreva o perfil em inglês simples, informando o modelo do celular, a lente grande angular e o suporte de cabeça. Vale citar em uma linha os tipos de tarefa doméstica que você faz com frequência, porque quanto mais variedade de atividade, mais sessões costumam ser liberadas."
+      }
+    },
+    {
+      "id": "7b295ec70d",
+      "resumo": {
+        "o_que_faz": "Você transcreve áudios longos de podcast, identifica e rotula quem está falando em cada trecho, insere marcações de tempo e avalia a qualidade da gravação. Esse material vira base de treino para modelos de fala multilíngues. É trabalho remoto, pago por hora trabalhada, com 36 combinações de idioma e localidade disponíveis no projeto.",
+        "requisitos": "Domínio nativo ou fluente do idioma escolhido e ouvido treinado para separar vozes, sotaques e falas sobrepostas. Digitação rápida e precisa, com cuidado em pontuação, nomes próprios e sincronia dos horários. Computador com internet estável e fone de ouvido de qualidade razoável. Como em todos os projetos da OneForma, é preciso criar conta na plataforma e passar por uma avaliação de entrada antes de começar.",
+        "dica_cv": "Destaque experiência com transcrição, legendagem, digitação, secretariado ou atendimento por áudio, sempre com números, como palavras por minuto ou minutos de áudio transcritos por hora. Cite pelo nome as ferramentas que você já usou, por exemplo Express Scribe, oTranscribe, Audacity, Subtitle Edit ou plataformas de legenda. Se você conhece regras de transcrição verbatim e não verbatim, escreva isso, porque mostra que você entende o vocabulário da área."
+      }
+    },
+    {
+      "id": "acf12782f3",
+      "resumo": {
+        "o_que_faz": "Você avalia respostas de referência geradas por IA em vários idiomas e também as rubricas usadas para dar nota nessas respostas. Na prática, é apontar erros críticos, checar se o critério de avaliação faz sentido e sugerir melhorias para que o processo de correção do modelo fique mais confiável. Trabalho remoto e flexível, pago por hora, aberto a sete combinações de idioma e localidade.",
+        "requisitos": "Fluência nativa no idioma do projeto e leitura confortável em inglês, já que as rubricas costumam vir nesse idioma. Raciocínio analítico para julgar com consistência e explicar por escrito o motivo de cada nota. Atenção a erro factual, alucinação, tom inadequado e instrução não cumprida. Disciplina para seguir critérios longos sem mudar o padrão ao longo do dia. Cadastro e teste de qualificação na OneForma.",
+        "dica_cv": "Mostre experiência em avaliação, revisão, correção de provas, docência ou qualquer função em que você tenha aplicado critérios de nota. Escreva uma ou duas linhas explicando como você garante consistência, porque é exatamente isso que o projeto compra. Se já fez avaliação de resposta de IA, RLHF, red teaming ou search evaluation, coloque em destaque com o nome da plataforma."
+      }
+    },
+    {
+      "id": "6f2ebe9288",
+      "resumo": {
+        "o_que_faz": "Você avalia respostas geradas por IA, reescreve trechos para que soem naturais no seu idioma e cria prompts feitos para testar os limites e a qualidade do modelo. É uma mistura de crítica, redação e criatividade controlada. Trabalho remoto, pago por hora.",
+        "requisitos": "Atenção ao idioma exigido: este projeto lista falantes nativos de francês, inglês da Austrália e japonês, então só vale a pena se candidatar se você tem um desses perfis. Além disso, boa redação, sensibilidade para tom e naturalidade, e capacidade de explicar por que uma resposta está boa ou ruim. Inglês para ler as diretrizes. Cadastro e qualificação na OneForma.",
+        "dica_cv": "Se o seu idioma não é um dos três listados, guarde a energia e priorize os outros projetos da OneForma abertos ao Brasil, porque a triagem de idioma é automática. Se você se encaixa, destaque redação, copywriting, tradução criativa, revisão editorial ou ensino de idiomas, e inclua exemplos curtos de texto autoral. Escrever que você tem experiência criando prompts e testando modelos de IA aumenta bastante a chance de aprovação."
+      }
+    },
+    {
+      "id": "a184926e68",
+      "resumo": {
+        "o_que_faz": "Você revisa textos traduzidos e as marcações de entidades nomeadas (nomes de pessoas, empresas, lugares, produtos) em pares de idiomas específicos. O objetivo é encontrar erros de tradução, escolhas que não funcionam culturalmente e falhas na anotação, garantindo qualidade nos dados de fala e tradução. Remoto, com pagamento fixo por item aprovado.",
+        "requisitos": "Ser bilíngue de verdade no par de idiomas do projeto, com domínio nativo do idioma de destino. Olho clínico para erro de sentido, registro errado, falso cognato e adaptação cultural malfeita. Entender o que é entidade nomeada e conseguir julgar se a marcação está correta. Consistência ao aplicar as regras e cadastro aprovado na OneForma.",
+        "dica_cv": "Deixe o par de idiomas explícito e no formato que o mercado usa, como \"EN para PT-BR\". Cite volume e tipo de material já revisado, por exemplo legendas, jurídico, marketing ou técnico. Se conhece tipologias de erro como MQM ou DQF, ou já usou memoQ, Trados ou Smartcat, escreva os nomes, porque a OneForma filtra por essas palavras."
+      }
+    },
+    {
+      "id": "f8167497cc",
+      "resumo": {
+        "o_que_faz": "Você grava atividades domésticas do dia a dia em primeira pessoa, usando um smartphone compatível preso a um suporte de cabeça. É o mesmo tipo de coleta de dados que a Toloka faz, aqui pela OneForma, e o pagamento é fixo por item aprovado, ou seja, por vídeo que passa no controle de qualidade. O projeto está aberto a falantes de inglês na África do Sul e a falantes de português no Brasil.",
+        "requisitos": "Celular compatível, capaz de gravar em alta resolução e taxa de quadros adequada, mais um suporte de cabeça para manter a câmera na altura dos olhos. Espaço próprio para gravar, como casa, quintal ou garagem, e disposição para registrar tarefas rotineiras. Cuidado com iluminação, estabilidade e enquadramento das mãos, porque vídeo fora do padrão não é aprovado. Cadastro na OneForma e leitura atenta do guia de gravação de cada sessão.",
+        "dica_cv": "Informe o modelo do celular e confirme que ele grava em 1080p ou mais. Como o pagamento é por item aprovado, o segredo é acertar o padrão logo nas primeiras entregas: grave um teste curto, assista antes de enviar e confira foco, luz e mãos visíveis. Vale se candidatar também à versão da Toloka, já que são projetos independentes e um não bloqueia o outro."
+      }
+    },
+    {
+      "id": "6abc0e2134",
+      "resumo": {
+        "o_que_faz": "Você faz pós-edição de tradução automática, ou seja, pega o texto traduzido por máquina e corrige precisão, terminologia, fluidez e naturalidade até ficar com cara de texto escrito por gente. O projeto cobre 51 pares de idiomas e é remoto e flexível, pago por palavra do texto original, entre US$ 0,012 e US$ 0,033 por palavra.",
+        "requisitos": "Domínio nativo do idioma de destino e leitura sólida do idioma de origem. Saber o que é pós-edição leve e completa, e ter a disciplina de corrigir o que está errado sem reescrever o que já está bom, que é o erro mais comum de quem vem só da tradução tradicional. Consistência de terminologia e velocidade, já que o pagamento é por palavra. Cadastro e teste na OneForma.",
+        "dica_cv": "Liste seus pares de idiomas e a sua produtividade em palavras por dia, porque o preço por palavra torna esse número decisivo. Use os termos técnicos da área, como MTPE, pós-edição, glossário e memória de tradução. Se já usou Trados, memoQ, Phrase, Smartcat ou MateCat, cite pelo nome. Vale citar áreas em que você tem vocabulário próprio, como jurídico, saúde, e-commerce ou tecnologia."
+      }
+    },
+    {
+      "id": "249881e9ce",
+      "resumo": {
+        "o_que_faz": "Você ouve conversas gravadas com assistentes de voz, identifica quem fala em cada momento e coloca marcações precisas, com horário exato, nos eventos importantes do áudio. Esses rótulos ensinam o assistente a entender quando começa e termina cada fala. Trabalho remoto pago por hora, voltado a falantes nativos com boa capacidade de escuta.",
+        "requisitos": "Ser falante nativo do idioma do projeto e ter ouvido apurado para separar vozes, ruído de fundo e falas curtas. Paciência para trabalho repetitivo e precisão de milésimos ao posicionar as marcações. Computador com internet estável e fone de ouvido decente, de preferência em ambiente silencioso. Cadastro e qualificação na OneForma.",
+        "dica_cv": "Cite qualquer experiência com áudio: transcrição, legendagem, edição, rádio, podcast, call center ou música. Mencione que você trabalha com fone de ouvido em ambiente silencioso, porque isso importa de verdade neste tipo de projeto. Se já usou ferramentas de anotação de áudio, como Audacity, Praat, ELAN ou Label Studio, escreva os nomes."
+      }
+    },
+    {
+      "id": "b829d5a8c6",
+      "resumo": {
+        "o_que_faz": "Você adapta conteúdo já traduzido para que a terminologia, o tom e as expressões soem certos na região de destino. É menos tradução e mais ajuste fino cultural, o famoso trabalho de localização, resolvendo casos em que a frase está tecnicamente correta mas soa estranha para quem mora ali. Remoto, com pagamento fixo por item aprovado.",
+        "requisitos": "Ser profissional nativo do idioma de destino, com experiência em tradução, edição ou localização. Conhecer as diferenças regionais do idioma, incluindo gírias, formalidade, formatos de data, moeda e unidades. Bom senso para decidir o que mudar e o que preservar, e capacidade de justificar as escolhas. Cadastro e qualificação na OneForma.",
+        "dica_cv": "Escreva explicitamente a variante que você domina, por exemplo português do Brasil, e não apenas \"português\", porque a plataforma separa Brasil de Portugal. Dê um exemplo curto de adaptação que você já fez, do tipo trocar um termo de Portugal pelo equivalente brasileiro. Palavras que ajudam na triagem: localização, transcriação, guia de estilo, glossário e adaptação regional."
+      }
+    },
+    {
+      "id": "1f09f5a758",
+      "resumo": {
+        "o_que_faz": "Você rotula o que o usuário pediu e o que a IA respondeu, classificando a intenção por trás de cada mensagem para que o sistema entenda melhor o que as pessoas querem. É um trabalho de anotação com regras claras e volume constante. Remoto, pago por hora, com expectativa de 30 a 50 horas por mês, então dá para conciliar com outra atividade.",
+        "requisitos": "Ser falante nativo do idioma do projeto e conseguir concluir o onboarding e o treinamento antes de pegar tarefas. Disponibilidade real de 30 a 50 horas mensais, o que dá algo entre 7 e 12 horas por semana. Atenção a detalhe e consistência para aplicar a mesma regra da primeira à última tarefa do dia. Leitura de inglês para os guias e cadastro aprovado na OneForma.",
+        "dica_cv": "Como a vaga é de longo prazo, deixe clara a sua disponibilidade semanal em números logo no início do perfil. Destaque experiência com anotação, categorização, triagem de tickets, moderação ou atendimento, tudo que envolva classificar mensagens em categorias. Uma frase sobre você seguir guias longos sem perder o padrão pesa bastante aqui."
+      }
+    },
+    {
+      "id": "5bfee496ec",
+      "resumo": {
+        "o_que_faz": "Você compara parágrafos do texto original com a versão traduzida, decide se a tradução é aceitável e faz o casamento dos trechos correspondentes, seguindo critérios de avaliação definidos pelo cliente. É trabalho por tarefa, remoto, com pagamento fixo por item aprovado, então você encaixa nos horários que quiser.",
+        "requisitos": "Ser nativo ou fluente nos idiomas listados no projeto e ler bem em nível de parágrafo, percebendo perda de sentido, omissão e trecho inventado. Capacidade de aplicar uma escala de avaliação sem deixar o gosto pessoal interferir. Ritmo constante, já que o ganho depende do volume aprovado. Cadastro e teste de qualificação na OneForma.",
+        "dica_cv": "Deixe os pares de idiomas visíveis no topo do perfil. Destaque revisão, avaliação de qualidade de tradução ou correção de textos, e cite se já trabalhou com critérios formais de avaliação. Como o pagamento é por item, vale mencionar sua produtividade, algo como quantos textos ou páginas você revisa por hora."
+      }
+    },
+    {
+      "id": "e368eb27d4",
+      "resumo": {
+        "o_que_faz": "Você lê a frase original, compara com a tradução e dá uma nota de qualidade seguindo uma escala definida. O foco é frase a frase, o que torna o trabalho mais rápido e mecânico do que revisar textos longos. Remoto, pago por item aprovado.",
+        "requisitos": "Ser falante nativo do idioma de destino e ter proficiência sólida no idioma de origem. Consistência ao aplicar a escala de notas, porque a plataforma mede a sua concordância com outros avaliadores. Atenção a erro de sentido, termo trocado, número errado e omissão. Cadastro e aprovação no teste de qualificação da OneForma.",
+        "dica_cv": "Informe o par de idiomas e o seu nível em cada um, de preferência com certificação se tiver. Destaque experiência em revisão, avaliação ou controle de qualidade de tradução. Se você já participou de projetos com escalas de nota, LQA ou MQM, cite pelo nome. Nos primeiros lotes, prefira acertar o critério a correr, porque a nota de consistência define se você continua no projeto."
+      }
+    },
+    {
+      "id": "ac49a71bee",
+      "resumo": {
+        "o_que_faz": "Você avalia resultados de busca em loja de aplicativos e em serviços de música, julgando se o que aparece é útil, se corresponde à intenção de quem buscou e se a experiência faz sentido. Na prática, é usar o iPhone ou iPad, fazer buscas indicadas e dar notas seguindo diretrizes. Remoto, pago por item aprovado.",
+        "requisitos": "Ter um Apple ID ativo e um dispositivo iOS, condição eliminatória do projeto, e morar em uma localidade elegível. Bom conhecimento de aplicativos, artistas e cultura pop local, porque muita avaliação depende de saber o que o usuário provavelmente queria. Atenção a detalhe e disciplina para seguir diretrizes longas. Cadastro e qualificação na OneForma.",
+        "dica_cv": "Diga logo que você tem iPhone ou iPad e Apple ID ativo, porque é a primeira coisa checada. Cite familiaridade com App Store, Apple Music, Spotify e o cenário musical brasileiro. Se já fez search evaluation, moderação de conteúdo ou pesquisa de mercado, destaque. Reserve um tempo para estudar as diretrizes antes do teste, já que a aprovação depende quase toda dele."
+      }
+    },
+    {
+      "id": "d1856cbd96",
+      "resumo": {
+        "o_que_faz": "Você avalia buscas em mapas, checando se os locais, endereços e informações de estabelecimentos estão corretos e fazem sentido para quem procura. Usa o seu conhecimento real da região onde mora para julgar se o resultado é útil. É um projeto remoto de longo prazo, pago por item aprovado, com cerca de dez horas por semana.",
+        "requisitos": "Morar na região avaliada há pelo menos cinco anos e conhecer bem bairros, comércios e vias. Disponibilidade de aproximadamente dez horas semanais de forma constante. Atenção a detalhe e capacidade de seguir diretrizes extensas sem mudar o critério ao longo do tempo. Internet estável, leitura de inglês para os guias e cadastro aprovado na OneForma.",
+        "dica_cv": "Diga com clareza a cidade e o bairro onde mora e há quantos anos, porque é o requisito central da vaga. Demonstre conhecimento local com uma frase concreta, do tipo conhecer bem o comércio e os pontos de referência da sua região. Confirme a disponibilidade de dez horas semanais e destaque qualquer experiência com Google Maps, Waze, cadastro de estabelecimentos, entregas ou pesquisa de campo."
+      }
+    }
+  ]
 }
