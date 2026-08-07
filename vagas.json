@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-05T23:46:52.946438+00:00",
-  "atualizado_br": "05/08/2026 às 23:46",
-  "total": 73,
+  "atualizado_em": "2026-08-07T10:38:52.802116+00:00",
+  "atualizado_br": "07/08/2026 às 10:38",
+  "total": 68,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -62,48 +62,6 @@
         "o_que_faz": "Como Avaliador(a) de Qualidade de Anúncios (Ads Quality Rater), você analisa e classifica anúncios da internet para melhorar como são exibidos. Nesta vaga, os anúncios são revisados em inglês e italiano.",
         "requisitos": "Fluência em italiano e bom domínio de inglês (escrito e falado). Conhecimento de cultura pop. Computador e internet confiáveis. Familiaridade com buscadores.",
         "dica_cv": "Esta vaga exige ITALIANO. Só vale a pena se você fala italiano. Destaque: fluência em italiano, nível de inglês, e familiaridade com internet/buscadores.",
-        "contrato": "Freelance · Remoto",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Brazilian Subject Matter Expert in Politics",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/weloglobal/af2cd877-4e0a-4c40-b99d-a4ebf38b56fe",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto",
-      "data_post": "2026-06-17",
-      "data_vista": "2026-08-04",
-      "data_ref": "2026-06-17",
-      "id": "06487cf875",
-      "resumo": {
-        "o_que_faz": "Atuar como Especialista (SME) brasileiro em Política, contribuindo com conhecimento aprofundado para projetos de IA multilíngue. Você ajuda a criar e validar conteúdo especializado na sua área.",
-        "requisitos": "Conhecimento aprofundado em Política (formação e/ou experiência na área). Português nativo. Bom inglês. Capacidade de explicar conceitos complexos de forma clara.",
-        "dica_cv": "Destaque: sua formação/experiência em Política ou ciências sociais, capacidade analítica e de escrita, e nível de inglês.",
-        "contrato": "Freelance · Remoto",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Brazilian Subject Matter Expert in Religion or Philosophy",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.lever.co/weloglobal/390e87b4-96a8-4f54-a3c4-8d1daa0ae850",
-      "commitment": "Freelance-Remote",
-      "fonte": "direto",
-      "data_post": "2026-06-17",
-      "data_vista": "2026-08-04",
-      "data_ref": "2026-06-17",
-      "id": "c726db3087",
-      "resumo": {
-        "o_que_faz": "Atuar como Especialista (SME) brasileiro em Religião ou Filosofia, contribuindo com conhecimento aprofundado para projetos de IA. Você cria e valida conteúdo especializado na sua área de domínio.",
-        "requisitos": "Conhecimento aprofundado em Religião ou Filosofia (formação e/ou experiência). Português nativo. Bom inglês. Capacidade de explicar conceitos complexos com clareza.",
-        "dica_cv": "Destaque: sua formação/experiência em Filosofia, Teologia ou Ciências da Religião, capacidade analítica e de escrita, e nível de inglês.",
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
       }
@@ -702,60 +660,6 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Bilingual Speech Translation Quality Evaluator",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.oneforma.com/projects/bilingual-speech-translation-quality-evaluator/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-08-05",
-      "id": "a184926e68",
-      "resumo": {
-        "o_que_faz": "Você revisa textos traduzidos e as marcações de entidades nomeadas (nomes de pessoas, empresas, lugares, produtos) em pares de idiomas específicos. O objetivo é encontrar erros de tradução, escolhas que não funcionam culturalmente e falhas na anotação, garantindo qualidade nos dados de fala e tradução. Remoto, com pagamento fixo por item aprovado.",
-        "requisitos": "Ser bilíngue de verdade no par de idiomas do projeto, com domínio nativo do idioma de destino. Olho clínico para erro de sentido, registro errado, falso cognato e adaptação cultural malfeita. Entender o que é entidade nomeada e conseguir julgar se a marcação está correta. Consistência ao aplicar as regras e cadastro aprovado na OneForma.",
-        "dica_cv": "Deixe o par de idiomas explícito e no formato que o mercado usa, como \"EN para PT-BR\". Cite volume e tipo de material já revisado, por exemplo legendas, jurídico, marketing ou técnico. Se conhece tipologias de erro como MQM ou DQF, ou já usou memoQ, Trados ou Smartcat, escreva os nomes, porque a OneForma filtra por essas palavras."
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "First-Person Video Recorder",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/projects/first-person-video-recorder/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-08-05",
-      "id": "f8167497cc",
-      "resumo": {
-        "o_que_faz": "Você grava atividades domésticas do dia a dia em primeira pessoa, usando um smartphone compatível preso a um suporte de cabeça. É o mesmo tipo de coleta de dados que a Toloka faz, aqui pela OneForma, e o pagamento é fixo por item aprovado, ou seja, por vídeo que passa no controle de qualidade. O projeto está aberto a falantes de inglês na África do Sul e a falantes de português no Brasil.",
-        "requisitos": "Celular compatível, capaz de gravar em alta resolução e taxa de quadros adequada, mais um suporte de cabeça para manter a câmera na altura dos olhos. Espaço próprio para gravar, como casa, quintal ou garagem, e disposição para registrar tarefas rotineiras. Cuidado com iluminação, estabilidade e enquadramento das mãos, porque vídeo fora do padrão não é aprovado. Cadastro na OneForma e leitura atenta do guia de gravação de cada sessão.",
-        "dica_cv": "Informe o modelo do celular e confirme que ele grava em 1080p ou mais. Como o pagamento é por item aprovado, o segredo é acertar o padrão logo nas primeiras entregas: grave um teste curto, assista antes de enviar e confira foco, luz e mãos visíveis. Vale se candidatar também à versão da Toloka, já que são projetos independentes e um não bloqueia o outro."
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Multilingual Machine Translation Post-Editor",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.oneforma.com/projects/multilingual-machine-translation-post-editor/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-08-05",
-      "id": "6abc0e2134",
-      "resumo": {
-        "o_que_faz": "Você faz pós-edição de tradução automática, ou seja, pega o texto traduzido por máquina e corrige precisão, terminologia, fluidez e naturalidade até ficar com cara de texto escrito por gente. O projeto cobre 51 pares de idiomas e é remoto e flexível, pago por palavra do texto original, entre US$ 0,012 e US$ 0,033 por palavra.",
-        "requisitos": "Domínio nativo do idioma de destino e leitura sólida do idioma de origem. Saber o que é pós-edição leve e completa, e ter a disciplina de corrigir o que está errado sem reescrever o que já está bom, que é o erro mais comum de quem vem só da tradução tradicional. Consistência de terminologia e velocidade, já que o pagamento é por palavra. Cadastro e teste na OneForma.",
-        "dica_cv": "Liste seus pares de idiomas e a sua produtividade em palavras por dia, porque o preço por palavra torna esse número decisivo. Use os termos técnicos da área, como MTPE, pós-edição, glossário e memória de tradução. Se já usou Trados, memoQ, Phrase, Smartcat ou MateCat, cite pelo nome. Vale citar áreas em que você tem vocabulário próprio, como jurídico, saúde, e-commerce ou tecnologia."
-      }
-    },
-    {
-      "empresa": "oneforma",
       "titulo": "Multilingual Audio Conversation Annotator",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -1133,13 +1037,18 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4707905101",
+      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4788685101",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2025-11-07",
-      "data_vista": "2026-08-05",
-      "data_ref": "2025-11-07",
-      "id": "40bde685a9"
+      "data_post": "2026-02-23",
+      "data_vista": "2026-08-07",
+      "data_ref": "2026-02-23",
+      "id": "8a110bdc35",
+      "resumo": {
+        "o_que_faz": "Você grava material roteirizado em português e avalia vozes geradas por IA, dando retorno especializado sobre pronúncia, entonação, ritmo, expressão emocional e variação regional. Também anota erros e ajuda a equipe a refinar prompts, métodos de avaliação e diretrizes de design de voz. É a vaga mais sênior desse conjunto, voltada a quem já vive de locução. Faixa de US$ 6 a US$ 65 por hora, remoto.",
+        "requisitos": "Experiência profissional comprovada em locução, dublagem, narração ou performance equivalente em português. Experiência em ensino, coaching de voz ou anotação linguística é diferencial. Exige setup de gravação de qualidade, com microfone confiável e ambiente silencioso e tratado, além de computador seguro e internet estável. Atenção a detalhe e boa comunicação para descrever o que soa errado numa voz sintética.",
+        "dica_cv": "Aqui o portfólio importa mais que o currículo: mande um link com demos curtas em estilos diferentes, como comercial, narração e personagem. Informe o modelo do microfone, da interface e como é o tratamento acústico do seu espaço. Se você faz dublagem, cite os títulos e o tipo de papel. Uma linha dizendo que você sabe descrever tecnicamente problemas de prosódia e pronúncia diferencia você de quem só sabe gravar."
+      }
     },
     {
       "empresa": "meridial",
@@ -1321,9 +1230,9 @@
       "url": "https://www.alignerr.com/jobs/60e7cd1f-73a7-4027-8135-85ac0989135f",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-07-29",
+      "data_post": "2026-08-06",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-07-29",
+      "data_ref": "2026-08-06",
       "id": "64c7fbed79",
       "resumo": {
         "o_que_faz": "É a vaga irmã da Alignerr, com foco em localização. Você revisa traduções e conteúdos em português gerados por IA, aponta erro de tradução, frase artificial, registro trocado e problema cultural, e sugere versões mais idiomáticas, entregando retorno organizado. Trabalho assíncrono, no seu ritmo, com 10 a 40 horas por semana e faixa de US$ 20 a US$ 40 por hora.",
@@ -1340,9 +1249,9 @@
       "url": "https://www.alignerr.com/jobs/4bf35e1c-de3b-4874-8376-45ad9f304f35",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-07-29",
+      "data_post": "2026-08-06",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-07-29",
+      "data_ref": "2026-08-06",
       "id": "69b78f8163",
       "resumo": {
         "o_que_faz": "Voltada a quem tem experiência em ensino ou avaliação de português. Você avalia fala e texto em português gerados por IA quanto a precisão, naturalidade e qualidade pedagógica, e também analisa a produção de estudantes em diferentes níveis de proficiência, do Pré-A1 ao B2+ do quadro europeu. Identifica erros típicos de aprendiz e lacunas didáticas, sugere melhorias e dá retorno estruturado que aprimora modelos de tutoria e de ensino de idiomas. Remoto e assíncrono, com mínimo de 15 horas por semana e faixa de US$ 25 a US$ 30 por hora.",
