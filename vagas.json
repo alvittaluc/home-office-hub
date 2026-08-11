@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-10T11:31:40.185630+00:00",
-  "atualizado_br": "10/08/2026 às 11:31",
-  "total": 69,
+  "atualizado_em": "2026-08-11T10:38:23.162271+00:00",
+  "atualizado_br": "11/08/2026 às 10:38",
+  "total": 70,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -420,6 +420,20 @@
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
       }
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Social Media Content Evaluator (Portuguese)",
+      "local": "Remoto · Recife",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/rws/952e3e10-ad00-40c2-b4d3-ecd764542c85",
+      "commitment": "Temporary/Contract",
+      "fonte": "direto",
+      "data_post": "2026-08-10",
+      "data_vista": "2026-08-11",
+      "data_ref": "2026-08-10",
+      "id": "53daa6cf99"
     },
     {
       "empresa": "rws",
@@ -1037,18 +1051,13 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4788685101",
+      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4707905101",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-02-23",
-      "data_vista": "2026-08-10",
-      "data_ref": "2026-02-23",
-      "id": "8a110bdc35",
-      "resumo": {
-        "o_que_faz": "Você grava material roteirizado em português e avalia vozes geradas por IA, dando retorno especializado sobre pronúncia, entonação, ritmo, expressão emocional e variação regional. Também anota erros e ajuda a equipe a refinar prompts, métodos de avaliação e diretrizes de design de voz. É a vaga mais sênior desse conjunto, voltada a quem já vive de locução. Faixa de US$ 6 a US$ 65 por hora, remoto.",
-        "requisitos": "Experiência profissional comprovada em locução, dublagem, narração ou performance equivalente em português. Experiência em ensino, coaching de voz ou anotação linguística é diferencial. Exige setup de gravação de qualidade, com microfone confiável e ambiente silencioso e tratado, além de computador seguro e internet estável. Atenção a detalhe e boa comunicação para descrever o que soa errado numa voz sintética.",
-        "dica_cv": "Aqui o portfólio importa mais que o currículo: mande um link com demos curtas em estilos diferentes, como comercial, narração e personagem. Informe o modelo do microfone, da interface e como é o tratamento acústico do seu espaço. Se você faz dublagem, cite os títulos e o tipo de papel. Uma linha dizendo que você sabe descrever tecnicamente problemas de prosódia e pronúncia diferencia você de quem só sabe gravar."
-      }
+      "data_post": "2025-11-07",
+      "data_vista": "2026-08-11",
+      "data_ref": "2025-11-07",
+      "id": "40bde685a9"
     },
     {
       "empresa": "meridial",
