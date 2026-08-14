@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-13T11:12:59.157406+00:00",
-  "atualizado_br": "13/08/2026 às 11:12",
-  "total": 62,
+  "atualizado_em": "2026-08-14T11:09:10.821664+00:00",
+  "atualizado_br": "14/08/2026 às 11:09",
+  "total": 61,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -350,20 +350,13 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/1351298448",
+      "url": "https://apply.workable.com/j/55C1E6C73E",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-07-30",
-      "data_vista": "2026-08-04",
-      "data_ref": "2026-07-30",
-      "id": "be3191b0f1",
-      "resumo": {
-        "o_que_faz": "Como Anotador(a) freelancer (AI Trainer) com foco em inglês, você faz tarefas online que treinam e melhoram a IA, em projetos de IA generativa de grandes empresas de tecnologia.",
-        "requisitos": "Enviar currículo em inglês e indicar seu nível de inglês. Bom nível de inglês (as tarefas são em inglês). Ser curioso e detalhista.",
-        "dica_cv": "Envie o currículo em inglês. Esta vaga exige um bom nível de inglês. Destaque: seu nível de inglês, atenção a detalhes e interesse por IA.",
-        "contrato": "Freelance · Remoto · Por projeto",
-        "remuneracao": ""
-      }
+      "data_post": "2026-08-13",
+      "data_vista": "2026-08-14",
+      "data_ref": "2026-08-13",
+      "id": "32b46183d7"
     },
     {
       "empresa": "toloka",
@@ -480,24 +473,6 @@
         "o_que_faz": "Você avalia respostas geradas por IA, reescreve trechos para que soem naturais no seu idioma e cria prompts feitos para testar os limites e a qualidade do modelo. É uma mistura de crítica, redação e criatividade controlada. Trabalho remoto, pago por hora.",
         "requisitos": "Atenção ao idioma exigido: este projeto lista falantes nativos de francês, inglês da Austrália e japonês, então só vale a pena se candidatar se você tem um desses perfis. Além disso, boa redação, sensibilidade para tom e naturalidade, e capacidade de explicar por que uma resposta está boa ou ruim. Inglês para ler as diretrizes. Cadastro e qualificação na OneForma.",
         "dica_cv": "Se o seu idioma não é um dos três listados, guarde a energia e priorize os outros projetos da OneForma abertos ao Brasil, porque a triagem de idioma é automática. Se você se encaixa, destaque redação, copywriting, tradução criativa, revisão editorial ou ensino de idiomas, e inclua exemplos curtos de texto autoral. Escrever que você tem experiência criando prompts e testando modelos de IA aumenta bastante a chance de aprovação."
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Multilingual Audio Conversation Annotator",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/projects/multilingual-audio-conversation-annotator/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-08-05",
-      "id": "249881e9ce",
-      "resumo": {
-        "o_que_faz": "Você ouve conversas gravadas com assistentes de voz, identifica quem fala em cada momento e coloca marcações precisas, com horário exato, nos eventos importantes do áudio. Esses rótulos ensinam o assistente a entender quando começa e termina cada fala. Trabalho remoto pago por hora, voltado a falantes nativos com boa capacidade de escuta.",
-        "requisitos": "Ser falante nativo do idioma do projeto e ter ouvido apurado para separar vozes, ruído de fundo e falas curtas. Paciência para trabalho repetitivo e precisão de milésimos ao posicionar as marcações. Computador com internet estável e fone de ouvido decente, de preferência em ambiente silencioso. Cadastro e qualificação na OneForma.",
-        "dica_cv": "Cite qualquer experiência com áudio: transcrição, legendagem, edição, rádio, podcast, call center ou música. Mencione que você trabalha com fone de ouvido em ambiente silencioso, porque isso importa de verdade neste tipo de projeto. Se já usou ferramentas de anotação de áudio, como Audacity, Praat, ELAN ou Label Studio, escreva os nomes."
       }
     },
     {
