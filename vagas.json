@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-17T10:04:17.101562+00:00",
-  "atualizado_br": "17/08/2026 às 10:04",
-  "total": 61,
+  "atualizado_em": "2026-08-18T09:18:31.239770+00:00",
+  "atualizado_br": "18/08/2026 às 09:18",
+  "total": 62,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -325,6 +325,34 @@
     },
     {
       "empresa": "toloka",
+      "titulo": "English-Chinese Bilingual Speaker - Voice Recording (Remote)",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://apply.workable.com/j/F43472FDD5",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-17",
+      "data_vista": "2026-08-18",
+      "data_ref": "2026-08-17",
+      "id": "0c64bed7a9"
+    },
+    {
+      "empresa": "toloka",
+      "titulo": "English-Spanish Bilingual Speaker - Voice Recording (Remote)",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://apply.workable.com/j/5D5E6D76F8",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-17",
+      "data_vista": "2026-08-18",
+      "data_ref": "2026-08-17",
+      "id": "cfc1a7bd6f"
+    },
+    {
+      "empresa": "toloka",
       "titulo": "First-Person AI Video Trainer",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -491,24 +519,6 @@
         "o_que_faz": "Você adapta conteúdo já traduzido para que a terminologia, o tom e as expressões soem certos na região de destino. É menos tradução e mais ajuste fino cultural, o famoso trabalho de localização, resolvendo casos em que a frase está tecnicamente correta mas soa estranha para quem mora ali. Remoto, com pagamento fixo por item aprovado.",
         "requisitos": "Ser profissional nativo do idioma de destino, com experiência em tradução, edição ou localização. Conhecer as diferenças regionais do idioma, incluindo gírias, formalidade, formatos de data, moeda e unidades. Bom senso para decidir o que mudar e o que preservar, e capacidade de justificar as escolhas. Cadastro e qualificação na OneForma.",
         "dica_cv": "Escreva explicitamente a variante que você domina, por exemplo português do Brasil, e não apenas \"português\", porque a plataforma separa Brasil de Portugal. Dê um exemplo curto de adaptação que você já fez, do tipo trocar um termo de Portugal pelo equivalente brasileiro. Palavras que ajudam na triagem: localização, transcriação, guia de estilo, glossário e adaptação regional."
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Multilingual Intent And Response Annotator",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.oneforma.com/projects/multilingual-intent-and-response-annotator/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-08-05",
-      "id": "1f09f5a758",
-      "resumo": {
-        "o_que_faz": "Você rotula o que o usuário pediu e o que a IA respondeu, classificando a intenção por trás de cada mensagem para que o sistema entenda melhor o que as pessoas querem. É um trabalho de anotação com regras claras e volume constante. Remoto, pago por hora, com expectativa de 30 a 50 horas por mês, então dá para conciliar com outra atividade.",
-        "requisitos": "Ser falante nativo do idioma do projeto e conseguir concluir o onboarding e o treinamento antes de pegar tarefas. Disponibilidade real de 30 a 50 horas mensais, o que dá algo entre 7 e 12 horas por semana. Atenção a detalhe e consistência para aplicar a mesma regra da primeira à última tarefa do dia. Leitura de inglês para os guias e cadastro aprovado na OneForma.",
-        "dica_cv": "Como a vaga é de longo prazo, deixe clara a sua disponibilidade semanal em números logo no início do perfil. Destaque experiência com anotação, categorização, triagem de tickets, moderação ou atendimento, tudo que envolva classificar mensagens em categorias. Uma frase sobre você seguir guias longos sem perder o padrão pesa bastante aqui."
       }
     },
     {
@@ -1024,9 +1034,9 @@
       "url": "https://www.alignerr.com/jobs/60e7cd1f-73a7-4027-8135-85ac0989135f",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-08-06",
+      "data_post": "2026-08-17",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-08-06",
+      "data_ref": "2026-08-17",
       "id": "64c7fbed79",
       "resumo": {
         "o_que_faz": "É a vaga irmã da Alignerr, com foco em localização. Você revisa traduções e conteúdos em português gerados por IA, aponta erro de tradução, frase artificial, registro trocado e problema cultural, e sugere versões mais idiomáticas, entregando retorno organizado. Trabalho assíncrono, no seu ritmo, com 10 a 40 horas por semana e faixa de US$ 20 a US$ 40 por hora.",
@@ -1043,9 +1053,9 @@
       "url": "https://www.alignerr.com/jobs/4bf35e1c-de3b-4874-8376-45ad9f304f35",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-08-06",
+      "data_post": "2026-08-17",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-08-06",
+      "data_ref": "2026-08-17",
       "id": "69b78f8163",
       "resumo": {
         "o_que_faz": "Voltada a quem tem experiência em ensino ou avaliação de português. Você avalia fala e texto em português gerados por IA quanto a precisão, naturalidade e qualidade pedagógica, e também analisa a produção de estudantes em diferentes níveis de proficiência, do Pré-A1 ao B2+ do quadro europeu. Identifica erros típicos de aprendiz e lacunas didáticas, sugere melhorias e dá retorno estruturado que aprimora modelos de tutoria e de ensino de idiomas. Remoto e assíncrono, com mínimo de 15 horas por semana e faixa de US$ 25 a US$ 30 por hora.",
