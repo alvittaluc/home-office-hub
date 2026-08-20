@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-19T09:19:43.850276+00:00",
-  "atualizado_br": "19/08/2026 às 09:19",
-  "total": 62,
+  "atualizado_em": "2026-08-20T09:20:18.340963+00:00",
+  "atualizado_br": "20/08/2026 às 09:20",
+  "total": 64,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -89,7 +89,7 @@
     },
     {
       "empresa": "welocalize",
-      "titulo": "English to Portuguese (Brazil) Patent Agency/Translator/LQA Reviewer",
+      "titulo": "English to Portuguese (Brazil) Patent Linguist",
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
@@ -255,6 +255,20 @@
     },
     {
       "empresa": "rws",
+      "titulo": "Data Annotator for AI Models  - Spanish (Spain) in Brazil",
+      "local": "Remoto · São Paulo",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/rws/aa0a3e78-011f-4035-9b3d-380dd7c26ec2",
+      "commitment": "Full-time Employee",
+      "fonte": "direto",
+      "data_post": "2025-09-24",
+      "data_vista": "2026-08-20",
+      "data_ref": "2025-09-24",
+      "id": "7f4a98d369"
+    },
+    {
+      "empresa": "rws",
       "titulo": "Social Media Content Evaluator (Portuguese)",
       "local": "Remoto · Recife",
       "categoria": "qa",
@@ -353,27 +367,6 @@
     },
     {
       "empresa": "toloka",
-      "titulo": "First-Person AI Video Trainer",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/B7F6FE489F",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-06-05",
-      "data_vista": "2026-08-04",
-      "data_ref": "2026-06-05",
-      "id": "baaa0bd5ab",
-      "resumo": {
-        "o_que_faz": "Gravar vídeos em primeira pessoa (POV) de atividades domésticas do dia a dia. Você monta o smartphone na cabeça, segue sua rotina, e a câmera captura o que você vê. Os vídeos ajudam a treinar IA e robôs a entender como pessoas interagem com objetos.",
-        "requisitos": "Smartphone. Fazer atividades domésticas normalmente. Sem horário fixo, sem compromisso além do que couber na sua rotina.",
-        "dica_cv": "Vaga simples, sem exigência técnica. Destaque: ter smartphone e disponibilidade. Boa porta de entrada para trabalhar com dados de IA.",
-        "contrato": "Freelance · Remoto · Por projeto",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "toloka",
       "titulo": "Freelance Annotator (English) - AI Trainer",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -392,13 +385,13 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/0A775E2451",
+      "url": "https://apply.workable.com/j/F8CDD4CAA2",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-08-13",
-      "data_vista": "2026-08-13",
-      "data_ref": "2026-08-13",
-      "id": "caa1ba0097"
+      "data_post": "2026-08-20",
+      "data_vista": "2026-08-20",
+      "data_ref": "2026-08-20",
+      "id": "f7d63ebdc2"
     },
     {
       "empresa": "toloka",
@@ -1017,13 +1010,18 @@
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
-      "url": "https://www.alignerr.com/jobs/52b0c682-a3ff-4992-ac71-cfc9e3535c1b",
+      "url": "https://www.alignerr.com/jobs/8775d557-175e-4dde-898a-f4a689e9e5c3",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-08-18",
-      "data_vista": "2026-08-19",
-      "data_ref": "2026-08-18",
-      "id": "c3f214fe16"
+      "data_post": "2026-08-19",
+      "data_vista": "2026-08-20",
+      "data_ref": "2026-08-19",
+      "id": "94d3206e73",
+      "resumo": {
+        "o_que_faz": "Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.",
+        "requisitos": "Fluência nativa ou quase nativa em português e escrita forte no idioma. Bom domínio do português contemporâneo em registros diferentes, do formal ao coloquial. Método e consistência, já que o trabalho é avaliar qualidade em volume. Não exige experiência anterior com IA nem com tecnologia. Contam como diferencial tradução, localização, edição, linguística, comunicação, educação ou revisão de conteúdo, além de conhecer as variações regionais do português.",
+        "dica_cv": "A faixa de pagamento é alta, então a triagem é seletiva: capriche no perfil. Escreva em inglês, mas anexe ou descreva amostras do seu português. Destaque revisão, tradução, redação, edição ou ensino, com volume e tipo de material. Mostre que você sabe explicar por que uma frase soa errada, e não apenas corrigir, porque o retorno estruturado é o produto que eles compram. Informe a sua disponibilidade semanal em números."
+      }
     },
     {
       "empresa": "alignerr",
@@ -1065,19 +1063,6 @@
     },
     {
       "empresa": "linkedin",
-      "titulo": "Analista de Data &amp; AI Vetta · Brasil (Remoto)",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://www.linkedin.com/jobs/view/4445593448/",
-      "commitment": "",
-      "fonte": "linkedin",
-      "data_vista": "2026-08-08",
-      "data_ref": "2026-08-08",
-      "id": "d6b15c1eb8"
-    },
-    {
-      "empresa": "linkedin",
       "titulo": "AI Data Annotation Specialist in Brazil Rex.zone · Brasil (Remoto) US$ 30-US$ 50 por hora",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -1088,6 +1073,45 @@
       "data_vista": "2026-08-04",
       "data_ref": "2026-08-04",
       "id": "6bceb2d4e0"
+    },
+    {
+      "empresa": "linkedin",
+      "titulo": "AI Specialist SYNC · Brasil (Remoto)",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.linkedin.com/jobs/view/4447200628/",
+      "commitment": "",
+      "fonte": "linkedin",
+      "data_vista": "2026-08-20",
+      "data_ref": "2026-08-20",
+      "id": "f07190bb70"
+    },
+    {
+      "empresa": "linkedin",
+      "titulo": "AI Engineer (Prompt) - Remote Work | REF#299967 BairesDev · Brasil (Remoto)",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.linkedin.com/jobs/view/4449089423/",
+      "commitment": "",
+      "fonte": "linkedin",
+      "data_vista": "2026-08-20",
+      "data_ref": "2026-08-20",
+      "id": "ec2d685c1a"
+    },
+    {
+      "empresa": "linkedin",
+      "titulo": "Analista de Data &amp; AI Vetta · Brasil (Remoto)",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.linkedin.com/jobs/view/4445593448/",
+      "commitment": "",
+      "fonte": "linkedin",
+      "data_vista": "2026-08-08",
+      "data_ref": "2026-08-08",
+      "id": "d6b15c1eb8"
     },
     {
       "empresa": "linkedin",
