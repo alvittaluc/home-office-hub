@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-20T09:20:18.340963+00:00",
-  "atualizado_br": "20/08/2026 às 09:20",
-  "total": 64,
+  "atualizado_em": "2026-08-21T09:54:55.769115+00:00",
+  "atualizado_br": "21/08/2026 às 09:54",
+  "total": 63,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -308,13 +308,13 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/1F5D7D26D4",
+      "url": "https://apply.workable.com/j/3BC21BC660",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-08-13",
-      "data_vista": "2026-08-13",
-      "data_ref": "2026-08-13",
-      "id": "1b8ad5b2f3"
+      "data_post": "2026-08-21",
+      "data_vista": "2026-08-21",
+      "data_ref": "2026-08-21",
+      "id": "e5b16d0cf1"
     },
     {
       "empresa": "toloka",
@@ -420,13 +420,13 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/BE14E1BE60",
+      "url": "https://apply.workable.com/j/E5697EFAE5",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-08-13",
-      "data_vista": "2026-08-13",
-      "data_ref": "2026-08-13",
-      "id": "5bfd31c262"
+      "data_post": "2026-08-20",
+      "data_vista": "2026-08-21",
+      "data_ref": "2026-08-20",
+      "id": "a2212c529f"
     },
     {
       "empresa": "toloka",
@@ -434,13 +434,13 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/7A3F656414",
+      "url": "https://apply.workable.com/j/23C5CC1E88",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-08-13",
-      "data_vista": "2026-08-13",
-      "data_ref": "2026-08-13",
-      "id": "5ec9f0e428"
+      "data_post": "2026-08-20",
+      "data_vista": "2026-08-21",
+      "data_ref": "2026-08-20",
+      "id": "22203a5bd2"
     },
     {
       "empresa": "oneforma",
@@ -480,24 +480,6 @@
     },
     {
       "empresa": "oneforma",
-      "titulo": "Multilingual AI Response Evaluator And Prompt Writer",
-      "local": "Remoto · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://www.oneforma.com/projects/multilingual-ai-response-evaluator-and-prompt-writer/",
-      "commitment": "",
-      "fonte": "direto",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-08-05",
-      "id": "6f2ebe9288",
-      "resumo": {
-        "o_que_faz": "Você avalia respostas geradas por IA, reescreve trechos para que soem naturais no seu idioma e cria prompts feitos para testar os limites e a qualidade do modelo. É uma mistura de crítica, redação e criatividade controlada. Trabalho remoto, pago por hora.",
-        "requisitos": "Atenção ao idioma exigido: este projeto lista falantes nativos de francês, inglês da Austrália e japonês, então só vale a pena se candidatar se você tem um desses perfis. Além disso, boa redação, sensibilidade para tom e naturalidade, e capacidade de explicar por que uma resposta está boa ou ruim. Inglês para ler as diretrizes. Cadastro e qualificação na OneForma.",
-        "dica_cv": "Se o seu idioma não é um dos três listados, guarde a energia e priorize os outros projetos da OneForma abertos ao Brasil, porque a triagem de idioma é automática. Se você se encaixa, destaque redação, copywriting, tradução criativa, revisão editorial ou ensino de idiomas, e inclua exemplos curtos de texto autoral. Escrever que você tem experiência criando prompts e testando modelos de IA aumenta bastante a chance de aprovação."
-      }
-    },
-    {
-      "empresa": "oneforma",
       "titulo": "Regional Language Adaptation Specialist",
       "local": "Remoto · Brasil",
       "categoria": "transl",
@@ -512,6 +494,24 @@
         "o_que_faz": "Você adapta conteúdo já traduzido para que a terminologia, o tom e as expressões soem certos na região de destino. É menos tradução e mais ajuste fino cultural, o famoso trabalho de localização, resolvendo casos em que a frase está tecnicamente correta mas soa estranha para quem mora ali. Remoto, com pagamento fixo por item aprovado.",
         "requisitos": "Ser profissional nativo do idioma de destino, com experiência em tradução, edição ou localização. Conhecer as diferenças regionais do idioma, incluindo gírias, formalidade, formatos de data, moeda e unidades. Bom senso para decidir o que mudar e o que preservar, e capacidade de justificar as escolhas. Cadastro e qualificação na OneForma.",
         "dica_cv": "Escreva explicitamente a variante que você domina, por exemplo português do Brasil, e não apenas \"português\", porque a plataforma separa Brasil de Portugal. Dê um exemplo curto de adaptação que você já fez, do tipo trocar um termo de Portugal pelo equivalente brasileiro. Palavras que ajudam na triagem: localização, transcriação, guia de estilo, glossário e adaptação regional."
+      }
+    },
+    {
+      "empresa": "oneforma",
+      "titulo": "Multilingual Intent And Response Annotator",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.oneforma.com/projects/multilingual-intent-and-response-annotator/",
+      "commitment": "",
+      "fonte": "direto",
+      "data_vista": "2026-08-21",
+      "data_ref": "2026-08-21",
+      "id": "1f09f5a758",
+      "resumo": {
+        "o_que_faz": "Você rotula o que o usuário pediu e o que a IA respondeu, classificando a intenção por trás de cada mensagem para que o sistema entenda melhor o que as pessoas querem. É um trabalho de anotação com regras claras e volume constante. Remoto, pago por hora, com expectativa de 30 a 50 horas por mês, então dá para conciliar com outra atividade.",
+        "requisitos": "Ser falante nativo do idioma do projeto e conseguir concluir o onboarding e o treinamento antes de pegar tarefas. Disponibilidade real de 30 a 50 horas mensais, o que dá algo entre 7 e 12 horas por semana. Atenção a detalhe e consistência para aplicar a mesma regra da primeira à última tarefa do dia. Leitura de inglês para os guias e cadastro aprovado na OneForma.",
+        "dica_cv": "Como a vaga é de longo prazo, deixe clara a sua disponibilidade semanal em números logo no início do perfil. Destaque experiência com anotação, categorização, triagem de tickets, moderação ou atendimento, tudo que envolva classificar mensagens em categorias. Uma frase sobre você seguir guias longos sem perder o padrão pesa bastante aqui."
       }
     },
     {
@@ -566,24 +566,6 @@
         "o_que_faz": "Você avalia resultados de busca em loja de aplicativos e em serviços de música, julgando se o que aparece é útil, se corresponde à intenção de quem buscou e se a experiência faz sentido. Na prática, é usar o iPhone ou iPad, fazer buscas indicadas e dar notas seguindo diretrizes. Remoto, pago por item aprovado.",
         "requisitos": "Ter um Apple ID ativo e um dispositivo iOS, condição eliminatória do projeto, e morar em uma localidade elegível. Bom conhecimento de aplicativos, artistas e cultura pop local, porque muita avaliação depende de saber o que o usuário provavelmente queria. Atenção a detalhe e disciplina para seguir diretrizes longas. Cadastro e qualificação na OneForma.",
         "dica_cv": "Diga logo que você tem iPhone ou iPad e Apple ID ativo, porque é a primeira coisa checada. Cite familiaridade com App Store, Apple Music, Spotify e o cenário musical brasileiro. Se já fez search evaluation, moderação de conteúdo ou pesquisa de mercado, destaque. Reserve um tempo para estudar as diretrizes antes do teste, já que a aprovação depende quase toda dele."
-      }
-    },
-    {
-      "empresa": "oneforma",
-      "titulo": "Local Maps Search Evaluator",
-      "local": "Remoto · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://www.oneforma.com/projects/local-maps-search-evaluator/",
-      "commitment": "10 hours per week",
-      "fonte": "direto",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-08-05",
-      "id": "d1856cbd96",
-      "resumo": {
-        "o_que_faz": "Você avalia buscas em mapas, checando se os locais, endereços e informações de estabelecimentos estão corretos e fazem sentido para quem procura. Usa o seu conhecimento real da região onde mora para julgar se o resultado é útil. É um projeto remoto de longo prazo, pago por item aprovado, com cerca de dez horas por semana.",
-        "requisitos": "Morar na região avaliada há pelo menos cinco anos e conhecer bem bairros, comércios e vias. Disponibilidade de aproximadamente dez horas semanais de forma constante. Atenção a detalhe e capacidade de seguir diretrizes extensas sem mudar o critério ao longo do tempo. Internet estável, leitura de inglês para os guias e cadastro aprovado na OneForma.",
-        "dica_cv": "Diga com clareza a cidade e o bairro onde mora e há quantos anos, porque é o requisito central da vaga. Demonstre conhecimento local com uma frase concreta, do tipo conhecer bem o comércio e os pontos de referência da sua região. Confirme a disponibilidade de dez horas semanais e destaque qualquer experiência com Google Maps, Waze, cadastro de estabelecimentos, entregas ou pesquisa de campo."
       }
     },
     {
@@ -839,18 +821,13 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4788685101",
+      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4707905101",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-02-23",
-      "data_vista": "2026-08-19",
-      "data_ref": "2026-02-23",
-      "id": "8a110bdc35",
-      "resumo": {
-        "o_que_faz": "Você grava material roteirizado em português e avalia vozes geradas por IA, dando retorno especializado sobre pronúncia, entonação, ritmo, expressão emocional e variação regional. Também anota erros e ajuda a equipe a refinar prompts, métodos de avaliação e diretrizes de design de voz. É a vaga mais sênior desse conjunto, voltada a quem já vive de locução. Faixa de US$ 6 a US$ 65 por hora, remoto.",
-        "requisitos": "Experiência profissional comprovada em locução, dublagem, narração ou performance equivalente em português. Experiência em ensino, coaching de voz ou anotação linguística é diferencial. Exige setup de gravação de qualidade, com microfone confiável e ambiente silencioso e tratado, além de computador seguro e internet estável. Atenção a detalhe e boa comunicação para descrever o que soa errado numa voz sintética.",
-        "dica_cv": "Aqui o portfólio importa mais que o currículo: mande um link com demos curtas em estilos diferentes, como comercial, narração e personagem. Informe o modelo do microfone, da interface e como é o tratamento acústico do seu espaço. Se você faz dublagem, cite os títulos e o tipo de papel. Uma linha dizendo que você sabe descrever tecnicamente problemas de prosódia e pronúncia diferencia você de quem só sabe gravar."
-      }
+      "data_post": "2025-11-07",
+      "data_vista": "2026-08-21",
+      "data_ref": "2025-11-07",
+      "id": "40bde685a9"
     },
     {
       "empresa": "meridial",
