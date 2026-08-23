@@ -1,12 +1,12 @@
 {
-  "atualizado_em": "2026-08-23T09:01:28.775040+00:00",
-  "atualizado_br": "23/08/2026 às 09:01",
-  "total": 63,
+  "atualizado_em": "2026-08-23T22:38:30.376509+00:00",
+  "atualizado_br": "23/08/2026 às 19:38",
+  "total": 62,
   "vagas": [
     {
       "empresa": "welocalize",
       "titulo": "*Scout Junior Quality Coordinator - Portuguese (Brazil)",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/6e0ac589-3fba-429a-8ce4-5c48a2cf0e2d",
@@ -27,7 +27,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Ads Quality Rater - German (Brazil)",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/31bad8e4-811a-4d38-94ab-81b5238b017b",
@@ -48,7 +48,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Ads Quality Rater - Italian (Brazil)",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/b782302b-3ac6-4069-b295-1b0eb194329c",
@@ -69,7 +69,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Circinus - Audio Contributor Portuguese (Brazil)",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://jobs.lever.co/weloglobal/aba23d95-caff-4c63-96ac-ed40f4561a19",
@@ -90,7 +90,7 @@
     {
       "empresa": "welocalize",
       "titulo": "English to Portuguese (Brazil) Patent Linguist",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "transl",
       "badge": "Tradução",
       "url": "https://jobs.lever.co/weloglobal/12511ff5-5083-49e9-b50a-13613d957e25",
@@ -111,7 +111,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Generative AI Analyst | Portuguese (Brazil)",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://jobs.lever.co/weloglobal/19200023-3d81-4038-bf97-bdccde8ccc1d",
@@ -130,7 +130,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Italian Search & Data Labelling Rater - Project Andromeda Titawin",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/808cf834-d4be-476e-a178-74ec72f861dc",
@@ -151,7 +151,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Portuguese (Brazil) Quality Control Lead - Project Lyra",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/4cc2a43f-a3e8-4d84-9b8d-ee69598bd8bb",
@@ -172,7 +172,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Portuguese Accessibility Tester",
-      "local": "Remoto · Mundial",
+      "local": "Remoto · Remoto - Europe",
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://jobs.lever.co/weloglobal/7f043ad0-ba02-44c1-b163-0c75b3e7e3f3",
@@ -193,7 +193,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Project Epsilon - Portuguese (Brazil) Data Trainer",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "ai",
       "badge": "IA & Dados",
       "url": "https://jobs.lever.co/weloglobal/64a0c74c-57fb-482e-b9a2-cfaff52db6df",
@@ -214,7 +214,7 @@
     {
       "empresa": "welocalize",
       "titulo": "Project Epsilon - Portuguese (Brazil) Quality Control Specialist",
-      "local": "Remoto · Brasil",
+      "local": "Remoto · Brazil",
       "categoria": "qa",
       "badge": "QA",
       "url": "https://jobs.lever.co/weloglobal/c9d76e98-60ed-4f2e-91cb-2f8d54441cfe",
@@ -229,6 +229,48 @@
         "requisitos": "Português (Brasil). Ser muito meticuloso e observador, com habilidade de identificar erros e inconsistências que passam despercebidos. Seguir diretrizes do projeto.",
         "dica_cv": "Destaque: atenção a detalhes acima da média, experiência com revisão/conferência de trabalho, e capacidade de aplicar diretrizes com consistência.",
         "contrato": "Freelance · Remoto · Por tarefa",
+        "remuneracao": ""
+      }
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Project Perseus | Data Labeling Associate - Portuguese (Brazil) Speakers (Human-in-the-Loop AI)",
+      "local": "Remoto · California",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/32423991-2b3f-4499-8905-ada86936e4f7",
+      "commitment": "Full Time",
+      "fonte": "direto",
+      "data_post": "2026-04-22",
+      "data_vista": "2026-08-04",
+      "data_ref": "2026-04-22",
+      "id": "3f23aefbfc",
+      "resumo": {
+        "o_que_faz": "Como Associado(a) de Rotulagem de Dados (Human-in-the-Loop AI), você trabalha diretamente com sistemas de IA de ponta: avalia respostas, identifica falhas e ajuda a melhorar o comportamento dos modelos. Vai além de anotação tradicional — exige pensamento crítico.",
+        "requisitos": "Proficiência nativa em português (Brasil) e diploma universitário (bacharelado ou superior). Inglês B2 ou acima. 1–2 anos de experiência com escrita profissional estruturada. Aplicar regras e diretrizes complexas com consistência.",
+        "dica_cv": "Destaque: diploma universitário, experiência com escrita profissional/estruturada (1–2 anos), inglês B2+, e curiosidade/pensamento crítico sobre IA.",
+        "contrato": "Freelance · Remoto",
+        "remuneracao": ""
+      }
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Project Perseus | Speech & Voice AI Analyst - Portuguese (Brazil) Speakers",
+      "local": "Remoto · California",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/89050f99-2c6f-4490-a763-9ddc81c19549",
+      "commitment": "Full Time",
+      "fonte": "direto",
+      "data_post": "2026-07-16",
+      "data_vista": "2026-08-04",
+      "data_ref": "2026-07-16",
+      "id": "503d5a2f4d",
+      "resumo": {
+        "o_que_faz": "Como Analista de IA de Fala e Voz (Data Labeling Analyst), você trabalha com dados de áudio, fala e linguagem, ajudando a garantir que os modelos de IA sejam treinados com dados precisos e bem estruturados. Foco em execução com qualidade.",
+        "requisitos": "Fluência nativa em português (Brasil). Boa comunicação escrita. 1 ano de experiência em rotulagem/anotação de dados OU diploma de bacharelado em área relacionada. Seguir instruções detalhadas.",
+        "dica_cv": "Destaque: português nativo, 1 ano de experiência com anotação/rotulagem (ou diploma relacionado), boa escrita e atenção a detalhes. Mencione interesse por dados de áudio/voz.",
+        "contrato": "Freelance · Remoto",
         "remuneracao": ""
       }
     },
@@ -263,7 +305,7 @@
       "commitment": "Full-time Employee",
       "fonte": "direto",
       "data_post": "2025-09-24",
-      "data_vista": "2026-08-20",
+      "data_vista": "2026-08-23",
       "data_ref": "2025-09-24",
       "id": "7f4a98d369"
     },
@@ -277,7 +319,7 @@
       "commitment": "Temporary/Contract",
       "fonte": "direto",
       "data_post": "2026-08-10",
-      "data_vista": "2026-08-11",
+      "data_vista": "2026-08-23",
       "data_ref": "2026-08-10",
       "id": "53daa6cf99"
     },
@@ -312,7 +354,7 @@
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-08-21",
-      "data_vista": "2026-08-21",
+      "data_vista": "2026-08-23",
       "data_ref": "2026-08-21",
       "id": "e5b16d0cf1"
     },
@@ -347,7 +389,7 @@
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-08-17",
-      "data_vista": "2026-08-18",
+      "data_vista": "2026-08-23",
       "data_ref": "2026-08-17",
       "id": "0c64bed7a9"
     },
@@ -361,7 +403,7 @@
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-08-17",
-      "data_vista": "2026-08-18",
+      "data_vista": "2026-08-23",
       "data_ref": "2026-08-17",
       "id": "cfc1a7bd6f"
     },
@@ -375,7 +417,7 @@
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-08-21",
-      "data_vista": "2026-08-22",
+      "data_vista": "2026-08-23",
       "data_ref": "2026-08-21",
       "id": "0e9eff6efc"
     },
@@ -389,7 +431,7 @@
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-08-20",
-      "data_vista": "2026-08-20",
+      "data_vista": "2026-08-23",
       "data_ref": "2026-08-20",
       "id": "f7d63ebdc2"
     },
@@ -424,7 +466,7 @@
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-08-20",
-      "data_vista": "2026-08-21",
+      "data_vista": "2026-08-23",
       "data_ref": "2026-08-20",
       "id": "a2212c529f"
     },
@@ -438,7 +480,7 @@
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-08-20",
-      "data_vista": "2026-08-21",
+      "data_vista": "2026-08-23",
       "data_ref": "2026-08-20",
       "id": "22203a5bd2"
     },
@@ -505,8 +547,8 @@
       "url": "https://www.oneforma.com/projects/multilingual-intent-and-response-annotator/",
       "commitment": "",
       "fonte": "direto",
-      "data_vista": "2026-08-21",
-      "data_ref": "2026-08-21",
+      "data_vista": "2026-08-05",
+      "data_ref": "2026-08-05",
       "id": "1f09f5a758",
       "resumo": {
         "o_que_faz": "Você rotula o que o usuário pediu e o que a IA respondeu, classificando a intenção por trás de cada mensagem para que o sistema entenda melhor o que as pessoas querem. É um trabalho de anotação com regras claras e volume constante. Remoto, pago por hora, com expectativa de 30 a 50 horas por mês, então dá para conciliar com outra atividade.",
@@ -570,6 +612,48 @@
     },
     {
       "empresa": "telus",
+      "titulo": "Fieldwork Brazil (São Paulo)  :  Mobile Data Collector",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129114",
+      "commitment": "freelancer",
+      "fonte": "direto",
+      "data_post": "2026-08-06",
+      "data_vista": "2026-08-23",
+      "data_ref": "2026-08-06",
+      "id": "ea47a17920"
+    },
+    {
+      "empresa": "telus",
+      "titulo": "Portuguese Native AI Data Annotator (AI Community)",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129100",
+      "commitment": "freelancer",
+      "fonte": "direto",
+      "data_post": "2026-08-05",
+      "data_vista": "2026-08-23",
+      "data_ref": "2026-08-05",
+      "id": "3eb1712983"
+    },
+    {
+      "empresa": "telus",
+      "titulo": "Portuguese Native : AI Speech & Audio Specialist",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129095",
+      "commitment": "freelancer",
+      "fonte": "direto",
+      "data_post": "2026-08-05",
+      "data_vista": "2026-08-23",
+      "data_ref": "2026-08-05",
+      "id": "5523b8cd28"
+    },
+    {
+      "empresa": "telus",
       "titulo": "AI Response Rating and Evaluation - Portuguese (Brazil)",
       "local": "Remoto · Brasil",
       "categoria": "qa",
@@ -580,12 +664,7 @@
       "data_post": "2026-07-28",
       "data_vista": "2026-08-05",
       "data_ref": "2026-07-28",
-      "id": "7d9136c1e0",
-      "resumo": {
-        "o_que_faz": "Você avalia respostas geradas por inteligência artificial em português do Brasil, dando nota para qualidade, precisão e relevância segundo um guia detalhado. O material pode ser texto ou imagem, e o seu retorno é usado para melhorar buscadores, chatbots e sistemas de recomendação. O trabalho é feito dentro da ferramenta do cliente, com login e instruções enviados pela Telus. Pagamento de US$ 6,25 por hora, via Hyperwallet, depois da aprovação.",
-        "requisitos": "Português do Brasil nativo e inglês suficiente para ler diretrizes longas, que costumam vir nesse idioma. Muita atenção a detalhe e consistência: a Telus mede se você aplica o mesmo critério do começo ao fim. Computador com internet estável e disponibilidade para o processo de entrada, que inclui teste de qualificação. Você também vai precisar de uma conta Hyperwallet para receber.",
-        "dica_cv": "Currículo em inglês. Destaque revisão, pesquisa, ensino, atendimento ou qualquer função em que você seguiu um manual de regras. O teste de qualificação é o filtro real, então reserve algumas horas para estudar as diretrizes com calma antes de fazer, e prefira acertar o critério a responder rápido. Se já trabalhou como avaliador de busca ou de conteúdo, cite o nome do projeto."
-      }
+      "id": "7d9136c1e0"
     },
     {
       "empresa": "telus",
@@ -599,50 +678,21 @@
       "data_post": "2026-03-03",
       "data_vista": "2026-08-05",
       "data_ref": "2026-03-03",
-      "id": "00e551eb08",
-      "resumo": {
-        "o_que_faz": "É uma tarefa curta e pontual, não um trabalho contínuo. A Telus convida pais e responsáveis por adolescentes de 13 a 17 anos a participar de uma coleta de dados online que ajuda a desenvolver sistemas de verificação de idade, usados para impedir que menores acessem conteúdo inadequado. A participação leva cerca de 30 minutos, é feita de casa e envolve confirmar informações básicas para verificação de identidade. Pagamento de US$ 20 por unidade concluída.",
-        "requisitos": "Ser pai, mãe ou responsável por adolescente na faixa de 13 a 17 anos. Computador ou celular com internet e disposição para passar por uma etapa de confirmação de identidade. Inglês básico para acompanhar as instruções. Por ser tarefa única, não há meta de horas nem continuidade garantida.",
-        "dica_cv": "Não é uma vaga de currículo, é um cadastro de participação. Antes de concluir, leia com atenção quais dados serão pedidos e como serão usados, porque a tarefa envolve verificação de identidade. Faça o processo apenas pelo site oficial da Telus International AI, com a conta que você já usa na plataforma, e desconfie de qualquer pedido fora dele. Como o pagamento é por unidade, encare como um extra rápido, não como fonte de renda."
-      }
+      "id": "00e551eb08"
     },
     {
       "empresa": "telus",
-      "titulo": "GenAI Multilingual Specialist — LLM/VLM Evaluation & SFT Expert",
+      "titulo": "Quality Assurance Rater - Portuguese (Brazil)",
       "local": "Remoto · Brasil",
       "categoria": "qa",
       "badge": "QA",
-      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/128676",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/128798",
       "commitment": "freelancer",
       "fonte": "direto",
-      "data_post": "2026-05-07",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-05-07",
-      "id": "92f48d01d6",
-      "resumo": {
-        "o_que_faz": "Você atua como a camada de raciocínio humano por trás dos modelos de IA, avaliando conteúdo gerado em vários idiomas quanto a precisão factual, coerência lógica, obediência às instruções e adequação cultural. O trabalho inclui criar e avaliar dados de ajuste fino supervisionado (SFT), aplicar rubricas de nota, verificar fatos com fontes confiáveis, analisar tarefas que juntam imagem e texto e sinalizar casos ambíguos para revisão. Português do Brasil está na lista de idiomas buscados. Pagamento de US$ 4,50 por hora.",
-        "requisitos": "Fluência nativa em português do Brasil e inglês sólido, já que as rubricas e os procedimentos vêm nesse idioma. Capacidade de pesquisar e citar fontes para confirmar afirmações, além de raciocínio analítico para justificar cada nota por escrito. Disciplina para seguir procedimentos longos em volume alto sem baixar o padrão. Computador com internet estável e cadastro aprovado na Telus.",
-        "dica_cv": "Currículo em inglês e foco em pensamento crítico. Destaque pesquisa, checagem de fatos, docência, revisão acadêmica ou qualquer função que exija justificar decisões. Use os termos que a vaga usa, como LLM evaluation, SFT, rubric scoring e fact verification, porque a triagem inicial é por palavra-chave. Se você tem formação ou domínio em alguma área específica, como direito, saúde ou tecnologia, mencione, porque projetos de avaliação costumam separar por especialidade."
-      }
-    },
-    {
-      "empresa": "telus",
-      "titulo": "Global AI Language Labeler (Transcription & QA) – Multiple Locations",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/128645",
-      "commitment": "freelancer",
-      "fonte": "direto",
-      "data_post": "2026-04-16",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-04-16",
-      "id": "a237c23edf",
-      "resumo": {
-        "o_que_faz": "Projeto de reconhecimento de fala em que você transcreve áudios e faz o controle de qualidade das transcrições de outras pessoas, em português do Brasil. É um contrato curto, de cerca de 4 semanas, com início imediato e disponibilidade pedida de 5 horas ou mais por dia. A remuneração informada varia de US$ 4,50 a US$ 23 por hora, dependendo do idioma e da localidade.",
-        "requisitos": "Ter 18 anos ou mais, ser falante nativo de português do Brasil e ter inglês em nível B2 para navegar no sistema e ler as diretrizes. Experiência anterior em transcrição ou anotação é obrigatória, não é vaga de iniciante. Precisa de notebook ou desktop com Windows 10 ou superior, ou Mac atualizado, internet rápida e estável e um headset de boa qualidade. O anúncio também pede que você seja usuário ativo de redes sociais.",
-        "dica_cv": "Currículo em inglês, com a experiência em transcrição logo no topo e com números, como minutos de áudio por hora ou palavras por minuto. Escreva claramente o seu idioma nativo na candidatura, porque a vaga pede isso de forma explícita. Vale saber que o texto do anúncio tem partes confusas, como uma data de início antiga e uma linha sobre equipamento que se contradiz, então confirme prazo e requisitos técnicos por e-mail antes de recusar outro trabalho por causa dele."
-      }
+      "data_post": "2026-06-05",
+      "data_vista": "2026-08-23",
+      "data_ref": "2026-06-05",
+      "id": "2edd9d5f33"
     },
     {
       "empresa": "meridial",
@@ -656,12 +706,7 @@
       "data_post": "2026-03-13",
       "data_vista": "2026-08-05",
       "data_ref": "2026-03-13",
-      "id": "d00bc7297c",
-      "resumo": {
-        "o_que_faz": "Você conversa com modelos de IA em português falado no Rio de Janeiro e tenta fazê-los errar, testando gramática, sintaxe, morfologia, semântica, uso de tempos verbais, ordem das palavras e variação de estilo. Cada falha encontrada é documentada de forma que possa ser reproduzida, com explicação do que saiu errado e por quê. Também entram sugestões de melhoria nos prompts e nas métricas de avaliação. Freelance remoto, com faixa de US$ 6 a US$ 65 por hora definida conforme experiência e localização.",
-        "requisitos": "Domínio profundo do português falado no Rio, incluindo gírias, entonação e expressões que só quem é da região usa naturalmente. Graduação em letras, linguística ou área próxima é o ideal, mas fluência nativa somada a experiência em ensino, tradução ou projetos linguísticos comunitários substitui o diploma. Inglês para ler as instruções e, principalmente, capacidade de explicar o seu raciocínio por escrito, o que a empresa chama de mostrar o seu trabalho. Computador seguro e internet rápida por sua conta, sem benefícios de CLT.",
-        "dica_cv": "Currículo em inglês, mas com exemplos concretos de português carioca, do tipo apontar uma expressão que um modelo usaria errado. Destaque ensino de português, revisão, tradução, redação ou pesquisa em linguística. Vale saber que o anúncio é um modelo genérico reaproveitado e cita coisas que não existem em português, como sistema de casos e declinações, então não se assuste: na prática o que conta é o seu domínio real do dialeto. Se você é do Rio ou morou lá por muitos anos, diga isso logo na primeira linha."
-      }
+      "id": "d00bc7297c"
     },
     {
       "empresa": "meridial",
@@ -675,12 +720,7 @@
       "data_post": "2025-06-13",
       "data_vista": "2026-08-05",
       "data_ref": "2025-06-13",
-      "id": "4d59850d89",
-      "resumo": {
-        "o_que_faz": "Você usa a sua experiência de programação para testar e treinar modelos de IA, conversando com eles em português do Brasil sobre problemas reais de engenharia de software. Os temas vão de algoritmos e estruturas de dados a arquitetura, front-end, back-end, nuvem, programação assíncrona, integração de APIs REST, gerenciamento de memória, orientação a objetos, segurança e depuração de sistemas distribuídos. Além de avaliar se a resposta técnica está correta, você julga se o português usado soa natural. Faixa de US$ 8 a US$ 65 por hora, contrato remoto de nível pleno a sênior.",
-        "requisitos": "Experiência real de programação e fluência em português do Brasil. Graduação, mestrado ou doutorado em computação ou engenharia de software é o cenário ideal, mas experiência prática, escrita técnica em português e contribuições em código aberto também contam. Inglês para ler as diretrizes e capacidade de explicar o raciocínio passo a passo por escrito. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Currículo em inglês com as linguagens e o tempo de experiência em cada uma bem visíveis. Coloque o link do GitHub, porque contribuição em código aberto é citada como sinal de aderência. Descreva um problema técnico difícil que você resolveu e como chegou lá, já que a vaga valoriza quem sabe explicar o raciocínio. Se você escreve documentação ou dá aula de programação em português, destaque, porque é exatamente o cruzamento que essa vaga procura."
-      }
+      "id": "4d59850d89"
     },
     {
       "empresa": "meridial",
@@ -694,12 +734,7 @@
       "data_post": "2026-07-14",
       "data_vista": "2026-08-05",
       "data_ref": "2026-07-14",
-      "id": "3240bec5b6",
-      "resumo": {
-        "o_que_faz": "Você é o filtro final de qualidade linguística de um projeto de dados de IA em português do Brasil. Isso inclui revisar e anotar saídas do modelo procurando erro gramatical, frase artificial e escorregão cultural, atuar como conferência durante a produção e, além disso, transformar os padrões de erro que você identifica em materiais de orientação para o resto da equipe. É uma função autônoma, mais sênior que uma anotação comum. Faixa de US$ 6 a US$ 65 por hora, como contratante independente.",
-        "requisitos": "Português do Brasil comprovado em nível C1 ou C2 e experiência de trabalho ou formação em linguística, educação ou outra área que exija rigor com a língua. Pede experiência anterior comprovável em avaliação ou anotação de dados humanos. Também é preciso saber transformar retorno solto e tendências de qualidade em documentos organizados e úteis, o que exige boa escrita didática. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Deixe claro que é português do Brasil e informe o nível C1 ou C2, com certificação se tiver. Este perfil é mais alto que o de anotador comum, então destaque as vezes em que você treinou pessoas, escreveu guia de estilo, montou material de treinamento ou liderou revisão de equipe. Se já trabalhou em plataformas de dados para IA, cite o nome e o tipo de tarefa. Um exemplo curto de documento didático que você criou vale mais que uma lista de adjetivos."
-      }
+      "id": "3240bec5b6"
     },
     {
       "empresa": "meridial",
@@ -713,12 +748,7 @@
       "data_post": "2026-04-05",
       "data_vista": "2026-08-05",
       "data_ref": "2026-04-05",
-      "id": "acd5e97e92",
-      "resumo": {
-        "o_que_faz": "É a mesma função de parceiro de alinhamento linguístico da Meridial, aqui na versão aberta para português em geral, sem especificar a variante do Brasil. Você revisa, anota e valida dados de IA olhando gramática, naturalidade e contexto cultural, faz o controle de qualidade durante a produção e cria materiais de orientação a partir das tendências de erro que encontra. Trabalho remoto como contratante independente, com faixa de US$ 6 a US$ 65 por hora.",
-        "requisitos": "Proficiência comprovada em português no nível C1 ou C2 e formação ou experiência em linguística, educação ou área que exija atenção fina ao idioma. Experiência anterior em avaliação ou anotação de dados humanos. Capacidade de trabalhar sozinho e de transformar retorno bruto em documentação clara. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Como o anúncio fala de português sem separar Brasil de Portugal, escreva você mesmo qual variante domina e em que contextos, para não cair na fila errada. Vale se candidatar a esta e à versão específica do Brasil, já que são anúncios diferentes na mesma empresa. Destaque experiência em revisão, ensino de português, tradução e criação de material didático, e cite plataformas de dados para IA em que já trabalhou."
-      }
+      "id": "acd5e97e92"
     },
     {
       "empresa": "meridial",
@@ -732,12 +762,7 @@
       "data_post": "2025-06-13",
       "data_vista": "2026-08-05",
       "data_ref": "2025-06-13",
-      "id": "4cc90c09d7",
-      "resumo": {
-        "o_que_faz": "Você usa a sua bagagem em matemática para desafiar modelos de IA, propondo desde problemas de sala de aula até questões teóricas em álgebra, cálculo, teoria dos números, álgebra linear, equações diferenciais, estatística, geometria, lógica e matemática discreta. O trabalho é verificar se a resposta é correta e logicamente coerente, registrar as falhas de forma reproduzível e sugerir melhorias nos prompts e nas métricas. Faixa de US$ 6 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e domínio real de matemática. Mestrado ou doutorado na área é o cenário ideal, e publicações, experiência docente, pesquisa pura ou aplicada e modelagem matemática são sinais valorizados. Inglês para as diretrizes e, acima de tudo, capacidade de escrever a solução passo a passo, mostrando o raciocínio e não só o resultado. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Currículo em inglês listando formação, área de especialidade e publicações, se houver. Se você dá aula de matemática, escreva o nível, porque saber explicar é justamente o que a vaga compra. Inclua um exemplo de demonstração ou de resolução comentada, já que a triagem costuma pedir uma amostra de raciocínio. Domínio de LaTeX ajuda e vale citar."
-      }
+      "id": "4cc90c09d7"
     },
     {
       "empresa": "meridial",
@@ -751,12 +776,7 @@
       "data_post": "2026-03-13",
       "data_vista": "2026-08-05",
       "data_ref": "2026-03-13",
-      "id": "9b85491c08",
-      "resumo": {
-        "o_que_faz": "Mesma estrutura da vaga de dialeto carioca, aqui voltada ao português falado em São Paulo. Você conversa com modelos avançados de IA, testa como eles lidam com gramática, sintaxe, semântica, ordem das palavras e variação de estilo do falar paulistano, e documenta cada erro de forma reproduzível, sugerindo melhorias nos prompts e nas métricas de avaliação. Freelance remoto, faixa de US$ 6 a US$ 65 por hora.",
-        "requisitos": "Conhecimento profundo e vivido do português paulistano, incluindo gírias, ritmo e expressões do cotidiano. Graduação em letras ou linguística é o ideal, mas fluência nativa com experiência em ensino, tradução ou projetos linguísticos comunitários substitui o diploma. Inglês para as instruções e clareza para explicar o próprio raciocínio por escrito. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Diga logo que você é de São Paulo ou mora na região há anos, porque é o critério central. Dê um ou dois exemplos concretos de expressão paulistana e de como um modelo erraria ao usá-la. Assim como na versão carioca, o anúncio é um modelo genérico e menciona conceitos que não existem em português, como declinações, então ignore essa parte e foque no seu domínio real do falar local. Se você domina os dois dialetos, candidate-se aos dois anúncios."
-      }
+      "id": "9b85491c08"
     },
     {
       "empresa": "meridial",
@@ -770,12 +790,7 @@
       "data_post": "2026-06-11",
       "data_vista": "2026-08-05",
       "data_ref": "2026-06-11",
-      "id": "8530a983a7",
-      "resumo": {
-        "o_que_faz": "Você avalia modelos de IA que conversam por voz, simulando atendimentos reais de clientes em áreas como reserva de voos, serviços financeiros e telecomunicações. Na prática você faz dramatizações por áudio, testa se o modelo conclui a tarefa, se soa natural e se entende o que foi dito, e ainda avalia a parte técnica, checando se ele lida bem com estruturas JSON, funções, métodos e lógica simples. O resultado alimenta bases de áudio de alta qualidade. Faixa de US$ 6 a US$ 65 por hora, remoto.",
-        "requisitos": "Proficiência nativa ou bilíngue no idioma do projeto, com boa fala, escuta, leitura e escrita, já que você vai conduzir simulações por voz. Experiência profissional comprovada em atendimento ao cliente complexo, suporte técnico ou avaliação de IA conversacional. Noção básica de programação, o suficiente para entender JSON, funções e métodos. Microfone de boa qualidade é exigência formal, além de computador seguro e internet estável.",
-        "dica_cv": "Esta vaga cruza dois mundos, então mostre os dois: atendimento ou suporte técnico de um lado, e familiaridade com JSON e lógica do outro, mesmo que básica. Descreva os setores em que você atendeu, porque o projeto cita viagem, finanças e suporte técnico. Informe o modelo do microfone e diga que grava em ambiente silencioso. Se você tem desenvoltura para falar em voz alta e improvisar num roteiro, deixe isso explícito, já que boa parte do trabalho é dramatização."
-      }
+      "id": "8530a983a7"
     },
     {
       "empresa": "meridial",
@@ -789,12 +804,7 @@
       "data_post": "2026-02-09",
       "data_vista": "2026-08-05",
       "data_ref": "2026-02-09",
-      "id": "ee8f8a34c4",
-      "resumo": {
-        "o_que_faz": "Você contribui com dados em português do Brasil em vários formatos, o que inclui texto, áudio, imagem e vídeo, com gravações da sua voz e da sua imagem. O trabalho principal é conversar com modelos de IA testando fonética, morfologia, sintaxe, semântica, pragmática, concordância, acentuação e expressões coloquiais, verificando a precisão das respostas e registrando os erros de forma reproduzível. Faixa de US$ 6 a US$ 65 por hora, remoto, nível de entrada.",
-        "requisitos": "Ter 18 anos ou mais e aceitar os termos de consentimento, já que o projeto envolve fornecer voz e imagem. Formação em letras, linguística ou área próxima é o ideal, e experiência docente ou em análise linguística conta pontos. Inglês para as diretrizes e clareza para explicar o raciocínio por escrito. O material enviado deve conter apenas você, sem terceiros nem informações pessoais sensíveis. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Antes de aceitar, leia o termo de consentimento com atenção, porque aqui você cede gravações da sua voz e da sua imagem para treino de IA, o que é diferente de um trabalho só de texto. Se estiver confortável, é uma das portas de entrada mais acessíveis da Meridial, já que é nível de entrada. No currículo, destaque ensino de português, revisão, locução ou qualquer experiência diante de câmera e microfone, e informe o seu equipamento de gravação."
-      }
+      "id": "ee8f8a34c4"
     },
     {
       "empresa": "meridial",
@@ -808,12 +818,7 @@
       "data_post": "2025-06-12",
       "data_vista": "2026-08-05",
       "data_ref": "2025-06-12",
-      "id": "df91131f02",
-      "resumo": {
-        "o_que_faz": "Você atua como especialista em língua portuguesa do Brasil desafiando modelos avançados de IA em fonética, morfologia, sintaxe, semântica, pragmática e sociolinguística. O dia a dia é conversar com o modelo sobre cenários linguísticos, verificar precisão e coerência, capturar os erros de forma reproduzível e sugerir melhorias nos prompts e nas métricas de avaliação. É a versão mais sênior das vagas de língua da Meridial. Faixa de US$ 6 a US$ 65 por hora, remoto.",
-        "requisitos": "Mestrado ou doutorado em letras, linguística ou área próxima é o perfil ideal deste anúncio, que está classificado como pleno a sênior. Publicações revisadas por pares, experiência docente e projetos de análise linguística são sinais valorizados. Inglês para as diretrizes e comunicação clara, com o hábito de mostrar o raciocínio por escrito. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Se você tem pós-graduação na área, este é o anúncio da Meridial em que a titulação mais pesa, então coloque formação e publicações no topo. Se você não tem mestrado, prefira a versão multimodal, que é de nível de entrada, ou as de dialeto. Inclua uma amostra curta de análise linguística escrita, porque vale mais que qualquer descrição genérica."
-      }
+      "id": "df91131f02"
     },
     {
       "empresa": "meridial",
@@ -825,14 +830,9 @@
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-02-23",
-      "data_vista": "2026-08-22",
+      "data_vista": "2026-08-05",
       "data_ref": "2026-02-23",
-      "id": "8a110bdc35",
-      "resumo": {
-        "o_que_faz": "Você grava material roteirizado em português e avalia vozes geradas por IA, dando retorno especializado sobre pronúncia, entonação, ritmo, expressão emocional e variação regional. Também anota erros e ajuda a equipe a refinar prompts, métodos de avaliação e diretrizes de design de voz. É a vaga mais sênior desse conjunto, voltada a quem já vive de locução. Faixa de US$ 6 a US$ 65 por hora, remoto.",
-        "requisitos": "Experiência profissional comprovada em locução, dublagem, narração ou performance equivalente em português. Experiência em ensino, coaching de voz ou anotação linguística é diferencial. Exige setup de gravação de qualidade, com microfone confiável e ambiente silencioso e tratado, além de computador seguro e internet estável. Atenção a detalhe e boa comunicação para descrever o que soa errado numa voz sintética.",
-        "dica_cv": "Aqui o portfólio importa mais que o currículo: mande um link com demos curtas em estilos diferentes, como comercial, narração e personagem. Informe o modelo do microfone, da interface e como é o tratamento acústico do seu espaço. Se você faz dublagem, cite os títulos e o tipo de papel. Uma linha dizendo que você sabe descrever tecnicamente problemas de prosódia e pronúncia diferencia você de quem só sabe gravar."
-      }
+      "id": "8a110bdc35"
     },
     {
       "empresa": "meridial",
@@ -846,12 +846,7 @@
       "data_post": "2025-06-16",
       "data_vista": "2026-08-05",
       "data_ref": "2025-06-16",
-      "id": "56652b524e",
-      "resumo": {
-        "o_que_faz": "Você usa a sua formação científica para testar modelos de IA em física, química, astronomia, ciências da terra e do ambiente, cobrindo temas como transformação de energia, estrutura atômica, movimento dos planetas, sistemas ecológicos, ciclo da água e método científico. O trabalho é propor cenários e questões, checar se a resposta está factualmente certa e logicamente coerente, registrar as falhas e sugerir melhorias na avaliação. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e formação em uma área científica, com graduação, mestrado ou doutorado. Experiência docente, publicações, pesquisa de laboratório ou de campo e projetos de divulgação científica são sinais valorizados. Inglês para as diretrizes e clareza para explicar o raciocínio passo a passo. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Currículo em inglês, com a área de especialidade e a titulação bem visíveis. Se você é professor de ciências, física ou química, destaque o nível em que leciona, porque parte das tarefas simula problemas de sala de aula. Cite publicações, pesquisas ou trabalhos de divulgação, com link se possível. Escrever uma explicação curta e clara de um conceito difícil é a melhor amostra que você pode anexar."
-      }
+      "id": "56652b524e"
     },
     {
       "empresa": "meridial",
@@ -865,12 +860,7 @@
       "data_post": "2025-06-13",
       "data_vista": "2026-08-05",
       "data_ref": "2025-06-13",
-      "id": "e2481ca329",
-      "resumo": {
-        "o_que_faz": "Versão mais ampla das vagas técnicas da Meridial, cobrindo matemática, física, química, engenharia, ciência de dados, computação e computação científica. Você conversa com o modelo sobre problemas reais e questões teóricas em temas como termodinâmica, mecânica, cálculo, estatística, ciência dos materiais, eletrônica, projeto de algoritmos e modelagem quantitativa, verificando a precisão e documentando cada falha. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e graduação ou mestrado em alguma área de exatas ou engenharia. Pesquisa publicada, experiência com projeto de engenharia, análise de dados ou portfólio de código são sinais valorizados. Inglês para as diretrizes e capacidade de mostrar o raciocínio por escrito, o que é exigência explícita. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Se o seu perfil é técnico mas não se encaixa exatamente em matemática ou em ciências, esta é a vaga guarda-chuva certa. Escolha uma especialidade principal e deixe-a clara logo no topo, em vez de listar tudo em nível superficial. Inclua links de GitHub, projetos de dados ou trabalhos de engenharia. Vale se candidatar a mais de uma vaga da Meridial, já que são projetos independentes."
-      }
+      "id": "e2481ca329"
     },
     {
       "empresa": "micro1",
@@ -884,107 +874,7 @@
       "data_post": "2026-07-30",
       "data_vista": "2026-08-05",
       "data_ref": "2026-07-30",
-      "id": "86ed8a6806",
-      "resumo": {
-        "o_que_faz": "O anúncio da micro1 é curto e cita apenas a habilidade de gravação de áudio. Pelo título e pelo formato dos projetos da plataforma, o trabalho é gravar amostras de voz em português do Brasil para treinar sistemas de IA de fala, seguindo roteiros e padrões técnicos de qualidade. É remoto e por hora, com faixa informada de US$ 20 a US$ 40 por hora, valor bem acima da média das plataformas de anotação.",
-        "requisitos": "Português do Brasil nativo e boa dicção. Microfone de qualidade e ambiente silencioso, já que gravação com ruído ou eco costuma ser reprovada. Computador com internet estável. Como a micro1 faz triagem por entrevista com IA, é bom estar preparado para uma conversa avaliativa antes de receber tarefas. Inglês para o cadastro e as instruções da plataforma.",
-        "dica_cv": "Como a descrição é vaga, o que decide é o cadastro na plataforma: preencha o perfil por completo e faça a entrevista com calma, em ambiente silencioso. Informe o modelo do microfone e anexe uma amostra de voz curta e limpa, se houver espaço. Destaque locução, narração, podcast, rádio ou canto. Confirme o escopo exato e o volume de trabalho antes de contar com essa renda, porque o anúncio não detalha nem uma coisa nem outra."
-      }
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Portuguese Language Expert (Brazil)",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.micro1.ai/post/0e19dc4e-47f0-4245-b315-a41795cfd171",
-      "commitment": "part-time",
-      "fonte": "direto",
-      "data_post": "2025-12-09",
-      "data_vista": "2026-08-05",
-      "data_ref": "2025-12-09",
-      "id": "068eb483dd",
-      "resumo": {
-        "o_que_faz": "O anúncio traz só as habilidades pedidas: anotação de dados, proficiência bilíngue e linguística. Na prática, é trabalhar com dados de linguagem em português do Brasil para treino de IA, o que costuma envolver anotar, classificar e avaliar textos, além de julgar se as respostas do modelo soam corretas e naturais. Remoto e por hora, com faixa de US$ 30 a US$ 65 por hora, uma das melhores desta leva.",
-        "requisitos": "Português do Brasil nativo e inglês sólido, porque o trabalho é descrito como bilíngue e a plataforma opera em inglês. Formação ou experiência prática em linguística conta bastante. Experiência anterior em anotação de dados é pedida de forma explícita. Computador com internet estável e disposição para passar pela entrevista de triagem da micro1.",
-        "dica_cv": "Preencha o perfil na plataforma com os termos exatos do anúncio, ou seja, data annotation, bilingual e linguistics, porque a busca interna é por essas palavras. Descreva projetos de anotação que você já fez, com tipo de dado e volume. Se tem formação em letras ou linguística, ponha em destaque. Como a faixa de pagamento é alta, espere uma triagem mais exigente e prepare exemplos concretos do seu trabalho."
-      }
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Business Document Expert (Portuguese Speaker)",
-      "local": "Remoto · Brasil",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/dee2f9e0-a108-412f-b87e-3c048ed2b0ad",
-      "commitment": "full-time",
-      "fonte": "direto",
-      "data_post": "2026-06-15",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-06-15",
-      "id": "94d2431bc6",
-      "resumo": {
-        "o_que_faz": "Anúncio curto, que lista análise e comunicação de negócios, domínio avançado do pacote Office e atenção a detalhe. Pelo padrão da micro1, o trabalho é produzir e avaliar documentos empresariais em português, como relatórios, propostas, apresentações e planilhas, gerando material de referência para treinar IA em tarefas de escritório. Remoto e por hora, com faixa ampla de US$ 20 a US$ 70 por hora.",
-        "requisitos": "Português fluente e vivência real com documentos corporativos. Domínio avançado de Word, Excel e PowerPoint, incluindo formatação, fórmulas e estruturação de apresentações. Capacidade de analisar informação de negócio e comunicá-la com clareza. Inglês para a plataforma e para a entrevista de triagem. Computador com Office instalado e internet estável.",
-        "dica_cv": "Descreva o tipo de documento que você domina, por exemplo relatório gerencial, plano de negócios, proposta comercial ou dashboard, em vez de escrever apenas Office avançado. Cite recursos de verdade, como tabela dinâmica, PROCV, macros ou modelos de apresentação. Experiência em consultoria, controladoria, administração ou assistência executiva encaixa bem. Como a faixa vai até US$ 70 por hora, capriche nos exemplos concretos."
-      }
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Marketing Documents Specialist (Portuguese)",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/90a071b7-bd9a-4806-b315-5bd67a1af25c",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-06-09",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-06-09",
-      "id": "ffbd002f51",
-      "resumo": {
-        "o_que_faz": "O anúncio lista Word, Excel, PowerPoint, marketing, documentação de marketing e proficiência em português. O trabalho é criar e avaliar documentos típicos da área de marketing em português, como planos, apresentações, briefings e relatórios de campanha, que servem de material de treino e avaliação para modelos de IA. Remoto e por hora, com faixa de US$ 10 a US$ 55 por hora.",
-        "requisitos": "Português fluente e experiência prática em marketing, com familiaridade real com os documentos da área. Domínio de Word, Excel e PowerPoint em nível avançado. Atenção a detalhe e boa escrita. Inglês para a plataforma e a triagem da micro1. Computador com Office e internet estável.",
-        "dica_cv": "Diga em que tipo de marketing você atua, como digital, conteúdo, performance ou produto, e liste os documentos que você domina. Métricas ajudam muito aqui, no estilo campanhas gerenciadas ou verba administrada. Cite ferramentas do dia a dia, como Google Analytics, Meta Ads e ferramentas de e-mail. Se você já produziu apresentações para clientes ou diretoria, mencione, porque é o formato mais pedido."
-      }
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "HR Documents Specialist (Portuguese)",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/b7f7a6c4-e3f7-460e-95ab-9c0567d396a3",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-06-09",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-06-09",
-      "id": "f5c305fe0e",
-      "resumo": {
-        "o_que_faz": "Mesma linha da vaga de marketing, aqui voltada a recursos humanos. O anúncio pede Word, Excel, PowerPoint, RH, documentação de recursos humanos e proficiência em português. Na prática é produzir e avaliar documentos de RH em português, como descrições de cargo, políticas internas, materiais de treinamento e controles de pessoal, para treinar e avaliar modelos de IA. Remoto e por hora, faixa de US$ 10 a US$ 45 por hora.",
-        "requisitos": "Português fluente e experiência prática em recursos humanos, com familiaridade com os documentos e processos da área. Domínio de Word, Excel e PowerPoint. Atenção a detalhe e escrita clara e formal. Inglês para a plataforma e a triagem. Computador com Office e internet estável.",
-        "dica_cv": "Especifique o subsetor de RH em que você atua, como recrutamento, departamento pessoal, treinamento ou cargos e salários, porque isso costuma direcionar as tarefas. Liste os documentos que você já elaborou e os sistemas que usou, como folha de pagamento ou plataformas de recrutamento. Escreva com o cuidado que a área exige, já que o texto do seu perfil funciona como amostra do trabalho."
-      }
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Financial Documents Specialist (Portuguese)",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/4e16eb9a-93c8-49da-b88d-f6744a2a3fa9",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-06-09",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-06-09",
-      "id": "bba13babf0",
-      "resumo": {
-        "o_que_faz": "Terceira vaga da mesma família na micro1, agora em finanças. O anúncio pede Word, Excel, PowerPoint, finanças, documentos financeiros e proficiência em português. O trabalho é produzir e avaliar documentos financeiros em português, como demonstrativos, orçamentos, análises e relatórios gerenciais, usados para treinar e testar modelos de IA. Remoto e por hora, faixa de US$ 10 a US$ 45 por hora.",
-        "requisitos": "Português fluente e experiência prática com finanças ou contabilidade. Excel em nível avançado é o ponto mais importante, junto de Word e PowerPoint. Precisão numérica e atenção a detalhe, porque erro em documento financeiro é reprovação direta. Inglês para a plataforma e a triagem. Computador com Office e internet estável.",
-        "dica_cv": "Deixe o Excel avançado bem visível e cite os recursos que domina, como tabela dinâmica, PROCV, modelagem e projeções. Informe a sua área, seja contabilidade, controladoria, análise financeira ou tesouraria. Se tem formação em contábeis, economia ou administração, coloque no topo. Vale se candidatar às três vagas de documentos da micro1, mas escolha uma como principal e mostre profundidade nela, em vez de parecer generalista."
-      }
+      "id": "86ed8a6806"
     },
     {
       "empresa": "alignerr",
@@ -996,14 +886,9 @@
       "commitment": "CONTRACT",
       "fonte": "direto",
       "data_post": "2026-08-19",
-      "data_vista": "2026-08-20",
+      "data_vista": "2026-08-05",
       "data_ref": "2026-08-19",
-      "id": "94d3206e73",
-      "resumo": {
-        "o_que_faz": "Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.",
-        "requisitos": "Fluência nativa ou quase nativa em português e escrita forte no idioma. Bom domínio do português contemporâneo em registros diferentes, do formal ao coloquial. Método e consistência, já que o trabalho é avaliar qualidade em volume. Não exige experiência anterior com IA nem com tecnologia. Contam como diferencial tradução, localização, edição, linguística, comunicação, educação ou revisão de conteúdo, além de conhecer as variações regionais do português.",
-        "dica_cv": "A faixa de pagamento é alta, então a triagem é seletiva: capriche no perfil. Escreva em inglês, mas anexe ou descreva amostras do seu português. Destaque revisão, tradução, redação, edição ou ensino, com volume e tipo de material. Mostre que você sabe explicar por que uma frase soa errada, e não apenas corrigir, porque o retorno estruturado é o produto que eles compram. Informe a sua disponibilidade semanal em números."
-      }
+      "id": "94d3206e73"
     },
     {
       "empresa": "alignerr",
@@ -1017,12 +902,7 @@
       "data_post": "2026-08-17",
       "data_vista": "2026-08-05",
       "data_ref": "2026-08-17",
-      "id": "64c7fbed79",
-      "resumo": {
-        "o_que_faz": "É a vaga irmã da Alignerr, com foco em localização. Você revisa traduções e conteúdos em português gerados por IA, aponta erro de tradução, frase artificial, registro trocado e problema cultural, e sugere versões mais idiomáticas, entregando retorno organizado. Trabalho assíncrono, no seu ritmo, com 10 a 40 horas por semana e faixa de US$ 20 a US$ 40 por hora.",
-        "requisitos": "Fluência nativa ou quase nativa em português e boa escrita tanto em português quanto em inglês, que aqui é pedido de forma explícita. Familiaridade com as normas do português do Brasil e de Portugal e com o uso regional. Consistência e atenção a detalhe para avaliar em escala. Não exige experiência prévia com IA. Tradução, localização e adaptação de conteúdo contam como diferencial.",
-        "dica_cv": "A diferença para a outra vaga da Alignerr é o peso do inglês e do conhecimento das duas variantes do português, então destaque exatamente isso. Cite pares de idiomas, tipos de material localizados e ferramentas como Trados, memoQ, Phrase ou Smartcat. Vale se candidatar às duas vagas da Alignerr, já que os projetos são diferentes e a faixa de pagamento também."
-      }
+      "id": "64c7fbed79"
     },
     {
       "empresa": "alignerr",
@@ -1036,12 +916,7 @@
       "data_post": "2026-08-17",
       "data_vista": "2026-08-05",
       "data_ref": "2026-08-17",
-      "id": "69b78f8163",
-      "resumo": {
-        "o_que_faz": "Voltada a quem tem experiência em ensino ou avaliação de português. Você avalia fala e texto em português gerados por IA quanto a precisão, naturalidade e qualidade pedagógica, e também analisa a produção de estudantes em diferentes níveis de proficiência, do Pré-A1 ao B2+ do quadro europeu. Identifica erros típicos de aprendiz e lacunas didáticas, sugere melhorias e dá retorno estruturado que aprimora modelos de tutoria e de ensino de idiomas. Remoto e assíncrono, com mínimo de 15 horas por semana e faixa de US$ 25 a US$ 30 por hora.",
-        "requisitos": "Português nativo, do Brasil ou de Portugal, e inglês em nível C1 ou C2. Experiência ensinando português ou avaliando a produção de alunos é exigência central. Familiaridade com o quadro CEFR e com os padrões de erro de quem está aprendendo. Estar cursando ou ter concluído pelo menos a graduação. Atenção a detalhe e julgamento linguístico consistente. Não exige experiência prévia com IA.",
-        "dica_cv": "Esta é a vaga certa se você dá ou já deu aula de português para estrangeiros, mesmo que particular ou em plataforma online. Diga há quanto tempo ensina, para quais níveis e se conhece o CEFR pelo nome. Se já corrigiu provas, elaborou material didático ou trabalhou com avaliação padronizada, destaque. Confirme que consegue as 15 horas semanais mínimas antes de se candidatar, porque é piso e não teto."
-      }
+      "id": "69b78f8163"
     },
     {
       "empresa": "linkedin",
@@ -1065,8 +940,8 @@
       "url": "https://www.linkedin.com/jobs/view/4447200628/",
       "commitment": "",
       "fonte": "linkedin",
-      "data_vista": "2026-08-20",
-      "data_ref": "2026-08-20",
+      "data_vista": "2026-08-23",
+      "data_ref": "2026-08-23",
       "id": "f07190bb70"
     },
     {
@@ -1078,8 +953,8 @@
       "url": "https://www.linkedin.com/jobs/view/4449089423/",
       "commitment": "",
       "fonte": "linkedin",
-      "data_vista": "2026-08-20",
-      "data_ref": "2026-08-20",
+      "data_vista": "2026-08-23",
+      "data_ref": "2026-08-23",
       "id": "ec2d685c1a"
     },
     {
@@ -1091,8 +966,8 @@
       "url": "https://www.linkedin.com/jobs/view/4445593448/",
       "commitment": "",
       "fonte": "linkedin",
-      "data_vista": "2026-08-08",
-      "data_ref": "2026-08-08",
+      "data_vista": "2026-08-23",
+      "data_ref": "2026-08-23",
       "id": "d6b15c1eb8"
     },
     {
