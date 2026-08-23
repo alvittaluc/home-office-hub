@@ -10,110 +10,210 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 <style>
-  .topo { max-width:var(--wrap); margin:0 auto; padding:52px 20px 24px; }
-  .topo h1 { font-family:var(--display); font-weight:700; letter-spacing:-0.032em; font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:14px; }
-  .topo p.lead { margin-bottom:28px; }
-
-  .busca-wrap { max-width:600px; position:relative; margin-bottom:14px; }
-  .busca-wrap .s-icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--ink-3); font-size:17px; pointer-events:none; }
-  #busca {
-    width:100%; font-family:var(--body); font-size:16px; color:var(--ink);
-    background:var(--panel); border:1px solid var(--line);
-    border-radius:13px; padding:16px 18px 16px 48px; outline:none;
-    transition:border-color .18s, box-shadow .18s, background .18s;
+  /* ─────────────── TOPO ─────────────── */
+  .topo { max-width:var(--wrap); margin:0 auto; padding:48px 20px 26px; }
+  .topo h1 {
+    font-family:var(--display); font-weight:700; letter-spacing:-0.032em;
+    font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:13px; max-width:20ch;
   }
-  #busca::placeholder { color:var(--ink-3); }
-  #busca:focus { border-color:var(--signal-dim); background:var(--panel-2); box-shadow:0 0 0 4px rgba(61,212,200,0.1); }
+  .topo p.lead { margin-bottom:26px; }
 
-  .chips { display:flex; flex-wrap:wrap; gap:8px; max-width:640px; }
-  .chip {
-    font-family:var(--mono); font-size:12px; color:var(--ink-2);
-    background:var(--panel); border:1px solid var(--line-soft);
-    padding:6px 13px; border-radius:8px; cursor:pointer; transition:all .16s;
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:11px; }
+  .stat {
+    background:linear-gradient(155deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line-soft); border-radius:13px; padding:16px 17px;
+    position:relative; overflow:hidden;
   }
-  .chip:hover { border-color:var(--signal-dim); color:var(--signal); }
-
-  .telemetria { display:flex; gap:28px; margin-top:32px; flex-wrap:wrap; }
-  .tl { display:flex; flex-direction:column; gap:3px; }
-  .tl-n { font-family:var(--mono); font-weight:600; font-size:23px; letter-spacing:-0.01em; }
-  .tl-n .u { color:var(--signal); }
-  .tl-l { font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); }
-  .tl-sep { width:1px; background:var(--line); align-self:stretch; }
-  @media (max-width:640px){ .tl-sep{ display:none; } .telemetria{ gap:18px 26px; } }
-
-  .corpo { max-width:var(--wrap); margin:0 auto; padding:26px 20px 70px; display:grid; grid-template-columns:236px 1fr; gap:30px; align-items:start; }
-  @media (max-width:900px){ .corpo{ grid-template-columns:1fr; gap:0; } }
-
-  .rail { position:sticky; top:80px; }
-  @media (max-width:900px){ .rail{ position:static; margin-bottom:6px; } }
-  .rail-title { font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 12px 4px; }
-  .filtro {
-    width:100%; display:flex; align-items:center; gap:10px; text-align:left;
-    font-family:var(--body); font-size:13.5px; color:var(--ink-2);
-    background:transparent; border:1px solid transparent; border-radius:9px;
-    padding:9px 11px; cursor:pointer; transition:all .15s; margin-bottom:2px;
+  .stat::after {
+    content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--signal); opacity:.5;
   }
-  .filtro:hover { background:var(--panel); color:var(--ink); }
-  .filtro.on { background:var(--panel-2); border-color:var(--line); color:var(--ink); }
-  .filtro .fs { width:26px; height:26px; border-radius:7px; flex-shrink:0; overflow:hidden; display:grid; place-items:center; font-family:var(--mono); font-weight:600; font-size:10px; }
-  .filtro .fs img { width:16px; height:16px; object-fit:contain; border-radius:4px; }
-  .filtro .fc { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3); }
-  .filtro.on .fc { color:var(--signal); }
-
-  @media (max-width:900px){
-    .rail-title{ display:none; }
-    #railEmpresas { display:flex; gap:8px; overflow-x:auto; padding:4px 0 12px; scrollbar-width:none; }
-    #railEmpresas::-webkit-scrollbar{ display:none; }
-    .filtro { width:auto; white-space:nowrap; flex-shrink:0; background:var(--panel); border-color:var(--line-soft); margin-bottom:0; }
-    .filtro .fc { margin-left:6px; }
+  .stat.amb::after { background:var(--amber); }
+  .stat .n { font-family:var(--mono); font-weight:600; font-size:26px; letter-spacing:-0.02em; line-height:1.1; }
+  .stat .n .u { color:var(--signal); font-size:19px; }
+  .stat.amb .n { color:var(--amber); }
+  .stat .l {
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-3); margin-top:6px;
   }
 
-  .cat-bar { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:22px; }
-  .cat-pill {
-    font-family:var(--mono); font-size:12px; color:var(--ink-2);
-    background:var(--panel); border:1px solid var(--line-soft);
-    padding:7px 14px; border-radius:20px; cursor:pointer; transition:all .15s;
+  /* ─────────────── CORPO ─────────────── */
+  .corpo {
+    max-width:var(--wrap); margin:0 auto; padding:8px 20px 70px;
+    display:grid; grid-template-columns:262px 1fr; gap:26px; align-items:start;
   }
-  .cat-pill:hover { border-color:var(--line); color:var(--ink); }
-  .cat-pill.on { background:var(--signal); border-color:var(--signal); color:#04110F; font-weight:600; }
+  @media (max-width:940px){ .corpo{ grid-template-columns:1fr; gap:0; } }
 
-  .contagem { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-bottom:20px; }
-  .contagem b { color:var(--signal); font-weight:600; }
+  /* ── painel de filtros ── */
+  .painel-filtros {
+    position:sticky; top:78px;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:15px; overflow:hidden;
+  }
+  @media (max-width:940px){
+    .painel-filtros { position:static; margin-bottom:18px; display:none; }
+    .painel-filtros.aberto { display:block; }
+  }
+  .pf-topo {
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:14px 16px; border-bottom:1px solid var(--line-soft); background:var(--panel-2);
+  }
+  .pf-topo h2 {
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-2); font-weight:500;
+  }
+  .limpar {
+    font-family:var(--mono); font-size:10.5px; color:var(--ink-3); background:none; border:0;
+    cursor:pointer; padding:3px 0; transition:color .15s;
+  }
+  .limpar:hover { color:var(--signal); }
+  .limpar:disabled { opacity:.35; cursor:default; }
 
-  .sec-emp { margin-bottom:40px; scroll-margin-top:78px; }
-  .co-head { display:flex; align-items:center; gap:13px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line-soft); }
-  .co-head .logo-box { width:42px; height:42px; }
-  .co-head .m { flex:1; min-width:0; }
-  .co-head h2 { font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-0.015em; }
-  .co-head p { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); margin-top:1px; }
-  .co-head a.saber { font-family:var(--mono); font-size:11px; color:var(--ink-3); white-space:nowrap; transition:color .15s; }
-  .co-head a.saber:hover { color:var(--signal); }
-  @media (max-width:520px){ .co-head a.saber{ display:none; } }
+  .grupo { padding:15px 16px; border-bottom:1px solid var(--line-soft); }
+  .grupo:last-child { border-bottom:0; }
+  .grupo > h3 {
+    font-family:var(--mono); font-size:9.5px; letter-spacing:0.13em; text-transform:uppercase;
+    color:var(--ink-3); font-weight:500; margin-bottom:11px;
+  }
 
-  .grupo-cat { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--signal); margin:22px 0 13px; display:flex; align-items:center; gap:10px; }
-  .grupo-cat::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--signal); flex-shrink:0; }
-  .grupo-cat::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--signal-dim),transparent); }
+  /* período, em botões segmentados */
+  .segmentos { display:flex; flex-direction:column; gap:4px; }
+  .seg-btn {
+    display:flex; align-items:center; gap:9px; width:100%; text-align:left; cursor:pointer;
+    font-family:var(--body); font-size:13px; color:var(--ink-2);
+    background:transparent; border:1px solid transparent; border-radius:9px; padding:8px 10px;
+    transition:all .15s;
+  }
+  .seg-btn:hover { background:var(--panel-2); color:var(--ink); }
+  .seg-btn .pip {
+    width:14px; height:14px; border-radius:50%; border:1.5px solid var(--line); flex-shrink:0;
+    display:grid; place-items:center; transition:border-color .15s;
+  }
+  .seg-btn .pip::after { content:''; width:6px; height:6px; border-radius:50%; background:transparent; transition:background .15s; }
+  .seg-btn.on { background:var(--panel-2); border-color:var(--line); color:var(--ink); }
+  .seg-btn.on .pip { border-color:var(--signal); }
+  .seg-btn.on .pip::after { background:var(--signal); }
+  .seg-btn .qt { margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); }
+  .seg-btn.on .qt { color:var(--signal); }
 
-  .grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); gap:12px; }
+  /* caixas de seleção de área e empresa */
+  .opcao {
+    display:flex; align-items:center; gap:10px; width:100%; text-align:left; cursor:pointer;
+    font-family:var(--body); font-size:13px; color:var(--ink-2);
+    background:transparent; border:0; border-radius:9px; padding:7px 9px; transition:all .15s;
+  }
+  .opcao:hover { background:var(--panel-2); color:var(--ink); }
+  .opcao .caixa {
+    width:15px; height:15px; border-radius:5px; border:1.5px solid var(--line); flex-shrink:0;
+    display:grid; place-items:center; font-size:10px; color:transparent; transition:all .15s;
+  }
+  .opcao.on { color:var(--ink); }
+  .opcao.on .caixa { background:var(--signal); border-color:var(--signal); color:#04110F; }
+  .opcao .marca { width:22px; height:22px; border-radius:6px; flex-shrink:0; overflow:hidden;
+    display:grid; place-items:center; font-family:var(--mono); font-weight:600; font-size:9px; }
+  .opcao .marca img { width:14px; height:14px; object-fit:contain; border-radius:3px; }
+  .opcao .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .opcao .qt { margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); flex-shrink:0; }
+  .opcao.on .qt { color:var(--signal); }
+
+  /* opção que não traria nenhum resultado com os filtros atuais */
+  .seg-btn.vazia:not(.on), .opcao.vazia:not(.on) { opacity:.4; }
+
+  .lista-rolagem { max-height:296px; overflow-y:auto; margin:0 -5px; padding:0 5px; scrollbar-width:thin; }
+  .lista-rolagem::-webkit-scrollbar { width:5px; }
+  .lista-rolagem::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px; }
+
+  /* botão de filtros, só no celular */
+  .abrir-filtros {
+    display:none; align-items:center; gap:9px; width:100%; justify-content:center;
+    font-family:var(--mono); font-size:13px; color:var(--ink); cursor:pointer;
+    background:var(--panel); border:1px solid var(--line); border-radius:11px; padding:12px;
+    margin-bottom:14px;
+  }
+  .abrir-filtros .conta {
+    font-family:var(--mono); font-size:10.5px; background:var(--signal); color:#04110F;
+    border-radius:20px; padding:1px 7px; font-weight:600;
+  }
+  @media (max-width:940px){ .abrir-filtros{ display:flex; } }
+
+  /* ─────────────── RESULTADOS ─────────────── */
+  .barra {
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding-bottom:14px; margin-bottom:16px; border-bottom:1px solid var(--line-soft); flex-wrap:wrap;
+  }
+  .barra .contagem { font-family:var(--mono); font-size:12.5px; color:var(--ink-3); }
+  .barra .contagem b { color:var(--ink); font-weight:600; }
+  .ordenar { display:flex; align-items:center; gap:9px; }
+  .ordenar span { font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+  .ordenar select {
+    font-family:var(--mono); font-size:12px; color:var(--ink); cursor:pointer;
+    background:var(--panel); border:1px solid var(--line); border-radius:9px;
+    padding:7px 30px 7px 11px; outline:none; appearance:none;
+    background-image:linear-gradient(45deg,transparent 50%,#5A6376 50%),linear-gradient(135deg,#5A6376 50%,transparent 50%);
+    background-position:calc(100% - 15px) 52%, calc(100% - 10px) 52%;
+    background-size:5px 5px, 5px 5px; background-repeat:no-repeat;
+    transition:border-color .15s;
+  }
+  .ordenar select:focus { border-color:var(--signal-dim); }
+
+  /* etiquetas do que está filtrado */
+  .ativos { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px; }
+  .ativo {
+    display:inline-flex; align-items:center; gap:7px; cursor:pointer;
+    font-family:var(--mono); font-size:11px; color:var(--signal);
+    background:rgba(61,212,200,0.09); border:1px solid rgba(61,212,200,0.28);
+    border-radius:20px; padding:5px 11px; transition:all .15s;
+  }
+  .ativo:hover { background:rgba(61,212,200,0.16); }
+  .ativo .x { font-size:13px; line-height:1; opacity:.7; }
+
+  /* grade de vagas */
+  .grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(258px,1fr)); gap:13px; }
   .vaga {
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
-    padding:16px 16px 14px; display:flex; flex-direction:column; gap:11px;
-    transition:border-color .16s, transform .16s, background .16s; position:relative; overflow:hidden;
+    position:relative; display:flex; flex-direction:column; gap:12px; overflow:hidden;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:14px; padding:16px;
+    transition:border-color .18s, transform .18s, background .18s, box-shadow .18s;
   }
-  .vaga::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--signal); opacity:0; transition:opacity .16s; }
-  .vaga:hover { border-color:var(--line); background:var(--panel-2); transform:translateY(-2px); }
+  .vaga::before {
+    content:''; position:absolute; inset:0; border-radius:14px; pointer-events:none;
+    background:radial-gradient(140% 90% at 0% 0%, rgba(61,212,200,0.07), transparent 55%);
+    opacity:0; transition:opacity .18s;
+  }
+  .vaga:hover {
+    border-color:var(--line); background:var(--panel-2); transform:translateY(-3px);
+    box-shadow:0 16px 34px -22px rgba(0,0,0,.9);
+  }
   .vaga:hover::before { opacity:1; }
-  .vaga .tit { font-family:var(--display); font-weight:500; font-size:15px; line-height:1.3; }
-  .vaga .real { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:-5px; }
-  .vaga .tags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
-  .tag.data { color:var(--ink-3); }
-  .vaga .mais {
-    margin-top:auto; padding-top:8px; font-family:var(--mono); font-size:11.5px;
-    color:var(--ink-3); display:inline-flex; align-items:center; gap:6px; transition:color .16s;
+  .vaga.nova { border-color:rgba(255,180,84,0.3); }
+
+  .v-topo { display:flex; align-items:center; gap:9px; }
+  .v-topo .marca {
+    width:28px; height:28px; border-radius:8px; flex-shrink:0; overflow:hidden; border:1px solid var(--line);
+    display:grid; place-items:center; font-family:var(--mono); font-weight:700; font-size:9.5px;
   }
-  .vaga .mais .arr { transition:transform .16s; }
-  .vaga:hover .mais { color:var(--signal); }
-  .vaga:hover .mais .arr { transform:translateX(3px); }
+  .v-topo .marca img { width:17px; height:17px; object-fit:contain; border-radius:4px; }
+  .v-topo .emp { font-family:var(--mono); font-size:11.5px; color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .v-topo .selo-novo {
+    margin-left:auto; flex-shrink:0; font-family:var(--mono); font-size:9.5px; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--amber);
+    background:rgba(255,180,84,0.13); border:1px solid rgba(255,180,84,0.32);
+    border-radius:20px; padding:3px 9px;
+  }
+  .v-tit {
+    font-family:var(--display); font-weight:500; font-size:15px; line-height:1.32; color:var(--ink);
+  }
+  .v-real { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:-7px; }
+  .v-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .v-pe {
+    margin-top:auto; padding-top:11px; border-top:1px solid var(--line-soft);
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .v-data { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); }
+  .v-mais {
+    font-family:var(--mono); font-size:11px; color:var(--ink-3);
+    display:inline-flex; align-items:center; gap:6px; transition:color .18s;
+  }
+  .v-mais .arr { transition:transform .18s; }
+  .vaga:hover .v-mais { color:var(--signal); }
+  .vaga:hover .v-mais .arr { transform:translateX(3px); }
 </style>
 </head>
 <body>
@@ -122,32 +222,48 @@
   <div class="eyebrow">Lista completa</div>
   <h1>Vagas abertas para quem mora no Brasil</h1>
   <p class="lead">Só entra o que aceita residentes do Brasil e português brasileiro. Cada vaga leva direto para a página oficial da empresa, sem intermediário.</p>
-
-  <div class="busca-wrap">
-    <span class="s-icon">⌕</span>
-    <input id="busca" type="text" placeholder="Buscar por cargo, empresa ou área…" autocomplete="off">
-  </div>
-  <div class="chips" id="chips"></div>
-
-  <div class="telemetria">
-    <div class="tl"><span class="tl-n" id="stVagas">—</span><span class="tl-l">vagas abertas</span></div>
-    <div class="tl-sep"></div>
-    <div class="tl"><span class="tl-n" id="stEmpresas">—</span><span class="tl-l">empresas</span></div>
-    <div class="tl-sep"></div>
-    <div class="tl"><span class="tl-n" id="stNovas">—</span><span class="tl-l">novas na semana</span></div>
-    <div class="tl-sep"></div>
-    <div class="tl"><span class="tl-n">100<span class="u">%</span></span><span class="tl-l">remoto · brasil</span></div>
-  </div>
+  <div class="stats" id="stats"></div>
 </section>
 
 <div class="corpo">
-  <aside class="rail">
-    <div class="rail-title">Filtrar por origem</div>
-    <div id="railEmpresas"></div>
+  <aside>
+    <button class="abrir-filtros" id="abrirFiltros" aria-expanded="false">
+      Filtros <span class="conta" id="contaFiltros" hidden>0</span>
+    </button>
+    <div class="painel-filtros" id="painelFiltros">
+      <div class="pf-topo">
+        <h2>Filtros</h2>
+        <button class="limpar" id="limpar" disabled>limpar tudo</button>
+      </div>
+      <div class="grupo">
+        <h3>Publicação</h3>
+        <div class="segmentos" id="grupoPeriodo"></div>
+      </div>
+      <div class="grupo">
+        <h3>Área</h3>
+        <div id="grupoAreas"></div>
+      </div>
+      <div class="grupo">
+        <h3>Empresa</h3>
+        <div class="lista-rolagem" id="grupoEmpresas"></div>
+      </div>
+    </div>
   </aside>
+
   <div>
-    <div class="cat-bar" id="catBar"></div>
-    <div class="contagem" id="contagem">carregando…</div>
+    <div class="barra">
+      <div class="contagem" id="contagem">carregando…</div>
+      <div class="ordenar">
+        <span>ordenar</span>
+        <select id="ordem" aria-label="Ordenar vagas">
+          <option value="recentes">Mais recentes</option>
+          <option value="antigas">Mais antigas</option>
+          <option value="empresa">Empresa (A a Z)</option>
+          <option value="titulo">Título (A a Z)</option>
+        </select>
+      </div>
+    </div>
+    <div class="ativos" id="ativos"></div>
     <div id="lista"></div>
   </div>
 </div>
@@ -156,25 +272,34 @@
 <script>
 montarLayout("vagas");
 
-const CAT_ORDEM = ["transl","ai","qa","sme","write"];
-const CAT_NOME  = { transl:"Tradução", ai:"IA & Dados", qa:"QA & Validação", sme:"Especialistas", write:"Escrita" };
+const CAT_ORDEM = ["ai","transl","qa","sme","write"];
+const CAT_NOME  = { ai:"IA & Dados", transl:"Tradução", qa:"QA & Validação", sme:"Especialistas", write:"Escrita" };
+const PERIODOS  = [
+  { id:"all", nome:"Qualquer data" },
+  { id:"7",   nome:"Novas, últimos 7 dias" },
+  { id:"30",  nome:"Últimos 30 dias" },
+];
 
-let EMPRESAS = {}, TODAS = [], fEmpresa = "all", fCat = "all", termo = "";
+let EMPRESAS = {}, TODAS = [];
+let fPeriodo = "all", fCats = new Set(), fEmps = new Set(), ordem = "recentes";
 
+/* ── dados ── */
 async function iniciar() {
   try {
     const base = await lerEmpresas();
     (base.empresas || []).forEach(e => EMPRESAS[e.id] = e);
   } catch (e) { console.error("empresas.json", e); }
-
-  // agregadores que não têm perfil próprio
-  EMPRESAS.linkedin = EMPRESAS.linkedin || { id:"linkedin", nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", dom:"linkedin.com", desc:"Captadas dos alertas do LinkedIn", agregador:true };
+  EMPRESAS.linkedin = EMPRESAS.linkedin || {
+    id:"linkedin", nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436",
+    dom:"linkedin.com", desc:"Captadas dos alertas do LinkedIn", agregador:true
+  };
 
   try {
     const dados = await lerVagas();
     TODAS = dados.vagas || [];
-    selo(dados);
-    render();
+    lerUrl();
+    montarFiltros();
+    aplicar();
   } catch (e) {
     document.getElementById("lista").innerHTML =
       '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Verifique se o arquivo vagas.json está na mesma pasta.</p></div>';
@@ -183,164 +308,190 @@ async function iniciar() {
   }
 }
 
-function diasDe(v) {
+function lerUrl() {
+  const p = new URLSearchParams(location.search);
+  if (p.get("cat")) fCats.add(p.get("cat"));
+  if (p.get("empresa")) fEmps.add(p.get("empresa"));
+  if (p.get("periodo")) fPeriodo = p.get("periodo");
+}
+
+/* ── datas ── */
+function dias(v) {
   const d = v.data_ref || v.data_post || v.data_vista;
   if (!d) return null;
   const data = new Date(d + "T12:00:00Z");
   if (isNaN(data)) return null;
-  const dias = Math.floor((new Date() - data) / 86400000);
-  return dias < 0 ? null : dias;
+  const n = Math.floor((new Date() - data) / 86400000);
+  return n < 0 ? null : n;
 }
-
-function seloData(v) {
-  const dias = diasDe(v);
-  if (dias === null) return "";
-  if (dias <= 2)  return '<span class="tag amb data">nova</span>';
-  if (dias <= 7)  return `<span class="tag amb data">há ${dias} dias</span>`;
-  if (dias <= 30) return `<span class="tag data">há ${dias} dias</span>`;
-  if (dias <= 60) return '<span class="tag data">há +1 mês</span>';
-  return '<span class="tag data">há +2 meses</span>';
+function textoData(v) {
+  const n = dias(v);
+  if (n === null) return "";
+  if (n === 0) return "hoje";
+  if (n === 1) return "ontem";
+  if (n <= 30) return `há ${n} dias`;
+  if (n <= 60) return "há mais de 1 mês";
+  return "há mais de 2 meses";
 }
+const ehNova = v => { const n = dias(v); return n !== null && n <= 7; };
 
-function render() {
-  const presentes = Object.keys(EMPRESAS).filter(id => TODAS.some(v => v.empresa === id));
-  document.getElementById("stEmpresas").textContent = presentes.length;
-  document.getElementById("stVagas").textContent = TODAS.length;
-  document.getElementById("stNovas").textContent = TODAS.filter(v => { const d = diasDe(v); return d !== null && d <= 7; }).length;
+/* ── filtros ── */
+function passa(v, ignorar) {
+  if (ignorar !== "periodo" && fPeriodo !== "all") {
+    const n = dias(v);
+    if (n === null || n > Number(fPeriodo)) return false;
+  }
+  if (ignorar !== "cat" && fCats.size && !fCats.has(v.categoria)) return false;
+  if (ignorar !== "emp" && fEmps.size && !fEmps.has(v.empresa)) return false;
+  return true;
+}
+const filtradas = () => TODAS.filter(v => passa(v));
 
-  const chips = document.getElementById("chips");
-  chips.innerHTML = "";
-  ["IA & Dados","Tradução","QA","Anotação","Português"].forEach(t => {
-    const c = document.createElement("div");
-    c.className = "chip"; c.textContent = t;
-    c.onclick = () => { document.getElementById("busca").value = t; termo = t.toLowerCase(); filtrar(); };
-    chips.appendChild(c);
-  });
+function montarFiltros() {
+  // período, com a contagem que cada opção traria
+  document.getElementById("grupoPeriodo").innerHTML = PERIODOS.map(p => {
+    const q = TODAS.filter(v => {
+      if (p.id === "all") return passa(v, "periodo");
+      const n = dias(v);
+      return n !== null && n <= Number(p.id) && passa(v, "periodo");
+    }).length;
+    return `<button class="seg-btn${fPeriodo === p.id ? " on" : ""}${q === 0 ? " vazia" : ""}" data-periodo="${p.id}">
+      <span class="pip"></span>${p.nome}<span class="qt">${q}</span></button>`;
+  }).join("");
 
-  const rail = document.getElementById("railEmpresas");
-  rail.innerHTML = "";
-  const todas = document.createElement("button");
-  todas.className = "filtro" + (fEmpresa === "all" ? " on" : ""); todas.dataset.emp = "all";
-  todas.innerHTML = `<span class="fs" style="background:rgba(61,212,200,0.12);color:#3DD4C8;">✦</span>Todas<span class="fc">${TODAS.length}</span>`;
-  rail.appendChild(todas);
-  presentes.forEach(id => {
+  // áreas
+  document.getElementById("grupoAreas").innerHTML = CAT_ORDEM
+    .filter(c => TODAS.some(v => v.categoria === c))
+    .map(c => {
+      const q = TODAS.filter(v => v.categoria === c && passa(v, "cat")).length;
+      return `<button class="opcao${fCats.has(c) ? " on" : ""}${q === 0 ? " vazia" : ""}" data-cat="${c}">
+        <span class="caixa">✓</span><span class="nm">${CAT_NOME[c] || c}</span><span class="qt">${q}</span></button>`;
+    }).join("");
+
+  // empresas, as com mais vagas primeiro
+  const ids = Object.keys(EMPRESAS)
+    .filter(id => TODAS.some(v => v.empresa === id))
+    .sort((a,b) => TODAS.filter(v => v.empresa === b).length - TODAS.filter(v => v.empresa === a).length);
+  document.getElementById("grupoEmpresas").innerHTML = ids.map(id => {
     const e = EMPRESAS[id];
-    const q = TODAS.filter(v => v.empresa === id).length;
-    const b = document.createElement("button");
-    b.className = "filtro" + (fEmpresa === id ? " on" : ""); b.dataset.emp = id;
-    b.innerHTML = `<span class="fs" style="background:${e.bg};">${logoHtml(e,26)}</span>${esc(e.nome)}<span class="fc">${q}</span>`;
-    rail.appendChild(b);
+    const q = TODAS.filter(v => v.empresa === id && passa(v, "emp")).length;
+    return `<button class="opcao${fEmps.has(id) ? " on" : ""}${q === 0 ? " vazia" : ""}" data-emp="${id}">
+      <span class="caixa">✓</span>
+      <span class="marca" style="background:${e.bg};">${logoHtml(e,22)}</span>
+      <span class="nm">${esc(e.nome)}</span><span class="qt">${q}</span></button>`;
+  }).join("");
+
+  document.querySelectorAll("[data-periodo]").forEach(b => b.onclick = () => { fPeriodo = b.dataset.periodo; aplicar(); });
+  document.querySelectorAll("[data-cat]").forEach(b => b.onclick = () => { alterna(fCats, b.dataset.cat); aplicar(); });
+  document.querySelectorAll("[data-emp]").forEach(b => b.onclick = () => { alterna(fEmps, b.dataset.emp); aplicar(); });
+}
+const alterna = (conjunto, valor) => conjunto.has(valor) ? conjunto.delete(valor) : conjunto.add(valor);
+
+/* ── etiquetas do que está ativo ── */
+function montarAtivos() {
+  const itens = [];
+  if (fPeriodo !== "all") {
+    const p = PERIODOS.find(x => x.id === fPeriodo);
+    itens.push({ rotulo: p ? p.nome : fPeriodo, tipo: "periodo" });
+  }
+  fCats.forEach(c => itens.push({ rotulo: CAT_NOME[c] || c, tipo: "cat", valor: c }));
+  fEmps.forEach(id => itens.push({ rotulo: (EMPRESAS[id] || {}).nome || id, tipo: "emp", valor: id }));
+
+  document.getElementById("ativos").innerHTML = itens.map(i =>
+    `<button class="ativo" data-tipo="${i.tipo}" data-valor="${i.valor || ""}">${esc(i.rotulo)}<span class="x">×</span></button>`).join("");
+
+  document.querySelectorAll(".ativo").forEach(b => b.onclick = () => {
+    const { tipo, valor } = b.dataset;
+    if (tipo === "periodo") fPeriodo = "all";
+    if (tipo === "cat") fCats.delete(valor);
+    if (tipo === "emp") fEmps.delete(valor);
+    aplicar();
   });
 
-  const catBar = document.getElementById("catBar");
-  catBar.innerHTML = "";
-  [["all","Todas as áreas"]].concat(CAT_ORDEM.filter(c => TODAS.some(v => v.categoria === c)).map(c => [c, CAT_NOME[c]]))
-    .forEach(([id,nome]) => {
-      const p = document.createElement("div");
-      p.className = "cat-pill" + (id === fCat ? " on" : ""); p.dataset.cat = id; p.textContent = nome;
-      catBar.appendChild(p);
-    });
+  const n = itens.length;
+  document.getElementById("limpar").disabled = n === 0;
+  const conta = document.getElementById("contaFiltros");
+  conta.textContent = n; conta.hidden = n === 0;
+}
+
+/* ── ordenação ── */
+function ordenar(lista) {
+  const copia = [...lista];
+  const nomeEmp = v => ((EMPRESAS[v.empresa] || {}).nome || v.empresa || "").toLowerCase();
+  const idade = v => { const n = dias(v); return n === null ? Infinity : n; };
+  if (ordem === "recentes") copia.sort((a,b) => idade(a) - idade(b));
+  if (ordem === "antigas")  copia.sort((a,b) => idade(b) - idade(a));
+  if (ordem === "empresa")  copia.sort((a,b) => nomeEmp(a).localeCompare(nomeEmp(b)) || (a.titulo||"").localeCompare(b.titulo||""));
+  if (ordem === "titulo")   copia.sort((a,b) => (a.titulo||"").localeCompare(b.titulo||"", "pt-BR"));
+  return copia;
+}
+
+/* ── desenho ── */
+function cartao(v) {
+  const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#888", bg:"#222" };
+  const nova = ehNova(v);
+  const real = v.empresa_real ? `<div class="v-real">↳ ${esc(v.empresa_real)}</div>` : "";
+  const doLinkedin = v.empresa === "linkedin" || v.fonte === "linkedin";
+  const destino = doLinkedin
+    ? `href="${esc(v.url)}" target="_blank" rel="noopener"`
+    : `href="vaga.html?id=${encodeURIComponent(v.id || "")}"`;
+  const rotulo = doLinkedin ? `abrir no LinkedIn <span class="arr">↗</span>` : `ver detalhes <span class="arr">→</span>`;
+
+  return `<a class="vaga${nova ? " nova" : ""}" ${destino}>
+    <div class="v-topo">
+      <span class="marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e,28)}</span>
+      <span class="emp">${esc(e.nome)}</span>
+      ${nova ? '<span class="selo-novo">nova</span>' : ""}
+    </div>
+    <div class="v-tit">${esc(v.titulo)}</div>${real}
+    <div class="v-tags">
+      <span class="tag blu">${esc(v.badge)}</span>
+      <span class="tag">${esc(v.local)}</span>
+    </div>
+    <div class="v-pe">
+      <span class="v-data">${textoData(v)}</span>
+      <span class="v-mais">${rotulo}</span>
+    </div>
+  </a>`;
+}
+
+function montarStats() {
+  const novas = TODAS.filter(ehNova).length;
+  const emps = new Set(TODAS.map(v => v.empresa)).size;
+  // o cartão só fica âmbar quando há novidade, senão parece alerta de erro
+  document.getElementById("stats").innerHTML = `
+    <div class="stat"><div class="n">${TODAS.length}</div><div class="l">vagas abertas</div></div>
+    <div class="stat"><div class="n">${emps}</div><div class="l">empresas</div></div>
+    <div class="stat${novas ? " amb" : ""}"><div class="n">${novas}</div><div class="l">novas nesta semana</div></div>
+    <div class="stat"><div class="n">100<span class="u">%</span></div><div class="l">remoto · brasil</div></div>`;
+}
+
+function aplicar() {
+  montarStats();
+  montarFiltros();
+  montarAtivos();
+
+  const resultado = ordenar(filtradas());
+  document.getElementById("contagem").innerHTML =
+    `<b>${resultado.length}</b> ${resultado.length === 1 ? "vaga encontrada" : "vagas encontradas"}`;
 
   const lista = document.getElementById("lista");
-  lista.innerHTML = "";
-  presentes.forEach(id => {
-    const e = EMPRESAS[id];
-    const daEmpresa = TODAS.filter(v => v.empresa === id);
-    const sec = document.createElement("div");
-    sec.className = "sec-emp"; sec.dataset.emp = id;
-    let html = `<div class="co-head">
-      <span class="logo-box" style="background:${e.bg};">${logoHtml(e,42)}</span>
-      <div class="m"><h2>${esc(e.nome)}</h2><p>${esc(e.desc || "")}</p></div>
-      ${e.agregador ? "" : `<a class="saber" href="empresas.html#${e.id}">sobre a empresa ↗</a>`}
-    </div>`;
-    CAT_ORDEM.forEach(cat => {
-      const daCat = daEmpresa.filter(v => v.categoria === cat);
-      if (!daCat.length) return;
-      html += `<div class="grupo-cat">${CAT_NOME[cat]}</div><div class="grade">`;
-      daCat.forEach(v => {
-        const real = v.empresa_real ? `<div class="real">↳ ${esc(v.empresa_real)}</div>` : "";
-        const src = (v.fonte && v.fonte !== "direto") ? `<span class="tag sig">via ${esc(v.fonte)}</span>` : "";
-
-        // Vagas do LinkedIn não têm resumo próprio, então o cartão leva
-        // direto para o anúncio original, em outra aba.
-        const daLista = v.empresa === "linkedin" || v.fonte === "linkedin";
-        const destino = daLista
-          ? `href="${esc(v.url)}" target="_blank" rel="noopener"`
-          : `href="vaga.html?id=${encodeURIComponent(v.id||"")}"`;
-        const rotulo = daLista
-          ? `abrir no LinkedIn <span class="arr">↗</span>`
-          : `ver detalhes <span class="arr">→</span>`;
-
-        html += `<a class="vaga" ${destino} data-cat="${v.categoria}" data-emp="${id}">
-          <div class="tit">${esc(v.titulo)}</div>${real}
-          <div class="tags">
-            <span class="tag blu">${esc(v.badge)}</span>
-            <span class="tag">${esc(v.local)}</span>${src}${seloData(v)}
-          </div>
-          <span class="mais">${rotulo}</span>
-        </a>`;
-      });
-      html += `</div>`;
-    });
-    sec.innerHTML = html;
-    lista.appendChild(sec);
-  });
-
-  ligar();
-  filtrar();
+  lista.innerHTML = resultado.length
+    ? `<div class="grade">${resultado.map(cartao).join("")}</div>`
+    : `<div class="vazio"><div class="big">◌</div>
+         <p>Nenhuma vaga com esses filtros.<br>Tente tirar um deles ou ampliar o período.</p></div>`;
 }
 
-function filtrar() {
-  let visiveis = 0;
-  document.querySelectorAll(".sec-emp").forEach(sec => {
-    const empOk = fEmpresa === "all" || fEmpresa === sec.dataset.emp;
-    let n = 0;
-    sec.querySelectorAll(".vaga").forEach(card => {
-      const catOk = fCat === "all" || fCat === card.dataset.cat;
-      const buscaOk = !termo || card.textContent.toLowerCase().includes(termo);
-      const mostra = empOk && catOk && buscaOk;
-      card.style.display = mostra ? "" : "none";
-      if (mostra) { n++; visiveis++; }
-    });
-    sec.querySelectorAll(".grupo-cat").forEach(lbl => {
-      const grade = lbl.nextElementSibling;
-      const algum = grade && [...grade.querySelectorAll(".vaga")].some(c => c.style.display !== "none");
-      lbl.style.display = algum ? "" : "none";
-      if (grade) grade.style.display = algum ? "" : "none";
-    });
-    sec.style.display = (empOk && n > 0) ? "" : "none";
-  });
-  document.getElementById("contagem").innerHTML = `exibindo <b>${visiveis}</b> ${visiveis === 1 ? "vaga" : "vagas"}`;
-  const lista = document.getElementById("lista");
-  if (visiveis === 0 && TODAS.length) {
-    if (!document.getElementById("semRes")) {
-      const d = document.createElement("div");
-      d.id = "semRes"; d.className = "vazio";
-      d.innerHTML = '<div class="big">◌</div><p>Nenhuma vaga encontrada com esses filtros.<br>Tente limpar a busca ou escolher outra área.</p>';
-      lista.appendChild(d);
-    }
-  } else { const s = document.getElementById("semRes"); if (s) s.remove(); }
-}
-
-function ligar() {
-  document.querySelectorAll(".filtro").forEach(b => b.onclick = () => {
-    document.querySelectorAll(".filtro").forEach(x => x.classList.remove("on"));
-    b.classList.add("on"); fEmpresa = b.dataset.emp; filtrar();
-  });
-  document.querySelectorAll(".cat-pill").forEach(p => p.onclick = () => {
-    document.querySelectorAll(".cat-pill").forEach(x => x.classList.remove("on"));
-    p.classList.add("on"); fCat = p.dataset.cat; filtrar();
-  });
-}
-
-document.getElementById("busca").addEventListener("input", e => {
-  termo = e.target.value.toLowerCase().trim(); filtrar();
-});
-
-// aceita vagas.html?cat=ai e vagas.html?empresa=oneforma vindos dos links do site
-const params = new URLSearchParams(location.search);
-if (params.get("cat")) fCat = params.get("cat");
-if (params.get("empresa")) fEmpresa = params.get("empresa");
+/* ── eventos gerais ── */
+document.getElementById("limpar").onclick = () => {
+  fPeriodo = "all"; fCats.clear(); fEmps.clear(); aplicar();
+};
+document.getElementById("ordem").onchange = e => { ordem = e.target.value; aplicar(); };
+document.getElementById("abrirFiltros").onclick = e => {
+  const p = document.getElementById("painelFiltros");
+  const aberto = p.classList.toggle("aberto");
+  e.currentTarget.setAttribute("aria-expanded", aberto ? "true" : "false");
+};
 
 iniciar();
 </script>
