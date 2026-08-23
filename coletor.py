@@ -138,6 +138,15 @@ def so_roda_no_pc(nome):
 # cada vaga para descobrir o país verdadeiro e fica com a mais recente.
 USAR_ALIGNERR = True
 
+# ─── FONTES NOVAS DE SETEMBRO DE 2026 ───
+# Turing (work.turing.com): API por busca de texto. Não tem campo de país;
+# os países elegíveis vêm escritos na descrição, numa linha "Location : ...".
+# O scraper só aceita a vaga se o Brasil estiver nessa linha.
+USAR_TURING = True
+# iMerit (imerit.ai): feed JSON estático, o mais simples do projeto.
+# Hoje não tem nenhuma vaga em português. Fica ligada como posto de vigia.
+USAR_IMERIT = True
+
 # ─── FASE 4: LINKEDIN via GMAIL ───
 # As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
 # planilha, e a planilha é publicada como CSV. O coletor lê esse CSV aqui.
@@ -876,6 +885,14 @@ def buscar_telus_api() -> list:
     return _buscar_extra("telus", "coletar_telus")
 
 
+def buscar_turing() -> list:
+    return _buscar_extra("turing", "coletar_turing")
+
+
+def buscar_imerit() -> list:
+    return _buscar_extra("imerit", "coletar_imerit")
+
+
 # ═══════════════════════════════════════════════════════════════════
 #  SCRAPER — Rex.zone (via módulo scraper_rexzone.py)
 # ═══════════════════════════════════════════════════════════════════
@@ -1017,6 +1034,8 @@ def main():
         (USAR_MERIDIAL, buscar_meridial, "meridial"),
         (USAR_MICRO1 and not so_roda_no_pc("micro1"), buscar_micro1, "micro1"),
         (USAR_ALIGNERR, buscar_alignerr, "alignerr"),
+        (USAR_TURING, buscar_turing, "turing"),
+        (USAR_IMERIT, buscar_imerit, "imerit"),
     ):
         if not ligada:
             if so_roda_no_pc(nome):

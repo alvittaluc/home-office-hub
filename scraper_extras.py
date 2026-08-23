@@ -571,6 +571,233 @@ def coletar_alignerr(pausa=0.6):
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  TURING  (work.turing.com)
+# ═══════════════════════════════════════════════════════════════════
+#
+# Descoberta em agosto de 2026. O site é Next.js e não traz nada no HTML:
+# as vagas chegam depois, por uma chamada XHR que o F12 só mostra quando
+# você mexe na busca. A chamada é:
+#
+#     POST https://work.turing.com/api/jobs/all
+#     Content-Type: application/json
+#     corpo: {"searchQuery": "portuguese", "expertise": [], "location": [],
+#             "selectedSorting": "priority", "currentPage": 1, "pageSize": 100}
+#
+# Resposta: {"success": true, "jobs": [...], "totalCount": N, ...}
+#
+# NÃO EXISTE campo de país. O único campo de local é locationType, que diz
+# "remote" em tudo. Os países elegíveis estão dentro da descrição, numa linha
+# no formato:
+#
+#     Location : India, Pakistan, Nigeria, Kenya, Egypt, ..., Brazil, Mexico
+#
+# É essa linha que decide se a vaga serve ou não. Sem ela, a busca por
+# "brazil" traria vagas que só citam o Brasil de passagem.
+#
+# Link da vaga: https://work.turing.com/jobs?jobId={id}
+# (os cards não são links de verdade, o site troca a URL no clique)
+
+URL_TURING = "https://work.turing.com/api/jobs/all"
+URL_TURING_VAGA = "https://work.turing.com/jobs?jobId={id}"
+ORIGEM_TURING = "https://work.turing.com"
+
+# A busca é por texto livre e olha título + descrição. Três termos cobrem
+# tanto as vagas de idioma quanto as multipaís que listam o Brasil.
+TERMOS_TURING = ["portuguese", "brazil", "brasil"]
+
+# A linha de países elegíveis dentro da descrição
+_LINHA_PAISES = re.compile(
+    r"\b(?:location|locations|eligible\s+(?:countries|locations)|countries)\s*:\s*([^\n\r]{3,300})",
+    re.I,
+)
+
+# Valor por hora escrito na descrição (só o que estiver explícito)
+_POR_HORA = re.compile(
+    r"(\$\s?\d[\d.,]*(?:\s*(?:-|–|to)\s*\$?\s?\d[\d.,]*)?)"
+    r"\s*(?:USD\s*)?(?:per\s+hour|/\s*h(?:ou)?r|an\s+hour|hourly)",
+    re.I,
+)
+
+
+def _paises_turing(descricao):
+    """Devolve a lista de países elegíveis escrita na descrição, ou ''.
+
+    Só considera a linha se ela parecer mesmo uma lista de lugares: precisa
+    ter vírgula ou o nome de um país conhecido. Isso evita capturar frases
+    soltas que começam com "Location:" e seguem com outra coisa.
+    """
+    if not descricao:
+        return ""
+    for achado in _LINHA_PAISES.findall(descricao):
+        linha = achado.strip()
+        if "," in linha or re.search(r"\b(brazil|india|remote|worldwide|"
+                                     r"united states|global)\b", linha, re.I):
+            return linha
+    return ""
+
+
+def coletar_turing():
+    """Busca na Turing por três termos e junta os resultados sem repetir."""
+    print("  → Turing ...", end=" ")
+    brutas, ids_vistos = [], set()
+    houve_resposta = False
+    erros = []
+
+    for termo in TERMOS_TURING:
+        corpo = {
+            "searchQuery": termo,
+            "expertise": [],
+            "location": [],
+            "selectedSorting": "priority",
+            "currentPage": 1,
+            "pageSize": 100,
+        }
+        try:
+            resposta = _baixar(URL_TURING, corpo=corpo, origem=ORIGEM_TURING)
+            houve_resposta = True
+        except Exception as e:
+            erros.append(f"{termo}: {e}")
+            continue
+        for v in (resposta.get("jobs") or []):
+            jid = v.get("id")
+            if jid and jid not in ids_vistos:
+                ids_vistos.add(jid)
+                brutas.append(v)
+        time.sleep(0.4)
+
+    if not houve_resposta:
+        print("FALHOU")
+        for msg in erros:
+            print(f"      · {msg}")
+        return []
+
+    vagas = []
+    for v in brutas:
+        titulo = (v.get("title") or "").strip()
+        if not titulo:
+            continue
+
+        desc = limpar_html(v.get("description") or "")
+        paises = _paises_turing(desc)
+
+        # ─── Decisão ───
+        # Se a vaga LISTA os países elegíveis, essa lista manda: sem Brasil
+        # na lista, a vaga não serve, por mais que o título fale português.
+        # É a mesma lição do "Project Perseus" da Welocalize.
+        if paises:
+            if not _BRASIL.search(paises):
+                continue
+            local = "Remoto · Brasil"
+        else:
+            # Sem lista de países: cai na regra geral do projeto. Título de
+            # português entra (é remoto e aberto), Portugal explícito não.
+            if not aceita_brasil(titulo, "remote", "", desc):
+                continue
+            local = "Remoto · Mundial"
+
+        um_paga = _POR_HORA.search(desc)
+        pagamento = um_paga.group(1).replace(" ", "") + " / hora" if um_paga else ""
+
+        contrato = v.get("contract") or v.get("roleGroup") or ""
+        vagas.append({
+            "titulo": titulo,
+            "url": URL_TURING_VAGA.format(id=v.get("id")),
+            "local": local,
+            "desc": desc,
+            "requisitos": ", ".join(
+                s.get("skillName", "") for s in (v.get("skills") or [])
+                if s.get("skillName")
+            ),
+            "data_post": (v.get("createdDate") or "")[:10],
+            "pagamento": pagamento,
+            "horario": contrato if isinstance(contrato, str) else "",
+        })
+
+    print(f"{len(vagas)} vaga(s) BR de {len(brutas)} encontradas")
+    return vagas
+
+
+# ═══════════════════════════════════════════════════════════════════
+#  IMERIT  (imerit.ai)
+# ═══════════════════════════════════════════════════════════════════
+#
+# A mais simples de todas as fontes do projeto. A página de carreiras é
+# WordPress e mostra "Loading open roles...", mas o dado vem de um arquivo
+# JSON estático, sem login, sem POST, sem paginação:
+#
+#     GET https://imerit.ai/jobs.json
+#
+# Resposta: {"generated_at": "...", "total": N, "jobs": [...]}
+#
+# Cada vaga já traz país, estado, idioma, tipo de contrato, faixa de
+# pagamento e a descrição separada em blocos. É o feed mais limpo que
+# encontramos, melhor até que as APIs de verdade.
+#
+# Situação em agosto de 2026: 24 vagas, nenhuma em português nem no Brasil.
+# Os idiomas do filtro do site são chinês, inglês, hebraico, japonês,
+# canarês, coreano, malaio, persa, télugo e tailandês. Entra no projeto
+# como posto de vigia: no dia em que abrir vaga para o Brasil, ela cai no
+# site sozinha.
+
+URL_IMERIT = "https://imerit.ai/jobs.json"
+ORIGEM_IMERIT = "https://imerit.ai"
+
+
+def coletar_imerit():
+    """Lê o feed JSON da iMerit e devolve só o que aceita o Brasil."""
+    print("  → iMerit ...", end=" ")
+    try:
+        resposta = _baixar(URL_IMERIT, origem=ORIGEM_IMERIT)
+    except Exception as e:
+        print(f"FALHOU ({e})")
+        return []
+
+    brutas = resposta.get("jobs") or []
+    vagas = []
+    for v in brutas:
+        titulo = (v.get("title") or "").strip()
+        if not titulo:
+            continue
+
+        pais = (v.get("country") or "").strip()
+        estado = (v.get("state") or "").strip()
+        local_bruto = ", ".join(p for p in (estado, pais) if p) \
+            or (v.get("location") or "")
+        idioma = (v.get("language") or "").strip()
+
+        # blocos de texto: a iMerit separa em about/description/etc.
+        blocos = [v.get(k) or "" for k in
+                  ("description", "about", "responsibilities")]
+        desc = limpar_html("\n\n".join(b for b in blocos if b))
+        requisitos = limpar_html("\n".join(
+            v.get(k) or "" for k in ("requirements", "nice_to_have")))
+
+        if not aceita_brasil(titulo, local_bruto, idioma, desc):
+            continue
+
+        # O slug garante uma URL única por vaga, e a URL é o que vira o id
+        # do resumo. Sem ela, vaga sem apply_link viraria tudo o mesmo id.
+        link = (v.get("apply_link") or "").strip()
+        if not link.lower().startswith("http"):
+            slug = v.get("slug") or v.get("job_id") or titulo
+            link = f"https://imerit.ai/careers-listing/?role={slug}"
+
+        vagas.append({
+            "titulo": titulo,
+            "url": link,
+            "local": local_em_portugues(local_bruto),
+            "desc": desc,
+            "requisitos": requisitos,
+            "data_post": "",          # o feed não traz data de publicação
+            "pagamento": (v.get("pay_rate") or "").strip(),
+            "horario": (v.get("type") or "").strip(),
+        })
+
+    print(f"{len(vagas)} vaga(s) BR de {len(brutas)} encontradas")
+    return vagas
+
+
+# ═══════════════════════════════════════════════════════════════════
 #  TESTE MANUAL: python3 scraper_extras.py
 # ═══════════════════════════════════════════════════════════════════
 
@@ -578,7 +805,9 @@ if __name__ == "__main__":
     for nome, funcao in [("MERIDIAL", coletar_meridial),
                          ("TELUS", coletar_telus),
                          ("MICRO1", coletar_micro1),
-                         ("ALIGNERR", coletar_alignerr)]:
+                         ("ALIGNERR", coletar_alignerr),
+                         ("TURING", coletar_turing),
+                         ("IMERIT", coletar_imerit)]:
         print("\n" + "=" * 60)
         print(f"  {nome}")
         print("=" * 60)

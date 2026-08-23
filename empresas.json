@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-08-05",
+  "atualizado": "2026-08-23",
   "nota": "Arquivo dos perfis de empresa, mantido a mao. Editar aqui muda a pagina inicial, a de empresas e a de vagas de uma vez so.",
   "empresas": [
     {
@@ -334,6 +334,65 @@
       "pagamento": "Por hora de projeto, com valor definido conforme a área e a senioridade.",
       "clientes": "Laboratórios de IA",
       "atencao": "A entrada não é por vaga publicada, e sim por entrevista dentro da plataforma. Por isso ela aparece aqui pelo site oficial. Também não é toda temporada que há projeto em português brasileiro, então vale deixar o perfil pronto e acompanhar."
+    },
+    {
+      "id": "turing",
+      "nome": "Turing",
+      "sigla": "TU",
+      "cor": "#8B7DF7",
+      "bg": "#1b1836",
+      "dom": "turing.com",
+      "desc": "IA & Dados · Avaliação · Idiomas",
+      "link": "https://work.turing.com/jobs",
+      "site": "https://www.turing.com/",
+      "tipo": "Acelerador de pesquisa para laboratórios de IA",
+      "fundada": "2018",
+      "sede": "São Francisco, Estados Unidos",
+      "porte": "Avaliada em cerca de 2,2 bilhões de dólares em 2025",
+      "coleta": "auto",
+      "destaque": false,
+      "areas": [
+        "IA & Dados",
+        "Avaliação de busca",
+        "Escrita",
+        "Especialista"
+      ],
+      "resumo": "A Turing trabalha com os grandes laboratórios de IA, fornecendo dados de treino de alta qualidade e especialistas por área. As vagas são de contrato, remotas, e cada anúncio costuma trazer a lista de países aceitos. Aqui você vê só as que incluem o Brasil ou que são de português.",
+      "curto": "Trabalha direto com os grandes laboratórios de IA. Vagas de contrato, remotas, por especialidade.",
+      "o_que_voce_faz": "Avaliar respostas de modelos, escrever prompts e diálogos de treino, e revisar conteúdo na sua área de conhecimento ou no seu idioma.",
+      "bom_para": "Quem tem formação ou experiência específica em alguma área e quer projeto de contrato com horas flexíveis.",
+      "como_entrar": "Cadastro no work.turing.com e candidatura na vaga. Costuma ter etapa de avaliação técnica.",
+      "pagamento": "Por hora ou por projeto, informado em cada vaga.",
+      "clientes": "Laboratórios de IA de fronteira e grandes empresas"
+    },
+    {
+      "id": "imerit",
+      "nome": "iMerit",
+      "sigla": "IM",
+      "cor": "#3DD4C8",
+      "bg": "#0f2b2a",
+      "dom": "imerit.ai",
+      "desc": "Anotação de dados · IA generativa",
+      "link": "https://imerit.ai/careers-listing/",
+      "site": "https://imerit.ai/",
+      "tipo": "Empresa de anotação e enriquecimento de dados",
+      "fundada": "2012",
+      "sede": "Estados Unidos, com operação grande na Índia",
+      "porte": "Equipe global, com forte presença na Ásia",
+      "coleta": "auto",
+      "destaque": false,
+      "areas": [
+        "IA & Dados",
+        "Tradução",
+        "QA"
+      ],
+      "resumo": "A iMerit é uma das empresas mais antigas de anotação de dados e hoje trabalha bastante com IA generativa. As vagas são de contratação independente, por idioma e por país. Até agora ela não abriu vaga em português, mas o robô do hub confere o quadro dela todo dia e traz assim que aparecer.",
+      "curto": "Anotação de dados e IA generativa. Ainda sem vaga em português, mas o robô fica de olho.",
+      "o_que_voce_faz": "Anotar, rotular e transcrever texto, imagem, áudio e vídeo, além de avaliar respostas de modelos no seu idioma.",
+      "bom_para": "Quem quer contrato independente por projeto e tem atenção a detalhe.",
+      "como_entrar": "Candidatura direta na página de carreiras da empresa.",
+      "pagamento": "Informado em cada vaga.",
+      "clientes": "Empresas de IA, tecnologia, saúde, agricultura e mobilidade"
     }
   ]
 }
