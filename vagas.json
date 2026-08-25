@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-24T10:21:03.855204+00:00",
-  "atualizado_br": "24/08/2026 às 10:21",
-  "total": 69,
+  "atualizado_em": "2026-08-25T09:55:15.329371+00:00",
+  "atualizado_br": "25/08/2026 às 09:55",
+  "total": 70,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -1086,6 +1086,19 @@
       "data_vista": "2026-08-23",
       "data_ref": "2025-11-24",
       "id": "2ef77d298e"
+    },
+    {
+      "empresa": "linkedin",
+      "titulo": "Data Labeling Jobs in Brazil Rex.zone · Brasil (Remoto) US$ 30-US$ 50 por hora",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.linkedin.com/jobs/view/4454358204/",
+      "commitment": "",
+      "fonte": "linkedin",
+      "data_vista": "2026-08-25",
+      "data_ref": "2026-08-25",
+      "id": "64d08bddcd"
     },
     {
       "empresa": "linkedin",
