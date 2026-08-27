@@ -7,7 +7,7 @@
 <meta name="description" content="Detalhes da vaga: o que você vai fazer, requisitos e dica de currículo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 <style>
   .pagina { max-width:840px; margin:0 auto; padding:30px 20px 60px; }
@@ -16,10 +16,10 @@
 
   .cabeca { border-bottom:1px solid var(--line-soft); padding-bottom:24px; margin-bottom:28px; }
   .cabeca .cat { font-family:var(--mono); font-size:11px; letter-spacing:0.09em; text-transform:uppercase; color:var(--signal); margin-bottom:12px; }
-  .cabeca h1 { font-family:var(--display); font-weight:700; font-size:clamp(23px,4vw,33px); line-height:1.18; letter-spacing:-0.025em; margin-bottom:16px; }
+  .cabeca h1 { font-family:var(--display); font-weight:400; font-size:clamp(26px,4vw,38px); line-height:1.14; letter-spacing:-0.02em; color:var(--ink); margin-bottom:16px; }
   .co-linha { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
   .co-linha .logo-box { width:40px; height:40px; }
-  .co-linha .nm { font-family:var(--display); font-weight:600; font-size:15px; }
+  .co-linha .nm { font-family:var(--body); font-weight:600; font-size:15px; color:var(--ink); }
   .co-linha .sb { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); }
   .co-linha a.sobre { margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--ink-3); transition:color .15s; }
   .co-linha a.sobre:hover { color:var(--signal); }
@@ -34,14 +34,14 @@
   .parte h2::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--signal); flex-shrink:0; }
   .parte p { font-size:15.5px; color:var(--ink); line-height:1.72; }
 
-  .dica { background:rgba(255,180,84,0.07); border:1px solid rgba(255,180,84,0.22); border-radius:13px; padding:20px 22px; }
+  .dica { background:var(--amber-suave); border:1px solid #F0DCC6; border-radius:13px; padding:20px 22px; }
   .dica h2 { color:var(--amber); }
   .dica h2::before { background:var(--amber); }
 
   .barra { position:sticky; bottom:0; background:linear-gradient(transparent,var(--bg) 32%); padding:24px 0 10px; margin-top:34px; }
   .candidatar {
     display:flex; align-items:center; justify-content:center; gap:9px; width:100%;
-    font-family:var(--mono); font-weight:600; font-size:15px; color:#04110F;
+    font-family:var(--mono); font-weight:600; font-size:15px; color:#fff;
     background:var(--signal); border:none; border-radius:12px; padding:16px; transition:all .16s;
   }
   .candidatar:hover { gap:13px; filter:brightness(1.08); }

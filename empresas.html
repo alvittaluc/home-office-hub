@@ -7,11 +7,11 @@
 <meta name="description" content="Quem é quem no mercado de dados e inteligência artificial: Welocalize, RWS TrainAI, Toloka, OneForma, CrowdGen, TELUS e Outlier. O que fazem, como entrar e como pagam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 <style>
   .topo { max-width:var(--wrap); margin:0 auto; padding:52px 20px 30px; }
-  .topo h1 { font-family:var(--display); font-weight:700; letter-spacing:-0.032em; font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:14px; max-width:18ch; }
+  .topo h1 { font-family:var(--display); font-weight:400; letter-spacing:-0.02em; font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:14px; max-width:18ch; }
   .topo p.lead { margin-bottom:26px; }
 
   .corpo { max-width:var(--wrap); margin:0 auto; padding:0 20px 60px; display:grid; grid-template-columns:210px 1fr; gap:40px; align-items:start; }
@@ -41,7 +41,7 @@
   }
   .ficha-topo .logo-box { width:54px; height:54px; }
   .ficha-topo .id { flex:1; min-width:0; }
-  .ficha-topo h2 { font-family:var(--display); font-weight:600; font-size:22px; letter-spacing:-0.02em; }
+  .ficha-topo h2 { font-family:var(--display); font-weight:400; font-size:24px; line-height:1.2; letter-spacing:-0.015em; color:var(--ink); }
   .ficha-topo .sub { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); margin-top:3px; }
   .ficha-topo .st { display:flex; flex-direction:column; align-items:flex-end; gap:7px; flex-shrink:0; }
   @media (max-width:640px){
@@ -74,7 +74,7 @@
 
   .aviso {
     display:flex; gap:12px; align-items:flex-start; padding:14px 16px; border-radius:11px;
-    background:rgba(255,180,84,0.06); border:1px solid rgba(255,180,84,0.22); margin-bottom:20px;
+    background:var(--amber-suave); border:1px solid #F0DCC6; margin-bottom:20px;
   }
   .aviso .ic { color:var(--amber); font-size:14px; line-height:1.3; flex-shrink:0; }
   .aviso p { font-size:13.5px; color:var(--ink-2); line-height:1.6; }
@@ -82,6 +82,35 @@
 
   .ficha-acoes { display:flex; gap:9px; flex-wrap:wrap; align-items:center; }
   .areas-linha { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:18px; }
+
+  /* ── faixa giratória de empresas ── */
+  .faixa { max-width:var(--wrap); margin:0 auto; padding:0 22px 34px; }
+  .fila-wrap {
+    border:1px solid var(--line-soft); border-radius:var(--raio); overflow:hidden;
+    position:relative; background:var(--panel); box-shadow:var(--sombra);
+  }
+  .fila-wrap::before, .fila-wrap::after {
+    content:''; position:absolute; top:0; bottom:0; width:56px; pointer-events:none; z-index:2;
+  }
+  .fila-wrap::before { left:0;  background:linear-gradient(90deg,#fff,transparent); }
+  .fila-wrap::after  { right:0; background:linear-gradient(270deg,#fff,transparent); }
+  .logo-fila { display:flex; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
+  .logo-fila::-webkit-scrollbar { display:none; }
+  .logo-item {
+    flex:0 0 calc(100% / 7); background:#fff; padding:22px 12px;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    text-align:center; transition:background .16s; border-right:1px solid var(--line-soft);
+  }
+  @media (max-width:900px){ .logo-item{ flex-basis:calc(100% / 4); } }
+  @media (max-width:600px){ .logo-item{ flex-basis:calc(100% / 2.6); padding:18px 8px; } }
+  .logo-item:hover { background:var(--bg-soft); }
+  .logo-item .lg {
+    width:38px; height:38px; display:grid; place-items:center; border-radius:10px;
+    border:1px solid var(--line-soft); background:#fff;
+    font-weight:600; font-size:11px; overflow:hidden;
+  }
+  .logo-item .lg img { width:24px; height:24px; object-fit:contain; }
+  .logo-item .nm { font-size:12.5px; color:var(--ink-2); line-height:1.35; }
 </style>
 </head>
 <body>
@@ -90,6 +119,13 @@
   <div class="eyebrow">Quem está no mercado</div>
   <h1>As empresas que contratam brasileiros para treinar IA</h1>
   <p class="lead">Antes de clicar em candidatar, vale saber com quem você vai trabalhar. Aqui está o perfil de cada empresa que aparece no hub: o que ela faz, que tipo de projeto oferece, como é o processo de entrada e como o pagamento chega até você.</p>
+</section>
+
+<!-- faixa giratória com todas as empresas -->
+<section class="faixa">
+  <div class="fila-wrap">
+    <div class="logo-fila" id="logoFila"></div>
+  </div>
 </section>
 
 <div class="corpo">
@@ -109,6 +145,41 @@ montarLayout("empresas");
   try { base = await lerEmpresas(); } catch(e) { console.error("empresas.json", e); }
 
   const lista = base.empresas || [];
+
+  /* ── faixa giratória, contínua e sem fim ──
+     A lista é repetida algumas vezes. Quando o giro passa do comprimento de
+     uma volta, a posição volta ao começo sem que se perceba. */
+  const fila = document.getElementById("logoFila");
+  if (fila && lista.length) {
+    const voltas = Math.max(2, Math.ceil(7 / lista.length) + 1);
+    let html = "";
+    for (let i = 0; i < voltas; i++) {
+      html += lista.map(e => `<a class="logo-item" href="#${e.id}"${i ? ' aria-hidden="true" tabindex="-1"' : ""}>
+        <span class="lg">${logoHtml(e,38)}</span><span class="nm">${esc(e.nome)}</span></a>`).join("");
+    }
+    fila.innerHTML = html;
+
+    const VELOCIDADE = 0.3;
+    const parado = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let posicao = 0, umaVolta = 0, sobre = false, arrastando = false;
+    const medir = () => umaVolta = fila.scrollWidth / voltas;
+    medir();
+    window.addEventListener("resize", () => { medir(); posicao = fila.scrollLeft; });
+    fila.addEventListener("pointerenter", () => sobre = true);
+    fila.addEventListener("pointerleave", () => sobre = false);
+    fila.addEventListener("pointerdown", () => arrastando = true);
+    const soltar = () => { if (arrastando) { arrastando = false; posicao = fila.scrollLeft; } };
+    window.addEventListener("pointerup", soltar);
+    window.addEventListener("pointercancel", soltar);
+    (function girar(){
+      if (umaVolta > 0 && !arrastando && !sobre && !parado) {
+        posicao += VELOCIDADE;
+        if (posicao >= umaVolta) posicao -= umaVolta;
+        fila.scrollLeft = posicao;
+      }
+      requestAnimationFrame(girar);
+    })();
+  }
 
   // trilho lateral
   document.getElementById("trilhoLista").innerHTML = lista.map(e =>

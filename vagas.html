@@ -7,13 +7,13 @@
 <meta name="description" content="Todas as vagas remotas internacionais de IA, anotação de dados, avaliação e tradução abertas para quem mora no Brasil.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 <style>
   /* ─────────────── TOPO ─────────────── */
   .topo { max-width:var(--wrap); margin:0 auto; padding:48px 20px 26px; }
   .topo h1 {
-    font-family:var(--display); font-weight:700; letter-spacing:-0.032em;
+    font-family:var(--display); font-weight:400; letter-spacing:-0.02em;
     font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:13px; max-width:20ch;
   }
   .topo p.lead { margin-bottom:26px; }
@@ -106,7 +106,7 @@
     display:grid; place-items:center; font-size:10px; color:transparent; transition:all .15s;
   }
   .opcao.on { color:var(--ink); }
-  .opcao.on .caixa { background:var(--signal); border-color:var(--signal); color:#04110F; }
+  .opcao.on .caixa { background:var(--signal); border-color:var(--signal); color:#fff; }
   .opcao .marca { width:22px; height:22px; border-radius:6px; flex-shrink:0; overflow:hidden;
     display:grid; place-items:center; font-family:var(--mono); font-weight:600; font-size:9px; }
   .opcao .marca img { width:14px; height:14px; object-fit:contain; border-radius:3px; }
@@ -129,7 +129,7 @@
     margin-bottom:14px;
   }
   .abrir-filtros .conta {
-    font-family:var(--mono); font-size:10.5px; background:var(--signal); color:#04110F;
+    font-family:var(--mono); font-size:10.5px; background:var(--signal); color:#fff;
     border-radius:20px; padding:1px 7px; font-weight:600;
   }
   @media (max-width:940px){ .abrir-filtros{ display:flex; } }
@@ -147,7 +147,7 @@
     font-family:var(--mono); font-size:12px; color:var(--ink); cursor:pointer;
     background:var(--panel); border:1px solid var(--line); border-radius:9px;
     padding:7px 30px 7px 11px; outline:none; appearance:none;
-    background-image:linear-gradient(45deg,transparent 50%,#5A6376 50%),linear-gradient(135deg,#5A6376 50%,transparent 50%);
+    background-image:linear-gradient(45deg,transparent 50%,#8A94A1 50%),linear-gradient(135deg,#8A94A1 50%,transparent 50%);
     background-position:calc(100% - 15px) 52%, calc(100% - 10px) 52%;
     background-size:5px 5px, 5px 5px; background-repeat:no-repeat;
     transition:border-color .15s;
@@ -159,10 +159,10 @@
   .ativo {
     display:inline-flex; align-items:center; gap:7px; cursor:pointer;
     font-family:var(--mono); font-size:11px; color:var(--signal);
-    background:rgba(61,212,200,0.09); border:1px solid rgba(61,212,200,0.28);
+    background:rgba(26,72,147,0.05); border:1px solid rgba(26,72,147,0.16);
     border-radius:20px; padding:5px 11px; transition:all .15s;
   }
-  .ativo:hover { background:rgba(61,212,200,0.16); }
+  .ativo:hover { background:rgba(26,72,147,0.08); }
   .ativo .x { font-size:13px; line-height:1; opacity:.7; }
 
   /* grade de vagas */
@@ -174,15 +174,15 @@
   }
   .vaga::before {
     content:''; position:absolute; inset:0; border-radius:14px; pointer-events:none;
-    background:radial-gradient(140% 90% at 0% 0%, rgba(61,212,200,0.07), transparent 55%);
+    background:radial-gradient(140% 90% at 0% 0%, rgba(26,72,147,0.05), transparent 55%);
     opacity:0; transition:opacity .18s;
   }
   .vaga:hover {
     border-color:var(--line); background:var(--panel-2); transform:translateY(-3px);
-    box-shadow:0 16px 34px -22px rgba(0,0,0,.9);
+    box-shadow:0 16px 34px -22px rgba(16,32,58,.14);
   }
   .vaga:hover::before { opacity:1; }
-  .vaga.nova { border-color:rgba(255,180,84,0.3); }
+  .vaga.nova { border-color:#EBD2B4; }
 
   .v-topo { display:flex; align-items:center; gap:9px; }
   .v-topo .marca {
@@ -194,11 +194,11 @@
   .v-topo .selo-novo {
     margin-left:auto; flex-shrink:0; font-family:var(--mono); font-size:9.5px; font-weight:600;
     letter-spacing:.06em; text-transform:uppercase; color:var(--amber);
-    background:rgba(255,180,84,0.13); border:1px solid rgba(255,180,84,0.32);
+    background:var(--amber-suave); border:1px solid #EBD2B4;
     border-radius:20px; padding:3px 9px;
   }
   .v-tit {
-    font-family:var(--display); font-weight:500; font-size:15px; line-height:1.32; color:var(--ink);
+    font-family:var(--body); font-weight:600; font-size:15px; line-height:1.35; color:var(--ink); letter-spacing:-0.01em;
   }
   .v-real { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:-7px; }
   .v-tags { display:flex; flex-wrap:wrap; gap:6px; }
