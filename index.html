@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home Office Hub — Trabalho remoto com IA e dados para quem mora no Brasil</title>
 <meta name="description" content="Entenda o que é o trabalho de anotação, avaliação de IA e tradução, conheça as empresas que contratam brasileiros e veja as vagas abertas para quem mora no Brasil.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Home Office Hub">
+<meta property="og:description" content="Vagas remotas internacionais de IA, dados e tradução, abertas para quem mora no Brasil.">
+<meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/">
+<meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
@@ -24,10 +36,17 @@
   .palco::before {
     content:''; position:absolute; inset:0; pointer-events:none;
     background:
-      radial-gradient(80% 60% at 78% 8%, rgba(78,154,200,0.20), transparent 62%),
-      radial-gradient(60% 50% at 6% 96%, rgba(26,72,147,0.30), transparent 66%);
+      radial-gradient(80% 60% at 78% 8%, rgba(78,154,200,0.26), transparent 62%),
+      radial-gradient(60% 50% at 6% 96%, rgba(26,72,147,0.38), transparent 66%),
+      radial-gradient(40% 40% at 96% 92%, rgba(78,154,200,0.14), transparent 70%);
   }
-  .trilhos { position:relative; overflow:hidden; }
+  /* o grão tira o ar plástico do gradiente, é o truque que a Apple usa */
+  .palco::after, .fim .escuro::after {
+    content:''; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.30;
+    mix-blend-mode:overlay; background-size:150px 150px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .trilhos { position:relative; z-index:1; overflow:hidden; }
   .slides { display:flex; transition:transform .62s cubic-bezier(.4,0,.2,1); }
   .slide {
     flex:0 0 100%; display:grid; grid-template-columns:1.05fr 1.15fr; gap:46px; align-items:center;
@@ -136,9 +155,9 @@
   .areas { max-width:var(--wrap); margin:0 auto; padding:20px 22px 0; }
   .area {
     display:grid; grid-template-columns:1fr 1.05fr; gap:52px; align-items:center;
-    padding:66px 0; border-top:1px solid var(--line-soft); scroll-margin-top:100px;
+    padding:88px 0; border-top:1px solid var(--line-soft); scroll-margin-top:100px;
   }
-  @media (max-width:860px){ .area{ grid-template-columns:1fr; gap:28px; padding:44px 0; } }
+  @media (max-width:860px){ .area{ grid-template-columns:1fr; gap:28px; padding:52px 0; } }
   .area:nth-child(even) .lado-texto { order:2; }
   @media (max-width:860px){ .area:nth-child(even) .lado-texto{ order:0; } }
   .area h3 {
@@ -195,11 +214,14 @@
   .fim .escuro { padding:76px 34px; text-align:center; }
   .fim .escuro::before {
     content:''; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(70% 100% at 50% 0%, rgba(78,154,200,0.22), transparent 62%);
+    background:
+      radial-gradient(70% 100% at 50% 0%, rgba(78,154,200,0.26), transparent 62%),
+      radial-gradient(55% 70% at 12% 110%, rgba(26,72,147,0.45), transparent 68%),
+      radial-gradient(45% 60% at 92% 106%, rgba(78,154,200,0.18), transparent 70%);
   }
-  .fim h2 { position:relative; margin-bottom:16px; }
-  .fim p { position:relative; max-width:46ch; margin:0 auto 30px; font-size:16.5px; }
-  .fim .acoes { position:relative; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .fim h2 { position:relative; z-index:1; margin-bottom:16px; }
+  .fim p { position:relative; z-index:1; max-width:46ch; margin:0 auto 30px; font-size:16.5px; }
+  .fim .acoes { position:relative; z-index:1; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 </style>
 </head>
 <body>
@@ -526,6 +548,7 @@
 <script src="layout.js"></script>
 <script>
 montarLayout("inicio");
+revelarAoRolar(".abertura, .areas .area, .passos-sec .passo, .fim .escuro");
 
 // onda de áudio da seção de coleta
 (function(){

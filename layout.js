@@ -19,11 +19,9 @@ function marca(tam) {
 }
 
 function montarLayout(ativa) {
-  // ── ícone da aba do navegador ──
-  const ico = document.createElement("link");
-  ico.rel = "icon";
-  ico.href = "logo.png";
-  document.head.appendChild(ico);
+  /* O ícone da aba agora vem das tags <link rel="icon"> no head de cada
+     página, que apontam para favicon.ico e favicon-32.png. Não injetamos
+     mais nada aqui, senão o logo.png sobrescreveria o ícone bom. */
 
   // ── cabeçalho ──
   const header = document.createElement("header");
@@ -123,4 +121,38 @@ function logoHtml(e, tam) {
       onerror="var p=this.parentNode; if(p){ p.textContent='${e.sigla || "?"}'; p.style.color='${e.cor || "#9BA3B4"}'; }">`;
   }
   return e.sigla || "";
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REVELAÇÃO SUAVE AO ROLAR
+   Cada bloco entra com um deslize curto quando aparece na tela.
+   Roda uma vez por elemento e respeita quem pediu menos animação
+   no sistema. Se o navegador for antigo, simplesmente não faz nada
+   e a página continua normal.
+   ══════════════════════════════════════════════════════════════ */
+function revelarAoRolar(seletores) {
+  const quieto = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (quieto || !("IntersectionObserver" in window)) return;
+
+  const alvos = document.querySelectorAll(seletores);
+  if (!alvos.length) return;
+
+  alvos.forEach(el => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(16px)";
+    el.style.transition = "opacity .65s cubic-bezier(.22,.61,.36,1), transform .65s cubic-bezier(.22,.61,.36,1)";
+    el.style.willChange = "opacity, transform";
+  });
+
+  const obs = new IntersectionObserver(entradas => {
+    entradas.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.style.opacity = "1";
+      e.target.style.transform = "none";
+      e.target.style.willChange = "auto";
+      obs.unobserve(e.target);
+    });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+
+  alvos.forEach(el => obs.observe(el));
 }

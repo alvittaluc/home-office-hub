@@ -5,215 +5,230 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vagas abertas — Home Office Hub</title>
 <meta name="description" content="Todas as vagas remotas internacionais de IA, anotação de dados, avaliação e tradução abertas para quem mora no Brasil.">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vagas abertas — Home Office Hub">
+<meta property="og:description" content="Vagas remotas internacionais de IA, dados e tradução, abertas para quem mora no Brasil.">
+<meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/vagas.html">
+<meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 <style>
-  /* ─────────────── TOPO ─────────────── */
-  .topo { max-width:var(--wrap); margin:0 auto; padding:48px 20px 26px; }
+  /* ═══════════════ TOPO ═══════════════ */
+  .topo { max-width:var(--wrap); margin:0 auto; padding:48px 22px 24px; }
   .topo h1 {
     font-family:var(--display); font-weight:400; letter-spacing:-0.02em;
     font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:13px; max-width:20ch;
   }
-  .topo p.lead { margin-bottom:26px; }
+  .topo p.lead { margin-bottom:26px; max-width:60ch; }
 
-  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:11px; }
-  .stat {
-    background:linear-gradient(155deg,var(--panel-2),var(--panel));
-    border:1px solid var(--line-soft); border-radius:13px; padding:16px 17px;
-    position:relative; overflow:hidden;
+  /* números em linha, sem virar quatro cartões */
+  .numeros {
+    display:flex; flex-wrap:wrap; gap:34px;
+    padding:20px 0 0; border-top:1px solid var(--line-soft);
   }
-  .stat::after {
-    content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--signal); opacity:.5;
+  .num { display:flex; flex-direction:column; gap:3px; }
+  .num .n {
+    font-weight:600; font-size:25px; letter-spacing:-0.02em; line-height:1.1; color:var(--ink);
+    font-variant-numeric:tabular-nums;
   }
-  .stat.amb::after { background:var(--amber); }
-  .stat .n { font-family:var(--mono); font-weight:600; font-size:26px; letter-spacing:-0.02em; line-height:1.1; }
-  .stat .n .u { color:var(--signal); font-size:19px; }
-  .stat.amb .n { color:var(--amber); }
-  .stat .l {
-    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--ink-3); margin-top:6px;
-  }
+  .num .n .u { color:var(--signal); font-size:17px; }
+  .num.amb .n { color:var(--amber); }
+  .num .l { font-size:11px; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-3); }
 
-  /* ─────────────── CORPO ─────────────── */
-  .corpo {
-    max-width:var(--wrap); margin:0 auto; padding:8px 20px 70px;
-    display:grid; grid-template-columns:262px 1fr; gap:26px; align-items:start;
-  }
-  @media (max-width:940px){ .corpo{ grid-template-columns:1fr; gap:0; } }
+  /* ═══════════════ BARRA DE FILTROS ═══════════════ */
+  .corpo { max-width:var(--wrap); margin:0 auto; padding:0 22px 70px; }
 
-  /* ── painel de filtros ── */
-  .painel-filtros {
-    position:sticky; top:78px;
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:15px; overflow:hidden;
+  .barra {
+    position:sticky; top:84px; z-index:60;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    padding:10px; margin:14px 0 4px;
+    background:rgba(255,255,255,0.86); backdrop-filter:blur(16px) saturate(1.25);
+    border:1px solid var(--line-soft); border-radius:15px; box-shadow:var(--sombra);
   }
-  @media (max-width:940px){
-    .painel-filtros { position:static; margin-bottom:18px; display:none; }
-    .painel-filtros.aberto { display:block; }
-  }
-  .pf-topo {
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
-    padding:14px 16px; border-bottom:1px solid var(--line-soft); background:var(--panel-2);
-  }
-  .pf-topo h2 {
-    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
-    color:var(--ink-2); font-weight:500;
-  }
-  .limpar {
-    font-family:var(--mono); font-size:10.5px; color:var(--ink-3); background:none; border:0;
-    cursor:pointer; padding:3px 0; transition:color .15s;
-  }
-  .limpar:hover { color:var(--signal); }
-  .limpar:disabled { opacity:.35; cursor:default; }
+  @media (max-width:900px){ .barra{ top:74px; } }
 
-  .grupo { padding:15px 16px; border-bottom:1px solid var(--line-soft); }
-  .grupo:last-child { border-bottom:0; }
-  .grupo > h3 {
-    font-family:var(--mono); font-size:9.5px; letter-spacing:0.13em; text-transform:uppercase;
-    color:var(--ink-3); font-weight:500; margin-bottom:11px;
+  .barra .direita { margin-left:auto; display:flex; align-items:center; gap:12px; }
+  .contagem { font-size:13px; color:var(--ink-3); white-space:nowrap; }
+  .contagem b { color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums; }
+  @media (max-width:760px){ .barra .direita{ margin-left:0; width:100%; justify-content:space-between; } }
+
+  /* ── cada filtro suspenso ── */
+  .fdrop { position:relative; }
+  .fbtn {
+    display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+    font-family:var(--body); font-size:13.5px; color:var(--ink-2);
+    background:var(--panel); border:1px solid var(--line); border-radius:11px;
+    padding:9px 13px; transition:border-color .15s, color .15s, background .15s;
+  }
+  .fbtn:hover { border-color:var(--signal-dim); color:var(--ink); }
+  .fbtn:focus-visible { outline:2px solid var(--signal); outline-offset:2px; }
+  .fbtn .chev {
+    width:8px; height:8px; border-right:1.5px solid var(--ink-3); border-bottom:1.5px solid var(--ink-3);
+    transform:rotate(45deg) translate(-2px,-2px); transition:transform .2s; flex-shrink:0;
+  }
+  .fdrop.aberto .fbtn { border-color:var(--signal); color:var(--ink); background:var(--signal-suave); }
+  .fdrop.aberto .fbtn .chev { transform:rotate(-135deg) translate(-3px,-3px); border-color:var(--signal); }
+  .fbtn .cnt {
+    font-size:11px; font-weight:600; color:#fff; background:var(--signal);
+    border-radius:20px; padding:1px 7px; font-variant-numeric:tabular-nums;
   }
 
-  /* período, em botões segmentados */
-  .segmentos { display:flex; flex-direction:column; gap:4px; }
-  .seg-btn {
-    display:flex; align-items:center; gap:9px; width:100%; text-align:left; cursor:pointer;
-    font-family:var(--body); font-size:13px; color:var(--ink-2);
-    background:transparent; border:1px solid transparent; border-radius:9px; padding:8px 10px;
-    transition:all .15s;
+  .fmenu {
+    position:absolute; left:0; top:calc(100% + 8px); z-index:70; display:none;
+    min-width:252px; max-height:340px; overflow-y:auto; padding:8px;
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--sombra-alta); scrollbar-width:thin;
   }
-  .seg-btn:hover { background:var(--panel-2); color:var(--ink); }
-  .seg-btn .pip {
-    width:14px; height:14px; border-radius:50%; border:1.5px solid var(--line); flex-shrink:0;
-    display:grid; place-items:center; transition:border-color .15s;
-  }
-  .seg-btn .pip::after { content:''; width:6px; height:6px; border-radius:50%; background:transparent; transition:background .15s; }
-  .seg-btn.on { background:var(--panel-2); border-color:var(--line); color:var(--ink); }
-  .seg-btn.on .pip { border-color:var(--signal); }
-  .seg-btn.on .pip::after { background:var(--signal); }
-  .seg-btn .qt { margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); }
-  .seg-btn.on .qt { color:var(--signal); }
+  .fmenu::-webkit-scrollbar { width:6px; }
+  .fmenu::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px; }
+  .fdrop.aberto .fmenu { display:block; }
+  @media (max-width:760px){ .fmenu{ left:auto; right:0; min-width:min(300px,86vw); } }
 
-  /* caixas de seleção de área e empresa */
   .opcao {
     display:flex; align-items:center; gap:10px; width:100%; text-align:left; cursor:pointer;
-    font-family:var(--body); font-size:13px; color:var(--ink-2);
-    background:transparent; border:0; border-radius:9px; padding:7px 9px; transition:all .15s;
+    font-family:var(--body); font-size:13.5px; color:var(--ink-2);
+    background:transparent; border:0; border-radius:9px; padding:8px 9px; transition:background .15s, color .15s;
   }
   .opcao:hover { background:var(--panel-2); color:var(--ink); }
   .opcao .caixa {
-    width:15px; height:15px; border-radius:5px; border:1.5px solid var(--line); flex-shrink:0;
+    width:16px; height:16px; border-radius:5px; border:1.5px solid var(--line); flex-shrink:0;
     display:grid; place-items:center; font-size:10px; color:transparent; transition:all .15s;
   }
+  .opcao .pip {
+    width:16px; height:16px; border-radius:50%; border:1.5px solid var(--line); flex-shrink:0;
+    display:grid; place-items:center; transition:border-color .15s;
+  }
+  .opcao .pip::after { content:''; width:7px; height:7px; border-radius:50%; background:transparent; transition:background .15s; }
   .opcao.on { color:var(--ink); }
   .opcao.on .caixa { background:var(--signal); border-color:var(--signal); color:#fff; }
-  .opcao .marca { width:22px; height:22px; border-radius:6px; flex-shrink:0; overflow:hidden;
-    display:grid; place-items:center; font-family:var(--mono); font-weight:600; font-size:9px; }
+  .opcao.on .pip { border-color:var(--signal); }
+  .opcao.on .pip::after { background:var(--signal); }
+  .opcao .marca {
+    width:22px; height:22px; border-radius:6px; flex-shrink:0; overflow:hidden;
+    display:grid; place-items:center; font-weight:700; font-size:9px;
+  }
   .opcao .marca img { width:14px; height:14px; object-fit:contain; border-radius:3px; }
   .opcao .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .opcao .qt { margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); flex-shrink:0; }
+  .opcao .qt { margin-left:auto; font-size:11.5px; color:var(--ink-3); flex-shrink:0; font-variant-numeric:tabular-nums; }
   .opcao.on .qt { color:var(--signal); }
+  .opcao.vazia:not(.on) { opacity:.4; }
 
-  /* opção que não traria nenhum resultado com os filtros atuais */
-  .seg-btn.vazia:not(.on), .opcao.vazia:not(.on) { opacity:.4; }
-
-  .lista-rolagem { max-height:296px; overflow-y:auto; margin:0 -5px; padding:0 5px; scrollbar-width:thin; }
-  .lista-rolagem::-webkit-scrollbar { width:5px; }
-  .lista-rolagem::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px; }
-
-  /* botão de filtros, só no celular */
-  .abrir-filtros {
-    display:none; align-items:center; gap:9px; width:100%; justify-content:center;
-    font-family:var(--mono); font-size:13px; color:var(--ink); cursor:pointer;
-    background:var(--panel); border:1px solid var(--line); border-radius:11px; padding:12px;
-    margin-bottom:14px;
-  }
-  .abrir-filtros .conta {
-    font-family:var(--mono); font-size:10.5px; background:var(--signal); color:#fff;
-    border-radius:20px; padding:1px 7px; font-weight:600;
-  }
-  @media (max-width:940px){ .abrir-filtros{ display:flex; } }
-
-  /* ─────────────── RESULTADOS ─────────────── */
-  .barra {
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-    padding-bottom:14px; margin-bottom:16px; border-bottom:1px solid var(--line-soft); flex-wrap:wrap;
-  }
-  .barra .contagem { font-family:var(--mono); font-size:12.5px; color:var(--ink-3); }
-  .barra .contagem b { color:var(--ink); font-weight:600; }
-  .ordenar { display:flex; align-items:center; gap:9px; }
-  .ordenar span { font-family:var(--mono); font-size:11px; color:var(--ink-3); }
-  .ordenar select {
-    font-family:var(--mono); font-size:12px; color:var(--ink); cursor:pointer;
-    background:var(--panel); border:1px solid var(--line); border-radius:9px;
-    padding:7px 30px 7px 11px; outline:none; appearance:none;
+  .ordenar {
+    font-family:var(--body); font-size:13px; color:var(--ink-2); cursor:pointer;
+    background:var(--panel); border:1px solid var(--line); border-radius:11px;
+    padding:9px 32px 9px 13px; outline:none; appearance:none; transition:border-color .15s;
     background-image:linear-gradient(45deg,transparent 50%,#8A94A1 50%),linear-gradient(135deg,#8A94A1 50%,transparent 50%);
-    background-position:calc(100% - 15px) 52%, calc(100% - 10px) 52%;
+    background-position:calc(100% - 16px) 52%, calc(100% - 11px) 52%;
     background-size:5px 5px, 5px 5px; background-repeat:no-repeat;
-    transition:border-color .15s;
   }
-  .ordenar select:focus { border-color:var(--signal-dim); }
+  .ordenar:hover, .ordenar:focus { border-color:var(--signal-dim); }
 
   /* etiquetas do que está filtrado */
-  .ativos { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px; }
+  .ativos { display:flex; flex-wrap:wrap; gap:7px; margin:14px 0 4px; }
   .ativo {
     display:inline-flex; align-items:center; gap:7px; cursor:pointer;
-    font-family:var(--mono); font-size:11px; color:var(--signal);
+    font-size:12px; color:var(--signal);
     background:rgba(26,72,147,0.05); border:1px solid rgba(26,72,147,0.16);
-    border-radius:20px; padding:5px 11px; transition:all .15s;
+    border-radius:20px; padding:5px 11px; transition:background .15s;
   }
-  .ativo:hover { background:rgba(26,72,147,0.08); }
-  .ativo .x { font-size:13px; line-height:1; opacity:.7; }
+  .ativo:hover { background:rgba(26,72,147,0.10); }
+  .ativo .x { font-size:14px; line-height:1; opacity:.7; }
+  .ativo.limpar { color:var(--ink-3); background:transparent; border-color:var(--line-soft); }
+  .ativo.limpar:hover { color:var(--ink); background:var(--panel-2); }
 
-  /* grade de vagas */
-  .grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(258px,1fr)); gap:13px; }
-  .vaga {
-    position:relative; display:flex; flex-direction:column; gap:12px; overflow:hidden;
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:14px; padding:16px;
-    transition:border-color .18s, transform .18s, background .18s, box-shadow .18s;
+  /* ═══════════════ LISTA HORIZONTAL ═══════════════ */
+  .grupo-titulo {
+    display:flex; align-items:baseline; gap:11px; margin:26px 0 12px;
   }
-  .vaga::before {
-    content:''; position:absolute; inset:0; border-radius:14px; pointer-events:none;
-    background:radial-gradient(140% 90% at 0% 0%, rgba(26,72,147,0.05), transparent 55%);
-    opacity:0; transition:opacity .18s;
+  .grupo-titulo h2 { font-family:var(--body); font-weight:600; font-size:15px; color:var(--ink); letter-spacing:-0.01em; }
+  .grupo-titulo span { font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; }
+
+  .lista { display:flex; flex-direction:column; gap:9px; }
+
+  .vaga {
+    position:relative; display:grid; align-items:center; gap:18px;
+    grid-template-columns:44px minmax(0,1.55fr) 118px 138px 108px 104px;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:14px;
+    padding:15px 18px; overflow:hidden;
+    transition:border-color .18s, box-shadow .18s, transform .18s, background .18s;
   }
   .vaga:hover {
-    border-color:var(--line); background:var(--panel-2); transform:translateY(-3px);
-    box-shadow:0 16px 34px -22px rgba(16,32,58,.14);
+    border-color:var(--line); background:var(--panel-2); transform:translateY(-2px);
+    box-shadow:0 14px 30px -22px rgba(16,32,58,.20);
   }
-  .vaga:hover::before { opacity:1; }
-  .vaga.nova { border-color:#EBD2B4; }
+  .vaga.nova { border-color:#EBD2B4; background:linear-gradient(90deg,#FEFAF5,var(--panel) 42%); }
+  .vaga.nova:hover { border-color:#E0C09A; }
 
-  .v-topo { display:flex; align-items:center; gap:9px; }
-  .v-topo .marca {
-    width:28px; height:28px; border-radius:8px; flex-shrink:0; overflow:hidden; border:1px solid var(--line);
-    display:grid; place-items:center; font-family:var(--mono); font-weight:700; font-size:9.5px;
+  .v-marca {
+    width:44px; height:44px; border-radius:11px; flex-shrink:0; overflow:hidden;
+    border:1px solid var(--line); display:grid; place-items:center;
+    font-weight:700; font-size:12px;
   }
-  .v-topo .marca img { width:17px; height:17px; object-fit:contain; border-radius:4px; }
-  .v-topo .emp { font-family:var(--mono); font-size:11.5px; color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .v-topo .selo-novo {
-    margin-left:auto; flex-shrink:0; font-family:var(--mono); font-size:9.5px; font-weight:600;
-    letter-spacing:.06em; text-transform:uppercase; color:var(--amber);
-    background:var(--amber-suave); border:1px solid #EBD2B4;
-    border-radius:20px; padding:3px 9px;
-  }
+  .v-marca img { width:26px; height:26px; object-fit:contain; border-radius:5px; }
+
+  .v-nome { min-width:0; display:flex; flex-direction:column; gap:3px; }
   .v-tit {
-    font-family:var(--body); font-weight:600; font-size:15px; line-height:1.35; color:var(--ink); letter-spacing:-0.01em;
+    font-weight:600; font-size:15px; line-height:1.32; color:var(--ink); letter-spacing:-0.01em;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
   }
-  .v-real { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:-7px; }
-  .v-tags { display:flex; flex-wrap:wrap; gap:6px; }
-  .v-pe {
-    margin-top:auto; padding-top:11px; border-top:1px solid var(--line-soft);
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  .v-emp { display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--ink-2); min-width:0; }
+  .v-emp .e { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .v-emp .selo-novo {
+    font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--amber); background:var(--amber-suave); border:1px solid #EBD2B4;
+    border-radius:20px; padding:2px 8px; flex-shrink:0;
   }
-  .v-data { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); }
-  .v-mais {
-    font-family:var(--mono); font-size:11px; color:var(--ink-3);
-    display:inline-flex; align-items:center; gap:6px; transition:color .18s;
+
+  /* colunas de dados, com rótulo em cima */
+  .v-col { display:flex; flex-direction:column; gap:4px; min-width:0; }
+  .v-col .r {
+    display:flex; align-items:center; gap:5px;
+    font-size:10.5px; letter-spacing:0.07em; text-transform:uppercase; color:var(--ink-3);
   }
-  .v-mais .arr { transition:transform .18s; }
-  .vaga:hover .v-mais { color:var(--signal); }
-  .vaga:hover .v-mais .arr { transform:translateX(3px); }
+  .v-col .r svg { width:11px; height:11px; flex-shrink:0; opacity:.75; }
+  .v-col .v {
+    font-size:13.5px; color:var(--ink); font-weight:500;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+
+  .v-acao {
+    justify-self:end; display:inline-flex; align-items:center; gap:7px;
+    font-size:12.5px; color:var(--ink-3); white-space:nowrap; transition:color .18s;
+  }
+  .v-acao .arr { transition:transform .18s; }
+  .vaga:hover .v-acao { color:var(--signal); }
+  .vaga:hover .v-acao .arr { transform:translateX(3px); }
+
+  /* telas médias: some a coluna de área */
+  @media (max-width:1080px){
+    .vaga { grid-template-columns:44px minmax(0,1.5fr) 112px 118px 96px; }
+    .vaga .col-area { display:none; }
+  }
+  /* celular: vira bloco, com os dados em etiquetas */
+  @media (max-width:720px){
+    .vaga { grid-template-columns:40px 1fr; gap:12px 13px; padding:15px 16px; align-items:start; }
+    .v-marca { width:40px; height:40px; }
+    .v-marca img { width:23px; height:23px; }
+    .v-col { grid-column:2; flex-direction:row; align-items:center; gap:7px; }
+    .v-col .r { font-size:10px; }
+    .v-col .r span { display:none; }
+    .v-col .v { font-size:13px; font-weight:400; color:var(--ink-2); }
+    .v-acao { grid-column:2; justify-self:start; color:var(--signal); }
+    .vaga .col-area { display:flex; }
+  }
+
+  .vazio { text-align:center; padding:64px 20px; color:var(--ink-3); font-size:14.5px; }
+  .vazio .big { font-size:30px; margin-bottom:12px; color:var(--line); }
 </style>
 </head>
 <body>
@@ -222,50 +237,38 @@
   <div class="eyebrow">Lista completa</div>
   <h1>Vagas abertas para quem mora no Brasil</h1>
   <p class="lead">Só entra o que aceita residentes do Brasil e português brasileiro. Cada vaga leva direto para a página oficial da empresa, sem intermediário.</p>
-  <div class="stats" id="stats"></div>
+  <div class="numeros" id="numeros"></div>
 </section>
 
 <div class="corpo">
-  <aside>
-    <button class="abrir-filtros" id="abrirFiltros" aria-expanded="false">
-      Filtros <span class="conta" id="contaFiltros" hidden>0</span>
-    </button>
-    <div class="painel-filtros" id="painelFiltros">
-      <div class="pf-topo">
-        <h2>Filtros</h2>
-        <button class="limpar" id="limpar" disabled>limpar tudo</button>
-      </div>
-      <div class="grupo">
-        <h3>Publicação</h3>
-        <div class="segmentos" id="grupoPeriodo"></div>
-      </div>
-      <div class="grupo">
-        <h3>Área</h3>
-        <div id="grupoAreas"></div>
-      </div>
-      <div class="grupo">
-        <h3>Empresa</h3>
-        <div class="lista-rolagem" id="grupoEmpresas"></div>
-      </div>
-    </div>
-  </aside>
 
-  <div>
-    <div class="barra">
-      <div class="contagem" id="contagem">carregando…</div>
-      <div class="ordenar">
-        <span>ordenar</span>
-        <select id="ordem" aria-label="Ordenar vagas">
-          <option value="recentes">Mais recentes</option>
-          <option value="antigas">Mais antigas</option>
-          <option value="empresa">Empresa (A a Z)</option>
-          <option value="titulo">Título (A a Z)</option>
-        </select>
-      </div>
+  <div class="barra">
+    <div class="fdrop" id="dropEmpresa">
+      <button class="fbtn" type="button" aria-expanded="false">Empresa <span class="cnt" hidden>0</span> <span class="chev"></span></button>
+      <div class="fmenu" id="menuEmpresas"></div>
     </div>
-    <div class="ativos" id="ativos"></div>
-    <div id="lista"></div>
+    <div class="fdrop" id="dropArea">
+      <button class="fbtn" type="button" aria-expanded="false">Área <span class="cnt" hidden>0</span> <span class="chev"></span></button>
+      <div class="fmenu" id="menuAreas"></div>
+    </div>
+    <div class="fdrop" id="dropPeriodo">
+      <button class="fbtn" type="button" aria-expanded="false"><span class="rot">Publicação</span> <span class="chev"></span></button>
+      <div class="fmenu" id="menuPeriodo"></div>
+    </div>
+
+    <div class="direita">
+      <span class="contagem" id="contagem">carregando…</span>
+      <select class="ordenar" id="ordem" aria-label="Ordenar vagas">
+        <option value="recentes">Mais recentes</option>
+        <option value="antigas">Mais antigas</option>
+        <option value="empresa">Empresa (A a Z)</option>
+        <option value="titulo">Título (A a Z)</option>
+      </select>
+    </div>
   </div>
+
+  <div class="ativos" id="ativos"></div>
+  <div id="resultado"></div>
 </div>
 
 <script src="layout.js"></script>
@@ -279,6 +282,13 @@ const PERIODOS  = [
   { id:"7",   nome:"Novas, últimos 7 dias" },
   { id:"30",  nome:"Últimos 30 dias" },
 ];
+
+/* ícones das colunas, desenhados aqui para não depender de biblioteca */
+const IC = {
+  local:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  area :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20h-20"/></svg>',
+  data :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+};
 
 let EMPRESAS = {}, TODAS = [];
 let fPeriodo = "all", fCats = new Set(), fEmps = new Set(), ordem = "recentes";
@@ -298,10 +308,9 @@ async function iniciar() {
     const dados = await lerVagas();
     TODAS = dados.vagas || [];
     lerUrl();
-    montarFiltros();
     aplicar();
   } catch (e) {
-    document.getElementById("lista").innerHTML =
+    document.getElementById("resultado").innerHTML =
       '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Verifique se o arquivo vagas.json está na mesma pasta.</p></div>';
     document.getElementById("contagem").textContent = "erro ao carregar";
     console.error(e);
@@ -326,12 +335,12 @@ function dias(v) {
 }
 function textoData(v) {
   const n = dias(v);
-  if (n === null) return "";
+  if (n === null) return "sem data";
   if (n === 0) return "hoje";
   if (n === 1) return "ontem";
   if (n <= 30) return `há ${n} dias`;
-  if (n <= 60) return "há mais de 1 mês";
-  return "há mais de 2 meses";
+  if (n <= 60) return "há 1 mês";
+  return "há 2 meses";
 }
 const ehNova = v => { const n = dias(v); return n !== null && n <= 7; };
 
@@ -346,46 +355,73 @@ function passa(v, ignorar) {
   return true;
 }
 const filtradas = () => TODAS.filter(v => passa(v));
+const alterna = (conjunto, valor) => conjunto.has(valor) ? conjunto.delete(valor) : conjunto.add(valor);
 
-function montarFiltros() {
-  // período, com a contagem que cada opção traria
-  document.getElementById("grupoPeriodo").innerHTML = PERIODOS.map(p => {
+function montarMenus() {
+  /* publicação, uma escolha só */
+  document.getElementById("menuPeriodo").innerHTML = PERIODOS.map(p => {
     const q = TODAS.filter(v => {
       if (p.id === "all") return passa(v, "periodo");
       const n = dias(v);
       return n !== null && n <= Number(p.id) && passa(v, "periodo");
     }).length;
-    return `<button class="seg-btn${fPeriodo === p.id ? " on" : ""}${q === 0 ? " vazia" : ""}" data-periodo="${p.id}">
-      <span class="pip"></span>${p.nome}<span class="qt">${q}</span></button>`;
+    return `<button class="opcao${fPeriodo === p.id ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-periodo="${p.id}">
+      <span class="pip"></span><span class="nm">${p.nome}</span><span class="qt">${q}</span></button>`;
   }).join("");
 
-  // áreas
-  document.getElementById("grupoAreas").innerHTML = CAT_ORDEM
+  /* áreas, várias ao mesmo tempo */
+  document.getElementById("menuAreas").innerHTML = CAT_ORDEM
     .filter(c => TODAS.some(v => v.categoria === c))
     .map(c => {
       const q = TODAS.filter(v => v.categoria === c && passa(v, "cat")).length;
-      return `<button class="opcao${fCats.has(c) ? " on" : ""}${q === 0 ? " vazia" : ""}" data-cat="${c}">
+      return `<button class="opcao${fCats.has(c) ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-cat="${c}">
         <span class="caixa">✓</span><span class="nm">${CAT_NOME[c] || c}</span><span class="qt">${q}</span></button>`;
     }).join("");
 
-  // empresas, as com mais vagas primeiro
+  /* empresas, as com mais vagas primeiro */
   const ids = Object.keys(EMPRESAS)
     .filter(id => TODAS.some(v => v.empresa === id))
     .sort((a,b) => TODAS.filter(v => v.empresa === b).length - TODAS.filter(v => v.empresa === a).length);
-  document.getElementById("grupoEmpresas").innerHTML = ids.map(id => {
+  document.getElementById("menuEmpresas").innerHTML = ids.map(id => {
     const e = EMPRESAS[id];
     const q = TODAS.filter(v => v.empresa === id && passa(v, "emp")).length;
-    return `<button class="opcao${fEmps.has(id) ? " on" : ""}${q === 0 ? " vazia" : ""}" data-emp="${id}">
+    return `<button class="opcao${fEmps.has(id) ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-emp="${id}">
       <span class="caixa">✓</span>
-      <span class="marca" style="background:${e.bg};">${logoHtml(e,22)}</span>
+      <span class="marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e,22)}</span>
       <span class="nm">${esc(e.nome)}</span><span class="qt">${q}</span></button>`;
   }).join("");
 
-  document.querySelectorAll("[data-periodo]").forEach(b => b.onclick = () => { fPeriodo = b.dataset.periodo; aplicar(); });
+  document.querySelectorAll("[data-periodo]").forEach(b => b.onclick = () => { fPeriodo = b.dataset.periodo; fechar(); aplicar(); });
   document.querySelectorAll("[data-cat]").forEach(b => b.onclick = () => { alterna(fCats, b.dataset.cat); aplicar(); });
   document.querySelectorAll("[data-emp]").forEach(b => b.onclick = () => { alterna(fEmps, b.dataset.emp); aplicar(); });
+
+  /* contador dentro de cada botão */
+  marcarBotao("dropEmpresa", fEmps.size);
+  marcarBotao("dropArea", fCats.size);
+  const p = PERIODOS.find(x => x.id === fPeriodo);
+  document.querySelector("#dropPeriodo .rot").textContent = fPeriodo === "all" ? "Publicação" : (p ? p.nome : "Publicação");
 }
-const alterna = (conjunto, valor) => conjunto.has(valor) ? conjunto.delete(valor) : conjunto.add(valor);
+function marcarBotao(idDrop, n) {
+  const c = document.querySelector("#" + idDrop + " .cnt");
+  c.textContent = n; c.hidden = n === 0;
+}
+
+/* ── abrir e fechar os menus ── */
+const fechar = () => document.querySelectorAll(".fdrop").forEach(d => {
+  d.classList.remove("aberto");
+  d.querySelector(".fbtn").setAttribute("aria-expanded", "false");
+});
+document.querySelectorAll(".fdrop .fbtn").forEach(b => {
+  b.addEventListener("click", ev => {
+    ev.stopPropagation();
+    const pai = b.closest(".fdrop");
+    const estava = pai.classList.contains("aberto");
+    fechar();
+    if (!estava) { pai.classList.add("aberto"); b.setAttribute("aria-expanded", "true"); }
+  });
+});
+document.addEventListener("click", ev => { if (!ev.target.closest(".fdrop")) fechar(); });
+document.addEventListener("keydown", ev => { if (ev.key === "Escape") fechar(); });
 
 /* ── etiquetas do que está ativo ── */
 function montarAtivos() {
@@ -397,21 +433,19 @@ function montarAtivos() {
   fCats.forEach(c => itens.push({ rotulo: CAT_NOME[c] || c, tipo: "cat", valor: c }));
   fEmps.forEach(id => itens.push({ rotulo: (EMPRESAS[id] || {}).nome || id, tipo: "emp", valor: id }));
 
-  document.getElementById("ativos").innerHTML = itens.map(i =>
-    `<button class="ativo" data-tipo="${i.tipo}" data-valor="${i.valor || ""}">${esc(i.rotulo)}<span class="x">×</span></button>`).join("");
+  const alvo = document.getElementById("ativos");
+  alvo.innerHTML = itens.map(i =>
+    `<button class="ativo" type="button" data-tipo="${i.tipo}" data-valor="${i.valor || ""}">${esc(i.rotulo)}<span class="x">×</span></button>`
+  ).join("") + (itens.length > 1 ? '<button class="ativo limpar" type="button" data-tipo="tudo">limpar tudo</button>' : "");
 
-  document.querySelectorAll(".ativo").forEach(b => b.onclick = () => {
+  alvo.querySelectorAll(".ativo").forEach(b => b.onclick = () => {
     const { tipo, valor } = b.dataset;
+    if (tipo === "tudo") { fPeriodo = "all"; fCats.clear(); fEmps.clear(); }
     if (tipo === "periodo") fPeriodo = "all";
     if (tipo === "cat") fCats.delete(valor);
     if (tipo === "emp") fEmps.delete(valor);
     aplicar();
   });
-
-  const n = itens.length;
-  document.getElementById("limpar").disabled = n === 0;
-  const conta = document.getElementById("contaFiltros");
-  conta.textContent = n; conta.hidden = n === 0;
 }
 
 /* ── ordenação ── */
@@ -426,72 +460,93 @@ function ordenar(lista) {
   return copia;
 }
 
-/* ── desenho ── */
-function cartao(v) {
-  const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#888", bg:"#222" };
+/* ── uma linha de vaga ── */
+function linha(v) {
+  const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
   const nova = ehNova(v);
-  const real = v.empresa_real ? `<div class="v-real">↳ ${esc(v.empresa_real)}</div>` : "";
   const doLinkedin = v.empresa === "linkedin" || v.fonte === "linkedin";
   const destino = doLinkedin
     ? `href="${esc(v.url)}" target="_blank" rel="noopener"`
     : `href="vaga.html?id=${encodeURIComponent(v.id || "")}"`;
-  const rotulo = doLinkedin ? `abrir no LinkedIn <span class="arr">↗</span>` : `ver detalhes <span class="arr">→</span>`;
+  const rotulo = doLinkedin ? 'abrir <span class="arr">↗</span>' : 'ver detalhes <span class="arr">→</span>';
+  const real = v.empresa_real ? ` · ${esc(v.empresa_real)}` : "";
 
   return `<a class="vaga${nova ? " nova" : ""}" ${destino}>
-    <div class="v-topo">
-      <span class="marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e,28)}</span>
-      <span class="emp">${esc(e.nome)}</span>
-      ${nova ? '<span class="selo-novo">nova</span>' : ""}
-    </div>
-    <div class="v-tit">${esc(v.titulo)}</div>${real}
-    <div class="v-tags">
-      <span class="tag blu">${esc(v.badge)}</span>
-      <span class="tag">${esc(v.local)}</span>
-    </div>
-    <div class="v-pe">
-      <span class="v-data">${textoData(v)}</span>
-      <span class="v-mais">${rotulo}</span>
-    </div>
+    <span class="v-marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e,44)}</span>
+
+    <span class="v-nome">
+      <span class="v-tit">${esc(v.titulo)}</span>
+      <span class="v-emp">
+        <span class="e">${esc(e.nome)}${real}</span>
+        ${nova ? '<span class="selo-novo">nova</span>' : ""}
+      </span>
+    </span>
+
+    <span class="v-col">
+      <span class="r">${IC.local}<span>Local</span></span>
+      <span class="v">${esc(v.local)}</span>
+    </span>
+
+    <span class="v-col col-area">
+      <span class="r">${IC.area}<span>Área</span></span>
+      <span class="v">${esc(v.badge)}</span>
+    </span>
+
+    <span class="v-col">
+      <span class="r">${IC.data}<span>Publicada</span></span>
+      <span class="v">${textoData(v)}</span>
+    </span>
+
+    <span class="v-acao">${rotulo}</span>
   </a>`;
 }
 
-function montarStats() {
+function montarNumeros() {
   const novas = TODAS.filter(ehNova).length;
   const emps = new Set(TODAS.map(v => v.empresa)).size;
-  // o cartão só fica âmbar quando há novidade, senão parece alerta de erro
-  document.getElementById("stats").innerHTML = `
-    <div class="stat"><div class="n">${TODAS.length}</div><div class="l">vagas abertas</div></div>
-    <div class="stat"><div class="n">${emps}</div><div class="l">empresas</div></div>
-    <div class="stat${novas ? " amb" : ""}"><div class="n">${novas}</div><div class="l">novas nesta semana</div></div>
-    <div class="stat"><div class="n">100<span class="u">%</span></div><div class="l">remoto · brasil</div></div>`;
+  document.getElementById("numeros").innerHTML = `
+    <div class="num"><div class="n">${TODAS.length}</div><div class="l">vagas abertas</div></div>
+    <div class="num"><div class="n">${emps}</div><div class="l">empresas</div></div>
+    <div class="num${novas ? " amb" : ""}"><div class="n">${novas}</div><div class="l">novas nesta semana</div></div>
+    <div class="num"><div class="n">100<span class="u">%</span></div><div class="l">remoto · brasil</div></div>`;
 }
 
 function aplicar() {
-  montarStats();
-  montarFiltros();
+  montarNumeros();
+  montarMenus();
   montarAtivos();
 
   const resultado = ordenar(filtradas());
   document.getElementById("contagem").innerHTML =
-    `<b>${resultado.length}</b> ${resultado.length === 1 ? "vaga encontrada" : "vagas encontradas"}`;
+    `<b>${resultado.length}</b> ${resultado.length === 1 ? "vaga" : "vagas"}`;
 
-  const lista = document.getElementById("lista");
-  lista.innerHTML = resultado.length
-    ? `<div class="grade">${resultado.map(cartao).join("")}</div>`
-    : `<div class="vazio"><div class="big">◌</div>
-         <p>Nenhuma vaga com esses filtros.<br>Tente tirar um deles ou ampliar o período.</p></div>`;
+  const alvo = document.getElementById("resultado");
+  if (!resultado.length) {
+    alvo.innerHTML = `<div class="vazio"><div class="big">◌</div>
+      <p>Nenhuma vaga com esses filtros.<br>Tente tirar um deles ou ampliar o período.</p></div>`;
+    return;
+  }
+
+  /* as novas ficam em cima, separadas, quando a ordem é por data */
+  const porData = ordem === "recentes";
+  const novas = porData ? resultado.filter(ehNova) : [];
+  const resto = porData ? resultado.filter(v => !ehNova(v)) : resultado;
+
+  let html = "";
+  if (novas.length) {
+    html += `<div class="grupo-titulo"><h2>Publicadas nesta semana</h2><span>${novas.length}</span></div>
+             <div class="lista">${novas.map(linha).join("")}</div>`;
+  }
+  if (resto.length) {
+    html += novas.length
+      ? `<div class="grupo-titulo"><h2>Demais vagas abertas</h2><span>${resto.length}</span></div>`
+      : "";
+    html += `<div class="lista">${resto.map(linha).join("")}</div>`;
+  }
+  alvo.innerHTML = html;
 }
 
-/* ── eventos gerais ── */
-document.getElementById("limpar").onclick = () => {
-  fPeriodo = "all"; fCats.clear(); fEmps.clear(); aplicar();
-};
-document.getElementById("ordem").onchange = e => { ordem = e.target.value; aplicar(); };
-document.getElementById("abrirFiltros").onclick = e => {
-  const p = document.getElementById("painelFiltros");
-  const aberto = p.classList.toggle("aberto");
-  e.currentTarget.setAttribute("aria-expanded", aberto ? "true" : "false");
-};
+document.getElementById("ordem").onchange = ev => { ordem = ev.target.value; aplicar(); };
 
 iniciar();
 </script>
