@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name "Robô de Vagas"
           git config user.email "actions@github.com"
-          git add vagas.json vagas_para_resumo.json
+          git add vagas.json vagas_para_resumo.json datas.json
           # inclui o resumos.json se ele existir (resumos de qualidade)
           if [ -f resumos.json ]; then git add resumos.json; fi
           # só faz commit se algo mudou
