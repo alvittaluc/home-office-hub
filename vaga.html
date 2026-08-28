@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detalhes da vaga — Home Office Hub</title>
-<meta name="description" content="Detalhes da vaga: o que você vai fazer, requisitos e dica de currículo.">
+<meta name="description" content="Detalhes da vaga: o que você vai fazer e os requisitos.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Detalhes da vaga — Home Office Hub">
-<meta property="og:description" content="O que você vai fazer, requisitos e dica de currículo para esta vaga.">
+<meta property="og:description" content="O que você vai fazer e os requisitos desta vaga.">
 <meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/vaga.html">
 <meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -46,10 +46,6 @@
   .parte h2::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--signal); flex-shrink:0; }
   .parte p { font-size:15.5px; color:var(--ink); line-height:1.72; }
 
-  .dica { background:var(--amber-suave); border:1px solid #F0DCC6; border-radius:13px; padding:20px 22px; }
-  .dica h2 { color:var(--amber); }
-  .dica h2::before { background:var(--amber); }
-
   .barra { position:sticky; bottom:0; background:linear-gradient(transparent,var(--bg) 32%); padding:24px 0 10px; margin-top:34px; }
   .candidatar {
     display:flex; align-items:center; justify-content:center; gap:9px; width:100%;
@@ -75,6 +71,9 @@ montarLayout("vagas");
 
 let EMPRESAS = {};
 
+/* Mesma regra da lista: "nova" só quando a data veio da própria empresa.
+   Sem data oficial o selo fala de quando a vaga entrou no hub, não de
+   quando foi publicada, e por isso não pode se chamar de nova. */
 function seloData(v) {
   const d = v.data_ref || v.data_post || v.data_vista;
   if (!d) return "";
@@ -82,6 +81,11 @@ function seloData(v) {
   if (isNaN(data)) return "";
   const dias = Math.floor((new Date() - data) / 86400000);
   if (dias < 0) return "";
+  const oficial = v.data_oficial === true || (v.data_oficial === undefined && !!v.data_post);
+  if (!oficial) {
+    if (dias <= 30) return `<span class="tag">no hub há ${dias} dias</span>`;
+    return '<span class="tag">no hub há mais de um mês</span>';
+  }
   if (dias <= 2)  return '<span class="tag amb">nova</span>';
   if (dias <= 7)  return `<span class="tag amb">há ${dias} dias</span>`;
   if (dias <= 30) return `<span class="tag">há ${dias} dias</span>`;
@@ -102,8 +106,6 @@ function erro(msg) {
     const base = await lerEmpresas();
     (base.empresas || []).forEach(e => EMPRESAS[e.id] = e);
   } catch (e) { console.error("empresas.json", e); }
-  EMPRESAS.linkedin = EMPRESAS.linkedin || { id:"linkedin", nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436", dom:"linkedin.com", desc:"Captada dos alertas do LinkedIn", agregador:true };
-
   if (!id) { cont.innerHTML = erro("Vaga não especificada."); return; }
 
   let dados;
@@ -113,9 +115,9 @@ function erro(msg) {
   const v = (dados.vagas || []).find(x => x.id === id);
   if (!v) { cont.innerHTML = erro("Esta vaga não está mais disponível.<br>Ela pode ter sido preenchida ou expirado."); return; }
 
-  // Vaga do LinkedIn não tem página de detalhe própria. Se alguém chegar aqui
-  // por link antigo ou favorito, mandamos direto para o anúncio original.
-  if ((v.empresa === "linkedin" || v.fonte === "linkedin") && v.url) {
+  // Vaga vinda de fonte que não tem página de detalhe (o LinkedIn era assim).
+  // Se alguém chegar aqui por link antigo, mandamos direto para o anúncio.
+  if (!v.resumo && v.url && v.fonte !== "direto") {
     location.replace(v.url);
     return;
   }
@@ -127,7 +129,6 @@ function erro(msg) {
   let partes = "";
   if (r.o_que_faz)  partes += `<div class="parte"><h2>O que você vai fazer</h2><p>${esc(r.o_que_faz)}</p></div>`;
   if (r.requisitos) partes += `<div class="parte"><h2>Requisitos</h2><p>${esc(r.requisitos)}</p></div>`;
-  if (r.dica_cv)    partes += `<div class="parte dica"><h2>Dica de currículo</h2><p>${esc(r.dica_cv)}</p></div>`;
   if (!partes) partes = `<div class="parte"><p style="color:var(--ink-3);font-size:14.5px;">Esta vaga ainda não tem resumo detalhado. Clique em candidatar para ver todos os detalhes na página oficial da empresa.</p></div>`;
 
   cont.innerHTML = `
@@ -152,8 +153,8 @@ function erro(msg) {
       <div class="nota">Você vai para a página oficial da vaga, sem intermediário.</div>
     </div>
     <div class="ajuda">
-      Primeira vez nessa área? Leia o <a href="como-funciona.html#curriculo">guia de currículo</a>
-      e veja <a href="como-funciona.html#pagamento">como o pagamento chega ao Brasil</a>.
+      Antes de se candidatar, veja como montar o <a href="como-funciona.html#curriculo">currículo que passa nessas vagas</a>
+      e <a href="como-funciona.html#pagamento">como o pagamento chega ao Brasil</a>.
     </div>`;
 })();
 </script>

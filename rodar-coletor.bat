@@ -66,8 +66,12 @@ echo Confira acima se a micro1 trouxe vagas.
 echo.
 echo Agora suba no GitHub os arquivos que mudaram nesta pasta:
 echo    - vagas.json
+echo    - datas.json
 echo    - vagas_para_resumo.json
 echo.
 echo Se aparecer resumos.json alterado, suba ele tambem.
+echo.
+echo O datas.json guarda desde quando cada vaga esta no hub.
+echo Se voce esquecer de subir ele, a data das vagas novas se perde.
 echo.
 pause

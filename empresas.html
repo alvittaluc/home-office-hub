@@ -93,6 +93,14 @@
   .aviso b { color:var(--amber); font-weight:600; }
 
   .ficha-acoes { display:flex; gap:9px; flex-wrap:wrap; align-items:center; }
+  .link-in {
+    display:inline-flex; align-items:center; gap:6px; margin-left:4px;
+    font-family:var(--body); font-size:13.5px; color:var(--ink-3);
+    transition:color .16s;
+  }
+  .link-in svg { width:15px; height:15px; fill:currentColor; flex-shrink:0; }
+  .link-in:hover { color:var(--signal); }
+  @media (max-width:520px) { .link-in { margin-left:0; } }
   .areas-linha { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:18px; }
 
   /* ── faixa giratória de empresas ── */
@@ -150,6 +158,9 @@
 
 <script src="layout.js"></script>
 <script>
+/* ícone do LinkedIn, desenhado aqui para não depender de biblioteca externa */
+const IC_LINKEDIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C20.3 8.75 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.32-2.05-3.32-2.05 0-2.36 1.58-2.36 3.21V21H9z"/></svg>';
+
 montarLayout("empresas");
 
 (async function(){
@@ -233,6 +244,7 @@ montarLayout("empresas");
         <div class="ficha-acoes">
           <a href="vagas.html?empresa=${e.id}" class="btn primary">Ver vagas desta empresa <span class="arr">→</span></a>
           <a href="${esc(e.site)}" target="_blank" rel="noopener" class="btn ghost">Site oficial ↗</a>
+          ${e.linkedin ? `<a href="${esc(e.linkedin)}" target="_blank" rel="noopener" class="link-in" aria-label="${esc(e.nome)} no LinkedIn">${IC_LINKEDIN}LinkedIn ↗</a>` : ""}
         </div>
       </div>
     </article>`;

@@ -150,8 +150,16 @@ USAR_IMERIT = True
 # ─── FASE 4: LINKEDIN via GMAIL ───
 # As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
 # planilha, e a planilha é publicada como CSV. O coletor lê esse CSV aqui.
-# Cole abaixo o link "publicar na web / CSV" da sua planilha:
-USAR_LINKEDIN = True
+#
+# DESLIGADO em agosto de 2026. Quatro motivos, todos visíveis no site:
+#   · a planilha só cresce, então vaga fechada ficava na lista para sempre
+#   · o título vinha com empresa, local e salário grudados no fim
+#   · o mesmo anúncio entrava duas vezes, porque a deduplicação compara
+#     títulos e esse lixo no fim fazia parecerem vagas diferentes
+#   · entrava vaga de desenvolvedor, fora do nicho do hub
+# A planilha CONTINUA sendo preenchida pelo Apps Script, nada foi perdido.
+# Para religar depois de redesenhar esse fluxo, volte esta linha para True.
+USAR_LINKEDIN = False
 LINKEDIN_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj6J6YOyu5ofZvOYuwbqnPAuTTXq5BD3FisRMd4fGEpsVYgDahOr6IFzKUIT5HUtSo3IVkPO5LspO7/pub?gid=300031726&single=true&output=csv"
 
 # ─── RESUMO DAS VAGAS (função + requisitos + dica de currículo) ───
@@ -163,6 +171,19 @@ USAR_RESUMOS = True
 # Gera um arquivo extra (vagas_para_resumo.json) com as descrições completas
 # das vagas, para você enviar ao assistente e receber resumos de qualidade.
 GERAR_ARQUIVO_ANALISE = True
+
+# ─── MEMÓRIA DAS DATAS ───
+# Arquivo separado que guarda quando cada vaga apareceu no hub pela primeira
+# vez. Só cresce, nunca é reescrito do zero. Antes essa informação morava
+# dentro do próprio vagas.json, e rodar o coletor no PC com um vagas.json
+# defasado carimbava a data de hoje em vaga antiga: era isso que fazia a
+# tag "nova" voltar sozinha a cada rodada.
+ARQUIVO_DATAS = "datas.json"
+
+# Endereço do site publicado. Quando o coletor roda no seu PC, ele baixa
+# daqui a versão que está no ar antes de começar, para não trabalhar em cima
+# de arquivo velho. É o equivalente automático de um "git pull".
+SITE_PUBLICADO = "https://alvittaluc.github.io/home-office-hub/"
 
 # ═══════════════════════════════════════════════════════════════════
 #  FILTRO BRASIL / PORTUGUÊS
@@ -784,6 +805,12 @@ def buscar_linkedin() -> list:
         i_url = cabecalho.index("url")
     except ValueError:
         i_url = 1
+    # o Apps Script já escreve quando o alerta chegou. Antes o coletor jogava
+    # essa coluna fora, e por isso vaga do LinkedIn ficava sem data nenhuma.
+    try:
+        i_data = cabecalho.index("capturado_em")
+    except ValueError:
+        i_data = -1
 
     vagas = []
     for linha in linhas[1:]:
@@ -798,6 +825,10 @@ def buscar_linkedin() -> list:
         if not texto_parece_brasil(titulo):
             continue
 
+        capturado = ""
+        if i_data >= 0 and len(linha) > i_data:
+            capturado = normalizar_data(linha[i_data])
+
         cat_id, badge = categorizar(titulo)
         vagas.append({
             "empresa": "linkedin",
@@ -808,6 +839,7 @@ def buscar_linkedin() -> list:
             "url": url,
             "commitment": "",
             "fonte": "linkedin",
+            "data_post": capturado,
         })
 
     print(f"{len(vagas)} vaga(s)")
@@ -983,11 +1015,141 @@ def _preservar_do_arquivo(empresa):
         return []
 
 
+# ═══════════════════════════════════════════════════════════════════
+#  DATAS: MEMÓRIA DE QUANDO CADA VAGA APARECEU
+# ═══════════════════════════════════════════════════════════════════
+
+def chave_da_vaga(v) -> str:
+    """Chave estável de uma vaga: empresa + título normalizado.
+
+    De propósito NÃO usa a URL. Parâmetro de rastreio, vaga republicada ou
+    endereço trocado mudam a URL e zerariam a data de primeira aparição.
+    O título normalizado já ignora cidade e estado, então a mesma vaga
+    anunciada em São Paulo e no Rio cai na mesma chave."""
+    ident = (v.get("empresa_real") or v.get("empresa") or "").strip().lower()
+    return f"{ident}|{_normalizar_titulo(v.get('titulo', ''))}"
+
+
+def _baixar_do_site(nome_arquivo):
+    """Baixa um JSON do site publicado. Devolve None se não der."""
+    try:
+        req = urllib.request.Request(
+            SITE_PUBLICADO + nome_arquivo,
+            headers={"User-Agent": "Mozilla/5.0", "Cache-Control": "no-cache"})
+        with urllib.request.urlopen(req, timeout=25, context=_SSL_CTX) as r:
+            return json.loads(r.read().decode("utf-8", errors="ignore"))
+    except Exception:
+        return None
+
+
+def sincronizar_com_o_site():
+    """Antes de rodar no seu PC, traz o vagas.json que está no ar se ele for
+    mais novo que o da sua pasta. Sem isso, rodar o coletor com uma pasta
+    defasada apaga o histórico das vagas que entraram nesse meio tempo.
+    No GitHub não faz nada: lá o checkout já vem atualizado."""
+    if RODANDO_NO_GITHUB:
+        return
+    print("  → Conferindo a versão que está no ar ...", end=" ")
+    publicado = _baixar_do_site("vagas.json")
+    if not publicado or not publicado.get("vagas"):
+        print("não consegui baixar (seguindo com os arquivos da pasta)")
+        return
+    try:
+        with open("vagas.json", "r", encoding="utf-8") as f:
+            local = json.load(f)
+    except Exception:
+        local = {}
+    d_pub = publicado.get("atualizado_em", "")
+    d_loc = local.get("atualizado_em", "")
+    if d_pub > d_loc:
+        with open("vagas.json", "w", encoding="utf-8") as f:
+            json.dump(publicado, f, ensure_ascii=False, indent=2)
+        print(f"baixei a versão do site ({len(publicado['vagas'])} vagas)")
+    else:
+        print("sua pasta já está em dia")
+
+
+def carregar_datas() -> dict:
+    """Monta o mapa {chave: data de primeira aparição} juntando três fontes,
+    e em qualquer conflito a data MAIS ANTIGA ganha:
+
+      1. o datas.json publicado no site (só quando roda no seu PC)
+      2. o datas.json da sua pasta
+      3. o data_vista do vagas.json antigo, para migrar o que já existia
+
+    A regra da data mais antiga faz o arquivo se corrigir sozinho: carimbo
+    errado de uma rodada passada é substituído assim que aparece um registro
+    anterior, sem você precisar editar nada à mão."""
+    mapa = {}
+
+    def juntar(novos):
+        for ch, data in (novos or {}).items():
+            if not ch or not data:
+                continue
+            atual = mapa.get(ch)
+            if not atual or data < atual:
+                mapa[ch] = data
+
+    if not RODANDO_NO_GITHUB:
+        do_site = _baixar_do_site(ARQUIVO_DATAS)
+        if isinstance(do_site, dict):
+            juntar(do_site.get("primeira_vez", {}))
+
+    try:
+        with open(ARQUIVO_DATAS, "r", encoding="utf-8") as f:
+            juntar(json.load(f).get("primeira_vez", {}))
+    except Exception:
+        pass
+
+    # migração: o que já estava guardado dentro do vagas.json
+    try:
+        with open("vagas.json", "r", encoding="utf-8") as f:
+            for v in json.load(f).get("vagas", []):
+                if v.get("data_vista"):
+                    juntar({chave_da_vaga(v): v["data_vista"]})
+    except Exception:
+        pass
+
+    print(f"  → Memória de datas: {len(mapa)} vaga(s) com data guardada")
+    return mapa
+
+
+def gravar_datas(mapa: dict, chaves_de_hoje: set) -> None:
+    """Grava o datas.json. Vaga que sumiu continua registrada, para o caso de
+    voltar depois com a data certa. Só é descartado o registro que sumiu há
+    mais de 400 dias, para o arquivo não crescer para sempre."""
+    limite = datetime.now(timezone.utc).timestamp() - 400 * 86400
+    guardar = {}
+    for ch, data in mapa.items():
+        if ch in chaves_de_hoje:
+            guardar[ch] = data
+            continue
+        try:
+            quando = datetime.strptime(data, "%Y-%m-%d").replace(
+                tzinfo=timezone.utc).timestamp()
+        except Exception:
+            continue
+        if quando >= limite:
+            guardar[ch] = data
+    with open(ARQUIVO_DATAS, "w", encoding="utf-8") as f:
+        json.dump({
+            "nota": ("Quando cada vaga apareceu no hub pela primeira vez. "
+                     "Este arquivo só cresce. Não edite à mão."),
+            "atualizado_em": datetime.now(timezone.utc).isoformat(),
+            "total": len(guardar),
+            "primeira_vez": dict(sorted(guardar.items())),
+        }, f, ensure_ascii=False, indent=2)
+    print(f"  ✓ datas.json com {len(guardar)} registro(s)")
+
+
 def main():
     print("═" * 60)
     print("  HOME OFFICE HUB — Coletor de Vagas")
     print("═" * 60)
     print(f"  Início: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n")
+
+    sincronizar_com_o_site()
+    print()
 
     todas = []
 
@@ -1069,28 +1231,35 @@ def main():
     todas = remover_duplicadas(todas)
     print(f"  Após remover duplicadas: {len(todas)} vagas")
 
-    # ─── DATA DE PRIMEIRA APARIÇÃO ───
-    # Para vagas SEM data oficial (OneForma, LinkedIn), registramos quando o
-    # robô viu a vaga pela primeira vez. Lê o vagas.json anterior e mantém a
-    # data original das vagas que já existiam (para não "resetar" todo dia).
+    # ─── DATAS ───
+    # Duas datas convivem no site:
+    #   data_post  = a data que a própria empresa publicou (a boa)
+    #   data_vista = quando o hub viu a vaga pela primeira vez (a reserva)
+    # A data_vista agora vem do datas.json, que só cresce. Se a chave já tem
+    # data guardada, a antiga vale, mesmo que esta rodada tenha sido feita
+    # noutro computador. É isso que impede a tag "nova" de zerar sozinha.
     hoje = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    vistas_antes = {}
-    try:
-        with open("vagas.json", "r", encoding="utf-8") as f:
-            antigo = json.load(f)
-        for v in antigo.get("vagas", []):
-            chave = v.get("url") or v.get("titulo")
-            if chave and v.get("data_vista"):
-                vistas_antes[chave] = v["data_vista"]
-    except Exception:
-        pass
+    primeira_vez = carregar_datas()
+    chaves_de_hoje = set()
+    estreantes = 0
 
     for v in todas:
-        chave = v.get("url") or v.get("titulo")
-        # data_vista = quando apareceu no hub (mantém a antiga se já existia)
-        v["data_vista"] = vistas_antes.get(chave, hoje)
-        # data_ref = a melhor data disponível: oficial se houver, senão a de aparição
-        v["data_ref"] = v.get("data_post") or v["data_vista"]
+        ch = chave_da_vaga(v)
+        chaves_de_hoje.add(ch)
+        guardada = primeira_vez.get(ch)
+        if not guardada or guardada > hoje:
+            primeira_vez[ch] = hoje
+            guardada = hoje
+            estreantes += 1
+        v["data_vista"] = guardada
+        v["data_ref"] = v.get("data_post") or guardada
+        # o site usa este campo para decidir entre escrever "Publicada" ou
+        # "No hub desde", e para só chamar de "nova" a vaga que tem data
+        # oficial da empresa. Sem ele a tag falava por vagas sem data.
+        v["data_oficial"] = bool(v.get("data_post"))
+
+    print(f"  → {estreantes} vaga(s) aparecendo pela primeira vez hoje")
+    gravar_datas(primeira_vez, chaves_de_hoje)
 
     # dá um id único e estável a cada vaga (usado nos resumos e na página)
     import hashlib

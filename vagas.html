@@ -299,11 +299,6 @@ async function iniciar() {
     const base = await lerEmpresas();
     (base.empresas || []).forEach(e => EMPRESAS[e.id] = e);
   } catch (e) { console.error("empresas.json", e); }
-  EMPRESAS.linkedin = EMPRESAS.linkedin || {
-    id:"linkedin", nome:"Via LinkedIn", sigla:"IN", cor:"#38BDF8", bg:"#0e2436",
-    dom:"linkedin.com", desc:"Captadas dos alertas do LinkedIn", agregador:true
-  };
-
   try {
     const dados = await lerVagas();
     TODAS = dados.vagas || [];
@@ -342,7 +337,10 @@ function textoData(v) {
   if (n <= 60) return "há 1 mês";
   return "há 2 meses";
 }
-const ehNova = v => { const n = dias(v); return n !== null && n <= 7; };
+/* "nova" só vale quando a data veio da própria empresa. Quando o hub só sabe
+   quando VIU a vaga, chamar de nova seria falar da nossa coleta, não da vaga. */
+const temDataOficial = v => v.data_oficial === true || (v.data_oficial === undefined && !!v.data_post);
+const ehNova = v => { const n = dias(v); return n !== null && n <= 7 && temDataOficial(v); };
 
 /* ── filtros ── */
 function passa(v, ignorar) {
@@ -464,11 +462,8 @@ function ordenar(lista) {
 function linha(v) {
   const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
   const nova = ehNova(v);
-  const doLinkedin = v.empresa === "linkedin" || v.fonte === "linkedin";
-  const destino = doLinkedin
-    ? `href="${esc(v.url)}" target="_blank" rel="noopener"`
-    : `href="vaga.html?id=${encodeURIComponent(v.id || "")}"`;
-  const rotulo = doLinkedin ? 'abrir <span class="arr">↗</span>' : 'ver detalhes <span class="arr">→</span>';
+  const destino = `href="vaga.html?id=${encodeURIComponent(v.id || "")}"`;
+  const rotulo = 'ver detalhes <span class="arr">→</span>';
   const real = v.empresa_real ? ` · ${esc(v.empresa_real)}` : "";
 
   return `<a class="vaga${nova ? " nova" : ""}" ${destino}>
@@ -493,7 +488,7 @@ function linha(v) {
     </span>
 
     <span class="v-col">
-      <span class="r">${IC.data}<span>Publicada</span></span>
+      <span class="r">${IC.data}<span>${temDataOficial(v) ? "Publicada" : "No hub desde"}</span></span>
       <span class="v">${textoData(v)}</span>
     </span>
 
