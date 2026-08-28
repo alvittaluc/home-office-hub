@@ -107,8 +107,9 @@
     width:26px; height:26px; border-radius:7px; flex-shrink:0; display:grid; place-items:center;
     font-size:9.5px; font-weight:600; color:#fff; overflow:hidden;
   }
-  /* o logo real vem do favicon da empresa; se não carregar, a sigla assume */
-  .linha-vaga .mk img, .perfil-emp .mk img { display:block; background:#fff; }
+  /* o logo real vem do favicon da empresa; se não carregar, a sigla assume.
+     O quadrado branco vem da regra .mk:has(img) do estilo.css */
+  .perfil-emp .mk { overflow:hidden; }
   .linha-vaga .tx { min-width:0; flex:1; }
   .linha-vaga .tx b { display:block; font-size:12.5px; font-weight:500; color:var(--ink); line-height:1.35;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -287,22 +288,22 @@
               <div class="jn-topo"><i></i><i></i><i></i><b>Vagas abertas</b></div>
               <div class="jn-corpo">
                 <div class="linha-vaga">
-                  <span class="mk" style="background:#1A4893;"><img src="https://www.google.com/s2/favicons?domain=welocalize.com&sz=64" alt="" loading="lazy" style="width:16px;height:16px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
+                  <span class="mk" style="background:#1A4893;"><img src="https://www.google.com/s2/favicons?domain=welocalize.com&sz=64" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:3px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
                   <span class="tx"><b>Search Quality Rater, português (Brasil)</b><span>Welocalize · remoto</span></span>
                   <span class="et">nova</span>
                 </div>
                 <div class="linha-vaga">
-                  <span class="mk" style="background:#4E9AC8;"><img src="https://www.google.com/s2/favicons?domain=oneforma.com&sz=64" alt="" loading="lazy" style="width:16px;height:16px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='1F';}"></span>
+                  <span class="mk" style="background:#4E9AC8;"><img src="https://www.google.com/s2/favicons?domain=oneforma.com&sz=64" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:3px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='1F';}"></span>
                   <span class="tx"><b>Multilingual AI Response Evaluator</b><span>OneForma · remoto</span></span>
                   <span class="et az">IA</span>
                 </div>
                 <div class="linha-vaga">
-                  <span class="mk" style="background:#5B4B9E;"><img src="https://www.google.com/s2/favicons?domain=rws.com&sz=64" alt="" loading="lazy" style="width:16px;height:16px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='RW';}"></span>
+                  <span class="mk" style="background:#5B4B9E;"><img src="https://www.google.com/s2/favicons?domain=rws.com&sz=64" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:3px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='RW';}"></span>
                   <span class="tx"><b>Brazilian Portuguese Subject Matter Expert</b><span>RWS TrainAI · remoto</span></span>
                   <span class="et az">SME</span>
                 </div>
                 <div class="linha-vaga">
-                  <span class="mk" style="background:#2C6BB5;"><img src="https://www.google.com/s2/favicons?domain=toloka.ai&sz=64" alt="" loading="lazy" style="width:16px;height:16px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='TK';}"></span>
+                  <span class="mk" style="background:#2C6BB5;"><img src="https://www.google.com/s2/favicons?domain=toloka.ai&sz=64" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:3px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='TK';}"></span>
                   <span class="tx"><b>Grave vídeos para treinar IA</b><span>Toloka AI · remoto</span></span>
                   <span class="et">nova</span>
                 </div>
@@ -324,7 +325,7 @@
               <div class="jn-topo"><i></i><i></i><i></i><b>Perfil da empresa</b></div>
               <div class="jn-corpo">
                 <div class="perfil-emp">
-                  <span class="mk" style="background:#1A4893;"><img src="https://www.google.com/s2/favicons?domain=welocalize.com&sz=64" alt="" loading="lazy" style="width:24px;height:24px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
+                  <span class="mk" style="background:#1A4893;"><img src="https://www.google.com/s2/favicons?domain=welocalize.com&sz=64" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
                   <span><b>Welocalize</b><span>Serviços linguísticos · Nova York</span></span>
                 </div>
                 <div class="campos">

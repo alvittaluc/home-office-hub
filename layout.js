@@ -111,13 +111,19 @@ function esc(s) {
   return (s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 }
 
-/* Logo da empresa: tenta o favicon real, cai para a sigla se falhar. */
+/* Logo da empresa: tenta o favicon real, cai para a sigla se falhar.
+
+   O logo ocupa o quadrado inteiro, com uma folga proporcional. Antes ele
+   ficava pequeno no meio de um quadrado colorido e sobrava um contorno
+   em volta. O quadrado vira branco pela regra .marca:has(img) do
+   estilo.css; se o logo não carregar, a sigla volta e o quadrado
+   colorido volta junto, sozinho. */
 function logoHtml(e, tam) {
   const px = tam >= 40 ? 64 : 32;
-  const dentro = Math.round(tam * 0.6);
+  const folga = Math.max(2, Math.round(tam * 0.12));
   if (e.dom) {
     return `<img src="https://www.google.com/s2/favicons?domain=${e.dom}&sz=${px}" alt="${esc(e.nome)}" loading="lazy"
-      style="width:${dentro}px;height:${dentro}px;"
+      style="width:100%;height:100%;object-fit:contain;padding:${folga}px;box-sizing:border-box;"
       onerror="var p=this.parentNode; if(p){ p.textContent='${e.sigla || "?"}'; p.style.color='${e.cor || "#9BA3B4"}'; }">`;
   }
   return e.sigla || "";
