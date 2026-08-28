@@ -13,6 +13,17 @@
       "remuneracao": ""
     },
     {
+      "id": "eddaebb215",
+      "empresa": "rws",
+      "titulo": "Audio Transcription - Spanish (Mexico)",
+      "url": "https://jobs.lever.co/rws/59d293ed-f769-45c2-b28c-ed68ffb1cbb2",
+      "local": "Remoto · Recife",
+      "categoria_badge": "IA & Dados",
+      "descricao": "We are looking for Audio Transcribers to support the improvement of AI-generated content in Spanish (Mexico).\n \nJob Type: Freelance\nLocation: Work from home (Mexico)\nWork Schedule: Part-time - 10+ hours per week. Flexible - work whenever you want.\nStart Date: Immediately\nDuration: TBC\nRate: 7 USD/Hour\n \nHelp Shape the Future of AI\nAre you a student, recent graduate, stay-at-home parent, gig worker, or professional seeking flexible remote work? Are you interested in shaping the development and safety of today’s AI models?\n \nWhat You’ll Do\nListen to audio recordings in your native language.\nTranscribe audio clips verbatim, capturing exactly what you hear.\nFollow the provided transcription guidelines to ensure accuracy and consistency.\nDeliver high-quality transcriptions within the assigned deadlines.\nHelp create ground-truth data used to evaluate and improve automatic speech recognition (ASR) systems.\n \nWhat we’re looking for:\nNative-level speaker of Spanish (Mexico)\nGood command of English to understand project instructions and guidelines.\nStrong attention to detail and ability to transcribe accurately.\nReliable high-speed internet connection.\nAccess to headphones for clear audio playback.\nAbility to work independently and follow detailed instructions.\n \nWhat We Offer\nFlexible schedule\nOpportunity to earn extra income\nTimely payments\nThe job is ideal for students, part-timers, or stay-at-home parents\n",
+      "requisitos": "",
+      "remuneracao": ""
+    },
+    {
       "id": "7f4a98d369",
       "empresa": "rws",
       "titulo": "Data Annotator for AI Models  - Spanish (Spain) in Brazil",
@@ -24,21 +35,10 @@
       "remuneracao": ""
     },
     {
-      "id": "53daa6cf99",
-      "empresa": "rws",
-      "titulo": "Social Media Content Evaluator (Portuguese)",
-      "url": "https://jobs.lever.co/rws/952e3e10-ad00-40c2-b4d3-ecd764542c85",
-      "local": "Remoto · Recife",
-      "categoria_badge": "QA",
-      "descricao": "About the Role\nIn this role, you will play a critical part in shaping the future of artificial intelligence and media analysis.\nYour main responsibility will be to review short-form video media and classify the language present in both spoken audio and on-screen text. By validating content within your native locale, you will generate high-quality \"ground truth\" data. \nJob Type: Freelance\nLocation: Brazil (work from home)\nWork Schedule: Part-time — 4 hours per day required. (Flexible schedule: you can choose your hours as long as the daily time requirement is met).  Work whenever you want.\nStart Date: Immediately\nDuration: TBC\nRate: 6 USD per hour\nWhat You’ll Do\nMedia Evaluation: Watch and analyze short-form video clips to identify all languages present in the audio and on-screen text.\nLocale Validation: Verify and validate that the media content aligns with your specific target locale (e.g., verifying that the media content uses authentic target language and aligns with the cultural context of that language).\nData Labeling: Generate highly accurate ground truth labels using our internal classification tools according to strict project guidelines.\nQuality Assurance: Ensure high data quality and consistency to meet the standards required for training automated machine learning models.\nWhat we’re looking for:\nMust be currently living in Brazil.\nNative-level written and spoken fluency in Portuguese.\nAccess to a reliable, high-speed internet connection and a secure personal computer/laptop.\nAbility to strictly follow detailed photography and data entry guidelines.\n(Preferred but not required) Previous experience in data annotation, content moderation, translation, transcription, or linguistic QA is a strong asset.\n",
-      "requisitos": "",
-      "remuneracao": ""
-    },
-    {
-      "id": "e5b16d0cf1",
+      "id": "a2b5f90ab7",
       "empresa": "toloka",
       "titulo": "AI Trainer - Freelance Data Annotator",
-      "url": "https://apply.workable.com/j/3BC21BC660",
+      "url": "https://apply.workable.com/j/83D64A3854",
       "local": "Remoto · Brasil",
       "categoria_badge": "IA & Dados",
       "descricao": "<p><em><strong>Please submit your resume in English and indicate your level of English proficiency.<br></strong></em><br>Mindrift connects specialists with project-based AI opportunities for leading tech companies, focused on testing, evaluating, and improving AI systems.&nbsp;<strong>Participation is&nbsp;project-based, not permanent employment.</strong></p><p></p><p><strong>What this opportunity involves</strong></p><p>Annotation is what helps AI make sense of the world. As an annotator, you may be invited to take part in&nbsp;<strong>online projects </strong>such as rating AI-generated content, evaluating factual accuracy, or comparing responses — when projects are available.</p><p>While each project involves unique tasks, contributors may:</p><ul><li>Carefully review provided data (text, images, or videos);</li><li>Label or classify content based on project guidelines;</li><li>Identify and flag factually incorrect, sensitive, inappropriate, or unclear material.</li></ul><p></p><p><strong>What we look for</strong></p><p>This opportunity is a good fit for candidates open to part-time, non-permanent projects. Ideally, contributors will have:</p><ul><li>Bachelor’s degree&nbsp;in any discipline;</li><li>Minimum&nbsp;1 year of experience&nbsp;in any professional role;</li><li>Logical thinking, fact-checking and reasoning abilities;</li><li>Strong attention to detail and ability to understand and follow complex instructions;</li><li>Strong communication skills, including the ability to ask clarifying questions when needed;</li><li>Genuine interest in technology and artificial intelligence;</li><li>Strong written and spoken English (C1+).</li></ul><p></p><p><strong>How it works&nbsp;</strong></p><p>Apply → Pass qualification(s) →&nbsp;Join a project&nbsp;(when available) → Complete tasks → Get paid</p><p></p><p><strong>Why this freelance opportunity might be a great fit for you</strong></p><ul><li>Take part in a part-time, remote, freelance project that fits around your primary professional or academic commitments;</li><li>Participate into advanced AI projects and gain valuable experience that enhances your portfolio;</li><li>Influence how future AI models understand and communicate in your field of expertise.</li></ul><p></p><p><strong>Project time expectations</strong></p><p>For this project, tasks are estimated to require around 10-20 hours per week during active phases, based on project requirements. This is an estimate, not a guaranteed workload, and applies only while the project is active. Tasks must be submitted by the deadline and meet the listed acceptance criteria to be accepted.</p><p></p><p><strong>Compensation</strong></p><p>Paid per accepted task. Your rate depends on the qualification tier you reach and how efficiently you complete tasks — up to the equivalent of&nbsp;<strong>$8/hr</strong>. Because payment is per task, a faster pace raises your effective hourly rate. Keep in mind, quality standards must be maintained, regardless of speed.</p>",
@@ -68,10 +68,10 @@
       "remuneracao": ""
     },
     {
-      "id": "0e9eff6efc",
+      "id": "7b95889a54",
       "empresa": "toloka",
       "titulo": "Freelance Annotator (English) - AI Trainer",
-      "url": "https://apply.workable.com/j/C5B2ED447E",
+      "url": "https://apply.workable.com/j/F495D24FEC",
       "local": "Remoto · Brasil",
       "categoria_badge": "IA & Dados",
       "descricao": "<p><em><strong>Please submit your resume in English and indicate your level of English proficiency.<br></strong></em><br>Mindrift connects specialists with project-based AI opportunities for leading tech companies, focused on testing, evaluating, and improving AI systems.&nbsp;<strong>Participation is&nbsp;project-based, not permanent employment.</strong></p><p></p><p><strong>What this opportunity involves</strong></p><p>Annotation is what helps AI make sense of the world. As an annotator, you may be invited to take part in&nbsp;<strong>online projects </strong>such as rating AI-generated content, evaluating factual accuracy, or comparing responses — when projects are available.</p><p>While each project involves unique tasks, contributors may:</p><ul><li>Carefully review provided data (text, images, or videos);</li><li>Label or classify content based on project guidelines;</li><li>Identify and flag factually incorrect, sensitive, inappropriate, or unclear material.</li></ul><p></p><p><strong>What we look for</strong></p><p>This opportunity is a good fit for candidates open to part-time, non-permanent projects. Ideally, contributors will have:</p><ul><li>Bachelor’s degree&nbsp;in any discipline;</li><li>Minimum&nbsp;1 year of experience&nbsp;in any professional role;</li><li>Logical thinking, fact-checking and reasoning abilities;</li><li>Strong attention to detail and ability to understand and follow complex instructions;</li><li>Strong communication skills, including the ability to ask clarifying questions when needed;</li><li>Genuine interest in technology and artificial intelligence;</li><li>Strong written and spoken English (C1+).</li></ul><p></p><p><strong>How it works&nbsp;</strong></p><p>Apply → Pass qualification(s) →&nbsp;Join a project&nbsp;(when available) → Complete tasks → Get paid</p><p></p><p><strong>Why this freelance opportunity might be a great fit for you</strong></p><ul><li>Take part in a part-time, remote, freelance project that fits around your primary professional or academic commitments;</li><li>Participate into advanced AI projects and gain valuable experience that enhances your portfolio;</li><li>Influence how future AI models understand and communicate in your field of expertise.</li></ul><p></p><p><strong>Project time expectations</strong></p><p>For this project, tasks are estimated to require around 10-20 hours per week during active phases, based on project requirements. This is an estimate, not a guaranteed workload, and applies only while the project is active. Tasks must be submitted by the deadline and meet the listed acceptance criteria to be accepted.</p><p></p><p><strong>Compensation</strong></p><p>Paid per accepted task. Your rate depends on the qualification tier you reach and how efficiently you complete tasks — up to the equivalent of&nbsp;<strong>$8/hr</strong>. Because payment is per task, a faster pace raises your effective hourly rate. Keep in mind, quality standards must be maintained, regardless of speed.</p>",
@@ -112,15 +112,15 @@
       "remuneracao": ""
     },
     {
-      "id": "40bde685a9",
-      "empresa": "meridial",
-      "titulo": "Portuguese Voice Actor - Freelance AI Trainer Project",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4707905101",
+      "id": "3225a6f2e1",
+      "empresa": "oneforma",
+      "titulo": "Audio Transcription Quality Reviewer",
+      "url": "https://www.oneforma.com/projects/audio-transcription-quality-reviewer/",
       "local": "Remoto · Brasil",
-      "categoria_badge": "IA & Dados",
-      "descricao": "Are you an experienced Portuguese voice actor eager to shape the future of AI? Large-scale language models and speech technologies are evolving rapidly, moving beyond simple interactions into expressive, human-like communication. With high-quality training data, tomorrow’s AI can deliver more natural, accurate, and engaging voice experiences across education, entertainment, accessibility, and beyond. That training data begins with you—your voice expertise will help power the next generation of AI.\n\n We’re looking for a highly skilled Portuguese voice acting professional who can bring nuance, clarity, and authenticity to training data. You’ll work with cutting-edge AI tools, record and evaluate Portuguese speech samples, and provide expert feedback on pronunciation, tone, pacing, and emotional expression to strengthen voice models.\n\n On a typical day, you will record scripted material, assess AI-generated outputs for linguistic accuracy and naturalness, annotate errors, and collaborate with our team to refine prompts, evaluation methods, and voice design guidelines.\n\n Fluency in Portuguese is required, along with demonstrated experience in professional voice acting, dubbing, narration, or related performance work. Experience in training, coaching, or linguistic annotation is a plus. Clear communication skills and attention to detail are essential. A high-quality recording setup—including a reliable microphone and a quiet environment—is required.\n\n Ready to channel your Portuguese voice expertise into building the AI voices of tomorrow? Apply today and help shape the model that will speak to millions around the world.\n\n We offer a pay range of $6 to $65 per hour, with the exact rate determined after evaluating your experience, expertise, and geographic location. Final offer amounts may vary from the pay range listed above. As a contractor you’ll supply a secure computer, high-quality microphone and recording setup, and stable internet connection; company-sponsored benefits such as health insurance and PTO do not apply.\n\n Job title: Portuguese Voice Acting Specialist – AI Trainer\nEmployment type: Contract\nWorkplace type: Remote\nSeniority level: Mid-Senior",
+      "categoria_badge": "QA",
+      "descricao": "Review long-form audio transcriptions for accuracy, check speaker labels, timestamps and segmentation, and flag audio issues against project guidelines. Remote, hourly work for native speakers across 31 locales.",
       "requisitos": "",
-      "remuneracao": ""
+      "remuneracao": "Fixed rate per hour"
     },
     {
       "id": "eec2040956",
