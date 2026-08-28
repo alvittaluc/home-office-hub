@@ -27,6 +27,9 @@
 
   .corpo { max-width:var(--wrap); margin:0 auto; padding:0 20px 40px; display:grid; grid-template-columns:206px 1fr; gap:44px; align-items:start; }
   @media (max-width:960px){ .corpo{ grid-template-columns:1fr; gap:0; } }
+  /* sem isto, um filho largo (a tabela) estica a coluna e a página escorrega
+     uns pixels para o lado no celular */
+  .corpo > * { min-width:0; }
 
   .trilho { position:sticky; top:86px; padding-top:4px; }
   @media (max-width:960px){ .trilho{ display:none; } }
@@ -100,6 +103,75 @@
     background:radial-gradient(120% 140% at 50% 0%,rgba(26,72,147,0.05),transparent 60%),var(--panel);
   }
   .fim-box p { color:var(--ink-2); max-width:46ch; margin:12px auto 24px; font-size:15px; }
+
+  /* ═══════════ DIAGRAMA DA JORNADA ═══════════ */
+  .jornada { margin:26px 0 10px; }
+  .trilha {
+    display:grid; grid-template-columns:repeat(5,1fr); gap:10px;
+    position:relative; padding-top:26px;
+  }
+  /* o trilho de fundo, que liga as cinco etapas */
+  .trilha::before {
+    content:''; position:absolute; left:9%; right:9%; top:31px; height:2px;
+    background:linear-gradient(90deg,var(--signal-dim),var(--signal));
+    opacity:.35; border-radius:2px;
+  }
+  .etapa-mq { position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:9px; min-width:0; }
+  .etapa-mq .cx { display:flex; flex-direction:column; gap:3px; padding:0 4px; min-width:0; }
+  .etapa-mq .no {
+    width:12px; height:12px; border-radius:50%; background:var(--panel);
+    border:2.5px solid var(--signal-dim); position:relative; z-index:1; flex-shrink:0;
+  }
+  .etapa-mq.chave .no { background:var(--signal); border-color:var(--signal); }
+  .etapa-mq .tt { font-size:13px; font-weight:600; color:var(--ink); line-height:1.35; letter-spacing:-.005em; }
+  .etapa-mq .qd {
+    font-size:11.5px; color:var(--ink-3); line-height:1.4; font-variant-numeric:tabular-nums;
+  }
+  .regua {
+    margin-top:22px; display:flex; align-items:center; gap:14px;
+    background:var(--signal-suave); border:1px solid #D3E2F1; border-radius:12px; padding:13px 17px;
+  }
+  .regua .barra { flex:1; height:7px; border-radius:4px; background:linear-gradient(90deg,var(--signal-dim),var(--signal)); min-width:60px; }
+  .regua .txt { font-size:13px; color:var(--ink-2); }
+  .regua .txt b { color:var(--signal); font-weight:600; }
+  @media (max-width:760px){
+    .trilha { grid-template-columns:1fr; gap:0; padding-top:6px; }
+    .trilha::before { left:5px; right:auto; top:14px; bottom:22px; width:2px; height:auto; }
+    .etapa-mq { flex-direction:row; align-items:flex-start; text-align:left; gap:14px; padding:9px 0; }
+    .etapa-mq .no { margin-top:5px; }
+    .etapa-mq .cx { padding:0; }
+    .regua { flex-direction:column; align-items:flex-start; gap:10px; }
+    .regua .barra { width:100%; flex:none; height:7px; }
+  }
+
+  /* ═══════════ DIAGRAMA DO CAMINHO DO DINHEIRO ═══════════ */
+  .fluxo { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin:26px 0 10px; align-items:stretch; }
+  .parada {
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:13px;
+    padding:16px 17px; display:flex; flex-direction:column; gap:6px; position:relative;
+  }
+  .parada + .parada { margin-left:26px; }
+  /* a seta entre uma parada e a seguinte */
+  .parada + .parada::before {
+    content:''; position:absolute; left:-21px; top:50%; width:16px; height:2px;
+    background:var(--line); transform:translateY(-50%);
+  }
+  .parada + .parada::after {
+    content:''; position:absolute; left:-9px; top:50%; width:6px; height:6px;
+    border-top:2px solid var(--line); border-right:2px solid var(--line);
+    transform:translateY(-50%) rotate(45deg);
+  }
+  .parada .et { font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); }
+  .parada .nm { font-size:14.5px; font-weight:600; color:var(--ink); letter-spacing:-.01em; line-height:1.3; }
+  .parada .ob { font-size:12.5px; color:var(--ink-2); line-height:1.5; }
+  .parada.fim { border-color:#D3E2F1; background:var(--signal-suave); }
+  .parada.fim .nm { color:var(--signal); }
+  @media (max-width:860px){
+    .fluxo { grid-template-columns:1fr; }
+    .parada + .parada { margin-left:0; margin-top:26px; }
+    .parada + .parada::before { left:50%; top:-21px; width:2px; height:16px; transform:translateX(-50%); }
+    .parada + .parada::after { left:50%; top:-9px; transform:translateX(-50%) rotate(135deg); }
+  }
 </style>
 </head>
 <body>
@@ -167,6 +239,21 @@
     <section class="bloco" id="processo">
       <h2>Como é a entrada, etapa por etapa</h2>
       <p>O processo é parecido em quase todas as empresas. O que muda é o rigor de cada etapa.</p>
+
+      <div class="jornada">
+        <div class="trilha">
+          <div class="etapa-mq chave"><span class="no"></span><span class="cx"><span class="tt">Cadastro e perfil</span><span class="qd">de 5 a 20 minutos</span></span></div>
+          <div class="etapa-mq"><span class="no"></span><span class="cx"><span class="tt">Candidatura</span><span class="qd">resposta em dias ou semanas</span></span></div>
+          <div class="etapa-mq chave"><span class="no"></span><span class="cx"><span class="tt">Estudo e teste</span><span class="qd">a etapa que mais elimina</span></span></div>
+          <div class="etapa-mq"><span class="no"></span><span class="cx"><span class="tt">Calibragem</span><span class="qd">primeiros dias auditados</span></span></div>
+          <div class="etapa-mq chave"><span class="no"></span><span class="cx"><span class="tt">Produção e pagamento</span><span class="qd">ciclo quinzenal ou mensal</span></span></div>
+        </div>
+        <div class="regua">
+          <span class="txt">Do cadastro ao primeiro pagamento</span>
+          <span class="barra"></span>
+          <span class="txt"><b>3 a 8 semanas</b></span>
+        </div>
+      </div>
       <ol class="etapas">
         <li>
           <h3>Cadastro e perfil</h3>
@@ -211,6 +298,29 @@
     <section class="bloco" id="pagamento">
       <h2>Como o dinheiro chega até o Brasil</h2>
       <p>Nenhuma dessas empresas deposita direto numa conta bancária brasileira comum. O repasse passa por uma plataforma internacional, e é você quem escolhe qual, dentro das opções que a empresa oferece.</p>
+
+      <div class="fluxo">
+        <div class="parada">
+          <span class="et">Origem</span>
+          <span class="nm">A empresa</span>
+          <span class="ob">Fecha o ciclo do projeto e libera o valor em dólar ou euro.</span>
+        </div>
+        <div class="parada">
+          <span class="et">Carteira</span>
+          <span class="nm">Payoneer ou PayPal</span>
+          <span class="ob">Onde o dinheiro cai primeiro. Juntas cobrem quase todas as empresas do setor.</span>
+        </div>
+        <div class="parada">
+          <span class="et">Câmbio</span>
+          <span class="nm">Saque ou Wise</span>
+          <span class="ob">Você converte para real. Cada caminho cobra a própria taxa, vale comparar.</span>
+        </div>
+        <div class="parada fim">
+          <span class="et">Destino</span>
+          <span class="nm">Sua conta no Brasil</span>
+          <span class="ob">Entra como recebimento do exterior, em reais.</span>
+        </div>
+      </div>
       <div class="tab-wrap">
         <table class="tab">
           <thead>

@@ -154,8 +154,15 @@
   /* ═══════════ ÁREAS ═══════════ */
   .areas { max-width:var(--wrap); margin:0 auto; padding:20px 22px 0; }
   .area {
-    display:grid; grid-template-columns:1fr 1.05fr; gap:52px; align-items:center;
+    display:grid; grid-template-columns:minmax(0,0.86fr) minmax(0,1.34fr); gap:58px; align-items:center;
     padding:88px 0; border-top:1px solid var(--line-soft); scroll-margin-top:100px;
+  }
+  /* a maquete avança em direção à borda da tela, como foto de produto.
+     O overflow-x:hidden do body impede que isso crie barra horizontal. */
+  .area > .moldura { margin-right:calc(-1 * min(5vw, 64px)); }
+  .area:nth-child(even) > .moldura { margin-right:0; margin-left:calc(-1 * min(5vw, 64px)); }
+  @media (max-width:980px){
+    .area > .moldura, .area:nth-child(even) > .moldura { margin-left:0; margin-right:0; }
   }
   @media (max-width:860px){ .area{ grid-template-columns:1fr; gap:28px; padding:52px 0; } }
   .area:nth-child(even) .lado-texto { order:2; }
@@ -171,7 +178,20 @@
     content:''; position:absolute; left:2px; top:9px; width:6px; height:6px;
     border-radius:50%; background:var(--signal-dim);
   }
-  .moldura { border-radius:22px; padding:26px; background:var(--bg-soft); border:1px solid var(--line-soft); }
+  .moldura { border-radius:26px; padding:34px; background:var(--bg-soft); border:1px solid var(--line-soft); }
+  @media (max-width:860px){ .moldura{ padding:20px; border-radius:20px; } }
+  /* dentro da moldura tudo respira um pouco mais, para a maquete ganhar presença */
+  .moldura .janela { box-shadow:0 34px 66px -30px rgba(16,32,58,.46), 0 8px 18px -10px rgba(16,32,58,.16); }
+  .moldura .jn-corpo { padding:18px; }
+  .moldura .jn-topo b { font-size:12.5px; }
+  .moldura .kv { font-size:12.5px; padding:10px 0; }
+  .moldura .cx-anot { height:196px; }
+  .moldura .onda { height:92px; }
+  .moldura .seg-trad p { font-size:13.5px; }
+  .moldura .seg-trad > div { padding:16px 17px; }
+  .moldura .ab-col { padding:16px; }
+  .moldura .ab-col .h { font-size:12px; }
+  .moldura .ab-b { font-size:12px; padding:9px; }
   .moldura.a2 { background:#EDF2F7; }
   .moldura.a3 { background:#F2EFE7; }
   .moldura.a4 { background:#EFF1EC; }
@@ -230,7 +250,7 @@
 <section class="hero">
   <div class="eyebrow">Trabalho remoto com dados e inteligência artificial</div>
   <h1 class="big">O trabalho que ensina as máquinas começa com você.</h1>
-  <p class="lead">Empresas do mundo inteiro pagam pessoas comuns para ensinar, corrigir e avaliar sistemas de inteligência artificial. Aqui você entende como esse mercado funciona, conhece quem contrata e encontra as vagas abertas para quem mora no Brasil.</p>
+  <p class="lead">Empresas do mundo inteiro pagam pessoas comuns para ensinar e avaliar sistemas de inteligência artificial. Aqui estão quem contrata e as vagas abertas para quem mora no Brasil.</p>
   <div class="hero-cta">
     <a href="vagas.html" class="btn primary">Ver vagas abertas <span class="arr">→</span></a>
     <a href="como-funciona.html" class="btn">Como funciona</a>
@@ -371,8 +391,8 @@
 <section class="abertura">
   <h2 class="sec">Um mercado que quase ninguém no Brasil sabe que existe</h2>
   <div class="corpo">
-    <p>Todo modelo de inteligência artificial precisa de gente para ensinar, corrigir e avaliar o que ele produz. Esse trabalho é feito por pessoas comuns, de casa, em regime flexível, e é pago em dólar ou euro.</p>
-    <p>Reunimos aqui as oportunidades abertas a quem mora no Brasil e fala português brasileiro, com o perfil de cada empresa e o caminho para entrar em cada uma.</p>
+    <p>Todo modelo de inteligência artificial precisa de gente para ensinar e corrigir o que ele produz. É trabalho de pessoas comuns, de casa, em horário flexível, pago em dólar ou euro.</p>
+    <p>Reunimos as oportunidades abertas a quem mora no Brasil, com o perfil de cada empresa e o caminho para entrar.</p>
   </div>
 </section>
 
@@ -383,7 +403,7 @@
     <div class="lado-texto">
       <div class="eyebrow">Anotação de dados</div>
       <h3>Ensinar a máquina a enxergar o mundo</h3>
-      <p>Antes de um modelo reconhecer um carro, um tumor ou uma frase irônica, alguém precisou apontar aquilo para ele. Anotação é marcar, classificar e rotular dados para que o sistema aprenda o que é o quê.</p>
+      <p>Antes de um modelo reconhecer um carro, um tumor ou uma frase irônica, alguém apontou aquilo para ele. Anotar é marcar e classificar dados até o sistema aprender o que é o quê.</p>
       <ul>
         <li>Desenhar caixas em imagens e vídeos para identificar objetos e cenas</li>
         <li>Classificar textos por tema, intenção, tom ou risco</li>
@@ -412,7 +432,7 @@
     <div class="lado-texto">
       <div class="eyebrow">Avaliação de IA</div>
       <h3>Dizer para a IA qual resposta é a boa</h3>
-      <p>É a área que mais cresce. Você lê duas respostas geradas por um modelo, escolhe a melhor e explica o porquê. Esse julgamento humano é o que faz o sistema aprender a ser útil, correto e seguro.</p>
+      <p>É a área que mais cresce. Você lê duas respostas do modelo, escolhe a melhor e explica o porquê. Esse julgamento é o que ensina o sistema a ser útil, correto e seguro.</p>
       <ul>
         <li>Comparar respostas de IA e ranquear por precisão e utilidade</li>
         <li>Avaliar se um resultado de busca responde de fato à pergunta feita</li>
@@ -450,7 +470,7 @@
     <div class="lado-texto">
       <div class="eyebrow">Tradução e localização</div>
       <h3>O português brasileiro é o produto aqui</h3>
-      <p>Empresas globais precisam de conteúdo que soe natural para o brasileiro, e não traduzido ao pé da letra. Boa parte dessas vagas hoje é pós-edição: a máquina traduz primeiro e você corrige.</p>
+      <p>Empresas globais precisam de conteúdo que soe natural para o brasileiro, não traduzido ao pé da letra. Boa parte dessas vagas é pós-edição: a máquina traduz e você corrige.</p>
       <ul>
         <li>Pós-edição de tradução automática, corrigindo o que a máquina errou</li>
         <li>Tradução e revisão de conteúdo de produto, marketing e suporte</li>
@@ -478,7 +498,7 @@
     <div class="lado-texto">
       <div class="eyebrow">Coleta de dados</div>
       <h3>Sua voz, sua letra, seu jeito de falar</h3>
-      <p>Muitos projetos precisam de material novo, criado do zero por pessoas reais. Costumam ser as tarefas mais simples de executar e as melhores para quem está começando, porque quase nunca exigem experiência prévia.</p>
+      <p>Muitos projetos precisam de material novo, criado do zero por pessoas reais. São as tarefas mais simples e as melhores para quem está começando, porque quase nunca pedem experiência.</p>
       <ul>
         <li>Gravar frases, diálogos e comandos de voz em português brasileiro</li>
         <li>Enviar fotos e vídeos seguindo um roteiro definido pelo projeto</li>
