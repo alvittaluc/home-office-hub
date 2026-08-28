@@ -105,8 +105,10 @@
   .linha-vaga:last-child { margin-bottom:0; }
   .linha-vaga .mk {
     width:26px; height:26px; border-radius:7px; flex-shrink:0; display:grid; place-items:center;
-    font-size:9.5px; font-weight:600; color:#fff;
+    font-size:9.5px; font-weight:600; color:#fff; overflow:hidden;
   }
+  /* o logo real vem do favicon da empresa; se não carregar, a sigla assume */
+  .linha-vaga .mk img, .perfil-emp .mk img { display:block; background:#fff; }
   .linha-vaga .tx { min-width:0; flex:1; }
   .linha-vaga .tx b { display:block; font-size:12.5px; font-weight:500; color:var(--ink); line-height:1.35;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -135,11 +137,21 @@
   .passo-mq b { display:block; font-size:12.5px; font-weight:500; color:var(--ink); }
   .passo-mq span { font-size:11px; color:var(--ink-3); }
 
-  .cx-anot { position:relative; height:150px; border-radius:11px; overflow:hidden;
-    background:linear-gradient(135deg,#E8EEF5,#DCE7F2 60%,#E9EDF3); border:1px solid var(--line-soft); }
-  .cx-anot .bx { position:absolute; border:1.5px solid; border-radius:3px; }
+  /* A foto é o próprio material anotado. Proporção fixa de 3 para 1, para
+     que as caixas em porcentagem caiam sempre no lugar certo, em qualquer
+     largura de tela. Trocar a foto exige remedir as caixas. */
+  .cx-anot {
+    position:relative; aspect-ratio:3/1; border-radius:11px; overflow:hidden;
+    background:#E4E2DD url('anotacao.jpg') center/cover no-repeat;
+    border:1px solid var(--line-soft); container-type:inline-size;
+  }
+  .cx-anot .bx { position:absolute; border:1.5px solid; border-radius:3px; box-shadow:0 0 0 1px rgba(255,255,255,.35); }
   .cx-anot .bx b { position:absolute; top:-15px; left:-1.5px; font-size:8.5px; font-weight:600;
     padding:1px 5px; border-radius:3px 3px 0 0; white-space:nowrap; color:#fff; }
+  /* etiqueta embaixo, para caixa colada no topo da foto */
+  .cx-anot .bx.abaixo b { top:auto; bottom:-15px; border-radius:0 0 3px 3px; }
+  /* a caixa da placa é pequena demais para telas estreitas */
+  @container (max-width:420px){ .cx-anot .bx.mini { display:none; } }
 
   /* ═══════════ BLOCO DE ABERTURA ═══════════ */
   .abertura {
@@ -185,7 +197,6 @@
   .moldura .jn-corpo { padding:18px; }
   .moldura .jn-topo b { font-size:12.5px; }
   .moldura .kv { font-size:12.5px; padding:10px 0; }
-  .moldura .cx-anot { height:196px; }
   .moldura .onda { height:92px; }
   .moldura .seg-trad p { font-size:13.5px; }
   .moldura .seg-trad > div { padding:16px 17px; }
@@ -276,22 +287,22 @@
               <div class="jn-topo"><i></i><i></i><i></i><b>Vagas abertas</b></div>
               <div class="jn-corpo">
                 <div class="linha-vaga">
-                  <span class="mk" style="background:#1A4893;">WL</span>
+                  <span class="mk" style="background:#1A4893;"><img src="https://www.google.com/s2/favicons?domain=welocalize.com&sz=64" alt="" loading="lazy" style="width:16px;height:16px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
                   <span class="tx"><b>Search Quality Rater, português (Brasil)</b><span>Welocalize · remoto</span></span>
                   <span class="et">nova</span>
                 </div>
                 <div class="linha-vaga">
-                  <span class="mk" style="background:#4E9AC8;">1F</span>
+                  <span class="mk" style="background:#4E9AC8;"><img src="https://www.google.com/s2/favicons?domain=oneforma.com&sz=64" alt="" loading="lazy" style="width:16px;height:16px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='1F';}"></span>
                   <span class="tx"><b>Multilingual AI Response Evaluator</b><span>OneForma · remoto</span></span>
                   <span class="et az">IA</span>
                 </div>
                 <div class="linha-vaga">
-                  <span class="mk" style="background:#5B4B9E;">RW</span>
+                  <span class="mk" style="background:#5B4B9E;"><img src="https://www.google.com/s2/favicons?domain=rws.com&sz=64" alt="" loading="lazy" style="width:16px;height:16px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='RW';}"></span>
                   <span class="tx"><b>Brazilian Portuguese Subject Matter Expert</b><span>RWS TrainAI · remoto</span></span>
                   <span class="et az">SME</span>
                 </div>
                 <div class="linha-vaga">
-                  <span class="mk" style="background:#2C6BB5;">TK</span>
+                  <span class="mk" style="background:#2C6BB5;"><img src="https://www.google.com/s2/favicons?domain=toloka.ai&sz=64" alt="" loading="lazy" style="width:16px;height:16px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='TK';}"></span>
                   <span class="tx"><b>Grave vídeos para treinar IA</b><span>Toloka AI · remoto</span></span>
                   <span class="et">nova</span>
                 </div>
@@ -313,7 +324,7 @@
               <div class="jn-topo"><i></i><i></i><i></i><b>Perfil da empresa</b></div>
               <div class="jn-corpo">
                 <div class="perfil-emp">
-                  <span class="mk" style="background:#1A4893;">WL</span>
+                  <span class="mk" style="background:#1A4893;"><img src="https://www.google.com/s2/favicons?domain=welocalize.com&sz=64" alt="" loading="lazy" style="width:24px;height:24px;object-fit:contain;border-radius:4px;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
                   <span><b>Welocalize</b><span>Serviços linguísticos · Nova York</span></span>
                 </div>
                 <div class="campos">
@@ -362,10 +373,11 @@
             <div class="janela">
               <div class="jn-topo"><i></i><i></i><i></i><b>Anotação de imagem</b></div>
               <div class="jn-corpo">
-                <div class="cx-anot">
-                  <div class="bx" style="left:9%;top:18%;width:31%;height:58%;border-color:#1A4893;"><b style="background:#1A4893;">pessoa</b></div>
-                  <div class="bx" style="left:48%;top:36%;width:24%;height:36%;border-color:#A85D24;"><b style="background:#A85D24;">placa</b></div>
-                  <div class="bx" style="left:76%;top:24%;width:17%;height:28%;border-color:#5B4B9E;"><b style="background:#5B4B9E;">sinal</b></div>
+                <div class="cx-anot" role="img" aria-label="Foto de uma esquina com caixas marcando pessoa, veículo, placa e sinal de trânsito">
+                  <div class="bx" style="left:13%;top:39%;width:6%;height:40%;border-color:#1A4893;"><b style="background:#1A4893;">pessoa</b></div>
+                  <div class="bx" style="left:54.5%;top:46%;width:14.5%;height:32%;border-color:#2C6BB5;"><b style="background:#2C6BB5;">veículo</b></div>
+                  <div class="bx abaixo mini" style="left:59.3%;top:65.5%;width:5%;height:5%;border-color:#A85D24;"><b style="background:#A85D24;">placa</b></div>
+                  <div class="bx abaixo" style="left:80.5%;top:6%;width:8%;height:20%;border-color:#5B4B9E;"><b style="background:#5B4B9E;">sinal</b></div>
                 </div>
                 <div class="kv" style="margin-top:12px;"><span>Itens marcados hoje</span><span>412 de 500</span></div>
                 <div class="kv"><span>Pagamento</span><span>por item aprovado</span></div>
@@ -416,10 +428,11 @@
       <div class="janela">
         <div class="jn-topo"><i></i><i></i><i></i><b>projeto_anotacao_ptbr</b></div>
         <div class="jn-corpo">
-          <div class="cx-anot">
-            <div class="bx" style="left:9%;top:18%;width:31%;height:58%;border-color:#1A4893;"><b style="background:#1A4893;">pessoa 0.97</b></div>
-            <div class="bx" style="left:48%;top:36%;width:24%;height:36%;border-color:#A85D24;"><b style="background:#A85D24;">placa 0.88</b></div>
-            <div class="bx" style="left:76%;top:24%;width:17%;height:28%;border-color:#5B4B9E;"><b style="background:#5B4B9E;">sinal 0.79</b></div>
+          <div class="cx-anot" role="img" aria-label="Foto de uma esquina com caixas marcando pessoa, veículo, placa e sinal de trânsito">
+            <div class="bx" style="left:13%;top:39%;width:6%;height:40%;border-color:#1A4893;"><b style="background:#1A4893;">pessoa 0.97</b></div>
+                  <div class="bx" style="left:54.5%;top:46%;width:14.5%;height:32%;border-color:#2C6BB5;"><b style="background:#2C6BB5;">veículo 0.94</b></div>
+                  <div class="bx abaixo mini" style="left:59.3%;top:65.5%;width:5%;height:5%;border-color:#A85D24;"><b style="background:#A85D24;">placa 0.88</b></div>
+                  <div class="bx abaixo" style="left:80.5%;top:6%;width:8%;height:20%;border-color:#5B4B9E;"><b style="background:#5B4B9E;">sinal 0.79</b></div>
           </div>
           <div class="kv" style="margin-top:13px;"><span>Itens marcados hoje</span><span>412 de 500</span></div>
           <div class="kv"><span>Rótulos do projeto</span><span>pessoa · veículo · placa · sinal</span></div>
