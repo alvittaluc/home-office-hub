@@ -157,18 +157,64 @@ html.t-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 .t-caixa.t-escuro .t-hora,
 .t-caixa.t-escuro .t-vazio { color:#8C9BB5; }
 
-/* ── janela flutuante ── */
-body.t-pip { margin:0; background:var(--bg,#F7F4EF); }
-body.t-pip:has(.t-escuro) { background:#0F1D33; }
-body.t-pip header.site, body.t-pip footer.site { display:none; }
-body.t-pip .t-caixa { margin:0; border:0; border-radius:0; height:100vh; }
-body.t-pip .t-barra { padding:9px 11px; gap:6px; }
-body.t-pip .t-mini { padding:5px 11px; font-size:12.5px; }
-body.t-pip .t-check { font-size:12.5px; }
-body.t-pip #bBaixar, body.t-pip .t-conta, body.t-pip .t-check { display:none; }
-body.t-pip .t-caixa.t-tam2 .t-texto { font-size:20px; line-height:1.62; }
-body.t-pip .t-caixa.t-tam3 .t-texto { font-size:25px; line-height:1.52; }
-body.t-pip .t-texto { min-height:0; max-height:none; flex:1; font-size:16px; line-height:1.7; padding:16px 18px; }
+/* ══════════════════════════════════════════════════════════════
+   JANELA FLUTUANTE — faixa de legenda
+
+   Ela NÃO leva mais a caixa da transcrição embora. Mostra só as
+   últimas falas, como legenda de filme, e o texto completo continua
+   acumulando na aba da ferramenta, intacto para copiar ou baixar
+   depois. São duas visões do mesmo material, não uma que substitui
+   a outra.
+
+   Nota honesta: uma página web não consegue deixar essa janela
+   transparente de verdade, atravessando até a área de trabalho.
+   Isso é decisão do sistema, não do site. O que dá para fazer é o
+   que está aqui: janela baixa, sem moldura de cartão, sem barra
+   visível, texto grande com sombra, e um fundo que combine com o
+   que estiver por baixo.
+   ══════════════════════════════════════════════════════════════ */
+body.t-pip { margin:0; overflow:hidden; font-family:'Geist',system-ui,sans-serif; }
+body.t-pip.t-f1 { background:#000000; }
+body.t-pip.t-f2 { background:#12161C; }
+body.t-pip.t-f3 { background:#F2F0EC; }
+
+.t-leg { height:100vh; display:flex; flex-direction:column; }
+/* flex:1 com min-height:0 dá uma altura real à caixa, e é isso que permite
+   saber quando o texto passou do tamanho. justify-content:flex-end faz o
+   excesso ser cortado por cima, então o mais recente fica sempre visível. */
+.t-leg-txt {
+  flex:1; min-height:0; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:14px 20px 16px; text-align:center;
+  font-size:22px; line-height:1.36; font-weight:500;
+  color:#FFFFFF; text-shadow:0 2px 7px rgba(0,0,0,.85);
+  overflow-wrap:break-word;
+}
+body.t-pip.t-f3 .t-leg-txt { color:#10203A; text-shadow:0 1px 3px rgba(255,255,255,.9); }
+body.t-pip.t-tam2 .t-leg-txt { font-size:28px; }
+body.t-pip.t-tam3 .t-leg-txt { font-size:35px; line-height:1.28; }
+
+/* a fala que ainda não fechou fica mais apagada, como em legenda ao vivo */
+.t-leg-viva { opacity:.6; }
+.t-leg-vazio { opacity:.42; font-size:15px; font-weight:400; }
+body.t-pip.t-tam2 .t-leg-vazio, body.t-pip.t-tam3 .t-leg-vazio { font-size:15px; }
+
+/* controles escondidos: só aparecem quando o ponteiro entra na janela */
+.t-leg-barra {
+  position:fixed; top:0; left:0; right:0; display:flex; gap:6px; padding:8px 9px;
+  opacity:0; transition:opacity .18s; background:linear-gradient(rgba(0,0,0,.55), transparent);
+}
+body.t-pip:hover .t-leg-barra { opacity:1; }
+/* com a barra à vista, empurra o texto para baixo em vez de deixar sobrepor */
+body.t-pip:hover .t-leg-txt { padding-top:44px; }
+body.t-pip.t-f3 .t-leg-barra { background:linear-gradient(rgba(255,255,255,.75), transparent); }
+.t-leg-barra button {
+  font:inherit; font-size:12px; font-weight:500; padding:5px 11px; border-radius:99px;
+  cursor:pointer; background:rgba(255,255,255,.14); color:#FFFFFF;
+  border:1px solid rgba(255,255,255,.28);
+}
+.t-leg-barra button:hover { background:rgba(255,255,255,.26); }
+body.t-pip.t-f3 .t-leg-barra button { background:rgba(0,0,0,.07); color:#10203A; border-color:rgba(0,0,0,.18); }
 
 /* ── passo a passo ── */
 .t-passos { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:56px; }
@@ -299,8 +345,8 @@ body.t-pip .t-texto { min-height:0; max-height:none; flex:1; font-size:16px; lin
     </div>
     <div class="t-passo">
       <div class="t-num">3</div>
-      <h3>Volte para a tarefa</h3>
-      <p>Abra a janela flutuante e volte a trabalhar. Ela fica por cima de tudo, com o texto correndo, e você continua ouvindo o áudio normalmente pelo fone ou pela caixa de som.</p>
+      <h3>Legenda por cima, texto guardado</h3>
+      <p>Abra a janela flutuante e volte a trabalhar. Ela fica por cima de tudo como uma faixa de legenda, mostrando só o que está sendo falado agora. O texto completo continua guardado aqui nesta aba, para copiar ou baixar quando terminar.</p>
     </div>
   </div>
 
@@ -362,6 +408,8 @@ const bFlutuar   = document.getElementById("bFlutuar");
 const bTamanho   = document.getElementById("bTamanho");
 const bEscuro    = document.getElementById("bEscuro");
 let tamanho = 1, escuro = false;
+let fundoLeg = 1;   // 1 preto, 2 grafite, 3 claro
+let legTxt = null;  // onde a legenda é escrita, dentro da janela flutuante
 
 /* ── estado ── */
 let fluxo = null;        // MediaStream devolvido pelo Chrome
@@ -384,6 +432,8 @@ let jaVeioAlgo = false;
 let houveSom = false;    // o medidor de nível já viu áudio chegando
 let tentouNuvem = false; // já caiu do modo local para o normal nesta captura
 let errosRede = 0;       // recusas seguidas do serviço de reconhecimento
+let pausado = false;     // desistiu de tentar, esperando decisão da pessoa
+const LIMITE_REDE = 8;   // recusas seguidas até parar de insistir
 let pip = null;
 let usarLocal = false;   // reconhecimento sem sair do computador
 let tradutor = null;     // tradutor do próprio Chrome, roda offline
@@ -614,6 +664,8 @@ function desenhar() {
 
   const temAlgo = trechos.length > 0;
   bCopiar.disabled = bBaixar.disabled = bLimpar.disabled = !temAlgo;
+
+  desenharLegenda(); // a janela flutuante, quando aberta, acompanha
 }
 
 function textoCru() {
@@ -719,7 +771,7 @@ function novoReconhecimento() {
         if (location.protocol === "file:") {
           recado("erro", "<b>O serviço de reconhecimento recusou a conexão.</b> Costuma ser porque a página foi aberta direto da pasta, e assim ela não tem um endereço de verdade para se identificar. Suba o arquivo no site e teste por lá.");
         } else {
-          recado("erro", "<b>O serviço de reconhecimento recusou a conexão.</b> Normalmente não é a sua internet: o serviço gratuito do Google segura o ritmo quando recebe muitos pedidos seguidos, o que acontece fácil durante testes. A captura continua de pé e ele segue tentando, mais devagar. Se insistir, espere alguns minutos.");
+          recado("dica", "O serviço de reconhecimento recusou a conexão. Normalmente não é a sua internet: o serviço gratuito do Google segura o ritmo quando recebe muitos pedidos seguidos. Vou espaçando as tentativas, e se não voltar em algumas vezes eu paro de insistir em vez de piorar.");
         }
       }
     } else if (ev.error === "language-not-supported") {
@@ -742,6 +794,24 @@ function novoReconhecimento() {
        várias vezes seguidas. Aí é o serviço segurando o ritmo. Mesmo assim a
        captura NÃO é encerrada: derrubar tudo obrigaria a pessoa a refazer a
        liberação de tela. Só espaçamos as tentativas até ele voltar sozinho. */
+    /* ── 1. Recusa do serviço manda em tudo ──────────────────────────
+       Este caso tem prioridade sobre qualquer outro cálculo. O defeito
+       anterior era exatamente aqui: quando a sessão vivia mais de 800ms
+       antes de falhar, o contador de churn era zerado e a espera sumia
+       junto, então o erro de rede voltava a martelar sem intervalo. */
+    if (errosRede > 0) {
+      if (errosRede >= LIMITE_REDE) {
+        pausar();
+        return;
+      }
+      const escada = [1000, 2000, 4000, 8000, 15000, 30000];
+      const espera = escada[Math.min(errosRede - 1, escada.length - 1)];
+      diag("O serviço recusou " + errosRede + " vezes. Próxima tentativa em " + Math.round(espera / 1000) + "s.");
+      setTimeout(() => { if (ativo && !rodando && !pausado) abrirReconhecimento(); }, espera);
+      return;
+    }
+
+    /* ── 2. Reabertura normal ──────────────────────────────────────── */
     const morreuNaHora = Date.now() - ultimoInicio < 800;
     churn = (!houveResultado && morreuNaHora) ? churn + 1 : 0;
 
@@ -753,9 +823,9 @@ function novoReconhecimento() {
     if (churn === 12) {
       recadoChurn = true;
       recado("dica", "O reconhecimento está reabrindo muitas vezes seguidas, o que costuma ser o serviço do Google segurando o ritmo. A captura continua de pé e ele segue tentando sozinho. Costuma voltar em alguns segundos.");
-    } else if (churn === 30) {
-      recadoChurn = true;
-      recado("erro", "<b>O reconhecimento não está conseguindo abrir.</b> A captura continua de pé, então não precisa refazer a liberação de tela. Se não voltar em alguns minutos, pare e comece de novo, ou ligue o modo local, que não depende de servidor.");
+    } else if (churn >= 40) {
+      pausar();
+      return;
     } else if (churn === 0 && recadoChurn) {
       recadoChurn = false;
       limparRecado(); // voltou ao normal, tira o aviso da tela
@@ -765,16 +835,43 @@ function novoReconhecimento() {
        Chrome estica timers para um por minuto, e a transcrição pararia a cada
        silêncio, justamente quando a pessoa está assistindo em outra aba. */
     if (espera) {
-      setTimeout(() => { if (ativo && !rodando) abrirReconhecimento(); }, espera);
+      setTimeout(() => { if (ativo && !rodando && !pausado) abrirReconhecimento(); }, espera);
     } else if (!abrirReconhecimento()) {
-      setTimeout(() => { if (ativo && !rodando) abrirReconhecimento(); }, 200);
+      setTimeout(() => { if (ativo && !rodando && !pausado) abrirReconhecimento(); }, 200);
     }
   };
 
   return r;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   TETO DE SEGURANÇA — não depende de nenhuma outra lógica dar certo
+
+   Existe porque uma vez já falhou: uma correção tirou a pausa entre
+   fechar e reabrir, e o que era uma tentativa a cada 180ms virou um
+   laço sem intervalo nenhum. Deu 606 pedidos ao serviço do Google em
+   poucos minutos, e um bloqueio de uso como consequência.
+
+   As travas anteriores eram todas heurísticas, e heurística falha.
+   Esta é uma contagem crua: no máximo MAX_ABERTURAS_MIN aberturas por
+   minuto, aconteça o que acontecer. Uso normal fica muito abaixo disso;
+   qualquer defeito futuro esbarra aqui antes de virar problema.
+   ══════════════════════════════════════════════════════════════ */
+const MAX_ABERTURAS_MIN = 30;
+let aberturas = [];
+
 function abrirReconhecimento() {
+  const agora = Date.now();
+  aberturas = aberturas.filter(t => agora - t < 60000);
+  if (aberturas.length >= MAX_ABERTURAS_MIN) {
+    const espera = Math.max(1000, 60000 - (agora - aberturas[0]) + 100);
+    diag("Teto de segurança: " + aberturas.length + " aberturas neste minuto. Esperando " +
+         Math.ceil(espera / 1000) + "s antes de tentar de novo.");
+    setTimeout(() => { if (ativo && !rodando && !pausado) abrirReconhecimento(); }, espera);
+    return true; // já reagendado, quem chamou não precisa fazer nada
+  }
+  aberturas.push(agora);
+
   try {
     rec.start(faixa);
     rodando = true;
@@ -804,6 +901,55 @@ async function prepararLocal() {
     catch (e) {}
   }
   return st === "available";
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PAUSA: parar de insistir
+
+   Insistir para sempre num serviço que está recusando não conserta
+   nada e ainda piora, porque cada tentativa conta contra o limite.
+   Depois de LIMITE_REDE recusas seguidas a ferramenta PARA de tentar,
+   mantendo a captura de pé, e devolve a decisão para a pessoa.
+   ══════════════════════════════════════════════════════════════ */
+function pausar() {
+  pausado = true;
+  try { if (rec) { rec.onend = null; rec.abort(); } } catch (e) {}
+  rodando = false;
+  recadoChurn = true;
+  elStatusT.textContent = "Em pausa";
+  elStatus.dataset.vivo = "0";
+  diag("Parei de tentar para não piorar o bloqueio. A captura de áudio continua de pé.");
+
+  const podeLocal = !cLocal.disabled && !usarLocal;
+  recado("erro",
+    "<b>Parei de tentar.</b> O serviço gratuito de reconhecimento do Google recusou os pedidos seguidamente, o que costuma ser limite de uso, não defeito da ferramenta. Continuar tentando só aumenta o bloqueio, então preferi parar." +
+    (podeLocal ? " O caminho que não depende dele é o <b>modo local</b>, que reconhece dentro do seu computador." : "") +
+    "<br><br><button type=\"button\" class=\"t-mini\" id=\"bRetomar\">Tentar de novo agora</button>" +
+    (podeLocal ? " <button type=\"button\" class=\"t-mini\" id=\"bLocalAgora\">Tentar no modo local</button>" : ""));
+
+  const bR = document.getElementById("bRetomar");
+  if (bR) bR.addEventListener("click", () => retomar(false));
+  const bL = document.getElementById("bLocalAgora");
+  if (bL) bL.addEventListener("click", () => retomar(true));
+}
+
+function retomar(comLocal) {
+  if (!ativo || !faixa || faixa.readyState !== "live") {
+    recado("dica", "A captura já foi encerrada. Clique em Capturar áudio para começar de novo.");
+    return;
+  }
+  pausado = false;
+  errosRede = 0;
+  pausado = false;
+  churn = 0;
+  recadoChurn = false;
+  limparRecado();
+  if (comLocal) { usarLocal = true; cLocal.checked = true; tentouNuvem = true; }
+  rec = novoReconhecimento();
+  abrirReconhecimento();
+  pintarEstado();
+  jaVeioAlgo = false;
+  armarVigia(14000);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -920,6 +1066,7 @@ async function comecar() {
   houveSom = false;
   tentouNuvem = false;
   errosRede = 0;
+  pausado = false;
   churn = 0;
   recadoChurn = false;
   inicio = Date.now();
@@ -942,6 +1089,7 @@ async function comecar() {
 
 function parar() {
   ativo = false;
+  pausado = false;
   clearTimeout(vigia);
   if (rec) { try { rec.abort(); } catch (e) {} }
   rodando = false;
@@ -987,7 +1135,9 @@ async function flutuar() {
   if (pip) { pip.focus(); return; }
 
   try {
-    pip = await documentPictureInPicture.requestWindow({ width: 520, height: 340 });
+    // Baixa e larga de propósito: assim ela lê como faixa de legenda, e não
+    // como um bloco de documento em cima do vídeo. Dá para redimensionar.
+    pip = await documentPictureInPicture.requestWindow({ width: 640, height: 150 });
   } catch (e) {
     recado("dica", "Não consegui abrir a janela flutuante. Tente clicar de novo.");
     return;
@@ -1009,15 +1159,81 @@ async function flutuar() {
     }
   });
 
-  pip.document.body.classList.add("t-pip");
-  pip.document.body.append(elCaixa);
-  bFlutuar.textContent = "Trazer de volta";
+  pip.document.body.innerHTML =
+    '<div class="t-leg">' +
+      '<div class="t-leg-barra">' +
+        '<button type="button" id="pAa">Aa</button>' +
+        '<button type="button" id="pFundo">Fundo</button>' +
+        '<div style="flex:1"></div>' +
+        '<button type="button" id="pFechar">Fechar</button>' +
+      '</div>' +
+      '<div class="t-leg-txt" id="legTxt"></div>' +
+    '</div>';
+
+  legTxt = pip.document.getElementById("legTxt");
+  pintarPip();
+
+  pip.document.getElementById("pAa").addEventListener("click", () => {
+    tamanho = tamanho % 3 + 1; pintarPip(); pintarTamanhoNaPagina(); desenharLegenda();
+  });
+  pip.document.getElementById("pFundo").addEventListener("click", () => {
+    fundoLeg = fundoLeg % 3 + 1; pintarPip(); desenharLegenda();
+  });
+  pip.document.getElementById("pFechar").addEventListener("click", () => pip.close());
+
+  bFlutuar.textContent = "Fechar legenda";
+  desenharLegenda();
 
   pip.addEventListener("pagehide", () => {
-    elAncora.append(elCaixa);
     bFlutuar.textContent = "Janela flutuante";
-    pip = null;
+    pip = null; legTxt = null;
   });
+}
+
+/* Aplica tamanho e fundo escolhidos no corpo da janela flutuante. */
+function pintarPip() {
+  if (!pip) return;
+  pip.document.body.className =
+    "t-pip t-f" + fundoLeg + (tamanho > 1 ? " t-tam" + tamanho : "");
+}
+
+/* A legenda mostra só o fim da fala. O texto inteiro continua na aba,
+   acumulando, para copiar ou baixar depois da apresentação. */
+function desenharLegenda() {
+  if (!legTxt) return;
+  const emPt = traduzindo();
+  const cauda = caudaParcial();
+  const viva = cauda ? (emPt && parcialPt ? parcialPt : cauda) : "";
+  let base = trechos.slice(-4).map(t => (emPt ? (t.pt || t.txt) : t.txt)).join(" ");
+
+  /* Legenda não rola nem acumula: mostra só o que cabe em umas três linhas,
+     e o que passou sai de cena. Quanto maior a letra, menos texto cabe.
+     O corte é feito no texto cru, antes de escapar, e sempre em palavra
+     inteira, para não deixar pedaço de palavra na tela. */
+  const orcamento = [190, 150, 110][tamanho - 1] - viva.length;
+  if (base.length > orcamento) {
+    base = base.slice(base.length - Math.max(0, orcamento));
+    const corte = base.indexOf(" ");
+    base = corte >= 0 ? base.slice(corte + 1) : base;
+  }
+
+  const escrever = () => {
+    let html = escapar(base);
+    if (viva) html += (html ? " " : "") + '<span class="t-leg-viva">' + escapar(viva) + "</span>";
+    legTxt.innerHTML = html || '<span class="t-leg-vazio">Esperando a fala começar…</span>';
+  };
+  escrever();
+
+  /* O orçamento acima é só um chute rápido. O ajuste fino é medido: enquanto
+     não couber, some com a palavra mais antiga. Assim funciona em qualquer
+     tamanho de janela, inclusive depois da pessoa redimensionar na mão. */
+  let volta = 30;
+  while (volta-- > 0 && legTxt.scrollHeight > legTxt.clientHeight + 2) {
+    const corte = base.indexOf(" ");
+    if (corte < 0) break;
+    base = base.slice(corte + 1);
+    escrever();
+  }
 }
 
 /* ══════════ botões ══════════ */
@@ -1107,11 +1323,16 @@ bFlutuar.addEventListener("click", () => { pip ? pip.close() : flutuar(); });
 
 /* Tamanho e fundo ficam na própria caixa, então viajam junto quando ela
    vai para a janela flutuante. */
-bTamanho.addEventListener("click", () => {
-  tamanho = tamanho % 3 + 1;
+function pintarTamanhoNaPagina() {
   elCaixa.classList.toggle("t-tam2", tamanho === 2);
   elCaixa.classList.toggle("t-tam3", tamanho === 3);
   bTamanho.textContent = ["Aa", "Aa+", "Aa++"][tamanho - 1];
+}
+
+bTamanho.addEventListener("click", () => {
+  tamanho = tamanho % 3 + 1;
+  pintarTamanhoNaPagina();
+  pintarPip();
 });
 
 bEscuro.addEventListener("click", () => {
