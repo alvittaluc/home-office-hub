@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Transcrição ao vivo — Home Office Hub</title>
+<meta name="description" content="Transcreva em tempo real o áudio que está tocando no seu navegador. Sem baixar arquivo, sem instalar nada.">
+
+<!-- Se o seu site ficar numa subpasta, ajuste estes dois endereços para o mesmo padrão das outras páginas. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Transcrição ao vivo — Home Office Hub">
+<meta property="og:description" content="Transcreva em tempo real o áudio que está tocando no seu navegador.">
+<meta property="og:url" content="https://alvittaluc.github.io/transcricao.html">
+<meta property="og:image" content="https://alvittaluc.github.io/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<!-- Se o estilo do site não estiver ao lado deste arquivo, marca a página para usar o visual de reserva. -->
+<link rel="stylesheet" href="estilo.css" onerror="document.documentElement.classList.add('t-solto')">
+
+<style>
+/* ── Visual de reserva: só entra em ação quando o estilo.css não é encontrado,
+      por exemplo se você abrir este arquivo sozinho para testar. ── */
+html.t-solto body {
+  font-family:'Geist',system-ui,sans-serif; background:#F7F4EF; color:#10203A;
+  line-height:1.55; margin:0;
+}
+html.t-solto .eyebrow {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:#1A4893;
+  display:flex; align-items:center; gap:9px; margin-bottom:14px;
+}
+html.t-solto .eyebrow::before { content:''; width:24px; height:1px; background:#1A4893; }
+
+/* ══════════════════════════════════════════════════════════════
+   TRANSCRIÇÃO AO VIVO — estilos só desta página.
+   Tudo com prefixo .t- para não esbarrar no estilo.css.
+   As cores vêm das variáveis do site; o valor depois da vírgula
+   é só uma rede de segurança caso a variável mude de nome.
+   ══════════════════════════════════════════════════════════════ */
+
+.t-main { max-width:var(--wrap,1180px); margin:0 auto; padding:52px 20px 100px; }
+
+/* ── topo ── */
+.t-hero { max-width:680px; margin-bottom:34px; }
+.t-hero h1 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(31px,4.2vw,50px); line-height:1.08; letter-spacing:-0.015em;
+  color:var(--ink,#10203A); margin:0 0 15px;
+}
+.t-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); }
+
+/* ── console ── */
+.t-console {
+  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
+  border-radius:20px; padding:20px 22px;
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.t-campo { display:flex; flex-direction:column; gap:6px; }
+.t-rot { font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3,#8A94A1); font-weight:600; }
+.t-sel {
+  font:inherit; font-size:15px; color:var(--ink,#10203A); background:var(--bg-soft,#F1ECE3);
+  border:1px solid var(--line,#DED7CA); border-radius:11px; padding:10px 34px 10px 13px;
+  cursor:pointer; appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%2354606F' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat:no-repeat; background-position:right 12px center;
+}
+.t-sel:disabled { opacity:.55; cursor:not-allowed; }
+
+.t-btn {
+  font:inherit; font-weight:600; font-size:15px; color:#FFFFFF;
+  background:var(--signal,#1A4893); border:0; border-radius:999px;
+  padding:13px 26px; cursor:pointer; transition:opacity .15s, transform .15s;
+  display:inline-flex; align-items:center; gap:9px; white-space:nowrap;
+}
+.t-btn:hover { opacity:.9; }
+.t-btn:active { transform:translateY(1px); }
+.t-btn[data-estado="on"] { background:var(--amber,#A85D24); }
+.t-btn:disabled { opacity:.45; cursor:not-allowed; }
+.t-btn svg { flex-shrink:0; }
+
+.t-espaco { flex:1 1 20px; }
+.t-local { align-self:center; }
+.t-instrucao {
+  flex-basis:100%; margin:2px 0 0; padding-top:15px;
+  border-top:1px solid var(--line-soft,#EAE4D9);
+  font-size:13.5px; line-height:1.6; color:var(--ink-2,#54606F);
+}
+.t-instrucao b { font-weight:600; color:var(--ink,#10203A); }
+.t-local.t-off { opacity:.45; cursor:not-allowed; }
+.t-local.t-off input { cursor:not-allowed; }
+
+/* status + medidor de nível */
+.t-status { display:flex; align-items:center; gap:10px; }
+.t-ponto { width:8px; height:8px; border-radius:50%; background:var(--ink-3,#8A94A1); flex-shrink:0; }
+.t-status[data-vivo="1"] .t-ponto { background:#2E9E5B; animation:t-pulso 1.6s ease-in-out infinite; }
+@keyframes t-pulso { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.45; transform:scale(.82); } }
+.t-status-txt { font-size:13.5px; color:var(--ink-2,#54606F); white-space:nowrap; }
+.t-nivel { width:96px; height:6px; border-radius:99px; background:var(--line-soft,#EAE4D9); overflow:hidden; flex-shrink:0; }
+.t-nivel i { display:block; height:100%; width:0; background:var(--signal-dim,#4E9AC8); border-radius:99px; transition:width .08s linear; }
+
+/* ── recados ── */
+.t-aviso { margin-top:14px; border-radius:14px; padding:13px 16px; font-size:14.5px; line-height:1.55; display:none; }
+.t-aviso.on { display:block; }
+.t-aviso.erro { background:#FBEFE6; border:1px solid #E7CBB1; color:#7C4419; }
+.t-aviso.dica { background:#EDF2FB; border:1px solid #CEDBF0; color:#163E7D; }
+.t-aviso b { font-weight:600; }
+
+/* ── caixa da transcrição ── */
+.t-caixa {
+  margin-top:16px; background:var(--panel,#FFFFFF);
+  border:1px solid var(--line,#DED7CA); border-radius:20px;
+  overflow:hidden; display:flex; flex-direction:column;
+}
+.t-barra {
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  padding:11px 14px; border-bottom:1px solid var(--line-soft,#EAE4D9);
+  background:var(--bg-soft,#F1ECE3);
+}
+.t-mini {
+  font:inherit; font-size:13px; color:var(--ink-2,#54606F);
+  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
+  border-radius:99px; padding:7px 14px; cursor:pointer; transition:color .15s, border-color .15s;
+}
+.t-mini:hover { color:var(--ink,#10203A); border-color:var(--ink-3,#8A94A1); }
+.t-mini:disabled { opacity:.4; cursor:not-allowed; }
+.t-check { display:flex; align-items:center; gap:7px; font-size:13px; color:var(--ink-2,#54606F); cursor:pointer; user-select:none; }
+.t-check input { width:15px; height:15px; accent-color:var(--signal,#1A4893); cursor:pointer; }
+.t-conta { font-size:12.5px; color:var(--ink-3,#8A94A1); white-space:nowrap; }
+
+.t-texto {
+  padding:26px 28px; min-height:330px; max-height:54vh; overflow-y:auto;
+  font-size:17px; line-height:1.78; color:var(--ink,#10203A);
+  white-space:pre-wrap; overflow-wrap:break-word;
+}
+.t-texto:focus-visible { outline:none; }
+.t-parcial { color:var(--ink-3,#8A94A1); }
+/* trecho que ainda está no original porque a tradução não voltou */
+.t-pendente { color:var(--ink-3,#8A94A1); }
+.t-hora { color:var(--ink-3,#8A94A1); font-size:13.5px; }
+.t-vazio { color:var(--ink-3,#8A94A1); font-size:16px; line-height:1.7; }
+
+/* ── tamanho do texto, para ler de longe enquanto assiste ── */
+.t-caixa.t-tam2 .t-texto { font-size:21px; line-height:1.68; }
+.t-caixa.t-tam3 .t-texto { font-size:26px; line-height:1.58; }
+
+/* ── fundo escuro, para não ofuscar ao lado de um vídeo ── */
+.t-caixa.t-escuro { background:#0F1D33; border-color:#26354F; }
+.t-caixa.t-escuro .t-barra { background:#152441; border-bottom-color:#26354F; }
+.t-caixa.t-escuro .t-mini { background:#1D3053; border-color:#32445F; color:#C6D2E4; }
+.t-caixa.t-escuro .t-mini:hover { color:#FFFFFF; border-color:#5B7099; }
+.t-caixa.t-escuro .t-check { color:#C6D2E4; }
+.t-caixa.t-escuro .t-conta { color:#7E8DA6; }
+.t-caixa.t-escuro .t-texto { color:#F1F5FB; }
+.t-caixa.t-escuro .t-parcial,
+.t-caixa.t-escuro .t-pendente,
+.t-caixa.t-escuro .t-hora,
+.t-caixa.t-escuro .t-vazio { color:#8C9BB5; }
+
+/* ── janela flutuante ── */
+body.t-pip { margin:0; background:var(--bg,#F7F4EF); }
+body.t-pip:has(.t-escuro) { background:#0F1D33; }
+body.t-pip header.site, body.t-pip footer.site { display:none; }
+body.t-pip .t-caixa { margin:0; border:0; border-radius:0; height:100vh; }
+body.t-pip .t-barra { padding:9px 11px; gap:6px; }
+body.t-pip .t-mini { padding:5px 11px; font-size:12.5px; }
+body.t-pip .t-check { font-size:12.5px; }
+body.t-pip #bBaixar, body.t-pip .t-conta, body.t-pip .t-check { display:none; }
+body.t-pip .t-caixa.t-tam2 .t-texto { font-size:20px; line-height:1.62; }
+body.t-pip .t-caixa.t-tam3 .t-texto { font-size:25px; line-height:1.52; }
+body.t-pip .t-texto { min-height:0; max-height:none; flex:1; font-size:16px; line-height:1.7; padding:16px 18px; }
+
+/* ── passo a passo ── */
+.t-passos { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:56px; }
+.t-passo {
+  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
+  border-radius:18px; padding:22px 22px 24px;
+}
+.t-num {
+  width:27px; height:27px; border-radius:50%; background:var(--signal,#1A4893); color:#FFFFFF;
+  display:grid; place-items:center; font-size:13px; font-weight:600; margin-bottom:13px;
+}
+.t-passo h3 { font-size:16px; font-weight:600; color:var(--ink,#10203A); margin:0 0 7px; letter-spacing:-0.01em; }
+.t-passo p { font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F); margin:0; }
+.t-marca { background:#FBF3D9; box-shadow:0 0 0 3px #FBF3D9; border-radius:2px; color:var(--ink,#10203A); font-weight:500; }
+
+/* ── notas ── */
+.t-notas { margin-top:52px; padding-top:34px; border-top:1px solid var(--line,#DED7CA); display:grid; grid-template-columns:repeat(3,1fr); gap:34px; }
+.t-nota h4 { font-size:14.5px; font-weight:600; color:var(--ink,#10203A); margin:0 0 8px; }
+.t-nota p { font-size:14px; line-height:1.65; color:var(--ink-2,#54606F); margin:0; }
+
+@media (max-width:900px){
+  .t-passos, .t-notas { grid-template-columns:1fr; gap:16px; }
+  .t-notas { gap:24px; }
+  .t-main { padding-top:36px; }
+  .t-console { padding:18px; }
+  .t-espaco { display:none; }
+  .t-status { width:100%; }
+}
+</style>
+</head>
+<body>
+
+<main class="t-main">
+
+  <section class="t-hero">
+    <div class="eyebrow">Ferramentas</div>
+    <h1>Transcrição ao vivo</h1>
+    <p class="t-lead">
+      Transcreve o áudio que já está tocando no computador, enquanto toca. Serve para tarefa
+      que não deixa baixar o arquivo, e para acompanhar reunião ou apresentação em outro idioma:
+      você libera uma vez, no começo, continua ouvindo normalmente e o texto vai aparecendo,
+      no idioma original ou já traduzido para o português. Nada é enviado para o Home Office Hub.
+    </p>
+  </section>
+
+  <!-- ── console ── -->
+  <div class="t-console">
+    <div class="t-campo">
+      <label class="t-rot" for="fonte">O que ouvir</label>
+      <select class="t-sel" id="fonte">
+        <option value="tudo">Tudo do computador</option>
+        <option value="aba">Só uma aba</option>
+      </select>
+    </div>
+
+    <div class="t-campo">
+      <label class="t-rot" for="idioma">Idioma do áudio</label>
+      <select class="t-sel" id="idioma">
+        <option value="en-US">Inglês</option>
+        <option value="pt-BR">Português</option>
+      </select>
+    </div>
+
+    <div class="t-campo">
+      <label class="t-rot" for="saida">Mostrar</label>
+      <select class="t-sel" id="saida">
+        <option value="orig">No idioma original</option>
+        <option value="pt">Traduzido para português</option>
+      </select>
+    </div>
+
+    <button class="t-btn" id="acionar" data-estado="off">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 1.5a2.2 2.2 0 0 0-2.2 2.2v4.4a2.2 2.2 0 0 0 4.4 0V3.7A2.2 2.2 0 0 0 8 1.5Z" fill="currentColor"/>
+        <path d="M3.4 7.3v.8a4.6 4.6 0 0 0 9.2 0v-.8M8 12.7v1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span id="acionarTxt">Capturar áudio</span>
+    </button>
+
+    <label class="t-check t-local" id="wrapLocal">
+      <input type="checkbox" id="cLocal"> Processar no meu computador
+    </label>
+
+    <div class="t-espaco"></div>
+
+    <div class="t-status" id="status" data-vivo="0">
+      <span class="t-ponto"></span>
+      <span class="t-status-txt" id="statusTxt">Parado</span>
+      <span class="t-nivel"><i id="nivel"></i></span>
+    </div>
+
+    <p class="t-instrucao" id="instrucao"></p>
+  </div>
+
+  <div class="t-aviso" id="aviso"></div>
+
+  <!-- ── caixa da transcrição (esta é a parte que vai para a janela flutuante) ── -->
+  <div id="ancora">
+    <div class="t-caixa" id="caixa">
+      <div class="t-barra">
+        <button class="t-mini" id="bCopiar" disabled>Copiar</button>
+        <button class="t-mini" id="bBaixar" disabled>Baixar .txt</button>
+        <button class="t-mini" id="bLimpar" disabled>Limpar</button>
+        <button class="t-mini" id="bFlutuar">Janela flutuante</button>
+        <button class="t-mini" id="bTamanho" title="Tamanho do texto">Aa</button>
+        <button class="t-mini" id="bEscuro" title="Fundo escuro, melhor ao lado de vídeo">Escuro</button>
+        <label class="t-check"><input type="checkbox" id="cHora"> Marcar o tempo</label>
+        <div class="t-espaco"></div>
+        <span class="t-conta" id="conta">0 palavras</span>
+      </div>
+      <div class="t-texto" id="texto">
+        <span class="t-vazio" id="vazio">A transcrição aparece aqui assim que o áudio começar a tocar.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── passo a passo ── -->
+  <div class="t-passos">
+    <div class="t-passo">
+      <div class="t-num">1</div>
+      <h3>Uma vez no começo do dia</h3>
+      <p>Deixe em <span class="t-marca">Tudo do computador</span> e escolha a tela inteira. Feito isso, a ferramenta passa a ouvir todas as abas e qualquer programa que tocar, sem perguntar mais nada até você mandar parar.</p>
+    </div>
+    <div class="t-passo">
+      <div class="t-num">2</div>
+      <h3>Marque a caixinha do áudio</h3>
+      <p>É o passo que todo mundo esquece. Na janela de seleção do Chrome, marque <span class="t-marca">Também compartilhar o áudio do sistema</span>, no canto de baixo. Sem ela só vai a imagem, e não há o que transcrever.</p>
+    </div>
+    <div class="t-passo">
+      <div class="t-num">3</div>
+      <h3>Volte para a tarefa</h3>
+      <p>Abra a janela flutuante e volte a trabalhar. Ela fica por cima de tudo, com o texto correndo, e você continua ouvindo o áudio normalmente pelo fone ou pela caixa de som.</p>
+    </div>
+  </div>
+
+  <!-- ── notas ── -->
+  <div class="t-notas">
+    <div class="t-nota">
+      <h4>Precisa do Chrome atualizado</h4>
+      <p>A ferramenta usa o reconhecimento de voz do próprio navegador. Funciona no Chrome e no Edge, da versão 135 em diante. No Firefox e no Safari não funciona.</p>
+    </div>
+    <div class="t-nota">
+      <h4>Para onde vai o áudio</h4>
+      <p>Por padrão o trecho é reconhecido pelo serviço do Google, o mesmo que o Chrome usa no ditado. A tradução, quando ligada, roda sempre dentro do seu computador. O modo local faz o mesmo com o reconhecimento, mas ainda é recente no Chrome e falha em algumas máquinas: se ficar mudo, a ferramenta volta sozinha para o modo normal.</p>
+    </div>
+    <div class="t-nota">
+      <h4>É um apoio, não uma entrega</h4>
+      <p>O resultado ajuda a acompanhar e conferir, mas não vem com pontuação confiável nem separação de quem fala. Confira antes de usar, e respeite as regras da plataforma em que você trabalha.</p>
+    </div>
+  </div>
+
+</main>
+
+<script src="layout.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════════
+   TRANSCRIÇÃO AO VIVO
+   Pega o áudio da aba ou da tela pelo getDisplayMedia, entrega a
+   faixa de áudio para o reconhecimento de voz do navegador e vai
+   escrevendo o resultado na tela.
+   ══════════════════════════════════════════════════════════════ */
+
+/* O cabeçalho e o rodapé vêm do layout.js. Se ele não estiver ao lado deste
+   arquivo, a ferramenta continua funcionando sem eles, em vez de parar tudo. */
+try { montarLayout("ferramentas"); } catch (e) {}
+
+const RECONHECIMENTO = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+/* ── atalhos de tela ── */
+const elAcionar  = document.getElementById("acionar");
+const elAcionarT = document.getElementById("acionarTxt");
+const elIdioma   = document.getElementById("idioma");
+const elFonte    = document.getElementById("fonte");
+const elInstr    = document.getElementById("instrucao");
+const elSaida    = document.getElementById("saida");
+const elStatus   = document.getElementById("status");
+const elStatusT  = document.getElementById("statusTxt");
+const elNivel    = document.getElementById("nivel");
+const elAviso    = document.getElementById("aviso");
+const elCaixa    = document.getElementById("caixa");
+const elAncora   = document.getElementById("ancora");
+const elTexto    = document.getElementById("texto");
+const elConta    = document.getElementById("conta");
+const elHora     = document.getElementById("cHora");
+const cLocal     = document.getElementById("cLocal");
+const wrapLocal  = document.getElementById("wrapLocal");
+const bCopiar    = document.getElementById("bCopiar");
+const bBaixar    = document.getElementById("bBaixar");
+const bLimpar    = document.getElementById("bLimpar");
+const bFlutuar   = document.getElementById("bFlutuar");
+const bTamanho   = document.getElementById("bTamanho");
+const bEscuro    = document.getElementById("bEscuro");
+let tamanho = 1, escuro = false;
+
+/* ── estado ── */
+let fluxo = null;        // MediaStream devolvido pelo Chrome
+let faixa = null;        // faixa de áudio de dentro dele
+let rec = null;          // objeto de reconhecimento
+let ativo = false;       // o usuário pediu para gravar
+let rodando = false;     // o reconhecimento está de fato aberto
+let contexto = null;     // AudioContext só para o medidor de nível
+let quadro = 0;          // id do requestAnimationFrame
+let trechos = [];        // [{ t:segundos, txt:"..." }] já finalizados
+let parcial = "";        // trecho ainda sendo reconhecido
+let inicio = 0;          // Date.now() de quando a captura começou
+let marcaTrecho = 0;     // segundo em que o trecho atual começou
+let churn = 0;           // reaberturas seguidas que morreram na hora e sem nada
+let ultimoInicio = 0;    // quando o reconhecimento abriu pela última vez
+let houveResultado = false; // veio algum resultado desde a última abertura
+let recadoChurn = false; // o aviso na tela é sobre reaberturas
+let vigia = 0;           // watchdog: avisa se nada for reconhecido
+let jaVeioAlgo = false;
+let houveSom = false;    // o medidor de nível já viu áudio chegando
+let tentouNuvem = false; // já caiu do modo local para o normal nesta captura
+let errosRede = 0;       // recusas seguidas do serviço de reconhecimento
+let pip = null;
+let usarLocal = false;   // reconhecimento sem sair do computador
+let tradutor = null;     // tradutor do próprio Chrome, roda offline
+let tradutorPar = "";    // par de idiomas do tradutor que está carregado
+let comprometidas = 0;   // palavras da fala atual já promovidas a trecho
+let parcialPt = "";      // tradução provisória do rabicho que ainda não fechou
+let parcialPtDe = "";    // texto que gerou essa tradução provisória
+let ultimaParcialPt = 0; // quando o rabicho foi traduzido pela última vez
+let ocupadoParcial = false;
+
+/* Quanto o rabicho pode crescer antes de ser cortado à força, e quantas
+   palavras do fim ficam de fora do corte. O reconhecimento ainda reescreve
+   as últimas palavras, então cortar em cima delas produziria texto errado. */
+const MAX_PALAVRAS = 14;
+const MARGEM = 5;
+const INTERVALO_PARCIAL = 1500;
+
+/* ══════════════════════════════════════════════════════════════
+   AS DUAS FONTES DE ÁUDIO
+
+   "tudo" pede a tela inteira com o som do sistema: pega todas as abas
+   do Chrome de uma vez, mais qualquer programa tocando. Uma escolha
+   só, no começo do expediente, e não pergunta mais nada.
+
+   "aba" pega uma aba específica, útil quando você quer ignorar o resto.
+
+   O navegador não deixa o site escolher sozinho: a janela de seleção é
+   obrigatória, sempre. O que dá para fazer é abri-la já na opção certa,
+   e é isso que os campos abaixo fazem.
+   ══════════════════════════════════════════════════════════════ */
+const FONTES = {
+  tudo: {
+    pedido: {
+      video: { displaySurface: "monitor", frameRate: 1 },
+      audio: true,
+      systemAudio: "include",
+      monitorTypeSurfaces: "include",
+      selfBrowserSurface: "exclude"
+    },
+    caixa: "Também compartilhar o áudio do sistema",
+    instrucao: 'Na janela que abrir, fique em <b>Tela inteira</b>, clique na miniatura da tela e marque <b>Também compartilhar o áudio do sistema</b>. A partir daí ele ouve todas as abas e qualquer programa, até você mandar parar.'
+  },
+  aba: {
+    pedido: {
+      video: { displaySurface: "browser", frameRate: 1 },
+      audio: true,
+      systemAudio: "exclude",
+      selfBrowserSurface: "exclude",
+      surfaceSwitching: "include"
+    },
+    caixa: "Também compartilhar o áudio da aba",
+    instrucao: 'Na janela que abrir, fique em <b>Aba do Chrome</b>, escolha a aba da tarefa e marque <b>Também compartilhar o áudio da aba</b>. Depois dá para trocar de aba pelo botão que o Chrome mostra na barra de compartilhamento.'
+  }
+};
+
+function fonteAtual() { return FONTES[elFonte.value] || FONTES.tudo; }
+
+function pintarInstrucao() { elInstr.innerHTML = fonteAtual().instrucao; }
+
+/* ══════════ recados ══════════ */
+function recado(tipo, html) {
+  elAviso.className = "t-aviso on " + tipo;
+  elAviso.innerHTML = html;
+}
+function limparRecado() {
+  elAviso.className = "t-aviso";
+  elAviso.innerHTML = "";
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TRADUÇÃO
+
+   Usa o tradutor embutido do Chrome (Translator API, da versão 138).
+   Roda dentro do computador, de graça, sem chave e sem servidor: na
+   primeira vez o navegador baixa o pacote do par de idiomas e depois
+   funciona até offline.
+
+   Cada trecho guarda as duas versões, o original em .txt e a tradução
+   em .pt. Trocar o campo "Mostrar" só muda o que é desenhado, não
+   refaz nada. Enquanto a tradução de um trecho não volta, ele aparece
+   no original, em cinza.
+   ══════════════════════════════════════════════════════════════ */
+function codigoCurto(lang) { return (lang || "").split("-")[0]; }
+
+function traduzindo() {
+  return elSaida.value === "pt" && codigoCurto(elIdioma.value) !== "pt";
+}
+
+async function prepararTradutor() {
+  if (!("Translator" in self)) return false;
+  const de = codigoCurto(elIdioma.value), para = "pt";
+  if (de === para) return false;
+  const par = de + ">" + para;
+  if (tradutor && tradutorPar === par) return true;
+
+  try {
+    const st = await Translator.availability({ sourceLanguage: de, targetLanguage: para });
+    if (st === "unavailable") return false;
+    if (st !== "available") recado("dica", "Preparando a tradução. O navegador está baixando o pacote de idiomas, o que acontece uma vez só.");
+
+    tradutor = await Translator.create({
+      sourceLanguage: de,
+      targetLanguage: para,
+      monitor(m) {
+        m.addEventListener("downloadprogress", ev => {
+          recado("dica", "Baixando o pacote de tradução: " + Math.round((ev.loaded || 0) * 100) + "%. Acontece uma vez só.");
+        });
+      }
+    });
+    tradutorPar = par;
+    limparRecado();
+    return true;
+  } catch (e) {
+    tradutor = null; tradutorPar = "";
+    return false;
+  }
+}
+
+/* ── O rabicho: a parte da fala que ainda não virou trecho ── */
+function caudaParcial() {
+  const palavras = parcial.trim().split(/\s+/).filter(Boolean);
+  return palavras.slice(comprometidas).join(" ");
+}
+
+function zerarParcialPt() { parcialPt = ""; parcialPtDe = ""; }
+
+/* Corta a fala em pedaços sem esperar a pausa. Prefere fim de frase; se a
+   pessoa não pontua nem respira, corta pelo tamanho. Só age quando a
+   tradução está ligada, porque no idioma original o texto já aparece na hora. */
+function fatiarParcial() {
+  const palavras = parcial.trim().split(/\s+/).filter(Boolean);
+  const restantes = palavras.slice(comprometidas);
+  if (!restantes.length) return;
+
+  let corte = -1;
+  for (let i = restantes.length - 1 - MARGEM; i >= 0; i--) {
+    if (/[.!?…]["')\]]?$/.test(restantes[i])) { corte = i + 1; break; }
+  }
+  if (corte < 0 && restantes.length > MAX_PALAVRAS) corte = restantes.length - MARGEM;
+  if (corte <= 0) return;
+
+  const pedaco = restantes.slice(0, corte).join(" ");
+  comprometidas += corte;
+  const item = { t: marcaTrecho, txt: pedaco, pt: null };
+  trechos.push(item);
+  traduzirTrecho(item);
+  marcaTrecho = (Date.now() - inicio) / 1000;
+  zerarParcialPt();
+}
+
+/* Traduz o rabicho de tempos em tempos, para o fim da frase também aparecer
+   em português antes de fechar. Uma tradução por vez, e só se o texto mudou.
+
+   NÃO usa setTimeout de propósito: numa aba de segundo plano o Chrome estica
+   os timers para um por minuto, e a tradução ficaria congelada justamente
+   quando a pessoa está assistindo em outra aba. Em vez disso, olha o relógio
+   a cada resultado do reconhecimento, que vem do áudio e não é estrangulado. */
+function talvezTraduzirParcial() {
+  if (!traduzindo() || ocupadoParcial) return;
+  const agora = Date.now();
+  if (agora - ultimaParcialPt < INTERVALO_PARCIAL) return;
+
+  const cauda = caudaParcial();
+  if (!cauda || cauda === parcialPtDe || cauda.split(/\s+/).length < 3) return;
+
+  ultimaParcialPt = agora;
+  ocupadoParcial = true;
+  (async () => {
+    try {
+      if (tradutor || await prepararTradutor()) {
+        const saida = await tradutor.translate(cauda);
+        if (caudaParcial() === cauda && saida) { parcialPt = saida.trim(); parcialPtDe = cauda; desenhar(); }
+      }
+    } catch (e) { /* deixa no original */ }
+    ocupadoParcial = false;
+  })();
+}
+
+async function traduzirTrecho(item) {
+  if (!tradutor && !(await prepararTradutor())) return;
+  try {
+    const saida = await tradutor.translate(item.txt);
+    if (saida) { item.pt = saida.trim(); desenhar(); }
+  } catch (e) { /* falhou, o trecho fica no original */ }
+}
+
+/* ══════════ desenho da transcrição ══════════ */
+function mmss(seg) {
+  const m = Math.floor(seg / 60), s = Math.floor(seg % 60);
+  return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+}
+
+function escapar(s) {
+  return (s || "").replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+}
+
+function desenhar() {
+  const grudado = elTexto.scrollHeight - elTexto.scrollTop - elTexto.clientHeight < 60;
+
+  if (!trechos.length && !parcial) {
+    elTexto.innerHTML = '<span class="t-vazio">' +
+      (ativo ? "Ouvindo. O texto começa a aparecer nos primeiros segundos de fala."
+             : "A transcrição aparece aqui assim que o áudio começar a tocar.") +
+      "</span>";
+  } else {
+    const comHora = elHora.checked;
+    const emPt = traduzindo();
+    let html = trechos.map(t => {
+      const hora = comHora ? '<span class="t-hora">[' + mmss(t.t) + "] </span>" : "";
+      const corpo = escapar(emPt ? (t.pt || t.txt) : t.txt);
+      // ainda esperando a tradução: mostra o original em cinza, para não ficar buraco
+      return hora + (emPt && !t.pt ? '<span class="t-pendente">' + corpo + "</span>" : corpo);
+    }).join(comHora ? "\n" : " ");
+    const cauda = caudaParcial();
+    if (cauda) {
+      html += (html ? (comHora ? "\n" : " ") : "") +
+        (comHora ? '<span class="t-hora">[' + mmss(marcaTrecho) + "] </span>" : "") +
+        '<span class="t-parcial">' + escapar(emPt && parcialPt ? parcialPt : cauda) + "</span>";
+    }
+    elTexto.innerHTML = html;
+  }
+
+  if (grudado) elTexto.scrollTop = elTexto.scrollHeight;
+
+  const cru = textoCru();
+  const n = cru.trim() ? cru.trim().split(/\s+/).length : 0;
+  elConta.textContent = n + (n === 1 ? " palavra" : " palavras");
+
+  const temAlgo = trechos.length > 0;
+  bCopiar.disabled = bBaixar.disabled = bLimpar.disabled = !temAlgo;
+}
+
+function textoCru() {
+  const comHora = elHora.checked, emPt = traduzindo();
+  return trechos
+    .map(t => (comHora ? "[" + mmss(t.t) + "] " : "") + (emPt ? (t.pt || t.txt) : t.txt))
+    .join(comHora ? "\n" : " ");
+}
+
+/* ══════════ medidor de nível ══════════ */
+function ligarMedidor() {
+  try {
+    contexto = new (window.AudioContext || window.webkitAudioContext)();
+    const fonte = contexto.createMediaStreamSource(new MediaStream([faixa]));
+    const analise = contexto.createAnalyser();
+    analise.fftSize = 512;
+    fonte.connect(analise); // de propósito não conecta na saída: o som já sai pela aba original
+    const dados = new Uint8Array(analise.frequencyBinCount);
+
+    (function passo() {
+      quadro = requestAnimationFrame(passo);
+      analise.getByteFrequencyData(dados);
+      let soma = 0;
+      for (let i = 0; i < dados.length; i++) soma += dados[i];
+      const media = soma / dados.length;
+      if (media > 4) houveSom = true; // serve para o diagnóstico lá embaixo
+      elNivel.style.width = Math.min(100, media * 2.4) + "%";
+    })();
+  } catch (e) { /* medidor é enfeite, se falhar segue o jogo */ }
+}
+
+function desligarMedidor() {
+  if (quadro) cancelAnimationFrame(quadro), quadro = 0;
+  if (contexto) { try { contexto.close(); } catch (e) {} contexto = null; }
+  elNivel.style.width = "0";
+}
+
+/* ══════════ reconhecimento ══════════ */
+function novoReconhecimento() {
+  const r = new RECONHECIMENTO();
+  r.lang = elIdioma.value;
+  r.continuous = true;
+  r.interimResults = true;
+  r.maxAlternatives = 1;
+  // Só a propriedade que o Chrome realmente implementa. Mexer no "options"
+  // do rascunho da especificação atrapalhava mais do que ajudava.
+  if (usarLocal) { try { r.processLocally = true; } catch (e) {} }
+
+  r.onstart = () => {
+    rodando = true; ultimoInicio = Date.now(); houveResultado = false;
+    diag("Reconhecimento aberto, esperando alguém falar.");
+  };
+
+  r.onresult = (ev) => {
+    jaVeioAlgo = true;
+    houveResultado = true;
+    churn = 0;
+    errosRede = 0;
+    diag("Reconhecendo normalmente." + (usarLocal ? " Modo local." : ""));
+    let novoParcial = "";
+    for (let i = ev.resultIndex; i < ev.results.length; i++) {
+      const t = ev.results[i][0].transcript;
+      if (ev.results[i].isFinal) {
+        // O resultado final traz a fala inteira, inclusive os pedaços que já
+        // foram cortados no caminho. Aqui fica só o que ainda não entrou.
+        const palavras = t.trim().split(/\s+/).filter(Boolean);
+        const resto = palavras.slice(comprometidas).join(" ");
+        if (resto) {
+          const item = { t: marcaTrecho, txt: resto, pt: null };
+          trechos.push(item);
+          if (traduzindo()) traduzirTrecho(item);
+        }
+        comprometidas = 0;
+        zerarParcialPt();
+        marcaTrecho = (Date.now() - inicio) / 1000;
+      } else {
+        novoParcial += t;
+      }
+    }
+    if (!parcial && novoParcial) marcaTrecho = (Date.now() - inicio) / 1000;
+    parcial = novoParcial;
+    if (traduzindo()) { fatiarParcial(); talvezTraduzirParcial(); }
+    desenhar();
+  };
+
+  r.onerror = (ev) => {
+    if (ev.error === "no-speech" || ev.error === "aborted") return; // normal, o onend reabre
+    diag("Aviso do reconhecimento: <b>" + escapar(ev.error) + "</b>.");
+    if (ev.error === "not-allowed" || ev.error === "service-not-allowed") {
+      recado("erro", "<b>O Chrome bloqueou o reconhecimento de voz.</b> Abra o cadeado ao lado do endereço, libere o microfone para este site e tente de novo.");
+      parar();
+    } else if (ev.error === "network") {
+      /* "network" quase nunca é a internet da pessoa. É o serviço gratuito do
+         Google recusando o pedido. Reclamar já na primeira vez manda a pessoa
+         caçar problema no lugar errado, e continuar tentando na mesma
+         velocidade só piora. Então: espaça as tentativas e só fala depois de
+         insistir. */
+      errosRede++;
+      churn = Math.max(churn, errosRede >= 3 ? 12 : 5);
+      diag("O serviço de reconhecimento recusou o pedido (" + errosRede + "x). Tentando de novo, mais devagar.");
+      if (errosRede === 3) {
+        recadoChurn = true;
+        if (location.protocol === "file:") {
+          recado("erro", "<b>O serviço de reconhecimento recusou a conexão.</b> Costuma ser porque a página foi aberta direto da pasta, e assim ela não tem um endereço de verdade para se identificar. Suba o arquivo no site e teste por lá.");
+        } else {
+          recado("erro", "<b>O serviço de reconhecimento recusou a conexão.</b> Normalmente não é a sua internet: o serviço gratuito do Google segura o ritmo quando recebe muitos pedidos seguidos, o que acontece fácil durante testes. A captura continua de pé e ele segue tentando, mais devagar. Se insistir, espere alguns minutos.");
+        }
+      }
+    } else if (ev.error === "language-not-supported") {
+      recado("erro", "<b>Este idioma não está disponível no seu Chrome.</b> Tente o outro idioma da lista.");
+      parar();
+    } else {
+      recado("erro", "Algo deu errado no reconhecimento (<b>" + escapar(ev.error) + "</b>). Pare e comece de novo.");
+    }
+  };
+
+  r.onend = () => {
+    rodando = false;
+    if (!ativo) return;
+    if (!faixa || faixa.readyState !== "live") { parar(); return; }
+
+    /* Reabrir é o normal, não é defeito: o reconhecimento fecha depois de cada
+       trecho reconhecido e depois de silêncio longo. Os dois casos são sadios.
+
+       O caso ruim é abrir e morrer em menos de um segundo sem reconhecer nada,
+       várias vezes seguidas. Aí é o serviço segurando o ritmo. Mesmo assim a
+       captura NÃO é encerrada: derrubar tudo obrigaria a pessoa a refazer a
+       liberação de tela. Só espaçamos as tentativas até ele voltar sozinho. */
+    const morreuNaHora = Date.now() - ultimoInicio < 800;
+    churn = (!houveResultado && morreuNaHora) ? churn + 1 : 0;
+
+    let espera = 0;
+    if (churn >= 5)  espera = 500;
+    if (churn >= 12) espera = 2000;
+    if (churn >= 25) espera = 5000;
+
+    if (churn === 12) {
+      recadoChurn = true;
+      recado("dica", "O reconhecimento está reabrindo muitas vezes seguidas, o que costuma ser o serviço do Google segurando o ritmo. A captura continua de pé e ele segue tentando sozinho. Costuma voltar em alguns segundos.");
+    } else if (churn === 30) {
+      recadoChurn = true;
+      recado("erro", "<b>O reconhecimento não está conseguindo abrir.</b> A captura continua de pé, então não precisa refazer a liberação de tela. Se não voltar em alguns minutos, pare e comece de novo, ou ligue o modo local, que não depende de servidor.");
+    } else if (churn === 0 && recadoChurn) {
+      recadoChurn = false;
+      limparRecado(); // voltou ao normal, tira o aviso da tela
+    }
+
+    /* Sem espera, reabre na hora e sem setTimeout: numa aba de segundo plano o
+       Chrome estica timers para um por minuto, e a transcrição pararia a cada
+       silêncio, justamente quando a pessoa está assistindo em outra aba. */
+    if (espera) {
+      setTimeout(() => { if (ativo && !rodando) abrirReconhecimento(); }, espera);
+    } else if (!abrirReconhecimento()) {
+      setTimeout(() => { if (ativo && !rodando) abrirReconhecimento(); }, 200);
+    }
+  };
+
+  return r;
+}
+
+function abrirReconhecimento() {
+  try {
+    rec.start(faixa);
+    rodando = true;
+    return true;
+  } catch (e) {
+    if (e && e.name === "InvalidStateError") return false; // ainda fechando, tenta de novo
+    recado("erro", "<b>Seu Chrome não aceita transcrever o áudio da aba.</b> Esse recurso chegou na versão 135. Atualize o navegador em Menu, Ajuda, Sobre o Google Chrome, e tente outra vez.");
+    parar();
+    return true; // não adianta insistir
+  }
+}
+
+/* ══════════ modo local (o áudio não sai do computador) ══════════ */
+async function estadoLocal(lang) {
+  if (!RECONHECIMENTO || typeof RECONHECIMENTO.available !== "function") return "sem-suporte";
+  try { return await RECONHECIMENTO.available({ langs: [lang], processLocally: true }); }
+  catch (e) { return "sem-suporte"; }
+}
+
+async function prepararLocal() {
+  const lang = elIdioma.value;
+  let st = await estadoLocal(lang);
+  if (st === "sem-suporte" || st === "unavailable") return false;
+  if (st === "downloadable" || st === "downloading") {
+    recado("dica", "Baixando o pacote de voz para o seu computador. Isso acontece uma vez só e pode levar alguns minutos.");
+    try { if (await RECONHECIMENTO.install({ langs: [lang], processLocally: true })) st = "available"; }
+    catch (e) {}
+  }
+  return st === "available";
+}
+
+/* ══════════════════════════════════════════════════════════════
+   VIGIA: nada reconhecido depois de um tempo
+
+   Com o medidor de nível dá para separar dois casos que pareciam iguais:
+   som não está chegando, ou som chega e o reconhecimento não devolve nada.
+
+   O segundo caso, hoje, quase sempre é o modo local. O reconhecimento
+   dentro do computador ainda é novo e tem defeitos abertos no Chromium:
+   ele diz que está disponível, aceita abrir e simplesmente nunca devolve
+   resultado. Quando isso acontece a ferramenta troca sozinha para o modo
+   normal em vez de deixar a pessoa olhando para uma tela parada.
+   ══════════════════════════════════════════════════════════════ */
+function armarVigia(ms) {
+  clearTimeout(vigia);
+  vigia = setTimeout(() => {
+    if (!ativo || jaVeioAlgo) return;
+
+    if (!houveSom) {
+      recado("dica", "Ainda não chegou som nenhum aqui. Confira se o áudio está mesmo tocando e se você marcou a caixinha de compartilhar o áudio na janela de seleção. A barrinha de nível, aqui em cima, tem que se mexer.");
+      return;
+    }
+
+    // O erro de rede já se explicou sozinho, não adianta chutar outra causa.
+    if (errosRede > 0) return;
+
+    if (usarLocal && !tentouNuvem) {
+      tentouNuvem = true;
+      cairParaNuvem();
+      recado("dica", "O som está chegando, mas o <b>modo local</b> não devolveu nada. Esse recurso ainda é novo no Chrome e falha calado em algumas máquinas. Desliguei ele e continuei no modo normal, sem interromper a captura.");
+      armarVigia(14000);
+      return;
+    }
+
+    recado("dica", "O som está chegando, mas nada foi reconhecido ainda. Na maioria das vezes é o idioma: confira se o campo <b>Idioma do áudio</b> é mesmo o que está sendo falado. Fala muito baixa ou música por cima também atrapalham.");
+  }, ms);
+}
+
+/* Refaz o reconhecimento sem o modo local, aproveitando a mesma captura,
+   para a pessoa não ter que liberar a tela outra vez. */
+function cairParaNuvem() {
+  usarLocal = false;
+  cLocal.checked = false;
+  try { if (rec) { rec.onend = null; rec.onerror = null; rec.abort(); } } catch (e) {}
+  rodando = false;
+  churn = 0;
+  rec = novoReconhecimento();
+  abrirReconhecimento();
+  pintarEstado();
+}
+
+/* ══════════ começar e parar ══════════ */
+async function comecar() {
+  limparRecado();
+
+  if (!RECONHECIMENTO) {
+    recado("erro", "<b>Este navegador não tem reconhecimento de voz.</b> A ferramenta funciona no Chrome e no Edge.");
+    return;
+  }
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+    recado("erro", "<b>Este navegador não deixa capturar o áudio de uma aba.</b> Use o Chrome ou o Edge no computador.");
+    return;
+  }
+
+  const fonte = fonteAtual();
+  try {
+    fluxo = await navigator.mediaDevices.getDisplayMedia(fonte.pedido);
+  } catch (e) {
+    if (e && (e.name === "NotAllowedError" || e.name === "AbortError")) {
+      recado("dica", "Captura cancelada. Clique de novo e siga a instrução do quadro acima.");
+      return;
+    }
+    // Chrome antigo pode não entender algum dos ajustes finos. Tenta o pedido simples.
+    try {
+      fluxo = await navigator.mediaDevices.getDisplayMedia({ video: { frameRate: 1 }, audio: true });
+    } catch (e2) {
+      if (e2 && (e2.name === "NotAllowedError" || e2.name === "AbortError")) {
+        recado("dica", "Captura cancelada. Clique de novo e siga a instrução do quadro acima.");
+      } else {
+        recado("erro", "Não foi possível iniciar a captura. Tente novamente.");
+      }
+      return;
+    }
+  }
+
+  const audios = fluxo.getAudioTracks();
+  if (!audios.length) {
+    encerrarFluxo();
+    recado("erro", "<b>Você compartilhou, mas sem o som.</b> Clique em capturar outra vez e marque a caixinha <b>" +
+      fonte.caixa + "</b>, no canto de baixo da janela de seleção. Sem ela só vai a imagem, e não há o que transcrever.");
+    return;
+  }
+
+  faixa = audios[0];
+  faixa.addEventListener("ended", parar);
+  const video = fluxo.getVideoTracks()[0];
+  if (video) video.addEventListener("ended", parar); // o usuário clicou em "Parar compartilhamento"
+
+  // Só depois da captura, porque o getDisplayMedia acima precisa do clique ainda "quente".
+  usarLocal = false;
+  if (cLocal.checked) {
+    usarLocal = await prepararLocal();
+    if (!usarLocal) {
+      cLocal.checked = false;
+      recado("dica", "O modo local ainda não está disponível para este idioma no seu navegador. Segui com o reconhecimento padrão.");
+    } else {
+      limparRecado();
+    }
+  }
+
+  ativo = true;
+  jaVeioAlgo = false;
+  houveSom = false;
+  tentouNuvem = false;
+  errosRede = 0;
+  churn = 0;
+  recadoChurn = false;
+  inicio = Date.now();
+  marcaTrecho = 0;
+  comprometidas = 0;
+  zerarParcialPt();
+
+  rec = novoReconhecimento();
+  abrirReconhecimento();
+  if (!ativo) return; // abrirReconhecimento pode ter falhado
+
+  ligarMedidor();
+  pintarEstado();
+  desenhar();
+
+  // Se em 15 segundos nada tiver sido reconhecido, provavelmente o Chrome é antigo
+  // ou a aba escolhida está muda.
+  armarVigia(14000);
+}
+
+function parar() {
+  ativo = false;
+  clearTimeout(vigia);
+  if (rec) { try { rec.abort(); } catch (e) {} }
+  rodando = false;
+  encerrarFluxo();
+  desligarMedidor();
+  const sobra = caudaParcial();
+  if (sobra) {
+    const item = { t: marcaTrecho, txt: sobra, pt: null };
+    trechos.push(item);
+    if (traduzindo()) traduzirTrecho(item);
+  }
+  parcial = ""; comprometidas = 0; zerarParcialPt();
+  ultimaParcialPt = 0;
+  pintarEstado();
+  desenhar();
+}
+
+function encerrarFluxo() {
+  if (fluxo) { fluxo.getTracks().forEach(t => { try { t.stop(); } catch (e) {} }); fluxo = null; }
+  faixa = null;
+}
+
+function pintarEstado() {
+  elAcionar.dataset.estado = ativo ? "on" : "off";
+  elAcionarT.textContent = ativo ? "Parar" : "Capturar áudio";
+  elStatus.dataset.vivo = ativo ? "1" : "0";
+  elStatusT.textContent = ativo ? (usarLocal ? "Ouvindo no computador" : "Ouvindo") : "Parado";
+  cLocal.disabled = ativo || wrapLocal.classList.contains("t-off");
+  elFonte.disabled = ativo;
+  if (!ativo) pintarInstrucao();
+}
+
+/* Enquanto está capturando, a linha da instrução vira um diagnóstico: sem isso
+   um problema no reconhecimento parece simplesmente "não funciona". */
+function diag(txt) { if (ativo) elInstr.innerHTML = txt; }
+
+/* ══════════ janela flutuante ══════════ */
+async function flutuar() {
+  if (!("documentPictureInPicture" in window)) {
+    recado("dica", "Seu navegador ainda não tem janela flutuante. Ela chegou no Chrome 116. Enquanto isso dá para deixar esta página numa janela ao lado da tarefa.");
+    return;
+  }
+  if (pip) { pip.focus(); return; }
+
+  try {
+    pip = await documentPictureInPicture.requestWindow({ width: 520, height: 340 });
+  } catch (e) {
+    recado("dica", "Não consegui abrir a janela flutuante. Tente clicar de novo.");
+    return;
+  }
+
+  // O estilo não vai junto: precisa ser copiado na mão.
+  [...document.styleSheets].forEach(folha => {
+    try {
+      const regras = [...folha.cssRules].map(r => r.cssText).join("");
+      const tag = pip.document.createElement("style");
+      tag.textContent = regras;
+      pip.document.head.appendChild(tag);
+    } catch (e) {
+      const link = pip.document.createElement("link");
+      link.rel = "stylesheet";
+      if (folha.media && folha.media.mediaText) link.media = folha.media.mediaText;
+      link.href = folha.href;
+      pip.document.head.appendChild(link);
+    }
+  });
+
+  pip.document.body.classList.add("t-pip");
+  pip.document.body.append(elCaixa);
+  bFlutuar.textContent = "Trazer de volta";
+
+  pip.addEventListener("pagehide", () => {
+    elAncora.append(elCaixa);
+    bFlutuar.textContent = "Janela flutuante";
+    pip = null;
+  });
+}
+
+/* ══════════ botões ══════════ */
+elAcionar.addEventListener("click", () => { ativo ? parar() : comecar(); });
+
+elIdioma.addEventListener("change", async () => {
+  if (ativo && rec) {
+    rec.lang = elIdioma.value;
+    try { rec.abort(); } catch (e) {} // o onend reabre já com o idioma novo
+  }
+
+  // O tradutor é feito para um par de idiomas, então troca junto.
+  tradutor = null; tradutorPar = "";
+  if (elSaida.value !== "pt") return;
+  if (codigoCurto(elIdioma.value) === "pt") {
+    elSaida.value = "orig";
+    recado("dica", "O áudio agora está em português, então não há o que traduzir. Voltei para o idioma original.");
+  } else if (await prepararTradutor()) {
+    trechos.forEach(t => { t.pt = null; traduzirTrecho(t); });
+    zerarParcialPt();
+  }
+  desenhar();
+});
+
+elSaida.addEventListener("change", async () => {
+  if (elSaida.value !== "pt") { desenhar(); return; }
+
+  if (!("Translator" in self)) {
+    elSaida.value = "orig";
+    recado("erro", "<b>Seu navegador ainda não traduz sozinho.</b> A tradução dentro do Chrome chegou na versão 138. Atualize em Menu, Ajuda, Sobre o Google Chrome.");
+    return;
+  }
+  if (codigoCurto(elIdioma.value) === "pt") {
+    elSaida.value = "orig";
+    recado("dica", "O áudio já está em português, não há o que traduzir.");
+    return;
+  }
+
+  elSaida.disabled = true;
+  const ok = await prepararTradutor();
+  elSaida.disabled = false;
+  if (!ok) {
+    elSaida.value = "orig";
+    recado("erro", "Não consegui preparar a tradução deste par de idiomas no seu navegador.");
+    return;
+  }
+  trechos.forEach(t => { if (!t.pt) traduzirTrecho(t); }); // alcança o que já foi transcrito
+  zerarParcialPt();
+  fatiarParcial();
+  talvezTraduzirParcial();
+  desenhar();
+});
+
+elFonte.addEventListener("change", pintarInstrucao);
+
+elHora.addEventListener("change", desenhar);
+
+bCopiar.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(textoCru());
+    bCopiar.textContent = "Copiado";
+    setTimeout(() => bCopiar.textContent = "Copiar", 1600);
+  } catch (e) {
+    recado("dica", "O navegador não deixou copiar. Selecione o texto e use Ctrl mais C.");
+  }
+});
+
+bBaixar.addEventListener("click", () => {
+  const blob = new Blob([textoCru()], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const d = new Date();
+  const carimbo = d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + String(d.getDate()).padStart(2, "0") +
+                  "-" + String(d.getHours()).padStart(2, "0") + String(d.getMinutes()).padStart(2, "0");
+  a.href = url;
+  a.download = "transcricao-" + carimbo + ".txt";
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+});
+
+bLimpar.addEventListener("click", () => {
+  trechos = []; parcial = ""; marcaTrecho = ativo ? (Date.now() - inicio) / 1000 : 0;
+  desenhar();
+});
+
+bFlutuar.addEventListener("click", () => { pip ? pip.close() : flutuar(); });
+
+/* Tamanho e fundo ficam na própria caixa, então viajam junto quando ela
+   vai para a janela flutuante. */
+bTamanho.addEventListener("click", () => {
+  tamanho = tamanho % 3 + 1;
+  elCaixa.classList.toggle("t-tam2", tamanho === 2);
+  elCaixa.classList.toggle("t-tam3", tamanho === 3);
+  bTamanho.textContent = ["Aa", "Aa+", "Aa++"][tamanho - 1];
+});
+
+bEscuro.addEventListener("click", () => {
+  escuro = !escuro;
+  elCaixa.classList.toggle("t-escuro", escuro);
+  bEscuro.textContent = escuro ? "Claro" : "Escuro";
+});
+
+window.addEventListener("pagehide", parar);
+
+/* ══════════ aviso de navegador ══════════ */
+(function conferirNavegador() {
+  if (!RECONHECIMENTO || !navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+    recado("erro", "<b>Este navegador não roda a ferramenta.</b> Ela funciona no Chrome e no Edge, no computador, da versão 135 em diante.");
+    elAcionar.disabled = true;
+    return;
+  }
+  /* Página aberta direto da pasta não tem endereço para se identificar, e o
+     serviço de reconhecimento costuma recusar. É a causa mais comum de
+     "captura tudo certo mas não transcreve nada". */
+  if (location.protocol === "file:") {
+    recado("dica", "<b>Esta página foi aberta direto da pasta.</b> Assim ela não tem um endereço próprio, e o serviço de reconhecimento costuma recusar mesmo com o áudio chegando certo. Para testar de verdade, publique o arquivo no site e abra por lá.");
+    return;
+  }
+
+  const marcas = (navigator.userAgentData && navigator.userAgentData.brands) || [];
+  const chromium = marcas.find(m => /Chromium|Google Chrome|Microsoft Edge/.test(m.brand));
+  if (chromium && parseInt(chromium.version, 10) < 135) {
+    recado("dica", "Seu navegador é a versão " + escapar(chromium.version) + ". A transcrição do áudio da aba precisa da 135 ou mais nova. Atualize em Menu, Ajuda, Sobre o Google Chrome.");
+  }
+})();
+
+/* O modo local só existe do Chrome 139 em diante. Se não existir, apaga a opção. */
+(async function conferirLocal() {
+  const st = await estadoLocal(elIdioma.value);
+  if (st === "sem-suporte" || st === "unavailable") {
+    cLocal.checked = false;
+    cLocal.disabled = true;
+    wrapLocal.classList.add("t-off");
+    wrapLocal.title = "Seu navegador ainda não reconhece voz sem enviar o áudio. O recurso chegou no Chrome 139.";
+  } else {
+    wrapLocal.title = "O áudio é reconhecido dentro do seu computador, sem passar por nenhum servidor. Ainda é um recurso novo do Chrome e falha em algumas máquinas; se não devolver nada, a ferramenta volta sozinha para o modo normal.";
+  }
+})();
+
+/* A tradução embutida chegou no Chrome 138. Sem ela, a opção fica apagada. */
+(function conferirTradutor() {
+  if (!("Translator" in self)) {
+    elSaida.options[1].disabled = true;
+    elSaida.options[1].textContent = "Traduzir (precisa do Chrome 138)";
+  }
+})();
+
+pintarInstrucao();
+desenhar();
+</script>
+
+</body>
+</html>

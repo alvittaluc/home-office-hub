@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ferramentas — Home Office Hub</title>
+<meta name="description" content="Ferramentas gratuitas para o dia a dia de quem trabalha com anotação, avaliação e tradução de dados.">
+
+<!-- Se o seu site ficar numa subpasta, ajuste estes dois endereços para o mesmo padrão das outras páginas. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ferramentas — Home Office Hub">
+<meta property="og:description" content="Ferramentas gratuitas para o dia a dia de quem trabalha com anotação, avaliação e tradução de dados.">
+<meta property="og:url" content="https://alvittaluc.github.io/ferramentas.html">
+<meta property="og:image" content="https://alvittaluc.github.io/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<!-- Se o estilo do site não estiver ao lado deste arquivo, marca a página para usar o visual de reserva. -->
+<link rel="stylesheet" href="estilo.css" onerror="document.documentElement.classList.add('f-solto')">
+
+<style>
+/* ── Visual de reserva: só entra em ação quando o estilo.css não é encontrado. ── */
+html.f-solto body {
+  font-family:'Geist',system-ui,sans-serif; background:#F7F4EF; color:#10203A;
+  line-height:1.55; margin:0;
+}
+html.f-solto a { color:inherit; text-decoration:none; }
+html.f-solto .eyebrow {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:#1A4893;
+  display:flex; align-items:center; gap:9px; margin-bottom:14px;
+}
+html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#1A4893; }
+
+/* ══════════════════════════════════════════════════════════════
+   FERRAMENTAS — vitrine. Uma ferramenta por cartão.
+   Para acrescentar a próxima, copie um bloco <a class="f-card">
+   e troque ícone, título, texto e etiquetas.
+   ══════════════════════════════════════════════════════════════ */
+
+.f-main { max-width:var(--wrap,1180px); margin:0 auto; padding:52px 20px 100px; }
+
+.f-hero { max-width:660px; margin-bottom:44px; }
+.f-hero h1 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(31px,4.2vw,50px); line-height:1.08; letter-spacing:-0.015em;
+  color:var(--ink,#10203A); margin:0 0 15px;
+}
+.f-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); }
+
+.f-grade { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+
+.f-card {
+  display:flex; flex-direction:column;
+  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
+  border-radius:20px; padding:26px 26px 24px; min-height:250px;
+  transition:border-color .18s, transform .18s, box-shadow .18s;
+}
+.f-card:hover {
+  border-color:var(--ink-3,#8A94A1); transform:translateY(-2px);
+  box-shadow:0 12px 30px -18px rgba(16,32,58,0.35);
+}
+.f-icone {
+  width:44px; height:44px; border-radius:13px; display:grid; place-items:center;
+  background:var(--bg-soft,#F1ECE3); color:var(--signal,#1A4893);
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); margin-bottom:18px;
+}
+.f-card h2 { font-size:19px; font-weight:600; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:0 0 8px; }
+.f-card p { font-size:14.5px; line-height:1.62; color:var(--ink-2,#54606F); margin:0 0 18px; }
+.f-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; }
+.f-tag {
+  font-size:11.5px; letter-spacing:0.04em; color:var(--ink-2,#54606F);
+  background:var(--bg-soft,#F1ECE3); border-radius:99px; padding:5px 11px;
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.f-abrir {
+  display:inline-flex; align-items:center; gap:7px; margin-top:16px;
+  font-size:14px; font-weight:600; color:var(--signal,#1A4893);
+}
+.f-card:hover .f-abrir svg { transform:translateX(3px); }
+.f-abrir svg { transition:transform .18s; }
+
+/* cartão vazio, para a grade não ficar torta com uma ferramenta só */
+.f-vazio {
+  border:1px dashed var(--line,#DED7CA); border-radius:20px;
+  display:grid; place-items:center; text-align:center; padding:30px;
+  color:var(--ink-3,#8A94A1); font-size:14px; line-height:1.6; min-height:250px;
+}
+.f-vazio.f-larga2 { grid-column:span 2; }
+
+.f-rodape { margin-top:54px; padding-top:32px; border-top:1px solid var(--line,#DED7CA); max-width:660px; }
+.f-rodape h3 { font-size:16px; font-weight:600; color:var(--ink,#10203A); margin:0 0 8px; }
+.f-rodape p { font-size:14.5px; line-height:1.65; color:var(--ink-2,#54606F); margin:0; }
+
+@media (max-width:1000px){
+  .f-grade { grid-template-columns:repeat(2,1fr); }
+  .f-vazio.f-larga2 { grid-column:auto; }
+}
+@media (max-width:680px){
+  .f-grade { grid-template-columns:1fr; }
+  .f-main { padding-top:36px; }
+  .f-vazio { min-height:0; padding:24px; }
+}
+</style>
+</head>
+<body>
+
+<main class="f-main">
+
+  <section class="f-hero">
+    <div class="eyebrow">Ferramentas</div>
+    <h1>Ferramentas do dia a dia</h1>
+    <p class="f-lead">
+      Pequenos utilitários para quem trabalha com anotação, avaliação e tradução de dados.
+      Rodam dentro do navegador, são gratuitos e não pedem cadastro.
+    </p>
+  </section>
+
+  <div class="f-grade">
+
+    <!-- ── Transcrição ao vivo ── -->
+    <a class="f-card" href="transcricao.html">
+      <div class="f-icone">
+        <svg width="21" height="21" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M10 2.2a2.6 2.6 0 0 0-2.6 2.6v5.1a2.6 2.6 0 1 0 5.2 0V4.8A2.6 2.6 0 0 0 10 2.2Z" fill="currentColor"/>
+          <path d="M4.5 9.3v.9a5.5 5.5 0 0 0 11 0v-.9M10 15.7v2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2>Transcrição ao vivo</h2>
+      <p>
+        Transcreve o áudio que está tocando no computador, enquanto toca, no idioma original
+        ou já traduzido para o português. Para tarefa que não deixa baixar o arquivo, e para
+        acompanhar reunião em outro idioma.
+      </p>
+      <div class="f-tags">
+        <span class="f-tag">Inglês e português</span>
+        <span class="f-tag">Tradução ao vivo</span>
+        <span class="f-tag">Chrome e Edge</span>
+      </div>
+      <span class="f-abrir">
+        Abrir
+        <svg width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true">
+          <path d="M1 5.5h10M7.5 1.5 11.5 5.5 7.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+
+    <!-- Este bloco só existe para a grade não ficar torta com uma ferramenta só.
+         A cada ferramenta nova, tire um "span" da classe f-larga2 lá no estilo,
+         e quando forem três, apague este bloco inteiro. -->
+    <div class="f-vazio f-larga2">Novas ferramentas entram aqui conforme forem ficando prontas.</div>
+
+  </div>
+
+  <div class="f-rodape">
+    <h3>Faltou alguma?</h3>
+    <p>
+      Se tem uma tarefa repetitiva que toma o seu tempo todo dia, ela provavelmente cabe numa
+      ferramenta simples como estas. Vale contar qual é.
+    </p>
+  </div>
+
+</main>
+
+<script src="layout.js"></script>
+<script>try { montarLayout("ferramentas"); } catch (e) {}</script>
+
+</body>
+</html>
