@@ -56,6 +56,25 @@
   .nota { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); text-align:center; margin-top:14px; }
   .ajuda { margin-top:26px; text-align:center; font-size:13px; color:var(--ink-3); }
   .ajuda a { color:var(--signal); }
+
+  /* ── Meu Controle: a tarja de "você já aplicou" e o botão de marcar ── */
+  .aplic {
+    display:flex; align-items:center; gap:13px; flex-wrap:wrap;
+    margin-top:22px; padding:14px 18px; border-radius:15px;
+    background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); font-size:13.5px;
+  }
+  /* display:flex anula o atributo hidden, então a regra precisa ser explícita.
+     Sem ela a tarja aparecia vazia para quem não usa o Meu Controle. */
+  .aplic[hidden] { display:none; }
+  .aplic.sim { background:#E4F3F0; border-color:#C6E5DE; color:#1F7A6E; }
+  .aplic b { color:inherit; font-weight:600; }
+  .aplic .aplic-txt { flex:1; min-width:180px; line-height:1.5; }
+  .aplic button, .aplic a.bt {
+    font:inherit; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap;
+    padding:9px 16px; border-radius:999px; border:1px solid var(--line,#DED7CA);
+    background:#fff; color:var(--ink,#10203A); transition:all .16s;
+  }
+  .aplic button:hover, .aplic a.bt:hover { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
 </style>
 </head>
 <body>
@@ -66,6 +85,7 @@
 </div>
 
 <script src="layout.js"></script>
+<script src="controle-dados.js"></script>
 <script>
 montarLayout("vagas");
 
@@ -148,6 +168,7 @@ function erro(msg) {
       </div>
     </div>
     ${partes}
+    <div class="aplic" id="jaApliquei" hidden></div>
     <div class="barra">
       <a href="${esc(v.url)}" target="_blank" rel="noopener" class="candidatar">Candidatar para esta vaga →</a>
       <div class="nota">Você vai para a página oficial da vaga, sem intermediário.</div>
@@ -156,6 +177,52 @@ function erro(msg) {
       Antes de se candidatar, veja como montar o <a href="como-funciona.html#curriculo">currículo que passa nessas vagas</a>
       e <a href="como-funciona.html#pagamento">como o pagamento chega ao Brasil</a>.
     </div>`;
+
+  /* ══════════════════════════════════════════════════════════
+     "Já apliquei para essa vaga?"
+
+     A resposta mora no Meu Controle, que guarda tudo dentro do
+     navegador do próprio visitante. Aqui a gente só pergunta.
+     Se a ferramenta não estiver junto, ou o navegador não deixar,
+     a tarja simplesmente não aparece e a página segue igual.
+     ══════════════════════════════════════════════════════════ */
+  try {
+    if (typeof Dados === "undefined") return;
+    const tarja = document.getElementById("jaApliquei");
+    if (!tarja) return;
+
+    async function desenharTarja() {
+      const achada = await Dados.procurarAplicacao({ vagaId: v.id, empresa: e.nome, titulo: v.titulo });
+      tarja.hidden = false;
+      if (achada) {
+        tarja.className = "aplic sim";
+        tarja.innerHTML = `<span class="aplic-txt">Você aplicou para esta vaga em
+          <b>${esc(Dados.dataBonita(achada.data))}</b>.</span>
+          <a class="bt" href="controle.html#aplicacoes">Ver no Meu Controle</a>`;
+      } else {
+        tarja.className = "aplic";
+        tarja.innerHTML = `<span class="aplic-txt">Guarde esta candidatura no
+          <b>Meu Controle</b> para não ficar em dúvida depois.</span>
+          <button type="button" id="btMarcar">Marcar como aplicada</button>`;
+        document.getElementById("btMarcar").addEventListener("click", async function () {
+          this.disabled = true;
+          try {
+            await Dados.salvar("aplicacoes", {
+              vagaId: v.id, empresa: e.nome, titulo: v.titulo, url: v.url,
+              data: Dados.hoje(), estado: "aplicado", origem: "Home Office Hub",
+              remuneracao: (v.resumo && v.resumo.remuneracao) || "",
+              proximo: "", proximoEm: "", observacoes: "", email: "", curriculo: "",
+            });
+            await desenharTarja();
+          } catch (err) { this.disabled = false; console.error(err); }
+        });
+      }
+    }
+    await Dados.abrir();
+    await desenharTarja();
+  } catch (err) {
+    console.warn("Meu Controle indisponível nesta página", err);
+  }
 })();
 </script>
 </body>

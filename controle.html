@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meu Controle — Home Office Hub</title>
+<meta name="description" content="Controle das suas aplicações de vaga e do seu trabalho: horas, ganhos e gráficos. Tudo fica no seu computador.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Meu Controle — Home Office Hub">
+<meta property="og:description" content="Onde você aplicou, quanto trabalhou e quanto ganhou. Tudo no seu navegador.">
+<meta property="og:url" content="https://alvittaluc.github.io/controle.html">
+<meta property="og:image" content="https://alvittaluc.github.io/og.jpg">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css" onerror="document.documentElement.classList.add('ct-solto')">
+
+<style>
+/* ── Visual de reserva: só entra quando o estilo.css não é achado,
+      por exemplo se este arquivo for aberto sozinho para teste. ── */
+html.ct-solto body { font-family:'Geist',system-ui,sans-serif; background:#F7F4EF; color:#10203A; line-height:1.55; margin:0; }
+html.ct-solto a { color:inherit; text-decoration:none; }
+html.ct-solto .eyebrow { font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:#1A4893; margin-bottom:14px; }
+html.ct-solto .num { font-variant-numeric:tabular-nums; }
+
+/* ══════════════════════════════════════════════════════════════
+   MEU CONTROLE — estilos só desta página, com prefixo .ct-
+   ══════════════════════════════════════════════════════════════ */
+
+.ct-main { max-width:var(--wrap,1180px); margin:0 auto; padding:44px 20px 90px; }
+
+/* ── topo ── */
+.ct-topo { display:flex; align-items:flex-end; gap:22px; flex-wrap:wrap; margin-bottom:26px; }
+.ct-topo h1 {
+  font-family:var(--display,Georgia,serif); font-weight:400;
+  font-size:clamp(30px,4vw,46px); line-height:1.07; letter-spacing:-0.018em;
+  color:var(--ink,#10203A); margin:0 0 9px;
+}
+.ct-lead { font-size:16px; line-height:1.6; color:var(--ink-2,#54606F); max-width:54ch; }
+.ct-topo-dir { margin-left:auto; display:flex; gap:8px; align-items:center; }
+
+/* ── botões desta página ── */
+.ct-b {
+  display:inline-flex; align-items:center; gap:8px; font:inherit; font-size:14px; font-weight:500;
+  cursor:pointer; padding:11px 19px; border-radius:999px; border:1px solid var(--line,#DED7CA);
+  background:var(--panel,#fff); color:var(--ink,#10203A); transition:all .16s; white-space:nowrap;
+}
+.ct-b:hover { border-color:var(--ink-3,#8A94A1); box-shadow:var(--sombra,0 1px 2px rgba(16,32,58,.06)); }
+.ct-b.forte { background:var(--signal,#1A4893); border-color:var(--signal,#1A4893); color:#fff; }
+.ct-b.forte:hover { background:#173E7E; border-color:#173E7E; }
+.ct-b.pequeno { padding:8px 14px; font-size:13px; }
+.ct-b svg { flex-shrink:0; }
+
+/* ── avisos de topo ── */
+.ct-fita {
+  display:flex; align-items:flex-start; gap:11px; padding:13px 17px; border-radius:14px;
+  font-size:13.5px; line-height:1.55; margin-bottom:20px;
+  background:var(--amber-suave,#FBF0E4); color:#7A4318; border:1px solid #F0DCC6;
+}
+.ct-fita.info { background:var(--signal-suave,#EAF1F8); color:#1A4893; border-color:#D3E2F1; }
+.ct-fita button { margin-left:auto; flex-shrink:0; }
+
+/* ── abas internas ── */
+.ct-abas {
+  display:flex; gap:4px; padding:5px; border-radius:999px; margin-bottom:26px;
+  background:var(--bg-soft,#F1ECE3); border:1px solid var(--line-soft,#EAE4D9); width:max-content;
+  max-width:100%; overflow-x:auto;
+}
+.ct-aba {
+  font:inherit; font-size:14px; font-weight:500; cursor:pointer; white-space:nowrap;
+  padding:9px 20px; border-radius:999px; border:0; background:none; color:var(--ink-2,#54606F);
+  transition:background .15s, color .15s;
+}
+.ct-aba:hover { color:var(--ink,#10203A); }
+.ct-aba[aria-selected="true"] { background:var(--panel,#fff); color:var(--ink,#10203A); box-shadow:var(--sombra,0 1px 2px rgba(16,32,58,.07)); }
+.ct-aba .ct-cont {
+  display:inline-block; margin-left:7px; font-size:11.5px; font-weight:500;
+  color:var(--ink-3,#8A94A1); font-variant-numeric:tabular-nums;
+}
+
+/* ── cartões ── */
+.ct-cartao {
+  background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9);
+  border-radius:var(--raio,18px); padding:22px 24px;
+}
+.ct-cartao h2, .ct-cartao h3 {
+  font-family:var(--body,'Geist',sans-serif); font-weight:600; font-size:15px;
+  letter-spacing:-0.008em; color:var(--ink,#10203A); margin:0;
+}
+.ct-cab-cartao { display:flex; align-items:baseline; gap:11px; margin-bottom:16px; flex-wrap:wrap; }
+.ct-cab-cartao p { font-size:12.5px; color:var(--ink-3,#8A94A1); margin:0; }
+
+/* ── números do topo ── */
+.ct-heroi { display:flex; align-items:flex-end; gap:26px; flex-wrap:wrap; margin-bottom:6px; }
+.ct-heroi-num {
+  font-size:clamp(38px,6vw,54px); font-weight:600; line-height:1; letter-spacing:-0.03em;
+  color:var(--ink,#10203A);
+}
+.ct-heroi-rot { font-size:13px; color:var(--ink-3,#8A94A1); margin-top:8px; }
+.ct-heroi-lado { display:flex; gap:26px; flex-wrap:wrap; padding-bottom:4px; }
+
+.ct-tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px;
+  background:var(--line-soft,#EAE4D9); border-radius:14px; overflow:hidden; margin-top:22px; }
+.ct-tile { background:var(--panel,#fff); padding:15px 17px; }
+.ct-tile-rot { font-size:12px; color:var(--ink-3,#8A94A1); margin-bottom:5px; }
+.ct-tile-val { font-size:21px; font-weight:600; color:var(--ink,#10203A); letter-spacing:-0.018em; font-variant-numeric:tabular-nums; }
+.ct-tile-sub { font-size:11.5px; color:var(--ink-3,#8A94A1); margin-top:3px; }
+
+/* ── metas ── */
+.ct-metas { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+.ct-meta-topo { display:flex; align-items:baseline; gap:8px; margin-bottom:9px; flex-wrap:wrap; }
+.ct-meta-num { font-size:23px; font-weight:600; color:var(--ink,#10203A); letter-spacing:-0.018em; font-variant-numeric:tabular-nums; }
+.ct-meta-de { font-size:13px; color:var(--ink-3,#8A94A1); }
+.ct-barra { height:9px; border-radius:999px; background:var(--signal-suave,#EAF1F8); overflow:hidden; }
+.ct-barra span { display:block; height:100%; border-radius:999px; background:var(--signal,#1A4893); transition:width .5s cubic-bezier(.22,.61,.36,1); }
+.ct-barra.cheia span { background:#2AA198; }
+.ct-meta-nota { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:8px; }
+
+/* ── grade de gráficos ── */
+.ct-grade { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:18px; }
+.ct-larga { grid-column:1 / -1; }
+/* minmax(0,1fr) e não 1fr: com 1fr puro uma tabela ou um gráfico largo
+   estica a coluna e a página passa a rolar para o lado no celular. */
+@media (max-width:900px){ .ct-grade { grid-template-columns:minmax(0,1fr); } }
+
+/* ── barra de filtros, grudada no topo ── */
+.ct-filtros {
+  position:sticky; top:86px; z-index:60; display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+  padding:11px 14px; margin-bottom:16px; border-radius:16px;
+  background:rgba(255,255,255,.92); backdrop-filter:blur(14px);
+  border:1px solid var(--line-soft,#EAE4D9); box-shadow:var(--sombra,0 1px 2px rgba(16,32,58,.05));
+}
+.ct-chip {
+  font:inherit; font-size:13px; cursor:pointer; padding:7px 14px; border-radius:999px;
+  border:1px solid var(--line-soft,#EAE4D9); background:var(--bg,#F7F4EF); color:var(--ink-2,#54606F);
+  transition:all .15s; white-space:nowrap;
+}
+.ct-chip:hover { border-color:var(--line,#DED7CA); color:var(--ink,#10203A); }
+.ct-chip[aria-pressed="true"] { background:var(--signal,#1A4893); border-color:var(--signal,#1A4893); color:#fff; }
+.ct-chip .ct-cont { color:inherit; opacity:.65; margin-left:6px; font-variant-numeric:tabular-nums; }
+.ct-busca { position:relative; flex:1; min-width:170px; }
+.ct-busca input {
+  width:100%; font:inherit; font-size:13.5px; padding:8px 13px; border-radius:999px;
+  border:1px solid var(--line-soft,#EAE4D9); background:var(--bg,#F7F4EF); color:var(--ink,#10203A);
+}
+.ct-busca input:focus { outline:none; border-color:var(--signal,#1A4893); background:#fff; }
+.ct-sep { width:1px; height:22px; background:var(--line-soft,#EAE4D9); }
+
+/* ── linhas de aplicação ── */
+.ct-lista { display:flex; flex-direction:column; gap:1px; background:var(--line-soft,#EAE4D9);
+  border:1px solid var(--line-soft,#EAE4D9); border-radius:var(--raio,18px); overflow:hidden; }
+.ct-linha {
+  display:grid; grid-template-columns:44px minmax(0,1fr) 118px 128px 120px 34px;
+  align-items:center; gap:15px; padding:14px 18px; background:var(--panel,#fff);
+  cursor:pointer; transition:background .13s; text-align:left; font:inherit; border:0; width:100%;
+}
+.ct-linha:hover { background:var(--panel-2,#FBF9F5); }
+.ct-marca {
+  width:38px; height:38px; border-radius:10px; display:grid; place-items:center; overflow:hidden;
+  font-size:12px; font-weight:600; flex-shrink:0;
+}
+/* display:block em todos: são <span> dentro da grade, e sem isto o rótulo
+   e o valor saem grudados na mesma linha ("SEM RESPOSTA HÁ29 dias"). */
+.ct-tit { display:block; font-size:14.5px; font-weight:500; color:var(--ink,#10203A); line-height:1.35;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ct-emp { display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:2px;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ct-col-rot { display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--ink-3,#8A94A1); margin-bottom:3px; }
+.ct-col-val { display:block; font-size:13px; color:var(--ink-2,#54606F); font-variant-numeric:tabular-nums;
+  line-height:1.35; }
+.ct-estado {
+  display:inline-block; font-size:12px; font-weight:500; padding:4px 11px; border-radius:999px;
+  border:1px solid transparent; white-space:nowrap;
+}
+.ct-seta { color:var(--line,#DED7CA); }
+.ct-linha:hover .ct-seta { color:var(--signal,#1A4893); }
+@media (max-width:1000px){
+  .ct-linha { grid-template-columns:40px minmax(0,1fr) 120px 34px; }
+  .ct-linha .ct-esconde { display:none; }
+}
+@media (max-width:620px){
+  .ct-linha { grid-template-columns:38px minmax(0,1fr) 34px; gap:12px; }
+  .ct-linha .ct-esconde2 { display:none; }
+}
+
+/* ── cartões de trabalho ── */
+.ct-trabs { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr)); gap:18px; }
+.ct-trab {
+  display:flex; flex-direction:column; gap:13px; padding:20px 21px; text-align:left;
+  background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9);
+  border-radius:var(--raio,18px); transition:all .17s; position:relative; overflow:hidden;
+}
+.ct-trab::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--cor,#2C6BB5); }
+.ct-trab:hover { border-color:var(--line,#DED7CA); transform:translateY(-2px); box-shadow:var(--sombra-alta,0 20px 44px -20px rgba(16,32,58,.2)); }
+.ct-trab.pausado { opacity:.72; }
+.ct-trab-cab { display:flex; align-items:flex-start; gap:12px; }
+.ct-trab h3 { font-size:15.5px; font-weight:600; color:var(--ink,#10203A); line-height:1.3; }
+.ct-trab-emp { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:2px; }
+.ct-trab-nums { display:flex; gap:20px; flex-wrap:wrap; }
+.ct-trab-num { font-size:18px; font-weight:600; color:var(--ink,#10203A); font-variant-numeric:tabular-nums; letter-spacing:-0.015em; }
+.ct-trab-rot { font-size:11.5px; color:var(--ink-3,#8A94A1); margin-top:1px; }
+.ct-trab-pe { display:flex; gap:8px; margin-top:auto; padding-top:4px; flex-wrap:wrap; }
+.ct-etiq {
+  font-size:11.5px; padding:3px 9px; border-radius:999px; background:var(--bg-soft,#F1ECE3);
+  color:var(--ink-3,#8A94A1); border:1px solid var(--line-soft,#EAE4D9);
+}
+
+/* ── vazio e primeiros passos ── */
+.ct-vazio { text-align:center; padding:60px 24px; }
+.ct-vazio-ic { font-size:30px; color:var(--line,#DED7CA); margin-bottom:12px; }
+.ct-vazio h3 { font-size:17px; font-weight:600; color:var(--ink,#10203A); margin-bottom:7px; }
+.ct-vazio p { font-size:14px; color:var(--ink-3,#8A94A1); max-width:44ch; margin:0 auto 18px; line-height:1.6; }
+.ct-passos { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:22px; text-align:left; }
+.ct-passo { padding:19px 20px; border-radius:15px; background:var(--bg,#F7F4EF); border:1px solid var(--line-soft,#EAE4D9); }
+.ct-passo b { display:block; font-size:14.5px; color:var(--ink,#10203A); margin-bottom:5px; }
+.ct-passo p { font-size:13px; color:var(--ink-2,#54606F); margin:0 0 13px; max-width:none; }
+
+/* ── rodapé de dados ── */
+.ct-dados { margin-top:34px; padding:24px 26px; border-radius:var(--raio,18px);
+  background:var(--bg-soft,#F1ECE3); border:1px solid var(--line-soft,#EAE4D9); }
+.ct-dados h2 { font-size:15px; font-weight:600; color:var(--ink,#10203A); margin-bottom:7px; }
+.ct-dados p { font-size:13.5px; color:var(--ink-2,#54606F); line-height:1.6; max-width:66ch; margin-bottom:15px; }
+.ct-dados-bts { display:flex; gap:9px; flex-wrap:wrap; align-items:center; }
+.ct-dados-nota { font-size:12px; color:var(--ink-3,#8A94A1); margin-top:13px; }
+
+.ct-carregando { text-align:center; padding:70px 20px; color:var(--ink-3,#8A94A1); font-size:14px; }
+[hidden] { display:none !important; }
+</style>
+</head>
+<body>
+
+<main class="ct-main">
+
+  <div class="ct-topo">
+    <div>
+      <div class="eyebrow">Ferramentas</div>
+      <h1>Meu Controle</h1>
+      <p class="ct-lead">
+        Onde você aplicou, em que pé está cada processo, quantas horas trabalhou e quanto já fez no mês.
+        Fica tudo no seu computador.
+      </p>
+    </div>
+    <div class="ct-topo-dir">
+      <button class="ct-b" id="btBackup" type="button">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M2.5 11.5v1a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Backup
+      </button>
+    </div>
+  </div>
+
+  <div class="ct-fita" id="fitaMotor" hidden></div>
+  <div class="ct-fita info" id="fitaBackup" hidden></div>
+
+  <div class="ct-abas" role="tablist" aria-label="Seções do Meu Controle">
+    <button class="ct-aba" role="tab" id="tab-painel"     aria-controls="painel"     aria-selected="true">Painel</button>
+    <button class="ct-aba" role="tab" id="tab-aplicacoes" aria-controls="aplicacoes" aria-selected="false">Aplicações <span class="ct-cont" id="contAp"></span></button>
+    <button class="ct-aba" role="tab" id="tab-trabalhos"  aria-controls="trabalhos"  aria-selected="false">Trabalhos <span class="ct-cont" id="contTr"></span></button>
+  </div>
+
+  <div class="ct-carregando" id="carregando">Abrindo os seus dados…</div>
+
+  <!-- ══════════ PAINEL ══════════ -->
+  <section id="painel" role="tabpanel" aria-labelledby="tab-painel" hidden></section>
+
+  <!-- ══════════ APLICAÇÕES ══════════ -->
+  <section id="aplicacoes" role="tabpanel" aria-labelledby="tab-aplicacoes" hidden>
+    <div class="ct-filtros" id="filtrosAp"></div>
+    <div id="listaAp"></div>
+  </section>
+
+  <!-- ══════════ TRABALHOS ══════════ -->
+  <section id="trabalhos" role="tabpanel" aria-labelledby="tab-trabalhos" hidden></section>
+
+  <section class="ct-dados" id="secDados" hidden>
+    <h2>Os seus dados</h2>
+    <p>
+      Tudo o que você escreve aqui fica guardado dentro do seu navegador, neste computador.
+      Não passa por servidor nenhum e ninguém mais vê. Em troca: se você limpar os dados de navegação,
+      some. O backup é um arquivo que você guarda onde quiser, e serve também para levar tudo
+      para outro computador.
+    </p>
+    <div class="ct-dados-bts">
+      <button class="ct-b" id="btExportar" type="button">Exportar backup</button>
+      <button class="ct-b" id="btImportar" type="button">Importar backup</button>
+      <input type="file" id="arqBackup" accept=".json,application/json" hidden>
+      <button class="ct-b" id="btApagar" type="button">Apagar tudo</button>
+    </div>
+    <p class="ct-dados-nota" id="notaDados"></p>
+  </section>
+
+  <datalist id="listaEmpresas"></datalist>
+
+</main>
+
+<script src="layout.js"></script>
+<script src="controle-dados.js"></script>
+<script src="controle-graficos.js"></script>
+<script src="controle-blocos.js"></script>
+<script src="controle-ui.js"></script>
+<script>
+/* O layout compartilhado é opcional de propósito: se o layout.js não vier
+   junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
+try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não carregou", e); }
+
+(function () {
+  "use strict";
+
+  const esc = UI.esc;
+  const $ = s => document.querySelector(s);
+
+  /* ══════════════════════════════════════════════════════════
+     ESTADOS DE UMA APLICAÇÃO
+     ══════════════════════════════════════════════════════════ */
+
+  const ESTADOS = [
+    { id: "aplicado",   nome: "Aplicado",          fundo: "#F1ECE3", texto: "#54606F", borda: "#DED7CA" },
+    { id: "teste",      nome: "Teste",             fundo: "#EAF1F8", texto: "#1A4893", borda: "#D3E2F1" },
+    { id: "entrevista", nome: "Entrevista",        fundo: "#FBF0E4", texto: "#A85D24", borda: "#F0DCC6" },
+    { id: "aprovado",   nome: "Aprovado",          fundo: "#E4F3F0", texto: "#1F7A6E", borda: "#C6E5DE" },
+    { id: "recusado",   nome: "Recusado",          fundo: "#FBE9EB", texto: "#8E2233", borda: "#F1CDD2" },
+    { id: "semresposta",nome: "Sem resposta",      fundo: "#F7F4EF", texto: "#8A94A1", borda: "#EAE4D9" },
+    { id: "banco",      nome: "Banco de talentos", fundo: "#F1EEF7", texto: "#5B4B9E", borda: "#DFD8EE" },
+  ];
+  const estadoDe = id => ESTADOS.find(e => e.id === id) || ESTADOS[0];
+
+  const ORIGENS = ["Home Office Hub", "LinkedIn", "Site da empresa", "Indicação", "E-mail", "Outro"];
+
+  /* ══════════════════════════════════════════════════════════
+     ESTADO DA PÁGINA
+     ══════════════════════════════════════════════════════════ */
+
+  let TRABALHOS = [], APLICACOES = [], REGISTROS = [], PAGAMENTOS = [], CFG = {};
+  let EMPRESAS = [];                       // do empresas.json do site, só para logo e sugestão
+  let filtro = { estado: "", busca: "" };
+  let periodo = "mes";
+
+  async function recarregar() {
+    [TRABALHOS, APLICACOES, REGISTROS, PAGAMENTOS, CFG] = await Promise.all([
+      Dados.listar("trabalhos"),
+      Dados.listar("aplicacoes"),
+      Dados.listar("registros"),
+      Dados.listar("pagamentos"),
+      Dados.obterConfig(),
+    ]);
+    TRABALHOS.sort((a, b) => (a.estado === b.estado ? (a.criadoEm < b.criadoEm ? 1 : -1) : (a.estado === "ativo" ? -1 : 1)));
+    $("#contAp").textContent = APLICACOES.length || "";
+    $("#contTr").textContent = TRABALHOS.length || "";
+    desenharTudo();
+  }
+
+  function desenharTudo() {
+    desenharPainel();
+    desenharAplicacoes();
+    desenharTrabalhos();
+    desenharNotaDados();
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     LOGO DA EMPRESA
+     Reaproveita o favicon do site, com a sigla como reserva,
+     igual ao resto do Hub.
+     ══════════════════════════════════════════════════════════ */
+
+  function acharEmpresa(nome) {
+    if (!nome) return null;
+    const alvo = Dados.normalizar(nome);
+    return EMPRESAS.find(e => Dados.normalizar(e.nome) === alvo || Dados.normalizar(e.id) === alvo) || null;
+  }
+
+  function marcaHtml(nome, tam) {
+    const e = acharEmpresa(nome);
+    const sigla = (nome || "?").trim().slice(0, 2).toUpperCase();
+    if (e && typeof logoHtml === "function") {
+      return `<span class="ct-marca marca" style="background:${esc(e.bg || "#F1ECE3")};color:${esc(e.cor || "#54606F")};">${logoHtml(e, tam || 38)}</span>`;
+    }
+    return `<span class="ct-marca" style="background:var(--bg-soft,#F1ECE3);color:var(--ink-3,#8A94A1);">${esc(sigla)}</span>`;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     ABAS
+     ══════════════════════════════════════════════════════════ */
+
+  const SECOES = ["painel", "aplicacoes", "trabalhos"];
+
+  function abrirAba(id, semHash) {
+    if (SECOES.indexOf(id) < 0) id = "painel";
+    SECOES.forEach(s => {
+      $("#" + s).hidden = s !== id;
+      $("#tab-" + s).setAttribute("aria-selected", String(s === id));
+    });
+    if (!semHash) history.replaceState(null, "", "#" + id);
+    Graficos.esconderDica();
+  }
+
+  SECOES.forEach(s => $("#tab-" + s).addEventListener("click", () => abrirAba(s)));
+  window.addEventListener("hashchange", () => abrirAba((location.hash || "").slice(1), true));
+
+  /* ══════════════════════════════════════════════════════════
+     PAINEL
+     ══════════════════════════════════════════════════════════ */
+
+  const PERIODOS = {
+    mes:   { nome: "Este mês",        de: () => Dados.hoje().slice(0, 8) + "01" },
+    tres:  { nome: "Últimos 3 meses", de: () => { const d = new Date(Dados.hoje() + "T12:00:00"); d.setMonth(d.getMonth() - 2); return d.toISOString().slice(0, 8) + "01"; } },
+    ano:   { nome: "Este ano",        de: () => Dados.hoje().slice(0, 4) + "-01-01" },
+    tudo:  { nome: "Tudo",            de: () => "0000-01-01" },
+  };
+
+  async function desenharPainel() {
+    const alvo = $("#painel");
+
+    if (!TRABALHOS.length && !APLICACOES.length) { alvo.innerHTML = htmlPrimeirosPassos(); ligarPrimeirosPassos(alvo); return; }
+
+    const de = PERIODOS[periodo].de(), ate = Dados.hoje();
+    const r = await UI.resumo({ trabalhos: TRABALHOS, registros: REGISTROS, pagamentos: PAGAMENTOS, de, ate });
+
+    const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "entrevista"].indexOf(a.estado) >= 0).length;
+
+    alvo.innerHTML = `
+      <div class="ct-filtros">
+        <span class="ct-col-rot" style="margin:0 4px 0 6px;">Período</span>
+        ${Object.keys(PERIODOS).map(p =>
+          `<button class="ct-chip" data-periodo="${p}" aria-pressed="${p === periodo}">${esc(PERIODOS[p].nome)}</button>`).join("")}
+        <div class="ct-sep"></div>
+        <button class="ct-b pequeno forte" data-novo-dia>Registrar um dia</button>
+      </div>
+
+      <div class="ct-cartao">
+        <div class="ct-heroi">
+          <div>
+            <div class="ct-heroi-num">${esc(Dados.escreverDinheiro(r.previstoBRL, "BRL"))}</div>
+            <div class="ct-heroi-rot">ganho bruto em ${esc(PERIODOS[periodo].nome.toLowerCase())}${r.estimado ? ", com câmbio estimado" : ""}</div>
+          </div>
+          <div class="ct-heroi-lado">
+            ${Object.keys(r.previstoPorMoeda).filter(m => m !== "BRL" && r.previstoPorMoeda[m]).map(m => `
+              <div><div class="ct-tile-val">${esc(Dados.escreverDinheiro(r.previstoPorMoeda[m], m))}</div>
+              <div class="ct-tile-sub">na moeda original</div></div>`).join("")}
+          </div>
+        </div>
+
+        <div class="ct-tiles">
+          <div class="ct-tile"><div class="ct-tile-rot">Horas</div>
+            <div class="ct-tile-val">${esc(Dados.escreverHoras(r.horas) || "0h")}</div>
+            <div class="ct-tile-sub">${r.dias} ${r.dias === 1 ? "dia registrado" : "dias registrados"}</div></div>
+          <div class="ct-tile"><div class="ct-tile-rot">Por hora, na prática</div>
+            <div class="ct-tile-val">${esc(Dados.escreverDinheiro(r.porHoraBRL, "BRL"))}</div>
+            <div class="ct-tile-sub">tudo somado, dividido pelas horas</div></div>
+          <div class="ct-tile"><div class="ct-tile-rot">Recebido</div>
+            <div class="ct-tile-val">${esc(Dados.escreverDinheiro(r.recebidoBRL, "BRL"))}</div>
+            <div class="ct-tile-sub">o que caiu na conta</div></div>
+          <div class="ct-tile"><div class="ct-tile-rot">Em aberto</div>
+            <div class="ct-tile-val">${esc(Dados.escreverDinheiro(Math.max(0, r.emAbertoBRL), "BRL"))}</div>
+            <div class="ct-tile-sub">trabalhado e ainda não pago</div></div>
+          <div class="ct-tile"><div class="ct-tile-rot">Processos abertos</div>
+            <div class="ct-tile-val">${emProcesso}</div>
+            <div class="ct-tile-sub">de ${APLICACOES.length} ${APLICACOES.length === 1 ? "aplicação" : "aplicações"}</div></div>
+        </div>
+      </div>
+
+      ${(CFG.metaHorasSemana || CFG.metaGanhoMes) ? `<div class="ct-cartao" style="margin-top:18px;">
+        <div class="ct-cab-cartao"><h2>Metas</h2><p>a barra e a linha pontilhada dos gráficos contam a mesma história</p>
+          <button class="ct-b pequeno" data-metas style="margin-left:auto;">Ajustar</button></div>
+        <div class="ct-metas" id="caixaMetas"></div>
+      </div>` : ""}
+
+      <div class="ct-grade">
+        <div class="ct-cartao ct-larga">
+          <div class="ct-cab-cartao"><h2>Ganho por mês</h2><p>últimos 12 meses, em reais, empilhado por trabalho</p></div>
+          <div id="grGanhos"></div>
+        </div>
+        <div class="ct-cartao">
+          <div class="ct-cab-cartao"><h2>Horas por dia da semana</h2><p>média no período escolhido</p></div>
+          <div id="grSemana"></div>
+        </div>
+        <div class="ct-cartao">
+          <div class="ct-cab-cartao"><h2>Divisão por trabalho</h2><p>ganho bruto no período</p></div>
+          <div id="grRosca"></div>
+        </div>
+        <div class="ct-cartao ct-larga">
+          <div class="ct-cab-cartao"><h2>Dias trabalhados</h2><p>o ano inteiro, um quadrado por dia</p></div>
+          <div id="grAno"></div>
+        </div>
+        <div class="ct-cartao ct-larga">
+          <div class="ct-cab-cartao"><h2>Previsto e recebido</h2><p>a distância entre as duas linhas é o que está em aberto</p></div>
+          <div id="grFluxo"></div>
+        </div>
+      </div>`;
+
+    alvo.querySelectorAll("[data-periodo]").forEach(b => b.addEventListener("click", () => {
+      periodo = b.dataset.periodo; desenharPainel();
+    }));
+    const btDia = alvo.querySelector("[data-novo-dia]");
+    if (btDia) btDia.addEventListener("click", registrarDiaRapido);
+    const btMetas = alvo.querySelector("[data-metas]");
+    if (btMetas) btMetas.addEventListener("click", abrirMetas);
+
+    if (CFG.metaHorasSemana || CFG.metaGanhoMes) await desenharMetas(alvo.querySelector("#caixaMetas"));
+    await desenharGraficos(de, ate);
+  }
+
+  function htmlPrimeirosPassos() {
+    return `<div class="ct-cartao ct-vazio">
+      <div class="ct-vazio-ic">◔</div>
+      <h3>Nada registrado ainda</h3>
+      <p>Duas coisas moram aqui: as vagas em que você aplicou, e o trabalho que você já faz.
+         Comece por qualquer uma das duas.</p>
+      <div class="ct-passos">
+        <div class="ct-passo">
+          <b>Já apliquei para essa vaga?</b>
+          <p>Registre para onde você mandou currículo, quando, e em que pé está.
+             Quando abrir uma vaga aqui no Hub, ela avisa se você já aplicou.</p>
+          <button class="ct-b" data-ir-ap>Registrar uma aplicação</button>
+        </div>
+        <div class="ct-passo">
+          <b>Quanto eu já fiz este mês?</b>
+          <p>Cadastre um trabalho que você já faz, lance as horas do dia,
+             e o painel monta os números e os gráficos sozinho.</p>
+          <button class="ct-b forte" data-ir-tr>Cadastrar um trabalho</button>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function ligarPrimeirosPassos(alvo) {
+    alvo.querySelector("[data-ir-ap]").addEventListener("click", () => { abrirAba("aplicacoes"); formAplicacao(); });
+    alvo.querySelector("[data-ir-tr]").addEventListener("click", () => { abrirAba("trabalhos"); formTrabalho(); });
+  }
+
+  /* ── metas ── */
+  async function desenharMetas(caixa) {
+    if (!caixa) return;
+    let html = "";
+
+    if (CFG.metaHorasSemana) {
+      const de = Dados.segundaDa(Dados.hoje());
+      const horas = REGISTROS.filter(r => r.data >= de && r.data <= Dados.hoje())
+        .reduce((s, r) => s + (+r.horas || 0), 0);
+      const alvo = +CFG.metaHorasSemana;
+      const parte = Math.min(1, horas / alvo);
+      const faltaH = Math.max(0, alvo - horas);
+      const diasQueFaltam = 7 - Dados.diasEntre(de, Dados.hoje());
+      html += `<div>
+        <div class="ct-meta-topo"><span class="ct-meta-num">${esc(Dados.escreverHoras(horas) || "0h")}</span>
+          <span class="ct-meta-de">de ${esc(Dados.escreverHoras(alvo))} nesta semana</span></div>
+        <div class="ct-barra${parte >= 1 ? " cheia" : ""}"><span style="width:${(parte * 100).toFixed(1)}%"></span></div>
+        <div class="ct-meta-nota">${faltaH <= 0 ? "Meta da semana alcançada."
+          : "Faltam " + esc(Dados.escreverHoras(faltaH)) + ", e restam " + diasQueFaltam + (diasQueFaltam === 1 ? " dia." : " dias.")}</div>
+      </div>`;
+    }
+
+    if (CFG.metaGanhoMes) {
+      const de = Dados.hoje().slice(0, 8) + "01";
+      const r = await UI.resumo({ trabalhos: TRABALHOS, registros: REGISTROS, pagamentos: PAGAMENTOS, de, ate: Dados.hoje() });
+      const alvo = +CFG.metaGanhoMes;
+      const parte = Math.min(1, r.previstoBRL / alvo);
+      const falta = Math.max(0, alvo - r.previstoBRL);
+      const hoje = new Date(Dados.hoje() + "T12:00:00");
+      const noMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
+      const diasQueFaltam = Math.max(1, noMes - hoje.getDate() + 1);
+      html += `<div>
+        <div class="ct-meta-topo"><span class="ct-meta-num">${esc(Dados.escreverDinheiro(r.previstoBRL, "BRL"))}</span>
+          <span class="ct-meta-de">de ${esc(Dados.escreverDinheiro(alvo, "BRL"))} neste mês</span></div>
+        <div class="ct-barra${parte >= 1 ? " cheia" : ""}"><span style="width:${(parte * 100).toFixed(1)}%"></span></div>
+        <div class="ct-meta-nota">${falta <= 0 ? "Meta do mês alcançada."
+          : "Faltam " + esc(Dados.escreverDinheiro(falta, "BRL")) + ", restam " + diasQueFaltam + " dias, cerca de "
+            + esc(Dados.escreverDinheiro(falta / diasQueFaltam, "BRL")) + " por dia."}</div>
+      </div>`;
+    }
+    caixa.innerHTML = html;
+  }
+
+  /* ── os cinco gráficos ── */
+  async function desenharGraficos(de, ate) {
+    const porId = {}; TRABALHOS.forEach((t, i) => porId[t.id] = Object.assign({ cor: t.cor || Graficos.corDe(i) }, t));
+    const NOMES_MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+
+    /* 1. ganho por mês, empilhado por trabalho */
+    const meses = [];
+    const base = new Date(Dados.hoje() + "T12:00:00"); base.setDate(1);
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(base.getFullYear(), base.getMonth() - i, 1);
+      meses.push(d.toISOString().slice(0, 7));
+    }
+    const ativos = TRABALHOS.filter(t => REGISTROS.some(r => r.trabalhoId === t.id) || t.pagamento === "mes").slice(0, 8);
+    const series = [];
+    for (const t of ativos) {
+      const valores = [];
+      for (const ym of meses) {
+        const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data.slice(0, 7) === ym);
+        let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
+        if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
+        const tx = await UI.taxaDoMes(t.moeda || "BRL", ym);
+        valores.push(bruto * tx.taxa);
+      }
+      if (valores.some(v => v)) series.push({ nome: t.projeto || t.empresa, valores, cor: porId[t.id].cor });
+    }
+    Graficos.colunas($("#grGanhos"), {
+      categorias: meses.map(m => NOMES_MES[+m.slice(5, 7) - 1] + (m.slice(5, 7) === "01" ? "/" + m.slice(2, 4) : "")),
+      series, empilhado: true, altura: 250, titulo: "Ganho bruto por mês, em reais",
+      meta: CFG.metaGanhoMes ? +CFG.metaGanhoMes : null, metaRotulo: "meta do mês",
+      formatar: v => Dados.escreverDinheiro(v, "BRL"),
+      formatarEixo: v => (v >= 1000 ? Graficos.numeroCurto(v) : String(Math.round(v))),
+      vazio: "Registre alguns dias e o ganho por mês aparece aqui.",
+    });
+
+    /* 2. horas por dia da semana */
+    const DIAS = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
+    const somaDia = [0, 0, 0, 0, 0, 0, 0], contaDia = [0, 0, 0, 0, 0, 0, 0];
+    REGISTROS.filter(r => r.data >= de && r.data <= ate).forEach(r => {
+      const d = new Date(r.data + "T12:00:00");
+      const i = (d.getDay() + 6) % 7;
+      somaDia[i] += +r.horas || 0;
+      if (r.horas) contaDia[i]++;
+    });
+    Graficos.colunas($("#grSemana"), {
+      categorias: DIAS.map(d => d.slice(0, 3).toLowerCase()),
+      series: [{ nome: "Média de horas", valores: somaDia.map((s, i) => (contaDia[i] ? s / contaDia[i] : 0)), cor: Graficos.corDe(0) }],
+      altura: 210, titulo: "Média de horas por dia da semana",
+      meta: CFG.metaHorasSemana ? +CFG.metaHorasSemana / 5 : null, metaRotulo: "ritmo da meta",
+      formatar: v => Dados.escreverHoras(v),
+      formatarEixo: v => (v ? v + "h" : "0"),
+      sufixoDica: "média dos dias em que você trabalhou",
+      vazio: "Sem horas registradas neste período.",
+    });
+
+    /* 3. divisão por trabalho no período */
+    const fatias = [];
+    for (const t of TRABALHOS) {
+      const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data >= de && r.data <= ate);
+      let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
+      if (t.pagamento === "mes" && regs.length) {
+        const meses = new Set(regs.map(r => r.data.slice(0, 7)));
+        bruto += (+t.valor || 0) * meses.size;
+      }
+      if (!bruto) continue;
+      const tx = await UI.taxaDoMes(t.moeda || "BRL", ate.slice(0, 7));
+      fatias.push({ nome: t.projeto || t.empresa, valor: bruto * tx.taxa, cor: porId[t.id].cor });
+    }
+    Graficos.rosca($("#grRosca"), {
+      fatias: fatias.sort((a, b) => b.valor - a.valor),
+      formatar: v => Dados.escreverDinheiro(v, "BRL"),
+      rotuloCentro: PERIODOS[periodo].nome.toLowerCase(),
+      titulo: "Ganho por trabalho no período",
+      vazio: "Sem ganho registrado neste período.",
+    });
+
+    /* 4. calendário do ano */
+    const porDia = {};
+    REGISTROS.forEach(r => { porDia[r.data] = (porDia[r.data] || 0) + (+r.horas || 0); });
+    Graficos.calendario($("#grAno"), {
+      valores: porDia, ano: +Dados.hoje().slice(0, 4),
+      titulo: "Dias trabalhados no ano",
+      formatar: v => Dados.escreverHoras(v),
+    });
+
+    /* 5. previsto contra recebido */
+    const prev = [], receb = [];
+    for (const ym of meses) {
+      let p = 0;
+      for (const t of TRABALHOS) {
+        const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data.slice(0, 7) === ym);
+        let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
+        if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
+        if (!bruto) continue;
+        const tx = await UI.taxaDoMes(t.moeda || "BRL", ym);
+        p += bruto * tx.taxa;
+      }
+      prev.push(p);
+      let g = 0;
+      for (const pg of PAGAMENTOS.filter(x => x.data.slice(0, 7) === ym)) {
+        const r = await Dados.emReais(+pg.valor || 0, pg.moeda, pg.data, pg.taxa);
+        g += r.valor;
+      }
+      receb.push(g);
+    }
+    Graficos.linhas($("#grFluxo"), {
+      categorias: meses.map(m => NOMES_MES[+m.slice(5, 7) - 1]),
+      series: [
+        { nome: "Previsto pelas horas", valores: prev,  cor: Graficos.corDe(0) },
+        { nome: "Recebido de fato",     valores: receb, cor: Graficos.corDe(1) },
+      ],
+      altura: 230, titulo: "Previsto e recebido por mês, em reais",
+      formatar: v => Dados.escreverDinheiro(v, "BRL"),
+      formatarEixo: v => (v >= 1000 ? Graficos.numeroCurto(v) : String(Math.round(v))),
+      vazio: "Registre dias e pagamentos para comparar as duas linhas.",
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     APLICAÇÕES
+     ══════════════════════════════════════════════════════════ */
+
+  function desenharAplicacoes() {
+    const cont = {};
+    ESTADOS.forEach(e => cont[e.id] = APLICACOES.filter(a => a.estado === e.id).length);
+
+    $("#filtrosAp").innerHTML = `
+      <button class="ct-chip" data-estado="" aria-pressed="${filtro.estado === ""}">Todas <span class="ct-cont">${APLICACOES.length}</span></button>
+      ${ESTADOS.filter(e => cont[e.id]).map(e =>
+        `<button class="ct-chip" data-estado="${e.id}" aria-pressed="${filtro.estado === e.id}">${esc(e.nome)} <span class="ct-cont">${cont[e.id]}</span></button>`).join("")}
+      <div class="ct-sep"></div>
+      <div class="ct-busca"><input type="search" id="buscaAp" placeholder="Buscar por empresa ou vaga" aria-label="Buscar aplicação" value="${esc(filtro.busca)}"></div>
+      <button class="ct-b pequeno forte" data-nova-ap>Nova aplicação</button>`;
+
+    $("#filtrosAp").querySelectorAll("[data-estado]").forEach(b => b.addEventListener("click", () => {
+      filtro.estado = b.dataset.estado; desenharAplicacoes();
+    }));
+    $("#filtrosAp").querySelector("[data-nova-ap]").addEventListener("click", () => formAplicacao());
+    const busca = $("#buscaAp");
+    busca.addEventListener("input", () => {
+      filtro.busca = busca.value;
+      desenharListaAp();
+    });
+
+    desenharListaAp();
+  }
+
+  function desenharListaAp() {
+    const alvo = $("#listaAp");
+    const termo = Dados.normalizar(filtro.busca);
+    let lista = APLICACOES.slice();
+    if (filtro.estado) lista = lista.filter(a => a.estado === filtro.estado);
+    if (termo) lista = lista.filter(a => (Dados.normalizar(a.empresa) + " " + Dados.normalizar(a.titulo)).indexOf(termo) >= 0);
+    lista.sort((a, b) => (a.data < b.data ? 1 : a.data > b.data ? -1 : 0));
+
+    if (!lista.length) {
+      alvo.innerHTML = `<div class="ct-cartao ct-vazio">
+        <div class="ct-vazio-ic">◍</div>
+        <h3>${APLICACOES.length ? "Nada com esse filtro" : "Nenhuma aplicação registrada"}</h3>
+        <p>${APLICACOES.length ? "Tente outro estado ou limpe a busca."
+          : "Cada vaga em que você mandar currículo entra aqui. Depois, quando bater a dúvida de \"será que já apliquei?\", a resposta está nesta lista, e também dentro da própria página da vaga."}</p>
+        ${APLICACOES.length ? "" : `<button class="ct-b forte" data-nova2>Registrar a primeira</button>`}
+      </div>`;
+      const b = alvo.querySelector("[data-nova2]");
+      if (b) b.addEventListener("click", () => formAplicacao());
+      return;
+    }
+
+    alvo.innerHTML = `<div class="ct-lista">${lista.map(a => {
+      const e = estadoDe(a.estado);
+      const dias = a.data ? Dados.diasEntre(a.data, Dados.hoje()) : null;
+      const parado = ["aplicado", "teste"].indexOf(a.estado) >= 0 && dias !== null && dias >= 14;
+      return `<button class="ct-linha" data-ap="${esc(a.id)}">
+        ${marcaHtml(a.empresa, 38)}
+        <span>
+          <span class="ct-tit">${esc(a.titulo || "Vaga sem título")}</span>
+          <span class="ct-emp">${esc(a.empresa || "")}${a.origem ? " · " + esc(a.origem) : ""}</span>
+        </span>
+        <span class="ct-esconde2">
+          <span class="ct-col-rot">Aplicada em</span>
+          <span class="ct-col-val">${esc(Dados.dataBonita(a.data))}</span>
+        </span>
+        <span>
+          <span class="ct-estado" style="background:${e.fundo};color:${e.texto};border-color:${e.borda};">${esc(e.nome)}</span>
+        </span>
+        <span class="ct-esconde">
+          ${parado ? `<span class="ct-col-rot">Sem resposta há</span><span class="ct-col-val">${dias} dias</span>`
+                   : (a.proximo ? `<span class="ct-col-rot">Próximo passo</span><span class="ct-col-val">${esc(a.proximo)}</span>` : "")}
+        </span>
+        <span class="ct-seta" aria-hidden="true">
+          <svg width="13" height="11" viewBox="0 0 13 11" fill="none"><path d="M1 5.5h10M7.5 1.5 11.5 5.5 7.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </button>`;
+    }).join("")}</div>`;
+
+    alvo.querySelectorAll("[data-ap]").forEach(b => b.addEventListener("click", () => {
+      formAplicacao(APLICACOES.find(a => a.id === b.dataset.ap));
+    }));
+  }
+
+  /* ── formulário de aplicação ── */
+  async function formAplicacao(base) {
+    const novo = !base || !base.id;
+    const ap = Object.assign({
+      empresa: "", titulo: "", url: "", data: Dados.hoje(), origem: "", email: "",
+      remuneracao: "", curriculo: "", estado: "aplicado", proximo: "", proximoEm: "", observacoes: "",
+    }, base || {});
+
+    const curriculos = (CFG.curriculos || []).slice();
+    if (ap.curriculo && curriculos.indexOf(ap.curriculo) < 0) curriculos.push(ap.curriculo);
+
+    const corpo = `
+      <div class="u-tripla">
+        ${UI.campo({ nome: "empresa", rotulo: "Empresa", valor: ap.empresa, obrigatorio: true, lista: "listaEmpresas", dica: "Welocalize" })}
+        ${UI.campo({ nome: "data", rotulo: "Aplicada em", tipo: "date", valor: ap.data, obrigatorio: true })}
+      </div>
+      ${UI.campo({ nome: "titulo", rotulo: "Título da vaga", valor: ap.titulo, obrigatorio: true, dica: "AI Data Annotator - Portuguese (Brazil)" })}
+      ${UI.campo({ nome: "url", rotulo: "Link do anúncio", tipo: "url", valor: ap.url, dica: "https://" })}
+      <div class="u-tripla">
+        ${UI.campo({ nome: "estado", rotulo: "Em que pé está", tipo: "escolha", valor: ap.estado,
+                     opcoes: ESTADOS.map(e => ({ valor: e.id, nome: e.nome })) })}
+        ${UI.campo({ nome: "origem", rotulo: "Onde você viu", tipo: "escolha", valor: ap.origem,
+                     opcoes: [{ valor: "", nome: "Não informado" }].concat(ORIGENS.map(o => ({ valor: o, nome: o }))) })}
+      </div>
+      <div class="u-tripla">
+        ${UI.campo({ nome: "email", rotulo: "E-mail que você usou", tipo: "email", valor: ap.email, dica: "para lembrar em qual caixa procurar" })}
+        ${UI.campo({ nome: "remuneracao", rotulo: "Valor anunciado", valor: ap.remuneracao, dica: "US$ 12/h" })}
+      </div>
+      ${UI.campo({ nome: "curriculo", rotulo: "Currículo enviado", valor: ap.curriculo, lista: "listaCurriculos",
+                   dica: "Currículo IA 2026",
+                   ajuda: "Dê um apelido à versão. Nas próximas aplicações ele aparece na lista, e depois dá para ver qual teve mais resposta." })}
+      <datalist id="listaCurriculos">${curriculos.map(c => `<option value="${esc(c)}">`).join("")}</datalist>
+      <div class="u-tripla">
+        ${UI.campo({ nome: "proximo", rotulo: "Próximo passo", valor: ap.proximo, dica: "Fazer a prova de qualificação" })}
+        ${UI.campo({ nome: "proximoEm", rotulo: "Quando", tipo: "date", valor: ap.proximoEm })}
+      </div>
+      ${UI.campo({ nome: "observacoes", rotulo: "Observações", tipo: "texto-longo", valor: ap.observacoes,
+                   dica: "Nome do recrutador, o que pediram, o que você respondeu" })}
+      <div id="avisoRepetida"></div>
+    `;
+
+    const dlg = UI.painel({
+      titulo: novo ? "Nova aplicação" : "Editar aplicação",
+      subtitulo: novo ? "" : ap.empresa,
+      acaoTexto: novo ? "Registrar" : "Salvar",
+      corpo,
+      extra: novo ? "" : `<button type="button" class="u-link u-perigo-txt" data-apagar>Apagar</button>`,
+      acao: async (d) => {
+        const empresa = UI.ler(d, "empresa"), titulo = UI.ler(d, "titulo");
+        if (!empresa) { UI.erroNoPainel(d, "Escreva o nome da empresa."); return false; }
+        if (!titulo)  { UI.erroNoPainel(d, "Escreva o título da vaga."); return false; }
+
+        const estadoNovo = UI.ler(d, "estado");
+        const curriculo = UI.ler(d, "curriculo");
+
+        const salvo = await Dados.salvar("aplicacoes", Object.assign({}, ap, {
+          empresa, titulo,
+          url: UI.ler(d, "url"),
+          data: UI.ler(d, "data") || Dados.hoje(),
+          estado: estadoNovo,
+          origem: UI.ler(d, "origem"),
+          email: UI.ler(d, "email"),
+          remuneracao: UI.ler(d, "remuneracao"),
+          curriculo,
+          proximo: UI.ler(d, "proximo"),
+          proximoEm: UI.ler(d, "proximoEm"),
+          observacoes: UI.ler(d, "observacoes"),
+        }));
+
+        // Guarda o apelido do currículo na lista, para virar sugestão da próxima vez.
+        if (curriculo && (CFG.curriculos || []).indexOf(curriculo) < 0) {
+          CFG.curriculos = (CFG.curriculos || []).concat([curriculo]);
+          await Dados.salvarConfig(CFG);
+        }
+
+        await recarregar();
+        UI.aviso(novo ? "Aplicação registrada." : "Aplicação salva.");
+
+        // Virou aprovado: oferece criar o trabalho na hora. É a costura entre as duas frentes.
+        if (estadoNovo === "aprovado" && ap.estado !== "aprovado") {
+          setTimeout(async () => {
+            const sim = await UI.confirmar({
+              titulo: "Aprovado. Quer criar o trabalho?",
+              texto: "Dá para começar a lançar horas e ganhos de <b>" + esc(titulo) + "</b> agora, com empresa e nome já preenchidos.",
+              acaoTexto: "Criar o trabalho",
+            });
+            if (sim) formTrabalho({ empresa, projeto: titulo, aplicacaoId: salvo.id });
+          }, 260);
+        }
+      },
+    });
+
+    // Aviso de vaga repetida, enquanto a pessoa digita.
+    async function conferirRepetida() {
+      const caixa = dlg.querySelector("#avisoRepetida");
+      const empresa = UI.ler(dlg, "empresa"), titulo = UI.ler(dlg, "titulo");
+      if (!empresa || !titulo) { caixa.innerHTML = ""; return; }
+      const achada = await Dados.procurarAplicacao({ empresa, titulo });
+      if (!achada || (ap.id && achada.id === ap.id)) { caixa.innerHTML = ""; return; }
+      const e = estadoDe(achada.estado);
+      caixa.innerHTML = `<div class="u-nota">
+        Você já aplicou para esta vaga em <b>${esc(Dados.dataBonita(achada.data))}</b>, e ela está como
+        <b>${esc(e.nome)}</b>. Dá para abrir aquela ou registrar assim mesmo, se for uma nova rodada.
+        <br><button type="button" class="u-link" data-abrir-antiga>Abrir a de ${esc(Dados.dataBonita(achada.data))}</button>
+      </div>`;
+      caixa.querySelector("[data-abrir-antiga]").addEventListener("click", () => {
+        dlg.close(); dlg.remove(); formAplicacao(achada);
+      });
+    }
+    ["empresa", "titulo"].forEach(n => {
+      const el = dlg.querySelector(`[name="${n}"]`);
+      el.addEventListener("input", () => { clearTimeout(el._t); el._t = setTimeout(conferirRepetida, 450); });
+    });
+    if (!novo) conferirRepetida();
+
+    const apagar = dlg.querySelector("[data-apagar]");
+    if (apagar) apagar.addEventListener("click", async () => {
+      const ok = await UI.confirmar({ titulo: "Apagar esta aplicação?", texto: "Não dá para desfazer.", acaoTexto: "Apagar", perigo: true });
+      if (!ok) return;
+      await Dados.remover("aplicacoes", ap.id);
+      dlg.close(); dlg.remove();
+      await recarregar();
+      UI.aviso("Aplicação apagada.");
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     TRABALHOS
+     ══════════════════════════════════════════════════════════ */
+
+  async function desenharTrabalhos() {
+    const alvo = $("#trabalhos");
+
+    if (!TRABALHOS.length) {
+      alvo.innerHTML = `<div class="ct-cartao ct-vazio">
+        <div class="ct-vazio-ic">◈</div>
+        <h3>Nenhum trabalho cadastrado</h3>
+        <p>Um trabalho é um projeto que você já faz. Depois de cadastrar, você lança as horas do dia,
+           monta a página dele do seu jeito, e o painel calcula quanto você fez.</p>
+        <button class="ct-b forte" data-novo-tr>Cadastrar um trabalho</button>
+      </div>`;
+      alvo.querySelector("[data-novo-tr]").addEventListener("click", () => formTrabalho());
+      return;
+    }
+
+    const mesDe = Dados.hoje().slice(0, 8) + "01";
+
+    const cartoes = [];
+    for (const t of TRABALHOS) {
+      const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data >= mesDe);
+      const horas = regs.reduce((s, r) => s + (+r.horas || 0), 0);
+      let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
+      if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
+      const hoje = regs.some(r => r.data === Dados.hoje());
+      const ultimo = REGISTROS.filter(r => r.trabalhoId === t.id).sort((a, b) => (a.data < b.data ? 1 : -1))[0];
+
+      cartoes.push(`<div class="ct-trab${t.estado !== "ativo" ? " pausado" : ""}" style="--cor:${esc(t.cor || Graficos.corDe(0))}">
+        <div class="ct-trab-cab">
+          ${marcaHtml(t.empresa, 38)}
+          <div style="min-width:0;flex:1;">
+            <h3>${esc(t.projeto || t.empresa)}</h3>
+            <div class="ct-trab-emp">${esc(t.empresa)}${t.plataforma ? " · " + esc(t.plataforma) : ""}</div>
+          </div>
+        </div>
+        <div class="ct-trab-nums">
+          <div><div class="ct-trab-num">${esc(Dados.escreverHoras(horas) || "0h")}</div><div class="ct-trab-rot">no mês</div></div>
+          <div><div class="ct-trab-num">${esc(Dados.escreverDinheiro(bruto, t.moeda || "BRL"))}</div><div class="ct-trab-rot">bruto no mês</div></div>
+        </div>
+        <div class="ct-trab-pe">
+          <span class="ct-etiq">${esc((UI.PAGAMENTOS[t.pagamento] || {}).nome || "")}</span>
+          ${t.estado !== "ativo" ? `<span class="ct-etiq">${esc(t.estado === "pausado" ? "Pausado" : "Encerrado")}</span>` : ""}
+          ${hoje ? `<span class="ct-etiq" style="background:#E4F3F0;color:#1F7A6E;border-color:#C6E5DE;">Hoje registrado</span>`
+                 : (ultimo ? `<span class="ct-etiq">Último dia ${esc(Dados.dataBonita(ultimo.data))}</span>` : "")}
+        </div>
+        <div class="ct-trab-pe">
+          <button class="ct-b pequeno forte" data-dia="${esc(t.id)}">Registrar o dia</button>
+          <a class="ct-b pequeno" href="trabalho.html?id=${encodeURIComponent(t.id)}">Abrir a página</a>
+        </div>
+      </div>`);
+    }
+
+    alvo.innerHTML = `
+      <div class="ct-filtros">
+        <span class="ct-col-rot" style="margin:0 6px;">${TRABALHOS.length} ${TRABALHOS.length === 1 ? "trabalho" : "trabalhos"}</span>
+        <div class="ct-sep"></div>
+        <button class="ct-b pequeno forte" data-novo-tr>Novo trabalho</button>
+      </div>
+      <div class="ct-trabs">${cartoes.join("")}</div>`;
+
+    alvo.querySelector("[data-novo-tr]").addEventListener("click", () => formTrabalho());
+    alvo.querySelectorAll("[data-dia]").forEach(b => b.addEventListener("click", () => {
+      const t = TRABALHOS.find(x => x.id === b.dataset.dia);
+      UI.abrirRegistroDia(t, { aoSalvar: recarregar });
+    }));
+  }
+
+  /* ── formulário de trabalho ── */
+  function formTrabalho(base) {
+    const novo = !base || !base.id;
+    const t = Object.assign({
+      empresa: "", projeto: "", plataforma: "", pagamento: "hora", valor: "", moeda: "USD",
+      ciclo: "mensal", diaCiclo: "", inicio: Dados.hoje(), estado: "ativo", cor: Graficos.corDe(TRABALHOS.length),
+    }, base || {});
+
+    const corpo = `
+      <div class="u-tripla">
+        ${UI.campo({ nome: "empresa", rotulo: "Empresa", valor: t.empresa, obrigatorio: true, lista: "listaEmpresas", dica: "Welocalize" })}
+        ${UI.campo({ nome: "projeto", rotulo: "Nome do projeto", valor: t.projeto, dica: "Search Quality PT-BR" })}
+      </div>
+      <div class="u-tripla">
+        ${UI.campo({ nome: "plataforma", rotulo: "Plataforma", valor: t.plataforma, dica: "Appen, Toloka, portal próprio" })}
+        ${UI.campo({ nome: "inicio", rotulo: "Começou em", tipo: "date", valor: t.inicio })}
+      </div>
+      ${UI.campo({ nome: "pagamento", rotulo: "Como paga", tipo: "escolha", valor: t.pagamento,
+                   opcoes: Object.keys(UI.PAGAMENTOS).map(k => ({ valor: k, nome: UI.PAGAMENTOS[k].nome })) })}
+      <div class="u-ajuda" id="ajudaPag"></div>
+      <div class="u-dupla">
+        ${UI.campo({ nome: "valor", rotulo: "Valor", tipo: "number", valor: t.valor, dica: "0,00" })}
+        ${UI.campo({ nome: "moeda", rotulo: "Moeda", tipo: "escolha", valor: t.moeda,
+                     opcoes: Object.keys(Dados.MOEDAS).map(m => ({ valor: m, nome: m })) })}
+      </div>
+      <div class="u-tripla">
+        ${UI.campo({ nome: "ciclo", rotulo: "Quando paga", tipo: "escolha", valor: t.ciclo,
+                     opcoes: Object.keys(UI.CICLOS).map(k => ({ valor: k, nome: UI.CICLOS[k] })) })}
+        ${UI.campo({ nome: "estado", rotulo: "Situação", tipo: "escolha", valor: t.estado,
+                     opcoes: [{ valor: "ativo", nome: "Ativo" }, { valor: "pausado", nome: "Pausado" }, { valor: "encerrado", nome: "Encerrado" }] })}
+      </div>
+      <div class="d-linha">
+        <span class="d-rot">Cor de identificação</span>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;" id="cores"></div>
+        <input type="hidden" name="cor" value="${esc(t.cor)}">
+      </div>
+    `;
+
+    const dlg = UI.painel({
+      titulo: novo ? "Novo trabalho" : "Editar trabalho",
+      subtitulo: novo ? "" : (t.projeto || t.empresa),
+      acaoTexto: novo ? "Cadastrar" : "Salvar",
+      corpo,
+      extra: novo ? "" : `<button type="button" class="u-link u-perigo-txt" data-apagar>Apagar trabalho</button>`,
+      acao: async (d) => {
+        const empresa = UI.ler(d, "empresa");
+        if (!empresa) { UI.erroNoPainel(d, "Escreva o nome da empresa."); return false; }
+        const salvo = await Dados.salvar("trabalhos", Object.assign({}, t, {
+          empresa,
+          projeto: UI.ler(d, "projeto") || empresa,
+          plataforma: UI.ler(d, "plataforma"),
+          pagamento: UI.ler(d, "pagamento"),
+          valor: UI.ler(d, "valor") === "" ? 0 : +UI.ler(d, "valor"),
+          moeda: UI.ler(d, "moeda"),
+          ciclo: UI.ler(d, "ciclo"),
+          estado: UI.ler(d, "estado"),
+          inicio: UI.ler(d, "inicio"),
+          cor: d.querySelector('[name="cor"]').value,
+        }));
+        await recarregar();
+        UI.aviso(novo ? "Trabalho cadastrado." : "Trabalho salvo.");
+        if (novo) location.href = "trabalho.html?id=" + encodeURIComponent(salvo.id) + "&novo=1";
+      },
+    });
+
+    // paleta de cores
+    const caixaCores = dlg.querySelector("#cores");
+    const campoCor = dlg.querySelector('[name="cor"]');
+    caixaCores.innerHTML = Graficos.CORES.map(c =>
+      `<button type="button" data-cor="${c}" aria-label="Cor ${c}" style="width:26px;height:26px;border-radius:8px;cursor:pointer;
+        background:${c};border:2px solid ${c === t.cor ? "var(--ink,#10203A)" : "transparent"};"></button>`).join("");
+    caixaCores.querySelectorAll("[data-cor]").forEach(b => b.addEventListener("click", () => {
+      campoCor.value = b.dataset.cor;
+      caixaCores.querySelectorAll("[data-cor]").forEach(x => x.style.borderColor = "transparent");
+      b.style.borderColor = "var(--ink,#10203A)";
+    }));
+
+    // a ajuda e o rótulo do valor mudam junto com a forma de pagamento
+    const selPag = dlg.querySelector('[name="pagamento"]');
+    const ajuda = dlg.querySelector("#ajudaPag");
+    const rotValor = dlg.querySelector('label[for="c-valor"]');
+    function atualizarPag() {
+      const k = selPag.value;
+      ajuda.textContent = UI.PAGAMENTOS[k].ajuda;
+      rotValor.textContent = k === "hora" ? "Valor por hora" : k === "mes" ? "Valor por mês" : "Valor de referência (opcional)";
+    }
+    selPag.addEventListener("change", atualizarPag);
+    atualizarPag();
+
+    const apagar = dlg.querySelector("[data-apagar]");
+    if (apagar) apagar.addEventListener("click", async () => {
+      const regs = REGISTROS.filter(r => r.trabalhoId === t.id).length;
+      const ok = await UI.confirmar({
+        titulo: "Apagar este trabalho?",
+        texto: "Vão junto " + regs + (regs === 1 ? " dia registrado" : " dias registrados") +
+               ", os pagamentos e os blocos da página dele. Não dá para desfazer. Se a ideia é só parar, mude a situação para Encerrado.",
+        acaoTexto: "Apagar mesmo assim", perigo: true,
+      });
+      if (!ok) return;
+      await Dados.removerTrabalho(t.id);
+      dlg.close(); dlg.remove();
+      await recarregar();
+      UI.aviso("Trabalho apagado.");
+    });
+  }
+
+  /* Registrar um dia sem passar pelo cartão do trabalho. */
+  async function registrarDiaRapido() {
+    const ativos = TRABALHOS.filter(t => t.estado === "ativo");
+    if (!ativos.length) { UI.aviso("Cadastre um trabalho primeiro."); abrirAba("trabalhos"); return; }
+    if (ativos.length === 1) return UI.abrirRegistroDia(ativos[0], { aoSalvar: recarregar });
+
+    UI.painel({
+      titulo: "Registrar o dia",
+      subtitulo: "Em qual trabalho?",
+      acaoTexto: "Continuar",
+      corpo: UI.campo({ nome: "trabalho", rotulo: "Trabalho", tipo: "escolha",
+        opcoes: ativos.map(t => ({ valor: t.id, nome: (t.projeto || t.empresa) })) }),
+      acao: (d) => {
+        const t = ativos.find(x => x.id === UI.ler(d, "trabalho"));
+        setTimeout(() => UI.abrirRegistroDia(t, { aoSalvar: recarregar }), 120);
+      },
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     METAS
+     ══════════════════════════════════════════════════════════ */
+
+  function abrirMetas() {
+    UI.painel({
+      titulo: "Suas metas",
+      subtitulo: "As duas são opcionais. Deixe vazio para desligar.",
+      acaoTexto: "Salvar metas",
+      corpo: `
+        ${UI.campo({ nome: "horas", rotulo: "Horas por semana", tipo: "number", valor: CFG.metaHorasSemana || "",
+                     dica: "20", ajuda: "A semana vai de segunda a domingo e zera sozinha." })}
+        ${UI.campo({ nome: "ganho", rotulo: "Ganho por mês, em reais", tipo: "number", valor: CFG.metaGanhoMes || "",
+                     dica: "3000", ajuda: "Comparado com o ganho bruto convertido, sem desconto de imposto." })}
+        <p class="u-texto" style="font-size:13px;color:var(--ink-3,#8A94A1);">
+          Meta serve para você se situar, não para cobrar nada de você. Elas aparecem como barra no painel
+          e como linha pontilhada nos gráficos.</p>`,
+      acao: async (d) => {
+        CFG.metaHorasSemana = UI.ler(d, "horas") ? +UI.ler(d, "horas") : null;
+        CFG.metaGanhoMes = UI.ler(d, "ganho") ? +UI.ler(d, "ganho") : null;
+        await Dados.salvarConfig(CFG);
+        await recarregar();
+        UI.aviso("Metas salvas.");
+      },
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     BACKUP
+     ══════════════════════════════════════════════════════════ */
+
+  function desenharNotaDados() {
+    const n = $("#notaDados");
+    const total = APLICACOES.length + TRABALHOS.length + REGISTROS.length + PAGAMENTOS.length;
+    const ultimo = CFG.ultimoBackup ? Dados.dataBonita(CFG.ultimoBackup.slice(0, 10)) : null;
+    n.textContent = `${total} ${total === 1 ? "registro guardado" : "registros guardados"} neste navegador.` +
+      (ultimo ? ` Último backup em ${ultimo}.` : " Você ainda não exportou nenhum backup.");
+
+    // Aviso de backup: aparece depois de 30 dias, e só quando já há o que perder.
+    const fita = $("#fitaBackup");
+    const dias = CFG.ultimoBackup ? Dados.diasEntre(CFG.ultimoBackup.slice(0, 10), Dados.hoje()) : 999;
+    if (total >= 5 && dias >= 30) {
+      fita.hidden = false;
+      fita.innerHTML = `<span>${CFG.ultimoBackup
+        ? "Faz " + dias + " dias desde o seu último backup."
+        : "Você já tem " + total + " registros aqui e nunca exportou um backup."}
+        Se este navegador limpar os dados, tudo isto some.</span>
+        <button class="ct-b pequeno" data-fita-backup>Exportar agora</button>`;
+      fita.querySelector("[data-fita-backup]").addEventListener("click", exportar);
+    } else {
+      fita.hidden = true;
+    }
+  }
+
+  async function exportar() {
+    try {
+      await Dados.baixarBackup();
+      CFG = await Dados.obterConfig();
+      desenharNotaDados();
+      UI.aviso("Backup baixado.");
+    } catch (e) { UI.aviso("Não deu para exportar agora.", "ruim"); console.error(e); }
+  }
+
+  async function importar(arquivo) {
+    let lido;
+    try { lido = await Dados.lerArquivoBackup(arquivo); }
+    catch (e) { UI.aviso(e.message, "ruim"); return; }
+
+    const p = lido.previa;
+    const linha = (rot, n, atual) => `<tr><th scope="row">${rot}</th><td>${n}</td><td>${atual}</td></tr>`;
+
+    UI.painel({
+      titulo: "Importar backup",
+      subtitulo: "Confira antes. Nada foi gravado ainda.",
+      acaoTexto: "Importar",
+      corpo: `
+        <table class="g-tabela" style="width:100%;border-collapse:collapse;font-size:13.5px;">
+          <thead><tr><th></th><th style="text-align:right;padding:6px 10px;color:var(--ink-3);">No arquivo</th>
+          <th style="text-align:right;padding:6px 10px;color:var(--ink-3);">Aqui hoje</th></tr></thead>
+          <tbody style="text-align:right;">
+            ${linha("Aplicações", p.aplicacoes, p.atual.aplicacoes)}
+            ${linha("Trabalhos", p.trabalhos, p.atual.trabalhos)}
+            ${linha("Dias registrados", p.registros, p.atual.registros)}
+            ${linha("Pagamentos", p.pagamentos, p.atual.pagamentos)}
+            ${linha("Blocos", p.blocos, p.atual.blocos)}
+          </tbody>
+        </table>
+        <style>#ui-painel td,#ui-painel th{padding:6px 10px;border-bottom:1px solid var(--line-soft,#EAE4D9);}
+          #ui-painel th[scope=row]{text-align:left;font-weight:500;color:var(--ink,#10203A);}</style>
+        ${UI.campo({ nome: "modo", rotulo: "O que fazer com o que já está aqui", tipo: "escolha", valor: "juntar",
+          opcoes: [
+            { valor: "juntar", nome: "Juntar: acrescenta o que falta e mantém o resto" },
+            { valor: "substituir", nome: "Substituir: apaga tudo daqui e usa só o arquivo" },
+          ] })}
+        <p class="u-nota" id="avisoModo" hidden>Substituir apaga o que está neste navegador agora. Não dá para desfazer.</p>`,
+      acao: async (d) => {
+        const modo = UI.ler(d, "modo");
+        const r = await Dados.importarTudo(lido.pacote, modo);
+        await recarregar();
+        UI.aviso(`Importado. ${r.gravados} ${r.gravados === 1 ? "registro" : "registros"}${r.pulados ? ", " + r.pulados + " já estavam atualizados" : ""}.`);
+      },
+    });
+
+    const sel = document.querySelector('#ui-painel [name="modo"]');
+    const av = document.querySelector("#avisoModo");
+    sel.addEventListener("change", () => { av.hidden = sel.value !== "substituir"; });
+  }
+
+  $("#btBackup").addEventListener("click", () => $("#secDados").scrollIntoView({ behavior: "smooth", block: "center" }));
+  $("#btExportar").addEventListener("click", exportar);
+  $("#btImportar").addEventListener("click", () => $("#arqBackup").click());
+  $("#arqBackup").addEventListener("change", ev => {
+    const a = ev.target.files && ev.target.files[0];
+    if (a) importar(a);
+    ev.target.value = "";
+  });
+  $("#btApagar").addEventListener("click", async () => {
+    const ok = await UI.confirmar({
+      titulo: "Apagar tudo?",
+      texto: "Some toda a sua lista de aplicações, os trabalhos, os dias registrados e os pagamentos, deste navegador. Não dá para desfazer. Exporte um backup antes se tiver qualquer dúvida.",
+      acaoTexto: "Apagar tudo", perigo: true,
+    });
+    if (!ok) return;
+    await Dados.apagarTudo();
+    await recarregar();
+    UI.aviso("Tudo apagado.");
+  });
+
+  /* ══════════════════════════════════════════════════════════
+     ABERTURA
+     ══════════════════════════════════════════════════════════ */
+
+  (async function iniciar() {
+    // As empresas do site são só um agrado: dão o logo e a sugestão de nome.
+    // Se o arquivo não vier, a ferramenta funciona igual.
+    try {
+      if (typeof lerEmpresas === "function") {
+        const base = await lerEmpresas();
+        EMPRESAS = (base.empresas || []).filter(e => !e.agregador);
+        document.getElementById("listaEmpresas").innerHTML =
+          EMPRESAS.map(e => `<option value="${esc(e.nome)}">`).join("");
+      }
+    } catch (e) { console.warn("empresas.json não carregou", e); }
+
+    try {
+      await Dados.abrir();
+    } catch (e) {
+      $("#carregando").textContent = "Não deu para abrir o armazenamento deste navegador.";
+      console.error(e);
+      return;
+    }
+
+    if (Dados.aviso) {
+      const f = $("#fitaMotor");
+      f.hidden = false;
+      f.innerHTML = `<span>${esc(Dados.aviso)}</span>`;
+    }
+
+    await recarregar();
+    $("#carregando").hidden = true;
+    $("#secDados").hidden = false;
+    abrirAba((location.hash || "").slice(1) || "painel", true);
+
+    // Atalho: a página da vaga manda ?nova= para registrar uma aplicação já preenchida.
+    const q = new URLSearchParams(location.search);
+    if (q.get("nova")) {
+      abrirAba("aplicacoes");
+      formAplicacao({
+        empresa: q.get("empresa") || "", titulo: q.get("titulo") || "", url: q.get("url") || "",
+        vagaId: q.get("vaga") || "", origem: "Home Office Hub",
+        data: Dados.hoje(), estado: "aplicado",
+      });
+      history.replaceState(null, "", "controle.html#aplicacoes");
+    }
+  })();
+})();
+</script>
+
+</body>
+</html>

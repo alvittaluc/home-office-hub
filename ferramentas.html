@@ -86,7 +86,7 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
   display:grid; place-items:center; text-align:center; padding:30px;
   color:var(--ink-3,#8A94A1); font-size:14px; line-height:1.6; min-height:250px;
 }
-.f-vazio.f-larga2 { grid-column:span 2; }
+.f-vazio.f-larga2 { grid-column:span 1; }
 
 .f-rodape { margin-top:54px; padding-top:32px; border-top:1px solid var(--line,#DED7CA); max-width:660px; }
 .f-rodape h3 { font-size:16px; font-weight:600; color:var(--ink,#10203A); margin:0 0 8px; }
@@ -145,10 +145,35 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
       </span>
     </a>
 
+    <!-- ── Meu Controle ── -->
+    <a class="f-card" href="controle.html">
+      <div class="f-icone">
+        <svg width="21" height="21" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3.5 16.5V9M8 16.5V4M12.5 16.5v-5M17 16.5V7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2>Meu Controle</h2>
+      <p>
+        Onde você aplicou e em que pé está cada processo, mais as horas e os ganhos do trabalho
+        que você já faz. Responde a duas perguntas: já apliquei para essa vaga, e quanto eu fiz
+        este mês. Fica tudo no seu computador.
+      </p>
+      <div class="f-tags">
+        <span class="f-tag">Aplicações</span>
+        <span class="f-tag">Horas e ganhos</span>
+        <span class="f-tag">Sem cadastro</span>
+      </div>
+      <span class="f-abrir">
+        Abrir
+        <svg width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true">
+          <path d="M1 5.5h10M7.5 1.5 11.5 5.5 7.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+
     <!-- Este bloco só existe para a grade não ficar torta com uma ferramenta só.
-         A cada ferramenta nova, tire um "span" da classe f-larga2 lá no estilo,
-         e quando forem três, apague este bloco inteiro. -->
-    <div class="f-vazio f-larga2">Novas ferramentas entram aqui conforme forem ficando prontas.</div>
+         Quando entrar a terceira ferramenta, apague este bloco inteiro. -->
+    <div class="f-vazio">Novas ferramentas entram aqui conforme forem ficando prontas.</div>
 
   </div>
 

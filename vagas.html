@@ -189,6 +189,14 @@
     border-radius:20px; padding:2px 8px; flex-shrink:0;
   }
 
+  /* Meu Controle: marca discreta nas vagas em que a pessoa já aplicou.
+     Só aparece para quem usa a ferramenta; para todo mundo mais, nada muda. */
+  .v-emp .selo-aplicada {
+    font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+    color:#1F7A6E; background:#E4F3F0; border:1px solid #C6E5DE;
+    border-radius:20px; padding:2px 8px; flex-shrink:0;
+  }
+
   /* colunas de dados, com rótulo em cima */
   .v-col { display:flex; flex-direction:column; gap:4px; min-width:0; }
   .v-col .r {
@@ -272,6 +280,7 @@
 </div>
 
 <script src="layout.js"></script>
+<script src="controle-dados.js"></script>
 <script>
 montarLayout("vagas");
 
@@ -466,7 +475,7 @@ function linha(v) {
   const rotulo = 'ver detalhes <span class="arr">→</span>';
   const real = v.empresa_real ? ` · ${esc(v.empresa_real)}` : "";
 
-  return `<a class="vaga${nova ? " nova" : ""}" ${destino}>
+  return `<a class="vaga${nova ? " nova" : ""}" ${destino} data-vid="${esc(v.id || "")}">
     <span class="v-marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e,44)}</span>
 
     <span class="v-nome">
@@ -539,6 +548,42 @@ function aplicar() {
     html += `<div class="lista">${resto.map(linha).join("")}</div>`;
   }
   alvo.innerHTML = html;
+  marcarAplicadas();
+}
+
+/* ══════════════════════════════════════════════════════════
+   MARCA DAS VAGAS JÁ APLICADAS
+
+   Lê a lista do Meu Controle, que fica dentro do navegador do
+   próprio visitante. Se a ferramenta não estiver junto, ou o
+   navegador não deixar guardar nada, esta função não faz nada
+   e a lista de vagas continua exatamente igual.
+   ══════════════════════════════════════════════════════════ */
+async function marcarAplicadas() {
+  try {
+    if (typeof Dados === "undefined") return;
+    const aplicacoes = await Dados.listar("aplicacoes");
+    if (!aplicacoes.length) return;
+
+    const ids = new Set(aplicacoes.filter(a => a.vagaId).map(a => a.vagaId));
+    const chaves = new Set(aplicacoes.map(a => Dados.normalizar(a.empresa) + "|" + Dados.normalizar(a.titulo)));
+
+    document.querySelectorAll(".vaga[data-vid]").forEach(el => {
+      const v = TODAS.find(x => x.id === el.dataset.vid);
+      if (!v) return;
+      const e = EMPRESAS[v.empresa] || { nome: v.empresa };
+      const bate = ids.has(v.id) || chaves.has(Dados.normalizar(e.nome) + "|" + Dados.normalizar(v.titulo));
+      if (!bate) return;
+      const onde = el.querySelector(".v-emp");
+      if (!onde || onde.querySelector(".selo-aplicada")) return;
+      const selo = document.createElement("span");
+      selo.className = "selo-aplicada";
+      selo.textContent = "já apliquei";
+      onde.appendChild(selo);
+    });
+  } catch (e) {
+    console.warn("Meu Controle indisponível na lista de vagas", e);
+  }
 }
 
 document.getElementById("ordem").onchange = ev => { ordem = ev.target.value; aplicar(); };
