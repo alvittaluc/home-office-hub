@@ -8,6 +8,7 @@ const ABAS = [
   { id: "inicio",   nome: "Início",        href: "index.html" },
   { id: "vagas",    nome: "Vagas",         href: "vagas.html" },
   { id: "empresas", nome: "Empresas",      href: "empresas.html" },
+  { id: "ferramentas", nome: "Ferramentas", href: "ferramentas.html" },
   { id: "guia",     nome: "Como funciona", href: "como-funciona.html" },
 ];
 
