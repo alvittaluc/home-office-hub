@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-08-31T15:37:35.172060+00:00",
-  "atualizado_br": "31/08/2026 às 15:37",
-  "total": 65,
+  "atualizado_em": "2026-09-01T12:52:01.679470+00:00",
+  "atualizado_br": "01/09/2026 às 12:52",
+  "total": 70,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -272,6 +272,21 @@
       "data_ref": "2026-07-06",
       "data_oficial": true,
       "id": "eddaebb215"
+    },
+    {
+      "empresa": "rws",
+      "titulo": "Data Annotator for AI Models  - Portuguese (Brazil) in Brazil",
+      "local": "Remoto · São Paulo",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/rws/1e5dc82a-21c4-45a6-8d33-422858292139",
+      "commitment": "Full-time Employee",
+      "fonte": "direto",
+      "data_post": "2025-09-24",
+      "data_vista": "2026-09-01",
+      "data_ref": "2025-09-24",
+      "data_oficial": true,
+      "id": "bceb917d55"
     },
     {
       "empresa": "rws",
@@ -968,6 +983,36 @@
     },
     {
       "empresa": "alignerr",
+      "titulo": "Brazilian Portuguese Audio Transcriptionist (AI Training)",
+      "local": "Remoto · United States",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.alignerr.com/jobs/0060423d-eca1-4321-a802-93fb04195a46",
+      "commitment": "CONTRACT",
+      "fonte": "direto",
+      "data_post": "2026-08-31",
+      "data_vista": "2026-09-01",
+      "data_ref": "2026-08-31",
+      "data_oficial": true,
+      "id": "638708c365"
+    },
+    {
+      "empresa": "alignerr",
+      "titulo": "Brazilian Portuguese Audio Transcript Editor — Remote (AI Training)",
+      "local": "Remoto · United States",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.alignerr.com/jobs/38298a15-e54b-4a9f-aafd-b09717d850d1",
+      "commitment": "CONTRACT",
+      "fonte": "direto",
+      "data_post": "2026-08-31",
+      "data_vista": "2026-09-01",
+      "data_ref": "2026-08-31",
+      "data_oficial": true,
+      "id": "3043afd145"
+    },
+    {
+      "empresa": "alignerr",
       "titulo": "Portuguese Language Expert",
       "local": "Remoto · Brasil",
       "categoria": "transl",
@@ -1025,6 +1070,36 @@
         "requisitos": "Português nativo, do Brasil ou de Portugal, e inglês em nível C1 ou C2. Experiência ensinando português ou avaliando a produção de alunos é exigência central. Familiaridade com o quadro CEFR e com os padrões de erro de quem está aprendendo. Estar cursando ou ter concluído pelo menos a graduação. Atenção a detalhe e julgamento linguístico consistente. Não exige experiência prévia com IA.",
         "dica_cv": "Esta é a vaga certa se você dá ou já deu aula de português para estrangeiros, mesmo que particular ou em plataforma online. Diga há quanto tempo ensina, para quais níveis e se conhece o CEFR pelo nome. Se já corrigiu provas, elaborou material didático ou trabalhou com avaliação padronizada, destaque. Confirme que consegue as 15 horas semanais mínimas antes de se candidatar, porque é piso e não teto."
       }
+    },
+    {
+      "empresa": "alignerr",
+      "titulo": "Brazilian Portuguese - Audio Transcript Editor",
+      "local": "Remoto · United States",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.alignerr.com/jobs/3d7f893c-5224-4393-8fbf-c060bb793c74",
+      "commitment": "CONTRACT",
+      "fonte": "direto",
+      "data_post": "2026-08-31",
+      "data_vista": "2026-09-01",
+      "data_ref": "2026-08-31",
+      "data_oficial": true,
+      "id": "0d4c678ebd"
+    },
+    {
+      "empresa": "alignerr",
+      "titulo": "Brazilian Portuguese - Audio Transcriptionist",
+      "local": "Remoto · United States",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.alignerr.com/jobs/5176a7ba-c7fe-42d5-92a3-6c39b10a3bd7",
+      "commitment": "CONTRACT",
+      "fonte": "direto",
+      "data_post": "2026-08-31",
+      "data_vista": "2026-09-01",
+      "data_ref": "2026-08-31",
+      "data_oficial": true,
+      "id": "2dd3d94eeb"
     },
     {
       "empresa": "turing",
