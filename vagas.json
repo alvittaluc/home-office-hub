@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-04T12:20:15.530066+00:00",
-  "atualizado_br": "04/09/2026 às 12:20",
-  "total": 71,
+  "atualizado_em": "2026-09-04T19:53:34.204954+00:00",
+  "atualizado_br": "04/09/2026 às 19:53",
+  "total": 70,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -361,14 +361,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/F495D24FEC",
+      "url": "https://apply.workable.com/j/2C4A663F36",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-08-28",
+      "data_post": "2026-09-04",
       "data_vista": "2026-08-23",
-      "data_ref": "2026-08-28",
+      "data_ref": "2026-09-04",
       "data_oficial": true,
-      "id": "7b95889a54"
+      "id": "d62a97508b"
     },
     {
       "empresa": "toloka",
@@ -870,19 +870,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4788685101",
+      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4707905101",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-02-23",
+      "data_post": "2025-11-07",
       "data_vista": "2026-08-28",
-      "data_ref": "2026-02-23",
+      "data_ref": "2025-11-07",
       "data_oficial": true,
-      "id": "8a110bdc35",
-      "resumo": {
-        "o_que_faz": "Você grava material roteirizado em português e avalia vozes geradas por IA, dando retorno especializado sobre pronúncia, entonação, ritmo, expressão emocional e variação regional. Também anota erros e ajuda a equipe a refinar prompts, métodos de avaliação e diretrizes de design de voz. É a vaga mais sênior desse conjunto, voltada a quem já vive de locução. Faixa de US$ 6 a US$ 65 por hora, remoto.",
-        "requisitos": "Experiência profissional comprovada em locução, dublagem, narração ou performance equivalente em português. Experiência em ensino, coaching de voz ou anotação linguística é diferencial. Exige setup de gravação de qualidade, com microfone confiável e ambiente silencioso e tratado, além de computador seguro e internet estável. Atenção a detalhe e boa comunicação para descrever o que soa errado numa voz sintética.",
-        "dica_cv": "Aqui o portfólio importa mais que o currículo: mande um link com demos curtas em estilos diferentes, como comercial, narração e personagem. Informe o modelo do microfone, da interface e como é o tratamento acústico do seu espaço. Se você faz dublagem, cite os títulos e o tipo de papel. Uma linha dizendo que você sabe descrever tecnicamente problemas de prosódia e pronúncia diferencia você de quem só sabe gravar."
-      }
+      "id": "40bde685a9"
     },
     {
       "empresa": "meridial",
@@ -1088,21 +1083,6 @@
       "data_ref": "2026-02-16",
       "data_oficial": true,
       "id": "36497ae306"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Scientific Coding - Material science and Python",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/jobs?jobId=103653",
-      "commitment": "Science",
-      "fonte": "direto",
-      "data_post": "2026-09-02",
-      "data_vista": "2026-09-03",
-      "data_ref": "2026-09-02",
-      "data_oficial": true,
-      "id": "81776c642c"
     },
     {
       "empresa": "turing",
