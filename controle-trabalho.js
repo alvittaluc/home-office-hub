@@ -645,9 +645,12 @@ const Trabalho = (function () {
 
   .t-grade { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-bottom:18px; }
   .t-l2 { grid-column:span 2; } .t-l3 { grid-column:span 3; }
-  /* minmax(0,1fr) e não 1fr: com 1fr puro uma tabela larga estica a coluna
-     e a página inteira passa a rolar para o lado. */
-  @media (max-width:1180px){ .t-grade { grid-template-columns:repeat(2,minmax(0,1fr)); } .t-l3 { grid-column:span 2; } }
+  /* Os cortes olham a largura da JANELA, mas quem manda é a largura que
+     sobra depois da coluna da esquerda: cerca de 250px a menos. Por isso
+     as três colunas só valem a partir de 1300px de janela, e não 1180.
+     minmax(0,1fr) e não 1fr: com 1fr puro uma tabela larga estica a
+     coluna e a página inteira passa a rolar para o lado. */
+  @media (max-width:1300px){ .t-grade { grid-template-columns:repeat(2,minmax(0,1fr)); } .t-l3 { grid-column:span 2; } }
   @media (max-width:760px){ .t-grade { grid-template-columns:minmax(0,1fr); } .t-l2, .t-l3 { grid-column:span 1; } }
 
   .t-cartao {

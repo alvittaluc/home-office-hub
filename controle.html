@@ -34,8 +34,21 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
    tela sem recarregar nada, inclusive entre um trabalho e outro.
    ══════════════════════════════════════════════════════════════ */
 
-.ct-main { max-width:var(--wrap,1180px); margin:0 auto; padding:30px 20px 90px; }
-.ct-app { display:grid; grid-template-columns:222px minmax(0,1fr); gap:28px; align-items:start; }
+/* ── largura ──────────────────────────────────────────────────
+   O resto do site cabe em 1180px, mas aqui a coluna da esquerda
+   come 250px desse total e o conteúdo fica espremido. Então esta
+   página, e só ela, trabalha com 1460px, e o cabeçalho flutuante
+   acompanha, senão ele fica estreito no meio de uma tela larga.
+   O conteúdo passa de cerca de 890px para cerca de 1160px numa
+   tela de notebook comum.
+   ─────────────────────────────────────────────────────────── */
+/* 1500 = 1460 de conteúdo + os 20px de folga de cada lado, que o
+   box-sizing do site conta dentro da largura. Assim a borda direita do
+   conteúdo cai exatamente na borda do cabeçalho, em tela larga. */
+.ct-main { max-width:1500px; margin:0 auto; padding:30px 20px 90px; }
+body > header.site .hd { max-width:1460px; }
+
+.ct-app { display:grid; grid-template-columns:216px minmax(0,1fr); gap:26px; align-items:start; }
 
 /* ── coluna da esquerda ── */
 .ct-lado {
@@ -157,7 +170,7 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 /* ── grade de gráficos ── */
 .ct-grade { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:18px; }
 .ct-larga { grid-column:1 / -1; }
-@media (max-width:1080px){ .ct-grade { grid-template-columns:minmax(0,1fr); } }
+@media (max-width:1040px){ .ct-grade { grid-template-columns:minmax(0,1fr); } }
 
 /* ── barra de filtros ── */
 .ct-filtros {
