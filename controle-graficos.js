@@ -240,8 +240,10 @@ const Graficos = (function () {
           });
         }
 
-        // rótulo do eixo de baixo, pulando alguns quando não cabe
-        const cadaQuantos = passo < 26 ? Math.ceil(26 / passo) : 1;
+        // Rótulo do eixo de baixo, pulando alguns quando não cabe.
+        // 38px é a largura de um "06/08" com folga: abaixo disso os rótulos
+        // encostam um no outro e viram uma tira ilegível.
+        const cadaQuantos = passo < 38 ? Math.ceil(38 / passo) : 1;
         if (i % cadaQuantos === 0) {
           svg += `<text x="${centro.toFixed(1)}" y="${alt - 10}" text-anchor="middle" class="g-tick">${esc(cat)}</text>`;
         }

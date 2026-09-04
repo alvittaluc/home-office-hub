@@ -4,14 +4,22 @@
    É o que faz a página de cada trabalho ser diferente das outras.
    A pessoa acrescenta os blocos que quiser, de um catálogo.
 
-   Cada bloco é de um dos dois escopos, e a diferença é toda a ideia:
+   ── Duas regras que vieram do primeiro uso ────────────────────
 
-     "trabalho"  um valor só, vale sempre.
-                 Links das plataformas, regras do projeto, meta.
+   1. CADA BLOCO TEM UM ESCOPO SÓ, decidido aqui e não pela pessoa.
+      Antes ela tinha que responder "este bloco é do dia ou do
+      trabalho?" na hora de criar, e ninguém entendia a pergunta.
 
-     "dia"       um valor por dia. Entra no formulário do registro
-                 diário e vira série histórica. Todo bloco do dia
-                 que guarda número pode virar gráfico sozinho.
+        escopo "dia" ....... um valor por dia. Contador, nota,
+                             sim ou não. Vira histórico e gráfico.
+        escopo "trabalho" .. um valor só, vale sempre. Anotações,
+                             lista de tarefas, links, meta, gráfico.
+
+   2. BLOCO DO DIA SE PREENCHE NA PRÓPRIA PÁGINA, no dia de hoje,
+      com um clique. Antes ele só mostrava o valor e a pessoa tinha
+      que abrir "Registrar o dia" para escrever nele: parecia
+      quebrado. Continua aparecendo no formulário do dia também,
+      que é como se lança um dia passado.
 
    Onde o valor mora:
      escopo trabalho ......... no próprio bloco, campo .valor
@@ -35,94 +43,92 @@ const Blocos = (function () {
   }
 
   const ICONES = {
-    texto:     ic('<path d="M4 5h12M4 10h12M4 15h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'),
-    anotacoes: ic('<rect x="3.5" y="3.5" width="13" height="13" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 8h7M6.5 11.5h4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'),
-    numero:    ic('<path d="M7 4 5.5 16M14 4l-1.5 12M4 8h12M3.5 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'),
     contador:  ic('<circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 7v6M7 10h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'),
-    tarefas:   ic('<path d="M3.5 6.2 5 7.7l2.8-3M3.5 13.2 5 14.7l2.8-3M10.5 6.5H17M10.5 13.5H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'),
-    escolha:   ic('<rect x="3" y="6" width="14" height="8" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="m8 9 2 2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'),
-    simnao:    ic('<rect x="2.5" y="6" width="15" height="8" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="13.5" cy="10" r="2.2" fill="currentColor"/>'),
     nota:      ic('<path d="m10 3.5 2 4.2 4.5.6-3.3 3.2.8 4.5L10 13.8 6 16l.8-4.5L3.5 8.3l4.5-.6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>'),
-    meta:      ic('<circle cx="10" cy="10" r="6.8" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="0.9" fill="currentColor"/>'),
+    simnao:    ic('<rect x="2.5" y="6" width="15" height="8" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="13.5" cy="10" r="2.2" fill="currentColor"/>'),
+    anotacoes: ic('<rect x="3.5" y="3.5" width="13" height="13" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 8h7M6.5 11.5h4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'),
+    tarefas:   ic('<path d="M3.5 6.2 5 7.7l2.8-3M3.5 13.2 5 14.7l2.8-3M10.5 6.5H17M10.5 13.5H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'),
     links:     ic('<path d="M8.4 11.6a3 3 0 0 0 4.3 0l2.1-2.1a3 3 0 1 0-4.3-4.3l-1 1M11.6 8.4a3 3 0 0 0-4.3 0l-2.1 2.1a3 3 0 1 0 4.3 4.3l1-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'),
-    tabela:    ic('<rect x="3" y="4.5" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8.5h14M8.5 8.5v7" stroke="currentColor" stroke-width="1.4"/>'),
+    meta:      ic('<circle cx="10" cy="10" r="6.8" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="0.9" fill="currentColor"/>'),
     grafico:   ic('<path d="M4 15V9M8 15V5M12 15v-4M16 15V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'),
+    texto:     ic('<path d="M4 5h12M4 10h12M4 15h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'),
+    numero:    ic('<path d="M7 4 5.5 16M14 4l-1.5 12M4 8h12M3.5 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'),
+    escolha:   ic('<rect x="3" y="6" width="14" height="8" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="m8 9 2 2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'),
+    tabela:    ic('<rect x="3" y="4.5" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8.5h14M8.5 8.5v7" stroke="currentColor" stroke-width="1.4"/>'),
   };
 
   /* ══════════════════════════════════════════════════════════
      O CATÁLOGO
+
+     Oito blocos, e nada além disso. Cada um traz um exemplo do
+     que serve, porque nome de bloco sozinho não explica nada.
+
+     Os quatro do fim estão marcados `legado`. Não aparecem mais
+     no catálogo, mas continuam desenhando: quem já tiver um deles
+     na página não perde nada.
      ══════════════════════════════════════════════════════════ */
 
   const CATALOGO = {
 
-    texto: {
-      nome: "Texto curto", icone: ICONES.texto,
-      descricao: "Uma linha. Nome do coordenador, código do projeto, fuso do time.",
-      escopos: ["trabalho", "dia"], rotuloPadrao: "Anotação",
-      config: [{ campo: "dica", rotulo: "Texto de ajuda dentro do campo", tipo: "texto" }],
-      padrao: { dica: "" },
-    },
-
-    anotacoes: {
-      nome: "Anotações", icone: ICONES.anotacoes,
-      descricao: "Espaço grande para escrever à vontade. Regras do projeto, o que aprendeu.",
-      escopos: ["trabalho", "dia"], rotuloPadrao: "Anotações",
-      config: [{ campo: "altura", rotulo: "Altura da caixa", tipo: "escolha", opcoes: ["baixa", "média", "alta"] }],
-      padrao: { altura: "média" },
-    },
-
-    numero: {
-      nome: "Número", icone: ICONES.numero,
-      descricao: "Um número com unidade. Vira gráfico quando é do dia.",
-      escopos: ["trabalho", "dia"], rotuloPadrao: "Número",
-      config: [
-        { campo: "unidade", rotulo: "Unidade", tipo: "texto", dica: "tarefas, itens, min" },
-        { campo: "casas", rotulo: "Casas decimais", tipo: "numero", min: 0, max: 3 },
-      ],
-      padrao: { unidade: "", casas: 0 },
-    },
+    /* ─────────── do dia ─────────── */
 
     contador: {
-      nome: "Contador", icone: ICONES.contador,
-      descricao: "Botões de mais e menos, para contar sem digitar. Só do dia.",
-      escopos: ["dia"], rotuloPadrao: "Tarefas concluídas",
+      nome: "Contador", icone: ICONES.contador, escopo: "dia",
+      descricao: "Botão de mais e de menos, para contar sem digitar.",
+      exemplo: "Quantas tarefas você fez hoje",
+      rotuloPadrao: "Tarefas concluídas",
       config: [{ campo: "passo", rotulo: "Quanto soma a cada clique", tipo: "numero", min: 1, max: 100 }],
       padrao: { passo: 1 },
     },
 
-    tarefas: {
-      nome: "Lista de tarefas", icone: ICONES.tarefas,
-      descricao: "Itens que se marcam. Para o que se repete todo dia ou para pendências.",
-      escopos: ["trabalho"], rotuloPadrao: "Checklist",
+    nota: {
+      nome: "Nota de 1 a 5", icone: ICONES.nota, escopo: "dia",
+      descricao: "Cinco estrelas para clicar.",
+      exemplo: "Como foi o dia de trabalho",
+      rotuloPadrao: "Como foi o dia",
       config: [], padrao: {},
-    },
-
-    escolha: {
-      nome: "Escolha", icone: ICONES.escolha,
-      descricao: "Menu com as opções que você criar. Tipo de tarefa, turno, fila.",
-      escopos: ["trabalho", "dia"], rotuloPadrao: "Tipo",
-      config: [{ campo: "opcoes", rotulo: "Opções, uma por linha", tipo: "linhas" }],
-      padrao: { opcoes: ["Opção A", "Opção B"] },
     },
 
     simnao: {
-      nome: "Sim ou não", icone: ICONES.simnao,
-      descricao: "Uma chavinha. Bateu a meta hoje? Teve reunião?",
-      escopos: ["dia"], rotuloPadrao: "Bateu a meta?",
+      nome: "Sim ou não", icone: ICONES.simnao, escopo: "dia",
+      descricao: "Uma chavinha para responder todo dia.",
+      exemplo: "Bateu a meta? Teve reunião?",
+      rotuloPadrao: "Bateu a meta?",
       config: [], padrao: {},
     },
 
-    nota: {
-      nome: "Nota de 1 a 5", icone: ICONES.nota,
-      descricao: "Como foi o dia, em estrelas. Vira gráfico junto com as horas.",
-      escopos: ["dia"], rotuloPadrao: "Como foi o dia",
+    /* ─────────── do trabalho ─────────── */
+
+    anotacoes: {
+      nome: "Anotações", icone: ICONES.anotacoes, escopo: "trabalho",
+      descricao: "Espaço grande para escrever à vontade.",
+      exemplo: "As regras do projeto que você sempre esquece",
+      rotuloPadrao: "Anotações",
+      config: [{ campo: "altura", rotulo: "Altura da caixa", tipo: "escolha", opcoes: ["baixa", "média", "alta"] }],
+      padrao: { altura: "média" },
+    },
+
+    tarefas: {
+      nome: "Lista de tarefas", icone: ICONES.tarefas, escopo: "trabalho",
+      descricao: "Itens que se marcam e desmarcam.",
+      exemplo: "O que conferir antes de começar o expediente",
+      rotuloPadrao: "Antes de começar",
+      config: [], padrao: {},
+    },
+
+    links: {
+      nome: "Links úteis", icone: ICONES.links, escopo: "trabalho",
+      descricao: "Atalhos para abrir com um clique. Nunca guarde senha aqui.",
+      exemplo: "O painel de tarefas e o guia do projeto",
+      rotuloPadrao: "Links do projeto",
       config: [], padrao: {},
     },
 
     meta: {
-      nome: "Meta", icone: ICONES.meta,
-      descricao: "Um alvo e uma barra de progresso, alimentada pelas horas ou por um bloco do dia.",
-      escopos: ["trabalho"], rotuloPadrao: "Meta do mês",
+      nome: "Meta", icone: ICONES.meta, escopo: "trabalho",
+      descricao: "Um alvo e uma barra de progresso.",
+      exemplo: "80 horas neste mês, ou 500 tarefas",
+      rotuloPadrao: "Meta do mês",
       config: [
         { campo: "fonte", rotulo: "Contar o quê", tipo: "fonte" },
         { campo: "alvo", rotulo: "Alvo", tipo: "numero", min: 1 },
@@ -131,45 +137,72 @@ const Blocos = (function () {
       padrao: { fonte: "horas", alvo: 40, periodo: "mês" },
     },
 
-    links: {
-      nome: "Links úteis", icone: ICONES.links,
-      descricao: "Atalhos para as plataformas do projeto. Não guarde senha aqui.",
-      escopos: ["trabalho"], rotuloPadrao: "Links do projeto",
-      config: [], padrao: {},
-    },
-
-    tabela: {
-      nome: "Tabela", icone: ICONES.tabela,
-      descricao: "Colunas que você define. Para o que não coube em nenhum outro bloco.",
-      escopos: ["trabalho"], rotuloPadrao: "Tabela",
-      config: [{ campo: "colunas", rotulo: "Colunas, uma por linha", tipo: "linhas" }],
-      padrao: { colunas: ["Item", "Valor"] },
-    },
-
     grafico: {
-      nome: "Gráfico", icone: ICONES.grafico,
-      descricao: "Desenha a linha de um bloco do dia numérico, ou das suas horas.",
-      escopos: ["trabalho"], rotuloPadrao: "Evolução",
+      nome: "Gráfico", icone: ICONES.grafico, escopo: "trabalho",
+      descricao: "Desenha dia a dia as suas horas ou um contador seu.",
+      exemplo: "As horas dos últimos 30 dias",
+      rotuloPadrao: "Evolução",
       config: [
         { campo: "fonte", rotulo: "O que desenhar", tipo: "fonte" },
         { campo: "dias", rotulo: "Quantos dias mostrar", tipo: "numero", min: 7, max: 365 },
       ],
       padrao: { fonte: "horas", dias: 30 },
     },
+
+    /* ─────────── legado: não entram mais, mas continuam desenhando ─────────── */
+
+    texto: {
+      nome: "Texto curto", icone: ICONES.texto, escopo: "trabalho", legado: true,
+      descricao: "Uma linha de texto.", exemplo: "", rotuloPadrao: "Anotação",
+      config: [{ campo: "dica", rotulo: "Texto de ajuda dentro do campo", tipo: "texto" }],
+      padrao: { dica: "" },
+    },
+    numero: {
+      nome: "Número", icone: ICONES.numero, escopo: "trabalho", legado: true,
+      descricao: "Um número com unidade.", exemplo: "", rotuloPadrao: "Número",
+      config: [
+        { campo: "unidade", rotulo: "Unidade", tipo: "texto" },
+        { campo: "casas", rotulo: "Casas decimais", tipo: "numero", min: 0, max: 3 },
+      ],
+      padrao: { unidade: "", casas: 0 },
+    },
+    escolha: {
+      nome: "Escolha", icone: ICONES.escolha, escopo: "trabalho", legado: true,
+      descricao: "Menu de opções.", exemplo: "", rotuloPadrao: "Tipo",
+      config: [{ campo: "opcoes", rotulo: "Opções, uma por linha", tipo: "linhas" }],
+      padrao: { opcoes: ["Opção A", "Opção B"] },
+    },
+    tabela: {
+      nome: "Tabela", icone: ICONES.tabela, escopo: "trabalho", legado: true,
+      descricao: "Colunas que você define.", exemplo: "", rotuloPadrao: "Tabela",
+      config: [{ campo: "colunas", rotulo: "Colunas, uma por linha", tipo: "linhas" }],
+      padrao: { colunas: ["Item", "Valor"] },
+    },
   };
 
-  /* Blocos do dia que guardam número, e por isso podem virar gráfico ou meta. */
-  const NUMERICOS = ["numero", "contador", "nota"];
+  /* Os que a pessoa pode acrescentar hoje, na ordem do catálogo. */
+  function disponiveis() {
+    return Object.keys(CATALOGO).filter(k => !CATALOGO[k].legado);
+  }
+
+  /* Blocos do dia que guardam número, e por isso viram gráfico ou meta. */
+  const NUMERICOS = ["contador", "nota", "numero"];
 
   function ehNumerico(bloco) {
     return bloco.escopo === "dia" && NUMERICOS.indexOf(bloco.tipo) >= 0;
   }
 
-  function novo(trabalhoId, tipo, escopo, ordem) {
+  function escopoDe(tipo) {
+    const d = CATALOGO[tipo];
+    // `escopos` (plural) é do formato antigo, quando a pessoa escolhia.
+    return d ? (d.escopo || (d.escopos && d.escopos[0]) || "trabalho") : "trabalho";
+  }
+
+  function novo(trabalhoId, tipo, ordem) {
     const def = CATALOGO[tipo];
     return {
       trabalhoId, tipo,
-      escopo: escopo || def.escopos[0],
+      escopo: escopoDe(tipo),
       rotulo: def.rotuloPadrao,
       config: JSON.parse(JSON.stringify(def.padrao || {})),
       valor: valorInicial(tipo),
@@ -179,9 +212,7 @@ const Blocos = (function () {
   }
 
   function valorInicial(tipo) {
-    if (tipo === "tarefas") return [];
-    if (tipo === "links")   return [];
-    if (tipo === "tabela")  return [];
+    if (tipo === "tarefas" || tipo === "links" || tipo === "tabela") return [];
     return "";
   }
 
@@ -189,60 +220,148 @@ const Blocos = (function () {
      O BLOCO NA PÁGINA DO TRABALHO
 
      ctx precisa de:
-       salvar(bloco)      grava a alteração
-       registros          lista de registros do trabalho, do mais novo ao mais velho
-       blocos             todos os blocos do trabalho, para o gráfico achar a fonte
+       salvar(bloco)             grava o bloco (valor do escopo trabalho)
+       salvarDia(blocoId, valor) grava o valor de HOJE no registro do dia
+       registros                 registros do trabalho
+       blocos                    todos os blocos, para o gráfico achar a fonte
      ══════════════════════════════════════════════════════════ */
 
   function montar(caixa, bloco, ctx) {
     const def = CATALOGO[bloco.tipo];
     if (!def) { caixa.innerHTML = `<p class="b-erro">Bloco desconhecido.</p>`; return; }
 
-    if (bloco.escopo === "dia") return montarResumoDia(caixa, bloco, ctx);
+    if (bloco.escopo === "dia") {
+      switch (bloco.tipo) {
+        case "contador": return montarContador(caixa, bloco, ctx);
+        case "nota":     return montarNota(caixa, bloco, ctx);
+        case "simnao":   return montarSimNao(caixa, bloco, ctx);
+        default:         return montarResumoDia(caixa, bloco, ctx);   // legado
+      }
+    }
 
     switch (bloco.tipo) {
-      case "texto":     return montarTexto(caixa, bloco, ctx, false);
       case "anotacoes": return montarTexto(caixa, bloco, ctx, true);
-      case "numero":    return montarNumeroFixo(caixa, bloco, ctx);
-      case "escolha":   return montarEscolhaFixa(caixa, bloco, ctx);
+      case "texto":     return montarTexto(caixa, bloco, ctx, false);
       case "tarefas":   return montarTarefas(caixa, bloco, ctx);
       case "links":     return montarLinks(caixa, bloco, ctx);
-      case "tabela":    return montarTabela(caixa, bloco, ctx);
       case "meta":      return montarMeta(caixa, bloco, ctx);
       case "grafico":   return montarGrafico(caixa, bloco, ctx);
+      case "numero":    return montarNumeroFixo(caixa, bloco, ctx);
+      case "escolha":   return montarEscolhaFixa(caixa, bloco, ctx);
+      case "tabela":    return montarTabela(caixa, bloco, ctx);
       default:          caixa.innerHTML = `<p class="b-erro">Bloco sem desenho.</p>`;
     }
   }
 
-  /* Um bloco do dia, visto na página do trabalho, mostra o valor de hoje
-     mais a evolução. O preenchimento acontece no formulário do dia. */
+  /* Valor de hoje de um bloco do dia. */
+  function valorDeHoje(bloco, ctx) {
+    const hoje = Dados.hoje();
+    const r = (ctx.registros || []).find(x => x.data === hoje);
+    return r && r.blocos ? r.blocos[bloco.id] : undefined;
+  }
+
+  /* A série dos últimos dias, para a miniatura embaixo do bloco. */
+  function serieDe(bloco, ctx, quantos) {
+    const regs = (ctx.registros || []).slice().sort((a, b) => (a.data < b.data ? -1 : 1));
+    return regs.slice(-(quantos || 30)).map(r => +((r.blocos || {})[bloco.id]) || 0);
+  }
+
+  function rodapeHoje(extra) {
+    return `<div class="b-hoje">${extra || "guarda no dia de hoje"}</div>`;
+  }
+
+  /* ── contador: preenche no clique, no dia de hoje ── */
+  function montarContador(caixa, bloco, ctx) {
+    const passo = +bloco.config.passo || 1;
+    const v = +valorDeHoje(bloco, ctx) || 0;
+
+    caixa.innerHTML =
+      `<div class="b-contador">
+         <button type="button" data-menos aria-label="Diminuir">−</button>
+         <span class="b-conta num">${v}</span>
+         <button type="button" data-mais aria-label="Aumentar">+</button>
+       </div>
+       ${rodapeHoje()}
+       <div class="b-mini"></div>`;
+
+    const mostra = caixa.querySelector(".b-conta");
+    let atual = v, relogio = null;
+
+    function mexer(quanto) {
+      atual = Math.max(0, atual + quanto);
+      mostra.textContent = atual;
+      mostra.classList.add("b-pulso");
+      setTimeout(() => mostra.classList.remove("b-pulso"), 260);
+      // Grava pouco depois do último clique: quem aperta cinco vezes seguidas
+      // gera uma gravação, não cinco.
+      clearTimeout(relogio);
+      relogio = setTimeout(() => ctx.salvarDia(bloco.id, atual), 500);
+    }
+    caixa.querySelector("[data-menos]").addEventListener("click", () => mexer(-passo));
+    caixa.querySelector("[data-mais]").addEventListener("click", () => mexer(passo));
+
+    const serie = serieDe(bloco, ctx, 30);
+    const mini = caixa.querySelector(".b-mini");
+    if (serie.filter(x => x).length >= 2) Graficos.miniatura(mini, { valores: serie, cor: Graficos.corDe(0), altura: 46 });
+    else mini.remove();
+  }
+
+  /* ── nota de 1 a 5 ── */
+  function montarNota(caixa, bloco, ctx) {
+    const v = +valorDeHoje(bloco, ctx) || 0;
+    caixa.innerHTML =
+      `<div class="b-estrelas" role="radiogroup" aria-label="${esc(bloco.rotulo)}">
+         ${[1, 2, 3, 4, 5].map(n =>
+           `<button type="button" role="radio" aria-checked="${v === n}" data-n="${n}"
+             class="${v >= n && v > 0 ? "on" : ""}" aria-label="${n} de 5">★</button>`).join("")}
+       </div>
+       ${rodapeHoje(v ? "hoje: " + v + " de 5" : "guarda no dia de hoje")}`;
+
+    caixa.querySelectorAll("[data-n]").forEach(b => b.addEventListener("click", () => {
+      const n = +b.dataset.n;
+      const novoValor = (n === +valorAtual()) ? 0 : n;   // clicar de novo na mesma estrela limpa
+      caixa.querySelectorAll("[data-n]").forEach(x => {
+        const on = +x.dataset.n <= novoValor && novoValor > 0;
+        x.classList.toggle("on", on);
+        x.setAttribute("aria-checked", String(+x.dataset.n === novoValor));
+      });
+      caixa.querySelector(".b-hoje").textContent = novoValor ? "hoje: " + novoValor + " de 5" : "guarda no dia de hoje";
+      ctx.salvarDia(bloco.id, novoValor || "");
+    }));
+
+    function valorAtual() {
+      const marcadas = caixa.querySelectorAll("[data-n].on").length;
+      return marcadas;
+    }
+  }
+
+  /* ── sim ou não ── */
+  function montarSimNao(caixa, bloco, ctx) {
+    const v = valorDeHoje(bloco, ctx);
+    const sim = v === true || v === "sim";
+    caixa.innerHTML =
+      `<label class="b-chave"><input type="checkbox"${sim ? " checked" : ""}><span></span><em>${sim ? "Sim" : "Não"}</em></label>
+       ${rodapeHoje()}`;
+    const c = caixa.querySelector("input");
+    c.addEventListener("change", () => {
+      caixa.querySelector("em").textContent = c.checked ? "Sim" : "Não";
+      ctx.salvarDia(bloco.id, c.checked);
+    });
+  }
+
+  /* Bloco do dia legado (número, escolha, texto do dia): só mostra. */
   function montarResumoDia(caixa, bloco, ctx) {
     const regs = (ctx.registros || []).slice().sort((a, b) => (a.data < b.data ? 1 : -1));
-    const hoje = Dados.hoje();
-    const doDia = regs.find(r => r.data === hoje);
-    const valorHoje = doDia && doDia.blocos ? doDia.blocos[bloco.id] : undefined;
-
-    let corpo = "";
-    if (valorHoje === undefined || valorHoje === "" || valorHoje === null) {
+    const v = valorDeHoje(bloco, ctx);
+    if (v === undefined || v === "" || v === null) {
       const ultimo = regs.find(r => r.blocos && r.blocos[bloco.id] !== undefined && r.blocos[bloco.id] !== "");
-      corpo = ultimo
+      caixa.innerHTML = ultimo
         ? `<div class="b-grande b-apagado">${esc(mostrarValor(bloco, ultimo.blocos[bloco.id]))}</div>
-           <div class="b-sub">último registro, ${esc(Dados.dataBonita(ultimo.data))}</div>`
+           <div class="b-hoje">último registro, ${esc(Dados.dataBonita(ultimo.data))}</div>`
         : `<div class="b-vaziozinho">Ainda sem registro.</div>`;
-    } else {
-      corpo = `<div class="b-grande">${esc(mostrarValor(bloco, valorHoje))}</div><div class="b-sub">hoje</div>`;
-    }
-
-    if (ehNumerico(bloco)) {
-      const serie = regs.slice(0, 30).reverse()
-        .map(r => +(r.blocos && r.blocos[bloco.id]) || 0);
-      if (serie.filter(v => v).length >= 2) corpo += `<div class="b-mini"></div>`;
-      caixa.innerHTML = corpo;
-      const mini = caixa.querySelector(".b-mini");
-      if (mini) Graficos.miniatura(mini, { valores: serie, cor: Graficos.corDe(0), altura: 48 });
       return;
     }
-    caixa.innerHTML = corpo;
+    caixa.innerHTML = `<div class="b-grande">${esc(mostrarValor(bloco, v))}</div>${rodapeHoje("hoje")}`;
   }
 
   function mostrarValor(bloco, v) {
@@ -256,7 +375,7 @@ const Blocos = (function () {
     }
   }
 
-  /* ── texto e anotações ── */
+  /* ── anotações e texto curto ── */
   function montarTexto(caixa, bloco, ctx, grande) {
     const alturas = { baixa: 70, "média": 120, alta: 200 };
     if (grande) {
@@ -289,7 +408,7 @@ const Blocos = (function () {
     const feitos = itens.filter(i => i.feito).length;
 
     caixa.innerHTML =
-      `${itens.length ? `<div class="b-sub">${feitos} de ${itens.length} feitos</div>` : ""}
+      `${itens.length ? `<div class="b-hoje">${feitos} de ${itens.length} feitos</div>` : ""}
        <ul class="b-tarefas">${itens.map((it, i) =>
         `<li><label><input type="checkbox" data-i="${i}"${it.feito ? " checked" : ""}>
           <span${it.feito ? ' class="b-riscado"' : ""}>${esc(it.texto)}</span></label>
@@ -349,7 +468,7 @@ const Blocos = (function () {
     });
   }
 
-  /* ── tabela livre ── */
+  /* ── tabela livre (legado) ── */
   function montarTabela(caixa, bloco, ctx) {
     const cols = bloco.config.colunas && bloco.config.colunas.length ? bloco.config.colunas : ["Item", "Valor"];
     const linhas = Array.isArray(bloco.valor) ? bloco.valor : [];
@@ -391,10 +510,10 @@ const Blocos = (function () {
 
     caixa.innerHTML =
       `<div class="b-metatopo"><span class="b-grande">${esc(escrever(total))}</span>
-        <span class="b-sub">de ${esc(escrever(alvo))} · ${esc(bloco.config.periodo || "mês")}</span></div>
-       <div class="b-barra" role="progressbar" aria-valuemin="0" aria-valuemax="${alvo}" aria-valuenow="${total.toFixed(2)}">
+        <span class="b-hoje">de ${esc(escrever(alvo))} · ${esc(bloco.config.periodo || "mês")}</span></div>
+       <div class="b-barra${parte >= 1 ? " b-cheia" : ""}" role="progressbar" aria-valuemin="0" aria-valuemax="${alvo}" aria-valuenow="${total.toFixed(2)}">
          <span style="width:${(parte * 100).toFixed(1)}%"></span></div>
-       <div class="b-sub">${falta > 0 ? "faltam " + esc(escrever(falta)) : "meta batida"}</div>`;
+       <div class="b-hoje">${falta > 0 ? "faltam " + esc(escrever(falta)) : "meta alcançada"}</div>`;
   }
 
   /* Soma a fonte escolhida no período pedido.
@@ -466,6 +585,7 @@ const Blocos = (function () {
 
   /* ══════════════════════════════════════════════════════════
      O CAMPO NO FORMULÁRIO DO DIA
+     É por aqui que se lança um dia passado.
      ══════════════════════════════════════════════════════════ */
 
   function campoDia(bloco, valor) {
@@ -473,6 +593,22 @@ const Blocos = (function () {
     const id = "bl-" + bloco.id;
     let campo;
     switch (bloco.tipo) {
+      case "contador":
+        campo = `<div class="d-contador" data-bloco="${bloco.id}" data-tipo="contador" data-passo="${+bloco.config.passo || 1}">
+                  <button type="button" data-menos aria-label="Diminuir">−</button>
+                  <input id="${id}" type="number" step="any" value="${v === "" ? 0 : esc(v)}" aria-label="${esc(bloco.rotulo)}">
+                  <button type="button" data-mais aria-label="Aumentar">+</button></div>`; break;
+      case "simnao":
+        campo = `<label class="d-chave"><input id="${id}" type="checkbox" data-bloco="${bloco.id}" data-tipo="simnao"
+                  ${v === true || v === "sim" ? "checked" : ""}><span></span><em>${v === true || v === "sim" ? "Sim" : "Não"}</em></label>`; break;
+      case "nota":
+        campo = `<div class="d-estrelas" data-bloco="${bloco.id}" data-tipo="nota" data-valor="${+v || 0}" role="radiogroup" aria-label="${esc(bloco.rotulo)}">
+                  ${[1, 2, 3, 4, 5].map(n =>
+                    `<button type="button" role="radio" aria-checked="${+v === n}" data-n="${n}"
+                      class="${+v >= n && +v > 0 ? "on" : ""}" aria-label="${n} de 5">★</button>`).join("")}
+                  <button type="button" class="d-limpa" data-n="0" aria-label="Limpar nota">limpar</button></div>`; break;
+
+      /* ── legado ── */
       case "texto":
         campo = `<input id="${id}" class="d-campo" type="text" data-bloco="${bloco.id}" data-tipo="texto"
                   value="${esc(v)}" placeholder="${esc(bloco.config.dica || "")}">`; break;
@@ -482,25 +618,11 @@ const Blocos = (function () {
         campo = `<div class="d-numlinha"><input id="${id}" class="d-campo" type="number" step="any"
                   data-bloco="${bloco.id}" data-tipo="numero" value="${esc(v)}">
                   ${bloco.config.unidade ? `<span class="d-unid">${esc(bloco.config.unidade)}</span>` : ""}</div>`; break;
-      case "contador":
-        campo = `<div class="d-contador" data-bloco="${bloco.id}" data-tipo="contador" data-passo="${+bloco.config.passo || 1}">
-                  <button type="button" data-menos aria-label="Diminuir">−</button>
-                  <input id="${id}" type="number" step="any" value="${v === "" ? 0 : esc(v)}" aria-label="${esc(bloco.rotulo)}">
-                  <button type="button" data-mais aria-label="Aumentar">+</button></div>`; break;
       case "escolha":
         campo = `<select id="${id}" class="d-campo" data-bloco="${bloco.id}" data-tipo="escolha">
                   <option value="">Não escolhido</option>
                   ${(bloco.config.opcoes || []).map(o => `<option${o === v ? " selected" : ""}>${esc(o)}</option>`).join("")}
                  </select>`; break;
-      case "simnao":
-        campo = `<label class="d-chave"><input id="${id}" type="checkbox" data-bloco="${bloco.id}" data-tipo="simnao"
-                  ${v === true || v === "sim" ? "checked" : ""}><span></span><em>${v === true || v === "sim" ? "Sim" : "Não"}</em></label>`; break;
-      case "nota":
-        campo = `<div class="d-estrelas" data-bloco="${bloco.id}" data-tipo="nota" data-valor="${+v || 0}" role="radiogroup" aria-label="${esc(bloco.rotulo)}">
-                  ${[1, 2, 3, 4, 5].map(n =>
-                    `<button type="button" role="radio" aria-checked="${+v === n}" data-n="${n}"
-                      class="${+v >= n ? "on" : ""}" aria-label="${n} de 5">★</button>`).join("")}
-                  <button type="button" class="d-limpa" data-n="0" aria-label="Limpar nota">limpar</button></div>`; break;
       default:
         return "";
     }
@@ -552,9 +674,9 @@ const Blocos = (function () {
   /* ══════════════════════════════════════════════════════════
      ESTILO DOS BLOCOS E DOS CAMPOS DO DIA
 
-     Fica aqui, e não no <style> das páginas, porque duas páginas
-     desenham estes mesmos campos: a de trabalho e o formulário do
-     dia dentro do Meu Controle.
+     Fica aqui, e não no <style> das páginas, porque duas telas
+     desenham estes mesmos campos: a página do trabalho e o
+     formulário do dia.
      ══════════════════════════════════════════════════════════ */
 
   const CSS = `
@@ -575,10 +697,54 @@ const Blocos = (function () {
     letter-spacing:-0.015em;
   }
   .b-apagado { color:var(--ink-3,#8A94A1); }
-  .b-sub { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:3px; }
+  .b-hoje { font-size:12px; color:var(--ink-3,#8A94A1); margin-top:7px; }
   .b-vaziozinho { font-size:13.5px; color:var(--ink-3,#8A94A1); padding:6px 0; }
   .b-erro { font-size:13px; color:#C4384A; }
-  .b-mini { margin-top:10px; }
+  .b-mini { margin-top:12px; }
+
+  /* ── contador na própria página ── */
+  .b-contador { display:inline-flex; align-items:center; gap:0; }
+  .b-contador button {
+    width:40px; height:44px; font:inherit; font-size:21px; cursor:pointer; line-height:1;
+    background:var(--bg,#F7F4EF); border:1px solid var(--line-soft,#EAE4D9); color:var(--ink,#10203A);
+    transition:background .14s, color .14s;
+  }
+  .b-contador button:first-child { border-radius:12px 0 0 12px; }
+  .b-contador button:last-child  { border-radius:0 12px 12px 0; }
+  .b-contador button:hover { background:var(--signal-suave,#EAF1F8); color:var(--signal,#1A4893); }
+  .b-contador button:active { transform:translateY(1px); }
+  .b-conta {
+    min-width:74px; height:44px; display:grid; place-items:center;
+    font-size:22px; font-weight:600; color:var(--ink,#10203A);
+    border-top:1px solid var(--line-soft,#EAE4D9); border-bottom:1px solid var(--line-soft,#EAE4D9);
+    background:#fff; transition:transform .2s;
+  }
+  .b-conta.b-pulso { transform:scale(1.14); }
+
+  /* ── estrelas na própria página ── */
+  .b-estrelas { display:inline-flex; align-items:center; gap:3px; }
+  .b-estrelas button {
+    background:none; border:0; cursor:pointer; font-size:27px; line-height:1; padding:1px 3px;
+    color:var(--line,#DED7CA); transition:color .12s, transform .12s;
+  }
+  .b-estrelas button:hover { transform:scale(1.12); }
+  .b-estrelas button.on { color:#C1701F; }
+
+  /* ── chavinha na própria página ── */
+  .b-chave { display:inline-flex; align-items:center; gap:11px; cursor:pointer; font-size:14.5px; color:var(--ink,#10203A); }
+  .b-chave input { position:absolute; opacity:0; width:0; height:0; }
+  .b-chave span {
+    width:46px; height:26px; border-radius:999px; background:var(--line,#DED7CA);
+    position:relative; transition:background .18s; flex-shrink:0;
+  }
+  .b-chave span::after {
+    content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%;
+    background:#fff; transition:transform .18s; box-shadow:0 1px 3px rgba(16,32,58,.25);
+  }
+  .b-chave input:checked + span { background:var(--signal,#1A4893); }
+  .b-chave input:checked + span::after { transform:translateX(20px); }
+  .b-chave input:focus-visible + span { box-shadow:0 0 0 3px var(--signal-suave,#EAF1F8); }
+  .b-chave em { font-style:normal; font-weight:500; }
 
   .b-tarefas, .b-links { list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:2px; }
   .b-tarefas li, .b-links li { display:flex; align-items:center; gap:8px; font-size:14px; }
@@ -599,8 +765,11 @@ const Blocos = (function () {
   .b-add input { flex:1; min-width:0; font:inherit; font-size:13.5px; padding:8px 11px;
     border:1px solid var(--line-soft,#EAE4D9); border-radius:10px; background:var(--bg,#F7F4EF); }
   .b-add input:focus { outline:none; border-color:var(--signal,#1A4893); background:#fff; }
+  /* Cada campo pede pelo menos 140px e quebra a linha quando não cabe:
+     num cartão de uma coluna os dois lado a lado ficavam espremidos a ponto
+     de o endereço aparecer cortado. */
   .b-add2 { flex-wrap:wrap; }
-  .b-add2 input:first-child { flex:0 0 34%; }
+  .b-add2 input { flex:1 1 140px; }
   .b-mais {
     font:inherit; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap;
     background:var(--bg-soft,#F1ECE3); border:1px solid var(--line-soft,#EAE4D9);
@@ -620,8 +789,10 @@ const Blocos = (function () {
   .b-rolagem { overflow-x:auto; }
 
   .b-metatopo { display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
-  .b-barra { height:9px; border-radius:999px; background:var(--signal-suave,#EAF1F8); overflow:hidden; margin:11px 0 7px; }
+  .b-metatopo .b-hoje { margin-top:0; }
+  .b-barra { height:9px; border-radius:999px; background:var(--signal-suave,#EAF1F8); overflow:hidden; margin:11px 0 0; }
   .b-barra span { display:block; height:100%; border-radius:999px; background:var(--signal,#1A4893); transition:width .4s; }
+  .b-barra.b-cheia span { background:#2AA198; }
 
   /* ── campos no formulário do dia ── */
   .d-linha { display:flex; flex-direction:column; gap:6px; }
@@ -686,7 +857,8 @@ const Blocos = (function () {
   injetarCss();
 
   return {
-    CATALOGO, ICONES, novo, montar, campoDia, ligarCamposDia, lerCamposDia,
+    CATALOGO, ICONES, disponiveis, escopoDe, novo, montar,
+    campoDia, ligarCamposDia, lerCamposDia,
     ehNumerico, mostrarValor, somarFonte, NUMERICOS,
   };
 })();

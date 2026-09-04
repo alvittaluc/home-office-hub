@@ -25,26 +25,77 @@
       por exemplo se este arquivo for aberto sozinho para teste. ── */
 html.ct-solto body { font-family:'Geist',system-ui,sans-serif; background:#F7F4EF; color:#10203A; line-height:1.55; margin:0; }
 html.ct-solto a { color:inherit; text-decoration:none; }
-html.ct-solto .eyebrow { font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:#1A4893; margin-bottom:14px; }
 html.ct-solto .num { font-variant-numeric:tabular-nums; }
 
 /* ══════════════════════════════════════════════════════════════
    MEU CONTROLE — estilos só desta página, com prefixo .ct-
+
+   A ferramenta é UMA PÁGINA SÓ. A coluna da esquerda troca de
+   tela sem recarregar nada, inclusive entre um trabalho e outro.
    ══════════════════════════════════════════════════════════════ */
 
-.ct-main { max-width:var(--wrap,1180px); margin:0 auto; padding:44px 20px 90px; }
+.ct-main { max-width:var(--wrap,1180px); margin:0 auto; padding:30px 20px 90px; }
+.ct-app { display:grid; grid-template-columns:222px minmax(0,1fr); gap:28px; align-items:start; }
 
-/* ── topo ── */
-.ct-topo { display:flex; align-items:flex-end; gap:22px; flex-wrap:wrap; margin-bottom:26px; }
-.ct-topo h1 {
-  font-family:var(--display,Georgia,serif); font-weight:400;
-  font-size:clamp(30px,4vw,46px); line-height:1.07; letter-spacing:-0.018em;
-  color:var(--ink,#10203A); margin:0 0 9px;
+/* ── coluna da esquerda ── */
+.ct-lado {
+  position:sticky; top:92px; display:flex; flex-direction:column; gap:4px;
+  max-height:calc(100vh - 120px); overflow-y:auto; padding-right:2px;
 }
-.ct-lead { font-size:16px; line-height:1.6; color:var(--ink-2,#54606F); max-width:54ch; }
-.ct-topo-dir { margin-left:auto; display:flex; gap:8px; align-items:center; }
+.ct-lado-topo { padding:2px 12px 14px; }
+.ct-lado-nome {
+  display:block; font-family:var(--display,Georgia,serif); font-weight:400; font-size:22px;
+  letter-spacing:-0.015em; color:var(--ink,#10203A); line-height:1.15;
+}
+.ct-lado-sub { display:block; font-size:11.5px; color:var(--ink-3,#8A94A1); margin-top:3px; }
 
-/* ── botões desta página ── */
+.ct-item {
+  display:flex; align-items:center; gap:10px; width:100%; text-align:left; font:inherit;
+  font-size:14px; cursor:pointer; padding:9px 12px; border-radius:11px; border:0;
+  background:none; color:var(--ink-2,#54606F); transition:background .14s, color .14s;
+}
+.ct-item:hover { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); }
+.ct-item[aria-current="true"] { background:var(--ink,#10203A); color:#fff; font-weight:500; }
+.ct-item[aria-current="true"] .ct-cont { color:rgba(255,255,255,.62); }
+.ct-item[aria-current="true"] svg { opacity:1; }
+.ct-item svg { flex-shrink:0; opacity:.7; }
+.ct-item .ct-txt { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ct-cont { font-size:11.5px; color:var(--ink-3,#8A94A1); font-variant-numeric:tabular-nums; flex-shrink:0; }
+
+.ct-lado-titulo {
+  font-size:10.5px; font-weight:500; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-3,#8A94A1); padding:16px 12px 7px;
+}
+.ct-ponto { width:9px; height:9px; border-radius:3px; flex-shrink:0; }
+.ct-item.ct-trab-item { font-size:13.5px; padding:8px 12px; }
+.ct-item.ct-pausado .ct-txt { opacity:.6; }
+.ct-lado-add { font-size:13px; color:var(--ink-3,#8A94A1); }
+.ct-lado-add:hover { color:var(--signal,#1A4893); }
+.ct-lado-pe { margin-top:14px; padding-top:12px; border-top:1px solid var(--line-soft,#EAE4D9); }
+
+/* No celular a coluna vira uma fita de atalhos em cima do conteúdo. */
+@media (max-width:920px){
+  .ct-app { grid-template-columns:minmax(0,1fr); gap:18px; }
+  .ct-lado {
+    position:static; max-height:none; flex-direction:row; align-items:center; gap:6px;
+    overflow-x:auto; padding-bottom:6px; -webkit-overflow-scrolling:touch;
+  }
+  .ct-lado-topo, .ct-lado-titulo { display:none; }
+  .ct-lado-pe { margin:0; padding:0; border:0; }
+  .ct-item { width:auto; white-space:nowrap; padding:9px 15px; border-radius:999px;
+    background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); }
+}
+
+/* ── topo de cada tela ── */
+.ct-cab-tela { display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:20px; }
+.ct-cab-tela h1 {
+  font-family:var(--display,Georgia,serif); font-weight:400; font-size:clamp(26px,3.4vw,38px);
+  line-height:1.08; letter-spacing:-0.018em; color:var(--ink,#10203A); margin:0;
+}
+.ct-cab-tela p { font-size:14px; color:var(--ink-3,#8A94A1); margin:5px 0 0; max-width:52ch; }
+.ct-cab-bts { margin-left:auto; display:flex; gap:8px; flex-wrap:wrap; }
+
+/* ── botões ── */
 .ct-b {
   display:inline-flex; align-items:center; gap:8px; font:inherit; font-size:14px; font-weight:500;
   cursor:pointer; padding:11px 19px; border-radius:999px; border:1px solid var(--line,#DED7CA);
@@ -58,30 +109,12 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 
 /* ── avisos de topo ── */
 .ct-fita {
-  display:flex; align-items:flex-start; gap:11px; padding:13px 17px; border-radius:14px;
-  font-size:13.5px; line-height:1.55; margin-bottom:20px;
+  display:flex; align-items:center; gap:11px; padding:13px 17px; border-radius:14px;
+  font-size:13.5px; line-height:1.55; margin-bottom:18px; flex-wrap:wrap;
   background:var(--amber-suave,#FBF0E4); color:#7A4318; border:1px solid #F0DCC6;
 }
 .ct-fita.info { background:var(--signal-suave,#EAF1F8); color:#1A4893; border-color:#D3E2F1; }
-.ct-fita button { margin-left:auto; flex-shrink:0; }
-
-/* ── abas internas ── */
-.ct-abas {
-  display:flex; gap:4px; padding:5px; border-radius:999px; margin-bottom:26px;
-  background:var(--bg-soft,#F1ECE3); border:1px solid var(--line-soft,#EAE4D9); width:max-content;
-  max-width:100%; overflow-x:auto;
-}
-.ct-aba {
-  font:inherit; font-size:14px; font-weight:500; cursor:pointer; white-space:nowrap;
-  padding:9px 20px; border-radius:999px; border:0; background:none; color:var(--ink-2,#54606F);
-  transition:background .15s, color .15s;
-}
-.ct-aba:hover { color:var(--ink,#10203A); }
-.ct-aba[aria-selected="true"] { background:var(--panel,#fff); color:var(--ink,#10203A); box-shadow:var(--sombra,0 1px 2px rgba(16,32,58,.07)); }
-.ct-aba .ct-cont {
-  display:inline-block; margin-left:7px; font-size:11.5px; font-weight:500;
-  color:var(--ink-3,#8A94A1); font-variant-numeric:tabular-nums;
-}
+.ct-fita span { flex:1; min-width:220px; }
 
 /* ── cartões ── */
 .ct-cartao {
@@ -98,7 +131,7 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 /* ── números do topo ── */
 .ct-heroi { display:flex; align-items:flex-end; gap:26px; flex-wrap:wrap; margin-bottom:6px; }
 .ct-heroi-num {
-  font-size:clamp(38px,6vw,54px); font-weight:600; line-height:1; letter-spacing:-0.03em;
+  font-size:clamp(34px,5vw,50px); font-weight:600; line-height:1; letter-spacing:-0.03em;
   color:var(--ink,#10203A);
 }
 .ct-heroi-rot { font-size:13px; color:var(--ink-3,#8A94A1); margin-top:8px; }
@@ -112,7 +145,7 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 .ct-tile-sub { font-size:11.5px; color:var(--ink-3,#8A94A1); margin-top:3px; }
 
 /* ── metas ── */
-.ct-metas { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+.ct-metas { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; }
 .ct-meta-topo { display:flex; align-items:baseline; gap:8px; margin-bottom:9px; flex-wrap:wrap; }
 .ct-meta-num { font-size:23px; font-weight:600; color:var(--ink,#10203A); letter-spacing:-0.018em; font-variant-numeric:tabular-nums; }
 .ct-meta-de { font-size:13px; color:var(--ink-3,#8A94A1); }
@@ -124,16 +157,13 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 /* ── grade de gráficos ── */
 .ct-grade { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:18px; }
 .ct-larga { grid-column:1 / -1; }
-/* minmax(0,1fr) e não 1fr: com 1fr puro uma tabela ou um gráfico largo
-   estica a coluna e a página passa a rolar para o lado no celular. */
-@media (max-width:900px){ .ct-grade { grid-template-columns:minmax(0,1fr); } }
+@media (max-width:1080px){ .ct-grade { grid-template-columns:minmax(0,1fr); } }
 
-/* ── barra de filtros, grudada no topo ── */
+/* ── barra de filtros ── */
 .ct-filtros {
-  position:sticky; top:86px; z-index:60; display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+  display:flex; align-items:center; gap:9px; flex-wrap:wrap;
   padding:11px 14px; margin-bottom:16px; border-radius:16px;
-  background:rgba(255,255,255,.92); backdrop-filter:blur(14px);
-  border:1px solid var(--line-soft,#EAE4D9); box-shadow:var(--sombra,0 1px 2px rgba(16,32,58,.05));
+  background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9);
 }
 .ct-chip {
   font:inherit; font-size:13px; cursor:pointer; padding:7px 14px; border-radius:999px;
@@ -142,8 +172,8 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 }
 .ct-chip:hover { border-color:var(--line,#DED7CA); color:var(--ink,#10203A); }
 .ct-chip[aria-pressed="true"] { background:var(--signal,#1A4893); border-color:var(--signal,#1A4893); color:#fff; }
-.ct-chip .ct-cont { color:inherit; opacity:.65; margin-left:6px; font-variant-numeric:tabular-nums; }
-.ct-busca { position:relative; flex:1; min-width:170px; }
+.ct-chip .ct-cont { color:inherit; opacity:.65; margin-left:6px; }
+.ct-busca { position:relative; flex:1; min-width:160px; }
 .ct-busca input {
   width:100%; font:inherit; font-size:13.5px; padding:8px 13px; border-radius:999px;
   border:1px solid var(--line-soft,#EAE4D9); background:var(--bg,#F7F4EF); color:var(--ink,#10203A);
@@ -155,8 +185,8 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 .ct-lista { display:flex; flex-direction:column; gap:1px; background:var(--line-soft,#EAE4D9);
   border:1px solid var(--line-soft,#EAE4D9); border-radius:var(--raio,18px); overflow:hidden; }
 .ct-linha {
-  display:grid; grid-template-columns:44px minmax(0,1fr) 118px 128px 120px 34px;
-  align-items:center; gap:15px; padding:14px 18px; background:var(--panel,#fff);
+  display:grid; grid-template-columns:44px minmax(0,1fr) 112px 126px 116px 30px;
+  align-items:center; gap:14px; padding:14px 18px; background:var(--panel,#fff);
   cursor:pointer; transition:background .13s; text-align:left; font:inherit; border:0; width:100%;
 }
 .ct-linha:hover { background:var(--panel-2,#FBF9F5); }
@@ -180,17 +210,17 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 }
 .ct-seta { color:var(--line,#DED7CA); }
 .ct-linha:hover .ct-seta { color:var(--signal,#1A4893); }
-@media (max-width:1000px){
-  .ct-linha { grid-template-columns:40px minmax(0,1fr) 120px 34px; }
+@media (max-width:1080px){
+  .ct-linha { grid-template-columns:40px minmax(0,1fr) 120px 30px; }
   .ct-linha .ct-esconde { display:none; }
 }
-@media (max-width:620px){
-  .ct-linha { grid-template-columns:38px minmax(0,1fr) 34px; gap:12px; }
+@media (max-width:640px){
+  .ct-linha { grid-template-columns:38px minmax(0,1fr) 30px; gap:12px; }
   .ct-linha .ct-esconde2 { display:none; }
 }
 
 /* ── cartões de trabalho ── */
-.ct-trabs { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr)); gap:18px; }
+.ct-trabs { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr)); gap:18px; }
 .ct-trab {
   display:flex; flex-direction:column; gap:13px; padding:20px 21px; text-align:left;
   background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9);
@@ -212,19 +242,16 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 }
 
 /* ── vazio e primeiros passos ── */
-.ct-vazio { text-align:center; padding:60px 24px; }
+.ct-vazio { text-align:center; padding:56px 24px; }
 .ct-vazio-ic { font-size:30px; color:var(--line,#DED7CA); margin-bottom:12px; }
 .ct-vazio h3 { font-size:17px; font-weight:600; color:var(--ink,#10203A); margin-bottom:7px; }
 .ct-vazio p { font-size:14px; color:var(--ink-3,#8A94A1); max-width:44ch; margin:0 auto 18px; line-height:1.6; }
-.ct-passos { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:22px; text-align:left; }
+.ct-passos { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:16px; margin-top:22px; text-align:left; }
 .ct-passo { padding:19px 20px; border-radius:15px; background:var(--bg,#F7F4EF); border:1px solid var(--line-soft,#EAE4D9); }
 .ct-passo b { display:block; font-size:14.5px; color:var(--ink,#10203A); margin-bottom:5px; }
 .ct-passo p { font-size:13px; color:var(--ink-2,#54606F); margin:0 0 13px; max-width:none; }
 
-/* ── rodapé de dados ── */
-.ct-dados { margin-top:34px; padding:24px 26px; border-radius:var(--raio,18px);
-  background:var(--bg-soft,#F1ECE3); border:1px solid var(--line-soft,#EAE4D9); }
-.ct-dados h2 { font-size:15px; font-weight:600; color:var(--ink,#10203A); margin-bottom:7px; }
+/* ── seus dados ── */
 .ct-dados p { font-size:13.5px; color:var(--ink-2,#54606F); line-height:1.6; max-width:66ch; margin-bottom:15px; }
 .ct-dados-bts { display:flex; gap:9px; flex-wrap:wrap; align-items:center; }
 .ct-dados-nota { font-size:12px; color:var(--ink-3,#8A94A1); margin-top:13px; }
@@ -236,66 +263,28 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 <body>
 
 <main class="ct-main">
+  <div class="ct-app">
 
-  <div class="ct-topo">
-    <div>
-      <div class="eyebrow">Ferramentas</div>
-      <h1>Meu Controle</h1>
-      <p class="ct-lead">
-        Onde você aplicou, em que pé está cada processo, quantas horas trabalhou e quanto já fez no mês.
-        Fica tudo no seu computador.
-      </p>
+    <!-- ══════════ COLUNA DA ESQUERDA ══════════ -->
+    <aside class="ct-lado" id="lado" aria-label="Navegação do Meu Controle"></aside>
+
+    <!-- ══════════ CONTEÚDO ══════════ -->
+    <div class="ct-conteudo">
+      <div class="ct-fita" id="fitaMotor" hidden></div>
+      <div class="ct-fita info" id="fitaBackup" hidden></div>
+
+      <div class="ct-carregando" id="carregando">Abrindo os seus dados…</div>
+
+      <section id="painel" hidden></section>
+      <section id="aplicacoes" hidden></section>
+      <section id="trabalhos" hidden></section>
+      <section id="trabalho" hidden></section>
+      <section id="dados" hidden></section>
     </div>
-    <div class="ct-topo-dir">
-      <button class="ct-b" id="btBackup" type="button">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M2.5 11.5v1a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Backup
-      </button>
-    </div>
+
   </div>
-
-  <div class="ct-fita" id="fitaMotor" hidden></div>
-  <div class="ct-fita info" id="fitaBackup" hidden></div>
-
-  <div class="ct-abas" role="tablist" aria-label="Seções do Meu Controle">
-    <button class="ct-aba" role="tab" id="tab-painel"     aria-controls="painel"     aria-selected="true">Painel</button>
-    <button class="ct-aba" role="tab" id="tab-aplicacoes" aria-controls="aplicacoes" aria-selected="false">Aplicações <span class="ct-cont" id="contAp"></span></button>
-    <button class="ct-aba" role="tab" id="tab-trabalhos"  aria-controls="trabalhos"  aria-selected="false">Trabalhos <span class="ct-cont" id="contTr"></span></button>
-  </div>
-
-  <div class="ct-carregando" id="carregando">Abrindo os seus dados…</div>
-
-  <!-- ══════════ PAINEL ══════════ -->
-  <section id="painel" role="tabpanel" aria-labelledby="tab-painel" hidden></section>
-
-  <!-- ══════════ APLICAÇÕES ══════════ -->
-  <section id="aplicacoes" role="tabpanel" aria-labelledby="tab-aplicacoes" hidden>
-    <div class="ct-filtros" id="filtrosAp"></div>
-    <div id="listaAp"></div>
-  </section>
-
-  <!-- ══════════ TRABALHOS ══════════ -->
-  <section id="trabalhos" role="tabpanel" aria-labelledby="tab-trabalhos" hidden></section>
-
-  <section class="ct-dados" id="secDados" hidden>
-    <h2>Os seus dados</h2>
-    <p>
-      Tudo o que você escreve aqui fica guardado dentro do seu navegador, neste computador.
-      Não passa por servidor nenhum e ninguém mais vê. Em troca: se você limpar os dados de navegação,
-      some. O backup é um arquivo que você guarda onde quiser, e serve também para levar tudo
-      para outro computador.
-    </p>
-    <div class="ct-dados-bts">
-      <button class="ct-b" id="btExportar" type="button">Exportar backup</button>
-      <button class="ct-b" id="btImportar" type="button">Importar backup</button>
-      <input type="file" id="arqBackup" accept=".json,application/json" hidden>
-      <button class="ct-b" id="btApagar" type="button">Apagar tudo</button>
-    </div>
-    <p class="ct-dados-nota" id="notaDados"></p>
-  </section>
 
   <datalist id="listaEmpresas"></datalist>
-
 </main>
 
 <script src="layout.js"></script>
@@ -303,6 +292,7 @@ html.ct-solto .num { font-variant-numeric:tabular-nums; }
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js"></script>
 <script src="controle-ui.js"></script>
+<script src="controle-trabalho.js"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
    junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
@@ -319,52 +309,57 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      ══════════════════════════════════════════════════════════ */
 
   const ESTADOS = [
-    { id: "aplicado",   nome: "Aplicado",          fundo: "#F1ECE3", texto: "#54606F", borda: "#DED7CA" },
-    { id: "teste",      nome: "Teste",             fundo: "#EAF1F8", texto: "#1A4893", borda: "#D3E2F1" },
-    { id: "entrevista", nome: "Entrevista",        fundo: "#FBF0E4", texto: "#A85D24", borda: "#F0DCC6" },
-    { id: "aprovado",   nome: "Aprovado",          fundo: "#E4F3F0", texto: "#1F7A6E", borda: "#C6E5DE" },
-    { id: "recusado",   nome: "Recusado",          fundo: "#FBE9EB", texto: "#8E2233", borda: "#F1CDD2" },
-    { id: "semresposta",nome: "Sem resposta",      fundo: "#F7F4EF", texto: "#8A94A1", borda: "#EAE4D9" },
-    { id: "banco",      nome: "Banco de talentos", fundo: "#F1EEF7", texto: "#5B4B9E", borda: "#DFD8EE" },
+    { id: "aplicado",    nome: "Aplicado",          fundo: "#F1ECE3", texto: "#54606F", borda: "#DED7CA" },
+    { id: "teste",       nome: "Teste",             fundo: "#EAF1F8", texto: "#1A4893", borda: "#D3E2F1" },
+    { id: "entrevista",  nome: "Entrevista",        fundo: "#FBF0E4", texto: "#A85D24", borda: "#F0DCC6" },
+    { id: "aprovado",    nome: "Aprovado",          fundo: "#E4F3F0", texto: "#1F7A6E", borda: "#C6E5DE" },
+    { id: "recusado",    nome: "Recusado",          fundo: "#FBE9EB", texto: "#8E2233", borda: "#F1CDD2" },
+    { id: "semresposta", nome: "Sem resposta",      fundo: "#F7F4EF", texto: "#8A94A1", borda: "#EAE4D9" },
+    { id: "banco",       nome: "Banco de talentos", fundo: "#F1EEF7", texto: "#5B4B9E", borda: "#DFD8EE" },
   ];
   const estadoDe = id => ESTADOS.find(e => e.id === id) || ESTADOS[0];
-
   const ORIGENS = ["Home Office Hub", "LinkedIn", "Site da empresa", "Indicação", "E-mail", "Outro"];
+
+  const IC = {
+    painel:     '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="6.5" rx="1.4" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="2" width="5" height="4" rx="1.4" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="10.5" width="5" height="3.5" rx="1.4" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="8" width="5" height="6" rx="1.4" stroke="currentColor" stroke-width="1.4"/></svg>',
+    aplicacoes: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5h8a1 1 0 0 1 1 1v10l-2.2-1.6L8.5 13.5 6.2 11.9 4 13.5v-10a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>',
+    trabalhos:  '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4.5" width="12" height="9" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M6 4.5v-1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.4"/></svg>',
+    dados:      '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="4" rx="5.5" ry="2" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 4v8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2V4M2.5 8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2" stroke="currentColor" stroke-width="1.4"/></svg>',
+    mais:       '<svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3.5v9M3.5 8h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  };
 
   /* ══════════════════════════════════════════════════════════
      ESTADO DA PÁGINA
      ══════════════════════════════════════════════════════════ */
 
   let TRABALHOS = [], APLICACOES = [], REGISTROS = [], PAGAMENTOS = [], CFG = {};
-  let EMPRESAS = [];                       // do empresas.json do site, só para logo e sugestão
+  let EMPRESAS = [];
   let filtro = { estado: "", busca: "" };
   let periodo = "mes";
+  let rota = { tela: "painel", id: null };
 
   async function recarregar() {
-    [TRABALHOS, APLICACOES, REGISTROS, PAGAMENTOS, CFG] = await Promise.all([
-      Dados.listar("trabalhos"),
-      Dados.listar("aplicacoes"),
-      Dados.listar("registros"),
-      Dados.listar("pagamentos"),
-      Dados.obterConfig(),
+    const r = await Promise.all([
+      Dados.listar("trabalhos"), Dados.listar("aplicacoes"),
+      Dados.listar("registros"), Dados.listar("pagamentos"), Dados.obterConfig(),
     ]);
-    TRABALHOS.sort((a, b) => (a.estado === b.estado ? (a.criadoEm < b.criadoEm ? 1 : -1) : (a.estado === "ativo" ? -1 : 1)));
-    $("#contAp").textContent = APLICACOES.length || "";
-    $("#contTr").textContent = TRABALHOS.length || "";
-    desenharTudo();
-  }
-
-  function desenharTudo() {
-    desenharPainel();
-    desenharAplicacoes();
-    desenharTrabalhos();
-    desenharNotaDados();
+    TRABALHOS = r[0]; APLICACOES = r[1]; REGISTROS = r[2]; PAGAMENTOS = r[3]; CFG = r[4];
+    // Ativos primeiro, e dentro de cada grupo na ordem em que foram criados.
+    // Ordem estável de propósito: é uma lista de navegação, e item que muda
+    // de lugar a cada trabalho novo faz a pessoa clicar no errado.
+    TRABALHOS.sort((a, b) => {
+      const pa = a.estado === "ativo" ? 0 : a.estado === "pausado" ? 1 : 2;
+      const pb = b.estado === "ativo" ? 0 : b.estado === "pausado" ? 1 : 2;
+      if (pa !== pb) return pa - pb;
+      return (a.criadoEm > b.criadoEm ? 1 : -1);
+    });
+    desenharLado();
+    desenharFitas();
   }
 
   /* ══════════════════════════════════════════════════════════
      LOGO DA EMPRESA
-     Reaproveita o favicon do site, com a sigla como reserva,
-     igual ao resto do Hub.
+     Reaproveita o favicon do site, com a sigla como reserva.
      ══════════════════════════════════════════════════════════ */
 
   function acharEmpresa(nome) {
@@ -375,41 +370,116 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
   function marcaHtml(nome, tam) {
     const e = acharEmpresa(nome);
-    const sigla = (nome || "?").trim().slice(0, 2).toUpperCase();
+    const classe = (tam || 38) >= 48 ? "t-marca" : "ct-marca";
     if (e && typeof logoHtml === "function") {
-      return `<span class="ct-marca marca" style="background:${esc(e.bg || "#F1ECE3")};color:${esc(e.cor || "#54606F")};">${logoHtml(e, tam || 38)}</span>`;
+      return `<span class="${classe} marca" style="background:${esc(e.bg || "#F1ECE3")};color:${esc(e.cor || "#54606F")};">${logoHtml(e, tam || 38)}</span>`;
     }
-    return `<span class="ct-marca" style="background:var(--bg-soft,#F1ECE3);color:var(--ink-3,#8A94A1);">${esc(sigla)}</span>`;
+    const sigla = (nome || "?").trim().slice(0, 2).toUpperCase();
+    return `<span class="${classe}" style="background:var(--bg-soft,#F1ECE3);color:var(--ink-3,#8A94A1);">${esc(sigla)}</span>`;
   }
 
   /* ══════════════════════════════════════════════════════════
-     ABAS
+     COLUNA DA ESQUERDA
+
+     É ela que resolve o incômodo de ter que voltar a página para
+     abrir outro trabalho: cada trabalho é um item aqui, e trocar
+     é um clique, sem recarregar nada.
      ══════════════════════════════════════════════════════════ */
 
-  const SECOES = ["painel", "aplicacoes", "trabalhos"];
+  function desenharLado() {
+    const mesDe = Dados.hoje().slice(0, 8) + "01";
+    const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "entrevista"].indexOf(a.estado) >= 0).length;
 
-  function abrirAba(id, semHash) {
-    if (SECOES.indexOf(id) < 0) id = "painel";
-    SECOES.forEach(s => {
-      $("#" + s).hidden = s !== id;
-      $("#tab-" + s).setAttribute("aria-selected", String(s === id));
-    });
-    if (!semHash) history.replaceState(null, "", "#" + id);
-    Graficos.esconderDica();
+    const itensTrab = TRABALHOS.map(t => {
+      const horas = REGISTROS
+        .filter(r => r.trabalhoId === t.id && r.data >= mesDe)
+        .reduce((s, r) => s + (+r.horas || 0), 0);
+      return `<button class="ct-item ct-trab-item${t.estado !== "ativo" ? " ct-pausado" : ""}"
+                data-ir="trabalho/${esc(t.id)}" aria-current="${rota.tela === "trabalho" && rota.id === t.id}">
+        <i class="ct-ponto" style="background:${esc(t.cor || "#2C6BB5")}"></i>
+        <span class="ct-txt">${esc(t.projeto || t.empresa)}</span>
+        <span class="ct-cont">${horas ? esc(Dados.escreverHoras(horas)) : ""}</span>
+      </button>`;
+    }).join("");
+
+    $("#lado").innerHTML = `
+      <div class="ct-lado-topo">
+        <span class="ct-lado-nome">Meu Controle</span>
+        <span class="ct-lado-sub">vagas, horas e ganhos</span>
+      </div>
+
+      <button class="ct-item" data-ir="painel" aria-current="${rota.tela === "painel"}">
+        ${IC.painel}<span class="ct-txt">Painel</span></button>
+      <button class="ct-item" data-ir="aplicacoes" aria-current="${rota.tela === "aplicacoes"}">
+        ${IC.aplicacoes}<span class="ct-txt">Aplicações</span>
+        <span class="ct-cont">${emProcesso ? emProcesso + "/" + APLICACOES.length : (APLICACOES.length || "")}</span></button>
+      <button class="ct-item" data-ir="trabalhos" aria-current="${rota.tela === "trabalhos"}">
+        ${IC.trabalhos}<span class="ct-txt">Trabalhos</span>
+        <span class="ct-cont">${TRABALHOS.length || ""}</span></button>
+
+      ${TRABALHOS.length ? `<div class="ct-lado-titulo">Seus trabalhos</div>${itensTrab}` : ""}
+      <button class="ct-item ct-lado-add" data-novo-tr>${IC.mais}<span class="ct-txt">Novo trabalho</span></button>
+
+      <div class="ct-lado-pe">
+        <button class="ct-item" data-ir="dados" aria-current="${rota.tela === "dados"}">
+          ${IC.dados}<span class="ct-txt">Seus dados</span></button>
+      </div>`;
+
+    $("#lado").querySelectorAll("[data-ir]").forEach(b =>
+      b.addEventListener("click", () => irPara(b.dataset.ir)));
+    $("#lado").querySelector("[data-novo-tr]").addEventListener("click", () => formTrabalho());
   }
 
-  SECOES.forEach(s => $("#tab-" + s).addEventListener("click", () => abrirAba(s)));
-  window.addEventListener("hashchange", () => abrirAba((location.hash || "").slice(1), true));
+  /* ══════════════════════════════════════════════════════════
+     ROTAS
+     ══════════════════════════════════════════════════════════ */
+
+  const TELAS = ["painel", "aplicacoes", "trabalhos", "trabalho", "dados"];
+
+  function irPara(caminho) {
+    if (location.hash.slice(1) === caminho) return abrir(caminho);
+    location.hash = caminho;     // quem chama abrir() é o hashchange
+  }
+
+  async function abrir(caminho) {
+    const partes = (caminho || "painel").split("/");
+    let tela = partes[0], id = partes[1] || null;
+    if (TELAS.indexOf(tela) < 0) tela = "painel";
+    if (tela === "trabalho" && !id) tela = "trabalhos";
+
+    rota = { tela, id };
+    TELAS.forEach(t => $("#" + t).hidden = t !== tela);
+    Graficos.esconderDica();
+    // O modo de edição de blocos é do trabalho; sair dele desliga a classe.
+    if (tela !== "trabalho") document.body.classList.remove("t-editando");
+    window.scrollTo(0, 0);
+    desenharLado();
+
+    if (tela === "painel")     await desenharPainel();
+    if (tela === "aplicacoes") desenharAplicacoes();
+    if (tela === "trabalhos")  await desenharTrabalhos();
+    if (tela === "dados")      desenharDados();
+    if (tela === "trabalho") {
+      const ok = await Trabalho.montar($("#trabalho"), id, {
+        marcaHtml,
+        aoMudar: async () => { await recarregar(); },
+        aoApagar: async () => { await recarregar(); irPara("trabalhos"); },
+      });
+      if (!ok) desenharLado();
+    }
+  }
+
+  window.addEventListener("hashchange", () => abrir(location.hash.slice(1)));
 
   /* ══════════════════════════════════════════════════════════
      PAINEL
      ══════════════════════════════════════════════════════════ */
 
   const PERIODOS = {
-    mes:   { nome: "Este mês",        de: () => Dados.hoje().slice(0, 8) + "01" },
-    tres:  { nome: "Últimos 3 meses", de: () => { const d = new Date(Dados.hoje() + "T12:00:00"); d.setMonth(d.getMonth() - 2); return d.toISOString().slice(0, 8) + "01"; } },
-    ano:   { nome: "Este ano",        de: () => Dados.hoje().slice(0, 4) + "-01-01" },
-    tudo:  { nome: "Tudo",            de: () => "0000-01-01" },
+    mes:  { nome: "Este mês",        de: () => Dados.hoje().slice(0, 8) + "01" },
+    tres: { nome: "Últimos 3 meses", de: () => { const d = new Date(Dados.hoje() + "T12:00:00"); d.setMonth(d.getMonth() - 2); return d.toISOString().slice(0, 8) + "01"; } },
+    ano:  { nome: "Este ano",        de: () => Dados.hoje().slice(0, 4) + "-01-01" },
+    tudo: { nome: "Tudo",            de: () => "0000-01-01" },
   };
 
   async function desenharPainel() {
@@ -419,16 +489,21 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     const de = PERIODOS[periodo].de(), ate = Dados.hoje();
     const r = await UI.resumo({ trabalhos: TRABALHOS, registros: REGISTROS, pagamentos: PAGAMENTOS, de, ate });
-
     const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "entrevista"].indexOf(a.estado) >= 0).length;
 
     alvo.innerHTML = `
+      <div class="ct-cab-tela">
+        <div><h1>Painel</h1><p>Como está o mês, somando todos os trabalhos.</p></div>
+        <div class="ct-cab-bts">
+          <button class="ct-b pequeno" data-metas>Metas</button>
+          <button class="ct-b pequeno forte" data-novo-dia>Registrar um dia</button>
+        </div>
+      </div>
+
       <div class="ct-filtros">
         <span class="ct-col-rot" style="margin:0 4px 0 6px;">Período</span>
         ${Object.keys(PERIODOS).map(p =>
           `<button class="ct-chip" data-periodo="${p}" aria-pressed="${p === periodo}">${esc(PERIODOS[p].nome)}</button>`).join("")}
-        <div class="ct-sep"></div>
-        <button class="ct-b pequeno forte" data-novo-dia>Registrar um dia</button>
       </div>
 
       <div class="ct-cartao">
@@ -464,8 +539,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       </div>
 
       ${(CFG.metaHorasSemana || CFG.metaGanhoMes) ? `<div class="ct-cartao" style="margin-top:18px;">
-        <div class="ct-cab-cartao"><h2>Metas</h2><p>a barra e a linha pontilhada dos gráficos contam a mesma história</p>
-          <button class="ct-b pequeno" data-metas style="margin-left:auto;">Ajustar</button></div>
+        <div class="ct-cab-cartao"><h2>Metas</h2><p>a barra e a linha pontilhada dos gráficos contam a mesma história</p></div>
         <div class="ct-metas" id="caixaMetas"></div>
       </div>` : ""}
 
@@ -495,10 +569,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     alvo.querySelectorAll("[data-periodo]").forEach(b => b.addEventListener("click", () => {
       periodo = b.dataset.periodo; desenharPainel();
     }));
-    const btDia = alvo.querySelector("[data-novo-dia]");
-    if (btDia) btDia.addEventListener("click", registrarDiaRapido);
-    const btMetas = alvo.querySelector("[data-metas]");
-    if (btMetas) btMetas.addEventListener("click", abrirMetas);
+    alvo.querySelector("[data-novo-dia]").addEventListener("click", registrarDiaRapido);
+    alvo.querySelector("[data-metas]").addEventListener("click", abrirMetas);
 
     if (CFG.metaHorasSemana || CFG.metaGanhoMes) await desenharMetas(alvo.querySelector("#caixaMetas"));
     await desenharGraficos(de, ate);
@@ -528,8 +600,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   }
 
   function ligarPrimeirosPassos(alvo) {
-    alvo.querySelector("[data-ir-ap]").addEventListener("click", () => { abrirAba("aplicacoes"); formAplicacao(); });
-    alvo.querySelector("[data-ir-tr]").addEventListener("click", () => { abrirAba("trabalhos"); formTrabalho(); });
+    alvo.querySelector("[data-ir-ap]").addEventListener("click", () => { irPara("aplicacoes"); formAplicacao(); });
+    alvo.querySelector("[data-ir-tr]").addEventListener("click", () => formTrabalho());
   }
 
   /* ── metas ── */
@@ -580,7 +652,6 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     const porId = {}; TRABALHOS.forEach((t, i) => porId[t.id] = Object.assign({ cor: t.cor || Graficos.corDe(i) }, t));
     const NOMES_MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 
-    /* 1. ganho por mês, empilhado por trabalho */
     const meses = [];
     const base = new Date(Dados.hoje() + "T12:00:00"); base.setDate(1);
     for (let i = 11; i >= 0; i--) {
@@ -609,8 +680,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       vazio: "Registre alguns dias e o ganho por mês aparece aqui.",
     });
 
-    /* 2. horas por dia da semana */
-    const DIAS = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
+    const DIAS = ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"];
     const somaDia = [0, 0, 0, 0, 0, 0, 0], contaDia = [0, 0, 0, 0, 0, 0, 0];
     REGISTROS.filter(r => r.data >= de && r.data <= ate).forEach(r => {
       const d = new Date(r.data + "T12:00:00");
@@ -619,7 +689,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       if (r.horas) contaDia[i]++;
     });
     Graficos.colunas($("#grSemana"), {
-      categorias: DIAS.map(d => d.slice(0, 3).toLowerCase()),
+      categorias: DIAS,
       series: [{ nome: "Média de horas", valores: somaDia.map((s, i) => (contaDia[i] ? s / contaDia[i] : 0)), cor: Graficos.corDe(0) }],
       altura: 210, titulo: "Média de horas por dia da semana",
       meta: CFG.metaHorasSemana ? +CFG.metaHorasSemana / 5 : null, metaRotulo: "ritmo da meta",
@@ -629,14 +699,13 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       vazio: "Sem horas registradas neste período.",
     });
 
-    /* 3. divisão por trabalho no período */
     const fatias = [];
     for (const t of TRABALHOS) {
       const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data >= de && r.data <= ate);
       let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
       if (t.pagamento === "mes" && regs.length) {
-        const meses = new Set(regs.map(r => r.data.slice(0, 7)));
-        bruto += (+t.valor || 0) * meses.size;
+        const m = new Set(regs.map(r => r.data.slice(0, 7)));
+        bruto += (+t.valor || 0) * m.size;
       }
       if (!bruto) continue;
       const tx = await UI.taxaDoMes(t.moeda || "BRL", ate.slice(0, 7));
@@ -650,16 +719,14 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       vazio: "Sem ganho registrado neste período.",
     });
 
-    /* 4. calendário do ano */
     const porDia = {};
-    REGISTROS.forEach(r => { porDia[r.data] = (porDia[r.data] || 0) + (+r.horas || 0); });
+    REGISTROS.forEach(r => { if (r.horas) porDia[r.data] = (porDia[r.data] || 0) + (+r.horas || 0); });
     Graficos.calendario($("#grAno"), {
       valores: porDia, ano: +Dados.hoje().slice(0, 4),
       titulo: "Dias trabalhados no ano",
       formatar: v => Dados.escreverHoras(v),
     });
 
-    /* 5. previsto contra recebido */
     const prev = [], receb = [];
     for (const ym of meses) {
       let p = 0;
@@ -674,16 +741,16 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       prev.push(p);
       let g = 0;
       for (const pg of PAGAMENTOS.filter(x => x.data.slice(0, 7) === ym)) {
-        const r = await Dados.emReais(+pg.valor || 0, pg.moeda, pg.data, pg.taxa);
-        g += r.valor;
+        const rr = await Dados.emReais(+pg.valor || 0, pg.moeda, pg.data, pg.taxa);
+        g += rr.valor;
       }
       receb.push(g);
     }
     Graficos.linhas($("#grFluxo"), {
       categorias: meses.map(m => NOMES_MES[+m.slice(5, 7) - 1]),
       series: [
-        { nome: "Previsto pelas horas", valores: prev,  cor: Graficos.corDe(0) },
-        { nome: "Recebido de fato",     valores: receb, cor: Graficos.corDe(1) },
+        { nome: "Previsto pelas horas", valores: prev, cor: Graficos.corDe(0) },
+        { nome: "Recebido de fato", valores: receb, cor: Graficos.corDe(1) },
       ],
       altura: 230, titulo: "Previsto e recebido por mês, em reais",
       formatar: v => Dados.escreverDinheiro(v, "BRL"),
@@ -700,23 +767,28 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     const cont = {};
     ESTADOS.forEach(e => cont[e.id] = APLICACOES.filter(a => a.estado === e.id).length);
 
+    $("#aplicacoes").innerHTML = `
+      <div class="ct-cab-tela">
+        <div><h1>Aplicações</h1><p>Para onde você mandou currículo, e em que pé está cada um.</p></div>
+        <div class="ct-cab-bts"><button class="ct-b pequeno forte" data-nova-ap>Nova aplicação</button></div>
+      </div>
+      <div class="ct-filtros" id="filtrosAp"></div>
+      <div id="listaAp"></div>`;
+
+    $("#aplicacoes").querySelector("[data-nova-ap]").addEventListener("click", () => formAplicacao());
+
     $("#filtrosAp").innerHTML = `
       <button class="ct-chip" data-estado="" aria-pressed="${filtro.estado === ""}">Todas <span class="ct-cont">${APLICACOES.length}</span></button>
       ${ESTADOS.filter(e => cont[e.id]).map(e =>
         `<button class="ct-chip" data-estado="${e.id}" aria-pressed="${filtro.estado === e.id}">${esc(e.nome)} <span class="ct-cont">${cont[e.id]}</span></button>`).join("")}
       <div class="ct-sep"></div>
-      <div class="ct-busca"><input type="search" id="buscaAp" placeholder="Buscar por empresa ou vaga" aria-label="Buscar aplicação" value="${esc(filtro.busca)}"></div>
-      <button class="ct-b pequeno forte" data-nova-ap>Nova aplicação</button>`;
+      <div class="ct-busca"><input type="search" id="buscaAp" placeholder="Buscar por empresa ou vaga" aria-label="Buscar aplicação" value="${esc(filtro.busca)}"></div>`;
 
     $("#filtrosAp").querySelectorAll("[data-estado]").forEach(b => b.addEventListener("click", () => {
       filtro.estado = b.dataset.estado; desenharAplicacoes();
     }));
-    $("#filtrosAp").querySelector("[data-nova-ap]").addEventListener("click", () => formAplicacao());
     const busca = $("#buscaAp");
-    busca.addEventListener("input", () => {
-      filtro.busca = busca.value;
-      desenharListaAp();
-    });
+    busca.addEventListener("input", () => { filtro.busca = busca.value; desenharListaAp(); });
 
     desenharListaAp();
   }
@@ -812,8 +884,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       </div>
       ${UI.campo({ nome: "observacoes", rotulo: "Observações", tipo: "texto-longo", valor: ap.observacoes,
                    dica: "Nome do recrutador, o que pediram, o que você respondeu" })}
-      <div id="avisoRepetida"></div>
-    `;
+      <div id="avisoRepetida"></div>`;
 
     const dlg = UI.painel({
       titulo: novo ? "Nova aplicação" : "Editar aplicação",
@@ -824,7 +895,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       acao: async (d) => {
         const empresa = UI.ler(d, "empresa"), titulo = UI.ler(d, "titulo");
         if (!empresa) { UI.erroNoPainel(d, "Escreva o nome da empresa."); return false; }
-        if (!titulo)  { UI.erroNoPainel(d, "Escreva o título da vaga."); return false; }
+        if (!titulo) { UI.erroNoPainel(d, "Escreva o título da vaga."); return false; }
 
         const estadoNovo = UI.ler(d, "estado");
         const curriculo = UI.ler(d, "curriculo");
@@ -843,16 +914,16 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           observacoes: UI.ler(d, "observacoes"),
         }));
 
-        // Guarda o apelido do currículo na lista, para virar sugestão da próxima vez.
         if (curriculo && (CFG.curriculos || []).indexOf(curriculo) < 0) {
           CFG.curriculos = (CFG.curriculos || []).concat([curriculo]);
           await Dados.salvarConfig(CFG);
         }
 
         await recarregar();
+        if (rota.tela === "aplicacoes") desenharAplicacoes();
         UI.aviso(novo ? "Aplicação registrada." : "Aplicação salva.");
 
-        // Virou aprovado: oferece criar o trabalho na hora. É a costura entre as duas frentes.
+        // Virou aprovado: oferece criar o trabalho na hora.
         if (estadoNovo === "aprovado" && ap.estado !== "aprovado") {
           setTimeout(async () => {
             const sim = await UI.confirmar({
@@ -866,7 +937,6 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       },
     });
 
-    // Aviso de vaga repetida, enquanto a pessoa digita.
     async function conferirRepetida() {
       const caixa = dlg.querySelector("#avisoRepetida");
       const empresa = UI.ler(dlg, "empresa"), titulo = UI.ler(dlg, "titulo");
@@ -896,46 +966,47 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       await Dados.remover("aplicacoes", ap.id);
       dlg.close(); dlg.remove();
       await recarregar();
+      if (rota.tela === "aplicacoes") desenharAplicacoes();
       UI.aviso("Aplicação apagada.");
     });
   }
 
   /* ══════════════════════════════════════════════════════════
-     TRABALHOS
+     TRABALHOS (a visão geral)
      ══════════════════════════════════════════════════════════ */
 
   async function desenharTrabalhos() {
     const alvo = $("#trabalhos");
 
     if (!TRABALHOS.length) {
-      alvo.innerHTML = `<div class="ct-cartao ct-vazio">
-        <div class="ct-vazio-ic">◈</div>
-        <h3>Nenhum trabalho cadastrado</h3>
-        <p>Um trabalho é um projeto que você já faz. Depois de cadastrar, você lança as horas do dia,
-           monta a página dele do seu jeito, e o painel calcula quanto você fez.</p>
-        <button class="ct-b forte" data-novo-tr>Cadastrar um trabalho</button>
-      </div>`;
+      alvo.innerHTML = `
+        <div class="ct-cab-tela"><div><h1>Trabalhos</h1><p>Os projetos em que você já trabalha.</p></div></div>
+        <div class="ct-cartao ct-vazio">
+          <div class="ct-vazio-ic">◈</div>
+          <h3>Nenhum trabalho cadastrado</h3>
+          <p>Um trabalho é um projeto que você já faz. Depois de cadastrar, você lança as horas do dia,
+             monta a página dele do seu jeito, e o painel calcula quanto você fez.</p>
+          <button class="ct-b forte" data-novo-tr>Cadastrar um trabalho</button>
+        </div>`;
       alvo.querySelector("[data-novo-tr]").addEventListener("click", () => formTrabalho());
       return;
     }
 
     const mesDe = Dados.hoje().slice(0, 8) + "01";
-
-    const cartoes = [];
-    for (const t of TRABALHOS) {
+    const cartoes = TRABALHOS.map(t => {
       const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data >= mesDe);
       const horas = regs.reduce((s, r) => s + (+r.horas || 0), 0);
       let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
       if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
-      const hoje = regs.some(r => r.data === Dados.hoje());
-      const ultimo = REGISTROS.filter(r => r.trabalhoId === t.id).sort((a, b) => (a.data < b.data ? 1 : -1))[0];
+      const hoje = regs.some(r => r.data === Dados.hoje() && r.horas);
+      const ultimo = REGISTROS.filter(r => r.trabalhoId === t.id && r.horas).sort((a, b) => (a.data < b.data ? 1 : -1))[0];
 
-      cartoes.push(`<div class="ct-trab${t.estado !== "ativo" ? " pausado" : ""}" style="--cor:${esc(t.cor || Graficos.corDe(0))}">
+      return `<div class="ct-trab${t.estado !== "ativo" ? " pausado" : ""}" style="--cor:${esc(t.cor || Graficos.corDe(0))}">
         <div class="ct-trab-cab">
           ${marcaHtml(t.empresa, 38)}
           <div style="min-width:0;flex:1;">
             <h3>${esc(t.projeto || t.empresa)}</h3>
-            <div class="ct-trab-emp">${esc(t.empresa)}${t.plataforma ? " · " + esc(t.plataforma) : ""}</div>
+            <div class="ct-trab-emp">${esc(t.empresa)}${t.plataforma && Dados.normalizar(t.plataforma) !== Dados.normalizar(t.empresa) ? " · " + esc(t.plataforma) : ""}</div>
           </div>
         </div>
         <div class="ct-trab-nums">
@@ -950,70 +1021,60 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         </div>
         <div class="ct-trab-pe">
           <button class="ct-b pequeno forte" data-dia="${esc(t.id)}">Registrar o dia</button>
-          <a class="ct-b pequeno" href="trabalho.html?id=${encodeURIComponent(t.id)}">Abrir a página</a>
+          <button class="ct-b pequeno" data-ir="trabalho/${esc(t.id)}">Abrir</button>
         </div>
-      </div>`);
-    }
+      </div>`;
+    }).join("");
 
     alvo.innerHTML = `
-      <div class="ct-filtros">
-        <span class="ct-col-rot" style="margin:0 6px;">${TRABALHOS.length} ${TRABALHOS.length === 1 ? "trabalho" : "trabalhos"}</span>
-        <div class="ct-sep"></div>
-        <button class="ct-b pequeno forte" data-novo-tr>Novo trabalho</button>
+      <div class="ct-cab-tela">
+        <div><h1>Trabalhos</h1><p>${TRABALHOS.length} ${TRABALHOS.length === 1 ? "projeto" : "projetos"}. Clique em um deles, ou use a coluna da esquerda.</p></div>
+        <div class="ct-cab-bts"><button class="ct-b pequeno forte" data-novo-tr>Novo trabalho</button></div>
       </div>
-      <div class="ct-trabs">${cartoes.join("")}</div>`;
+      <div class="ct-trabs">${cartoes}</div>`;
 
     alvo.querySelector("[data-novo-tr]").addEventListener("click", () => formTrabalho());
+    alvo.querySelectorAll("[data-ir]").forEach(b => b.addEventListener("click", () => irPara(b.dataset.ir)));
     alvo.querySelectorAll("[data-dia]").forEach(b => b.addEventListener("click", () => {
       const t = TRABALHOS.find(x => x.id === b.dataset.dia);
-      UI.abrirRegistroDia(t, { aoSalvar: recarregar });
+      UI.abrirRegistroDia(t, { aoSalvar: async () => { await recarregar(); await desenharTrabalhos(); } });
     }));
   }
 
   /* ── formulário de trabalho ── */
   function formTrabalho(base) {
-    const novo = !base || !base.id;
     const t = Object.assign({
       empresa: "", projeto: "", plataforma: "", pagamento: "hora", valor: "", moeda: "USD",
-      ciclo: "mensal", diaCiclo: "", inicio: Dados.hoje(), estado: "ativo", cor: Graficos.corDe(TRABALHOS.length),
+      ciclo: "mensal", inicio: Dados.hoje(), estado: "ativo", cor: Graficos.corDe(TRABALHOS.length),
     }, base || {});
 
-    const corpo = `
-      <div class="u-tripla">
-        ${UI.campo({ nome: "empresa", rotulo: "Empresa", valor: t.empresa, obrigatorio: true, lista: "listaEmpresas", dica: "Welocalize" })}
-        ${UI.campo({ nome: "projeto", rotulo: "Nome do projeto", valor: t.projeto, dica: "Search Quality PT-BR" })}
-      </div>
-      <div class="u-tripla">
-        ${UI.campo({ nome: "plataforma", rotulo: "Plataforma", valor: t.plataforma, dica: "Appen, Toloka, portal próprio" })}
-        ${UI.campo({ nome: "inicio", rotulo: "Começou em", tipo: "date", valor: t.inicio })}
-      </div>
-      ${UI.campo({ nome: "pagamento", rotulo: "Como paga", tipo: "escolha", valor: t.pagamento,
-                   opcoes: Object.keys(UI.PAGAMENTOS).map(k => ({ valor: k, nome: UI.PAGAMENTOS[k].nome })) })}
-      <div class="u-ajuda" id="ajudaPag"></div>
-      <div class="u-dupla">
-        ${UI.campo({ nome: "valor", rotulo: "Valor", tipo: "number", valor: t.valor, dica: "0,00" })}
-        ${UI.campo({ nome: "moeda", rotulo: "Moeda", tipo: "escolha", valor: t.moeda,
-                     opcoes: Object.keys(Dados.MOEDAS).map(m => ({ valor: m, nome: m })) })}
-      </div>
-      <div class="u-tripla">
+    const dlg = UI.painel({
+      titulo: "Novo trabalho",
+      acaoTexto: "Cadastrar",
+      corpo: `
+        <div class="u-tripla">
+          ${UI.campo({ nome: "empresa", rotulo: "Empresa", valor: t.empresa, obrigatorio: true, lista: "listaEmpresas", dica: "Welocalize" })}
+          ${UI.campo({ nome: "projeto", rotulo: "Nome do projeto", valor: t.projeto, dica: "Search Quality PT-BR" })}
+        </div>
+        <div class="u-tripla">
+          ${UI.campo({ nome: "plataforma", rotulo: "Plataforma", valor: t.plataforma, dica: "Appen, Toloka, portal próprio" })}
+          ${UI.campo({ nome: "inicio", rotulo: "Começou em", tipo: "date", valor: t.inicio })}
+        </div>
+        ${UI.campo({ nome: "pagamento", rotulo: "Como paga", tipo: "escolha", valor: t.pagamento,
+                     opcoes: Object.keys(UI.PAGAMENTOS).map(k => ({ valor: k, nome: UI.PAGAMENTOS[k].nome })) })}
+        <div class="u-ajuda" id="ajudaPag"></div>
+        <div class="u-dupla">
+          ${UI.campo({ nome: "valor", rotulo: "Valor", tipo: "number", valor: t.valor, dica: "0,00" })}
+          ${UI.campo({ nome: "moeda", rotulo: "Moeda", tipo: "escolha", valor: t.moeda,
+                       opcoes: Object.keys(Dados.MOEDAS).map(m => ({ valor: m, nome: m })) })}
+        </div>
         ${UI.campo({ nome: "ciclo", rotulo: "Quando paga", tipo: "escolha", valor: t.ciclo,
                      opcoes: Object.keys(UI.CICLOS).map(k => ({ valor: k, nome: UI.CICLOS[k] })) })}
-        ${UI.campo({ nome: "estado", rotulo: "Situação", tipo: "escolha", valor: t.estado,
-                     opcoes: [{ valor: "ativo", nome: "Ativo" }, { valor: "pausado", nome: "Pausado" }, { valor: "encerrado", nome: "Encerrado" }] })}
-      </div>
-      <div class="d-linha">
-        <span class="d-rot">Cor de identificação</span>
-        <div style="display:flex;gap:7px;flex-wrap:wrap;" id="cores"></div>
-        <input type="hidden" name="cor" value="${esc(t.cor)}">
-      </div>
-    `;
-
-    const dlg = UI.painel({
-      titulo: novo ? "Novo trabalho" : "Editar trabalho",
-      subtitulo: novo ? "" : (t.projeto || t.empresa),
-      acaoTexto: novo ? "Cadastrar" : "Salvar",
-      corpo,
-      extra: novo ? "" : `<button type="button" class="u-link u-perigo-txt" data-apagar>Apagar trabalho</button>`,
+        <div class="d-linha">
+          <span class="d-rot">Cor de identificação</span>
+          <div style="display:flex;gap:7px;flex-wrap:wrap;" id="cores"></div>
+          <input type="hidden" name="cor" value="${esc(t.cor)}">
+        </div>`,
       acao: async (d) => {
         const empresa = UI.ler(d, "empresa");
         if (!empresa) { UI.erroNoPainel(d, "Escreva o nome da empresa."); return false; }
@@ -1025,17 +1086,16 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           valor: UI.ler(d, "valor") === "" ? 0 : +UI.ler(d, "valor"),
           moeda: UI.ler(d, "moeda"),
           ciclo: UI.ler(d, "ciclo"),
-          estado: UI.ler(d, "estado"),
+          estado: "ativo",
           inicio: UI.ler(d, "inicio"),
           cor: d.querySelector('[name="cor"]').value,
         }));
         await recarregar();
-        UI.aviso(novo ? "Trabalho cadastrado." : "Trabalho salvo.");
-        if (novo) location.href = "trabalho.html?id=" + encodeURIComponent(salvo.id) + "&novo=1";
+        UI.aviso("Trabalho cadastrado.");
+        irPara("trabalho/" + salvo.id);
       },
     });
 
-    // paleta de cores
     const caixaCores = dlg.querySelector("#cores");
     const campoCor = dlg.querySelector('[name="cor"]');
     caixaCores.innerHTML = Graficos.CORES.map(c =>
@@ -1047,7 +1107,6 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       b.style.borderColor = "var(--ink,#10203A)";
     }));
 
-    // a ajuda e o rótulo do valor mudam junto com a forma de pagamento
     const selPag = dlg.querySelector('[name="pagamento"]');
     const ajuda = dlg.querySelector("#ajudaPag");
     const rotValor = dlg.querySelector('label[for="c-valor"]');
@@ -1058,29 +1117,14 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     }
     selPag.addEventListener("change", atualizarPag);
     atualizarPag();
-
-    const apagar = dlg.querySelector("[data-apagar]");
-    if (apagar) apagar.addEventListener("click", async () => {
-      const regs = REGISTROS.filter(r => r.trabalhoId === t.id).length;
-      const ok = await UI.confirmar({
-        titulo: "Apagar este trabalho?",
-        texto: "Vão junto " + regs + (regs === 1 ? " dia registrado" : " dias registrados") +
-               ", os pagamentos e os blocos da página dele. Não dá para desfazer. Se a ideia é só parar, mude a situação para Encerrado.",
-        acaoTexto: "Apagar mesmo assim", perigo: true,
-      });
-      if (!ok) return;
-      await Dados.removerTrabalho(t.id);
-      dlg.close(); dlg.remove();
-      await recarregar();
-      UI.aviso("Trabalho apagado.");
-    });
   }
 
-  /* Registrar um dia sem passar pelo cartão do trabalho. */
+  /* Registrar um dia sem entrar no trabalho. */
   async function registrarDiaRapido() {
     const ativos = TRABALHOS.filter(t => t.estado === "ativo");
-    if (!ativos.length) { UI.aviso("Cadastre um trabalho primeiro."); abrirAba("trabalhos"); return; }
-    if (ativos.length === 1) return UI.abrirRegistroDia(ativos[0], { aoSalvar: recarregar });
+    if (!ativos.length) { UI.aviso("Cadastre um trabalho primeiro."); return formTrabalho(); }
+    const depois = async () => { await recarregar(); if (rota.tela === "painel") await desenharPainel(); };
+    if (ativos.length === 1) return UI.abrirRegistroDia(ativos[0], { aoSalvar: depois });
 
     UI.painel({
       titulo: "Registrar o dia",
@@ -1090,7 +1134,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         opcoes: ativos.map(t => ({ valor: t.id, nome: (t.projeto || t.empresa) })) }),
       acao: (d) => {
         const t = ativos.find(x => x.id === UI.ler(d, "trabalho"));
-        setTimeout(() => UI.abrirRegistroDia(t, { aoSalvar: recarregar }), 120);
+        setTimeout(() => UI.abrirRegistroDia(t, { aoSalvar: depois }), 120);
       },
     });
   }
@@ -1117,24 +1161,64 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         CFG.metaGanhoMes = UI.ler(d, "ganho") ? +UI.ler(d, "ganho") : null;
         await Dados.salvarConfig(CFG);
         await recarregar();
+        await desenharPainel();
         UI.aviso("Metas salvas.");
       },
     });
   }
 
   /* ══════════════════════════════════════════════════════════
-     BACKUP
+     SEUS DADOS
      ══════════════════════════════════════════════════════════ */
 
-  function desenharNotaDados() {
-    const n = $("#notaDados");
+  function desenharDados() {
     const total = APLICACOES.length + TRABALHOS.length + REGISTROS.length + PAGAMENTOS.length;
     const ultimo = CFG.ultimoBackup ? Dados.dataBonita(CFG.ultimoBackup.slice(0, 10)) : null;
-    n.textContent = `${total} ${total === 1 ? "registro guardado" : "registros guardados"} neste navegador.` +
-      (ultimo ? ` Último backup em ${ultimo}.` : " Você ainda não exportou nenhum backup.");
 
-    // Aviso de backup: aparece depois de 30 dias, e só quando já há o que perder.
+    $("#dados").innerHTML = `
+      <div class="ct-cab-tela"><div><h1>Seus dados</h1><p>Onde eles ficam, e como levar para outro computador.</p></div></div>
+      <div class="ct-cartao ct-dados">
+        <p>
+          Tudo o que você escreve aqui fica guardado dentro do seu navegador, neste computador.
+          Não passa por servidor nenhum e ninguém mais vê. Em troca: se você limpar os dados de navegação,
+          some. O backup é um arquivo que você guarda onde quiser, e serve também para levar tudo
+          para outro computador.
+        </p>
+        <div class="ct-dados-bts">
+          <button class="ct-b" id="btExportar">Exportar backup</button>
+          <button class="ct-b" id="btImportar">Importar backup</button>
+          <input type="file" id="arqBackup" accept=".json,application/json" hidden>
+          <button class="ct-b" id="btApagar">Apagar tudo</button>
+        </div>
+        <p class="ct-dados-nota">${total} ${total === 1 ? "registro guardado" : "registros guardados"} neste navegador.${
+          ultimo ? " Último backup em " + esc(ultimo) + "." : " Você ainda não exportou nenhum backup."}
+          Armazenamento: ${esc(Dados.motor === "indexeddb" ? "completo (IndexedDB)" : "reduzido (localStorage)")}.</p>
+      </div>`;
+
+    $("#btExportar").addEventListener("click", exportar);
+    $("#btImportar").addEventListener("click", () => $("#arqBackup").click());
+    $("#arqBackup").addEventListener("change", ev => {
+      const a = ev.target.files && ev.target.files[0];
+      if (a) importar(a);
+      ev.target.value = "";
+    });
+    $("#btApagar").addEventListener("click", async () => {
+      const ok = await UI.confirmar({
+        titulo: "Apagar tudo?",
+        texto: "Some toda a sua lista de aplicações, os trabalhos, os dias registrados e os pagamentos, deste navegador. Não dá para desfazer. Exporte um backup antes se tiver qualquer dúvida.",
+        acaoTexto: "Apagar tudo", perigo: true,
+      });
+      if (!ok) return;
+      await Dados.apagarTudo();
+      await recarregar();
+      irPara("painel");
+      UI.aviso("Tudo apagado.");
+    });
+  }
+
+  function desenharFitas() {
     const fita = $("#fitaBackup");
+    const total = APLICACOES.length + TRABALHOS.length + REGISTROS.length + PAGAMENTOS.length;
     const dias = CFG.ultimoBackup ? Dados.diasEntre(CFG.ultimoBackup.slice(0, 10), Dados.hoje()) : 999;
     if (total >= 5 && dias >= 30) {
       fita.hidden = false;
@@ -1153,7 +1237,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     try {
       await Dados.baixarBackup();
       CFG = await Dados.obterConfig();
-      desenharNotaDados();
+      desenharFitas();
+      if (rota.tela === "dados") desenharDados();
       UI.aviso("Backup baixado.");
     } catch (e) { UI.aviso("Não deu para exportar agora.", "ruim"); console.error(e); }
   }
@@ -1171,7 +1256,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       subtitulo: "Confira antes. Nada foi gravado ainda.",
       acaoTexto: "Importar",
       corpo: `
-        <table class="g-tabela" style="width:100%;border-collapse:collapse;font-size:13.5px;">
+        <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
           <thead><tr><th></th><th style="text-align:right;padding:6px 10px;color:var(--ink-3);">No arquivo</th>
           <th style="text-align:right;padding:6px 10px;color:var(--ink-3);">Aqui hoje</th></tr></thead>
           <tbody style="text-align:right;">
@@ -1194,6 +1279,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         const modo = UI.ler(d, "modo");
         const r = await Dados.importarTudo(lido.pacote, modo);
         await recarregar();
+        await abrir(rota.tela === "trabalho" ? "trabalhos" : rota.tela);
         UI.aviso(`Importado. ${r.gravados} ${r.gravados === 1 ? "registro" : "registros"}${r.pulados ? ", " + r.pulados + " já estavam atualizados" : ""}.`);
       },
     });
@@ -1203,33 +1289,11 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     sel.addEventListener("change", () => { av.hidden = sel.value !== "substituir"; });
   }
 
-  $("#btBackup").addEventListener("click", () => $("#secDados").scrollIntoView({ behavior: "smooth", block: "center" }));
-  $("#btExportar").addEventListener("click", exportar);
-  $("#btImportar").addEventListener("click", () => $("#arqBackup").click());
-  $("#arqBackup").addEventListener("change", ev => {
-    const a = ev.target.files && ev.target.files[0];
-    if (a) importar(a);
-    ev.target.value = "";
-  });
-  $("#btApagar").addEventListener("click", async () => {
-    const ok = await UI.confirmar({
-      titulo: "Apagar tudo?",
-      texto: "Some toda a sua lista de aplicações, os trabalhos, os dias registrados e os pagamentos, deste navegador. Não dá para desfazer. Exporte um backup antes se tiver qualquer dúvida.",
-      acaoTexto: "Apagar tudo", perigo: true,
-    });
-    if (!ok) return;
-    await Dados.apagarTudo();
-    await recarregar();
-    UI.aviso("Tudo apagado.");
-  });
-
   /* ══════════════════════════════════════════════════════════
      ABERTURA
      ══════════════════════════════════════════════════════════ */
 
   (async function iniciar() {
-    // As empresas do site são só um agrado: dão o logo e a sugestão de nome.
-    // Se o arquivo não vier, a ferramenta funciona igual.
     try {
       if (typeof lerEmpresas === "function") {
         const base = await lerEmpresas();
@@ -1239,9 +1303,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       }
     } catch (e) { console.warn("empresas.json não carregou", e); }
 
-    try {
-      await Dados.abrir();
-    } catch (e) {
+    try { await Dados.abrir(); }
+    catch (e) {
       $("#carregando").textContent = "Não deu para abrir o armazenamento deste navegador.";
       console.error(e);
       return;
@@ -1255,20 +1318,21 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     await recarregar();
     $("#carregando").hidden = true;
-    $("#secDados").hidden = false;
-    abrirAba((location.hash || "").slice(1) || "painel", true);
 
-    // Atalho: a página da vaga manda ?nova= para registrar uma aplicação já preenchida.
+    // Atalho vindo da página da vaga: ?nova=1&empresa=...&titulo=...
     const q = new URLSearchParams(location.search);
     if (q.get("nova")) {
-      abrirAba("aplicacoes");
+      await abrir("aplicacoes");
       formAplicacao({
         empresa: q.get("empresa") || "", titulo: q.get("titulo") || "", url: q.get("url") || "",
         vagaId: q.get("vaga") || "", origem: "Home Office Hub",
         data: Dados.hoje(), estado: "aplicado",
       });
       history.replaceState(null, "", "controle.html#aplicacoes");
+      return;
     }
+
+    await abrir(location.hash.slice(1) || "painel");
   })();
 })();
 </script>
