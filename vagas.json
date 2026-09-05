@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-04T19:53:34.204954+00:00",
-  "atualizado_br": "04/09/2026 às 19:53",
+  "atualizado_em": "2026-09-05T11:27:34.183225+00:00",
+  "atualizado_br": "05/09/2026 às 11:27",
   "total": 70,
   "vagas": [
     {
@@ -428,14 +428,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/187B76B69B",
+      "url": "https://apply.workable.com/j/00BDB46730",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-08-27",
+      "data_post": "2026-09-05",
       "data_vista": "2026-08-27",
-      "data_ref": "2026-08-27",
+      "data_ref": "2026-09-05",
       "data_oficial": true,
-      "id": "6c63d0d085"
+      "id": "5267a52f82"
     },
     {
       "empresa": "oneforma",
@@ -975,14 +975,19 @@
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
-      "url": "https://www.alignerr.com/jobs/52b0c682-a3ff-4992-ac71-cfc9e3535c1b",
+      "url": "https://www.alignerr.com/jobs/8775d557-175e-4dde-898a-f4a689e9e5c3",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-03",
+      "data_post": "2026-09-04",
       "data_vista": "2026-08-28",
-      "data_ref": "2026-09-03",
+      "data_ref": "2026-09-04",
       "data_oficial": true,
-      "id": "c3f214fe16"
+      "id": "94d3206e73",
+      "resumo": {
+        "o_que_faz": "Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.",
+        "requisitos": "Fluência nativa ou quase nativa em português e escrita forte no idioma. Bom domínio do português contemporâneo em registros diferentes, do formal ao coloquial. Método e consistência, já que o trabalho é avaliar qualidade em volume. Não exige experiência anterior com IA nem com tecnologia. Contam como diferencial tradução, localização, edição, linguística, comunicação, educação ou revisão de conteúdo, além de conhecer as variações regionais do português.",
+        "dica_cv": "A faixa de pagamento é alta, então a triagem é seletiva: capriche no perfil. Escreva em inglês, mas anexe ou descreva amostras do seu português. Destaque revisão, tradução, redação, edição ou ensino, com volume e tipo de material. Mostre que você sabe explicar por que uma frase soa errada, e não apenas corrigir, porque o retorno estruturado é o produto que eles compram. Informe a sua disponibilidade semanal em números."
+      }
     },
     {
       "empresa": "alignerr",
