@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-09-08T12:21:46.627817+00:00",
-  "total": 83,
+  "atualizado_em": "2026-09-09T12:33:25.249823+00:00",
+  "total": 85,
   "primeira_vez": {
     "alignerr|ai language expert portuguese": "2026-08-05",
     "alignerr|ian portuguese audio transcript editor": "2026-09-01",
@@ -43,6 +43,7 @@
     "rws|audio transcription spanish mexico": "2026-08-28",
     "rws|data annotator for ai models portuguese in": "2026-09-01",
     "rws|data annotator for ai models spanish spain in": "2026-08-23",
+    "rws|generative audio evaluation portuguese": "2026-09-09",
     "rws|social media content evaluator portuguese": "2026-08-23",
     "rws|speech ai evaluation specialist portuguese": "2026-08-04",
     "telus|ai response rating and evaluation portuguese": "2026-08-05",
@@ -79,6 +80,7 @@
     "welocalize|ads quality rater german": "2026-08-04",
     "welocalize|ads quality rater italian": "2026-08-04",
     "welocalize|circinus audio contributor portuguese": "2026-08-04",
+    "welocalize|english to portuguese linguist for patent": "2026-09-09",
     "welocalize|english to portuguese patent linguist": "2026-07-31",
     "welocalize|generative ai analyst portuguese": "2026-08-05",
     "welocalize|hydrus voice contributor portuguese br": "2026-08-27",
