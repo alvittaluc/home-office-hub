@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-09-09T12:33:25.249823+00:00",
-  "total": 85,
+  "atualizado_em": "2026-09-10T12:27:15.814867+00:00",
+  "total": 86,
   "primeira_vez": {
     "alignerr|ai language expert portuguese": "2026-08-05",
     "alignerr|ian portuguese audio transcript editor": "2026-09-01",
@@ -71,6 +71,7 @@
     "turing|scientific coding chemistry and python": "2026-09-03",
     "turing|scientific coding mathematics and python": "2026-09-03",
     "turing|scientific coding physics and python": "2026-09-03",
+    "turing|scientific coding stem and python": "2026-09-10",
     "turing|sr. python engineer": "2026-08-28",
     "turing|swe bench data engineer data scientist": "2026-08-28",
     "turing|technical content writer": "2026-08-28",

@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-09T12:33:25.252795+00:00",
-  "atualizado_br": "09/09/2026 às 12:33",
-  "total": 68,
+  "atualizado_em": "2026-09-10T12:27:15.818525+00:00",
+  "atualizado_br": "10/09/2026 às 12:27",
+  "total": 70,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -309,14 +309,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/3A9BF09881",
+      "url": "https://apply.workable.com/j/DD2B02DB7D",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-07",
+      "data_post": "2026-09-10",
       "data_vista": "2026-08-27",
-      "data_ref": "2026-09-07",
+      "data_ref": "2026-09-10",
       "data_oficial": true,
-      "id": "71cc218a49"
+      "id": "fd7bd34e78"
     },
     {
       "empresa": "toloka",
@@ -976,9 +976,9 @@
       "url": "https://www.alignerr.com/jobs/60e7cd1f-73a7-4027-8135-85ac0989135f",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-02",
+      "data_post": "2026-09-10",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-09-02",
+      "data_ref": "2026-09-10",
       "data_oficial": true,
       "id": "64c7fbed79",
       "resumo": {
@@ -1066,6 +1066,36 @@
       "data_ref": "2026-02-16",
       "data_oficial": true,
       "id": "36497ae306"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "Scientific Coding - STEM and Python",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.turing.com/jobs?jobId=104908",
+      "commitment": "Science",
+      "fonte": "direto",
+      "data_post": "2026-09-09",
+      "data_vista": "2026-09-10",
+      "data_ref": "2026-09-09",
+      "data_oficial": true,
+      "id": "c4b89dd8cc"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "Scientific Coding - Biology and Python",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.turing.com/jobs?jobId=103652",
+      "commitment": "Science",
+      "fonte": "direto",
+      "data_post": "2026-09-02",
+      "data_vista": "2026-09-03",
+      "data_ref": "2026-09-02",
+      "data_oficial": true,
+      "id": "72efec266a"
     },
     {
       "empresa": "turing",
