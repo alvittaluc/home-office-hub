@@ -23,6 +23,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 <style>
+  /* Esta página carrega uma lista longa e uma coluna de filtros ao lado, então
+     ela usa mais tela que o resto do site. Muda a variável, e não só o .corpo,
+     para o cabeçalho e o topo continuarem alinhados com a lista. */
+  @media (min-width:1100px) { :root { --wrap:1340px; } }
+
   /* ═══════════════ TOPO ═══════════════ */
   .topo { max-width:var(--wrap); margin:0 auto; padding:48px 22px 24px; }
   .topo h1 {
@@ -176,7 +181,11 @@
   .ativo.limpar:hover { color:var(--ink); background:var(--panel-2); }
 
   /* ═══════════════ COLUNA DE FILTROS ═══════════════ */
-  .palco { display:grid; grid-template-columns:248px minmax(0,1fr); gap:24px; align-items:start; }
+  .palco { display:grid; grid-template-columns:228px minmax(0,1fr); gap:20px; align-items:start; }
+
+  /* a lista responde à largura da PRÓPRIA coluna, não à da janela. Sem isto o
+     cartão continua usando o desenho de tela cheia dentro de um espaço menor. */
+  .conteudo { min-width:0; container-type:inline-size; }
 
   .lateral {
     position:sticky; top:84px; align-self:start;
@@ -220,6 +229,7 @@
   .btFiltros { display:none; }
   @media (max-width:900px) {
     .palco { grid-template-columns:1fr; gap:0; }
+    .conteudo { container-type:normal; }
     .lateral { display:none; position:static; max-height:none; margin:0 0 14px; }
     .lateral.aberta { display:block; }
     .btFiltros { display:inline-flex; }
@@ -323,6 +333,29 @@
     .vaga .col-area { display:flex; }
   }
 
+  /* As mesmas quebras de cima, medidas pela largura da coluna de conteúdo em vez
+     da janela. Onde o navegador entende @container, estas mandam; onde não
+     entende, valem as de cima e nada quebra. */
+  @container (max-width:1010px) {
+    .vaga { grid-template-columns:44px minmax(0,1.5fr) 112px 118px 96px; }
+    .vaga .col-area { display:none; }
+  }
+  @container (max-width:820px) {
+    .vaga { grid-template-columns:44px minmax(0,1.6fr) 104px 96px; }
+    .vaga .v-acao { display:none; }
+  }
+  @container (max-width:660px) {
+    .vaga { grid-template-columns:40px 1fr; gap:12px 13px; padding:15px 16px; align-items:start; }
+    .v-marca { width:40px; height:40px; }
+    .v-marca img { width:23px; height:23px; }
+    .v-col { grid-column:2; flex-direction:row; align-items:center; gap:7px; }
+    .v-col .r { font-size:10px; }
+    .v-col .r span { display:none; }
+    .v-col .v { font-size:13px; font-weight:400; color:var(--ink-2); }
+    .vaga .v-acao { display:inline-flex; grid-column:2; justify-self:start; color:var(--signal); }
+    .vaga .col-area { display:flex; }
+  }
+
   .vazio { text-align:center; padding:64px 20px; color:var(--ink-3); font-size:14.5px; }
   .vazio .big { font-size:30px; margin-bottom:12px; color:var(--line); }
 </style>
@@ -378,7 +411,7 @@
       </div>
     </aside>
 
-    <div>
+    <div class="conteudo">
       <div class="barra">
         <button class="fbtn btFiltros" type="button" id="btFiltros" aria-expanded="false">
           Filtros <span class="cnt" hidden>0</span> <span class="chev"></span>
