@@ -34,6 +34,7 @@ AREAS = [
         "pharmacy", "pharmacist", "pharmaceutical", "dentist", "dental",
         "veterinary", "radiology", "oncology", "cardiology", "neurology",
         "psychiatry", "psychiatrist", "surgeon", "epidemiology", "nutrition",
+        "medicare", "medicaid", "patient",
         "dietitian", "physical therapy", "medicina", "medico", "enfermagem",
         "saude", "farmaceutico",
     ]),
