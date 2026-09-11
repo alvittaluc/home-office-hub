@@ -98,6 +98,22 @@ async function lerVagas() {
   return _cacheVagas;
 }
 
+/* Usada SÓ pela página individual da vaga. Junta as vagas visíveis com as
+   escondidas por área, para que um link direto continue abrindo. A aba Vagas
+   nunca chama esta função: ela segue com lerVagas(). */
+let _cacheTodas = null;
+async function lerVagasComEscondidas() {
+  if (_cacheTodas) return _cacheTodas;
+  const dados = await lerVagas();
+  let escondidas = [];
+  try {
+    const resp = await fetch("vagas-especificas.json?v=" + Date.now());
+    if (resp.ok) escondidas = (await resp.json()).vagas || [];
+  } catch (e) { /* arquivo ainda não existe: segue só com as visíveis */ }
+  _cacheTodas = { ...dados, vagas: (dados.vagas || []).concat(escondidas) };
+  return _cacheTodas;
+}
+
 async function lerEmpresas() {
   const resp = await fetch("empresas.json?v=" + Date.now());
   if (!resp.ok) throw new Error("HTTP " + resp.status);

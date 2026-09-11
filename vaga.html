@@ -54,6 +54,10 @@
   }
   .candidatar:hover { gap:13px; filter:brightness(1.08); }
   .nota { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); text-align:center; margin-top:14px; }
+  .avisoLogin { border:1px solid var(--linha); border-radius:10px; padding:13px 15px; margin-top:16px; font-size:13.5px; color:var(--ink-2); line-height:1.55; }
+  .avisoLogin b { color:var(--ink-1); font-weight:600; }
+  .copiar { display:inline-flex; align-items:center; gap:7px; margin-top:11px; padding:7px 13px; border:1px solid var(--linha); border-radius:8px; background:none; color:var(--ink-1); font-family:inherit; font-size:12.5px; cursor:pointer; }
+  .copiar:hover { border-color:var(--ink-3); }
   .ajuda { margin-top:26px; text-align:center; font-size:13px; color:var(--ink-3); }
   .ajuda a { color:var(--signal); }
 
@@ -86,7 +90,6 @@
 
 <script src="layout.js"></script>
 <script src="controle-dados.js"></script>
-<script src="pulso-site.js"></script>
 <script>
 montarLayout("vagas");
 
@@ -130,7 +133,7 @@ function erro(msg) {
   if (!id) { cont.innerHTML = erro("Vaga não especificada."); return; }
 
   let dados;
-  try { dados = await lerVagas(); selo(dados); }
+  try { dados = await lerVagasComEscondidas(); selo(dados); }
   catch (e) { cont.innerHTML = erro("Não foi possível carregar a vaga agora."); console.error(e); return; }
 
   const v = (dados.vagas || []).find(x => x.id === id);
@@ -174,6 +177,14 @@ function erro(msg) {
       <a href="${esc(v.url)}" target="_blank" rel="noopener" class="candidatar">Candidatar para esta vaga →</a>
       <div class="nota">Você vai para a página oficial da vaga, sem intermediário.</div>
     </div>
+    ${v.empresa === "turing" ? `
+    <div class="avisoLogin">
+      <b>Caiu na lista de vagas da Turing?</b> Acontece quando você não está logado:
+      o site abre a lista em vez da vaga. Faça login e clique de novo no botão acima,
+      ou busque pelo título na própria lista.
+      <br>
+      <button class="copiar" id="btnCopiar" type="button">Copiar o título da vaga</button>
+    </div>` : ""}
     <div class="ajuda">
       Antes de se candidatar, veja como montar o <a href="como-funciona.html#curriculo">currículo que passa nessas vagas</a>
       e <a href="como-funciona.html#pagamento">como o pagamento chega ao Brasil</a>.
@@ -193,6 +204,15 @@ function erro(msg) {
     if (!tarja) return;
 
     async function desenharTarja() {
+      const btnCopiar = document.getElementById("btnCopiar");
+      if (btnCopiar) {
+        btnCopiar.addEventListener("click", async () => {
+          try { await navigator.clipboard.writeText(v.titulo); btnCopiar.textContent = "Título copiado"; }
+          catch (err) { btnCopiar.textContent = "Não deu para copiar"; }
+          setTimeout(() => { btnCopiar.textContent = "Copiar o título da vaga"; }, 2200);
+        });
+      }
+
       const achada = await Dados.procurarAplicacao({ vagaId: v.id, empresa: e.nome, titulo: v.titulo });
       tarja.hidden = false;
       if (achada) {
@@ -214,7 +234,6 @@ function erro(msg) {
               remuneracao: (v.resumo && v.resumo.remuneracao) || "",
               proximo: "", proximoEm: "", observacoes: "", email: "", curriculo: "",
             });
-            if (typeof Pulso !== "undefined") Pulso.enviar(v.id, "aplicou");
             await desenharTarja();
           } catch (err) { this.disabled = false; console.error(err); }
         });

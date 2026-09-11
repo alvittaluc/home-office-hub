@@ -66,6 +66,7 @@ echo Confira acima se a micro1 trouxe vagas.
 echo.
 echo Agora suba no GitHub os arquivos que mudaram nesta pasta:
 echo    - vagas.json
+echo    - vagas-especificas.json
 echo    - datas.json
 echo    - vagas_para_resumo.json
 echo.

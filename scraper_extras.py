@@ -367,6 +367,54 @@ URL_MICRO1_VAGA = "https://jobs.micro1.ai/post/{id}"
 # A micro1 só devolve resultado por palavra buscada, então buscamos por três
 TERMOS_MICRO1 = ["brazil", "brasil", "portuguese"]
 
+# ─── Vagas por área (escondidas no site até a pessoa se cadastrar) ───
+# Estas buscas NÃO falam de português nem de Brasil: são as vagas que pedem
+# formação numa área. Elas não entram na aba Vagas; ficam no arquivo separado.
+TERMOS_AREA = [
+    "law", "legal", "medical", "physician", "nursing", "mathematics",
+    "physics", "chemistry", "biology", "engineering", "software",
+    "finance", "accounting", "economics", "psychology", "history",
+    "philosophy", "linguistics", "design", "marketing", "phd",
+]
+
+# País explícito no título que não seja o Brasil derruba a vaga: mesmo aberta
+# a especialistas, ela é reservada a quem mora lá.
+_OUTRO_PAIS = re.compile(
+    r"\b(india|indian|united states|usa|u\.s\.|canada|canadian|mexico|"
+    r"philippines|filipino|nigeria|kenya|egypt|indonesia|vietnam|japan|"
+    r"korea|china|germany|france|spain|italy|poland|turkey|argentina|"
+    r"colombia|chile|peru|portugal|uk|united kingdom)\b"
+    r"|\b(?:us|u\.s\.|usa|uk|eu|india|canada)\s+(?:only|based|residents?)\b",
+    re.I)
+
+
+def pais_estrangeiro(titulo):
+    """True se o título prende a vaga a outro país que não o Brasil."""
+    if _BRASIL.search(titulo or ""):
+        return False
+    return bool(_OUTRO_PAIS.search(titulo or ""))
+
+
+# Idioma estrangeiro no título. Inglês não conta: é o idioma padrão dessas
+# plataformas e aparece em vaga aberta a qualquer pessoa.
+_OUTRO_IDIOMA = re.compile(
+    r"\b(korean|japanese|mandarin|cantonese|chinese|hindi|bengali|gujarati|"
+    r"malayalam|tamil|telugu|marathi|punjabi|kannada|odia|assamese|urdu|"
+    r"nepali|sinhala|thai|vietnamese|indonesian|malay|tagalog|filipino|"
+    r"khmer|lao|burmese|mongolian|kazakh|uzbek|arabic|hebrew|persian|farsi|"
+    r"turkish|azerbaijani|georgian|armenian|russian|ukrainian|polish|czech|"
+    r"slovak|slovenian|hungarian|romanian|bulgarian|serbian|croatian|greek|"
+    r"lithuanian|latvian|estonian|finnish|swedish|norwegian|danish|dutch|"
+    r"flemish|german|french|italian|spanish|catalan|basque|swahili|yoruba|"
+    r"hausa|igbo|zulu|afrikaans|amharic|somali)\b", re.I)
+
+
+def idioma_estrangeiro(titulo):
+    """True se o título pede outro idioma que não português nem inglês."""
+    if _BRASIL.search(titulo or ""):
+        return False
+    return bool(_OUTRO_IDIOMA.search(titulo or ""))
+
 
 def _descricao_micro1(url):
     """Abre a página da vaga e tenta extrair a descrição."""
@@ -391,14 +439,20 @@ def _descricao_micro1(url):
     return corpo if len(corpo) > 200 else ""
 
 
-def coletar_micro1(pausa=1.0, buscar_descricao=True):
-    """Busca na micro1 por três termos e junta os resultados sem repetir."""
-    print("  → micro1 ...", end=" ")
+def coletar_micro1(pausa=1.0, buscar_descricao=True, termos=None,
+                   modo_area=False):
+    """Busca na micro1 e junta os resultados sem repetir.
+
+    modo_area=True troca o filtro de Brasil pelo filtro de país estrangeiro:
+    a vaga entra por exigir uma formação, não por ser em português.
+    """
+    rotulo = "micro1 (áreas)" if modo_area else "micro1"
+    print(f"  → {rotulo} ...", end=" ")
     brutas, ids_vistos = [], set()
     houve_resposta = False
     erros = []
 
-    for termo in TERMOS_MICRO1:
+    for termo in (termos or TERMOS_MICRO1):
         try:
             resposta = _baixar(URL_MICRO1.format(termo=termo),
                                corpo=CORPO_MICRO1,
@@ -437,7 +491,10 @@ def coletar_micro1(pausa=1.0, buscar_descricao=True):
         if not titulo:
             continue
         # a micro1 não tem campo de país; o país vem escrito no título
-        if not aceita_brasil(titulo, v.get("location_type") or "remote"):
+        if modo_area:
+            if pais_estrangeiro(titulo) or idioma_estrangeiro(titulo):
+                continue
+        elif not aceita_brasil(titulo, v.get("location_type") or "remote"):
             continue
 
         pay = v.get("ideal_hourly_rate") or {}
@@ -460,7 +517,7 @@ def coletar_micro1(pausa=1.0, buscar_descricao=True):
         vagas.append({
             "titulo": titulo,
             "url": url,
-            "local": "Remoto · Brasil",
+            "local": "Remoto · Mundial" if modo_area else "Remoto · Brasil",
             "desc": desc,
             "requisitos": habilidades,
             "data_post": (v.get("date_posted") or "")[:10],
@@ -636,14 +693,19 @@ def _paises_turing(descricao):
     return ""
 
 
-def coletar_turing():
-    """Busca na Turing por três termos e junta os resultados sem repetir."""
-    print("  → Turing ...", end=" ")
+def coletar_turing(termos=None, modo_area=False):
+    """Busca na Turing e junta os resultados sem repetir.
+
+    modo_area=True busca por formação em vez de idioma. A lista de países
+    elegíveis continua mandando: sem Brasil na lista, a vaga não serve.
+    """
+    rotulo = "Turing (áreas)" if modo_area else "Turing"
+    print(f"  → {rotulo} ...", end=" ")
     brutas, ids_vistos = [], set()
     houve_resposta = False
     erros = []
 
-    for termo in TERMOS_TURING:
+    for termo in (termos or TERMOS_TURING):
         corpo = {
             "searchQuery": termo,
             "expertise": [],
@@ -688,6 +750,12 @@ def coletar_turing():
             if not _BRASIL.search(paises):
                 continue
             local = "Remoto · Brasil"
+        elif modo_area:
+            # Vaga de área: entra por exigir formação. Barra o que estiver
+            # preso a outro país ou pedir outro idioma.
+            if pais_estrangeiro(titulo) or idioma_estrangeiro(titulo):
+                continue
+            local = "Remoto · Mundial"
         else:
             # Sem lista de países: cai na regra geral do projeto. Título de
             # português entra (é remoto e aberto), Portugal explícito não.
@@ -797,6 +865,128 @@ def coletar_imerit():
     return vagas
 
 
+
+
+# ═══════════════════════════════════════════════════════════════════
+#  MERCOR  (work.mercor.com)
+# ═══════════════════════════════════════════════════════════════════
+#
+# Setembro de 2026. Diferente das outras, a Mercor NÃO precisa de API:
+# a página /explore já vem pronta no HTML, com o link de cada vaga.
+# Não tem login, não tem chave, é só ler a página.
+#
+#     GET https://work.mercor.com/explore?page=1
+#
+# Cada vaga aparece como um link no formato:
+#
+#     /jobs/list_AAABxxxxxxxx/titulo-da-vaga?returnPath=/explore
+#
+# O texto do cartão vem logo em seguida, tudo junto, mais ou menos assim:
+#
+#     Bilingual Writer - Portuguese (Brazil)Apply $12.6 / task...
+#
+# São cerca de 24 páginas. Paramos quando uma página não traz id novo.
+
+URL_MERCOR = "https://work.mercor.com/explore?page={n}"
+URL_MERCOR_VAGA = "https://work.mercor.com/jobs/{id}/{slug}"
+ORIGEM_MERCOR = "https://work.mercor.com"
+
+MERCOR_MAX_PAGINAS = 30
+
+# O link de cada vaga dentro do HTML
+_LINK_MERCOR = re.compile(r'href="/jobs/(list_[A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)')
+
+# Valor por hora ou por tarefa, do jeito que a Mercor escreve
+_PAGAMENTO_MERCOR = re.compile(
+    r"(\$\s?\d[\d.,]*(?:\s*(?:-|–|to)\s*\$?\s?\d[\d.,]*)?\s*/\s*"
+    r"(?:hour|hr|task|word|project))", re.I)
+
+
+def _texto_do_cartao(html, inicio, fim):
+    """Pega o pedaço de HTML do cartão e devolve só o texto."""
+    trecho = html[inicio:fim]
+    # o corte cai no meio da tag <a ...>: pula o resto dela
+    fecha = trecho.find(">")
+    if 0 <= fecha < 200:
+        trecho = trecho[fecha + 1:]
+    trecho = re.sub(r"<[^>]+>", " ", trecho)
+    trecho = _html.unescape(trecho)
+    return re.sub(r"\s+", " ", trecho).strip()
+
+
+def _titulo_do_cartao(texto, slug):
+    """O título é o que vem antes do botão Apply. Sem ele, usa o endereço."""
+    titulo = re.split(r"\bApply\b", texto)[0].strip(" -–·|")
+    if len(titulo) < 4:
+        titulo = slug.replace("-", " ").strip().title()
+    return titulo[:160]
+
+
+def coletar_mercor(pausa=0.8, max_paginas=MERCOR_MAX_PAGINAS):
+    """Lê as páginas de /explore e devolve as vagas que servem ao Brasil.
+
+    Mesma regra da micro1 e da Turing: vaga presa a outro país sai, vaga de
+    outro idioma sai, o resto fica. A separação entre vaga geral e vaga de
+    área é feita depois, no coletor.
+    """
+    print("  → Mercor ...", end=" ")
+    vagas, ids_vistos = [], set()
+    paginas_lidas = 0
+    erros = []
+
+    for n in range(1, max_paginas + 1):
+        try:
+            html = _baixar(URL_MERCOR.format(n=n), tipo_json=False,
+                           origem=ORIGEM_MERCOR)
+        except Exception as e:
+            erros.append(f"pág {n}: {str(e)[:60]}")
+            break
+
+        achados = list(_LINK_MERCOR.finditer(html))
+        if not achados:
+            break
+
+        novos_na_pagina = 0
+        for i, m in enumerate(achados):
+            id_vaga, slug = m.group(1), m.group(2)
+            if id_vaga in ids_vistos:
+                continue
+            ids_vistos.add(id_vaga)
+            novos_na_pagina += 1
+
+            fim = achados[i + 1].start() if i + 1 < len(achados) else m.end() + 400
+            texto = _texto_do_cartao(html, m.end(), fim)
+            titulo = _titulo_do_cartao(texto, slug)
+
+            if pais_estrangeiro(titulo) or idioma_estrangeiro(titulo):
+                continue
+
+            pag = _PAGAMENTO_MERCOR.search(texto)
+            vagas.append({
+                "titulo": titulo,
+                "local": ("Remoto · Brasil" if _BRASIL.search(titulo)
+                          else "Remoto · Mundial"),
+                "url": URL_MERCOR_VAGA.format(id=id_vaga, slug=slug),
+                "desc": "",
+                "requisitos": "",
+                "pagamento": pag.group(1).strip() if pag else "",
+                "horario": "",
+                "data_post": "",
+            })
+
+        paginas_lidas += 1
+        if novos_na_pagina == 0:
+            break
+        time.sleep(pausa)
+
+    if not paginas_lidas:
+        raise RuntimeError("; ".join(erros) or "nenhuma página lida")
+
+    print(f"{len(vagas)} vaga(s) de {len(ids_vistos)} lidas "
+          f"em {paginas_lidas} página(s)")
+    return vagas
+
+
 # ═══════════════════════════════════════════════════════════════════
 #  TESTE MANUAL: python3 scraper_extras.py
 # ═══════════════════════════════════════════════════════════════════
@@ -807,6 +997,7 @@ if __name__ == "__main__":
                          ("MICRO1", coletar_micro1),
                          ("ALIGNERR", coletar_alignerr),
                          ("TURING", coletar_turing),
+                         ("MERCOR", coletar_mercor),
                          ("IMERIT", coletar_imerit)]:
         print("\n" + "=" * 60)
         print(f"  {nome}")

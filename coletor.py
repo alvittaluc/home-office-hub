@@ -30,6 +30,12 @@ import time
 import ssl
 from datetime import datetime, timezone
 
+# Decide, pelo título, se a vaga é geral ou de uma área específica.
+try:
+    import classificador
+except Exception:
+    classificador = None
+
 # ─── Correção de SSL no Windows ───
 # O Python no Windows às vezes não consegue verificar certificados de sites
 # (erro "CERTIFICATE_VERIFY_FAILED"). Tentamos usar os certificados do sistema;
@@ -146,6 +152,20 @@ USAR_TURING = True
 # iMerit (imerit.ai): feed JSON estático, o mais simples do projeto.
 # Hoje não tem nenhuma vaga em português. Fica ligada como posto de vigia.
 USAR_IMERIT = True
+
+# Mercor: lê o HTML de work.mercor.com/explore, sem API e sem login.
+USAR_MERCOR = True
+
+# ─── VAGAS POR ÁREA ───
+# Vagas que exigem formação (direito, medicina, exatas...). Não aparecem na
+# aba Vagas: vão para o vagas-especificas.json e só serão mostradas depois,
+# quando existir o cadastro de área de cada pessoa.
+USAR_AREAS = True
+ARQUIVO_ESPECIFICAS = "vagas-especificas.json"
+
+# Enquanto as específicas estiverem escondidas, elas ficam fora do
+# vagas_para_resumo.json para não encher o arquivo de resumos.
+RESUMO_INCLUI_ESPECIFICAS = False
 
 # ─── FASE 4: LINKEDIN via GMAIL ───
 # As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
@@ -925,6 +945,10 @@ def buscar_imerit() -> list:
     return _buscar_extra("imerit", "coletar_imerit")
 
 
+def buscar_mercor() -> list:
+    return _buscar_extra("mercor", "coletar_mercor")
+
+
 # ═══════════════════════════════════════════════════════════════════
 #  SCRAPER — Rex.zone (via módulo scraper_rexzone.py)
 # ═══════════════════════════════════════════════════════════════════
@@ -1007,12 +1031,16 @@ def remover_duplicadas(vagas: list) -> list:
 def _preservar_do_arquivo(empresa):
     """Lê o vagas.json atual e devolve as vagas de uma empresa específica.
     Usado para não perder vagas de fontes puladas (ex: Telus no GitHub)."""
-    try:
-        with open("vagas.json", "r", encoding="utf-8") as f:
-            dados = json.load(f)
-        return [v for v in dados.get("vagas", []) if v.get("empresa") == empresa]
-    except Exception:
-        return []
+    guardadas = []
+    for caminho in ("vagas.json", ARQUIVO_ESPECIFICAS):
+        try:
+            with open(caminho, "r", encoding="utf-8") as f:
+                dados = json.load(f)
+        except Exception:
+            continue
+        guardadas += [v for v in dados.get("vagas", [])
+                      if v.get("empresa") == empresa]
+    return guardadas
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -1049,6 +1077,19 @@ def sincronizar_com_o_site():
     No GitHub não faz nada: lá o checkout já vem atualizado."""
     if RODANDO_NO_GITHUB:
         return
+
+    # o arquivo das vagas escondidas segue o mesmo caminho
+    publicadas_esp = _baixar_do_site(ARQUIVO_ESPECIFICAS)
+    if publicadas_esp and publicadas_esp.get("vagas"):
+        try:
+            with open(ARQUIVO_ESPECIFICAS, "r", encoding="utf-8") as f:
+                local_esp = json.load(f)
+        except Exception:
+            local_esp = {}
+        if publicadas_esp.get("atualizado_em", "") > local_esp.get("atualizado_em", ""):
+            with open(ARQUIVO_ESPECIFICAS, "w", encoding="utf-8") as f:
+                json.dump(publicadas_esp, f, ensure_ascii=False, indent=2)
+
     print("  → Conferindo a versão que está no ar ...", end=" ")
     publicado = _baixar_do_site("vagas.json")
     if not publicado or not publicado.get("vagas"):
@@ -1198,6 +1239,7 @@ def main():
         (USAR_ALIGNERR, buscar_alignerr, "alignerr"),
         (USAR_TURING, buscar_turing, "turing"),
         (USAR_IMERIT, buscar_imerit, "imerit"),
+        (USAR_MERCOR, buscar_mercor, "mercor"),
     ):
         if not ligada:
             if so_roda_no_pc(nome):
@@ -1227,9 +1269,45 @@ def main():
     if USAR_LINKEDIN:
         todas += buscar_linkedin()
 
+    # ─── Vagas por área ───
+    # Mesma passada, outros termos de busca: aqui procuramos por formação
+    # (law, physics, finance...) em vez de português. O que vier daqui é
+    # classificado adiante e vai para o arquivo das escondidas.
+    if USAR_AREAS:
+        print("\n[5/5] Buscando vagas por área de formação...")
+        try:
+            import scraper_extras
+            termos_area = scraper_extras.TERMOS_AREA
+        except Exception:
+            termos_area = None
+        if termos_area is None:
+            print("  → módulo de busca não encontrado, pulando")
+        else:
+            if USAR_MICRO1 and not so_roda_no_pc("micro1"):
+                todas += _buscar_extra(
+                    "micro1", "coletar_micro1",
+                    buscar_descricao=MICRO1_BUSCAR_DESCRICAO,
+                    termos=termos_area, modo_area=True)
+            if USAR_TURING:
+                todas += _buscar_extra(
+                    "turing", "coletar_turing",
+                    termos=termos_area, modo_area=True)
+
     print(f"\n  Total bruto: {len(todas)} vagas")
     todas = remover_duplicadas(todas)
     print(f"  Após remover duplicadas: {len(todas)} vagas")
+
+    # ─── Classificação por área ───
+    # A vaga que casa com uma palavra-chave de área ganha o campo "area" e
+    # some da aba Vagas. Quem não casa segue como vaga geral.
+    if USAR_AREAS and classificador:
+        marcadas = 0
+        for v in todas:
+            area = classificador.classificar_area(v.get("titulo", ""))
+            if area:
+                v["area"] = area
+                marcadas += 1
+        print(f"  → {marcadas} vaga(s) marcada(s) como específicas de área")
 
     # ─── DATAS ───
     # Duas datas convivem no site:
@@ -1371,6 +1449,9 @@ def main():
             # LinkedIn fica SEMPRE de fora: ainda não fazemos resumo para lá.
             if v.get("fonte") == "linkedin" or v.get("empresa") == "linkedin":
                 continue
+            # vagas escondidas também ficam de fora enquanto não aparecerem
+            if v.get("area") and not RESUMO_INCLUI_ESPECIFICAS:
+                continue
             # sem nenhum texto para resumir, não adianta mandar
             if not desc and not req:
                 continue
@@ -1404,24 +1485,45 @@ def main():
         for campo in ("_desc", "_req", "_comp"):
             v.pop(campo, None)
 
-    # Monta a estrutura final
+    # ─── Separa o que aparece do que fica escondido ───
+    gerais = [v for v in todas if not v.get("area")]
+    especificas = [v for v in todas if v.get("area")]
+
+    agora = datetime.now(timezone.utc).isoformat()
+    agora_br = datetime.now().strftime("%d/%m/%Y às %H:%M")
+
     resultado = {
-        "atualizado_em": datetime.now(timezone.utc).isoformat(),
-        "atualizado_br": datetime.now().strftime("%d/%m/%Y às %H:%M"),
-        "total": len(todas),
-        "vagas": todas,
+        "atualizado_em": agora,
+        "atualizado_br": agora_br,
+        "total": len(gerais),
+        "vagas": gerais,
     }
 
     with open("vagas.json", "w", encoding="utf-8") as f:
         json.dump(resultado, f, ensure_ascii=False, indent=2)
 
-    print(f"\n  ✓ Salvo em 'vagas.json'")
+    print(f"\n  ✓ Salvo em 'vagas.json' ({len(gerais)} vaga(s) visíveis)")
+
+    if USAR_AREAS:
+        areas_dispon = sorted({v["area"] for v in especificas})
+        with open(ARQUIVO_ESPECIFICAS, "w", encoding="utf-8") as f:
+            json.dump({
+                "atualizado_em": agora,
+                "atualizado_br": agora_br,
+                "total": len(especificas),
+                "areas": areas_dispon,
+                "vagas": especificas,
+            }, f, ensure_ascii=False, indent=2)
+        print(f"  ✓ Salvo em '{ARQUIVO_ESPECIFICAS}' "
+              f"({len(especificas)} vaga(s) escondidas em "
+              f"{len(areas_dispon)} área(s))")
+
     print("═" * 60)
 
     # Resumo por empresa
     print("\n  RESUMO POR EMPRESA:")
     contagem = {}
-    for v in todas:
+    for v in gerais:
         contagem[v["empresa"]] = contagem.get(v["empresa"], 0) + 1
     for emp, qtd in sorted(contagem.items()):
         print(f"    • {emp}: {qtd} vaga(s)")
