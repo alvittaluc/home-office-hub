@@ -68,35 +68,72 @@
   @media (max-width:760px){ .barra .direita{ margin-left:0; width:100%; justify-content:space-between; } }
 
 
-  /* ── escolha de formação: libera as vagas que pedem especialista ── */
-  .form-box {
-    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
-    padding:17px 20px; margin:18px 0 0;
-    background:var(--panel); border:1px solid var(--line-soft);
-    border-radius:15px; box-shadow:var(--sombra);
+  /* ═══════════════ TELA DE ENTRADA ═══════════════ */
+  .volta {
+    display:inline-block; font-size:13px; color:var(--ink-3); text-decoration:none;
+    margin-bottom:14px; transition:color .15s;
   }
-  .form-box[hidden] { display:none; }
-  .form-txt { flex:1 1 300px; min-width:0; }
-  .form-txt b { display:block; font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px; }
-  .form-txt span { font-size:13px; color:var(--ink-2); line-height:1.55; }
-  .form-nota { font-size:12.5px; color:var(--signal); margin-top:8px; }
-  .form-sel {
-    flex:0 0 auto; max-width:100%;
-    font-family:var(--body); font-size:13px; color:var(--ink-2); cursor:pointer;
-    background:var(--panel); border:1px solid var(--line); border-radius:11px;
-    padding:10px 34px 10px 14px; outline:none; appearance:none; transition:border-color .15s;
-    background-image:linear-gradient(45deg,transparent 50%,#8A94A1 50%),linear-gradient(135deg,#8A94A1 50%,transparent 50%);
-    background-position:calc(100% - 16px) 52%, calc(100% - 11px) 52%;
-    background-size:5px 5px, 5px 5px; background-repeat:no-repeat;
-  }
-  .form-sel:hover, .form-sel:focus { border-color:var(--signal-dim); }
-  @media (max-width:620px){ .form-sel{ width:100%; } }
+  .volta:hover { color:var(--signal); }
+  .volta[hidden] { display:none; }
 
-  .v-emp .selo-area {
-    font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
-    color:var(--violet); background:#F0EDF8; border:1px solid #DAD2EE;
-    border-radius:20px; padding:2px 8px; flex-shrink:0; white-space:nowrap;
+  .secao { margin:30px 0 0; }
+  .secao-cab { display:flex; align-items:baseline; gap:11px; margin-bottom:14px; }
+  .secao-cab h2 {
+    font-family:var(--display); font-weight:400; font-size:22px;
+    letter-spacing:-0.015em; color:var(--ink);
   }
+  .secao-cab p { font-size:13px; color:var(--ink-3); margin:0; }
+
+  .grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(228px,1fr)); gap:13px; }
+
+  .cartao {
+    position:relative; display:flex; flex-direction:column; gap:9px; min-width:0;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:15px;
+    padding:18px 19px 17px; text-decoration:none; color:inherit;
+    transition:border-color .18s, box-shadow .18s, transform .18s, background .18s;
+  }
+  .cartao:hover {
+    border-color:var(--line); background:var(--panel-2); transform:translateY(-2px);
+    box-shadow:0 14px 30px -22px rgba(16,32,58,.20);
+  }
+  .cartao .c-ico {
+    width:38px; height:38px; border-radius:11px; display:grid; place-items:center;
+    background:var(--signal-suave); color:var(--signal); flex-shrink:0;
+  }
+  .cartao .c-ico svg { width:19px; height:19px; }
+  .cartao .c-nome {
+    font-family:var(--body); font-weight:600; font-size:15px; letter-spacing:-0.01em;
+    color:var(--ink); line-height:1.3;
+  }
+  .cartao .c-sub { font-size:12.5px; color:var(--ink-3); line-height:1.45; }
+  .cartao .c-qt {
+    margin-top:auto; padding-top:6px; font-size:12.5px; color:var(--ink-2);
+    font-variant-numeric:tabular-nums;
+  }
+  .cartao .c-qt b { font-weight:600; color:var(--ink); }
+  .cartao .c-novas {
+    position:absolute; top:14px; right:14px;
+    font-size:10px; font-weight:600; letter-spacing:.04em;
+    color:var(--amber); background:var(--amber-suave); border:1px solid #EBD2B4;
+    border-radius:20px; padding:3px 8px; white-space:nowrap;
+  }
+
+  /* o primeiro cartão, o de todas as vagas, ocupa duas colunas e se destaca */
+  .cartao.largo { grid-column:span 2; background:var(--escuro); border-color:var(--escuro-linha); }
+  .cartao.largo .c-nome, .cartao.largo .c-qt b { color:var(--ink-claro); }
+  .cartao.largo .c-sub, .cartao.largo .c-qt { color:var(--ink-claro-2); }
+  .cartao.largo .c-ico { background:rgba(255,255,255,.08); color:var(--ink-claro); }
+  .cartao.largo:hover { background:var(--escuro-2); border-color:var(--signal-dim); }
+  @media (max-width:560px){ .cartao.largo { grid-column:span 1; } }
+
+  /* cartão de empresa: logo no lugar do ícone */
+  .cartao .c-logo {
+    width:38px; height:38px; border-radius:11px; display:grid; place-items:center;
+    overflow:hidden; flex-shrink:0; font-weight:700; font-size:13px;
+  }
+  .cartao .c-logo img { width:22px; height:22px; object-fit:contain; }
+
+  .c-marca { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--signal); }
 
   /* ── cada filtro suspenso ── */
   .fbtn {
@@ -187,6 +224,9 @@
 
   /* ═══════════════ COLUNA DE FILTROS ═══════════════ */
   .palco { display:grid; grid-template-columns:228px minmax(0,1fr); gap:20px; align-items:start; }
+  /* sem isto o display:grid vence o atributo hidden e a lista aparece nas
+     telas em que ela não deveria existir */
+  .palco[hidden] { display:none; }
 
   /* a lista responde à largura da PRÓPRIA coluna, não à da janela. Sem isto o
      cartão continua usando o desenho de tela cheia dentro de um espaço menor. */
@@ -285,6 +325,13 @@
 
   /* Meu Controle: marca discreta nas vagas em que a pessoa já aplicou.
      Só aparece para quem usa a ferramenta; para todo mundo mais, nada muda. */
+  /* selo da área de formação, nas vagas que exigem diploma */
+  .v-emp .selo-area {
+    font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--violet); background:#F0EDF8; border:1px solid #DAD2EE;
+    border-radius:20px; padding:2px 8px; flex-shrink:0; white-space:nowrap;
+  }
+
   .v-emp .selo-aplicada {
     font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
     color:#1F7A6E; background:#E4F3F0; border:1px solid #C6E5DE;
@@ -368,24 +415,22 @@
 <body>
 
 <section class="topo">
-  <div class="eyebrow">Lista completa</div>
-  <h1>Vagas abertas para quem mora no Brasil</h1>
+  <a class="volta" id="volta" href="vagas.html" data-ir hidden>← todas as categorias</a>
+  <div class="eyebrow" id="eyebrow">Lista completa</div>
+  <h1 id="titulo">Vagas abertas para quem mora no Brasil</h1>
   <div class="numeros" id="numeros"></div>
 </section>
 
 <div class="corpo">
 
 
-  <div class="form-box" id="caixaFormacao" hidden>
-    <div class="form-txt">
-      <b>Você tem formação em alguma área?</b>
-      <span>Existem vagas que só aceitam quem é formado. Escolha a sua área e elas entram na lista.</span>
-      <div class="form-nota" id="notaFormacao" hidden></div>
-    </div>
-    <select class="form-sel" id="selFormacao" aria-label="Sua área de formação"></select>
-  </div>
+  <!-- tela de entrada: categorias e empresas -->
+  <div id="telaInicio" hidden></div>
 
-  <div class="palco">
+  <!-- tela das áreas de formação -->
+  <div id="telaAreas" hidden></div>
+
+  <div class="palco" id="palco" hidden>
     <aside class="lateral" id="lateral">
       <div class="lat-topo">
         <h2>Filtros</h2>
@@ -465,53 +510,31 @@ let EMPRESAS = {}, TODAS = [];
    As vagas que pedem formação ficam num arquivo à parte e não aparecem para
    todo mundo. Quem escolhe a área passa a ver as dela junto com as demais.
    A escolha fica salva no navegador, não vai para lugar nenhum. */
+/* guarda a última área de formação aberta, só para marcá-la na tela de áreas */
 const CHAVE_FORM = "hub.formacao";
 let GERAIS = [], ESPECIFICAS = [], AREAS = [];
 let formacao = "";
 try { formacao = localStorage.getItem(CHAVE_FORM) || ""; } catch (e) {}
 
 function compor() {
-  const minhas = formacao ? ESPECIFICAS.filter(v => v.area === formacao) : [];
-  IDS_ESP = new Set(minhas.map(v => v.id));
-  if (!formacao) soFormacao = false;
-  TODAS = GERAIS.concat(minhas);
-}
-
-function montarFormacao() {
-  const caixa = document.getElementById("caixaFormacao");
-  if (!AREAS.length) { caixa.hidden = true; return; }
-  caixa.hidden = false;
-
-  const conta = a => ESPECIFICAS.filter(v => v.area === a).length;
-  const sel = document.getElementById("selFormacao");
-  sel.innerHTML = '<option value="">Nenhuma, ver só as vagas gerais</option>' +
-    AREAS.filter(conta)
-         .map(a => `<option value="${esc(a)}">${esc(a)} (${conta(a)})</option>`)
-         .join("");
-  sel.value = formacao;
-
-  const nota = document.getElementById("notaFormacao");
-  const n = formacao ? conta(formacao) : 0;
-  nota.hidden = !formacao;
-  nota.textContent = formacao
-    ? (n === 1 ? "1 vaga de " + formacao + " entrou na lista"
-               : n + " vagas de " + formacao + " entraram na lista")
-    : "";
-
-  sel.onchange = () => {
-    formacao = sel.value;
-    try { localStorage.setItem(CHAVE_FORM, formacao); } catch (e) {}
-    compor();
-    aplicar();
-  };
+  if (ESCOPO === "area" && AREA) TODAS = ESPECIFICAS.filter(v => v.area === AREA);
+  else if (ESCOPO === "tudo")    TODAS = GERAIS.concat(ESPECIFICAS);
+  else                           TODAS = GERAIS.slice();
 }
 
 let fPeriodo = "all", fCats = new Set(), fEmps = new Set(), ordem = "relevancia";
-let busca = "", soFormacao = false, esconderAplicadas = false;
+let busca = "", esconderAplicadas = false;
+
+/* Três telas no mesmo arquivo, decididas pela URL:
+     inicio  as categorias e as empresas que mais contratam
+     areas   as áreas de formação, dentro do cartão que exige diploma
+     lista   a lista com a coluna de filtros, que é o que já existia
+   O escopo diz DE ONDE vêm as vagas da lista: só as gerais, só as de uma
+   área, ou o acervo inteiro quando a pessoa clica numa empresa. */
+let TELA = "inicio", ESCOPO = "gerais", AREA = "";
 
 /* ids das vagas que só aparecem para quem escolheu formação, e a lista de
    vagas em que a pessoa já aplicou, lida uma vez do Meu Controle. */
-let IDS_ESP = new Set();
 let APLICADAS = { ids: new Set(), chaves: new Set() };
 
 const sp = t => (t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -536,14 +559,12 @@ async function iniciar() {
       AREAS = (esp.areas && esp.areas.length)
         ? esp.areas
         : [...new Set(ESPECIFICAS.map(v => v.area).filter(Boolean))].sort();
-      if (formacao && !AREAS.includes(formacao)) formacao = "";
     } catch (e) { ESPECIFICAS = []; AREAS = []; }
 
-    compor();
     lerUrl();
     await carregarAplicadas();
     if (typeof Pulso !== "undefined") { try { await Pulso.carregar(); } catch (e) {} }
-    aplicar();
+    render();
   } catch (e) {
     document.getElementById("resultado").innerHTML =
       '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Atualize a página em alguns minutos.</p></div>';
@@ -552,13 +573,99 @@ async function iniciar() {
   }
 }
 
+/* ══════════════════════════════════════════════════════════
+   A URL MANDA
+
+   Quem decide a tela é o endereço, não um estado escondido. Assim o
+   botão voltar funciona, dá para mandar link de uma categoria para
+   alguém, e recarregar a página cai no mesmo lugar.
+   ══════════════════════════════════════════════════════════ */
 function lerUrl() {
   const p = new URLSearchParams(location.search);
-  if (p.get("cat")) fCats.add(p.get("cat"));
-  if (p.get("empresa")) fEmps.add(p.get("empresa"));
+
+  fCats.clear(); fEmps.clear();
+  fPeriodo = "all"; busca = ""; esconderAplicadas = false;
+  ESCOPO = "gerais"; AREA = "";
+
+  if (p.get("areas")) {
+    TELA = "areas";
+  } else if (p.get("area")) {
+    TELA = "lista"; ESCOPO = "area"; AREA = p.get("area");
+    formacao = AREA;
+    try { localStorage.setItem(CHAVE_FORM, AREA); } catch (e) {}
+  } else if (p.get("empresa")) {
+    TELA = "lista"; ESCOPO = "tudo"; fEmps.add(p.get("empresa"));
+  } else if (p.get("cat")) {
+    TELA = "lista"; fCats.add(p.get("cat"));
+  } else if (p.get("ver") || p.get("q") || p.get("periodo")) {
+    TELA = "lista";
+  } else {
+    TELA = "inicio";
+  }
+
   if (p.get("periodo")) fPeriodo = p.get("periodo");
-  if (p.get("q")) { busca = p.get("q"); document.getElementById("busca").value = busca; }
+  if (p.get("q")) busca = p.get("q");
+  const cx = document.getElementById("busca");
+  if (cx) cx.value = busca;
 }
+
+/* ── troca de tela sem recarregar, mantendo o histórico ── */
+function render() {
+  compor();
+  document.getElementById("telaInicio").hidden = TELA !== "inicio";
+  document.getElementById("telaAreas").hidden = TELA !== "areas";
+  document.getElementById("palco").hidden = TELA !== "lista";
+  const volta = document.getElementById("volta");
+  volta.hidden = TELA === "inicio";
+  if (ESCOPO === "area") {
+    volta.href = "vagas.html?areas=1";
+    volta.textContent = "← áreas de formação";
+  } else {
+    volta.href = "vagas.html";
+    volta.textContent = "← todas as categorias";
+  }
+  document.getElementById("lateral").classList.remove("aberta");
+
+  const olho = document.getElementById("eyebrow");
+  const tit = document.getElementById("titulo");
+
+  if (TELA === "inicio") {
+    olho.textContent = "Lista completa";
+    tit.textContent = "Vagas abertas para quem mora no Brasil";
+    montarNumeros(GERAIS.concat(ESPECIFICAS));
+    montarInicio();
+  } else if (TELA === "areas") {
+    olho.textContent = "Exigem formação";
+    tit.textContent = "Vagas por área de formação";
+    montarNumeros(ESPECIFICAS);
+    montarAreas();
+  } else {
+    if (ESCOPO === "area") { olho.textContent = "Exigem formação"; tit.textContent = AREA; }
+    else if (ESCOPO === "tudo") {
+      const id = [...fEmps][0];
+      olho.textContent = "Empresa";
+      tit.textContent = (EMPRESAS[id] || {}).nome || id || "Vagas";
+    } else if (fCats.size === 1) {
+      olho.textContent = "Categoria";
+      tit.textContent = CAT_NOME[[...fCats][0]] || "Vagas abertas";
+    } else {
+      olho.textContent = "Lista completa";
+      tit.textContent = "Vagas abertas para quem mora no Brasil";
+    }
+    aplicar();
+  }
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.addEventListener("click", ev => {
+  const elo = ev.target.closest("a[data-ir]");
+  if (!elo || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button) return;
+  ev.preventDefault();
+  history.pushState({}, "", elo.getAttribute("href"));
+  lerUrl();
+  render();
+});
+window.addEventListener("popstate", () => { lerUrl(); render(); });
 
 /* ── datas ── */
 function dias(v) {
@@ -591,7 +698,6 @@ function passa(v, ignorar) {
   }
   if (ignorar !== "cat" && fCats.size && !fCats.has(v.categoria)) return false;
   if (ignorar !== "emp" && fEmps.size && !fEmps.has(v.empresa)) return false;
-  if (ignorar !== "form" && soFormacao && !IDS_ESP.has(v.id)) return false;
   if (ignorar !== "aplic" && esconderAplicadas && jaApliquei(v)) return false;
   if (ignorar !== "busca" && busca) {
     const alvo = sp([v.titulo, (EMPRESAS[v.empresa] || {}).nome || v.empresa,
@@ -799,18 +905,137 @@ function linha(v) {
   </a>`;
 }
 
-function montarNumeros() {
-  const novas = TODAS.filter(ehNova).length;
-  const emps = new Set(TODAS.map(v => v.empresa)).size;
+/* ══════════════════════════════════════════════════════════
+   TELA DE ENTRADA
+
+   Categorias e empresas, sem coluna de filtros. Existe porque dois
+   terços do acervo são vagas que pedem formação, e até aqui elas só
+   apareciam para quem mexesse num seletor. Cada cartão é um link de
+   verdade, então abre em nova aba e o botão voltar funciona.
+   ══════════════════════════════════════════════════════════ */
+
+const ICO = {
+  todas:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
+  ai:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/></svg>',
+  transl:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9s1.3-6.3 3.8-9z"/></svg>',
+  qa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+  sme:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5"/></svg>',
+  write:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  form:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.5V17c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></svg>',
+};
+
+const contaNovas = lista => lista.filter(ehNova).length;
+const selNovas = n => n >= 2 ? `<span class="c-novas">+${n} novas</span>` : "";
+const plural = n => n === 1 ? "1 vaga" : n + " vagas";
+
+function montarInicio() {
+  const novasG = contaNovas(GERAIS), novasE = contaNovas(ESPECIFICAS);
+
+  let cartoes = `
+    <a class="cartao largo" href="vagas.html?ver=todas" data-ir>
+      ${selNovas(novasG)}
+      <span class="c-ico">${ICO.todas}</span>
+      <span class="c-nome">Ver todas as vagas</span>
+      <span class="c-sub">Abertas para qualquer formação, com busca e filtros.</span>
+      <span class="c-qt"><b>${GERAIS.length}</b> vagas</span>
+    </a>`;
+
+  cartoes += CAT_ORDEM.filter(c => GERAIS.some(v => v.categoria === c)).map(c => {
+    const dela = GERAIS.filter(v => v.categoria === c);
+    return `
+      <a class="cartao" href="vagas.html?cat=${encodeURIComponent(c)}" data-ir>
+        ${selNovas(contaNovas(dela))}
+        <span class="c-ico">${ICO[c] || ICO.todas}</span>
+        <span class="c-nome">${esc(CAT_NOME[c] || c)}</span>
+        <span class="c-qt"><b>${dela.length}</b> ${dela.length === 1 ? "vaga" : "vagas"}</span>
+      </a>`;
+  }).join("");
+
+  if (ESPECIFICAS.length) {
+    const quantas = new Set(ESPECIFICAS.map(v => v.area).filter(Boolean)).size;
+    cartoes += `
+      <a class="cartao" href="vagas.html?areas=1" data-ir>
+        ${selNovas(novasE)}
+        <span class="c-ico">${ICO.form}</span>
+        <span class="c-nome">Exigem formação</span>
+        <span class="c-sub">${quantas} áreas, de Direito a Programação.</span>
+        <span class="c-qt"><b>${ESPECIFICAS.length}</b> vagas</span>
+      </a>`;
+  }
+
+  /* empresas que mais contratam, contando o acervo inteiro */
+  const acervo = GERAIS.concat(ESPECIFICAS);
+  const porEmp = {};
+  acervo.forEach(v => (porEmp[v.empresa] = porEmp[v.empresa] || []).push(v));
+  const top = Object.keys(porEmp)
+    .sort((a,b) => porEmp[b].length - porEmp[a].length)
+    .slice(0, 8);
+
+  const empresas = top.map(id => {
+    const e = EMPRESAS[id] || { nome:id, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
+    const dela = porEmp[id];
+    return `
+      <a class="cartao" href="vagas.html?empresa=${encodeURIComponent(id)}" data-ir>
+        ${selNovas(contaNovas(dela))}
+        <span class="c-logo" style="background:${e.bg};color:${e.cor};">${logoHtml(e,38)}</span>
+        <span class="c-nome">${esc(e.nome)}</span>
+        <span class="c-qt"><b>${dela.length}</b> ${dela.length === 1 ? "vaga" : "vagas"}</span>
+      </a>`;
+  }).join("");
+
+  document.getElementById("telaInicio").innerHTML = `
+    <div class="secao">
+      <div class="secao-cab"><h2>Por onde começar</h2>
+        <p>escolha um caminho e a lista abre já filtrada</p></div>
+      <div class="grade">${cartoes}</div>
+    </div>
+    <div class="secao">
+      <div class="secao-cab"><h2>Empresas que mais contratam</h2>
+        <p>contando as vagas gerais e as que pedem formação</p></div>
+      <div class="grade">${empresas}</div>
+    </div>`;
+}
+
+/* ── as áreas de formação ── */
+function montarAreas() {
+  const conta = a => ESPECIFICAS.filter(v => v.area === a);
+  const lista = (AREAS.length ? AREAS : [...new Set(ESPECIFICAS.map(v => v.area))])
+    .filter(a => conta(a).length)
+    .sort((a,b) => conta(b).length - conta(a).length);
+
+  const cartoes = lista.map(a => {
+    const dela = conta(a);
+    const minha = formacao === a;
+    return `
+      <a class="cartao" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>
+        ${selNovas(contaNovas(dela))}
+        <span class="c-ico">${ICO.form}</span>
+        <span class="c-nome">${esc(a)}</span>
+        ${minha ? '<span class="c-marca">✓ a sua área</span>' : ""}
+        <span class="c-qt"><b>${dela.length}</b> ${dela.length === 1 ? "vaga" : "vagas"}</span>
+      </a>`;
+  }).join("");
+
+  document.getElementById("telaAreas").innerHTML = `
+    <div class="secao">
+      <div class="secao-cab"><h2>Escolha a sua formação</h2>
+        <p>estas vagas só aceitam quem tem diploma na área</p></div>
+      <div class="grade">${cartoes}</div>
+    </div>`;
+}
+
+function montarNumeros(lista) {
+  const base = lista || TODAS;
+  const novas = base.filter(ehNova).length;
+  const emps = new Set(base.map(v => v.empresa)).size;
   document.getElementById("numeros").innerHTML = `
-    <div class="num"><div class="n">${TODAS.length}</div><div class="l">vagas abertas</div></div>
+    <div class="num"><div class="n">${base.length}</div><div class="l">vagas abertas</div></div>
     <div class="num"><div class="n">${emps}</div><div class="l">empresas</div></div>
     <div class="num${novas ? " amb" : ""}"><div class="n">${novas}</div><div class="l">novas nesta semana</div></div>
     <div class="num"><div class="n">100<span class="u">%</span></div><div class="l">remoto · brasil</div></div>`;
 }
 
 function aplicar() {
-  montarFormacao();
   montarNumeros();
   montarMenus();
   montarAtivos();
