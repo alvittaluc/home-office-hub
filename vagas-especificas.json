@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-11T18:19:56.995103+00:00",
-  "atualizado_br": "11/09/2026 às 18:19",
-  "total": 168,
+  "atualizado_em": "2026-09-11T19:24:52.997519+00:00",
+  "atualizado_br": "11/09/2026 às 19:24",
+  "total": 170,
   "areas": [
     "Biologia e Ciencias da Vida",
     "Design e Criacao",
@@ -1335,6 +1335,22 @@
     },
     {
       "empresa": "mercor",
+      "titulo": "Medicare Advantage Members (Devoted Health) – Insight Study",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.mercor.com/jobs/list_AAABn6eJ78USrtQ6MyRO1KxJ/medicare-advantage-members-devoted-health-insight-study",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-11",
+      "data_oficial": false,
+      "id": "52ae97fa84"
+    },
+    {
+      "empresa": "mercor",
       "titulo": "STEM PhDs and Technical Domain Experts",
       "local": "Remoto · Mundial",
       "categoria": "sme",
@@ -1348,6 +1364,22 @@
       "data_ref": "2026-09-11",
       "data_oficial": false,
       "id": "c46e319f71"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "Lawyers — Senior Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://work.turing.com/jobs?jobId=105930",
+      "commitment": "Business",
+      "fonte": "direto",
+      "data_post": "2026-09-11",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-11",
+      "data_oficial": true,
+      "id": "36a5935b4c"
     },
     {
       "empresa": "turing",
@@ -1428,22 +1460,6 @@
       "data_ref": "2026-08-25",
       "data_oficial": true,
       "id": "ce6b214199"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Lawyers — Senior Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.turing.com/jobs?jobId=100888",
-      "commitment": "Legal & Law Services",
-      "fonte": "direto",
-      "data_post": "2026-08-18",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-18",
-      "data_oficial": true,
-      "id": "e1b6f0663b"
     },
     {
       "empresa": "turing",
@@ -2004,6 +2020,22 @@
       "data_ref": "2026-09-10",
       "data_oficial": true,
       "id": "092c5616b8"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "Engineering Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://work.turing.com/jobs?jobId=104625",
+      "commitment": "Engineering",
+      "fonte": "direto",
+      "data_post": "2026-09-09",
+      "area": "Engenharia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-09",
+      "data_oficial": true,
+      "id": "dd5a557b74"
     },
     {
       "empresa": "turing",

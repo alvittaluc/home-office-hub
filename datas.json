@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-09-11T18:19:56.991432+00:00",
-  "total": 267,
+  "atualizado_em": "2026-09-11T19:24:52.993124+00:00",
+  "total": 268,
   "primeira_vez": {
     "alignerr|ai language expert portuguese": "2026-08-05",
     "alignerr|ian portuguese audio transcript editor": "2026-09-01",
@@ -175,6 +175,7 @@
     "turing|domain experts research & technical writing latex": "2026-09-11",
     "turing|domain experts scientific computing specialist": "2026-09-11",
     "turing|electrical engineering": "2026-09-11",
+    "turing|engineering expert": "2026-09-11",
     "turing|finance accounting & advisory sme lead": "2026-09-11",
     "turing|finance experts": "2026-09-11",
     "turing|food & nutrition sme": "2026-09-11",
