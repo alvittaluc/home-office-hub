@@ -62,37 +62,6 @@
   .contagem b { color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums; }
   @media (max-width:760px){ .barra .direita{ margin-left:0; width:100%; justify-content:space-between; } }
 
-
-  /* ── escolha de formação: libera as vagas que pedem especialista ── */
-  .form-box {
-    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
-    padding:17px 20px; margin:18px 0 0;
-    background:var(--panel); border:1px solid var(--line-soft);
-    border-radius:15px; box-shadow:var(--sombra);
-  }
-  .form-box[hidden] { display:none; }
-  .form-txt { flex:1 1 300px; min-width:0; }
-  .form-txt b { display:block; font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px; }
-  .form-txt span { font-size:13px; color:var(--ink-2); line-height:1.55; }
-  .form-nota { font-size:12.5px; color:var(--signal); margin-top:8px; }
-  .form-sel {
-    flex:0 0 auto; max-width:100%;
-    font-family:var(--body); font-size:13px; color:var(--ink-2); cursor:pointer;
-    background:var(--panel); border:1px solid var(--line); border-radius:11px;
-    padding:10px 34px 10px 14px; outline:none; appearance:none; transition:border-color .15s;
-    background-image:linear-gradient(45deg,transparent 50%,#8A94A1 50%),linear-gradient(135deg,#8A94A1 50%,transparent 50%);
-    background-position:calc(100% - 16px) 52%, calc(100% - 11px) 52%;
-    background-size:5px 5px, 5px 5px; background-repeat:no-repeat;
-  }
-  .form-sel:hover, .form-sel:focus { border-color:var(--signal-dim); }
-  @media (max-width:620px){ .form-sel{ width:100%; } }
-
-  .v-emp .selo-area {
-    font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
-    color:var(--violet); background:#F0EDF8; border:1px solid #DAD2EE;
-    border-radius:20px; padding:2px 8px; flex-shrink:0; white-space:nowrap;
-  }
-
   /* ── cada filtro suspenso ── */
   .fdrop { position:relative; }
   .fbtn {
@@ -284,20 +253,11 @@
 <section class="topo">
   <div class="eyebrow">Lista completa</div>
   <h1>Vagas abertas para quem mora no Brasil</h1>
+  <p class="lead">Só entra o que aceita residentes do Brasil e português brasileiro. Cada vaga leva direto para a página oficial da empresa, sem intermediário.</p>
   <div class="numeros" id="numeros"></div>
 </section>
 
 <div class="corpo">
-
-
-  <div class="form-box" id="caixaFormacao" hidden>
-    <div class="form-txt">
-      <b>Você tem formação em alguma área?</b>
-      <span>Existem vagas que só aceitam quem é formado. Escolha a sua área e elas entram na lista.</span>
-      <div class="form-nota" id="notaFormacao" hidden></div>
-    </div>
-    <select class="form-sel" id="selFormacao" aria-label="Sua área de formação"></select>
-  </div>
 
   <div class="barra">
     <div class="fdrop" id="dropEmpresa">
@@ -314,7 +274,7 @@
     </div>
 
     <div class="direita">
-      <span class="contagem" id="contagem">carregando</span>
+      <span class="contagem" id="contagem">carregando…</span>
       <select class="ordenar" id="ordem" aria-label="Ordenar vagas">
         <option value="recentes">Mais recentes</option>
         <option value="antigas">Mais antigas</option>
@@ -350,50 +310,6 @@ const IC = {
 };
 
 let EMPRESAS = {}, TODAS = [];
-/* ── formação da pessoa ──
-   As vagas que pedem formação ficam num arquivo à parte e não aparecem para
-   todo mundo. Quem escolhe a área passa a ver as dela junto com as demais.
-   A escolha fica salva no navegador, não vai para lugar nenhum. */
-const CHAVE_FORM = "hub.formacao";
-let GERAIS = [], ESPECIFICAS = [], AREAS = [];
-let formacao = "";
-try { formacao = localStorage.getItem(CHAVE_FORM) || ""; } catch (e) {}
-
-function compor() {
-  TODAS = formacao
-    ? GERAIS.concat(ESPECIFICAS.filter(v => v.area === formacao))
-    : GERAIS.slice();
-}
-
-function montarFormacao() {
-  const caixa = document.getElementById("caixaFormacao");
-  if (!AREAS.length) { caixa.hidden = true; return; }
-  caixa.hidden = false;
-
-  const conta = a => ESPECIFICAS.filter(v => v.area === a).length;
-  const sel = document.getElementById("selFormacao");
-  sel.innerHTML = '<option value="">Nenhuma, ver só as vagas gerais</option>' +
-    AREAS.filter(conta)
-         .map(a => `<option value="${esc(a)}">${esc(a)} (${conta(a)})</option>`)
-         .join("");
-  sel.value = formacao;
-
-  const nota = document.getElementById("notaFormacao");
-  const n = formacao ? conta(formacao) : 0;
-  nota.hidden = !formacao;
-  nota.textContent = formacao
-    ? (n === 1 ? "1 vaga de " + formacao + " entrou na lista"
-               : n + " vagas de " + formacao + " entraram na lista")
-    : "";
-
-  sel.onchange = () => {
-    formacao = sel.value;
-    try { localStorage.setItem(CHAVE_FORM, formacao); } catch (e) {}
-    compor();
-    aplicar();
-  };
-}
-
 let fPeriodo = "all", fCats = new Set(), fEmps = new Set(), ordem = "recentes";
 
 /* ── dados ── */
@@ -404,26 +320,13 @@ async function iniciar() {
   } catch (e) { console.error("empresas.json", e); }
   try {
     const dados = await lerVagas();
-    GERAIS = dados.vagas || [];
-
-    /* o arquivo das vagas por formação pode não existir ainda; se faltar,
-       a caixa de escolha simplesmente não aparece */
-    try {
-      const esp = await lerEspecificas();
-      ESPECIFICAS = esp.vagas || [];
-      AREAS = (esp.areas && esp.areas.length)
-        ? esp.areas
-        : [...new Set(ESPECIFICAS.map(v => v.area).filter(Boolean))].sort();
-      if (formacao && !AREAS.includes(formacao)) formacao = "";
-    } catch (e) { ESPECIFICAS = []; AREAS = []; }
-
-    compor();
+    TODAS = dados.vagas || [];
     lerUrl();
     if (typeof Pulso !== "undefined") { try { await Pulso.carregar(); } catch (e) {} }
     aplicar();
   } catch (e) {
     document.getElementById("resultado").innerHTML =
-      '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Atualize a página em alguns minutos.</p></div>';
+      '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Verifique se o arquivo vagas.json está na mesma pasta.</p></div>';
     document.getElementById("contagem").textContent = "erro ao carregar";
     console.error(e);
   }
@@ -591,7 +494,6 @@ function linha(v) {
       <span class="v-emp">
         <span class="e">${esc(e.nome)}${real}</span>
         ${nova ? '<span class="selo-novo">nova</span>' : ""}
-        ${v.area ? `<span class="selo-area">${esc(v.area)}</span>` : ""}
       </span>
     </span>
 
@@ -625,7 +527,6 @@ function montarNumeros() {
 }
 
 function aplicar() {
-  montarFormacao();
   montarNumeros();
   montarMenus();
   montarAtivos();

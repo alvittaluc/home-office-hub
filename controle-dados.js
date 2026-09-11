@@ -236,6 +236,11 @@ const Dados = (function () {
     curriculos: [],
     ultimoBackup: null,
     avisoBackupEm: null,
+    /* Pulso do Hub. pulso_ok em null quer dizer que a pessoa ainda não
+       respondeu o convite; false quer dizer que ela disse não. */
+    pulso_ok: null,
+    pulso_id: null,
+    pulso_fila: [],
     esquema: 0,
   };
 

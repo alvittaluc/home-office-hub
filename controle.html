@@ -285,6 +285,7 @@ body > header.site .hd { max-width:1460px; }
     <div class="ct-conteudo">
       <div class="ct-fita" id="fitaMotor" hidden></div>
       <div class="ct-fita info" id="fitaBackup" hidden></div>
+      <div class="ct-fita info" id="fitaPulso" hidden></div>
 
       <div class="ct-carregando" id="carregando">Abrindo os seus dados…</div>
 
@@ -302,6 +303,7 @@ body > header.site .hd { max-width:1460px; }
 
 <script src="layout.js"></script>
 <script src="controle-dados.js"></script>
+<script src="pulso-site.js"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js"></script>
 <script src="controle-ui.js"></script>
@@ -552,7 +554,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       </div>
 
       ${(CFG.metaHorasSemana || CFG.metaGanhoMes) ? `<div class="ct-cartao" style="margin-top:18px;">
-        <div class="ct-cab-cartao"><h2>Metas</h2><p>quanto já foi feito na semana e no mês</p></div>
+        <div class="ct-cab-cartao"><h2>Metas</h2><p>a barra e a linha pontilhada dos gráficos contam a mesma história</p></div>
         <div class="ct-metas" id="caixaMetas"></div>
       </div>` : ""}
 
@@ -936,6 +938,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         if (rota.tela === "aplicacoes") desenharAplicacoes();
         UI.aviso(novo ? "Aplicação registrada." : "Aplicação salva.");
 
+        /* Pulso: só age se a pessoa tiver ligado, e só para vagas vindas do Hub. */
+        if (typeof Pulso !== "undefined") Pulso.porEstado(salvo.vagaId, estadoNovo, ap.estado);
+
         // Virou aprovado: oferece criar o trabalho na hora.
         if (estadoNovo === "aprovado" && ap.estado !== "aprovado") {
           setTimeout(async () => {
@@ -1192,8 +1197,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       <div class="ct-cab-tela"><div><h1>Seus dados</h1><p>Onde eles ficam, e como levar para outro computador.</p></div></div>
       <div class="ct-cartao ct-dados">
         <p>
-          Tudo o que você escreve aqui fica guardado dentro do seu navegador, neste computador.
-          Não passa por servidor nenhum e ninguém mais vê. Em troca: se você limpar os dados de navegação,
+          Tudo o que você escreve aqui fica guardado dentro do seu navegador, neste computador,
+          e ninguém mais vê. Em troca: se você limpar os dados de navegação,
           some. O backup é um arquivo que você guarda onde quiser, e serve também para levar tudo
           para outro computador.
         </p>
@@ -1206,7 +1211,23 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         <p class="ct-dados-nota">${total} ${total === 1 ? "registro guardado" : "registros guardados"} neste navegador.${
           ultimo ? " Último backup em " + esc(ultimo) + "." : " Você ainda não exportou nenhum backup."}
           Armazenamento: ${esc(Dados.motor === "indexeddb" ? "completo (IndexedDB)" : "reduzido (localStorage)")}.</p>
+      </div>
+
+      <div class="ct-cartao ct-dados" id="cartaoPulso" style="margin-top:18px">
+        <div class="ct-cab-cartao"><h2>Pulso do Hub</h2><p id="pulsoEstado"></p></div>
+        <p>
+          A única coisa que pode sair deste navegador. Quando está ligado, o Hub recebe o código
+          da vaga e a data em que você aplicou, e nada além disso. Serve para a página de vagas
+          mostrar quais vagas estão movimentando e quais empresas costumam responder.
+        </p>
+        <p>
+          Não vai o seu nome, e-mail, currículo, remuneração, próximos passos nem observações.
+          Vaga que você cadastrou à mão, que não veio do Hub, nunca é contada.
+        </p>
+        <div class="ct-dados-bts" id="pulsoBts"></div>
       </div>`;
+
+    desenharPulso();
 
     $("#btExportar").addEventListener("click", exportar);
     $("#btImportar").addEventListener("click", () => $("#arqBackup").click());
@@ -1229,7 +1250,90 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     });
   }
 
+  /* ══════════════════════════════════════════════════════════
+     PULSO DO HUB
+
+     A parte de dentro do Meu Controle que o Pulso encosta. Tudo aqui
+     desiste em silêncio se o pulso-site.js não estiver na página, e
+     nenhum evento sai antes de a pessoa dizer sim.
+     ══════════════════════════════════════════════════════════ */
+
+  async function desenharPulso() {
+    const caixa = $("#cartaoPulso");
+    if (!caixa) return;
+    if (typeof Pulso === "undefined") { caixa.hidden = true; return; }
+
+    const ligado = await Pulso.ligado();
+    const estado = $("#pulsoEstado");
+    const bts = $("#pulsoBts");
+    if (estado) estado.textContent = ligado ? "ligado" : "desligado";
+    if (!bts) return;
+
+    bts.innerHTML = ligado
+      ? `<button class="ct-b" id="btPulsoOff">Desligar e apagar meus dados do Pulso</button>`
+      : `<button class="ct-b" id="btPulsoOn">Ligar o Pulso</button>`;
+
+    const off = $("#btPulsoOff");
+    if (off) off.addEventListener("click", async () => {
+      await Pulso.desligar();
+      await desenharPulso();
+      UI.aviso("Pulso desligado. Nada mais sai deste navegador.");
+    });
+
+    const on = $("#btPulsoOn");
+    if (on) on.addEventListener("click", () => ligarPulso());
+  }
+
+  /** Liga e, se já houver histórico, pergunta se manda o que passou. */
+  async function ligarPulso() {
+    if (typeof Pulso === "undefined") return;
+    const foi = await Pulso.ligar();
+    if (!foi) { UI.aviso("Este navegador não deixou ligar o Pulso."); return; }
+
+    const quantas = await Pulso.tamanhoDoHistorico();
+    if (quantas > 0) {
+      const sim = await UI.confirmar({
+        titulo: "Contar as aplicações que você já tinha?",
+        texto: "Você já registrou <b>" + quantas + "</b> " +
+               (quantas === 1 ? "aplicação vinda" : "aplicações vindas") +
+               " do Hub. Dá para contar " + (quantas === 1 ? "ela" : "elas") +
+               " também, com as datas originais, para o Pulso começar a servir para alguma coisa desde já.",
+        acaoTexto: "Contar também",
+      });
+      if (sim) await Pulso.enviarHistorico();
+    }
+
+    await desenharPulso();
+    desenharFitas();
+    UI.aviso("Pulso ligado. Obrigado.");
+  }
+
+  /** Convite, uma vez só, para quem já aplicou em alguma vaga do Hub. */
+  async function desenharFitaPulso() {
+    const fita = $("#fitaPulso");
+    if (!fita) return;
+    if (typeof Pulso === "undefined" || await Pulso.respondeu()) { fita.hidden = true; return; }
+    if (!APLICACOES.some(a => a.vagaId)) { fita.hidden = true; return; }
+
+    fita.hidden = false;
+    fita.innerHTML = `<span><b>Contar as suas aplicações no Pulso?</b>
+      Sai só o código da vaga e a data, para a página de vagas mostrar o que está movimentando.
+      Nada da sua ficha.</span>
+      <button class="ct-b pequeno" data-pulso-sim>Ligar</button>
+      <button class="ct-b pequeno" data-pulso-nao>Agora não</button>`;
+
+    fita.querySelector("[data-pulso-sim]").addEventListener("click", async () => {
+      fita.hidden = true;
+      await ligarPulso();
+    });
+    fita.querySelector("[data-pulso-nao]").addEventListener("click", async () => {
+      fita.hidden = true;
+      await Pulso.desligar();
+    });
+  }
+
   function desenharFitas() {
+    desenharFitaPulso();
     const fita = $("#fitaBackup");
     const total = APLICACOES.length + TRABALHOS.length + REGISTROS.length + PAGAMENTOS.length;
     const dias = CFG.ultimoBackup ? Dados.diasEntre(CFG.ultimoBackup.slice(0, 10), Dados.hoje()) : 999;
