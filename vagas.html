@@ -129,17 +129,17 @@
   @media (max-width:760px){ .fmenu{ left:auto; right:0; min-width:min(300px,86vw); } }
 
   .opcao {
-    display:flex; align-items:center; gap:10px; width:100%; text-align:left; cursor:pointer;
+    display:flex; align-items:flex-start; gap:10px; width:100%; text-align:left; cursor:pointer;
     font-family:var(--body); font-size:13.5px; color:var(--ink-2);
     background:transparent; border:0; border-radius:9px; padding:8px 9px; transition:background .15s, color .15s;
   }
   .opcao:hover { background:var(--panel-2); color:var(--ink); }
   .opcao .caixa {
-    width:16px; height:16px; border-radius:5px; border:1.5px solid var(--line); flex-shrink:0;
+    margin-top:2px; width:16px; height:16px; border-radius:5px; border:1.5px solid var(--line); flex-shrink:0;
     display:grid; place-items:center; font-size:10px; color:transparent; transition:all .15s;
   }
   .opcao .pip {
-    width:16px; height:16px; border-radius:50%; border:1.5px solid var(--line); flex-shrink:0;
+    margin-top:2px; width:16px; height:16px; border-radius:50%; border:1.5px solid var(--line); flex-shrink:0;
     display:grid; place-items:center; transition:border-color .15s;
   }
   .opcao .pip::after { content:''; width:7px; height:7px; border-radius:50%; background:transparent; transition:background .15s; }
@@ -152,8 +152,13 @@
     display:grid; place-items:center; font-weight:700; font-size:9px;
   }
   .opcao .marca img { width:14px; height:14px; object-fit:contain; border-radius:3px; }
-  .opcao .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .opcao .qt { margin-left:auto; font-size:11.5px; color:var(--ink-3); flex-shrink:0; font-variant-numeric:tabular-nums; }
+  /* o rótulo quebra em vez de ser cortado: numa coluna estreita, "Esconder as
+     que já apliquei" não cabe em uma linha e meia frase não diz nada. */
+  .opcao .nm { min-width:0; line-height:1.35; overflow-wrap:anywhere; padding-top:1px; }
+  .opcao .qt {
+    margin-left:auto; padding-top:2px; font-size:11.5px; color:var(--ink-3);
+    flex-shrink:0; font-variant-numeric:tabular-nums;
+  }
   .opcao.on .qt { color:var(--signal); }
   .opcao.vazia:not(.on) { opacity:.4; }
 
@@ -642,7 +647,7 @@ function montarMenus() {
   if (APLICADAS.ids.size || APLICADAS.chaves.size) {
     const q = TODAS.filter(v => jaApliquei(v) && passa(v, "aplic")).length;
     mostrar.push(`<button class="opcao${esconderAplicadas ? " on" : ""}" type="button" data-mostrar="aplic">
-      <span class="caixa">✓</span><span class="nm">Esconder as que já apliquei</span><span class="qt">${q}</span></button>`);
+      <span class="caixa">✓</span><span class="nm">Esconder as já aplicadas</span><span class="qt">${q}</span></button>`);
   }
   document.getElementById("grupoMostrar").hidden = mostrar.length === 0;
   document.getElementById("menuMostrar").innerHTML = mostrar.join("");
