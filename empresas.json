@@ -29,7 +29,7 @@
       "curto": "Gigante da tradução que virou fornecedora de dados de IA. Contrata brasileiros principalmente para avaliar qualidade de busca e de anúncios.",
       "o_que_voce_faz": "Avaliar resultados de busca e anúncios segundo diretrizes do cliente, traduzir e revisar conteúdo, ou fazer controle de qualidade linguístico. As funções de rater exigem conhecer bem a cultura brasileira e ter inglês para ler as diretrizes.",
       "bom_para": "Quem tem inglês de leitura confortável, gosta de trabalho com regra detalhada e quer contrato mais estável do que tarefa avulsa.",
-      "como_entrar": "As vagas são publicadas na plataforma Lever. Você se candidata como qualquer vaga normal, com currículo. Se aprovado, há um teste de qualificação com material de estudo antes de começar a produzir.",
+      "como_entrar": "Você se candidata com currículo, como em qualquer vaga. Se aprovado, recebe material de estudo e faz um teste de qualificação antes de começar a produzir.",
       "pagamento": "Contrato de freelancer, pagamento por hora trabalhada na maioria dos projetos. O valor varia por projeto e país.",
       "clientes": "Meta, Amazon, Spotify, Intuit, McAfee, Moderna",
       "atencao": "Muitas vagas pedem dedicação exclusiva ao programa. Se você já avaliou anúncios em outra empresa, pode ser barrado no projeto de busca, e vice-versa."
@@ -57,11 +57,11 @@
         "Especialistas de área",
         "RLHF"
       ],
-      "resumo": "A TrainAI é o braço de dados de IA da RWS, que atende mais de 85 das 100 maiores marcas do mundo. É a fonte com o maior número de projetos que pedem conhecimento específico, como direito, saúde, engenharia ou finanças, e não só idioma.",
+      "resumo": "A TrainAI é o braço de dados de IA da RWS, que atende mais de 85 das 100 maiores marcas do mundo. É a empresa com o maior número de projetos que pedem conhecimento específico, como direito, saúde, engenharia ou finanças, e não só idioma.",
       "curto": "Braço de dados de IA de uma das maiores empresas de conteúdo do mundo. É onde aparecem mais vagas de especialista por área de formação.",
       "o_que_voce_faz": "Coleta de dados de texto, áudio, imagem e vídeo, anotação e rotulagem, validação humana de saídas de modelo, engenharia de prompt, RLHF e red teaming. Projetos com especialista de área pagam mais.",
       "bom_para": "Quem tem diploma ou experiência profissional em uma área específica, como direito, saúde, engenharia, finanças ou programação.",
-      "como_entrar": "Também publica na plataforma Lever. Um detalhe importante: a RWS anuncia por cidade, então a mesma vaga aparece como São Paulo, Recife, Curitiba e assim por diante. Aqui elas já aparecem agrupadas em uma só, para você não se candidatar duas vezes à mesma coisa.",
+      "como_entrar": "Candidatura com currículo na página da vaga. Dependendo do projeto, há teste de qualificação antes de começar.",
       "pagamento": "Por projeto ou por hora, conforme o contrato. Definido no momento da contratação.",
       "clientes": "Oracle, SAP, HP, Accenture, Snowflake, Porsche",
       "atencao": "Se você tem formação em alguma área técnica, diga isso no currículo. É o que separa as vagas comuns das de especialista, que pagam bem mais."
@@ -121,8 +121,8 @@
         "Tradução",
         "Julgamento de IA"
       ],
-      "resumo": "Plataforma que junta especialistas de mais de 40 áreas em projetos remotos e flexíveis. É a fonte com mais projetos abertos ao Brasil ao mesmo tempo, e a que tem a maior variedade de tipo de tarefa.",
-      "curto": "A fonte com mais projetos abertos ao Brasil ao mesmo tempo e a maior variedade de tipo de tarefa.",
+      "resumo": "Plataforma que junta especialistas de mais de 40 áreas em projetos remotos e flexíveis. É a empresa com mais projetos abertos ao Brasil ao mesmo tempo, e a que tem a maior variedade de tipo de tarefa.",
+      "curto": "A empresa com mais projetos abertos ao Brasil ao mesmo tempo e a maior variedade de tipo de tarefa.",
       "o_que_voce_faz": "Anotação de imagem e dados, gravação de vídeo e áudio, coleta de informação em campo, avaliação de respostas de IA, transcrição de áudio e tradução.",
       "bom_para": "Quem quer variedade e vários projetos rodando ao mesmo tempo, incluindo tarefas de gravação e coleta que não exigem experiência.",
       "como_entrar": "Cadastro leva por volta de cinco minutos. Você preenche perfil com idiomas, local e experiência, cadastra a forma de pagamento e faz certificações, que são testes curtos online que liberam projetos melhores. A plataforma informa enviar as primeiras propostas em cerca de 24 horas.",
@@ -251,7 +251,7 @@
       "curto": "Rede de especialistas da Invisible Technologies. Tem projetos bem específicos, incluindo dialeto carioca e paulistano.",
       "o_que_voce_faz": "Depende do projeto. Pode ser gravar e avaliar áudio no seu sotaque, escrever e revisar tarefas de treino, ou resolver problemas da sua área de formação em português.",
       "bom_para": "Quem tem uma formação específica, ou um sotaque bem marcado, e quer projetos que pagam pela especialidade e não pelo volume.",
-      "como_entrar": "Candidatura direta na página do projeto. O processo é o do Greenhouse, com formulário e currículo.",
+      "como_entrar": "Candidatura direta na página do projeto, com formulário e currículo.",
       "pagamento": "Por hora ou por projeto, conforme o contrato.",
       "clientes": "Laboratórios de IA e grandes empresas de tecnologia"
     },
@@ -277,7 +277,7 @@
         "Voz",
         "Especialista"
       ],
-      "resumo": "Plataforma americana que fornece dados e avaliações feitas por especialistas para os grandes laboratórios de IA. Cresceu muito rápido nos últimos anos. Costuma ter poucas vagas de português por vez, mas quando aparecem são bem pagas e separam claramente Brasil de Portugal no título.",
+      "resumo": "Plataforma americana que fornece dados e avaliações feitas por especialistas para os grandes laboratórios de IA. Cresceu muito rápido nos últimos anos. Costuma ter poucas vagas de português por vez, mas quando aparecem são bem pagas.",
       "curto": "Plataforma americana de dados para laboratórios de IA. Poucas vagas de português por vez, mas bem pagas.",
       "o_que_voce_faz": "Gravar áudio em português, avaliar respostas de modelos e trabalhar com documentos da sua área profissional.",
       "bom_para": "Quem quer valor por hora alto e não se importa de esperar a vaga certa abrir.",
@@ -307,8 +307,8 @@
         "Tradução",
         "Avaliação de busca"
       ],
-      "resumo": "Alignerr é a rede de especialistas da Labelbox, uma das empresas mais conhecidas de rotulagem de dados. A plataforma anuncia média de 80 dólares por hora, com faixas que variam bastante conforme o projeto. Publica a mesma vaga separada por país, então aqui você vê só a versão aberta ao Brasil, no anúncio mais recente.",
-      "curto": "Rede de especialistas da Labelbox. Faixas de pagamento altas e vagas separadas por país.",
+      "resumo": "Alignerr é a rede de especialistas da Labelbox, uma das empresas mais conhecidas de rotulagem de dados. A plataforma anuncia média de 80 dólares por hora, com faixas que variam bastante conforme o projeto. ",
+      "curto": "Rede de especialistas da Labelbox, com faixas de pagamento altas.",
       "o_que_voce_faz": "Avaliar e comparar respostas de modelos, escrever tarefas de treino e revisar conteúdo em português brasileiro.",
       "bom_para": "Quem quer faixas de pagamento mais altas e tem disponibilidade flexível.",
       "como_entrar": "Cadastro no site e candidatura direta na vaga, com etapa de avaliação.",
@@ -344,7 +344,7 @@
       "como_entrar": "Cadastro no site com currículo e perfil profissional, seguido de entrevista dentro da plataforma. A partir daí ela oferece os projetos que combinam com o seu perfil.",
       "pagamento": "Por hora de projeto, com valor definido conforme a área e a senioridade.",
       "clientes": "Laboratórios de IA",
-      "atencao": "A entrada não é por vaga publicada, e sim por entrevista dentro da plataforma. Por isso ela aparece aqui pelo site oficial. Também não é toda temporada que há projeto em português brasileiro, então vale deixar o perfil pronto e acompanhar."
+      "atencao": "A entrada não é por vaga publicada, e sim por entrevista dentro da plataforma.  Também não é toda temporada que há projeto em português brasileiro, então vale deixar o perfil pronto e acompanhar."
     },
     {
       "id": "turing",
@@ -369,7 +369,7 @@
         "Escrita",
         "Especialista"
       ],
-      "resumo": "A Turing trabalha com os grandes laboratórios de IA, fornecendo dados de treino de alta qualidade e especialistas por área. As vagas são de contrato, remotas, e cada anúncio costuma trazer a lista de países aceitos. Aqui você vê só as que incluem o Brasil ou que são de português.",
+      "resumo": "A Turing trabalha com os grandes laboratórios de IA, fornecendo dados de treino de alta qualidade e especialistas por área. As vagas são de contrato, remotas, e cada anúncio traz a lista de países aceitos.",
       "curto": "Trabalha direto com os grandes laboratórios de IA. Vagas de contrato, remotas, por especialidade.",
       "o_que_voce_faz": "Avaliar respostas de modelos, escrever prompts e diálogos de treino, e revisar conteúdo na sua área de conhecimento ou no seu idioma.",
       "bom_para": "Quem tem formação ou experiência específica em alguma área e quer projeto de contrato com horas flexíveis.",
@@ -399,8 +399,8 @@
         "Tradução",
         "QA"
       ],
-      "resumo": "A iMerit é uma das empresas mais antigas de anotação de dados e hoje trabalha bastante com IA generativa. As vagas são de contratação independente, por idioma e por país. Até agora ela não abriu vaga em português, mas o robô do hub confere o quadro dela todo dia e traz assim que aparecer.",
-      "curto": "Anotação de dados e IA generativa. Ainda sem vaga em português, mas o robô fica de olho.",
+      "resumo": "A iMerit é uma das empresas mais antigas de anotação de dados e hoje trabalha bastante com IA generativa. As vagas são de contratação independente, por idioma e por país. Até agora ela não abriu vaga em português.",
+      "curto": "Anotação de dados e IA generativa. Ainda sem vaga em português.",
       "o_que_voce_faz": "Anotar, rotular e transcrever texto, imagem, áudio e vídeo, além de avaliar respostas de modelos no seu idioma.",
       "bom_para": "Quem quer contrato independente por projeto e tem atenção a detalhe.",
       "como_entrar": "Candidatura direta na página de carreiras da empresa.",

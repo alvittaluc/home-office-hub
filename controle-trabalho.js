@@ -342,7 +342,7 @@ const Trabalho = (function () {
       const ok = await UI.confirmar({
         titulo: "Remover o bloco " + esc(bloco.rotulo) + "?",
         texto: temHistorico
-          ? "Os números que você já lançou nele continuam guardados nos dias. Se recriar um bloco igual, eles não voltam sozinhos, porque cada bloco tem a sua própria identidade."
+          ? "Os números que você já lançou nele continuam guardados nos dias, mas não voltam se você criar outro bloco igual."
           : "O bloco sai da página.",
         acaoTexto: "Remover", perigo: true,
       });

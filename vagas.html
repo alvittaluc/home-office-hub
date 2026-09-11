@@ -284,7 +284,6 @@
 <section class="topo">
   <div class="eyebrow">Lista completa</div>
   <h1>Vagas abertas para quem mora no Brasil</h1>
-  <p class="lead">Só entra o que aceita residentes do Brasil e português brasileiro. Cada vaga leva direto para a página oficial da empresa, sem intermediário.</p>
   <div class="numeros" id="numeros"></div>
 </section>
 
@@ -315,7 +314,7 @@
     </div>
 
     <div class="direita">
-      <span class="contagem" id="contagem">carregando…</span>
+      <span class="contagem" id="contagem">carregando</span>
       <select class="ordenar" id="ordem" aria-label="Ordenar vagas">
         <option value="recentes">Mais recentes</option>
         <option value="antigas">Mais antigas</option>
@@ -424,7 +423,7 @@ async function iniciar() {
     aplicar();
   } catch (e) {
     document.getElementById("resultado").innerHTML =
-      '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Verifique se o arquivo vagas.json está na mesma pasta.</p></div>';
+      '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Atualize a página em alguns minutos.</p></div>';
     document.getElementById("contagem").textContent = "erro ao carregar";
     console.error(e);
   }

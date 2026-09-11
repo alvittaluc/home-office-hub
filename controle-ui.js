@@ -329,7 +329,7 @@ const UI = (function () {
                   opcoes: Object.keys(Dados.MOEDAS).map(m => ({ valor: m, nome: m + " · " + Dados.MOEDAS[m].nome })) })}
       </div>
       ${campo({ nome: "taxa", rotulo: "Câmbio que a plataforma usou", tipo: "number", valor: pg.taxa, dica: "deixe vazio para usar o do dia",
-                ajuda: "Se você sabe quantos reais deu cada dólar de verdade, escreva aqui. Esse número ganha do automático." })}
+                ajuda: "Se você sabe quantos reais recebeu por dólar, escreva aqui. Esse valor substitui a cotação automática." })}
       ${campo({ nome: "nota", rotulo: "Observação", tipo: "text", valor: pg.nota, dica: "Wise, Payoneer, referente a julho" })}
       <div class="u-conta" id="contaPg"></div>
     `;
