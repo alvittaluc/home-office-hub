@@ -62,8 +62,38 @@
   .contagem b { color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums; }
   @media (max-width:760px){ .barra .direita{ margin-left:0; width:100%; justify-content:space-between; } }
 
+
+  /* ── escolha de formação: libera as vagas que pedem especialista ── */
+  .form-box {
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+    padding:17px 20px; margin:18px 0 0;
+    background:var(--panel); border:1px solid var(--line-soft);
+    border-radius:15px; box-shadow:var(--sombra);
+  }
+  .form-box[hidden] { display:none; }
+  .form-txt { flex:1 1 300px; min-width:0; }
+  .form-txt b { display:block; font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:4px; }
+  .form-txt span { font-size:13px; color:var(--ink-2); line-height:1.55; }
+  .form-nota { font-size:12.5px; color:var(--signal); margin-top:8px; }
+  .form-sel {
+    flex:0 0 auto; max-width:100%;
+    font-family:var(--body); font-size:13px; color:var(--ink-2); cursor:pointer;
+    background:var(--panel); border:1px solid var(--line); border-radius:11px;
+    padding:10px 34px 10px 14px; outline:none; appearance:none; transition:border-color .15s;
+    background-image:linear-gradient(45deg,transparent 50%,#8A94A1 50%),linear-gradient(135deg,#8A94A1 50%,transparent 50%);
+    background-position:calc(100% - 16px) 52%, calc(100% - 11px) 52%;
+    background-size:5px 5px, 5px 5px; background-repeat:no-repeat;
+  }
+  .form-sel:hover, .form-sel:focus { border-color:var(--signal-dim); }
+  @media (max-width:620px){ .form-sel{ width:100%; } }
+
+  .v-emp .selo-area {
+    font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--violet); background:#F0EDF8; border:1px solid #DAD2EE;
+    border-radius:20px; padding:2px 8px; flex-shrink:0; white-space:nowrap;
+  }
+
   /* ── cada filtro suspenso ── */
-  .fdrop { position:relative; }
   .fbtn {
     display:inline-flex; align-items:center; gap:8px; cursor:pointer;
     font-family:var(--body); font-size:13.5px; color:var(--ink-2);
@@ -76,8 +106,8 @@
     width:8px; height:8px; border-right:1.5px solid var(--ink-3); border-bottom:1.5px solid var(--ink-3);
     transform:rotate(45deg) translate(-2px,-2px); transition:transform .2s; flex-shrink:0;
   }
-  .fdrop.aberto .fbtn { border-color:var(--signal); color:var(--ink); background:var(--signal-suave); }
-  .fdrop.aberto .fbtn .chev { transform:rotate(-135deg) translate(-3px,-3px); border-color:var(--signal); }
+  .fbtn[aria-expanded="true"] { border-color:var(--signal); color:var(--ink); background:var(--signal-suave); }
+  .fbtn[aria-expanded="true"] .chev { transform:rotate(-135deg) translate(-3px,-3px); border-color:var(--signal); }
   .fbtn .cnt {
     font-size:11px; font-weight:600; color:#fff; background:var(--signal);
     border-radius:20px; padding:1px 7px; font-variant-numeric:tabular-nums;
@@ -91,7 +121,6 @@
   }
   .fmenu::-webkit-scrollbar { width:6px; }
   .fmenu::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px; }
-  .fdrop.aberto .fmenu { display:block; }
   @media (max-width:760px){ .fmenu{ left:auto; right:0; min-width:min(300px,86vw); } }
 
   .opcao {
@@ -145,6 +174,56 @@
   .ativo .x { font-size:14px; line-height:1; opacity:.7; }
   .ativo.limpar { color:var(--ink-3); background:transparent; border-color:var(--line-soft); }
   .ativo.limpar:hover { color:var(--ink); background:var(--panel-2); }
+
+  /* ═══════════════ COLUNA DE FILTROS ═══════════════ */
+  .palco { display:grid; grid-template-columns:248px minmax(0,1fr); gap:24px; align-items:start; }
+
+  .lateral {
+    position:sticky; top:84px; align-self:start;
+    max-height:calc(100vh - 108px); overflow-y:auto; scrollbar-width:thin;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:15px;
+    padding:14px; box-shadow:var(--sombra);
+  }
+  .lateral::-webkit-scrollbar { width:6px; }
+  .lateral::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px; }
+
+  .lat-topo { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:0 4px 10px; }
+  .lat-topo h2 {
+    font-family:var(--body); font-size:11px; font-weight:600; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--ink-3);
+  }
+  .lat-limpar {
+    font-family:var(--body); font-size:12px; color:var(--signal); cursor:pointer;
+    background:none; border:0; padding:3px 6px; border-radius:7px; transition:background .15s;
+  }
+  .lat-limpar:hover { background:var(--signal-suave); }
+  .lat-limpar[hidden] { display:none; }
+
+  .lat-busca {
+    width:100%; font-family:var(--body); font-size:13.5px; color:var(--ink);
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:11px;
+    padding:10px 12px; outline:none; transition:border-color .15s, background .15s;
+  }
+  .lat-busca::placeholder { color:var(--ink-3); }
+  .lat-busca:focus { border-color:var(--signal-dim); background:var(--panel); }
+
+  .lat-grupo { border-top:1px solid var(--line-soft); margin-top:12px; padding-top:11px; }
+  .lat-grupo[hidden] { display:none; }
+  .lat-grupo h3 {
+    font-family:var(--body); font-size:11px; font-weight:600; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--ink-3); margin:0 0 5px 4px;
+  }
+  .lat-rol { max-height:236px; overflow-y:auto; scrollbar-width:thin; }
+  .lat-rol::-webkit-scrollbar { width:5px; }
+  .lat-rol::-webkit-scrollbar-thumb { background:var(--line-soft); border-radius:3px; }
+
+  .btFiltros { display:none; }
+  @media (max-width:900px) {
+    .palco { grid-template-columns:1fr; gap:0; }
+    .lateral { display:none; position:static; max-height:none; margin:0 0 14px; }
+    .lateral.aberta { display:block; }
+    .btFiltros { display:inline-flex; }
+  }
 
   /* ═══════════════ LISTA HORIZONTAL ═══════════════ */
   .grupo-titulo {
@@ -253,39 +332,73 @@
 <section class="topo">
   <div class="eyebrow">Lista completa</div>
   <h1>Vagas abertas para quem mora no Brasil</h1>
-  <p class="lead">Só entra o que aceita residentes do Brasil e português brasileiro. Cada vaga leva direto para a página oficial da empresa, sem intermediário.</p>
   <div class="numeros" id="numeros"></div>
 </section>
 
 <div class="corpo">
 
-  <div class="barra">
-    <div class="fdrop" id="dropEmpresa">
-      <button class="fbtn" type="button" aria-expanded="false">Empresa <span class="cnt" hidden>0</span> <span class="chev"></span></button>
-      <div class="fmenu" id="menuEmpresas"></div>
-    </div>
-    <div class="fdrop" id="dropArea">
-      <button class="fbtn" type="button" aria-expanded="false">Área <span class="cnt" hidden>0</span> <span class="chev"></span></button>
-      <div class="fmenu" id="menuAreas"></div>
-    </div>
-    <div class="fdrop" id="dropPeriodo">
-      <button class="fbtn" type="button" aria-expanded="false"><span class="rot">Publicação</span> <span class="chev"></span></button>
-      <div class="fmenu" id="menuPeriodo"></div>
-    </div>
 
-    <div class="direita">
-      <span class="contagem" id="contagem">carregando…</span>
-      <select class="ordenar" id="ordem" aria-label="Ordenar vagas">
-        <option value="recentes">Mais recentes</option>
-        <option value="antigas">Mais antigas</option>
-        <option value="empresa">Empresa (A a Z)</option>
-        <option value="titulo">Título (A a Z)</option>
-      </select>
+  <div class="form-box" id="caixaFormacao" hidden>
+    <div class="form-txt">
+      <b>Você tem formação em alguma área?</b>
+      <span>Existem vagas que só aceitam quem é formado. Escolha a sua área e elas entram na lista.</span>
+      <div class="form-nota" id="notaFormacao" hidden></div>
     </div>
+    <select class="form-sel" id="selFormacao" aria-label="Sua área de formação"></select>
   </div>
 
-  <div class="ativos" id="ativos"></div>
-  <div id="resultado"></div>
+  <div class="palco">
+    <aside class="lateral" id="lateral">
+      <div class="lat-topo">
+        <h2>Filtros</h2>
+        <button class="lat-limpar" type="button" id="btLimpar" hidden>limpar tudo</button>
+      </div>
+
+      <input type="search" class="lat-busca" id="busca" autocomplete="off"
+             placeholder="Buscar cargo ou empresa" aria-label="Buscar vagas">
+
+      <div class="lat-grupo" id="grupoMostrar" hidden>
+        <h3>Mostrar</h3>
+        <div id="menuMostrar"></div>
+      </div>
+
+      <div class="lat-grupo">
+        <h3>Área</h3>
+        <div id="menuAreas"></div>
+      </div>
+
+      <div class="lat-grupo">
+        <h3>Empresa</h3>
+        <div class="lat-rol" id="menuEmpresas"></div>
+      </div>
+
+      <div class="lat-grupo">
+        <h3>Publicação</h3>
+        <div id="menuPeriodo"></div>
+      </div>
+    </aside>
+
+    <div>
+      <div class="barra">
+        <button class="fbtn btFiltros" type="button" id="btFiltros" aria-expanded="false">
+          Filtros <span class="cnt" hidden>0</span> <span class="chev"></span>
+        </button>
+        <div class="direita">
+          <span class="contagem" id="contagem">carregando</span>
+          <select class="ordenar" id="ordem" aria-label="Ordenar vagas">
+            <option value="relevancia">Relevância</option>
+            <option value="recentes">Mais recentes</option>
+            <option value="antigas">Mais antigas</option>
+            <option value="empresa">Empresa (A a Z)</option>
+            <option value="titulo">Título (A a Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ativos" id="ativos"></div>
+      <div id="resultado"></div>
+    </div>
+  </div>
 </div>
 
 <script src="layout.js"></script>
@@ -310,7 +423,62 @@ const IC = {
 };
 
 let EMPRESAS = {}, TODAS = [];
-let fPeriodo = "all", fCats = new Set(), fEmps = new Set(), ordem = "recentes";
+/* ── formação da pessoa ──
+   As vagas que pedem formação ficam num arquivo à parte e não aparecem para
+   todo mundo. Quem escolhe a área passa a ver as dela junto com as demais.
+   A escolha fica salva no navegador, não vai para lugar nenhum. */
+const CHAVE_FORM = "hub.formacao";
+let GERAIS = [], ESPECIFICAS = [], AREAS = [];
+let formacao = "";
+try { formacao = localStorage.getItem(CHAVE_FORM) || ""; } catch (e) {}
+
+function compor() {
+  const minhas = formacao ? ESPECIFICAS.filter(v => v.area === formacao) : [];
+  IDS_ESP = new Set(minhas.map(v => v.id));
+  if (!formacao) soFormacao = false;
+  TODAS = GERAIS.concat(minhas);
+}
+
+function montarFormacao() {
+  const caixa = document.getElementById("caixaFormacao");
+  if (!AREAS.length) { caixa.hidden = true; return; }
+  caixa.hidden = false;
+
+  const conta = a => ESPECIFICAS.filter(v => v.area === a).length;
+  const sel = document.getElementById("selFormacao");
+  sel.innerHTML = '<option value="">Nenhuma, ver só as vagas gerais</option>' +
+    AREAS.filter(conta)
+         .map(a => `<option value="${esc(a)}">${esc(a)} (${conta(a)})</option>`)
+         .join("");
+  sel.value = formacao;
+
+  const nota = document.getElementById("notaFormacao");
+  const n = formacao ? conta(formacao) : 0;
+  nota.hidden = !formacao;
+  nota.textContent = formacao
+    ? (n === 1 ? "1 vaga de " + formacao + " entrou na lista"
+               : n + " vagas de " + formacao + " entraram na lista")
+    : "";
+
+  sel.onchange = () => {
+    formacao = sel.value;
+    try { localStorage.setItem(CHAVE_FORM, formacao); } catch (e) {}
+    compor();
+    aplicar();
+  };
+}
+
+let fPeriodo = "all", fCats = new Set(), fEmps = new Set(), ordem = "relevancia";
+let busca = "", soFormacao = false, esconderAplicadas = false;
+
+/* ids das vagas que só aparecem para quem escolheu formação, e a lista de
+   vagas em que a pessoa já aplicou, lida uma vez do Meu Controle. */
+let IDS_ESP = new Set();
+let APLICADAS = { ids: new Set(), chaves: new Set() };
+
+const sp = t => (t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const jaApliquei = v => APLICADAS.ids.has(v.id) ||
+  APLICADAS.chaves.has(sp((EMPRESAS[v.empresa] || {}).nome || v.empresa) + "|" + sp(v.titulo));
 
 /* ── dados ── */
 async function iniciar() {
@@ -320,13 +488,27 @@ async function iniciar() {
   } catch (e) { console.error("empresas.json", e); }
   try {
     const dados = await lerVagas();
-    TODAS = dados.vagas || [];
+    GERAIS = dados.vagas || [];
+
+    /* o arquivo das vagas por formação pode não existir ainda; se faltar,
+       a caixa de escolha simplesmente não aparece */
+    try {
+      const esp = await lerEspecificas();
+      ESPECIFICAS = esp.vagas || [];
+      AREAS = (esp.areas && esp.areas.length)
+        ? esp.areas
+        : [...new Set(ESPECIFICAS.map(v => v.area).filter(Boolean))].sort();
+      if (formacao && !AREAS.includes(formacao)) formacao = "";
+    } catch (e) { ESPECIFICAS = []; AREAS = []; }
+
+    compor();
     lerUrl();
+    await carregarAplicadas();
     if (typeof Pulso !== "undefined") { try { await Pulso.carregar(); } catch (e) {} }
     aplicar();
   } catch (e) {
     document.getElementById("resultado").innerHTML =
-      '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Verifique se o arquivo vagas.json está na mesma pasta.</p></div>';
+      '<div class="vazio"><div class="big">◌</div><p>Não foi possível carregar as vagas agora.<br>Atualize a página em alguns minutos.</p></div>';
     document.getElementById("contagem").textContent = "erro ao carregar";
     console.error(e);
   }
@@ -337,6 +519,7 @@ function lerUrl() {
   if (p.get("cat")) fCats.add(p.get("cat"));
   if (p.get("empresa")) fEmps.add(p.get("empresa"));
   if (p.get("periodo")) fPeriodo = p.get("periodo");
+  if (p.get("q")) { busca = p.get("q"); document.getElementById("busca").value = busca; }
 }
 
 /* ── datas ── */
@@ -370,6 +553,13 @@ function passa(v, ignorar) {
   }
   if (ignorar !== "cat" && fCats.size && !fCats.has(v.categoria)) return false;
   if (ignorar !== "emp" && fEmps.size && !fEmps.has(v.empresa)) return false;
+  if (ignorar !== "form" && soFormacao && !IDS_ESP.has(v.id)) return false;
+  if (ignorar !== "aplic" && esconderAplicadas && jaApliquei(v)) return false;
+  if (ignorar !== "busca" && busca) {
+    const alvo = sp([v.titulo, (EMPRESAS[v.empresa] || {}).nome || v.empresa,
+                     v.empresa_real, v.local, v.badge].filter(Boolean).join(" "));
+    if (!sp(busca).split(/\s+/).filter(Boolean).every(t => alvo.includes(t))) return false;
+  }
   return true;
 }
 const filtradas = () => TODAS.filter(v => passa(v));
@@ -409,37 +599,59 @@ function montarMenus() {
       <span class="nm">${esc(e.nome)}</span><span class="qt">${q}</span></button>`;
   }).join("");
 
-  document.querySelectorAll("[data-periodo]").forEach(b => b.onclick = () => { fPeriodo = b.dataset.periodo; fechar(); aplicar(); });
+  /* mostrar: só aparece quando faz sentido para esta pessoa */
+  const mostrar = [];
+  if (formacao) {
+    const q = TODAS.filter(v => IDS_ESP.has(v.id) && passa(v, "form")).length;
+    mostrar.push(`<button class="opcao${soFormacao ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-mostrar="form">
+      <span class="caixa">✓</span><span class="nm">Só as de ${esc(formacao)}</span><span class="qt">${q}</span></button>`);
+  }
+  if (APLICADAS.ids.size || APLICADAS.chaves.size) {
+    const q = TODAS.filter(v => jaApliquei(v) && passa(v, "aplic")).length;
+    mostrar.push(`<button class="opcao${esconderAplicadas ? " on" : ""}" type="button" data-mostrar="aplic">
+      <span class="caixa">✓</span><span class="nm">Esconder as que já apliquei</span><span class="qt">${q}</span></button>`);
+  }
+  document.getElementById("grupoMostrar").hidden = mostrar.length === 0;
+  document.getElementById("menuMostrar").innerHTML = mostrar.join("");
+
+  document.querySelectorAll("[data-periodo]").forEach(b => b.onclick = () => { fPeriodo = b.dataset.periodo; aplicar(); });
   document.querySelectorAll("[data-cat]").forEach(b => b.onclick = () => { alterna(fCats, b.dataset.cat); aplicar(); });
   document.querySelectorAll("[data-emp]").forEach(b => b.onclick = () => { alterna(fEmps, b.dataset.emp); aplicar(); });
-
-  /* contador dentro de cada botão */
-  marcarBotao("dropEmpresa", fEmps.size);
-  marcarBotao("dropArea", fCats.size);
-  const p = PERIODOS.find(x => x.id === fPeriodo);
-  document.querySelector("#dropPeriodo .rot").textContent = fPeriodo === "all" ? "Publicação" : (p ? p.nome : "Publicação");
-}
-function marcarBotao(idDrop, n) {
-  const c = document.querySelector("#" + idDrop + " .cnt");
-  c.textContent = n; c.hidden = n === 0;
-}
-
-/* ── abrir e fechar os menus ── */
-const fechar = () => document.querySelectorAll(".fdrop").forEach(d => {
-  d.classList.remove("aberto");
-  d.querySelector(".fbtn").setAttribute("aria-expanded", "false");
-});
-document.querySelectorAll(".fdrop .fbtn").forEach(b => {
-  b.addEventListener("click", ev => {
-    ev.stopPropagation();
-    const pai = b.closest(".fdrop");
-    const estava = pai.classList.contains("aberto");
-    fechar();
-    if (!estava) { pai.classList.add("aberto"); b.setAttribute("aria-expanded", "true"); }
+  document.querySelectorAll("[data-mostrar]").forEach(b => b.onclick = () => {
+    if (b.dataset.mostrar === "form") soFormacao = !soFormacao;
+    else esconderAplicadas = !esconderAplicadas;
+    aplicar();
   });
+
+  /* contador no botão que abre a coluna no celular */
+  const n = fEmps.size + fCats.size + (fPeriodo !== "all" ? 1 : 0) +
+            (busca ? 1 : 0) + (soFormacao ? 1 : 0) + (esconderAplicadas ? 1 : 0);
+  const cnt = document.querySelector("#btFiltros .cnt");
+  cnt.textContent = n; cnt.hidden = n === 0;
+  document.getElementById("btLimpar").hidden = n === 0;
+}
+
+/* ── a coluna, no celular, abre e fecha ── */
+document.getElementById("btFiltros").addEventListener("click", function () {
+  const lat = document.getElementById("lateral");
+  const abriu = lat.classList.toggle("aberta");
+  this.setAttribute("aria-expanded", abriu ? "true" : "false");
 });
-document.addEventListener("click", ev => { if (!ev.target.closest(".fdrop")) fechar(); });
-document.addEventListener("keydown", ev => { if (ev.key === "Escape") fechar(); });
+
+/* ── busca, com uma pausa para não redesenhar a cada tecla ── */
+let pausa = null;
+document.getElementById("busca").addEventListener("input", ev => {
+  clearTimeout(pausa);
+  const valor = ev.target.value;
+  pausa = setTimeout(() => { busca = valor.trim(); aplicar(); }, 180);
+});
+
+document.getElementById("btLimpar").addEventListener("click", () => {
+  fPeriodo = "all"; fCats.clear(); fEmps.clear();
+  busca = ""; soFormacao = false; esconderAplicadas = false;
+  document.getElementById("busca").value = "";
+  aplicar();
+});
 
 /* ── etiquetas do que está ativo ── */
 function montarAtivos() {
@@ -450,6 +662,9 @@ function montarAtivos() {
   }
   fCats.forEach(c => itens.push({ rotulo: CAT_NOME[c] || c, tipo: "cat", valor: c }));
   fEmps.forEach(id => itens.push({ rotulo: (EMPRESAS[id] || {}).nome || id, tipo: "emp", valor: id }));
+  if (busca) itens.push({ rotulo: '"' + busca + '"', tipo: "busca" });
+  if (soFormacao) itens.push({ rotulo: "só " + formacao, tipo: "form" });
+  if (esconderAplicadas) itens.push({ rotulo: "sem as já aplicadas", tipo: "aplic" });
 
   const alvo = document.getElementById("ativos");
   alvo.innerHTML = itens.map(i =>
@@ -458,10 +673,17 @@ function montarAtivos() {
 
   alvo.querySelectorAll(".ativo").forEach(b => b.onclick = () => {
     const { tipo, valor } = b.dataset;
-    if (tipo === "tudo") { fPeriodo = "all"; fCats.clear(); fEmps.clear(); }
+    if (tipo === "tudo") {
+      fPeriodo = "all"; fCats.clear(); fEmps.clear();
+      busca = ""; soFormacao = false; esconderAplicadas = false;
+      document.getElementById("busca").value = "";
+    }
     if (tipo === "periodo") fPeriodo = "all";
     if (tipo === "cat") fCats.delete(valor);
     if (tipo === "emp") fEmps.delete(valor);
+    if (tipo === "busca") { busca = ""; document.getElementById("busca").value = ""; }
+    if (tipo === "form") soFormacao = false;
+    if (tipo === "aplic") esconderAplicadas = false;
     aplicar();
   });
 }
@@ -471,6 +693,28 @@ function ordenar(lista) {
   const copia = [...lista];
   const nomeEmp = v => ((EMPRESAS[v.empresa] || {}).nome || v.empresa || "").toLowerCase();
   const idade = v => { const n = dias(v); return n === null ? Infinity : n; };
+  /* Relevância: frescor com meia vida de duas semanas, e um empurrão para a
+     vaga cuja data veio da própria empresa. Quando o hub só sabe quando VIU a
+     vaga, a idade dela é um chute, e vaga de idade conhecida vale mais que vaga
+     de idade suposta. Nada aqui depende de servidor. */
+  const relev = v => {
+    const n = dias(v);
+    let p = Math.pow(0.5, (n === null ? 45 : n) / 14);
+    if (temDataOficial(v)) p *= 1.10;
+    return p;
+  };
+  /* e intercala as empresas: a segunda vaga seguida da mesma empresa vale menos
+     que a primeira, a terceira menos ainda. Sem isso o topo da lista vira um
+     bloco só de quem publicou muito no mesmo dia. */
+  if (ordem === "relevancia") {
+    copia.sort((x,y) => relev(y) - relev(x));
+    const quantas = {}, nota = new Map();
+    copia.forEach(v => {
+      const n = quantas[v.empresa] = (quantas[v.empresa] || 0) + 1;
+      nota.set(v, relev(v) / (1 + 0.35 * (n - 1)));
+    });
+    copia.sort((x,y) => nota.get(y) - nota.get(x));
+  }
   if (ordem === "recentes") copia.sort((a,b) => idade(a) - idade(b));
   if (ordem === "antigas")  copia.sort((a,b) => idade(b) - idade(a));
   if (ordem === "empresa")  copia.sort((a,b) => nomeEmp(a).localeCompare(nomeEmp(b)) || (a.titulo||"").localeCompare(b.titulo||""));
@@ -494,6 +738,7 @@ function linha(v) {
       <span class="v-emp">
         <span class="e">${esc(e.nome)}${real}</span>
         ${nova ? '<span class="selo-novo">nova</span>' : ""}
+        ${v.area ? `<span class="selo-area">${esc(v.area)}</span>` : ""}
       </span>
     </span>
 
@@ -527,6 +772,7 @@ function montarNumeros() {
 }
 
 function aplicar() {
+  montarFormacao();
   montarNumeros();
   montarMenus();
   montarAtivos();
@@ -542,8 +788,8 @@ function aplicar() {
     return;
   }
 
-  /* as novas ficam em cima, separadas, quando a ordem é por data */
-  const porData = ordem === "recentes";
+  /* as novas ficam em cima, separadas, nas duas ordens que respeitam a data */
+  const porData = ordem === "relevancia" || ordem === "recentes";
 
   /* Pulso: as vagas com movimento real sobem para um grupo próprio, e saem dos
      grupos de baixo para não aparecerem duas vezes. Só quando a ordem é a
@@ -587,21 +833,27 @@ function aplicar() {
    navegador não deixar guardar nada, esta função não faz nada
    e a lista de vagas continua exatamente igual.
    ══════════════════════════════════════════════════════════ */
-async function marcarAplicadas() {
+async function carregarAplicadas() {
   try {
     if (typeof Dados === "undefined") return;
     const aplicacoes = await Dados.listar("aplicacoes");
-    if (!aplicacoes.length) return;
+    APLICADAS = {
+      ids: new Set(aplicacoes.filter(a => a.vagaId).map(a => a.vagaId)),
+      chaves: new Set(aplicacoes.map(a => sp(a.empresa) + "|" + sp(a.titulo))),
+    };
+  } catch (e) {
+    console.warn("Meu Controle indisponível na lista de vagas", e);
+  }
+}
 
-    const ids = new Set(aplicacoes.filter(a => a.vagaId).map(a => a.vagaId));
-    const chaves = new Set(aplicacoes.map(a => Dados.normalizar(a.empresa) + "|" + Dados.normalizar(a.titulo)));
+function marcarAplicadas() {
+  try {
+    if (!APLICADAS.ids.size && !APLICADAS.chaves.size) return;
 
     document.querySelectorAll(".vaga[data-vid]").forEach(el => {
       const v = TODAS.find(x => x.id === el.dataset.vid);
       if (!v) return;
-      const e = EMPRESAS[v.empresa] || { nome: v.empresa };
-      const bate = ids.has(v.id) || chaves.has(Dados.normalizar(e.nome) + "|" + Dados.normalizar(v.titulo));
-      if (!bate) return;
+      if (!jaApliquei(v)) return;
       const onde = el.querySelector(".v-emp");
       if (!onde || onde.querySelector(".selo-aplicada")) return;
       const selo = document.createElement("span");
