@@ -45,7 +45,8 @@ AREAS = [
         "machine learning engineer", "ml engineer", "data scientist",
         "data science", "data engineer", "cybersecurity", "security engineer",
         "cloud engineer", "qa engineer", "android", "ios developer",
-        "competitive programming", "algorithms", "programacao", "desenvolvedor",
+        "competitive programming", "algorithms", "coder", "code expert",
+        "programacao", "desenvolvedor",
     ]),
     ("Matematica e Estatistica", [
         "math", "maths", "mathematics", "mathematician", "mathematical",
@@ -74,6 +75,7 @@ AREAS = [
     ("Financas e Contabilidade", [
         "finance", "financial", "accounting", "accountant", "cpa", "cfa",
         "audit", "auditor", "bookkeeping", "taxation", "tax analyst",
+        "tax form", "tax expert", "tax preparer",
         "investment", "equity research", "banking", "actuarial", "actuary",
         "trading", "hedge fund", "private equity", "financas", "contabilidade",
         "contador",
@@ -87,7 +89,8 @@ AREAS = [
     ("Psicologia e Ciencias Sociais", [
         "psychology", "psychologist", "sociology", "sociologist",
         "anthropology", "anthropologist", "political science", "social work",
-        "public policy", "international relations", "criminology",
+        "public policy", "policy analyst", "political scientist",
+        "international relations", "criminology",
         "psicologia", "sociologia",
     ]),
     ("Humanidades", [
@@ -134,8 +137,14 @@ def normalizar(texto):
 
 
 def _tem(texto, termo):
-    """Casa o termo respeitando inicio e fim de palavra."""
-    return re.search(r"(?<![a-z0-9])" + re.escape(termo) + r"(?![a-z0-9])", texto) is not None
+    """Casa o termo respeitando inicio e fim de palavra.
+
+    Aceita o plural em s ou es: "lawyer" casa com "lawyers", "physicist"
+    casa com "physicists". Sem isso metade dos titulos escapava, porque
+    vaga de area quase sempre vem no plural.
+    """
+    padrao = r"(?<![a-z0-9])" + re.escape(termo) + r"(?:es|s)?(?![a-z0-9])"
+    return re.search(padrao, texto) is not None
 
 
 def classificar_area(titulo):
