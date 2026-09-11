@@ -86,6 +86,7 @@
 
 <script src="layout.js"></script>
 <script src="controle-dados.js"></script>
+<script src="pulso-site.js"></script>
 <script>
 montarLayout("vagas");
 
@@ -213,6 +214,7 @@ function erro(msg) {
               remuneracao: (v.resumo && v.resumo.remuneracao) || "",
               proximo: "", proximoEm: "", observacoes: "", email: "", curriculo: "",
             });
+            if (typeof Pulso !== "undefined") Pulso.enviar(v.id, "aplicou");
             await desenharTarja();
           } catch (err) { this.disabled = false; console.error(err); }
         });

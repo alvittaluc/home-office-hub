@@ -197,6 +197,15 @@
     border-radius:20px; padding:2px 8px; flex-shrink:0;
   }
 
+  /* Pulso: sinal de movimento real, vindo do pulso.json.
+     Sem o arquivo, nenhum destes selos chega a existir na página. */
+  .v-emp .selo-pulso {
+    font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+    border-radius:20px; padding:2px 8px; flex-shrink:0;
+  }
+  .v-emp .selo-pulso.alta     { color:var(--signal); background:var(--signal-suave); border:1px solid #D3E2F1; }
+  .v-emp .selo-pulso.responde { color:var(--violet); background:#F1EEF7; border:1px solid #DFD8EE; }
+
   /* colunas de dados, com rótulo em cima */
   .v-col { display:flex; flex-direction:column; gap:4px; min-width:0; }
   .v-col .r {
@@ -281,6 +290,7 @@
 
 <script src="layout.js"></script>
 <script src="controle-dados.js"></script>
+<script src="pulso-site.js"></script>
 <script>
 montarLayout("vagas");
 
@@ -312,6 +322,7 @@ async function iniciar() {
     const dados = await lerVagas();
     TODAS = dados.vagas || [];
     lerUrl();
+    if (typeof Pulso !== "undefined") { try { await Pulso.carregar(); } catch (e) {} }
     aplicar();
   } catch (e) {
     document.getElementById("resultado").innerHTML =
@@ -533,10 +544,26 @@ function aplicar() {
 
   /* as novas ficam em cima, separadas, quando a ordem é por data */
   const porData = ordem === "recentes";
-  const novas = porData ? resultado.filter(ehNova) : [];
-  const resto = porData ? resultado.filter(v => !ehNova(v)) : resultado;
+
+  /* Pulso: as vagas com movimento real sobem para um grupo próprio, e saem dos
+     grupos de baixo para não aparecerem duas vezes. Só quando a ordem é a
+     padrão, e só entre as vagas que sobraram dos filtros: quem chegou
+     filtrando por uma empresa não deve ver destaque de outra. */
+  const emAlta = (porData && typeof Pulso !== "undefined")
+    ? Pulso.destaques().map(id => resultado.find(v => v.id === id)).filter(Boolean)
+    : [];
+  const sobra = emAlta.length >= 2 ? resultado.filter(v => !emAlta.includes(v)) : resultado;
+  const destacadas = emAlta.length >= 2 ? emAlta : [];
+
+  const novas = porData ? sobra.filter(ehNova) : [];
+  const resto = porData ? sobra.filter(v => !ehNova(v)) : sobra;
 
   let html = "";
+  if (destacadas.length) {
+    html += `<div class="grupo-titulo"><h2>Em movimento</h2>
+             <span>onde os alunos do Hub estão aplicando e ouvindo resposta</span></div>
+             <div class="lista">${destacadas.map(linha).join("")}</div>`;
+  }
   if (novas.length) {
     html += `<div class="grupo-titulo"><h2>Publicadas nesta semana</h2><span>${novas.length}</span></div>
              <div class="lista">${novas.map(linha).join("")}</div>`;
@@ -549,6 +576,7 @@ function aplicar() {
   }
   alvo.innerHTML = html;
   marcarAplicadas();
+  if (typeof Pulso !== "undefined") Pulso.marcar(alvo);
 }
 
 /* ══════════════════════════════════════════════════════════

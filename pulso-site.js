@@ -2,22 +2,17 @@
  * Pulso do Hub — peça de navegador.
  *
  * Faz três coisas, e nenhuma delas é obrigatória para o site funcionar:
- *   1. desenha a faixa "Em movimento" no topo da lista de vagas;
- *   2. marca com um selo discreto os cartões das vagas com sinal;
+ *   1. diz quais vagas estão em destaque, para a lista montar o grupo "Em movimento";
+ *   2. põe o selo discreto nos cartões dessas vagas;
  *   3. despacha os eventos do Meu Controle, se a pessoa tiver ligado o Pulso.
  *
  * Regra herdada do Meu Controle: se o pulso.json não existir, se a rede cair ou
- * se o layout.js não vier junto, tudo aqui desiste em silêncio e a página segue
- * exatamente como era antes. Nenhum erro chega ao usuário.
+ * se a pessoa não tiver ligado nada, tudo aqui desiste em silêncio e a página
+ * fica exatamente como era. Nenhum erro chega ao usuário.
  *
- * Uso na vagas.html
- *   <script src="pulso-site.js"></script>
- * e, onde a faixa deve aparecer:
- *   <div id="pulso"></div>
- *
- * Sem o div, a faixa é inserida sozinha antes do .corpo. Os selos dos cartões
- * são aplicados por observação do DOM, então nada precisa mudar dentro da
- * função que desenha a lista.
+ * Desenho e CSS não moram aqui de propósito. O grupo de destaque é montado pela
+ * própria vagas.html, com a mesma função linha() das outras vagas, para o site
+ * não ganhar um segundo estilo de cartão.
  *
  * Documento de escopo: claude/PULSO.md
  */
@@ -25,250 +20,169 @@
 (function () {
   "use strict";
 
-  // Endereço do Worker. Vazio desliga o envio; a leitura continua funcionando.
+  /* Endereço do Worker. Vazio desliga o envio; a leitura continua funcionando.
+     Preencher quando o Worker estiver no ar:
+     const ENDERECO = "https://pulso.SEU-SUBDOMINIO.workers.dev"; */
   const ENDERECO = "";
 
   const ARQUIVO = "pulso.json";
   const EVENTOS = ["aplicou", "resposta"];
+  const RESPOSTA = ["teste", "entrevista", "aprovado"];
 
   const SELOS = {
-    alta: { texto: "Em alta", titulo: "Muita gente aplicou nos últimos dias" },
-    responde: { texto: "Costuma responder", titulo: "Boa parte de quem aplicou teve retorno" },
+    alta: { texto: "em alta", titulo: "Muita gente do Hub aplicou nos últimos dias" },
+    responde: { texto: "costuma responder", titulo: "Boa parte de quem aplicou teve retorno" },
   };
 
   let dados = null;
   let carregando = null;
 
-  /* ───────────────────────────  guarda local  ─────────────────────────── */
-  /* Usa o Meu Controle quando ele está na página. Fora dele, guarda os três
-     campos do Pulso no localStorage, que é onde este projeto aceita estado
-     pequeno de interface. */
-
-  const guarda = {
-    async ler(chave) {
-      try {
-        if (typeof Dados !== "undefined" && Dados.obterConfig) {
-          const c = await Dados.obterConfig();
-          return c ? c[chave] : null;
-        }
-      } catch (e) { /* cai para o localStorage */ }
-      try {
-        const bruto = localStorage.getItem(chave);
-        return bruto === null ? null : JSON.parse(bruto);
-      } catch (e) { return null; }
-    },
-    async gravar(chave, valor) {
-      try {
-        if (typeof Dados !== "undefined" && Dados.obterConfig && Dados.salvarConfig) {
-          const c = (await Dados.obterConfig()) || {};
-          c[chave] = valor;
-          await Dados.salvarConfig(c);
-          return;
-        }
-      } catch (e) { /* cai para o localStorage */ }
-      try { localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) { }
-    },
-  };
-
-  /* ───────────────────────────  leitura  ─────────────────────────── */
+  /* ═══════════════════════  leitura do pulso.json  ═══════════════════════ */
 
   function carregar() {
     if (carregando) return carregando;
     carregando = fetch(ARQUIVO, { cache: "no-cache" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j) => {
-        dados = j && j.versao === 1 ? j : null;
-        return dados;
-      })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => { dados = (j && j.versao === 1) ? j : null; return dados; })
       .catch(() => { dados = null; return null; });
     return carregando;
   }
 
-  /* ───────────────────────────  desenho  ─────────────────────────── */
-
-  function estilo() {
-    if (document.getElementById("pl-estilo")) return;
-    const s = document.createElement("style");
-    s.id = "pl-estilo";
-    s.textContent = `
-      .pl-faixa { margin: 0 0 22px; }
-      .pl-cab { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
-      .pl-cab h2 { font-family:var(--display,inherit); font-weight:500; font-size:16px; margin:0; }
-      .pl-cab p { font-size:12.5px; color:var(--ink-3,#888); margin:0; }
-      .pl-grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); gap:12px; }
-      .pl-cartao {
-        display:flex; flex-direction:column; gap:9px; min-width:0;
-        background:var(--panel,#fff); border:1px solid var(--line-soft,#e6e6e6);
-        border-radius:12px; padding:14px 15px; text-decoration:none; color:inherit;
-        position:relative; overflow:hidden; transition:border-color .16s, transform .16s;
-      }
-      .pl-cartao::before {
-        content:''; position:absolute; left:0; top:0; bottom:0; width:2px;
-        background:var(--signal,#2C6BB5); opacity:.55;
-      }
-      .pl-cartao:hover { border-color:var(--line,#ccc); transform:translateY(-2px); }
-      .pl-topo { display:flex; align-items:center; gap:9px; min-width:0; }
-      .pl-topo img, .pl-topo .pl-sigla { width:26px; height:26px; border-radius:6px; flex-shrink:0; }
-      .pl-sigla { display:flex; align-items:center; justify-content:center;
-        font-family:var(--mono,monospace); font-size:10px; background:var(--panel-2,#f2f2f2); }
-      .pl-emp { font-family:var(--mono,monospace); font-size:11px; color:var(--ink-3,#888);
-        white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .pl-tit { font-family:var(--display,inherit); font-weight:500; font-size:14.5px; line-height:1.3; }
-      .pl-selos { display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:4px; }
-      .pl-selo {
-        font-family:var(--mono,monospace); font-size:10px; letter-spacing:.02em;
-        padding:3px 7px; border-radius:999px; border:1px solid var(--line-soft,#e6e6e6);
-        color:var(--ink-3,#888); white-space:nowrap;
-      }
-      .pl-selo.alta { border-color:var(--signal-dim,#bcd); color:var(--signal,#2C6BB5); }
-      .pl-marca {
-        display:inline-flex; align-items:center; gap:4px; font-family:var(--mono,monospace);
-        font-size:10px; color:var(--signal,#2C6BB5); white-space:nowrap;
-      }
-      .pl-marca::before { content:''; width:4px; height:4px; border-radius:50%;
-        background:var(--signal,#2C6BB5); }
-      @media (max-width:560px) { .pl-grade { grid-template-columns:1fr; } }
-    `;
-    document.head.appendChild(s);
+  /** Ids em destaque, na ordem. Vazio se não houver arquivo ou faltar gente. */
+  function destaques() {
+    if (!dados || !Array.isArray(dados.destaques)) return [];
+    if (dados.destaques.length < 2) return [];
+    return dados.destaques.map(d => d.id).filter(Boolean);
   }
 
-  function logo(emp) {
-    if (typeof logoHtml === "function") {
-      try { return logoHtml(emp, 26); } catch (e) { /* segue com a sigla */ }
-    }
-    const sigla = (emp && emp.sigla) || "•";
-    const cor = (emp && emp.cor) || "currentColor";
-    return `<span class="pl-sigla" style="color:${cor}">${sigla}</span>`;
+  /** Selos de uma vaga, inclusive das que não couberam no destaque. */
+  function selos(id) {
+    if (!dados || !dados.sinais || !dados.sinais[id]) return [];
+    return dados.sinais[id].selos || [];
   }
 
-  async function faixa(destino) {
-    const p = await carregar();
-    if (!p || !p.destaques || p.destaques.length < 2) return;
+  /** Põe o selo nos cartões .vaga[data-vid] que já estiverem na tela. */
+  function marcar(raiz) {
+    if (!dados || !dados.sinais) return;
+    (raiz || document).querySelectorAll(".vaga[data-vid]").forEach(el => {
+      const lista = selos(el.dataset.vid);
+      if (!lista.length) return;
+      const onde = el.querySelector(".v-emp");
+      if (!onde || onde.querySelector(".selo-pulso")) return;
+      const chave = lista.indexOf("responde") >= 0 ? "responde" : "alta";
+      const s = document.createElement("span");
+      s.className = "selo-pulso " + chave;
+      s.title = SELOS[chave].titulo;
+      s.textContent = SELOS[chave].texto;
+      onde.appendChild(s);
+    });
+  }
 
-    let vagas = [], empresas = {};
+  /* ═══════════════════════  guarda do consentimento  ═══════════════════════
+
+     Mora na config do Meu Controle, junto do resto. Fora dele, cai no
+     localStorage, que é o único estado que este site aceita guardar solto.
+     São três campos: pulso_ok, pulso_id e pulso_fila.                        */
+
+  async function ler(chave) {
     try {
-      const dv = await lerVagas();
-      vagas = dv.vagas || [];
-      const de = await lerEmpresas();
-      (de.empresas || []).forEach((e) => (empresas[e.id] = e));
-    } catch (e) { return; }
-
-    const porId = {};
-    vagas.forEach((v) => { if (v.id) porId[v.id] = v; });
-
-    const itens = p.destaques
-      .map((d) => ({ d, v: porId[d.id] }))
-      .filter((x) => x.v);
-    if (itens.length < 2) return;
-
-    let alvo = destino || document.getElementById("pulso");
-    if (!alvo) {
-      const corpo = document.querySelector(".corpo");
-      if (!corpo || !corpo.parentNode) return;
-      alvo = document.createElement("div");
-      corpo.parentNode.insertBefore(alvo, corpo);
-    }
-
-    estilo();
-
-    const cartoes = itens.map(({ d, v }) => {
-      const emp = empresas[v.empresa];
-      const selos = d.selos
-        .filter((s) => SELOS[s])
-        .map((s) => `<span class="pl-selo ${s}" title="${SELOS[s].titulo}">${SELOS[s].texto}</span>`)
-        .join("");
-      return `
-        <a class="pl-cartao" href="vaga.html?id=${encodeURIComponent(v.id)}">
-          <div class="pl-topo">${logo(emp)}<span class="pl-emp">${(emp && emp.nome) || v.empresa || ""}</span></div>
-          <div class="pl-tit">${v.titulo || ""}</div>
-          <div class="pl-selos">${selos}</div>
-        </a>`;
-    }).join("");
-
-    alvo.className = "pl-faixa";
-    alvo.innerHTML = `
-      <div class="pl-cab">
-        <h2>Em movimento</h2>
-        <p>Onde os alunos do Hub estão aplicando e ouvindo resposta nos últimos ${p.janela_dias} dias.</p>
-      </div>
-      <div class="pl-grade">${cartoes}</div>`;
+      if (typeof Dados !== "undefined" && Dados.obterConfig) {
+        const c = await Dados.obterConfig();
+        return (c && c[chave] !== undefined) ? c[chave] : null;
+      }
+    } catch (e) { /* cai para o localStorage */ }
+    try {
+      const bruto = localStorage.getItem(chave);
+      return bruto === null ? null : JSON.parse(bruto);
+    } catch (e) { return null; }
   }
 
-  /* ────────────────  selo discreto nos cartões da lista  ──────────────── */
-
-  function marcarUm(elo) {
-    if (!dados || !dados.sinais || elo.dataset.plFeito) return;
-    const m = (elo.getAttribute("href") || "").match(/[?&]id=([^&]+)/);
-    if (!m) return;
-    const sinal = dados.sinais[decodeURIComponent(m[1])];
-    if (!sinal || !sinal.selos || !sinal.selos.length) return;
-
-    elo.dataset.plFeito = "1";
-    const chave = sinal.selos.includes("responde") ? "responde" : "alta";
-    const alvo = elo.querySelector(".tags") || elo;
-    const s = document.createElement("span");
-    s.className = "pl-marca";
-    s.title = SELOS[chave].titulo;
-    s.textContent = SELOS[chave].texto;
-    alvo.appendChild(s);
+  async function gravar(chave, valor) {
+    try {
+      if (typeof Dados !== "undefined" && Dados.obterConfig && Dados.salvarConfig) {
+        const c = (await Dados.obterConfig()) || {};
+        c[chave] = valor;
+        await Dados.salvarConfig(c);
+        return;
+      }
+    } catch (e) { /* cai para o localStorage */ }
+    try { localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) { }
   }
 
-  async function marcar(raiz) {
-    const p = await carregar();
-    if (!p || !p.sinais) return;
-    estilo();
-    (raiz || document).querySelectorAll('a[href*="vaga.html?id="]').forEach(marcarUm);
-  }
+  async function ligado() { return (await ler("pulso_ok")) === true; }
 
-  function observar() {
-    const lista = document.getElementById("lista");
-    if (!lista || typeof MutationObserver === "undefined") return;
-    let pendente = null;
-    new MutationObserver(() => {
-      clearTimeout(pendente);
-      pendente = setTimeout(() => marcar(lista), 60);
-    }).observe(lista, { childList: true, subtree: true });
-  }
-
-  /* ───────────────────────────  envio  ─────────────────────────── */
-
-  async function ligado() {
-    return (await guarda.ler("pulso_ok")) === true;
-  }
+  /** Falso enquanto a pessoa ainda não respondeu o convite. */
+  async function respondeu() { return (await ler("pulso_ok")) !== null; }
 
   async function ligar() {
-    let id = await guarda.ler("pulso_id");
+    let id = await ler("pulso_id");
     if (!id) {
-      id = (crypto.randomUUID && crypto.randomUUID()) || null;
+      id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : null;
       if (!id) return false;
-      await guarda.gravar("pulso_id", id);
+      await gravar("pulso_id", id);
     }
-    await guarda.gravar("pulso_ok", true);
+    await gravar("pulso_ok", true);
     despachar();
     return true;
   }
 
   async function desligar() {
-    await guarda.gravar("pulso_ok", false);
-    await guarda.gravar("pulso_fila", []);
+    await gravar("pulso_ok", false);
+    await gravar("pulso_fila", []);
   }
+
+  /* ═══════════════════════  envio  ═══════════════════════ */
 
   /** Chamado pelo Meu Controle. Nunca lança, nunca segura o clique. */
   async function enviar(vagaId, evento, quando) {
     try {
-      if (!ENDERECO || !vagaId || EVENTOS.indexOf(evento) === -1) return;
+      if (!ENDERECO || !vagaId || EVENTOS.indexOf(evento) < 0) return;
       if (!(await ligado())) return;
-      const quem = await guarda.ler("pulso_id");
+      const quem = await ler("pulso_id");
       if (!quem) return;
 
-      const fila = (await guarda.ler("pulso_fila")) || [];
+      const fila = (await ler("pulso_fila")) || [];
       fila.push({
         v: 1, vaga: vagaId, evento, quem,
         quando: (quando || new Date().toISOString()).slice(0, 10),
       });
-      await guarda.gravar("pulso_fila", fila.slice(-200));
+      await gravar("pulso_fila", fila.slice(-200));
       despachar();
     } catch (e) { /* silêncio, de propósito */ }
+  }
+
+  /** Atalho do formulário de aplicação: decide o evento pelo estado. */
+  function porEstado(vagaId, estadoNovo, estadoAntigo) {
+    if (!vagaId) return;
+    if (!estadoAntigo) enviar(vagaId, "aplicou");
+    const virou = RESPOSTA.indexOf(estadoNovo) >= 0;
+    const era = RESPOSTA.indexOf(estadoAntigo) >= 0;
+    if (virou && !era) enviar(vagaId, "resposta");
+  }
+
+  /** Manda de uma vez as aplicações já registradas que vieram do Hub. */
+  async function enviarHistorico() {
+    try {
+      if (typeof Dados === "undefined" || !(await ligado())) return 0;
+      const todas = await Dados.listar("aplicacoes");
+      let n = 0;
+      for (const a of todas) {
+        if (!a.vagaId) continue;
+        await enviar(a.vagaId, "aplicou", a.data);
+        n++;
+        if (RESPOSTA.indexOf(a.estado) >= 0) await enviar(a.vagaId, "resposta", a.data);
+      }
+      return n;
+    } catch (e) { return 0; }
+  }
+
+  /** Quantas aplicações a carga inicial mandaria. Serve para a pergunta. */
+  async function tamanhoDoHistorico() {
+    try {
+      if (typeof Dados === "undefined") return 0;
+      const todas = await Dados.listar("aplicacoes");
+      return todas.filter(a => a.vagaId).length;
+    } catch (e) { return 0; }
   }
 
   let despachando = false;
@@ -277,7 +191,7 @@
     if (despachando || !ENDERECO) return;
     despachando = true;
     try {
-      const fila = (await guarda.ler("pulso_fila")) || [];
+      const fila = (await ler("pulso_fila")) || [];
       if (!fila.length) return;
       const lote = fila.slice(0, 40);
       const r = await fetch(ENDERECO.replace(/\/$/, "") + "/evento", {
@@ -285,30 +199,23 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(lote),
       });
-      if (r.ok) await guarda.gravar("pulso_fila", fila.slice(lote.length));
+      if (r.ok) await gravar("pulso_fila", fila.slice(lote.length));
     } catch (e) {
-      // fica na fila e tenta na próxima abertura
+      /* fica na fila e tenta na próxima abertura */
     } finally {
       despachando = false;
     }
   }
 
-  /* ───────────────────────────  partida  ─────────────────────────── */
-
-  function iniciar() {
-    if (document.getElementById("lista") || document.getElementById("pulso")) {
-      faixa();
-      marcar();
-      observar();
-    }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => despachar());
+  } else {
     despachar();
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", iniciar);
-  } else {
-    iniciar();
-  }
-
-  window.Pulso = { faixa, marcar, enviar, ligar, desligar, ligado, carregar };
+  window.Pulso = {
+    carregar, destaques, selos, marcar,
+    enviar, porEstado, enviarHistorico, tamanhoDoHistorico,
+    ligar, desligar, ligado, respondeu,
+  };
 })();
