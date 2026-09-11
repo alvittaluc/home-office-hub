@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-10T12:27:15.818525+00:00",
-  "atualizado_br": "10/09/2026 às 12:27",
+  "atualizado_em": "2026-09-11T12:25:28.657369+00:00",
+  "atualizado_br": "11/09/2026 às 12:25",
   "total": 70,
   "vagas": [
     {
@@ -88,28 +88,6 @@
         "requisitos": "Português (Brasil) nativo. Ler com clareza e naturalidade. Ter um notebook e um ambiente interno silencioso para gravar. Seguir as instruções e cumprir o prazo.",
         "dica_cv": "Vaga simples, ótima para começar. Destaque: boa dicção, português nativo, e que tem ambiente silencioso e equipamento para gravar. Não precisa de experiência prévia.",
         "contrato": "Freelance · Remoto · Tarefa pontual",
-        "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "English to Portuguese (Brazil) Linguist for Patent",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/weloglobal/12511ff5-5083-49e9-b50a-13613d957e25",
-      "commitment": "Remote",
-      "fonte": "direto",
-      "data_post": "2026-06-15",
-      "data_vista": "2026-09-09",
-      "data_ref": "2026-06-15",
-      "data_oficial": true,
-      "id": "3c1f28002b",
-      "resumo": {
-        "o_que_faz": "Traduzir e revisar (LQA) patentes de inglês para português (Brasil), com foco em conteúdo técnico e científico, especialmente da área biológica. Você adapta linguagem científica complexa mantendo a precisão.",
-        "requisitos": "Formação superior em linguística, tradução, biologia ou áreas afins. 2+ anos de experiência em tradução ou avaliação de qualidade linguística, de preferência com patentes ou conteúdo técnico. Inglês (en-US) excelente. Domínio de terminologia biológica.",
-        "dica_cv": "Destaque: diploma na área, 2+ anos com tradução técnica/patentes, domínio de terminologia científica (especialmente biologia), e inglês avançado. É uma vaga mais sênior.",
-        "contrato": "Freelance · Remoto",
         "remuneracao": ""
       }
     },
@@ -265,6 +243,21 @@
         "contrato": "Freelance · Meio período (10+ h/semana) · Remoto",
         "remuneracao": "US$ 6/hora"
       }
+    },
+    {
+      "empresa": "toloka",
+      "titulo": "AI Trainer - English-Chinese Bilingual Voice Recording",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://apply.workable.com/j/AEDEE27018",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-10",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-10",
+      "data_oficial": true,
+      "id": "9ef5751da5"
     },
     {
       "empresa": "toloka",
@@ -953,19 +946,14 @@
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
-      "url": "https://www.alignerr.com/jobs/8775d557-175e-4dde-898a-f4a689e9e5c3",
+      "url": "https://www.alignerr.com/jobs/52b0c682-a3ff-4992-ac71-cfc9e3535c1b",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-04",
+      "data_post": "2026-09-11",
       "data_vista": "2026-08-28",
-      "data_ref": "2026-09-04",
+      "data_ref": "2026-09-11",
       "data_oficial": true,
-      "id": "94d3206e73",
-      "resumo": {
-        "o_que_faz": "Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.",
-        "requisitos": "Fluência nativa ou quase nativa em português e escrita forte no idioma. Bom domínio do português contemporâneo em registros diferentes, do formal ao coloquial. Método e consistência, já que o trabalho é avaliar qualidade em volume. Não exige experiência anterior com IA nem com tecnologia. Contam como diferencial tradução, localização, edição, linguística, comunicação, educação ou revisão de conteúdo, além de conhecer as variações regionais do português.",
-        "dica_cv": "A faixa de pagamento é alta, então a triagem é seletiva: capriche no perfil. Escreva em inglês, mas anexe ou descreva amostras do seu português. Destaque revisão, tradução, redação, edição ou ensino, com volume e tipo de material. Mostre que você sabe explicar por que uma frase soa errada, e não apenas corrigir, porque o retorno estruturado é o produto que eles compram. Informe a sua disponibilidade semanal em números."
-      }
+      "id": "c3f214fe16"
     },
     {
       "empresa": "alignerr",
@@ -996,9 +984,9 @@
       "url": "https://www.alignerr.com/jobs/4bf35e1c-de3b-4874-8376-45ad9f304f35",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-02",
+      "data_post": "2026-09-10",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-09-02",
+      "data_ref": "2026-09-10",
       "data_oficial": true,
       "id": "69b78f8163",
       "resumo": {
