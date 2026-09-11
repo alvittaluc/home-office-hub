@@ -1,8 +1,54 @@
 {
   "versao": 1,
-  "gerado_em": null,
+  "gerado_em": "2026-09-11T08:00:00Z",
   "janela_dias": 21,
-  "destaques": [],
-  "sinais": {},
+  "destaques": [
+    {
+      "id": "65762fd387",
+      "posicao": 1,
+      "selos": [
+        "alta",
+        "responde"
+      ],
+      "desde": "2026-09-11"
+    },
+    {
+      "id": "68fe02f200",
+      "posicao": 2,
+      "selos": [
+        "alta"
+      ],
+      "desde": "2026-09-11"
+    },
+    {
+      "id": "fd7bd34e78",
+      "posicao": 3,
+      "selos": [
+        "responde"
+      ],
+      "desde": "2026-09-11"
+    }
+  ],
+  "sinais": {
+    "65762fd387": {
+      "pontos": 0.81,
+      "selos": [
+        "alta",
+        "responde"
+      ]
+    },
+    "68fe02f200": {
+      "pontos": 0.64,
+      "selos": [
+        "alta"
+      ]
+    },
+    "fd7bd34e78": {
+      "pontos": 0.52,
+      "selos": [
+        "responde"
+      ]
+    }
+  },
   "quarentena": {}
 }
