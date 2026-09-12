@@ -108,10 +108,21 @@
   .porta .p-nome { font-size:15.5px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; }
   .porta .p-sub { margin-top:5px; font-size:13px; color:var(--ink-2); line-height:1.55; max-width:40ch; }
   .porta .p-pe {
-    margin-top:auto; padding-top:16px; font-size:12.5px; color:var(--ink-3);
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    margin-top:auto; padding-top:18px; font-size:12.5px; color:var(--ink-3);
     font-variant-numeric:tabular-nums;
   }
   .porta .p-pe .nv { color:var(--amber); }
+
+  /* a ação fica azul o tempo todo, não só no hover: sem ela o cartão parece
+     um adesivo informativo e ninguém descobre que dá para clicar */
+  .acao {
+    display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+    color:var(--signal); font-weight:500; transition:gap .18s;
+  }
+  .acao svg { width:13px; height:13px; transition:transform .18s; }
+  .porta .acao { margin-left:auto; font-size:13px; }
+  a:hover > .acao svg, a:hover .acao svg { transform:translateX(3px); }
 
   /* a porta da formação usa o roxo que o site já reserva para área de diploma */
   .porta.form::after { background:var(--violet); }
@@ -134,6 +145,9 @@
   .qd .nm { font-size:15px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; line-height:1.25; }
   .qd .qt { font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; margin-top:3px; }
   .qd .qt .nv { color:var(--amber); }
+  .qd .topo-qd { display:flex; align-items:center; justify-content:space-between; }
+  .qd .acao { font-size:12.5px; }
+  .qd:hover { border-color:var(--signal-dim); }
 
   /* áreas de formação: lista longa e de nomes desiguais, então linha */
   .linhas { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
@@ -154,6 +168,8 @@
     font-variant-numeric:tabular-nums; white-space:nowrap;
   }
   .lin .qt .nv { color:var(--amber); }
+  .lin .acao { padding-left:12px; }
+  .lin:hover { border-color:var(--signal-dim); }
 
   /* empresas: aqui a marca é o assunto, então o logo manda */
   .marcas { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
@@ -179,6 +195,8 @@
   }
   .mrc .qt { font-size:12px; color:var(--ink-3); font-variant-numeric:tabular-nums; }
   .mrc .qt .nv { color:var(--amber); }
+  .mrc .acao { margin-left:auto; }
+  .mrc:hover { border-color:var(--signal-dim); }
 
   /* ── cada filtro suspenso ── */
   .fbtn {
@@ -952,6 +970,8 @@ function linha(v) {
    verdade, então abre em nova aba e o botão voltar funciona.
    ══════════════════════════════════════════════════════════ */
 
+const SETA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
 const ICO = {
   todas:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
   ai:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/></svg>',
@@ -984,19 +1004,19 @@ function montarInicio() {
       <span class="p-num">${GERAIS.length}<span>${GERAIS.length === 1 ? "vaga" : "vagas"}</span></span>
       <span class="p-nome">Abertas a todos</span>
       <span class="p-sub">Sem exigência de diploma. Anotação de dados, avaliação de IA, tradução e QA.</span>
-      <span class="p-pe">${pe(GERAIS)}</span>
+      <span class="p-pe">${pe(GERAIS)}<span class="acao">Ver as vagas ${SETA}</span></span>
     </a>
     <a class="porta form" href="vagas.html?areas=1" data-ir>
       <span class="p-num">${ESPECIFICAS.length}<span>${ESPECIFICAS.length === 1 ? "vaga" : "vagas"}</span></span>
       <span class="p-nome">Pedem formação</span>
       <span class="p-sub">O mesmo tipo de trabalho, dentro da área em que você é formado.</span>
-      <span class="p-pe">${pe(ESPECIFICAS, areas + " áreas")}</span>
+      <span class="p-pe">${pe(ESPECIFICAS, areas + " áreas")}<span class="acao">Escolher a área ${SETA}</span></span>
     </a>`;
 
   const cats = CAT_ORDEM.filter(c => GERAIS.some(v => v.categoria === c)).map(c => {
     const dela = GERAIS.filter(v => v.categoria === c);
     return `<a class="qd" href="vagas.html?cat=${encodeURIComponent(c)}" data-ir>
-      ${ICO[c] || ""}
+      <span class="topo-qd">${ICO[c] || "<span></span>"}<span class="acao">${SETA}</span></span>
       <span>
         <span class="nm">${esc(CAT_NOME[c] || c)}</span>
         <span class="qt">${dela.length} ${dela.length === 1 ? "vaga" : "vagas"}${novas(dela)}</span>
@@ -1016,7 +1036,8 @@ function montarInicio() {
         <span class="txt">
           <span class="nm">${esc(e.nome)}</span>
           <span class="qt">${dela.length} ${dela.length === 1 ? "vaga" : "vagas"}${novas(dela)}</span>
-        </span></a>`;
+        </span>
+        <span class="acao">${SETA}</span></a>`;
     }).join("");
 
   document.getElementById("telaInicio").innerHTML = `
@@ -1042,7 +1063,8 @@ function montarAreas() {
     return `<a class="lin" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>
       ${ICO.form}<span class="nm">${esc(a)}</span>
       ${formacao === a ? '<span class="sua">a sua</span>' : ""}
-      <span class="qt">${dela.length}${novas(dela)}</span></a>`;
+      <span class="qt">${dela.length}${novas(dela)}</span>
+      <span class="acao">${SETA}</span></a>`;
   }).join("");
 
   document.getElementById("telaAreas").innerHTML = `
