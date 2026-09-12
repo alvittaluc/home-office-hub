@@ -71,69 +71,81 @@
   /* ═══════════════ TELA DE ENTRADA ═══════════════ */
   .volta {
     display:inline-block; font-size:13px; color:var(--ink-3); text-decoration:none;
-    margin-bottom:14px; transition:color .15s;
+    margin-bottom:13px; transition:color .15s;
   }
   .volta:hover { color:var(--signal); }
   .volta[hidden] { display:none; }
 
-  .secao { margin:30px 0 0; }
-  .secao-cab { display:flex; align-items:baseline; gap:11px; margin-bottom:14px; }
-  .secao-cab h2 {
-    font-family:var(--display); font-weight:400; font-size:22px;
-    letter-spacing:-0.015em; color:var(--ink);
-  }
-  .secao-cab p { font-size:13px; color:var(--ink-3); margin:0; }
+  .bloco { margin-top:24px; }
+  .bloco + .bloco { margin-top:34px; }
+  .bloco > .grupo-titulo { margin-top:0; }
 
-  .grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(228px,1fr)); gap:13px; }
+  /* as duas portas de entrada: o acervo geral e o que pede diploma */
+  .portas { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:720px){ .portas { grid-template-columns:1fr; } }
 
-  .cartao {
-    position:relative; display:flex; flex-direction:column; gap:9px; min-width:0;
+  .porta {
+    display:flex; flex-direction:column; gap:7px;
     background:var(--panel); border:1px solid var(--line-soft); border-radius:15px;
-    padding:18px 19px 17px; text-decoration:none; color:inherit;
-    transition:border-color .18s, box-shadow .18s, transform .18s, background .18s;
+    padding:21px 23px 19px; text-decoration:none; color:inherit;
+    transition:border-color .18s, background .18s;
   }
-  .cartao:hover {
-    border-color:var(--line); background:var(--panel-2); transform:translateY(-2px);
-    box-shadow:0 14px 30px -22px rgba(16,32,58,.20);
+  .porta:hover { border-color:var(--signal-dim); background:var(--panel-2); }
+  .porta .p-nome {
+    font-family:var(--display); font-weight:400; font-size:21px;
+    letter-spacing:-0.015em; color:var(--ink); line-height:1.2;
   }
-  .cartao .c-ico {
-    width:38px; height:38px; border-radius:11px; display:grid; place-items:center;
-    background:var(--signal-suave); color:var(--signal); flex-shrink:0;
+  .porta .p-sub { font-size:13px; color:var(--ink-2); line-height:1.55; max-width:38ch; }
+  .porta .p-qt {
+    margin-top:9px; font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums;
   }
-  .cartao .c-ico svg { width:19px; height:19px; }
-  .cartao .c-nome {
-    font-family:var(--body); font-weight:600; font-size:15px; letter-spacing:-0.01em;
-    color:var(--ink); line-height:1.3;
-  }
-  .cartao .c-sub { font-size:12.5px; color:var(--ink-3); line-height:1.45; }
-  .cartao .c-qt {
-    margin-top:auto; padding-top:6px; font-size:12.5px; color:var(--ink-2);
-    font-variant-numeric:tabular-nums;
-  }
-  .cartao .c-qt b { font-weight:600; color:var(--ink); }
-  .cartao .c-novas {
-    position:absolute; top:14px; right:14px;
-    font-size:10px; font-weight:600; letter-spacing:.04em;
-    color:var(--amber); background:var(--amber-suave); border:1px solid #EBD2B4;
-    border-radius:20px; padding:3px 8px; white-space:nowrap;
-  }
+  .porta .p-qt b { color:var(--signal); font-weight:600; }
+  .porta .p-qt .nv { color:var(--amber); }
 
-  /* o primeiro cartão, o de todas as vagas, ocupa duas colunas e se destaca */
-  .cartao.largo { grid-column:span 2; background:var(--escuro); border-color:var(--escuro-linha); }
-  .cartao.largo .c-nome, .cartao.largo .c-qt b { color:var(--ink-claro); }
-  .cartao.largo .c-sub, .cartao.largo .c-qt { color:var(--ink-claro-2); }
-  .cartao.largo .c-ico { background:rgba(255,255,255,.08); color:var(--ink-claro); }
-  .cartao.largo:hover { background:var(--escuro-2); border-color:var(--signal-dim); }
-  @media (max-width:560px){ .cartao.largo { grid-column:span 1; } }
+  /* categorias e áreas: linha, não cartão, para caber muita e não sobrar buraco */
+  .linhas { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  @media (max-width:760px){ .linhas { grid-template-columns:1fr; } }
 
-  /* cartão de empresa: logo no lugar do ícone */
-  .cartao .c-logo {
-    width:38px; height:38px; border-radius:11px; display:grid; place-items:center;
-    overflow:hidden; flex-shrink:0; font-weight:700; font-size:13px;
+  .lin {
+    display:flex; align-items:center; gap:11px; min-width:0;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:12px;
+    padding:13px 16px; text-decoration:none; color:inherit;
+    transition:border-color .16s, background .16s;
   }
-  .cartao .c-logo img { width:22px; height:22px; object-fit:contain; }
+  .lin:hover { border-color:var(--line); background:var(--panel-2); }
+  .lin svg { width:15px; height:15px; color:var(--ink-3); flex-shrink:0; }
+  .lin .nm { font-size:14px; font-weight:500; color:var(--ink); min-width:0; overflow-wrap:anywhere; }
+  .lin .sua { font-size:11.5px; color:var(--signal); white-space:nowrap; }
+  .lin .qt {
+    margin-left:auto; padding-left:10px; font-size:12.5px; color:var(--ink-3);
+    font-variant-numeric:tabular-nums; white-space:nowrap;
+  }
+  .lin .qt .nv { color:var(--amber); }
 
-  .c-marca { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--signal); }
+  /* empresas: aqui a marca é o assunto, então o logo manda */
+  .marcas { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  @media (max-width:980px){ .marcas { grid-template-columns:repeat(2,1fr); } }
+
+  .mrc {
+    display:flex; align-items:center; gap:12px; min-width:0;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:13px;
+    padding:14px 15px; text-decoration:none; color:inherit;
+    transition:border-color .16s, background .16s, transform .16s;
+  }
+  .mrc:hover { border-color:var(--line); background:var(--panel-2); transform:translateY(-2px); }
+  .mrc .sel {
+    width:44px; height:44px; border-radius:11px; flex-shrink:0; overflow:hidden;
+    border:1px solid var(--line); display:grid; place-items:center;
+    font-weight:700; font-size:12px;
+  }
+  .mrc .sel img { width:26px; height:26px; object-fit:contain; border-radius:5px; }
+  .mrc .txt { min-width:0; }
+  .mrc .nm {
+    font-size:13.5px; font-weight:600; color:var(--ink);
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .mrc .qt { font-size:12px; color:var(--ink-3); font-variant-numeric:tabular-nums; }
+  .mrc .qt .nv { color:var(--amber); }
 
   /* ── cada filtro suspenso ── */
   .fbtn {
@@ -745,11 +757,6 @@ function montarMenus() {
 
   /* mostrar: só aparece quando faz sentido para esta pessoa */
   const mostrar = [];
-  if (formacao) {
-    const q = TODAS.filter(v => IDS_ESP.has(v.id) && passa(v, "form")).length;
-    mostrar.push(`<button class="opcao${soFormacao ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-mostrar="form">
-      <span class="caixa">✓</span><span class="nm">Só as de ${esc(formacao)}</span><span class="qt">${q}</span></button>`);
-  }
   if (APLICADAS.ids.size || APLICADAS.chaves.size) {
     const q = TODAS.filter(v => jaApliquei(v) && passa(v, "aplic")).length;
     mostrar.push(`<button class="opcao${esconderAplicadas ? " on" : ""}" type="button" data-mostrar="aplic">
@@ -762,14 +769,13 @@ function montarMenus() {
   document.querySelectorAll("[data-cat]").forEach(b => b.onclick = () => { alterna(fCats, b.dataset.cat); aplicar(); });
   document.querySelectorAll("[data-emp]").forEach(b => b.onclick = () => { alterna(fEmps, b.dataset.emp); aplicar(); });
   document.querySelectorAll("[data-mostrar]").forEach(b => b.onclick = () => {
-    if (b.dataset.mostrar === "form") soFormacao = !soFormacao;
-    else esconderAplicadas = !esconderAplicadas;
+    esconderAplicadas = !esconderAplicadas;
     aplicar();
   });
 
   /* contador no botão que abre a coluna no celular */
   const n = fEmps.size + fCats.size + (fPeriodo !== "all" ? 1 : 0) +
-            (busca ? 1 : 0) + (soFormacao ? 1 : 0) + (esconderAplicadas ? 1 : 0);
+            (busca ? 1 : 0) + (esconderAplicadas ? 1 : 0);
   const cnt = document.querySelector("#btFiltros .cnt");
   cnt.textContent = n; cnt.hidden = n === 0;
   document.getElementById("btLimpar").hidden = n === 0;
@@ -792,7 +798,7 @@ document.getElementById("busca").addEventListener("input", ev => {
 
 document.getElementById("btLimpar").addEventListener("click", () => {
   fPeriodo = "all"; fCats.clear(); fEmps.clear();
-  busca = ""; soFormacao = false; esconderAplicadas = false;
+  busca = ""; esconderAplicadas = false;
   document.getElementById("busca").value = "";
   aplicar();
 });
@@ -807,7 +813,6 @@ function montarAtivos() {
   fCats.forEach(c => itens.push({ rotulo: CAT_NOME[c] || c, tipo: "cat", valor: c }));
   fEmps.forEach(id => itens.push({ rotulo: (EMPRESAS[id] || {}).nome || id, tipo: "emp", valor: id }));
   if (busca) itens.push({ rotulo: '"' + busca + '"', tipo: "busca" });
-  if (soFormacao) itens.push({ rotulo: "só " + formacao, tipo: "form" });
   if (esconderAplicadas) itens.push({ rotulo: "sem as já aplicadas", tipo: "aplic" });
 
   const alvo = document.getElementById("ativos");
@@ -819,14 +824,13 @@ function montarAtivos() {
     const { tipo, valor } = b.dataset;
     if (tipo === "tudo") {
       fPeriodo = "all"; fCats.clear(); fEmps.clear();
-      busca = ""; soFormacao = false; esconderAplicadas = false;
+      busca = ""; esconderAplicadas = false;
       document.getElementById("busca").value = "";
     }
     if (tipo === "periodo") fPeriodo = "all";
     if (tipo === "cat") fCats.delete(valor);
     if (tipo === "emp") fEmps.delete(valor);
     if (tipo === "busca") { busca = ""; document.getElementById("busca").value = ""; }
-    if (tipo === "form") soFormacao = false;
     if (tipo === "aplic") esconderAplicadas = false;
     aplicar();
   });
@@ -925,102 +929,80 @@ const ICO = {
 };
 
 const contaNovas = lista => lista.filter(ehNova).length;
-const selNovas = n => n >= 2 ? `<span class="c-novas">+${n} novas</span>` : "";
-const plural = n => n === 1 ? "1 vaga" : n + " vagas";
+const conta = (n, s1, s2) => `<b>${n}</b> ${n === 1 ? s1 : s2}`;
+/* "novas" só entra a partir de duas: "+1 nova" não informa e polui a linha */
+const novas = lista => { const n = contaNovas(lista); return n >= 2 ? ` · <span class="nv">${n} novas</span>` : ""; };
 
 function montarInicio() {
-  const novasG = contaNovas(GERAIS), novasE = contaNovas(ESPECIFICAS);
+  const acervo = GERAIS.concat(ESPECIFICAS);
+  const areas = new Set(ESPECIFICAS.map(v => v.area).filter(Boolean)).size;
 
-  let cartoes = `
-    <a class="cartao largo" href="vagas.html?ver=todas" data-ir>
-      ${selNovas(novasG)}
-      <span class="c-ico">${ICO.todas}</span>
-      <span class="c-nome">Ver todas as vagas</span>
-      <span class="c-sub">Abertas para qualquer formação, com busca e filtros.</span>
-      <span class="c-qt"><b>${GERAIS.length}</b> vagas</span>
+  const portas = `
+    <a class="porta" href="vagas.html?ver=todas" data-ir>
+      <span class="p-nome">Vagas abertas a todos</span>
+      <span class="p-sub">Sem exigência de diploma. Anotação, avaliação, tradução e QA.</span>
+      <span class="p-qt">${conta(GERAIS.length, "vaga", "vagas")}${novas(GERAIS)}</span>
+    </a>
+    <a class="porta" href="vagas.html?areas=1" data-ir>
+      <span class="p-nome">Vagas que pedem formação</span>
+      <span class="p-sub">Trabalho de anotação e avaliação dentro da sua área de diploma, em ${areas} áreas.</span>
+      <span class="p-qt">${conta(ESPECIFICAS.length, "vaga", "vagas")}${novas(ESPECIFICAS)}</span>
     </a>`;
 
-  cartoes += CAT_ORDEM.filter(c => GERAIS.some(v => v.categoria === c)).map(c => {
+  const cats = CAT_ORDEM.filter(c => GERAIS.some(v => v.categoria === c)).map(c => {
     const dela = GERAIS.filter(v => v.categoria === c);
-    return `
-      <a class="cartao" href="vagas.html?cat=${encodeURIComponent(c)}" data-ir>
-        ${selNovas(contaNovas(dela))}
-        <span class="c-ico">${ICO[c] || ICO.todas}</span>
-        <span class="c-nome">${esc(CAT_NOME[c] || c)}</span>
-        <span class="c-qt"><b>${dela.length}</b> ${dela.length === 1 ? "vaga" : "vagas"}</span>
-      </a>`;
+    return `<a class="lin" href="vagas.html?cat=${encodeURIComponent(c)}" data-ir>
+      ${ICO[c] || ""}<span class="nm">${esc(CAT_NOME[c] || c)}</span>
+      <span class="qt">${dela.length}${novas(dela)}</span></a>`;
   }).join("");
 
-  if (ESPECIFICAS.length) {
-    const quantas = new Set(ESPECIFICAS.map(v => v.area).filter(Boolean)).size;
-    cartoes += `
-      <a class="cartao" href="vagas.html?areas=1" data-ir>
-        ${selNovas(novasE)}
-        <span class="c-ico">${ICO.form}</span>
-        <span class="c-nome">Exigem formação</span>
-        <span class="c-sub">${quantas} áreas, de Direito a Programação.</span>
-        <span class="c-qt"><b>${ESPECIFICAS.length}</b> vagas</span>
-      </a>`;
-  }
-
-  /* empresas que mais contratam, contando o acervo inteiro */
-  const acervo = GERAIS.concat(ESPECIFICAS);
   const porEmp = {};
   acervo.forEach(v => (porEmp[v.empresa] = porEmp[v.empresa] || []).push(v));
-  const top = Object.keys(porEmp)
+  const marcas = Object.keys(porEmp)
     .sort((a,b) => porEmp[b].length - porEmp[a].length)
-    .slice(0, 8);
-
-  const empresas = top.map(id => {
-    const e = EMPRESAS[id] || { nome:id, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
-    const dela = porEmp[id];
-    return `
-      <a class="cartao" href="vagas.html?empresa=${encodeURIComponent(id)}" data-ir>
-        ${selNovas(contaNovas(dela))}
-        <span class="c-logo" style="background:${e.bg};color:${e.cor};">${logoHtml(e,38)}</span>
-        <span class="c-nome">${esc(e.nome)}</span>
-        <span class="c-qt"><b>${dela.length}</b> ${dela.length === 1 ? "vaga" : "vagas"}</span>
-      </a>`;
-  }).join("");
+    .slice(0, 8)
+    .map(id => {
+      const e = EMPRESAS[id] || { nome:id, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
+      const dela = porEmp[id];
+      return `<a class="mrc" href="vagas.html?empresa=${encodeURIComponent(id)}" data-ir>
+        <span class="sel" style="background:${e.bg};color:${e.cor};">${logoHtml(e,42)}</span>
+        <span class="txt">
+          <span class="nm">${esc(e.nome)}</span>
+          <span class="qt">${dela.length} ${dela.length === 1 ? "vaga" : "vagas"}${novas(dela)}</span>
+        </span></a>`;
+    }).join("");
 
   document.getElementById("telaInicio").innerHTML = `
-    <div class="secao">
-      <div class="secao-cab"><h2>Por onde começar</h2>
-        <p>escolha um caminho e a lista abre já filtrada</p></div>
-      <div class="grade">${cartoes}</div>
+    <div class="bloco"><div class="portas">${portas}</div></div>
+    <div class="bloco">
+      <div class="grupo-titulo"><h2>Por tipo de trabalho</h2><span>entre as vagas abertas a todos</span></div>
+      <div class="linhas">${cats}</div>
     </div>
-    <div class="secao">
-      <div class="secao-cab"><h2>Empresas que mais contratam</h2>
-        <p>contando as vagas gerais e as que pedem formação</p></div>
-      <div class="grade">${empresas}</div>
+    <div class="bloco">
+      <div class="grupo-titulo"><h2>Quem mais contrata</h2><span>somando as gerais e as de formação</span></div>
+      <div class="marcas">${marcas}</div>
     </div>`;
 }
 
-/* ── as áreas de formação ── */
 function montarAreas() {
-  const conta = a => ESPECIFICAS.filter(v => v.area === a);
+  const daArea = a => ESPECIFICAS.filter(v => v.area === a);
   const lista = (AREAS.length ? AREAS : [...new Set(ESPECIFICAS.map(v => v.area))])
-    .filter(a => conta(a).length)
-    .sort((a,b) => conta(b).length - conta(a).length);
+    .filter(a => daArea(a).length)
+    .sort((a,b) => daArea(b).length - daArea(a).length);
 
-  const cartoes = lista.map(a => {
-    const dela = conta(a);
-    const minha = formacao === a;
-    return `
-      <a class="cartao" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>
-        ${selNovas(contaNovas(dela))}
-        <span class="c-ico">${ICO.form}</span>
-        <span class="c-nome">${esc(a)}</span>
-        ${minha ? '<span class="c-marca">✓ a sua área</span>' : ""}
-        <span class="c-qt"><b>${dela.length}</b> ${dela.length === 1 ? "vaga" : "vagas"}</span>
-      </a>`;
+  const linhas = lista.map(a => {
+    const dela = daArea(a);
+    return `<a class="lin" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>
+      ${ICO.form}<span class="nm">${esc(a)}</span>
+      ${formacao === a ? '<span class="sua">a sua</span>' : ""}
+      <span class="qt">${dela.length}${novas(dela)}</span></a>`;
   }).join("");
 
   document.getElementById("telaAreas").innerHTML = `
-    <div class="secao">
-      <div class="secao-cab"><h2>Escolha a sua formação</h2>
-        <p>estas vagas só aceitam quem tem diploma na área</p></div>
-      <div class="grade">${cartoes}</div>
+    <div class="bloco">
+      <div class="grupo-titulo"><h2>Escolha a sua formação</h2>
+        <span>estas vagas só aceitam quem é formado na área</span></div>
+      <div class="linhas">${linhas}</div>
     </div>`;
 }
 
