@@ -77,6 +77,42 @@
   .volta:hover { color:var(--signal); }
   .volta[hidden] { display:none; }
 
+  /* ── abas: os dois acervos, sempre alcançáveis de dentro da lista ── */
+  .abas {
+    display:flex; gap:2px; border-bottom:1px solid var(--line-soft);
+    margin:0 0 16px; overflow-x:auto; scrollbar-width:none;
+  }
+  .abas::-webkit-scrollbar { display:none; }
+  .abas[hidden] { display:none; }
+
+  .aba {
+    display:inline-flex; align-items:center; gap:8px; flex-shrink:0;
+    padding:11px 15px 12px; margin-bottom:-1px;
+    font-family:var(--body); font-size:14px; font-weight:500; color:var(--ink-3);
+    text-decoration:none; border-bottom:2px solid transparent;
+    transition:color .16s, border-color .16s;
+  }
+  .aba:hover { color:var(--ink); }
+  .aba .n { font-size:12px; color:var(--ink-3); font-variant-numeric:tabular-nums; }
+  .aba.on { color:var(--ink); border-bottom-color:var(--signal); }
+  .aba.on .n { color:var(--signal); }
+  .aba.form.on { border-bottom-color:var(--violet); }
+  .aba.form.on .n { color:var(--violet); }
+
+  /* as 16 áreas, para trocar de uma para outra sem sair da lista */
+  .chips { display:flex; gap:7px; overflow-x:auto; padding-bottom:9px; margin-bottom:14px; scrollbar-width:thin; }
+  .chips[hidden] { display:none; }
+  .chips::-webkit-scrollbar { height:5px; }
+  .chips::-webkit-scrollbar-thumb { background:var(--line-soft); border-radius:3px; }
+  .chip {
+    flex-shrink:0; padding:7px 13px; border-radius:20px; white-space:nowrap;
+    border:1px solid var(--line-soft); background:var(--panel);
+    font-size:12.5px; color:var(--ink-2); text-decoration:none;
+    transition:border-color .15s, background .15s, color .15s;
+  }
+  .chip:hover { border-color:var(--line); color:var(--ink); }
+  .chip.on { background:var(--violet); border-color:var(--violet); color:#fff; }
+
   .bloco { margin-top:24px; }
   .bloco + .bloco { margin-top:34px; }
   .bloco > .grupo-titulo { margin-top:0; }
@@ -487,6 +523,10 @@
 <div class="corpo">
 
 
+  <!-- troca entre os dois acervos sem voltar para a entrada -->
+  <div class="abas" id="abas" hidden></div>
+  <div class="chips" id="chips" hidden></div>
+
   <!-- tela de entrada: categorias e empresas -->
   <div id="telaInicio" hidden></div>
 
@@ -690,6 +730,7 @@ function render() {
   document.getElementById("lateral").classList.remove("aberta");
 
   document.getElementById("numeros").hidden = TELA === "inicio";
+  montarAbas();
   const olho = document.getElementById("eyebrow");
   const tit = document.getElementById("titulo");
 
@@ -1073,6 +1114,42 @@ function montarAreas() {
         <span>estas vagas só aceitam quem é formado na área</span></div>
       <div class="linhas">${linhas}</div>
     </div>`;
+}
+
+/* As duas abas ficam visíveis em toda tela que não seja a de entrada, para
+   ninguém precisar voltar só para trocar de acervo. Quando a lista é de uma
+   área, os chips das outras áreas aparecem embaixo e a troca é de um clique. */
+function montarAbas() {
+  const abas = document.getElementById("abas");
+  const chips = document.getElementById("chips");
+
+  if (TELA === "inicio" || !GERAIS.length) {
+    abas.hidden = true; chips.hidden = true; return;
+  }
+
+  const naGeral = TELA === "lista" && ESCOPO === "gerais";
+  const naForm = TELA === "areas" || ESCOPO === "area";
+
+  abas.hidden = false;
+  abas.innerHTML = `
+    <a class="aba${naGeral ? " on" : ""}" href="vagas.html?ver=todas" data-ir>
+      Abertas a todos <span class="n">${GERAIS.length}</span></a>
+    <a class="aba form${naForm ? " on" : ""}" href="vagas.html?areas=1" data-ir>
+      Pedem formação <span class="n">${ESPECIFICAS.length}</span></a>`;
+
+  if (ESCOPO !== "area") { chips.hidden = true; return; }
+
+  const daArea = a => ESPECIFICAS.filter(v => v.area === a).length;
+  const lista = (AREAS.length ? AREAS : [...new Set(ESPECIFICAS.map(v => v.area))])
+    .filter(daArea).sort((a,b) => daArea(b) - daArea(a));
+
+  chips.hidden = false;
+  chips.innerHTML = lista.map(a =>
+    `<a class="chip${a === AREA ? " on" : ""}" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>${esc(a)} <span>${daArea(a)}</span></a>`
+  ).join("");
+
+  const ativo = chips.querySelector(".chip.on");
+  if (ativo && ativo.scrollIntoView) ativo.scrollIntoView({ block:"nearest", inline:"center" });
 }
 
 function montarNumeros(lista) {
