@@ -10,6 +10,7 @@ const ABAS = [
   { id: "empresas", nome: "Empresas",      href: "empresas.html" },
   { id: "ferramentas", nome: "Ferramentas", href: "ferramentas.html" },
   { id: "guia",     nome: "Como funciona", href: "como-funciona.html" },
+  { id: "cursos", nome: "Cursos", href: "cursos.html" },
 ];
 
 /* A marca é o arquivo logo.png, que precisa estar na mesma pasta dos HTML.
