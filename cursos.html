@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cursos — Home Office Hub</title>
+<meta name="description" content="Cursos gratuitos sobre avaliação de IA, anotação de dados e o que as empresas esperam de quem faz esse trabalho.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cursos — Home Office Hub">
+<meta property="og:description" content="Cursos gratuitos sobre avaliação de IA, anotação de dados e o que as empresas esperam de quem faz esse trabalho.">
+<meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/cursos.html">
+<meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css" onerror="document.documentElement.classList.add('f-solto')">
+
+<style>
+/* ── Visual de reserva: só entra em ação quando o estilo.css não é encontrado. ── */
+html.f-solto body {
+  font-family:'Geist',system-ui,sans-serif; background:#F7F4EF; color:#10203A;
+  line-height:1.55; margin:0;
+}
+html.f-solto a { color:inherit; text-decoration:none; }
+html.f-solto .eyebrow {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:#1A4893;
+  display:flex; align-items:center; gap:9px; margin-bottom:14px;
+}
+html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#1A4893; }
+
+/* ══════════════════════════════════════════════════════════════
+   CURSOS — vitrine. Um curso por cartão.
+   Para acrescentar o próximo, copie um bloco <a class="c-card">
+   e troque ícone, título, texto, etiquetas e o link.
+   ══════════════════════════════════════════════════════════════ */
+
+.c-main { max-width:var(--wrap,1180px); margin:0 auto; padding:52px 20px 100px; }
+
+.c-hero { max-width:680px; margin-bottom:44px; }
+.c-hero h1 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(31px,4.2vw,50px); line-height:1.08; letter-spacing:-0.015em;
+  color:var(--ink,#10203A); margin:0 0 15px;
+}
+.c-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); margin:0; }
+
+.c-grade { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+
+.c-card {
+  display:flex; flex-direction:column;
+  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
+  border-radius:20px; padding:26px 26px 24px; min-height:280px;
+  transition:border-color .18s, transform .18s, box-shadow .18s;
+}
+.c-card:hover {
+  border-color:var(--ink-3,#8A94A1); transform:translateY(-2px);
+  box-shadow:0 12px 30px -18px rgba(16,32,58,0.35);
+}
+.c-icone {
+  width:44px; height:44px; border-radius:13px; display:grid; place-items:center;
+  background:var(--bg-soft,#F1ECE3); color:var(--signal,#1A4893);
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); margin-bottom:18px;
+}
+.c-card h2 { font-size:19px; font-weight:600; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:0 0 8px; }
+.c-card p { font-size:14.5px; line-height:1.62; color:var(--ink-2,#54606F); margin:0 0 16px; }
+
+.c-meta {
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+  font-size:13px; color:var(--ink-3,#8A94A1); margin:0 0 16px;
+}
+.c-meta span { display:inline-flex; align-items:center; gap:6px; }
+.c-meta i { width:3px; height:3px; border-radius:99px; background:var(--line,#DED7CA); }
+
+.c-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; }
+.c-tag {
+  font-size:11.5px; letter-spacing:0.04em; color:var(--ink-2,#54606F);
+  background:var(--bg-soft,#F1ECE3); border-radius:99px; padding:5px 11px;
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.c-tag.c-cert { color:var(--signal,#1A4893); background:rgba(26,72,147,0.07); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.18); }
+
+.c-abrir {
+  display:inline-flex; align-items:center; gap:7px; margin-top:16px;
+  font-size:14px; font-weight:600; color:var(--signal,#1A4893);
+}
+.c-card:hover .c-abrir svg { transform:translateX(3px); }
+.c-abrir svg { transition:transform .18s; }
+
+/* cartão do que vem depois, para a grade não ficar torta com um curso só */
+.c-vazio {
+  border:1px dashed var(--line,#DED7CA); border-radius:20px;
+  display:flex; flex-direction:column; justify-content:center; padding:30px;
+  color:var(--ink-3,#8A94A1); font-size:14px; line-height:1.65; min-height:280px;
+}
+.c-vazio strong { display:block; font-size:15px; font-weight:600; color:var(--ink-2,#54606F); margin-bottom:8px; }
+.c-vazio ul { margin:10px 0 0; padding-left:18px; }
+.c-vazio li { margin-bottom:5px; }
+
+.c-rodape { margin-top:54px; padding-top:32px; border-top:1px solid var(--line,#DED7CA); max-width:680px; }
+.c-rodape h3 { font-size:16px; font-weight:600; color:var(--ink,#10203A); margin:0 0 8px; }
+.c-rodape p { font-size:14.5px; line-height:1.65; color:var(--ink-2,#54606F); margin:0 0 10px; }
+.c-rodape p:last-child { margin:0; }
+
+@media (max-width:1000px){
+  .c-grade { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:680px){
+  .c-grade { grid-template-columns:1fr; }
+  .c-main { padding-top:36px; }
+  .c-vazio { min-height:0; padding:24px; }
+}
+</style>
+</head>
+<body>
+
+<main class="c-main">
+
+  <div class="c-hero">
+    <div class="eyebrow">Cursos</div>
+    <h1>Aprender o trabalho antes da primeira vaga</h1>
+    <p class="c-lead">Boa parte das vagas pede experiência, e é aí que muita gente trava. Estes cursos servem para
+      chegar na candidatura sabendo o que a empresa faz com o seu julgamento, o que a tarefa espera de você e
+      como é uma avaliação bem feita. São gratuitos, leem-se no navegador e terminam com certificado.</p>
+  </div>
+
+  <div class="c-grade">
+
+    <a class="c-card" href="curso-fundamentos.html">
+      <div class="c-icone">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 6.5C10.6 5.2 8.8 4.5 6.5 4.5H4v13h2.5c2.3 0 4.1.7 5.5 2 1.4-1.3 3.2-2 5.5-2H20v-13h-2.5c-2.3 0-4.1.7-5.5 2z"/>
+          <path d="M12 6.5v14"/>
+        </svg>
+      </div>
+      <h2>Fundamentos da Avaliação de IA</h2>
+      <p>O curso de entrada. Como um modelo de conversa é treinado, por que ele depende de gente comparando
+        respostas, e o que separa uma avaliação que melhora o modelo de uma que o piora sem ninguém notar.</p>
+      <div class="c-meta">
+        <span>4 aulas</span><i></i>
+        <span>cerca de 1 hora</span><i></i>
+        <span>nível introdutório</span>
+      </div>
+      <div class="c-tags">
+        <span class="c-tag">RLHF</span>
+        <span class="c-tag">Julgamento</span>
+        <span class="c-tag">Guidelines</span>
+        <span class="c-tag c-cert">Com certificado</span>
+      </div>
+      <span class="c-abrir">Começar o curso
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+    <div class="c-vazio">
+      <strong>Em preparação</strong>
+      Os próximos cursos seguem a mesma linha, cada um sobre um tipo de tarefa que aparece nas vagas:
+      <ul>
+        <li>Transcrição e qualidade de áudio</li>
+        <li>Avaliação de busca e de mapas</li>
+        <li>Tradução, revisão e localização</li>
+      </ul>
+    </div>
+
+    <div class="c-vazio">
+      <strong>Como usar no currículo</strong>
+      Terminado o curso, o certificado traz o seu nome, o conteúdo das aulas e a carga horária. Dá uma linha
+      concreta para a seção de formação complementar, no lugar de deixar o campo de experiência vazio.
+    </div>
+
+  </div>
+
+  <div class="c-rodape">
+    <h3>Por que isso conta</h3>
+    <p>Nenhum curso substitui tarefa feita, e nenhuma empresa contrata só por causa dele. O que ele resolve é
+      outra coisa: você chega na entrevista e no teste de entrada entendendo o vocabulário da área, sabendo o
+      que é uma guideline e por que a consistência é cobrada. Isso aparece na qualidade das suas respostas.</p>
+    <p>O conteúdo é escrito para quem está começando de fora da área, sem exigir programação nem estatística.</p>
+  </div>
+
+</main>
+
+<script src="layout.js"></script>
+<script>try { montarLayout("cursos"); } catch (e) {}</script>
+</body>
+</html>
