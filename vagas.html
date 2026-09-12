@@ -37,6 +37,7 @@
   .topo p.lead { margin-bottom:26px; max-width:60ch; }
 
   /* números em linha, sem virar quatro cartões */
+  .numeros[hidden] { display:none; }
   .numeros {
     display:flex; flex-wrap:wrap; gap:34px;
     padding:20px 0 0; border-top:1px solid var(--line-soft);
@@ -85,24 +86,56 @@
   @media (max-width:720px){ .portas { grid-template-columns:1fr; } }
 
   .porta {
-    display:flex; flex-direction:column; gap:7px;
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:15px;
-    padding:21px 23px 19px; text-decoration:none; color:inherit;
-    transition:border-color .18s, background .18s;
+    position:relative; display:flex; flex-direction:column; min-height:196px;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:17px;
+    padding:26px 28px 24px; text-decoration:none; color:inherit; overflow:hidden;
+    transition:border-color .2s, background .2s, box-shadow .2s;
   }
-  .porta:hover { border-color:var(--signal-dim); background:var(--panel-2); }
-  .porta .p-nome {
-    font-family:var(--display); font-weight:400; font-size:21px;
-    letter-spacing:-0.015em; color:var(--ink); line-height:1.2;
+  .porta::after {
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:var(--signal); opacity:0; transition:opacity .2s;
   }
-  .porta .p-sub { font-size:13px; color:var(--ink-2); line-height:1.55; max-width:38ch; }
-  .porta .p-qt {
-    margin-top:9px; font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums;
-  }
-  .porta .p-qt b { color:var(--signal); font-weight:600; }
-  .porta .p-qt .nv { color:var(--amber); }
+  .porta:hover { border-color:var(--line); box-shadow:0 18px 36px -28px rgba(16,32,58,.30); }
+  .porta:hover::after { opacity:.7; }
 
-  /* categorias e áreas: linha, não cartão, para caber muita e não sobrar buraco */
+  /* o número é a âncora: a faixa de estatística do topo sai daqui para não repetir */
+  .porta .p-num {
+    display:flex; align-items:baseline; gap:8px; margin-bottom:9px;
+    font-family:var(--display); font-weight:400; letter-spacing:-0.02em; color:var(--ink);
+    font-size:44px; line-height:1; font-variant-numeric:tabular-nums;
+  }
+  .porta .p-num span { font-family:var(--body); font-size:13px; color:var(--ink-3); letter-spacing:0; }
+  .porta .p-nome { font-size:15.5px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; }
+  .porta .p-sub { margin-top:5px; font-size:13px; color:var(--ink-2); line-height:1.55; max-width:40ch; }
+  .porta .p-pe {
+    margin-top:auto; padding-top:16px; font-size:12.5px; color:var(--ink-3);
+    font-variant-numeric:tabular-nums;
+  }
+  .porta .p-pe .nv { color:var(--amber); }
+
+  /* a porta da formação usa o roxo que o site já reserva para área de diploma */
+  .porta.form::after { background:var(--violet); }
+  .porta.form .p-num { color:var(--violet); }
+
+  /* os cinco tipos de trabalho: quadro, porque são poucos e fixos */
+  .quadros { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  @media (max-width:1080px){ .quadros { grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:620px){ .quadros { grid-template-columns:repeat(2,1fr); } }
+
+  .qd {
+    display:flex; flex-direction:column; justify-content:space-between; gap:14px;
+    min-height:134px; min-width:0;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:14px;
+    padding:16px 17px; text-decoration:none; color:inherit;
+    transition:border-color .16s, background .16s, transform .16s;
+  }
+  .qd:hover { border-color:var(--line); background:var(--panel-2); transform:translateY(-2px); }
+  .qd svg { width:19px; height:19px; color:var(--ink-3); }
+  .qd .nm { font-size:15px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; line-height:1.25; }
+  .qd .qt { font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; margin-top:3px; }
+  .qd .qt .nv { color:var(--amber); }
+
+  /* áreas de formação: lista longa e de nomes desiguais, então linha */
   .linhas { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
   @media (max-width:760px){ .linhas { grid-template-columns:1fr; } }
 
@@ -638,6 +671,7 @@ function render() {
   }
   document.getElementById("lateral").classList.remove("aberta");
 
+  document.getElementById("numeros").hidden = TELA === "inicio";
   const olho = document.getElementById("eyebrow");
   const tit = document.getElementById("titulo");
 
@@ -937,23 +971,36 @@ function montarInicio() {
   const acervo = GERAIS.concat(ESPECIFICAS);
   const areas = new Set(ESPECIFICAS.map(v => v.area).filter(Boolean)).size;
 
+  const pe = (lista, extra) => {
+    const n = contaNovas(lista);
+    const partes = [];
+    if (n >= 2) partes.push(`<span class="nv">${n} novas nesta semana</span>`);
+    if (extra) partes.push(extra);
+    return partes.join(" · ") || "&nbsp;";
+  };
+
   const portas = `
     <a class="porta" href="vagas.html?ver=todas" data-ir>
-      <span class="p-nome">Vagas abertas a todos</span>
-      <span class="p-sub">Sem exigência de diploma. Anotação, avaliação, tradução e QA.</span>
-      <span class="p-qt">${conta(GERAIS.length, "vaga", "vagas")}${novas(GERAIS)}</span>
+      <span class="p-num">${GERAIS.length}<span>${GERAIS.length === 1 ? "vaga" : "vagas"}</span></span>
+      <span class="p-nome">Abertas a todos</span>
+      <span class="p-sub">Sem exigência de diploma. Anotação de dados, avaliação de IA, tradução e QA.</span>
+      <span class="p-pe">${pe(GERAIS)}</span>
     </a>
-    <a class="porta" href="vagas.html?areas=1" data-ir>
-      <span class="p-nome">Vagas que pedem formação</span>
-      <span class="p-sub">Trabalho de anotação e avaliação dentro da sua área de diploma, em ${areas} áreas.</span>
-      <span class="p-qt">${conta(ESPECIFICAS.length, "vaga", "vagas")}${novas(ESPECIFICAS)}</span>
+    <a class="porta form" href="vagas.html?areas=1" data-ir>
+      <span class="p-num">${ESPECIFICAS.length}<span>${ESPECIFICAS.length === 1 ? "vaga" : "vagas"}</span></span>
+      <span class="p-nome">Pedem formação</span>
+      <span class="p-sub">O mesmo tipo de trabalho, dentro da área em que você é formado.</span>
+      <span class="p-pe">${pe(ESPECIFICAS, areas + " áreas")}</span>
     </a>`;
 
   const cats = CAT_ORDEM.filter(c => GERAIS.some(v => v.categoria === c)).map(c => {
     const dela = GERAIS.filter(v => v.categoria === c);
-    return `<a class="lin" href="vagas.html?cat=${encodeURIComponent(c)}" data-ir>
-      ${ICO[c] || ""}<span class="nm">${esc(CAT_NOME[c] || c)}</span>
-      <span class="qt">${dela.length}${novas(dela)}</span></a>`;
+    return `<a class="qd" href="vagas.html?cat=${encodeURIComponent(c)}" data-ir>
+      ${ICO[c] || ""}
+      <span>
+        <span class="nm">${esc(CAT_NOME[c] || c)}</span>
+        <span class="qt">${dela.length} ${dela.length === 1 ? "vaga" : "vagas"}${novas(dela)}</span>
+      </span></a>`;
   }).join("");
 
   const porEmp = {};
@@ -976,7 +1023,7 @@ function montarInicio() {
     <div class="bloco"><div class="portas">${portas}</div></div>
     <div class="bloco">
       <div class="grupo-titulo"><h2>Por tipo de trabalho</h2><span>entre as vagas abertas a todos</span></div>
-      <div class="linhas">${cats}</div>
+      <div class="quadros">${cats}</div>
     </div>
     <div class="bloco">
       <div class="grupo-titulo"><h2>Quem mais contrata</h2><span>somando as gerais e as de formação</span></div>
