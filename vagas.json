@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-12T11:47:09.337822+00:00",
-  "atualizado_br": "12/09/2026 às 11:47",
-  "total": 79,
+  "atualizado_em": "2026-09-13T12:55:02.841003+00:00",
+  "atualizado_br": "13/09/2026 às 12:55",
+  "total": 77,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -265,14 +265,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/747D27C93A",
+      "url": "https://apply.workable.com/j/0E486F6CCB",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-04",
+      "data_post": "2026-09-12",
       "data_vista": "2026-08-23",
-      "data_ref": "2026-09-04",
+      "data_ref": "2026-09-12",
       "data_oficial": true,
-      "id": "b43b38b26a"
+      "id": "3bc6ae6a7b"
     },
     {
       "empresa": "toloka",
@@ -317,14 +317,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/2C4A663F36",
+      "url": "https://apply.workable.com/j/F2E2EDCC50",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-04",
+      "data_post": "2026-09-13",
       "data_vista": "2026-08-23",
-      "data_ref": "2026-09-04",
+      "data_ref": "2026-09-13",
       "data_oficial": true,
-      "id": "d62a97508b"
+      "id": "4898cc531f"
     },
     {
       "empresa": "toloka",
@@ -1142,6 +1142,21 @@
     },
     {
       "empresa": "mercor",
+      "titulo": "Personalized Life Assistant Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://work.mercor.com/jobs/list_AAABnr6UO2Q-_nQyuwJD6Ykq/personalized-life-assistant-expert",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "",
+      "data_vista": "2026-09-13",
+      "data_ref": "2026-09-13",
+      "data_oficial": false,
+      "id": "e122e102e8"
+    },
+    {
+      "empresa": "mercor",
       "titulo": "Bilingual Writer - Portuguese (Brazil)",
       "local": "Remoto · Brasil",
       "categoria": "write",
@@ -1154,21 +1169,6 @@
       "data_ref": "2026-09-11",
       "data_oficial": false,
       "id": "88a47d5e8b"
-    },
-    {
-      "empresa": "mercor",
-      "titulo": "Personalized Life Assistant Expert <div class=\"ml-auto flex items-cent",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.mercor.com/jobs/list_AAABnr6UO2Q-_nQyuwJD6Ykq/personalized-life-assistant-expert",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "data_vista": "2026-09-12",
-      "data_ref": "2026-09-12",
-      "data_oficial": false,
-      "id": "e122e102e8"
     },
     {
       "empresa": "turing",
@@ -1199,36 +1199,6 @@
       "data_ref": "2026-09-03",
       "data_oficial": true,
       "id": "e9aed46285"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "CUA Data Annotation Trainer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/jobs?jobId=99912",
-      "commitment": "Analyst",
-      "fonte": "direto",
-      "data_post": "2026-08-13",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-13",
-      "data_oficial": true,
-      "id": "eddc7f768f"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Audio Transcribers - Audio Annotation & Diarization (US English)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/jobs?jobId=99819",
-      "commitment": "Linguistics",
-      "fonte": "direto",
-      "data_post": "2026-08-13",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-13",
-      "data_oficial": true,
-      "id": "53c044254d"
     },
     {
       "empresa": "turing",
