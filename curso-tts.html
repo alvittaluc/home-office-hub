@@ -40,7 +40,10 @@ html { scroll-behavior:smooth; }
 .cu-wrap { max-width:var(--wrap,1180px); margin:0 auto; padding:0 20px; }
 
 /* ── abertura ── */
-.cu-topo { padding:48px 0 34px; border-bottom:1px solid var(--line,#DED7CA); }
+.cu-topo { max-width:72ch; margin:0 auto; padding:44px 0 30px; border-bottom:1px solid var(--line,#DED7CA); }
+.cu-interna .cu-topo { padding:30px 0 18px; }
+.cu-interna .cu-topo h1 { font-size:clamp(21px,2.4vw,27px); margin-bottom:0; max-width:30ch; }
+.cu-interna .cu-topo .cu-lead, .cu-interna .cu-topo .cu-fatos { display:none; }
 .cu-topo h1 {
   font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
   font-size:clamp(30px,4vw,48px); line-height:1.08; letter-spacing:-0.015em;
@@ -55,52 +58,91 @@ html { scroll-behavior:smooth; }
 }
 .cu-fato svg { color:var(--signal,#1A4893); }
 
-/* ── grade de duas colunas ── */
-.cu-grade { display:grid; grid-template-columns:274px minmax(0,1fr); gap:56px; padding:40px 0 110px; }
+/* ── grade: uma coluna. A trilha lateral fica fora do fluxo ── */
+.cu-grade { display:block; padding:30px 0 110px; }
 
-/* ── coluna lateral ── */
-.cu-lado { position:sticky; top:96px; align-self:start; min-width:0; max-height:calc(100vh - 130px); overflow-y:auto; padding-right:6px; }
-.cu-lado::-webkit-scrollbar { width:6px; }
-.cu-lado::-webkit-scrollbar-thumb { background:var(--line,#DED7CA); border-radius:99px; }
-
-.cu-sum-titulo {
-  font-size:11px; letter-spacing:0.13em; text-transform:uppercase;
-  color:var(--ink-3,#8A94A1); margin:0 0 14px;
+/* ── trilha lateral minimalista ── */
+.cu-rail {
+  position:fixed; left:14px; top:50%; transform:translateY(-50%); z-index:20;
+  width:44px; padding:14px 12px; border-radius:20px;
+  background:transparent; box-shadow:none;
+  transition:width .22s ease, background .22s ease, box-shadow .22s ease, padding .22s ease;
 }
-.cu-barra { height:4px; border-radius:99px; background:var(--line-soft,#EAE4D9); overflow:hidden; margin-bottom:8px; }
-.cu-barra span { display:block; height:100%; width:0; background:var(--signal,#1A4893); border-radius:99px; transition:width .35s; }
-.cu-barra-txt { font-size:12px; color:var(--ink-3,#8A94A1); margin:0 0 22px; }
-
-.cu-sum { list-style:none; margin:0; padding:0; }
-.cu-sum > li { margin-bottom:6px; }
-.cu-aula-link {
-  display:flex; align-items:flex-start; gap:9px; padding:7px 0;
-  font-size:14.5px; font-weight:600; color:var(--ink,#10203A); line-height:1.4;
+.cu-rail:hover, .cu-rail:focus-within {
+  width:260px; padding:16px 14px;
+  background:rgba(255,255,255,0.86);
+  box-shadow:0 20px 48px -28px rgba(16,32,58,0.5), inset 0 0 0 1px var(--line-soft,#EAE4D9);
+  backdrop-filter:blur(12px) saturate(1.3); -webkit-backdrop-filter:blur(12px) saturate(1.3);
 }
-.cu-aula-link:hover { color:var(--signal,#1A4893); }
-.cu-num {
-  flex:0 0 auto; width:19px; height:19px; margin-top:1px; border-radius:99px;
-  display:grid; place-items:center; font-size:11px; font-weight:600;
-  color:var(--ink-3,#8A94A1); box-shadow:inset 0 0 0 1px var(--line,#DED7CA);
+.cu-rail-abre { display:none; }
+.cu-rail-lista { display:flex; flex-direction:column; gap:1px; }
+.cu-rail-item {
+  display:flex; align-items:center; gap:12px; padding:4px 2px; border-radius:10px;
+  color:var(--ink-2,#54606F); text-decoration:none;
 }
-.cu-aula-link.cu-feita .cu-num { background:var(--signal,#1A4893); color:#fff; box-shadow:none; font-size:0; }
-.cu-aula-link.cu-feita .cu-num::after { content:'✓'; font-size:11px; }
-
-.cu-sub { list-style:none; margin:2px 0 12px; padding:0 0 0 28px; border-left:1px solid var(--line-soft,#EAE4D9); margin-left:9px; }
-.cu-sub li a {
-  display:block; padding:5px 0; font-size:13.5px; line-height:1.45;
-  color:var(--ink-2,#54606F);
+.cu-rail-num {
+  flex:0 0 auto; width:20px; height:20px; border-radius:99px; display:grid; place-items:center;
+  font-size:10.5px; font-weight:600; font-style:normal; color:var(--ink-3,#8A94A1);
+  background:rgba(255,255,255,0.55); box-shadow:inset 0 0 0 1px var(--line,#DED7CA);
+  transition:background .18s, color .18s, box-shadow .18s;
 }
-.cu-sub li a:hover { color:var(--signal,#1A4893); }
-.cu-sub li a.cu-ativo { color:var(--signal,#1A4893); font-weight:600; }
+.cu-rail:hover .cu-rail-num, .cu-rail:focus-within .cu-rail-num { background:var(--bg,#F7F4EF); }
+.cu-rail-nome {
+  font-size:13px; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  opacity:0; transform:translateX(-4px); transition:opacity .18s, transform .18s;
+}
+.cu-rail:hover .cu-rail-nome, .cu-rail:focus-within .cu-rail-nome { opacity:1; transform:none; }
+.cu-rail-item:hover .cu-rail-num { box-shadow:inset 0 0 0 1px var(--ink-3,#8A94A1); }
+.cu-rail-item:hover .cu-rail-nome { color:var(--ink,#10203A); }
+.cu-rail-item.cu-feita .cu-rail-num { color:var(--signal,#1A4893); box-shadow:inset 0 0 0 1px var(--signal-dim,#4E9AC8); }
+.cu-rail-item.cu-atual .cu-rail-num { background:var(--signal,#1A4893); color:#fff; box-shadow:none; }
+.cu-rail-item.cu-atual .cu-rail-nome { color:var(--ink,#10203A); font-weight:600; }
 
-/* botão de sumário no celular */
-.cu-abre-sum { display:none; }
+/* subseções: tracinhos quando fechada, lista quando aberta */
+.cu-rail-subs { display:none; margin:3px 0 8px 32px; padding-left:12px; border-left:1px solid var(--line-soft,#EAE4D9); }
+.cu-rail-item.cu-atual + .cu-rail-subs { display:block; }
+.cu-rail-subs a {
+  display:block; font-size:12.5px; line-height:1.35; padding:4px 0; text-decoration:none;
+  color:var(--ink-3,#8A94A1); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.cu-rail-subs a:hover { color:var(--signal,#1A4893); }
+.cu-rail-subs a.cu-ativo { color:var(--signal,#1A4893); }
+.cu-rail:not(:hover):not(:focus-within) .cu-rail-subs { margin:5px 0 9px 31px; padding-left:0; border-left:0; }
+.cu-rail:not(:hover):not(:focus-within) .cu-rail-subs a {
+  width:9px; height:3px; padding:0; margin:5px 0; border-radius:99px;
+  background:var(--line,#DED7CA); font-size:0; color:transparent;
+}
+.cu-rail:not(:hover):not(:focus-within) .cu-rail-subs a.cu-ativo { width:15px; background:var(--signal-dim,#4E9AC8); }
+
+.cu-rail-prog { height:3px; border-radius:99px; background:var(--line-soft,#EAE4D9); overflow:hidden; margin:14px 2px 6px; }
+.cu-rail-prog span { display:block; height:100%; width:0; background:var(--signal,#1A4893); border-radius:99px; transition:width .35s; }
+.cu-rail-prog-txt {
+  font-size:11px; color:var(--ink-3,#8A94A1); margin:0 2px; white-space:nowrap;
+  opacity:0; transition:opacity .18s;
+}
+.cu-rail:hover .cu-rail-prog-txt, .cu-rail:focus-within .cu-rail-prog-txt { opacity:1; }
+
+/* ── navegação entre aulas, no fim de cada página ── */
+.cu-nav {
+  display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  margin-top:40px; padding-top:22px; border-top:1px solid var(--line,#DED7CA);
+}
+.cu-nav-prev {
+  display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600;
+  color:var(--ink-2,#54606F); text-decoration:none; min-width:0; max-width:100%;
+}
+.cu-nav-prev:hover { color:var(--signal,#1A4893); }
+.cu-nav .cu-concluir, .cu-nav .cu-bt-forte, .cu-nav .cu-bt-leve { margin:0; min-width:0; max-width:100%; }
+.cu-nav-prev span, .cu-nav .cu-bt-leve span {
+  min-width:0; max-width:40ch; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.cu-nav-espaco { flex:1 1 auto; }
 
 /* ── conteúdo ── */
-.cu-conteudo { max-width:74ch; min-width:0; }
-.cu-aula { padding-bottom:18px; }
-.cu-aula + .cu-aula { padding-top:22px; }
+.cu-conteudo { max-width:72ch; margin:0 auto; min-width:0; }
+.cu-aula[hidden] { display:none !important; }
+.cu-aula { animation:cu-entra .24s ease; }
+@keyframes cu-entra { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
 
 .cu-aula-cap { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
 .cu-aula-cap span {
@@ -128,11 +170,11 @@ html { scroll-behavior:smooth; }
 .cu-conteudo li { margin-bottom:8px; }
 
 .cu-termo { color:var(--ink,#10203A); font-weight:600; }
-.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve) {
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve):not(.cu-nav-prev) {
   color:var(--signal,#1A4893); text-decoration:underline; text-decoration-thickness:1px;
   text-underline-offset:2px;
 }
-.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve):hover { text-decoration-thickness:2px; }
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve):not(.cu-nav-prev):hover { text-decoration-thickness:2px; }
 
 /* lista de fontes */
 .cu-fontes { list-style:none; padding:0; margin:0 0 18px; }
@@ -475,32 +517,58 @@ html { scroll-behavior:smooth; }
 
 /* impressão: só o certificado */
 @media print {
-  body * { visibility:hidden !important; }
-  #certificado, #certificado * { visibility:visible !important; }
-  #certificado { position:absolute; inset:0; margin:0; }
+  @page { margin:12mm; }
+  body > * { display:none !important; }
+  body > .cu-wrap { display:block !important; max-width:none !important; padding:0 !important; }
+  .cu-wrap > * { display:none !important; }
+  .cu-wrap > .cu-grade { display:block !important; padding:0 !important; }
+  .cu-grade > * { display:none !important; }
+  .cu-grade > .cu-conteudo { display:block !important; max-width:none !important; margin:0 !important; }
+  .cu-conteudo > section.cu-aula { display:none !important; }
+  .cu-conteudo > section#quiz { display:block !important; animation:none !important; padding:0 !important; }
+  #quiz > * { display:none !important; }
+  #quiz > #certArea { display:block !important; margin:0 !important; padding:0 !important; border:0 !important; }
+  #certArea > * { display:none !important; }
+  #certArea > #certificado:not([hidden]) { display:block !important; margin:0 !important; }
   .cu-cert-acoes, .cu-cert-nota { display:none !important; }
 }
 
 /* ── responsivo ── */
-@media (max-width:1080px){
-  .cu-grade { grid-template-columns:minmax(0,1fr); gap:0; padding-top:26px; }
-  .cu-conteudo { max-width:none; }
-  .cu-lado {
-    position:sticky; top:78px; max-height:none; overflow:visible; z-index:5;
-    background:var(--bg,#F7F4EF); padding:10px 0 12px; margin-bottom:20px;
-    border-bottom:1px solid var(--line,#DED7CA);
+@media (max-width:1239px){
+  .cu-rail {
+    position:sticky; top:78px; left:auto; transform:none; width:auto;
+    padding:9px 0 11px; margin:0 0 18px; z-index:6; border-radius:0;
+    background:var(--bg,#F7F4EF); box-shadow:none;
+    backdrop-filter:none; -webkit-backdrop-filter:none;
+    border-bottom:1px solid var(--line-soft,#EAE4D9);
   }
-  .cu-abre-sum {
-    display:flex; align-items:center; justify-content:space-between; width:100%;
-    appearance:none; background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
-    border-radius:12px; padding:12px 15px; font-family:inherit; font-size:14.5px;
-    font-weight:600; color:var(--ink,#10203A); cursor:pointer;
+  .cu-rail:hover, .cu-rail:focus-within {
+    width:auto; padding:9px 0 11px; background:var(--bg,#F7F4EF); box-shadow:none;
+    backdrop-filter:none; -webkit-backdrop-filter:none;
   }
-  .cu-abre-sum svg { transition:transform .2s; color:var(--ink-3,#8A94A1); }
-  .cu-lado.cu-aberto .cu-abre-sum svg { transform:rotate(180deg); }
-  .cu-painel-sum { display:none; padding-top:16px; }
-  .cu-lado.cu-aberto .cu-painel-sum { display:block; }
-  .cu-sum-titulo { display:none; }
+  .cu-rail-abre {
+    display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%;
+    appearance:none; background:var(--panel,#FFF);
+    border:1px solid var(--line,#DED7CA); border-radius:12px; padding:11px 15px;
+    font-family:inherit; font-size:14px; font-weight:600; color:var(--ink,#10203A);
+    cursor:pointer; text-align:left;
+  }
+  .cu-rail-abre > span {
+    min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .cu-rail-abre svg { flex:0 0 auto; transition:transform .2s; color:var(--ink-3,#8A94A1); }
+  .cu-rail.cu-aberto .cu-rail-abre svg { transform:rotate(180deg); }
+  .cu-rail-lista {
+    display:none; background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
+    border-radius:14px; padding:10px; margin-top:8px;
+  }
+  .cu-rail.cu-aberto .cu-rail-lista { display:flex; }
+  .cu-rail-item { padding:9px 7px; }
+  .cu-rail-num { background:var(--bg,#F7F4EF); }
+  .cu-rail-nome { opacity:1; transform:none; white-space:normal; }
+  .cu-rail-subs, .cu-rail-item.cu-atual + .cu-rail-subs { display:none; }
+  .cu-rail-prog, .cu-rail-prog-txt { display:none !important; }
+  .cu-conteudo, .cu-topo { max-width:none; }
 }
 @media (max-width:820px){
   .cu-kap, .cu-ds { grid-template-columns:1fr; }
@@ -556,73 +624,75 @@ html { scroll-behavior:smooth; }
   <div class="cu-grade">
 
     <!-- ══════════ COLUNA LATERAL ══════════ -->
-    <aside class="cu-lado" id="lado">
-      <button class="cu-abre-sum" id="abreSum" type="button" aria-expanded="false">
-        <span>Sumário do curso</span>
+    <aside class="cu-rail" id="rail" aria-label="Aulas do curso">
+      <button class="cu-rail-abre" id="railAbre" type="button" aria-expanded="false">
+        <span id="railAtual">Aulas do curso</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-
-      <div class="cu-painel-sum">
-        <p class="cu-sum-titulo">Sumário do curso</p>
-        <div class="cu-barra"><span id="barra"></span></div>
-        <p class="cu-barra-txt" id="barraTxt">0 de 4 aulas concluídas</p>
-
-        <ol class="cu-sum">
-          <li>
-            <a class="cu-aula-link" href="#aula1" data-aula="1"><i class="cu-num">1</i> O que se mede numa voz sintética</a>
-            <ul class="cu-sub">
-              <li><a href="#a1-tts">Como o áudio chega até você</a></li>
-              <li><a href="#a1-eixos">Os quatro eixos</a></li>
-              <li><a href="#a1-confusao">A confusão que atrapalha todo mundo</a></li>
-              <li><a href="#a1-ouvir">Como ouvir um estímulo</a></li>
-              <li><a href="#a1-pratica">Prática: qual eixo está sendo medido</a></li>
-              <li><a href="#a1-resumo">Resumo da aula</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="cu-aula-link" href="#aula2" data-aula="2"><i class="cu-num">2</i> MOS, CMOS e a família de escalas</a>
-            <ul class="cu-sub">
-              <li><a href="#a2-mos">O que MOS quer dizer</a></li>
-              <li><a href="#a2-acr">ACR, a escala de cinco pontos</a></li>
-              <li><a href="#a2-ccr">CCR e CMOS, a escala da comparação</a></li>
-              <li><a href="#a2-outras">P.835, MUSHRA e as escalas vizinhas</a></li>
-              <li><a href="#a2-pratica">Prática: escolha a escala certa</a></li>
-              <li><a href="#a2-resumo">Resumo da aula</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="cu-aula-link" href="#aula3" data-aula="3"><i class="cu-num">3</i> Como um teste sério é montado</a>
-            <ul class="cu-sub">
-              <li><a href="#a3-p808">O que a norma de crowdsourcing exige</a></li>
-              <li><a href="#a3-blizzard">Um exemplo aberto: o Blizzard Challenge</a></li>
-              <li><a href="#a3-suasetup">O que o seu lado precisa ter</a></li>
-              <li><a href="#a3-detalhe">Por que detalhe de método muda a nota</a></li>
-              <li><a href="#a3-pratica">Prática: diagnostique o setup</a></li>
-              <li><a href="#a3-resumo">Resumo da aula</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="cu-aula-link" href="#aula4" data-aula="4"><i class="cu-num">4</i> Defeitos com nome e comentário útil</a>
-            <ul class="cu-sub">
-              <li><a href="#a4-vocab">O vocabulário dos defeitos</a></li>
-              <li><a href="#a4-anatomia">A anatomia do comentário</a></li>
-              <li><a href="#a4-nota">Ligar o comentário à nota</a></li>
-              <li><a href="#a4-automatico">As métricas automáticas e o seu limite</a></li>
-              <li><a href="#a4-pratica">Prática: reescreva três comentários</a></li>
-              <li><a href="#a4-resumo">Resumo da aula</a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="cu-aula-link" href="#quiz"><i class="cu-num">✓</i> Quiz e certificado</a>
-          </li>
-          <li>
-            <a class="cu-aula-link" href="#glossario"><i class="cu-num">A</i> Glossário</a>
-          </li>
-          <li>
-            <a class="cu-aula-link" href="#fontes"><i class="cu-num">§</i> Fontes do curso</a>
-          </li>
-        </ol>
-      </div>
+      <nav class="cu-rail-lista" id="railLista">
+        <a class="cu-rail-item" href="#aula1" data-alvo="aula1" data-aula="1" title="O que se mede numa voz sintética">
+          <i class="cu-rail-num">1</i>
+          <span class="cu-rail-nome">O que se mede numa voz sintética</span>
+        </a>
+        <div class="cu-rail-subs">
+          <a href="#a1-tts">Como o áudio chega até você</a>
+          <a href="#a1-eixos">Os quatro eixos</a>
+          <a href="#a1-confusao">A confusão que atrapalha todo mundo</a>
+          <a href="#a1-ouvir">Como ouvir um estímulo</a>
+          <a href="#a1-pratica">Prática: qual eixo está sendo medido</a>
+          <a href="#a1-resumo">Resumo da aula</a>
+        </div>
+        <a class="cu-rail-item" href="#aula2" data-alvo="aula2" data-aula="2" title="MOS, CMOS e a família de escalas">
+          <i class="cu-rail-num">2</i>
+          <span class="cu-rail-nome">MOS, CMOS e a família de escalas</span>
+        </a>
+        <div class="cu-rail-subs">
+          <a href="#a2-mos">O que MOS quer dizer</a>
+          <a href="#a2-acr">ACR, a escala de cinco pontos</a>
+          <a href="#a2-ccr">CCR e CMOS, a escala da comparação</a>
+          <a href="#a2-outras">P.835, MUSHRA e as escalas vizinhas</a>
+          <a href="#a2-pratica">Prática: escolha a escala certa</a>
+          <a href="#a2-resumo">Resumo da aula</a>
+        </div>
+        <a class="cu-rail-item" href="#aula3" data-alvo="aula3" data-aula="3" title="Como um teste sério é montado">
+          <i class="cu-rail-num">3</i>
+          <span class="cu-rail-nome">Como um teste sério é montado</span>
+        </a>
+        <div class="cu-rail-subs">
+          <a href="#a3-p808">O que a norma de crowdsourcing exige</a>
+          <a href="#a3-blizzard">Um exemplo aberto: o Blizzard Challenge</a>
+          <a href="#a3-suasetup">O que o seu lado precisa ter</a>
+          <a href="#a3-detalhe">Por que detalhe de método muda a nota</a>
+          <a href="#a3-pratica">Prática: diagnostique o setup</a>
+          <a href="#a3-resumo">Resumo da aula</a>
+        </div>
+        <a class="cu-rail-item" href="#aula4" data-alvo="aula4" data-aula="4" title="Defeitos com nome e comentário útil">
+          <i class="cu-rail-num">4</i>
+          <span class="cu-rail-nome">Defeitos com nome e comentário útil</span>
+        </a>
+        <div class="cu-rail-subs">
+          <a href="#a4-vocab">O vocabulário dos defeitos</a>
+          <a href="#a4-anatomia">A anatomia do comentário</a>
+          <a href="#a4-nota">Ligar o comentário à nota</a>
+          <a href="#a4-automatico">As métricas automáticas e o seu limite</a>
+          <a href="#a4-pratica">Prática: reescreva três comentários</a>
+          <a href="#a4-resumo">Resumo da aula</a>
+        </div>
+        <a class="cu-rail-item" href="#quiz" data-alvo="quiz" title="Quiz e certificado">
+          <i class="cu-rail-num">✓</i>
+          <span class="cu-rail-nome">Quiz e certificado</span>
+        </a>
+        <a class="cu-rail-item" href="#glossario" data-alvo="glossario" title="Glossário">
+          <i class="cu-rail-num">A</i>
+          <span class="cu-rail-nome">Glossário</span>
+        </a>
+        <a class="cu-rail-item" href="#fontes" data-alvo="fontes" title="Fontes do curso">
+          <i class="cu-rail-num">§</i>
+          <span class="cu-rail-nome">Fontes do curso</span>
+        </a>
+      </nav>
+      <div class="cu-rail-prog"><span id="barra"></span></div>
+      <p class="cu-rail-prog-txt" id="barraTxt">0 de 4 aulas concluídas</p>
     </aside>
 
     <!-- ══════════ CONTEÚDO ══════════ -->
@@ -1644,7 +1714,7 @@ html { scroll-behavior:smooth; }
 
 <script>
 /* ══════════════════════════════════════════════════════════════
-   CURSO — comportamento da página.
+   CURSO — uma aula por página, trilha lateral e progresso.
    Nada aqui depende de biblioteca externa.
    ══════════════════════════════════════════════════════════════ */
 (function () {
@@ -1665,56 +1735,171 @@ html { scroll-behavior:smooth; }
   var estado = ler();
   if (!estado.aulas) estado.aulas = {};
 
-  /* ── figura 2.1: preenche a grade de pessoas ── */
+  /* ── figura da escala, quando existir ── */
   var grade = document.getElementById("gradeGente");
-  if (grade) {
-    for (var g = 0; g < 54; g++) grade.appendChild(document.createElement("i"));
+  if (grade) { for (var g = 0; g < 54; g++) grade.appendChild(document.createElement("i")); }
+
+  /* ── elementos principais ── */
+  var wrap = document.querySelector(".cu-wrap");
+  var conteudo = document.getElementById("conteudo");
+  var secoes = [].slice.call(document.querySelectorAll(".cu-conteudo > section.cu-aula"));
+  var rail = document.getElementById("rail");
+  var railItens = [].slice.call(document.querySelectorAll(".cu-rail-item"));
+  var railAtual = document.getElementById("railAtual");
+  var abre = document.getElementById("railAbre");
+  var atual = secoes.length ? secoes[0].id : null;
+
+  function titulo(sec) {
+    var h = sec.querySelector("h2");
+    return h ? h.textContent.trim() : sec.id;
+  }
+  function rotulo(sec) {
+    var item = railItens.filter(function (a) { return a.getAttribute("data-alvo") === sec.id; })[0];
+    if (item) {
+      var n = item.querySelector(".cu-rail-num");
+      var nome = item.querySelector(".cu-rail-nome");
+      var num = n ? n.textContent.trim() : "";
+      var txt = nome ? nome.textContent.trim() : titulo(sec);
+      return /^[0-9]+$/.test(num) ? "Aula " + num + ": " + txt : txt;
+    }
+    return titulo(sec);
   }
 
-  /* ── sumário no celular ── */
-  var lado = document.getElementById("lado");
-  var abre = document.getElementById("abreSum");
-  if (abre && lado) {
+  /* ── barra de navegação no fim de cada página ── */
+  secoes.forEach(function (sec, i) {
+    var nav = document.createElement("div");
+    nav.className = "cu-nav";
+
+    if (i > 0) {
+      var prev = document.createElement("a");
+      prev.className = "cu-nav-prev";
+      prev.href = "#" + secoes[i - 1].id;
+      prev.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>' +
+        '<span></span>';
+      prev.querySelector("span").textContent = rotulo(secoes[i - 1]);
+      nav.appendChild(prev);
+    }
+
+    var espaco = document.createElement("div");
+    espaco.className = "cu-nav-espaco";
+    nav.appendChild(espaco);
+
+    var concluir = sec.querySelector(".cu-concluir");
+    if (concluir) {
+      nav.appendChild(concluir);
+    } else if (i < secoes.length - 1) {
+      var prox = document.createElement("a");
+      prox.className = "cu-bt-leve";
+      prox.href = "#" + secoes[i + 1].id;
+      prox.innerHTML = "<span></span>" +
+        '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+      prox.querySelector("span").textContent = rotulo(secoes[i + 1]);
+      nav.appendChild(prox);
+    } else {
+      var volta = document.createElement("a");
+      volta.className = "cu-bt-leve";
+      volta.href = "cursos.html";
+      volta.innerHTML = "<span>Ver todos os cursos</span>" +
+        '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+      nav.appendChild(volta);
+    }
+    sec.appendChild(nav);
+  });
+
+  /* ── trocar de página ── */
+  function fecharMenu() {
+    if (rail) rail.classList.remove("cu-aberto");
+    if (abre) abre.setAttribute("aria-expanded", "false");
+  }
+
+  function pintarRail() {
+    railItens.forEach(function (a) {
+      var meu = a.getAttribute("data-alvo") === atual;
+      a.classList.toggle("cu-atual", meu);
+      if (meu) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    var sec = document.getElementById(atual);
+    if (railAtual && sec) railAtual.textContent = rotulo(sec);
+    if (wrap) wrap.classList.toggle("cu-interna", !!secoes.length && atual !== secoes[0].id);
+  }
+
+  function mostrar(id, ancora, rolar) {
+    if (!document.getElementById(id)) return;
+    atual = id;
+    secoes.forEach(function (s) { s.hidden = (s.id !== id); });
+    pintarRail();
+    fecharMenu();
+    marcarAtivo();
+    if (rolar === false) return;
+    if (ancora && ancora !== id) {
+      var alvo = document.getElementById(ancora);
+      if (alvo) {
+        var y = alvo.getBoundingClientRect().top + window.pageYOffset - 96;
+        window.scrollTo(0, y > 0 ? y : 0);
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function secaoDoId(id) {
+    var el = document.getElementById(id);
+    if (!el || !el.closest) return null;
+    var sec = el.closest("section.cu-aula");
+    return sec ? sec.id : null;
+  }
+
+  function irParaHash(rolar) {
+    if (!secoes.length) return;
+    var h = (location.hash || "").replace("#", "");
+    var sec = h ? secaoDoId(h) : null;
+    if (!sec) { mostrar(secoes[0].id, null, false); return; }
+    mostrar(sec, h, rolar);
+  }
+
+  window.addEventListener("hashchange", function () { irParaHash(true); });
+
+  /* links internos trocam de página em vez de rolar a lista inteira */
+  document.addEventListener("click", function (ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var alvoId = a.getAttribute("href").slice(1);
+    if (!alvoId) return;
+    var sec = secaoDoId(alvoId);
+    if (!sec) return;
+    ev.preventDefault();
+    if ("#" + alvoId === location.hash) mostrar(sec, alvoId, true);
+    else location.hash = alvoId;
+  });
+
+  if (abre && rail) {
     abre.addEventListener("click", function () {
-      var aberto = lado.classList.toggle("cu-aberto");
+      var aberto = rail.classList.toggle("cu-aberto");
       abre.setAttribute("aria-expanded", aberto ? "true" : "false");
     });
   }
 
-  /* ── links do sumário: fecham o painel no celular ── */
-  var links = [].slice.call(document.querySelectorAll(".cu-sub a, .cu-aula-link"));
-  links.forEach(function (a) {
-    a.addEventListener("click", function () {
-      if (lado && window.innerWidth <= 1080) {
-        lado.classList.remove("cu-aberto");
-        if (abre) abre.setAttribute("aria-expanded", "false");
-      }
-    });
-  });
-
-  /* ── marca no sumário a seção que está na tela ── */
-  var subLinks = [].slice.call(document.querySelectorAll(".cu-sub a"));
-  var alvos = subLinks.map(function (a) {
-    return document.getElementById(a.getAttribute("href").slice(1));
-  });
+  /* ── marca a subseção que está na tela ── */
+  var subLinks = [].slice.call(document.querySelectorAll(".cu-rail-subs a"));
   var ticando = false;
   function marcarAtivo() {
     ticando = false;
-    var melhor = -1, menorDist = Infinity;
-    for (var i = 0; i < alvos.length; i++) {
-      if (!alvos[i]) continue;
-      var t = alvos[i].getBoundingClientRect().top - 130;
+    var melhor = null, menorDist = Infinity;
+    subLinks.forEach(function (a) {
+      var alvo = document.getElementById(a.getAttribute("href").slice(1));
+      if (!alvo || alvo.offsetParent === null) return;
+      var t = alvo.getBoundingClientRect().top - 130;
       var d = t <= 0 ? -t : t * 3;
-      if (d < menorDist) { menorDist = d; melhor = i; }
-    }
-    subLinks.forEach(function (a, i) {
-      a.classList.toggle("cu-ativo", i === melhor);
+      if (d < menorDist) { menorDist = d; melhor = a; }
     });
+    subLinks.forEach(function (a) { a.classList.toggle("cu-ativo", a === melhor); });
   }
   window.addEventListener("scroll", function () {
     if (!ticando) { ticando = true; window.requestAnimationFrame(marcarAtivo); }
   }, { passive: true });
-  marcarAtivo();
 
   /* ── botões "ver o comentário" ── */
   [].slice.call(document.querySelectorAll(".cu-abrir-resp")).forEach(function (bt) {
@@ -1734,13 +1919,13 @@ html { scroll-behavior:smooth; }
     for (var n = 1; n <= 4; n++) {
       var feita = !!estado.aulas[n];
       if (feita) feitas++;
-      var link = document.querySelector('.cu-aula-link[data-aula="' + n + '"]');
-      if (link) link.classList.toggle("cu-feita", feita);
+      var item = document.querySelector('.cu-rail-item[data-aula="' + n + '"]');
+      if (item) item.classList.toggle("cu-feita", feita);
       var bt = document.querySelector('.cu-concluir[data-aula="' + n + '"]');
       if (bt) {
         bt.classList.toggle("cu-pronta", feita);
-        var rotulo = bt.getAttribute("data-rotulo") || bt.textContent.trim();
-        bt.lastChild.nodeValue = " " + (feita ? "Aula " + n + " concluída" : rotulo);
+        var texto = bt.getAttribute("data-rotulo") || bt.textContent.trim();
+        bt.lastChild.nodeValue = " " + (feita ? "Aula " + n + " concluída" : texto);
       }
     }
     if (barra) barra.style.width = (feitas / 4 * 100) + "%";
@@ -1752,8 +1937,8 @@ html { scroll-behavior:smooth; }
       estado.aulas[bt.getAttribute("data-aula")] = true;
       gravar(estado);
       pintarProgresso();
-      var proxima = document.getElementById(bt.getAttribute("data-proxima"));
-      if (proxima) proxima.scrollIntoView({ behavior: "smooth", block: "start" });
+      var prox = bt.getAttribute("data-proxima");
+      if (prox && document.getElementById(prox)) location.hash = prox;
     });
   });
   pintarProgresso();
@@ -1773,9 +1958,9 @@ html { scroll-behavior:smooth; }
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       var perguntas = [].slice.call(form.querySelectorAll(".cu-q"));
-      var acertos = 0, respondidas = 0;
+      var acertos = 0;
 
-      perguntas.forEach(function (q, i) {
+      perguntas.forEach(function (q) {
         var marcada = q.querySelector("input:checked");
         var certa = q.getAttribute("data-certa");
         var fb = q.querySelector(".cu-q-fb");
@@ -1787,7 +1972,6 @@ html { scroll-behavior:smooth; }
           if (fb) fb.textContent = "Sem resposta marcada.";
           return;
         }
-        respondidas++;
         if (marcada.value === certa) {
           acertos++;
           q.classList.add("cu-acertou");
@@ -1814,9 +1998,9 @@ html { scroll-behavior:smooth; }
         res.style.color = aprovado ? "var(--signal,#1A4893)" : "var(--amber,#A85D24)";
       }
 
-      var destino = aprovado ? document.getElementById("cert") : perguntas.find(function (q) {
+      var destino = aprovado ? document.getElementById("cert") : perguntas.filter(function (q) {
         return q.classList.contains("cu-errou");
-      });
+      })[0];
       if (destino) destino.scrollIntoView({ behavior: "smooth", block: "center" });
     });
 
@@ -1868,8 +2052,7 @@ html { scroll-behavior:smooth; }
           trava.textContent = "Para liberar, acerte pelo menos 8 das 10 perguntas do quiz acima.";
           trava.style.fontWeight = "600";
         }
-        var q = document.getElementById("quiz");
-        if (q) q.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
       var nome = (nomeInput ? nomeInput.value : "").trim().replace(/\s+/g, " ");
@@ -1887,7 +2070,6 @@ html { scroll-behavior:smooth; }
     });
   }
 
-  /* já tinha certificado emitido antes */
   if (estado.aprovado === true && estado.nome && estado.data && estado.codigo) {
     mostrarCertificado(estado.nome, estado.data, estado.codigo);
   }
@@ -1905,6 +2087,9 @@ html { scroll-behavior:smooth; }
       if (nomeInput) { nomeInput.value = estado.nome || ""; nomeInput.focus(); }
     });
   }
+
+  /* ── abre a página certa ── */
+  irParaHash(false);
 })();
 </script>
 </body>
