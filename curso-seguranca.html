@@ -643,19 +643,28 @@ html { scroll-behavior:smooth; }
           mostra.</p>
 
         <h3 id="a1-politica">Onde o proibido está escrito</h3>
-        <p>Antes de qualquer guideline de projeto existe um documento mais antigo e mais amplo: a
+        <p>Guideline, palavra que aparece o curso inteiro, é o documento do projeto que define a tarefa e as
+          regras que você aplica. Antes de qualquer guideline de projeto, porém, existe um documento mais antigo
+          e mais amplo: a
           <span class="cu-termo">política de uso</span> da empresa. Ela define o que não se pode fazer com o
           produto, vale para todos os clientes, e é a camada que a guideline de um projeto específico detalha, e
           nunca contradiz.</p>
         <p>Essas políticas são públicas, e ler uma inteira é provavelmente a coisa mais útil que alguém pode
           fazer antes de entrar numa fila de segurança. A Política de Uso da Anthropic, com vigência declarada de
           15 de setembro de 2025, organiza o que chama de padrões universais de uso em categorias escritas como
-          proibições diretas. Entre elas: não violar leis aplicáveis, não comprometer infraestrutura crítica, não
-          comprometer sistemas de computador ou de rede, não desenvolver nem projetar armas, não incitar violência
-          ou comportamento de ódio, não comprometer privacidade ou direitos de identidade, não comprometer a
-          segurança de crianças, não criar conteúdo psicologicamente ou emocionalmente danoso, não criar nem
-          espalhar desinformação, e não usar para fins de censura, vigilância ou finalidades proibidas de
-          aplicação da lei.</p>
+          proibições diretas. Entre elas:</p>
+        <ul>
+          <li>não violar leis aplicáveis;</li>
+          <li>não comprometer infraestrutura crítica;</li>
+          <li>não comprometer sistemas de computador ou de rede;</li>
+          <li>não desenvolver nem projetar armas;</li>
+          <li>não incitar violência ou comportamento de ódio;</li>
+          <li>não comprometer privacidade ou direitos de identidade;</li>
+          <li>não comprometer a segurança de crianças;</li>
+          <li>não criar conteúdo psicologicamente ou emocionalmente danoso;</li>
+          <li>não criar nem espalhar desinformação;</li>
+          <li>não usar para censura, vigilância ou finalidades proibidas de aplicação da lei.</li>
+        </ul>
         <p>Dois detalhes de forma, que dizem muito sobre como esse mundo pensa. Primeiro, a política tem
           <strong>data de vigência</strong>: ela muda, e a versão importa. Segundo, além das proibições, o
           documento traz requisitos adicionais para casos de <strong>alto risco</strong>, quando o uso afeta o
@@ -670,8 +679,8 @@ html { scroll-behavior:smooth; }
         <p>Classificar dano fica muito mais fácil com uma lista de categorias pronta na cabeça. A lista pública
           mais utilizável vem do NIST, o instituto de padrões dos Estados Unidos, no documento
           <em>Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</em>,
-          identificado como NIST AI 600-1 e publicado em julho de 2024. Ele é um perfil complementar ao
-          framework de gestão de risco de IA da mesma instituição, e enumera doze riscos.</p>
+          identificado como NIST AI 600-1 e publicado em julho de 2024. Ele complementa o conjunto de diretrizes
+          de gestão de risco de IA da mesma instituição, e enumera doze riscos.</p>
 
         <div class="cu-fig">
           <p class="cu-fig-cap"><b>Figura 1.1</b> · Os doze riscos do perfil de IA generativa do NIST</p>
@@ -1057,9 +1066,9 @@ html { scroll-behavior:smooth; }
           documentado vira teste permanente.</p>
 
         <h3 id="a3-limites">O que red teaming não diz</h3>
-        <p>O documento da OpenAI é explícito quanto ao limite: red teaming, por si só, não é uma panaceia para
-          avaliação de risco. E acrescenta que riscos identificados num esforço pontual podem estar subavaliados,
-          ou já não refletir o sistema atualizado.</p>
+        <p>O documento da OpenAI é explícito quanto ao limite: red teaming, sozinho, não resolve a avaliação de
+          risco. E acrescenta que riscos identificados num esforço pontual podem estar subestimados, ou já não
+          refletir o sistema depois de atualizado.</p>
         <p>Três consequências práticas para quem trabalha nessas filas:</p>
         <ul>
           <li><strong>Ausência de achado não é prova de segurança.</strong> Significa que aquele time, naquele
@@ -1344,7 +1353,7 @@ html { scroll-behavior:smooth; }
               modelo ficou mais difícil de atacar conforme a escala aumentou?</p>
             <label><input type="radio" name="q7" value="a"><span>O modelo treinado com RLHF</span></label>
             <label><input type="radio" name="q7" value="b"><span>O modelo simples, sem alinhamento</span></label>
-            <label><input type="radio" name="q7" value="c"><span>O modelo apenas orientado por prompt</span></label>
+            <label><input type="radio" name="q7" value="c"><span>O modelo apenas orientado por uma instrução fixa</span></label>
             <label><input type="radio" name="q7" value="d"><span>Todos os quatro, na mesma proporção</span></label>
             <p class="cu-q-fb"></p>
             <p class="cu-q-pq">Os outros três mostraram tendência plana nos três tamanhos testados. O estudo
@@ -1359,8 +1368,8 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q8" value="c"><span>Transformar os achados em avaliações repetíveis e automatizadas</span></label>
             <label><input type="radio" name="q8" value="d"><span>A lista de modelos que devem ser descontinuados</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">O mesmo documento afirma que red teaming, sozinho, não é panaceia para avaliação de
-              risco, e que achados envelhecem com a atualização do sistema.</p>
+            <p class="cu-q-pq">O mesmo documento afirma que red teaming, sozinho, não resolve a avaliação de
+              risco, e que os achados envelhecem quando o sistema é atualizado.</p>
           </div>
 
           <div class="cu-q" data-certa="b">

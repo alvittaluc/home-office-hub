@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fonética Prática para Quem Avalia Voz — Home Office Hub</title>
+<meta name="description" content="Curso de fonética aplicada à avaliação de voz: sons do português brasileiro, tonicidade, prosódia, e como o texto vira som num sistema de fala.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fonética Prática para Quem Avalia Voz — Home Office Hub">
+<meta property="og:description" content="Quatro aulas para descrever com precisão o que você ouviu, em vez de escrever que soou estranho.">
+<meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/curso-fonetica.html">
+<meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css" onerror="document.documentElement.classList.add('f-solto')">
+
+<style>
+/* ── Visual de reserva: só entra em ação quando o estilo.css não é encontrado. ── */
+html.f-solto body {
+  font-family:'Geist',system-ui,sans-serif; background:#F7F4EF; color:#10203A;
+  line-height:1.55; margin:0;
+}
+html.f-solto a { color:inherit; text-decoration:none; }
+html.f-solto .eyebrow {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:#1A4893;
+  display:flex; align-items:center; gap:9px; margin-bottom:14px;
+}
+html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#1A4893; }
+
+/* ══════════════════════════════════════════════════════════════
+   CURSO — página de leitura, coluna lateral fixa com o sumário.
+   Tudo com prefixo .cu- para não encostar no estilo.css.
+   ══════════════════════════════════════════════════════════════ */
+
+html { scroll-behavior:smooth; }
+.cu-wrap, .cu-wrap *, .cu-wrap *::before, .cu-wrap *::after { box-sizing:border-box; }
+.cu-wrap { max-width:var(--wrap,1180px); margin:0 auto; padding:0 20px; }
+
+/* ── abertura ── */
+.cu-topo { padding:48px 0 34px; border-bottom:1px solid var(--line,#DED7CA); }
+.cu-topo h1 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(30px,4vw,48px); line-height:1.08; letter-spacing:-0.015em;
+  color:var(--ink,#10203A); margin:0 0 16px; max-width:20ch;
+}
+.cu-topo .cu-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); max-width:62ch; margin:0 0 22px; }
+.cu-fatos { display:flex; flex-wrap:wrap; gap:8px; }
+.cu-fato {
+  font-size:12.5px; color:var(--ink-2,#54606F); background:var(--panel,#FFF);
+  border-radius:99px; padding:6px 13px; box-shadow:inset 0 0 0 1px var(--line,#DED7CA);
+  display:inline-flex; align-items:center; gap:7px;
+}
+.cu-fato svg { color:var(--signal,#1A4893); }
+
+/* ── grade de duas colunas ── */
+.cu-grade { display:grid; grid-template-columns:274px minmax(0,1fr); gap:56px; padding:40px 0 110px; }
+
+/* ── coluna lateral ── */
+.cu-lado { position:sticky; top:96px; align-self:start; min-width:0; max-height:calc(100vh - 130px); overflow-y:auto; padding-right:6px; }
+.cu-lado::-webkit-scrollbar { width:6px; }
+.cu-lado::-webkit-scrollbar-thumb { background:var(--line,#DED7CA); border-radius:99px; }
+
+.cu-sum-titulo {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase;
+  color:var(--ink-3,#8A94A1); margin:0 0 14px;
+}
+.cu-barra { height:4px; border-radius:99px; background:var(--line-soft,#EAE4D9); overflow:hidden; margin-bottom:8px; }
+.cu-barra span { display:block; height:100%; width:0; background:var(--signal,#1A4893); border-radius:99px; transition:width .35s; }
+.cu-barra-txt { font-size:12px; color:var(--ink-3,#8A94A1); margin:0 0 22px; }
+
+.cu-sum { list-style:none; margin:0; padding:0; }
+.cu-sum > li { margin-bottom:6px; }
+.cu-aula-link {
+  display:flex; align-items:flex-start; gap:9px; padding:7px 0;
+  font-size:14.5px; font-weight:600; color:var(--ink,#10203A); line-height:1.4;
+}
+.cu-aula-link:hover { color:var(--signal,#1A4893); }
+.cu-num {
+  flex:0 0 auto; width:19px; height:19px; margin-top:1px; border-radius:99px;
+  display:grid; place-items:center; font-size:11px; font-weight:600;
+  color:var(--ink-3,#8A94A1); box-shadow:inset 0 0 0 1px var(--line,#DED7CA);
+}
+.cu-aula-link.cu-feita .cu-num { background:var(--signal,#1A4893); color:#fff; box-shadow:none; font-size:0; }
+.cu-aula-link.cu-feita .cu-num::after { content:'✓'; font-size:11px; }
+
+.cu-sub { list-style:none; margin:2px 0 12px; padding:0 0 0 28px; border-left:1px solid var(--line-soft,#EAE4D9); margin-left:9px; }
+.cu-sub li a {
+  display:block; padding:5px 0; font-size:13.5px; line-height:1.45;
+  color:var(--ink-2,#54606F);
+}
+.cu-sub li a:hover { color:var(--signal,#1A4893); }
+.cu-sub li a.cu-ativo { color:var(--signal,#1A4893); font-weight:600; }
+
+/* botão de sumário no celular */
+.cu-abre-sum { display:none; }
+
+/* ── conteúdo ── */
+.cu-conteudo { max-width:74ch; min-width:0; }
+.cu-aula { padding-bottom:18px; }
+.cu-aula + .cu-aula { padding-top:22px; }
+
+.cu-aula-cap { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.cu-aula-cap span {
+  font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--signal,#1A4893);
+}
+.cu-aula-cap i { flex:1; height:1px; background:var(--line,#DED7CA); }
+
+.cu-aula h2 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(26px,3vw,35px); line-height:1.12; letter-spacing:-0.012em;
+  color:var(--ink,#10203A); margin:0 0 10px; scroll-margin-top:100px;
+}
+.cu-resumo-aula {
+  font-size:16px; line-height:1.62; color:var(--ink-2,#54606F);
+  padding:16px 18px; background:var(--bg-soft,#F1ECE3); border-radius:14px; margin:18px 0 30px;
+}
+.cu-conteudo h3 {
+  font-size:19px; font-weight:600; letter-spacing:-0.01em; color:var(--ink,#10203A);
+  margin:38px 0 12px; scroll-margin-top:100px;
+}
+.cu-conteudo h4 { font-size:15.5px; font-weight:600; color:var(--ink,#10203A); margin:24px 0 8px; }
+.cu-conteudo p { font-size:16px; line-height:1.72; color:var(--ink-2,#54606F); margin:0 0 16px; }
+.cu-conteudo strong { color:var(--ink,#10203A); font-weight:600; }
+.cu-conteudo ul, .cu-conteudo ol { font-size:16px; line-height:1.72; color:var(--ink-2,#54606F); padding-left:22px; margin:0 0 18px; }
+.cu-conteudo li { margin-bottom:8px; }
+
+.cu-termo { color:var(--ink,#10203A); font-weight:600; }
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve) {
+  color:var(--signal,#1A4893); text-decoration:underline; text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve):hover { text-decoration-thickness:2px; }
+
+/* lista de fontes */
+.cu-fontes { list-style:none; padding:0; margin:0 0 18px; }
+.cu-fontes li {
+  padding:13px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+  font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F);
+}
+.cu-fontes li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
+.cu-fontes b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:3px; }
+.cu-fontes em { display:block; font-size:13px; color:var(--ink-3,#8A94A1); font-style:normal; margin-top:3px; }
+
+/* caixa de exemplo, prompt e respostas */
+.cu-caixa {
+  border-left:3px solid var(--signal-dim,#4E9AC8); background:var(--panel,#FFF);
+  border-radius:0 14px 14px 0; padding:18px 20px; margin:0 0 20px;
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-caixa p { margin:0 0 12px; font-size:15.5px; }
+.cu-caixa p:last-child { margin:0; }
+.cu-rot { font-weight:600; color:var(--ink,#10203A); }
+
+/* prática */
+.cu-pratica { border:1px solid var(--line,#DED7CA); border-radius:18px; padding:24px 24px 8px; margin:26px 0 6px; background:var(--panel,#FFF); }
+.cu-pratica > h3 { margin-top:0; }
+.cu-selo {
+  display:inline-flex; align-items:center; gap:7px; font-size:11px; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--amber,#A85D24); margin-bottom:12px;
+}
+.cu-selo::before { content:''; width:18px; height:1px; background:var(--amber,#A85D24); }
+.cu-abrir-resp {
+  appearance:none; border:1px solid var(--line,#DED7CA); background:var(--bg-soft,#F1ECE3);
+  color:var(--ink,#10203A); font-family:inherit; font-size:14px; font-weight:600;
+  border-radius:99px; padding:9px 18px; cursor:pointer; margin-bottom:20px;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.cu-abrir-resp:hover { border-color:var(--ink-3,#8A94A1); }
+.cu-resp { display:none; border-top:1px solid var(--line-soft,#EAE4D9); padding-top:18px; margin-bottom:14px; }
+.cu-resp.cu-on { display:block; }
+
+/* figuras */
+.cu-fig { margin:30px 0 32px; }
+.cu-fig-cap { font-size:11px; letter-spacing:0.11em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:14px; }
+.cu-fig-cap b { color:var(--signal,#1A4893); font-weight:600; }
+.cu-fig-moldura {
+  border:1px solid var(--line,#DED7CA); background:var(--panel,#FFF);
+  border-radius:18px; padding:26px 22px; overflow-x:auto;
+}
+.cu-fig-nota { font-size:13px; line-height:1.6; color:var(--ink-3,#8A94A1); text-align:center; margin:12px 0 0; }
+
+/* peças dos diagramas */
+.cu-fluxo { display:flex; align-items:stretch; gap:10px; min-width:min-content; }
+.cu-passo {
+  flex:1 1 0; min-width:150px; border-radius:14px; padding:14px 15px;
+  background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-passo b { display:block; font-size:14px; color:var(--ink,#10203A); margin-bottom:5px; }
+.cu-passo span { display:block; font-size:12.5px; line-height:1.55; color:var(--ink-2,#54606F); }
+.cu-passo.cu-forte { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-passo.cu-forte b, .cu-passo.cu-forte span { color:#fff; }
+.cu-passo.cu-forte span { color:rgba(255,255,255,0.82); }
+.cu-seta { align-self:center; flex:0 0 auto; color:var(--ink-3,#8A94A1); }
+
+.cu-quem { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; min-width:min-content; }
+.cu-quem div {
+  font-size:12.5px; line-height:1.5; color:var(--ink-2,#54606F); text-align:center;
+  padding:9px 10px; border-radius:11px; border:1px dashed var(--line,#DED7CA);
+}
+.cu-quem b { color:var(--ink,#10203A); }
+
+/* ── botões ── */
+.cu-bt-forte, .cu-bt-leve {
+  appearance:none; font-family:inherit; font-size:14.5px; font-weight:600;
+  border-radius:99px; padding:12px 22px; cursor:pointer; border:1px solid transparent;
+  display:inline-flex; align-items:center; gap:9px; text-decoration:none;
+}
+.cu-bt-forte { background:var(--signal,#1A4893); color:#fff; }
+.cu-bt-forte:hover { filter:brightness(1.08); }
+.cu-bt-leve { background:var(--panel,#FFF); color:var(--ink,#10203A); border-color:var(--line,#DED7CA); }
+.cu-bt-leve:hover { border-color:var(--ink-3,#8A94A1); }
+
+.cu-concluir {
+  appearance:none; font-family:inherit; font-size:14.5px; font-weight:600; cursor:pointer;
+  display:inline-flex; align-items:center; gap:9px; margin:30px 0 10px;
+  background:var(--panel,#FFF); color:var(--signal,#1A4893);
+  border:1px solid var(--line,#DED7CA); border-radius:99px; padding:12px 22px;
+}
+.cu-concluir:hover { border-color:var(--signal,#1A4893); }
+.cu-concluir.cu-pronta { background:var(--signal,#1A4893); color:#fff; border-color:var(--signal,#1A4893); }
+
+/* ── figura 2.1, escala ── */
+.cu-esc { display:flex; flex-direction:column; align-items:stretch; }
+.cu-esc-linha { border-radius:14px; padding:13px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-rot { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:10px; }
+.cu-esc-par { display:flex; gap:10px; }
+.cu-esc-op { flex:1; display:flex; align-items:center; gap:9px; background:var(--panel,#FFF); border-radius:10px; padding:9px 11px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-op b { font-size:12px; color:var(--ink-3,#8A94A1); }
+.cu-esc-op i { flex:1; height:5px; border-radius:99px; background:var(--line,#DED7CA); }
+.cu-esc-op.cu-esc-esc { box-shadow:inset 0 0 0 2px var(--signal,#1A4893); }
+.cu-esc-op.cu-esc-esc b { color:var(--signal,#1A4893); }
+.cu-esc-op.cu-esc-esc i { background:var(--signal-dim,#4E9AC8); }
+.cu-esc-seta { display:grid; place-items:center; color:var(--ink-3,#8A94A1); padding:7px 0; }
+.cu-esc-bars { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.cu-esc-bars i { width:34px; height:7px; border-radius:99px; background:var(--signal-dim,#4E9AC8); opacity:0.5; }
+.cu-esc-bars i:first-child { opacity:1; background:var(--signal,#1A4893); }
+.cu-esc-bars em { font-size:12px; color:var(--ink-3,#8A94A1); font-style:normal; margin-left:4px; }
+.cu-esc-dois { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.cu-esc-cx { border-radius:14px; padding:13px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-cx b { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:4px; }
+.cu-esc-cx span { font-size:12.5px; line-height:1.5; color:var(--ink-2,#54606F); }
+.cu-esc-cx.cu-esc-forte { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-esc-cx.cu-esc-forte b { color:#fff; }
+.cu-esc-cx.cu-esc-forte span { color:rgba(255,255,255,0.82); }
+.cu-esc-gente { border-radius:14px; padding:14px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-gente b { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); text-align:center; margin-bottom:12px; }
+.cu-esc-grade { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
+.cu-esc-grade i { width:13px; height:13px; border-radius:99px; background:var(--signal-dim,#4E9AC8); opacity:0.45; }
+
+/* ── figura 3.1, linha do tempo ── */
+.cu-tl { min-width:640px; }
+.cu-tl-faixas { display:grid; grid-template-columns:1fr 4fr; gap:10px; margin-bottom:16px; }
+.cu-tl-faixa { font-size:12px; text-align:center; border-radius:99px; padding:6px 10px; }
+.cu-tl-f1 { background:var(--bg-soft,#F1ECE3); color:var(--ink-2,#54606F); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-tl-f2 { background:rgba(26,72,147,0.08); color:var(--signal,#1A4893); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.18); font-weight:600; }
+.cu-tl-eixo { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; position:relative; }
+.cu-tl-eixo::before { content:''; position:absolute; left:6%; right:6%; top:44px; height:1px; background:var(--line,#DED7CA); }
+.cu-tl-item { text-align:center; position:relative; }
+.cu-tl-item b { display:block; font-size:15px; font-weight:600; color:var(--signal,#1A4893); margin-bottom:10px; }
+.cu-tl-bola { display:block; width:11px; height:11px; border-radius:99px; background:var(--signal,#1A4893); margin:0 auto 14px; box-shadow:0 0 0 4px var(--panel,#FFF); position:relative; z-index:1; }
+.cu-tl-bola.cu-tl-cinza { background:var(--ink-3,#8A94A1); }
+.cu-tl-item strong { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:5px; }
+.cu-tl-item span { display:block; font-size:12px; line-height:1.5; color:var(--ink-2,#54606F); padding:0 4px; }
+
+/* ── figura 3.2, ciclo ── */
+.cu-ciclo { display:flex; flex-direction:column; align-items:center; }
+.cu-ciclo-const {
+  border-radius:14px; padding:13px 18px; background:rgba(168,93,36,0.07);
+  box-shadow:inset 0 0 0 1px rgba(168,93,36,0.22); max-width:280px; width:100%;
+}
+.cu-ciclo-const b { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber,#A85D24); margin-bottom:8px; }
+.cu-ciclo-const ul { margin:0; padding-left:16px; font-size:13px; line-height:1.6; color:var(--ink-2,#54606F); }
+.cu-ciclo-const li { margin:0; }
+.cu-ciclo-desce { padding:6px 0; }
+.cu-ciclo-linha { display:flex; align-items:stretch; gap:8px; min-width:min-content; width:100%; }
+.cu-ciclo-cx { flex:1 1 0; min-width:118px; border-radius:13px; padding:12px 13px; text-align:center; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ciclo-cx b { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:3px; }
+.cu-ciclo-cx span { font-size:12px; line-height:1.45; color:var(--ink-2,#54606F); display:block; }
+.cu-ciclo-cx.cu-ciclo-az { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-ciclo-cx.cu-ciclo-az b { color:#fff; }
+.cu-ciclo-cx.cu-ciclo-az span { color:rgba(255,255,255,0.82); }
+.cu-ciclo-cx.cu-ciclo-am { background:rgba(168,93,36,0.09); box-shadow:inset 0 0 0 1.5px var(--amber,#A85D24); }
+.cu-ciclo-cx.cu-ciclo-out { box-shadow:inset 0 0 0 1.5px var(--signal-dim,#4E9AC8); background:var(--panel,#FFF); }
+.cu-ciclo-loop { font-size:12px; color:var(--amber,#A85D24); margin:14px 0 0; text-align:center; }
+
+/* ── figura 4.1, anatomia ── */
+.cu-anat { display:flex; flex-direction:column; align-items:center; gap:14px; min-width:min-content; }
+.cu-anat-topo { font-size:13px; color:var(--ink-2,#54606F); background:var(--bg-soft,#F1ECE3); border-radius:99px; padding:8px 18px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-anat-meio { display:grid; grid-template-columns:1fr 1.5fr 1fr; gap:14px; align-items:center; width:100%; }
+.cu-anat-resp { border-radius:13px; padding:14px; background:var(--panel,#FFF); box-shadow:inset 0 0 0 1px var(--line,#DED7CA); }
+.cu-anat-resp b { display:block; font-size:12px; color:var(--ink-3,#8A94A1); margin-bottom:9px; }
+.cu-anat-resp i { display:block; height:6px; border-radius:99px; background:var(--line-soft,#EAE4D9); margin-bottom:6px; }
+.cu-anat-resp i.cu-curta { width:60%; }
+.cu-anat-crit { position:relative; text-align:center; }
+.cu-anat-rot { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); margin-bottom:9px; }
+.cu-crit { font-size:12.5px; font-weight:600; color:#fff; border-radius:99px; padding:7px 10px; margin-bottom:5px; }
+.cu-crit-1 { background:#12306B; }
+.cu-crit-2 { background:#1A4893; }
+.cu-crit-3 { background:#2C63B4; }
+.cu-crit-4 { background:#6AA6D2; }
+.cu-crit-5 { background:#A9C8DE; color:#10203A; }
+.cu-anat-peso { display:block; text-align:right; font-size:10.5px; color:var(--ink-3,#8A94A1); }
+.cu-anat-peso-t { margin:0 2px 5px 0; }
+.cu-anat-peso-b { margin:5px 2px 0 0; }
+.cu-anat-escolha { border-radius:14px; padding:14px 18px; text-align:center; background:rgba(26,72,147,0.06); box-shadow:inset 0 0 0 1.5px var(--signal-dim,#4E9AC8); max-width:460px; }
+.cu-anat-escolha b { display:block; font-size:14px; color:var(--signal,#1A4893); margin-bottom:4px; }
+.cu-anat-escolha span { display:block; font-size:13px; color:var(--ink-2,#54606F); margin-bottom:6px; }
+.cu-anat-escolha em { font-size:12px; color:var(--ink-3,#8A94A1); }
+
+/* ── figura 4.2, kappa ── */
+.cu-kap { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.cu-kap-cx { border-radius:14px; padding:16px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-kap-tit { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); margin:0 0 4px; font-weight:600; }
+.cu-kap-sub { font-size:12.5px; color:var(--ink-2,#54606F); margin:0 0 14px; }
+.cu-kap-barra { height:12px; border-radius:99px; background:var(--signal-dim,#4E9AC8); overflow:hidden; margin-bottom:6px; }
+.cu-kap-barra span { display:block; width:90%; height:100%; background:#C9DDEB; }
+.cu-kap-legenda { display:flex; justify-content:space-between; font-size:11px; color:var(--ink-3,#8A94A1); margin-bottom:14px; }
+.cu-kap-botoes { display:flex; gap:8px; margin-bottom:14px; }
+.cu-kap-bt { flex:1; text-align:center; font-size:12.5px; padding:9px 6px; border-radius:10px; background:var(--panel,#FFF); color:var(--ink-2,#54606F); box-shadow:inset 0 0 0 1px var(--line,#DED7CA); }
+.cu-kap-bt.cu-kap-on { background:var(--signal,#1A4893); color:#fff; box-shadow:none; font-weight:600; }
+.cu-kap-form { background:var(--panel,#FFF); border-radius:11px; padding:12px 14px; margin-bottom:14px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-kap-form p { font-size:13px; color:var(--ink-2,#54606F); margin:0 0 4px; }
+.cu-kap-form p:last-child { margin:0; }
+.cu-kap-form b { color:var(--signal,#1A4893); }
+.cu-kap-rot { font-size:10.5px !important; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1) !important; margin-bottom:6px !important; }
+.cu-kap-caixa { border-radius:11px; padding:12px 14px; }
+.cu-kap-caixa .cu-kap-num { font-size:26px; font-weight:600; margin:0 0 4px; letter-spacing:-0.02em; }
+.cu-kap-caixa .cu-kap-txt { font-size:12.5px; line-height:1.5; margin:0; }
+.cu-kap-ruim { background:rgba(168,93,36,0.08); box-shadow:inset 0 0 0 1px rgba(168,93,36,0.2); }
+.cu-kap-ruim .cu-kap-num { color:var(--amber,#A85D24); }
+.cu-kap-ruim .cu-kap-txt { color:#8A6038; }
+.cu-kap-bom { background:rgba(26,72,147,0.07); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.2); }
+.cu-kap-bom .cu-kap-num { color:var(--signal,#1A4893); }
+.cu-kap-bom .cu-kap-txt { color:var(--ink-2,#54606F); }
+
+/* ── figura 4.3, erro contra sinal ── */
+.cu-ds { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.cu-ds-cx { border-radius:14px; padding:16px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-tit { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin:0 0 4px; }
+.cu-ds-erro .cu-ds-tit { color:var(--amber,#A85D24); }
+.cu-ds-sinal .cu-ds-tit { color:var(--signal,#1A4893); }
+.cu-ds-sub { font-size:12.5px; color:var(--ink-2,#54606F); margin:0 0 14px; }
+.cu-ds-frase { font-size:13px; color:var(--ink,#10203A); background:var(--panel,#FFF); border-radius:10px; padding:11px 13px; margin:0 0 12px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-frase mark { background:rgba(78,154,200,0.25); color:inherit; border-radius:4px; padding:1px 4px; }
+.cu-ds-chips { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:12px; }
+.cu-ds-chip { font-size:11px; text-align:center; padding:9px 4px; border-radius:9px; }
+.cu-ds-chip.cu-ok { background:rgba(26,72,147,0.07); color:var(--signal,#1A4893); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.18); }
+.cu-ds-chip.cu-no { background:rgba(168,93,36,0.08); color:var(--amber,#A85D24); box-shadow:inset 0 0 0 1px rgba(168,93,36,0.2); }
+.cu-ds-final { background:var(--panel,#FFF); border-radius:10px; padding:11px 13px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-final b { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:4px; }
+.cu-ds-final span { font-size:13.5px; font-weight:600; color:var(--ink,#10203A); }
+
+/* ── grade de caixas em figura ── */
+.cu-seis { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+@media (max-width:820px){ .cu-seis { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:620px){ .cu-seis { grid-template-columns:1fr; } }
+
+/* ── tabelinha para cálculo em figura ── */
+.cu-tab { width:100%; border-collapse:collapse; font-size:13px; background:var(--panel,#FFF); }
+.cu-tab th, .cu-tab td { padding:9px 10px; text-align:center; border:1px solid var(--line-soft,#EAE4D9); color:var(--ink-2,#54606F); }
+.cu-tab th { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); font-weight:600; font-size:12px; }
+.cu-tab td b { color:var(--signal,#1A4893); }
+.cu-tab .cu-tab-rot { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); font-weight:600; text-align:left; }
+.cu-tab-legenda { font-size:12px; color:var(--ink-3,#8A94A1); margin:8px 0 0; }
+
+/* ── quiz ── */
+.cu-quiz { margin-top:8px; }
+.cu-q {
+  border:1px solid var(--line,#DED7CA); background:var(--panel,#FFF);
+  border-radius:16px; padding:20px 22px; margin-bottom:14px;
+}
+.cu-q-tit { font-size:15.5px !important; font-weight:600; color:var(--ink,#10203A) !important; line-height:1.5; margin:0 0 14px !important; display:flex; gap:10px; }
+.cu-q-tit i {
+  flex:0 0 auto; width:22px; height:22px; border-radius:99px; display:grid; place-items:center;
+  background:var(--bg-soft,#F1ECE3); color:var(--signal,#1A4893); font-size:12px; font-weight:600; font-style:normal;
+}
+.cu-q label {
+  display:flex; align-items:flex-start; gap:10px; padding:10px 12px; margin-bottom:7px;
+  border-radius:11px; cursor:pointer; font-size:14.5px; line-height:1.5; color:var(--ink-2,#54606F);
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-q label:hover { box-shadow:inset 0 0 0 1px var(--ink-3,#8A94A1); }
+.cu-q input { margin-top:3px; accent-color:var(--signal,#1A4893); flex:0 0 auto; }
+.cu-q label:has(input:checked) { background:rgba(26,72,147,0.05); box-shadow:inset 0 0 0 1.5px var(--signal,#1A4893); color:var(--ink,#10203A); }
+.cu-q-fb, .cu-q-pq { display:none; }
+.cu-q.cu-corrigida .cu-q-fb, .cu-q.cu-corrigida .cu-q-pq { display:block; }
+.cu-q-fb { font-size:14px !important; font-weight:600; margin:12px 0 4px !important; }
+.cu-q.cu-acertou .cu-q-fb { color:var(--signal,#1A4893) !important; }
+.cu-q.cu-errou .cu-q-fb { color:var(--amber,#A85D24) !important; }
+.cu-q-pq { font-size:13.5px !important; line-height:1.6; color:var(--ink-2,#54606F) !important; margin:0 !important; }
+.cu-q.cu-errou { box-shadow:inset 0 0 0 1px rgba(168,93,36,0.35); }
+.cu-quiz-acoes { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.cu-quiz-res { font-size:15px !important; font-weight:600; margin:18px 0 0 !important; }
+
+/* ── certificado ── */
+.cu-cert-area { margin-top:46px; padding-top:34px; border-top:1px solid var(--line,#DED7CA); }
+.cu-cert-form { display:flex; flex-wrap:wrap; align-items:flex-end; gap:12px; margin:18px 0 0; }
+.cu-campo { display:flex; flex-direction:column; gap:6px; flex:1 1 260px; }
+.cu-campo span { font-size:12.5px; color:var(--ink-3,#8A94A1); }
+.cu-campo input {
+  font-family:inherit; font-size:15px; color:var(--ink,#10203A);
+  background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
+  border-radius:12px; padding:12px 14px; width:100%;
+}
+.cu-campo input:focus { outline:none; border-color:var(--signal,#1A4893); }
+.cu-cert-trava { font-size:13px !important; color:var(--amber,#A85D24) !important; flex:1 1 100%; margin:2px 0 0 !important; }
+.cu-cert-area.cu-liberado .cu-cert-trava { display:none; }
+
+.cu-cert { margin-top:26px; }
+.cu-cert-borda {
+  background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA); border-radius:20px;
+  padding:44px 42px 34px; text-align:center; position:relative;
+}
+.cu-cert-borda::before {
+  content:''; position:absolute; inset:9px; border-radius:14px;
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); pointer-events:none;
+}
+.cu-cert-sobre { font-size:11px !important; letter-spacing:0.18em; text-transform:uppercase; color:var(--signal,#1A4893) !important; margin:0 0 24px !important; }
+.cu-cert-nome {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:clamp(26px,3.4vw,38px) !important;
+  line-height:1.15; color:var(--ink,#10203A) !important; margin:0 0 14px !important;
+}
+.cu-cert-txt { font-size:14.5px !important; color:var(--ink-2,#54606F) !important; margin:0 0 10px !important; }
+.cu-cert-curso {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:clamp(20px,2.4vw,26px) !important;
+  color:var(--signal,#1A4893) !important; margin:0 0 20px !important;
+}
+.cu-cert-conteudo { max-width:62ch; margin:0 auto 26px !important; font-size:13.5px !important; line-height:1.65; }
+.cu-cert-pe { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; border-top:1px solid var(--line-soft,#EAE4D9); padding-top:20px; margin-top:6px; }
+.cu-cert-pe b { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:5px; }
+.cu-cert-pe span { font-size:13px; color:var(--ink,#10203A); }
+.cu-cert-emissor { font-size:12px !important; color:var(--ink-3,#8A94A1) !important; margin:22px 0 0 !important; }
+.cu-cert-acoes { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.cu-cert-nota { font-size:13px !important; color:var(--ink-3,#8A94A1) !important; margin:12px 0 0 !important; }
+
+.cu-fim { margin-top:46px; padding:26px 26px 28px; border-radius:18px; background:var(--bg-soft,#F1ECE3); }
+.cu-fim-bts { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+
+/* ── termo explicado na primeira vez ── */
+.cu-nota-termo {
+  border-left:3px solid var(--signal-dim,#4E9AC8); background:rgba(78,154,200,0.07);
+  border-radius:0 12px 12px 0; padding:13px 16px; margin:0 0 18px;
+}
+.cu-conteudo .cu-nota-termo { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); }
+.cu-nota-termo b { color:var(--ink,#10203A); }
+
+/* ── glossário ── */
+.cu-glos { list-style:none; padding:0; margin:0 0 18px; }
+.cu-glos li {
+  padding:14px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+}
+.cu-glos li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
+.cu-conteudo .cu-glos li { font-size:15px; line-height:1.62; color:var(--ink-2,#54606F); }
+.cu-glos b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:4px; }
+.cu-glos i { font-style:normal; color:var(--ink-3,#8A94A1); font-size:13px; }
+
+/* ── correção de especificidade: .cu-conteudo p e li venciam as classes de figura ── */
+.cu-conteudo .cu-fig-cap { font-size:11px; }
+.cu-conteudo .cu-fig-nota { font-size:13px; }
+.cu-conteudo .cu-kap-tit { font-size:11px; }
+.cu-conteudo .cu-kap-sub { font-size:12.5px; }
+.cu-conteudo .cu-kap-form p { font-size:13px; }
+.cu-conteudo .cu-kap-caixa .cu-kap-num { font-size:26px; }
+.cu-conteudo .cu-kap-caixa .cu-kap-txt { font-size:12.5px; }
+.cu-conteudo .cu-tab-legenda { font-size:12px; }
+.cu-conteudo .cu-ds-tit { font-size:11px; }
+.cu-conteudo .cu-ds-sub { font-size:12.5px; }
+.cu-conteudo .cu-ds-frase { font-size:13px; }
+.cu-conteudo .cu-ciclo-loop { font-size:12px; }
+.cu-conteudo .cu-fontes li { font-size:14.5px; }
+.cu-conteudo .cu-selo { font-size:11px; }
+
+/* impressão: só o certificado */
+@media print {
+  body * { visibility:hidden !important; }
+  #certificado, #certificado * { visibility:visible !important; }
+  #certificado { position:absolute; inset:0; margin:0; }
+  .cu-cert-acoes, .cu-cert-nota { display:none !important; }
+}
+
+/* ── responsivo ── */
+@media (max-width:1080px){
+  .cu-grade { grid-template-columns:minmax(0,1fr); gap:0; padding-top:26px; }
+  .cu-conteudo { max-width:none; }
+  .cu-lado {
+    position:sticky; top:78px; max-height:none; overflow:visible; z-index:5;
+    background:var(--bg,#F7F4EF); padding:10px 0 12px; margin-bottom:20px;
+    border-bottom:1px solid var(--line,#DED7CA);
+  }
+  .cu-abre-sum {
+    display:flex; align-items:center; justify-content:space-between; width:100%;
+    appearance:none; background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
+    border-radius:12px; padding:12px 15px; font-family:inherit; font-size:14.5px;
+    font-weight:600; color:var(--ink,#10203A); cursor:pointer;
+  }
+  .cu-abre-sum svg { transition:transform .2s; color:var(--ink-3,#8A94A1); }
+  .cu-lado.cu-aberto .cu-abre-sum svg { transform:rotate(180deg); }
+  .cu-painel-sum { display:none; padding-top:16px; }
+  .cu-lado.cu-aberto .cu-painel-sum { display:block; }
+  .cu-sum-titulo { display:none; }
+}
+@media (max-width:820px){
+  .cu-kap, .cu-ds { grid-template-columns:1fr; }
+  .cu-esc-dois { grid-template-columns:1fr; }
+  .cu-anat-meio { grid-template-columns:1fr; }
+  .cu-anat-peso { display:none; }
+  .cu-cert-pe { grid-template-columns:1fr; text-align:left; }
+}
+@media (max-width:680px){
+  .cu-topo { padding-top:32px; }
+  .cu-fig-moldura { padding:18px 14px; }
+  .cu-pratica { padding:20px 18px 6px; }
+  .cu-quem { grid-template-columns:1fr; }
+  .cu-fluxo { flex-direction:column; }
+  .cu-fluxo .cu-seta { transform:rotate(90deg); padding:2px 0; }
+  .cu-ciclo-linha { flex-direction:column; }
+  .cu-ciclo-linha .cu-seta { transform:rotate(90deg); padding:2px 0; }
+  .cu-ciclo-const { max-width:none; }
+  .cu-ds-chips { grid-template-columns:repeat(2,1fr); }
+  .cu-q { padding:17px 16px; }
+  .cu-cert-borda { padding:30px 20px 26px; }
+  .cu-fim { padding:22px 18px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cu-wrap">
+
+  <header class="cu-topo">
+    <div class="eyebrow">Cursos · Aula 1 a 4</div>
+    <h1>Fonética Prática para Quem Avalia Voz</h1>
+    <p class="cu-lead">O objetivo deste curso é um só: trocar "soou estranho" por uma descrição que o time
+      consegue corrigir. Para isso você vai aprender os sons do português brasileiro, o que é sílaba tônica e
+      entonação, e como um sistema decide a pronúncia de cada palavra. É fonética aplicada ao trabalho, sem
+      teoria além da necessária.</p>
+    <div class="cu-fatos">
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+        cerca de 1 hora
+      </span>
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+        4 aulas com exercícios
+      </span>
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5"/></svg>
+        quiz e certificado no fim
+      </span>
+    </div>
+  </header>
+
+  <div class="cu-grade">
+
+    <!-- ══════════ COLUNA LATERAL ══════════ -->
+    <aside class="cu-lado" id="lado">
+      <button class="cu-abre-sum" id="abreSum" type="button" aria-expanded="false">
+        <span>Sumário do curso</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+
+      <div class="cu-painel-sum">
+        <p class="cu-sum-titulo">Sumário do curso</p>
+        <div class="cu-barra"><span id="barra"></span></div>
+        <p class="cu-barra-txt" id="barraTxt">0 de 4 aulas concluídas</p>
+
+        <ol class="cu-sum">
+          <li>
+            <a class="cu-aula-link" href="#aula1" data-aula="1"><i class="cu-num">1</i> Letra não é som</a>
+            <ul class="cu-sub">
+              <li><a href="#a1-vago">O problema do comentário vago</a></li>
+              <li><a href="#a1-fonema">Fonema, grafema e alofone</a></li>
+              <li><a href="#a1-descrever">Como um som se descreve</a></li>
+              <li><a href="#a1-ipa">O alfabeto fonético, sem decorar</a></li>
+              <li><a href="#a1-pratica">Prática: a mesma letra, sons diferentes</a></li>
+              <li><a href="#a1-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula2" data-aula="2"><i class="cu-num">2</i> Os sons do português brasileiro</a>
+            <ul class="cu-sub">
+              <li><a href="#a2-vogais">As vogais</a></li>
+              <li><a href="#a2-atonas">O que acontece na sílaba fraca</a></li>
+              <li><a href="#a2-consoantes">As consoantes que mais dão problema</a></li>
+              <li><a href="#a2-variacao">Variação regional não é defeito</a></li>
+              <li><a href="#a2-pratica">Prática: identifique o som</a></li>
+              <li><a href="#a2-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula3" data-aula="3"><i class="cu-num">3</i> Tonicidade, ritmo e entonação</a>
+            <ul class="cu-sub">
+              <li><a href="#a3-tonica">A sílaba tônica</a></li>
+              <li><a href="#a3-ritmo">Ritmo, pausa e agrupamento</a></li>
+              <li><a href="#a3-entonacao">A curva da voz</a></li>
+              <li><a href="#a3-defeitos">Como isso vira defeito de TTS</a></li>
+              <li><a href="#a3-pratica">Prática: troque a tônica</a></li>
+              <li><a href="#a3-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula4" data-aula="4"><i class="cu-num">4</i> Do texto ao som</a>
+            <ul class="cu-sub">
+              <li><a href="#a4-pipeline">Como o sistema decide a pronúncia</a></li>
+              <li><a href="#a4-homografos">Homógrafos, o pesadelo do português</a></li>
+              <li><a href="#a4-ssml">SSML, a linguagem de controle</a></li>
+              <li><a href="#a4-relato">O relato que resolve o problema</a></li>
+              <li><a href="#a4-pratica">Prática: escreva três relatos</a></li>
+              <li><a href="#a4-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#quiz"><i class="cu-num">✓</i> Quiz e certificado</a>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#glossario"><i class="cu-num">A</i> Glossário</a>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#fontes"><i class="cu-num">§</i> Fontes do curso</a>
+          </li>
+        </ol>
+      </div>
+    </aside>
+
+    <!-- ══════════ CONTEÚDO ══════════ -->
+    <main class="cu-conteudo" id="conteudo">
+      <!-- ══════════════════ AULA 1 ══════════════════ -->
+      <section class="cu-aula" id="aula1">
+        <div class="cu-aula-cap"><span>Aula 1 de 4 · 15 min</span><i></i></div>
+        <h2>Letra não é som</h2>
+        <p class="cu-resumo-aula">Nesta aula: por que o comentário vago custa caro, a diferença entre letra e
+          som, as três perguntas que descrevem qualquer som de consoante, e como usar o alfabeto fonético sem
+          precisar decorá-lo.</p>
+
+        <p class="cu-nota-termo"><b>Quatro palavras para começar.</b> <b>Grafema</b> é a letra, o sinal escrito.
+          <b>Fonema</b> é o som que distingue significado: em "mata" e "pata", só o primeiro som muda, e ele muda
+          a palavra. <b>Alofone</b> é uma variação do mesmo fonema que não muda o significado, como o "t" de
+          "tia" no Rio e em Recife. <b>IPA</b> é o alfabeto fonético internacional, uma tabela em que cada
+          símbolo representa um som, e só um. E <b>guideline</b>, que aparece algumas vezes, é o documento do
+          projeto que define a tarefa e as regras a seguir.</p>
+
+        <h3 id="a1-vago">O problema do comentário vago</h3>
+        <p>Compare dois comentários sobre o mesmo áudio, num projeto de voz sintética.</p>
+        <div class="cu-caixa">
+          <p><span class="cu-rot">Comentário A:</span> "A palavra 'exceto' saiu estranha."</p>
+          <p><span class="cu-rot">Comentário B:</span> "Em 'exceto', o 'x' foi lido com som de 'ks', soando como
+            'ekiceto'. O esperado seria som de 's'."</p>
+        </div>
+        <p>Os dois vieram da mesma escuta. O primeiro obriga quem recebe a ouvir o áudio, adivinhar o que
+          incomodou e torcer para chegar à mesma conclusão. O segundo entrega o diagnóstico: é um caso de regra
+          de pronúncia da letra x, e o time sabe exatamente onde mexer.</p>
+        <p>Essa diferença não vem de talento, vem de vocabulário. É o que esta aula começa a montar.</p>
+
+        <h3 id="a1-fonema">Fonema, grafema e alofone</h3>
+        <p>Português tem 26 letras e bem mais sons. A mesma letra muda de som conforme a vizinhança, e o mesmo
+          som pode ser escrito de várias formas. Quem avalia voz precisa separar as duas coisas.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 1.1</b> · A mesma letra, sons diferentes</p>
+          <div class="cu-fig-moldura">
+            <table class="cu-tab">
+              <tr><th>letra</th><th>palavra</th><th>som que ela representa ali</th></tr>
+              <tr><td class="cu-tab-rot">x</td><td>táxi</td><td>som de "ks"</td></tr>
+              <tr><td class="cu-tab-rot">x</td><td>xarope</td><td>som de "ch"</td></tr>
+              <tr><td class="cu-tab-rot">x</td><td>exame</td><td>som de "z"</td></tr>
+              <tr><td class="cu-tab-rot">x</td><td>próximo</td><td>som de "s"</td></tr>
+              <tr><td class="cu-tab-rot">s</td><td>sapo</td><td>som de "s"</td></tr>
+              <tr><td class="cu-tab-rot">s</td><td>casa</td><td>som de "z"</td></tr>
+              <tr><td class="cu-tab-rot">e</td><td>pé</td><td>vogal aberta</td></tr>
+              <tr><td class="cu-tab-rot">e</td><td>mesa</td><td>vogal fechada</td></tr>
+              <tr><td class="cu-tab-rot">e</td><td>leite</td><td>na sílaba final fraca, soa como "i"</td></tr>
+            </table>
+          </div>
+          <p class="cu-fig-nota">É por isso que um sistema de fala precisa de regras e de um dicionário de
+            exceções, assunto da aula 4.</p>
+        </div>
+
+        <p>A distinção prática que você vai usar todo dia: quando o defeito é <strong>a letra lida com o som
+          errado</strong>, o problema está na decisão de pronúncia. Quando o defeito é <strong>o som certo,
+          produzido de um jeito esquisito</strong>, o problema está na geração do áudio. São dois times
+          diferentes resolvendo.</p>
+
+        <h3 id="a1-descrever">Como um som se descreve</h3>
+        <p>Qualquer consoante pode ser descrita com três perguntas. Você não precisa da terminologia inteira,
+          precisa das três.</p>
+        <ul>
+          <li><strong>Tem voz ou não tem?</strong> Encoste a mão na garganta e diga "sssss" e depois "zzzzz". O
+            segundo vibra. É a mesma boca, muda só o vozeamento. É o que separa "faca" de "vaca" e "chá" de
+            "já".</li>
+          <li><strong>Onde na boca?</strong> Lábios em "p" e "b". Dentes e língua em "t" e "d". Mais atrás em
+            "k" e "g". É o ponto de articulação.</li>
+          <li><strong>Como o ar sai?</strong> Bloqueado e solto de uma vez em "p", "t", "k". Passando apertado e
+            fazendo ruído em "f", "s", "ch". Saindo pelo nariz em "m", "n". É o modo de articulação.</li>
+        </ul>
+        <p>Com isso já dá para escrever coisas como "o som de 'd' saiu sem voz, parecendo 't'", que é infinitamente
+          mais útil que "a palavra ficou errada".</p>
+
+        <h3 id="a1-ipa">O alfabeto fonético, sem decorar</h3>
+        <p>O <span class="cu-termo">IPA</span> resolve a ambiguidade da escrita: cada símbolo corresponde a um
+          som. É por isso que ele aparece em dicionário de pronúncia, em léxico de sistema de fala e em guideline
+          de projeto de voz.</p>
+        <p>Você não precisa decorar a tabela. Precisa de duas coisas. A primeira é <strong>reconhecer</strong> os
+          símbolos mais frequentes em português, que a aula 2 lista. A segunda é <strong>saber que ele
+          existe</strong> e usar quando o projeto pedir, copiando do dicionário em vez de inventar.</p>
+        <p>E existe um atalho legítimo: quando você não tem certeza do símbolo, escreva o som com uma palavra
+          conhecida. "O 'g' de 'gelo' saiu como o 'g' de 'gato'" é um relato perfeitamente claro, e nenhum time
+          vai reclamar da falta do símbolo.</p>
+
+        <div class="cu-pratica" id="a1-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">A mesma letra, sons diferentes</h3>
+          <p>Diga qual som a letra destacada representa em cada palavra, usando outra palavra como referência.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">1.</span> O "c" de <strong>cedo</strong> e o "c" de <strong>caco</strong>.</p>
+            <p><span class="cu-rot">2.</span> O "g" de <strong>gesso</strong> e o "g" de <strong>gota</strong>.</p>
+            <p><span class="cu-rot">3.</span> O "o" de <strong>bolo</strong>, nas duas sílabas.</p>
+            <p><span class="cu-rot">4.</span> O "m" de <strong>campo</strong> e o "m" de <strong>mapa</strong>.</p>
+          </div>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p><strong>1.</strong> Em "cedo", o "c" soa como "s". Em "caco", soa como "k". A regra prática: antes
+              de e e i, a letra c costuma soar como "s".</p>
+            <p><strong>2.</strong> Em "gesso", o "g" soa como o "j" de "janela". Em "gota", soa como o "g" de
+              "gato". Mesma lógica: antes de e e i, muda.</p>
+            <p><strong>3.</strong> O primeiro "o" de "bolo" é uma vogal fechada, como em "bolo" mesmo, e o
+              segundo, na sílaba final fraca, soa como "u". Quase todo brasileiro fala "bolu" e nem percebe. Esse
+              detalhe volta na aula 2 e é fonte constante de defeito em voz sintética.</p>
+            <p><strong>4.</strong> Em "mapa", o "m" é uma consoante de verdade, com o ar saindo pelo nariz. Em
+              "campo", ele não é bem uma consoante: ele nasaliza a vogal anterior. Você não fala "cam-po" com um
+              m nítido, você fala uma vogal nasal seguida de "p". É por isso que nasalidade é um tópico à parte na
+              descrição de voz.</p>
+          </div>
+        </div>
+
+        <h3 id="a1-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Comentário vago transfere o trabalho para quem recebe. Vocabulário resolve isso.</li>
+          <li>Grafema é a letra, fonema é o som que distingue palavras, alofone é a variação que não muda o
+            significado.</li>
+          <li>A mesma letra representa sons diferentes conforme a vizinhança, e é por isso que sistemas de fala
+            precisam de regras e de dicionário.</li>
+          <li>Três perguntas descrevem qualquer consoante: tem voz, onde na boca, como o ar sai.</li>
+          <li>O alfabeto fonético serve para tirar ambiguidade. Quando faltar o símbolo, descrever o som com uma
+            palavra conhecida é um relato legítimo.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="1" data-proxima="aula2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 1 e ir para a aula 2
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 2 ══════════════════ -->
+      <section class="cu-aula" id="aula2">
+        <div class="cu-aula-cap"><span>Aula 2 de 4 · 18 min</span><i></i></div>
+        <h2>Os sons do português brasileiro</h2>
+        <p class="cu-resumo-aula">Nesta aula: quantas vogais o português brasileiro tem de verdade, o que
+          acontece com a vogal na sílaba fraca, as consoantes que mais geram defeito em voz sintética, e por que
+          sotaque diferente do seu não é erro a ser reportado.</p>
+
+        <h3 id="a2-vogais">As vogais</h3>
+        <p>A escrita tem cinco vogais. A fala tem mais. Na descrição publicada do português brasileiro no
+          periódico da Associação Fonética Internacional, feita por Plínio Barbosa e Eleonora Albano em 2004, a
+          variedade descrita tem <strong>sete vogais orais na sílaba tônica</strong>.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 2.1</b> · As sete vogais orais da sílaba tônica</p>
+          <div class="cu-fig-moldura">
+            <table class="cu-tab">
+              <tr><th>símbolo</th><th>palavra</th><th>como reconhecer</th></tr>
+              <tr><td class="cu-tab-rot">i</td><td>vi</td><td>vogal mais fechada da frente</td></tr>
+              <tr><td class="cu-tab-rot">e</td><td>vê</td><td>e fechado, com acento circunflexo na escrita</td></tr>
+              <tr><td class="cu-tab-rot">ɛ</td><td>pé</td><td>e aberto, com acento agudo na escrita</td></tr>
+              <tr><td class="cu-tab-rot">a</td><td>pá</td><td>vogal central</td></tr>
+              <tr><td class="cu-tab-rot">ɔ</td><td>pó</td><td>o aberto, com acento agudo na escrita</td></tr>
+              <tr><td class="cu-tab-rot">o</td><td>avô</td><td>o fechado, com acento circunflexo na escrita</td></tr>
+              <tr><td class="cu-tab-rot">u</td><td>pus</td><td>vogal mais fechada de trás</td></tr>
+            </table>
+            <p class="cu-tab-legenda">Inventário conforme a descrição de Barbosa e Albano, 2004. Os símbolos
+              entre as colunas são do alfabeto fonético internacional.</p>
+          </div>
+          <p class="cu-fig-nota">O par que mais aparece em defeito de voz sintética é aberto contra fechado:
+            "avó" e "avô", "sede" de beber e "sede" da empresa.</p>
+        </div>
+
+        <p>Existem também as <strong>vogais nasais</strong>, aquelas de "canto", "tempo", "fim", "bom" e "um". A
+          nasalidade em português não é detalhe decorativo: ela distingue palavras, como em "mudo" e "mundo". Voz
+          sintética com nasalidade fraca soa imediatamente estrangeira, e vale reportar quando acontecer.</p>
+
+        <h3 id="a2-atonas">O que acontece na sílaba fraca</h3>
+        <p>Fora da sílaba tônica, as vogais se reduzem. O caso mais visível é o da sílaba final: o "e" final soa
+          como "i" e o "o" final soa como "u" na maior parte do país. É por isso que "leite" soa "leiti", "gato"
+          soa "gatu" e "cidade" soa "cidadi".</p>
+        <p>Por que isso importa no seu trabalho: quando um sistema de fala pronuncia o "e" final como "e" bem
+          marcado, dizendo "leitE", o áudio soa artificial mesmo sem nenhum outro defeito. E esse é exatamente o
+          tipo de coisa que a pessoa sem vocabulário descreve como "soou robótico", quando poderia escrever
+          "vogal final de 'leite' pronunciada como 'e', sem a redução para 'i' esperada no português
+          brasileiro".</p>
+
+        <h3 id="a2-consoantes">As consoantes que mais dão problema</h3>
+        <p>Três fenômenos concentram a maior parte dos defeitos em voz sintética em português.</p>
+        <p><strong>O t e o d antes de i.</strong> Na maior parte do Brasil, "tia" soa "tchia" e "dia" soa "djia".
+          A descrição de Barbosa e Albano registra esse fenômeno na variedade descrita, dizendo que as oclusivas
+          dentais, que são justamente os sons de t e de d, se realizam como africadas antes de "i". Africada é o
+          nome do som que começa com o ar bloqueado e termina com um chiado, exatamente o que você ouve no "tch"
+          de "tia".</p>
+        <p>Repare que isso vale também para o "e" final reduzido, aquele que soa como "i": "leite" soa "leitchi"
+          e "verdade" soa "verdadji".</p>
+        <p><strong>Os dois erres.</strong> Entre vogais, o português distingue dois sons escritos com r: o tepe,
+          rápido, de "caro", e o r forte de "carro". É contraste de significado, e a mesma descrição registra esse
+          par como contraste da língua. A realização do r forte varia muito por região, podendo soar como um
+          rrr vibrante, como um som de garganta ou como um h aspirado, e essa variação é normal.</p>
+        <p><strong>O s no fim da sílaba.</strong> Em parte do país ele soa como "s", em outra soa como "ch", como
+          em "porta" dito "porchta" no Rio. As duas são formas legítimas do português brasileiro.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 2.2</b> · Pares que mudam de significado</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-ds">
+              <div class="cu-ds-cx cu-ds-sinal">
+                <p class="cu-ds-tit">Contrastes reais</p>
+                <p class="cu-ds-sub">Trocar o som muda a palavra. Isso é defeito.</p>
+                <p class="cu-ds-frase">caro e carro · mudo e mundo · avó e avô · sede de beber e sede da
+                  empresa · faca e vaca</p>
+                <div class="cu-ds-final"><b>O que fazer</b><span>reportar, dizendo qual palavra saiu no lugar da
+                  outra</span></div>
+              </div>
+              <div class="cu-ds-cx cu-ds-erro">
+                <p class="cu-ds-tit">Variação regional</p>
+                <p class="cu-ds-sub">Muda o sotaque, não a palavra. Isso não é defeito.</p>
+                <p class="cu-ds-frase">"porta" com s ou com ch no fim da sílaba · r forte vibrante, de garganta ou
+                  aspirado · t de "tia" com ou sem o som de tch</p>
+                <div class="cu-ds-final"><b>O que fazer</b><span>não reportar como erro, a menos que a guideline
+                  fixe uma variedade específica</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">A pergunta que separa os dois lados: mudou a palavra, ou mudou só o jeito de
+            dizer a mesma palavra?</p>
+        </div>
+
+        <h3 id="a2-variacao">Variação regional não é defeito</h3>
+        <p>Esse é um dos pontos em que avaliador brasileiro mais erra, e o erro custa caro porque ensina o
+          sistema a evitar formas perfeitamente corretas da língua.</p>
+        <p>A regra é simples. <strong>Se a guideline não fixa uma variedade</strong>, sotaque diferente do seu não
+          é erro, e você avalia se a fala é consistente e natural dentro da variedade que ela escolheu. <strong>Se
+          a guideline fixa</strong>, por exemplo pedindo português brasileiro neutro de mídia, aí sim uma marca
+          regional forte pode ser reportada, e o relato deve dizer qual marca apareceu, sem julgamento de
+          valor.</p>
+        <p>Existe um caso que é sempre defeito, independentemente de variedade: <strong>inconsistência dentro do
+          mesmo áudio</strong>. Uma voz que fala "tia" sem o som de tch na primeira frase e com ele na terceira
+          não tem sotaque, tem instabilidade, e isso vale relato.</p>
+
+        <div class="cu-pratica" id="a2-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Identifique o som</h3>
+          <p>Para cada situação, diga se é defeito para reportar ou variação aceitável, e como você
+            descreveria.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">1.</span> A voz lê "avô chegou" com o o aberto, soando "avó chegou".</p>
+            <p><span class="cu-rot">2.</span> A voz pronuncia "porta" com o s da sílaba soando como ch, ao longo
+              de todo o áudio.</p>
+            <p><span class="cu-rot">3.</span> A voz diz "cidade" com o e final bem marcado, soando "cidadE".</p>
+            <p><span class="cu-rot">4.</span> No mesmo áudio, a voz diz "dia" com som de dj na primeira frase e
+              com d puro na última.</p>
+          </div>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p><strong>1. Defeito.</strong> Aqui a troca de vogal aberta por fechada muda a palavra: "avô" virou
+              "avó". Descrição: "Em 'avô', vogal tônica saiu aberta, resultando em 'avó', o que troca o
+              significado."</p>
+            <p><strong>2. Variação aceitável</strong>, desde que a guideline não fixe variedade. Descrição, se
+              for preciso registrar: "Realização do s em final de sílaba como ch, consistente ao longo do áudio,
+              compatível com a variedade carioca."</p>
+            <p><strong>3. Defeito.</strong> A vogal final não reduziu, o que soa artificial em português
+              brasileiro. Descrição: "Vogal final de 'cidade' pronunciada como 'e' pleno, sem a redução para 'i'
+              esperada."</p>
+            <p><strong>4. Defeito, e do tipo mais importante de relatar.</strong> Não é sotaque, é
+              inconsistência dentro do mesmo áudio. Descrição: "A palavra 'dia' aparece com africada na primeira
+              frase e sem africada na última, no mesmo áudio."</p>
+            <p>Note o padrão das quatro descrições: todas dizem a palavra, o que saiu e o que era esperado. É
+              esse formato que a aula 4 fecha.</p>
+          </div>
+        </div>
+
+        <h3 id="a2-resumo">Resumo da aula</h3>
+        <ul>
+          <li>A variedade descrita na literatura tem sete vogais orais na sílaba tônica, além das nasais, que
+            distinguem palavras como "mudo" e "mundo".</li>
+          <li>Na sílaba final fraca, o e soa como i e o o soa como u. Quando o sistema não faz isso, o áudio soa
+            artificial.</li>
+          <li>Três fenômenos concentram defeito: t e d antes de i, o contraste entre os dois erres, e o s no fim
+            da sílaba.</li>
+          <li>Mudou a palavra, é defeito. Mudou só o jeito de dizer, é variação, e não se reporta a menos que a
+            guideline fixe uma variedade.</li>
+          <li>Inconsistência dentro do mesmo áudio é sempre defeito.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="2" data-proxima="aula3">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 2 e ir para a aula 3
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 3 ══════════════════ -->
+      <section class="cu-aula" id="aula3">
+        <div class="cu-aula-cap"><span>Aula 3 de 4 · 15 min</span><i></i></div>
+        <h2>Tonicidade, ritmo e entonação</h2>
+        <p class="cu-resumo-aula">Nesta aula: a sílaba forte e o que acontece quando ela cai no lugar errado,
+          como pausa e agrupamento mudam o sentido de uma frase, o que é a curva da voz, e como esses três viram
+          os defeitos mais frequentes de voz sintética.</p>
+
+        <h3 id="a3-tonica">A sílaba tônica</h3>
+        <p><span class="cu-termo">Sílaba tônica</span> é a sílaba mais forte da palavra. Em português ela não é
+          decorativa: ela distingue palavras.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 3.1</b> · A mesma sequência de letras, três palavras</p>
+          <div class="cu-fig-moldura">
+            <table class="cu-tab">
+              <tr><th>palavra</th><th>sílaba forte</th><th>classificação</th><th>significado</th></tr>
+              <tr><td class="cu-tab-rot">sábia</td><td><b>sá</b>-bi-a</td><td>proparoxítona</td><td>mulher que sabe muito</td></tr>
+              <tr><td class="cu-tab-rot">sabia</td><td>sa-<b>bi</b>-a</td><td>paroxítona</td><td>verbo saber, no passado</td></tr>
+              <tr><td class="cu-tab-rot">sabiá</td><td>sa-bi-<b>á</b></td><td>oxítona</td><td>o pássaro</td></tr>
+            </table>
+            <p class="cu-tab-legenda">Oxítona é forte na última sílaba, paroxítona na penúltima, proparoxítona na
+              antepenúltima.</p>
+          </div>
+          <p class="cu-fig-nota">Um sistema que erra a tônica não produz um áudio feio: produz outra palavra.</p>
+        </div>
+
+        <p>Defeito de tônica é dos mais graves em voz sintética, e dos mais fáceis de descrever, porque você pode
+          apontar exatamente a sílaba. O formato do relato é sempre o mesmo: a palavra, onde caiu a força, e onde
+          deveria cair.</p>
+        <p>Palavras que costumam dar problema: siglas lidas como palavra, nomes próprios, estrangeirismos, e
+          palavras de baixa frequência como "rubrica", "ínterim" ou "avaro". Também dão problema as que mudam de
+          classe, como "análise", que é proparoxítona, e "analise", do verbo analisar, que é paroxítona.</p>
+
+        <h3 id="a3-ritmo">Ritmo, pausa e agrupamento</h3>
+        <p>Falar não é enfileirar palavras. A fala se organiza em grupos, e a pausa marca onde um grupo termina.
+          Quando o grupo é montado errado, o sentido muda ou trava.</p>
+        <div class="cu-caixa">
+          <p><span class="cu-rot">Sem pausa no lugar certo:</span> "não espere" pode virar convite ou proibição,
+            conforme onde a voz respira.</p>
+          <p><span class="cu-rot">Grupo montado errado:</span> "a empresa, que abriu em março, fechou" é uma
+            informação. "A empresa que abriu em março fechou" é outra, porque separa uma empresa entre várias.</p>
+        </div>
+        <p>Em voz sintética, os defeitos de ritmo aparecem em quatro formatos, e vale usar esses nomes no
+          comentário: <strong>pausa faltando</strong>, quando a voz emenda duas orações; <strong>pausa
+          sobrando</strong>, quando ela para no meio de um grupo de palavras que anda junto, como entre o artigo
+          e o substantivo;
+          <strong>pausa longa demais</strong>, que soa como travamento; e <strong>velocidade
+          inconsistente</strong>, quando a frase acelera ou desacelera sem motivo.</p>
+
+        <h3 id="a3-entonacao">A curva da voz</h3>
+        <p><span class="cu-termo">Entonação</span> é a melodia da fala, o sobe e desce da voz ao longo da frase.
+          Ela carrega informação que as palavras não carregam.</p>
+        <ul>
+          <li><strong>Pergunta e afirmação.</strong> "Você viu" e "você viu?" têm as mesmas palavras e curvas
+            diferentes. Em português, a pergunta sem palavra interrogativa depende inteiramente da entonação, o
+            que torna esse erro comum e grave em voz sintética.</li>
+          <li><strong>Foco.</strong> "Eu não disse isso" muda de sentido conforme a palavra destacada. Com força
+            em "eu", alguém mais disse. Com força em "isso", eu disse outra coisa.</li>
+          <li><strong>Continuidade.</strong> A voz sobe levemente e sustenta quando a frase ainda não acabou. Uma
+            voz que desce como ponto final no meio da enumeração faz o ouvinte achar que acabou.</li>
+          <li><strong>Emoção e atitude.</strong> Ironia, dúvida e entusiasmo moram na curva, não nas palavras.</li>
+        </ul>
+
+        <h3 id="a3-defeitos">Como isso vira defeito de TTS</h3>
+        <p>Juntando as três seções, a lista dos defeitos prosódicos mais reportados em voz sintética, com o nome
+          que o time de desenvolvimento reconhece:</p>
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 3.2</b> · Defeitos de prosódia e como descrever</p>
+          <div class="cu-fig-moldura">
+            <table class="cu-tab">
+              <tr><th>defeito</th><th>como soa</th><th>como escrever</th></tr>
+              <tr>
+                <td class="cu-tab-rot">Tônica deslocada</td>
+                <td>a força cai na sílaba errada, às vezes virando outra palavra</td>
+                <td>"em 'análise', a força caiu em 'li'"</td>
+              </tr>
+              <tr>
+                <td class="cu-tab-rot">Entonação de pergunta</td>
+                <td>afirmação terminando com a voz subindo</td>
+                <td>"a frase termina com curva ascendente, soando como pergunta"</td>
+              </tr>
+              <tr>
+                <td class="cu-tab-rot">Curva plana</td>
+                <td>toda a frase no mesmo tom, sem variação</td>
+                <td>"entonação plana do início ao fim, sem marcar o final da frase"</td>
+              </tr>
+              <tr>
+                <td class="cu-tab-rot">Pausa no lugar errado</td>
+                <td>silêncio entre palavras que andam juntas</td>
+                <td>"pausa entre 'o' e 'contrato', separando palavras que andam juntas"</td>
+              </tr>
+              <tr>
+                <td class="cu-tab-rot">Emenda</td>
+                <td>duas frases faladas sem respiro entre elas</td>
+                <td>"sem pausa entre as duas orações, as frases se emendam"</td>
+              </tr>
+              <tr>
+                <td class="cu-tab-rot">Ênfase equivocada</td>
+                <td>a palavra destacada não é a que o sentido pedia</td>
+                <td>"ênfase em 'não' quando o foco da frase é 'amanhã'"</td>
+              </tr>
+              <tr>
+                <td class="cu-tab-rot">Velocidade instável</td>
+                <td>a frase acelera ou desacelera no meio</td>
+                <td>"a segunda metade da frase acelera visivelmente"</td>
+              </tr>
+            </table>
+          </div>
+          <p class="cu-fig-nota">Todos os exemplos da terceira coluna dizem a mesma coisa: o quê, onde, e o que
+            era esperado.</p>
+        </div>
+
+        <div class="cu-pratica" id="a3-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Troque a tônica</h3>
+          <p>Leia cada par em voz alta e diga o que muda. Depois escreva como você reportaria se uma voz
+            sintética produzisse a forma errada.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">1.</span> "secretaria" e "secretária"</p>
+            <p><span class="cu-rot">2.</span> "fábrica", "fabrica" e "fabricá"</p>
+            <p><span class="cu-rot">3.</span> "duvida" e "dúvida"</p>
+          </div>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p><strong>1.</strong> "Secretaria" é o lugar, com força em "ri". "Secretária" é a pessoa, com força
+              em "tá". Relato: "Em 'secretária', a força caiu em 'ri', resultando em 'secretaria', que é outra
+              palavra."</p>
+            <p><strong>2.</strong> "Fábrica" é o lugar, "fabrica" é o verbo na terceira pessoa, e "fabricá" só
+              existe seguido de pronome, como em "fabricá-lo". Três posições de força, três funções.</p>
+            <p><strong>3.</strong> "Duvida" é o verbo, "dúvida" é o substantivo. Este par aparece muito em texto
+              sem acento, que é exatamente o tipo de entrada em que o sistema erra.</p>
+            <p>Perceba a pista prática: sempre que o texto de origem vier sem acentuação, a chance de erro de
+              tônica sobe. Vale mencionar isso no relato quando você notar, porque ajuda o time a encontrar a
+              causa.</p>
+          </div>
+        </div>
+
+        <h3 id="a3-resumo">Resumo da aula</h3>
+        <ul>
+          <li>A sílaba tônica distingue palavras em português. Errar a tônica não deixa o áudio feio, produz
+            outra palavra.</li>
+          <li>A fala se organiza em grupos, e a pausa marca a fronteira. Pausa faltando, sobrando ou longa demais
+            são defeitos com nome próprio.</li>
+          <li>A entonação carrega pergunta, foco, continuidade e atitude. Em português, pergunta sem palavra
+            interrogativa depende só da curva.</li>
+          <li>Os defeitos prosódicos mais comuns: tônica deslocada, curva de pergunta em afirmação, curva plana,
+            pausa fora de lugar, emenda, ênfase equivocada e velocidade instável.</li>
+          <li>Todo relato bom diz a mesma coisa: o quê, onde, e o que era esperado.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="3" data-proxima="aula4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 3 e ir para a aula 4
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 4 ══════════════════ -->
+      <section class="cu-aula" id="aula4">
+        <div class="cu-aula-cap"><span>Aula 4 de 4 · 15 min</span><i></i></div>
+        <h2>Do texto ao som</h2>
+        <p class="cu-resumo-aula">Nesta aula: como um sistema decide a pronúncia de cada palavra, por que o
+          português tem uma armadilha específica chamada homógrafo, a linguagem que os times usam para corrigir
+          pronúncia, e o formato de relato que faz o conserto acontecer.</p>
+
+        <h3 id="a4-pipeline">Como o sistema decide a pronúncia</h3>
+        <p>Entre o texto e o áudio existem três decisões, e saber em qual delas o defeito nasceu é o que
+          transforma o seu relato em conserto.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 4.1</b> · As três decisões antes do som</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-fluxo">
+              <div class="cu-passo"><b>1. Normalização</b><span>abre número, sigla, símbolo e abreviação. É onde
+                "R$ 1.500" vira "mil e quinhentos reais"</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo"><b>2. Letra para som</b><span>converte a escrita em sons, por regra. É onde
+                se decide se o x de "próximo" é "s" ou "ks"</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo"><b>3. Dicionário de exceções</b><span>lista de palavras cuja pronúncia é
+                fixada à mão, como nome próprio e termo técnico</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo cu-forte"><b>4. Geração do áudio</b><span>a voz em si, com ritmo, curva e
+                timbre</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Erro de número vem da caixa 1. Erro de letra vem da 2 ou da 3. Erro de ritmo e
+            de entonação vem da 4.</p>
+        </div>
+
+        <p>A etapa 2 tem nome próprio na área: <span class="cu-termo">conversão de grafema para fonema</span>,
+          abreviada como G2P, do inglês grapheme-to-phoneme. É um conjunto de regras que, dada a palavra escrita,
+          produz a sequência de sons. Para línguas com escrita razoavelmente regular, como o português, a regra
+          acerta a maior parte. O resto vai para o dicionário.</p>
+
+        <h3 id="a4-homografos">Homógrafos, o pesadelo do português</h3>
+        <p><span class="cu-termo">Homógrafo</span> é a palavra que se escreve igual e se pronuncia diferente,
+          com significados diferentes. Como a regra de letra para som só enxerga a escrita, o sistema precisa
+          descobrir qual é pelo contexto, e é aí que ele erra.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 4.2</b> · Homógrafos frequentes em português</p>
+          <div class="cu-fig-moldura">
+            <table class="cu-tab">
+              <tr><th>palavra</th><th>uma pronúncia</th><th>a outra</th></tr>
+              <tr><td class="cu-tab-rot">sede</td><td>com e aberto: vontade de beber</td><td>com e fechado: lugar da empresa</td></tr>
+              <tr><td class="cu-tab-rot">colher</td><td>com e aberto: o talher</td><td>com e fechado: o verbo, de colheita</td></tr>
+              <tr><td class="cu-tab-rot">gosto</td><td>com o aberto: eu gosto</td><td>com o fechado: o gosto, o sabor</td></tr>
+              <tr><td class="cu-tab-rot">jogo</td><td>com o aberto: eu jogo</td><td>com o fechado: o jogo</td></tr>
+              <tr><td class="cu-tab-rot">acordo</td><td>com o aberto: eu acordo</td><td>com o fechado: o acordo</td></tr>
+              <tr><td class="cu-tab-rot">para</td><td>preposição, átona</td><td>verbo parar, com força na primeira sílaba</td></tr>
+            </table>
+            <p class="cu-tab-legenda">Todos dependem do contexto para serem resolvidos, e todos aparecem com
+              frequência em texto real.</p>
+          </div>
+          <p class="cu-fig-nota">Quando você reportar um homógrafo, escreva a frase inteira. Sem o contexto, o
+            time não consegue reproduzir o erro.</p>
+        </div>
+
+        <h3 id="a4-ssml">SSML, a linguagem de controle</h3>
+        <p>Existe um padrão para dizer a um sistema de fala como pronunciar algo: o
+          <span class="cu-termo">SSML</span>, sigla de Speech Synthesis Markup Language, linguagem de marcação
+          para síntese de fala. É uma recomendação do W3C, o consórcio que padroniza tecnologias da web, na
+          versão 1.1, publicada em 7 de setembro de 2010.</p>
+        <p>Você não precisa escrever SSML para avaliar, mas reconhecer os elementos ajuda a entender o que o time
+          consegue ajustar a partir do seu relato.</p>
+        <ul>
+          <li><strong>phoneme</strong> fornece a pronúncia fonética do texto que ele envolve. É o elemento usado
+            para consertar um nome próprio.</li>
+          <li><strong>say-as</strong> diz como interpretar o conteúdo, por exemplo se aquele número é data,
+            telefone ou quantidade.</li>
+          <li><strong>sub</strong> substitui o que está escrito por outra coisa na hora de falar.</li>
+          <li><strong>lexicon</strong> aponta para um dicionário de pronúncias, o tal arquivo de exceções.</li>
+          <li><strong>break</strong> insere pausa em um ponto específico.</li>
+          <li><strong>emphasis</strong> dá destaque ao trecho que envolve.</li>
+          <li><strong>prosody</strong> controla altura da voz, velocidade e volume, além de contorno e faixa de
+            variação.</li>
+        </ul>
+        <p>Repare como essa lista conversa com as aulas anteriores: o que você aprendeu a descrever é exatamente
+          o que existe controle para corrigir.</p>
+
+        <h3 id="a4-relato">O relato que resolve o problema</h3>
+        <p>Um relato de erro de pronúncia deve permitir que a pessoa do outro lado reproduza e conserte sem
+          ouvir o áudio inteiro. Cinco campos bastam.</p>
+        <ol>
+          <li><strong>A palavra</strong>, exatamente como está escrita no texto de entrada.</li>
+          <li><strong>A frase inteira</strong>, ou pelo menos as palavras em volta, que é o que resolve
+            homógrafo.</li>
+          <li><strong>O que saiu</strong>, escrito de forma que outra pessoa reproduza: em símbolos fonéticos,
+            se você domina, ou comparando com uma palavra conhecida.</li>
+          <li><strong>O que era esperado</strong>, no mesmo formato.</li>
+          <li><strong>Se repete</strong>, ou seja, se a mesma palavra saiu errada em outros itens. Erro
+            sistemático e erro isolado recebem prioridades diferentes.</li>
+        </ol>
+        <p>E a regra que atravessa a trilha inteira: descreva só o que você ouviu. Não escreva que a pronúncia
+          está correta em uma palavra que você não conferiu, e não invente marcação de tempo. Relato inventado é
+          dado falso, ainda que com boa intenção.</p>
+
+        <div class="cu-pratica" id="a4-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Escreva três relatos</h3>
+          <p>Para cada caso, escreva o relato com os cinco campos.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">1.</span> No texto "a sede da empresa fica em Contagem", a voz leu "sede"
+              com o e aberto, como em "sede de água". Aconteceu em mais três itens do mesmo lote.</p>
+            <p><span class="cu-rot">2.</span> No texto "o prazo é de 1/3 do total", a voz leu "um barra três".</p>
+            <p><span class="cu-rot">3.</span> No texto "confirme com o Dr. Haddad", a voz leu a abreviação como
+              "dê érre" e o sobrenome com a força na primeira sílaba.</p>
+          </div>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p><strong>1.</strong> "Palavra: sede. Frase: 'a sede da empresa fica em Contagem'. Saiu com e
+              aberto, como em 'sede de água'. Esperado: e fechado, como em 'sede da empresa'. Repete: sim, em
+              mais três itens deste lote." Este é um caso de homógrafo, e a informação de que repete indica que
+              a causa é a regra, e não o áudio.</p>
+            <p><strong>2.</strong> "Trecho: '1/3'. Frase: 'o prazo é de 1/3 do total'. Saiu como 'um barra três'.
+              Esperado: 'um terço'. Repete: conferir em itens com outras frações." Note que este defeito nasce na
+              primeira caixa da figura 4.1, a normalização, e não na pronúncia. Dizer isso ajuda, e é perfeitamente
+              possível dizer com o que você aprendeu nesta trilha.</p>
+            <p><strong>3.</strong> São dois defeitos no mesmo item, e vale separar. "Trecho: 'Dr.'. Saiu soletrado
+              como 'dê érre'. Esperado: 'doutor'." E depois: "Palavra: Haddad. Saiu com a força na primeira
+              sílaba. Esperado: força na última." O primeiro é normalização de abreviação, o segundo é tônica de
+              nome próprio, que em geral se resolve no dicionário de exceções.</p>
+            <p>Repare que em nenhum dos três foi preciso usar símbolo fonético. Palavra conhecida como referência
+              resolveu.</p>
+          </div>
+        </div>
+
+        <h3 id="a4-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Antes do som existem três decisões: normalização, conversão de letra para som e dicionário de
+            exceções. Saber onde o defeito nasceu é o que permite consertar.</li>
+          <li>A conversão de letra para som chama-se G2P, e o que ela não resolve vai para o dicionário.</li>
+          <li>Homógrafos são a armadilha do português, e só o contexto resolve. Por isso o relato precisa trazer
+            a frase inteira.</li>
+          <li>SSML é o padrão do W3C, na versão 1.1 de 2010, com elementos para pronúncia, interpretação de
+            número, pausa, ênfase e prosódia.</li>
+          <li>Relato completo tem cinco campos: palavra, frase, o que saiu, o que era esperado, e se repete.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="4" data-proxima="quiz">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 4 e ir para o quiz
+        </button>
+      </section>
+
+      <!-- ══════════════════ QUIZ ══════════════════ -->
+      <section class="cu-aula" id="quiz">
+        <div class="cu-aula-cap"><span>Avaliação final</span><i></i></div>
+        <h2>Quiz do curso</h2>
+        <p class="cu-resumo-aula">Dez perguntas sobre as quatro aulas. Acertando oito ou mais, o certificado é
+          liberado com o seu nome. Pode responder quantas vezes quiser, e cada correção mostra o motivo da
+          resposta certa.</p>
+
+        <form id="formQuiz" class="cu-quiz">
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>1</i> Qual é a diferença entre grafema e fonema?</p>
+            <label><input type="radio" name="q1" value="a"><span>Grafema é o som e fonema é a letra</span></label>
+            <label><input type="radio" name="q1" value="b"><span>Grafema é a letra escrita e fonema é o som que distingue significado</span></label>
+            <label><input type="radio" name="q1" value="c"><span>São a mesma coisa, com nomes de áreas diferentes</span></label>
+            <label><input type="radio" name="q1" value="d"><span>Grafema vale para vogais e fonema para consoantes</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Em "mata" e "pata" só o primeiro som muda, e ele muda a palavra. Esse som é um
+              fonema.</p>
+          </div>
+
+          <div class="cu-q" data-certa="d">
+            <p class="cu-q-tit"><i>2</i> Em português, a letra x representa:</p>
+            <label><input type="radio" name="q2" value="a"><span>Sempre o som de "ch"</span></label>
+            <label><input type="radio" name="q2" value="b"><span>Sempre o som de "ks"</span></label>
+            <label><input type="radio" name="q2" value="c"><span>Um som que não existe em outras línguas</span></label>
+            <label><input type="radio" name="q2" value="d"><span>Sons diferentes conforme a palavra, como em táxi, xarope, exame e próximo</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">É por isso que sistemas de fala precisam de regras e de um dicionário de
+              exceções.</p>
+          </div>
+
+          <div class="cu-q" data-certa="c">
+            <p class="cu-q-tit"><i>3</i> Quantas vogais orais a sílaba tônica tem, na descrição do português
+              brasileiro citada no curso?</p>
+            <label><input type="radio" name="q3" value="a"><span>Cinco, como as letras</span></label>
+            <label><input type="radio" name="q3" value="b"><span>Seis</span></label>
+            <label><input type="radio" name="q3" value="c"><span>Sete</span></label>
+            <label><input type="radio" name="q3" value="d"><span>Doze</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">As cinco letras viram sete sons porque e e o têm versão aberta e fechada, como em
+              "pé" e "vê", "pó" e "avô".</p>
+          </div>
+
+          <div class="cu-q" data-certa="a">
+            <p class="cu-q-tit"><i>4</i> A voz sintética pronuncia "cidade" com o e final bem marcado, soando
+              "cidadE". Como se descreve isso?</p>
+            <label><input type="radio" name="q4" value="a"><span>Falta a redução da vogal final, que em português brasileiro soa como "i"</span></label>
+            <label><input type="radio" name="q4" value="b"><span>É variação regional legítima e não se reporta</span></label>
+            <label><input type="radio" name="q4" value="c"><span>É erro de tônica</span></label>
+            <label><input type="radio" name="q4" value="d"><span>É artefato de áudio</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">É um dos defeitos que as pessoas costumam descrever como "soou robótico", quando
+              dá para nomear com precisão.</p>
+          </div>
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>5</i> A voz lê "carro" com o som de r fraco, resultando em "caro". Isso é:</p>
+            <label><input type="radio" name="q5" value="a"><span>Variação regional aceitável</span></label>
+            <label><input type="radio" name="q5" value="b"><span>Defeito, porque o contraste entre os dois erres muda a palavra</span></label>
+            <label><input type="radio" name="q5" value="c"><span>Defeito de prosódia</span></label>
+            <label><input type="radio" name="q5" value="d"><span>Problema de qualidade de sinal</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">A pergunta que separa defeito de sotaque é sempre a mesma: mudou a palavra, ou
+              mudou só o jeito de dizer a mesma palavra?</p>
+          </div>
+
+          <div class="cu-q" data-certa="c">
+            <p class="cu-q-tit"><i>6</i> A voz pronuncia o s do fim da sílaba como "ch", de forma consistente, e
+              a guideline não fixa nenhuma variedade regional. O que fazer?</p>
+            <label><input type="radio" name="q6" value="a"><span>Reportar como erro de pronúncia grave</span></label>
+            <label><input type="radio" name="q6" value="b"><span>Reportar como artefato</span></label>
+            <label><input type="radio" name="q6" value="c"><span>Não reportar como erro, já que é variação legítima do português brasileiro</span></label>
+            <label><input type="radio" name="q6" value="d"><span>Dar nota mínima ao item</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Tratar sotaque como defeito ensina o sistema a evitar formas corretas da língua.</p>
+          </div>
+
+          <div class="cu-q" data-certa="a">
+            <p class="cu-q-tit"><i>7</i> No mesmo áudio, a palavra "dia" aparece com som de "dj" na primeira
+              frase e com "d" puro na última. Isso é:</p>
+            <label><input type="radio" name="q7" value="a"><span>Defeito de inconsistência, que vale relato mesmo sendo as duas formas legítimas isoladamente</span></label>
+            <label><input type="radio" name="q7" value="b"><span>Variação regional, nada a fazer</span></label>
+            <label><input type="radio" name="q7" value="c"><span>Erro de normalização de texto</span></label>
+            <label><input type="radio" name="q7" value="d"><span>Erro de entonação</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Uma voz que muda de sotaque no meio do áudio não tem sotaque, tem instabilidade.</p>
+          </div>
+
+          <div class="cu-q" data-certa="d">
+            <p class="cu-q-tit"><i>8</i> O que diferencia "sábia", "sabia" e "sabiá"?</p>
+            <label><input type="radio" name="q8" value="a"><span>A velocidade da fala</span></label>
+            <label><input type="radio" name="q8" value="b"><span>A entonação da frase inteira</span></label>
+            <label><input type="radio" name="q8" value="c"><span>Nada, são a mesma palavra escrita de três jeitos</span></label>
+            <label><input type="radio" name="q8" value="d"><span>A sílaba tônica, que muda a palavra e o significado</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Errar a tônica não deixa o áudio feio, produz outra palavra. Por isso é um dos
+              defeitos mais graves.</p>
+          </div>
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>9</i> Ao reportar erro em um homógrafo como "sede" ou "colher", o que não pode
+              faltar no relato?</p>
+            <label><input type="radio" name="q9" value="a"><span>A duração exata do áudio</span></label>
+            <label><input type="radio" name="q9" value="b"><span>A frase inteira em que a palavra apareceu</span></label>
+            <label><input type="radio" name="q9" value="c"><span>O nome do sistema avaliado</span></label>
+            <label><input type="radio" name="q9" value="d"><span>O símbolo fonético, obrigatoriamente</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Sem contexto, o time não reproduz o erro, porque é justamente o contexto que
+              deveria resolver a ambiguidade.</p>
+          </div>
+
+          <div class="cu-q" data-certa="c">
+            <p class="cu-q-tit"><i>10</i> O que é SSML?</p>
+            <label><input type="radio" name="q10" value="a"><span>Um alfabeto fonético alternativo ao IPA</span></label>
+            <label><input type="radio" name="q10" value="b"><span>Uma métrica de qualidade de voz sintética</span></label>
+            <label><input type="radio" name="q10" value="c"><span>Um padrão do W3C para marcar como o texto deve ser falado, com elementos de pronúncia, pausa, ênfase e prosódia</span></label>
+            <label><input type="radio" name="q10" value="d"><span>O nome do dicionário de exceções de um sistema de fala</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">A versão 1.1 é recomendação do W3C desde setembro de 2010. Os elementos dela
+              correspondem exatamente ao que você aprendeu a descrever.</p>
+          </div>
+
+          <div class="cu-quiz-acoes">
+            <button type="submit" class="cu-bt-forte">Corrigir o quiz</button>
+            <button type="button" class="cu-bt-leve" id="btLimpar">Limpar respostas</button>
+          </div>
+          <p class="cu-quiz-res" id="quizRes"></p>
+        </form>
+
+        <!-- ══════════ CERTIFICADO ══════════ -->
+        <div class="cu-cert-area" id="certArea">
+          <h3 id="cert">Certificado de conclusão</h3>
+          <p>O certificado fica disponível depois de acertar oito das dez perguntas. Digite o nome como você
+            quer que ele apareça, sem abreviações.</p>
+
+          <div class="cu-cert-form" id="certForm">
+            <label class="cu-campo">
+              <span>Nome completo</span>
+              <input type="text" id="nomeCert" maxlength="70" autocomplete="name" placeholder="Seu nome completo">
+            </label>
+            <button type="button" class="cu-bt-forte" id="btGerar">Gerar certificado</button>
+            <p class="cu-cert-trava" id="certTrava">Responda o quiz acima para liberar.</p>
+          </div>
+
+          <div id="certificado" class="cu-cert" hidden>
+            <div class="cu-cert-borda">
+              <p class="cu-cert-sobre">Certificado de conclusão</p>
+              <p class="cu-cert-nome" id="certNome"></p>
+              <p class="cu-cert-txt">concluiu o curso</p>
+              <p class="cu-cert-curso">Fonética Prática para Quem Avalia Voz</p>
+              <p class="cu-cert-txt cu-cert-conteudo">Quatro aulas de fonética aplicada à avaliação de voz:
+                distinção entre letra e som, inventário vocálico e consonantal do português brasileiro, redução
+                de vogal átona, variação regional contra defeito, sílaba tônica, ritmo e entonação, conversão de
+                grafema para fonema, homógrafos, elementos da linguagem SSML e redação de relato de erro de
+                pronúncia. Aproveitamento verificado por avaliação final de dez questões.</p>
+              <div class="cu-cert-pe">
+                <div>
+                  <b>Carga horária</b>
+                  <span>1 hora, curso livre de curta duração</span>
+                </div>
+                <div>
+                  <b>Conclusão</b>
+                  <span id="certData"></span>
+                </div>
+                <div>
+                  <b>Código</b>
+                  <span id="certCod"></span>
+                </div>
+              </div>
+              <p class="cu-cert-emissor">Home Office Hub · Curso livre, sem vínculo acadêmico</p>
+            </div>
+          </div>
+
+          <div class="cu-cert-acoes" id="certAcoes" hidden>
+            <button type="button" class="cu-bt-forte" id="btImprimir">Salvar em PDF ou imprimir</button>
+            <button type="button" class="cu-bt-leve" id="btTrocarNome">Trocar o nome</button>
+          </div>
+          <p class="cu-cert-nota" id="certNota" hidden>Na janela de impressão, escolha "Salvar como PDF" no
+            campo de destino. O certificado sai sozinho, sem o resto da página.</p>
+        </div>
+
+        <div class="cu-fim">
+          <h3 style="margin-top:0">Trilha de voz concluída</h3>
+          <p>Com os três cursos, você tem o conjunto que a área cobra: sabe o que cada escala mede, sabe
+            transcrever no padrão que o projeto pediu, e sabe descrever um som com precisão. O passo seguinte é
+            tarefa real.</p>
+          <div class="cu-fim-bts">
+            <a class="cu-bt-forte" href="vagas.html">Ver as vagas abertas</a>
+            <a class="cu-bt-leve" href="cursos.html">Ver todos os cursos</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ GLOSSÁRIO ══════════════════ -->
+      <section class="cu-aula" id="glossario">
+        <div class="cu-aula-cap"><span>Glossário</span><i></i></div>
+        <h2>As palavras deste curso</h2>
+        <p class="cu-resumo-aula">Definições curtas, na ordem em que os termos aparecem nas aulas.</p>
+
+        <ul class="cu-glos">
+          <li><b>Grafema</b>A letra, o sinal escrito.</li>
+          <li><b>Fonema</b>O som que distingue significado. Trocar um fonema troca a palavra, como em "mata" e
+            "pata".</li>
+          <li><b>Alofone</b>Variação do mesmo fonema que não muda o significado, como o t de "tia" pronunciado
+            com ou sem o som de tch.</li>
+          <li><b>IPA</b>Alfabeto fonético internacional, em que cada símbolo representa um som e só um. <i>Em
+            inglês, International Phonetic Alphabet.</i></li>
+          <li><b>Vozeamento</b>A vibração das cordas vocais. É o que separa "faca" de "vaca" e "chá" de "já".</li>
+          <li><b>Ponto de articulação</b>Onde na boca o som é produzido: lábios, dentes, palato, garganta.</li>
+          <li><b>Modo de articulação</b>Como o ar sai: bloqueado e solto, passando apertado, pelo nariz.</li>
+          <li><b>Vogal aberta e fechada</b>O par que distingue "avó" de "avô" e "pé" de "vê".</li>
+          <li><b>Nasalidade</b>O ar saindo também pelo nariz, como em "canto" e "mundo". Em português ela
+            distingue palavras.</li>
+          <li><b>Redução vocálica</b>O enfraquecimento da vogal fora da sílaba forte. Em português brasileiro, o
+            e final soa como i e o o final soa como u.</li>
+          <li><b>Africada</b>O som que começa com o ar bloqueado e termina com um chiado, como o "tch" de "tia"
+            e o "dj" de "dia" na maior parte do Brasil.</li>
+          <li><b>Tepe e vibrante</b>Os dois erres do português: o rápido de "caro" e o forte de "carro". A
+            realização do forte varia por região.</li>
+          <li><b>Sílaba tônica</b>A sílaba mais forte da palavra. Em português ela distingue palavras, como em
+            "sábia", "sabia" e "sabiá".</li>
+          <li><b>Oxítona, paroxítona e proparoxítona</b>Palavra com a força na última, na penúltima e na
+            antepenúltima sílaba.</li>
+          <li><b>Prosódia</b>O conjunto de ritmo, pausa, ênfase e entonação.</li>
+          <li><b>Entonação</b>A melodia da fala, o sobe e desce da voz. Em português, é ela que transforma
+            afirmação em pergunta.</li>
+          <li><b>Foco</b>A palavra destacada na frase. Mudar o foco muda o sentido sem mudar as palavras.</li>
+          <li><b>G2P</b>Conversão de grafema para fonema: as regras que transformam a palavra escrita em
+            sequência de sons. <i>Do inglês grapheme-to-phoneme.</i></li>
+          <li><b>Léxico de pronúncia</b>O dicionário de exceções do sistema, onde ficam nomes próprios e termos
+            que a regra erraria.</li>
+          <li><b>Homógrafo</b>Palavra escrita igual e pronunciada diferente, com significados diferentes, como
+            "sede" e "colher". Só o contexto resolve.</li>
+          <li><b>SSML</b>Speech Synthesis Markup Language, padrão do W3C para marcar como o texto deve ser
+            falado, com elementos de pronúncia, pausa, ênfase e prosódia.</li>
+        </ul>
+      </section>
+
+      <!-- ══════════════════ FONTES ══════════════════ -->
+      <section class="cu-aula" id="fontes">
+        <div class="cu-aula-cap"><span>Referências</span><i></i></div>
+        <h2>Fontes do curso</h2>
+        <p class="cu-resumo-aula">O inventário de sons e os elementos de marcação citados nas aulas foram
+          conferidos nas fontes abaixo, todas públicas.</p>
+
+        <ul class="cu-fontes">
+          <li>
+            <b>Illustrations of the IPA: Brazilian Portuguese</b>
+            Plínio A. Barbosa e Eleonora C. Albano, Journal of the International Phonetic Association, volume
+            34, número 2, 2004.
+            <em><a href="https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/brazilian-portuguese/8EE69D52AE2D06C1EDA2841EA2E14FEC" target="_blank" rel="noopener">cambridge.org</a>
+              · fonte das sete vogais orais da sílaba tônica, da realização das oclusivas dentais como africadas
+              antes de i, e do contraste entre os dois erres em posição entre vogais.</em>
+          </li>
+          <li>
+            <b>Associação Fonética Internacional, alfabeto e ilustrações</b>
+            International Phonetic Association.
+            <em><a href="https://www.internationalphoneticassociation.org/" target="_blank" rel="noopener">internationalphoneticassociation.org</a>
+              · a tabela oficial de símbolos e as gravações que acompanham as ilustrações de cada língua.</em>
+          </li>
+          <li>
+            <b>Speech Synthesis Markup Language (SSML) Version 1.1</b>
+            W3C Recommendation, 7 de setembro de 2010.
+            <em><a href="https://www.w3.org/TR/speech-synthesis11/" target="_blank" rel="noopener">w3.org/TR/speech-synthesis11</a>
+              · fonte dos elementos citados na aula 4, incluindo phoneme, say-as, sub, lexicon, break, emphasis e
+              prosody, com os atributos de altura, velocidade, volume, contorno e faixa.</em>
+          </li>
+          <li>
+            <b>NeMo Inverse Text Normalization: From Development To Production</b>
+            Yang Zhang, Evelina Bakhturina, Kyle Gorman e Boris Ginsburg, Interspeech 2021.
+            <em><a href="https://arxiv.org/abs/2104.05055" target="_blank" rel="noopener">arxiv.org/abs/2104.05055</a>
+              · referência sobre as duas direções de normalização de texto, citadas na figura 4.1.</em>
+          </li>
+        </ul>
+
+        <p>Os exemplos em português deste curso, como pares de palavras e frases de teste, foram escolhidos para
+          ilustrar cada fenômeno e valem para as variedades mais faladas do português brasileiro. Onde a
+          realização varia por região, o curso diz isso de forma explícita, em vez de tratar uma variedade como
+          correta.</p>
+      </section>
+    </main>
+
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script>try { montarLayout("cursos"); } catch (e) {}</script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   CURSO — comportamento da página.
+   Nada aqui depende de biblioteca externa.
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  var CHAVE = "hoh_curso_fonetica";
+
+  /* ── memória do navegador, sempre protegida ── */
+  function ler() {
+    try {
+      var cru = localStorage.getItem(CHAVE);
+      return cru ? JSON.parse(cru) : {};
+    } catch (e) { return {}; }
+  }
+  function gravar(dados) {
+    try { localStorage.setItem(CHAVE, JSON.stringify(dados)); } catch (e) {}
+  }
+  var estado = ler();
+  if (!estado.aulas) estado.aulas = {};
+
+  /* ── figura 2.1: preenche a grade de pessoas ── */
+  var grade = document.getElementById("gradeGente");
+  if (grade) {
+    for (var g = 0; g < 54; g++) grade.appendChild(document.createElement("i"));
+  }
+
+  /* ── sumário no celular ── */
+  var lado = document.getElementById("lado");
+  var abre = document.getElementById("abreSum");
+  if (abre && lado) {
+    abre.addEventListener("click", function () {
+      var aberto = lado.classList.toggle("cu-aberto");
+      abre.setAttribute("aria-expanded", aberto ? "true" : "false");
+    });
+  }
+
+  /* ── links do sumário: fecham o painel no celular ── */
+  var links = [].slice.call(document.querySelectorAll(".cu-sub a, .cu-aula-link"));
+  links.forEach(function (a) {
+    a.addEventListener("click", function () {
+      if (lado && window.innerWidth <= 1080) {
+        lado.classList.remove("cu-aberto");
+        if (abre) abre.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  /* ── marca no sumário a seção que está na tela ── */
+  var subLinks = [].slice.call(document.querySelectorAll(".cu-sub a"));
+  var alvos = subLinks.map(function (a) {
+    return document.getElementById(a.getAttribute("href").slice(1));
+  });
+  var ticando = false;
+  function marcarAtivo() {
+    ticando = false;
+    var melhor = -1, menorDist = Infinity;
+    for (var i = 0; i < alvos.length; i++) {
+      if (!alvos[i]) continue;
+      var t = alvos[i].getBoundingClientRect().top - 130;
+      var d = t <= 0 ? -t : t * 3;
+      if (d < menorDist) { menorDist = d; melhor = i; }
+    }
+    subLinks.forEach(function (a, i) {
+      a.classList.toggle("cu-ativo", i === melhor);
+    });
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticando) { ticando = true; window.requestAnimationFrame(marcarAtivo); }
+  }, { passive: true });
+  marcarAtivo();
+
+  /* ── botões "ver o comentário" ── */
+  [].slice.call(document.querySelectorAll(".cu-abrir-resp")).forEach(function (bt) {
+    bt.addEventListener("click", function () {
+      var resp = bt.parentNode.querySelector(".cu-resp");
+      if (!resp) return;
+      var on = resp.classList.toggle("cu-on");
+      bt.firstChild.nodeValue = on ? "Esconder o comentário " : "Ver o comentário ";
+    });
+  });
+
+  /* ── progresso das aulas ── */
+  var barra = document.getElementById("barra");
+  var barraTxt = document.getElementById("barraTxt");
+  function pintarProgresso() {
+    var feitas = 0;
+    for (var n = 1; n <= 4; n++) {
+      var feita = !!estado.aulas[n];
+      if (feita) feitas++;
+      var link = document.querySelector('.cu-aula-link[data-aula="' + n + '"]');
+      if (link) link.classList.toggle("cu-feita", feita);
+      var bt = document.querySelector('.cu-concluir[data-aula="' + n + '"]');
+      if (bt) {
+        bt.classList.toggle("cu-pronta", feita);
+        var rotulo = bt.getAttribute("data-rotulo") || bt.textContent.trim();
+        bt.lastChild.nodeValue = " " + (feita ? "Aula " + n + " concluída" : rotulo);
+      }
+    }
+    if (barra) barra.style.width = (feitas / 4 * 100) + "%";
+    if (barraTxt) barraTxt.textContent = feitas + " de 4 aulas concluídas";
+  }
+  [].slice.call(document.querySelectorAll(".cu-concluir")).forEach(function (bt) {
+    bt.setAttribute("data-rotulo", bt.textContent.trim());
+    bt.addEventListener("click", function () {
+      estado.aulas[bt.getAttribute("data-aula")] = true;
+      gravar(estado);
+      pintarProgresso();
+      var proxima = document.getElementById(bt.getAttribute("data-proxima"));
+      if (proxima) proxima.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+  pintarProgresso();
+
+  /* ── quiz ── */
+  var form = document.getElementById("formQuiz");
+  var res = document.getElementById("quizRes");
+  var certArea = document.getElementById("certArea");
+  var MINIMO = 8;
+
+  function liberarCertificado(liberado) {
+    if (certArea) certArea.classList.toggle("cu-liberado", liberado);
+  }
+  liberarCertificado(estado.aprovado === true);
+
+  if (form) {
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var perguntas = [].slice.call(form.querySelectorAll(".cu-q"));
+      var acertos = 0, respondidas = 0;
+
+      perguntas.forEach(function (q, i) {
+        var marcada = q.querySelector("input:checked");
+        var certa = q.getAttribute("data-certa");
+        var fb = q.querySelector(".cu-q-fb");
+        q.classList.add("cu-corrigida");
+        q.classList.remove("cu-acertou", "cu-errou");
+
+        if (!marcada) {
+          q.classList.add("cu-errou");
+          if (fb) fb.textContent = "Sem resposta marcada.";
+          return;
+        }
+        respondidas++;
+        if (marcada.value === certa) {
+          acertos++;
+          q.classList.add("cu-acertou");
+          if (fb) fb.textContent = "Certo.";
+        } else {
+          q.classList.add("cu-errou");
+          var alt = q.querySelector('input[value="' + certa + '"]');
+          var textoCerto = alt ? alt.nextElementSibling.textContent : "";
+          if (fb) fb.textContent = "Não é essa. A resposta certa é: " + textoCerto;
+        }
+      });
+
+      var aprovado = acertos >= MINIMO;
+      estado.aprovado = estado.aprovado === true || aprovado;
+      estado.melhor = Math.max(estado.melhor || 0, acertos);
+      gravar(estado);
+      liberarCertificado(estado.aprovado === true);
+
+      if (res) {
+        res.textContent = aprovado
+          ? "Você acertou " + acertos + " de 10. Aprovado, o certificado está liberado abaixo."
+          : "Você acertou " + acertos + " de 10. Faltam " + (MINIMO - acertos) +
+            " para liberar o certificado. Leia os comentários das erradas e tente de novo.";
+        res.style.color = aprovado ? "var(--signal,#1A4893)" : "var(--amber,#A85D24)";
+      }
+
+      var destino = aprovado ? document.getElementById("cert") : perguntas.find(function (q) {
+        return q.classList.contains("cu-errou");
+      });
+      if (destino) destino.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    var limpar = document.getElementById("btLimpar");
+    if (limpar) {
+      limpar.addEventListener("click", function () {
+        form.reset();
+        [].slice.call(form.querySelectorAll(".cu-q")).forEach(function (q) {
+          q.classList.remove("cu-corrigida", "cu-acertou", "cu-errou");
+        });
+        if (res) res.textContent = "";
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }
+
+  /* ── certificado ── */
+  var nomeInput = document.getElementById("nomeCert");
+  var btGerar = document.getElementById("btGerar");
+  var cert = document.getElementById("certificado");
+  var certForm = document.getElementById("certForm");
+  var certAcoes = document.getElementById("certAcoes");
+  var certNota = document.getElementById("certNota");
+
+  function codigoDe(nome) {
+    var soma = 0;
+    for (var i = 0; i < nome.length; i++) soma = (soma * 31 + nome.charCodeAt(i)) % 1679616;
+    var base = soma.toString(36).toUpperCase();
+    while (base.length < 4) base = "0" + base;
+    return "FON-" + base + "-" + new Date().getFullYear();
+  }
+
+  function mostrarCertificado(nome, data, codigo) {
+    document.getElementById("certNome").textContent = nome;
+    document.getElementById("certData").textContent = data;
+    document.getElementById("certCod").textContent = codigo;
+    if (cert) cert.hidden = false;
+    if (certAcoes) certAcoes.hidden = false;
+    if (certNota) certNota.hidden = false;
+    if (certForm) certForm.style.display = "none";
+  }
+
+  if (btGerar) {
+    btGerar.addEventListener("click", function () {
+      if (estado.aprovado !== true) {
+        if (nomeInput) nomeInput.blur();
+        var trava = document.getElementById("certTrava");
+        if (trava) {
+          trava.textContent = "Para liberar, acerte pelo menos 8 das 10 perguntas do quiz acima.";
+          trava.style.fontWeight = "600";
+        }
+        var q = document.getElementById("quiz");
+        if (q) q.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      var nome = (nomeInput ? nomeInput.value : "").trim().replace(/\s+/g, " ");
+      if (nome.length < 3) {
+        if (nomeInput) { nomeInput.focus(); nomeInput.style.borderColor = "#A85D24"; }
+        return;
+      }
+      var hoje = new Date();
+      var data = hoje.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+      var codigo = codigoDe(nome);
+      estado.nome = nome; estado.data = data; estado.codigo = codigo;
+      gravar(estado);
+      mostrarCertificado(nome, data, codigo);
+      if (cert) cert.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }
+
+  /* já tinha certificado emitido antes */
+  if (estado.aprovado === true && estado.nome && estado.data && estado.codigo) {
+    mostrarCertificado(estado.nome, estado.data, estado.codigo);
+  }
+
+  var btImprimir = document.getElementById("btImprimir");
+  if (btImprimir) btImprimir.addEventListener("click", function () { window.print(); });
+
+  var btTrocar = document.getElementById("btTrocarNome");
+  if (btTrocar) {
+    btTrocar.addEventListener("click", function () {
+      if (cert) cert.hidden = true;
+      if (certAcoes) certAcoes.hidden = true;
+      if (certNota) certNota.hidden = true;
+      if (certForm) certForm.style.display = "";
+      if (nomeInput) { nomeInput.value = estado.nome || ""; nomeInput.focus(); }
+    });
+  }
+})();
+</script>
+</body>
+</html>

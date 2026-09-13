@@ -726,7 +726,8 @@ html { scroll-behavior:smooth; }
           Não existe "resposta valendo 7". Existe "esta é melhor que aquela", e é a comparação que carrega o
           sinal. A segunda: a <strong>justificativa</strong> que você escreve muitas vezes vale tanto quanto a
           escolha, porque é ela que registra o que "melhor" significou naquele caso específico. Quem monta o
-          projeto lê essas justificativas para corrigir a própria guideline.</p>
+          projeto lê essas justificativas para corrigir a própria guideline, que é o documento com as regras da
+          tarefa, assunto da aula 4.</p>
 
         <div class="cu-caixa">
           <p><span class="cu-rot">Dado verificável:</span> no artigo do InstructGPT, a OpenAI conta que contratou
@@ -854,8 +855,8 @@ html { scroll-behavior:smooth; }
               </div>
             </div>
           </div>
-          <p class="cu-fig-nota">Uma escolha entre duas respostas, multiplicada por agregação e treino, molda o
-            que muita gente recebe como resposta.</p>
+          <p class="cu-fig-nota">Uma escolha entre duas respostas, somada a milhares de outras e transformada em
+            treino, molda o que muita gente recebe como resposta.</p>
         </div>
 
         <p>O efeito vale nos dois sentidos. Julgamento consistente e cuidadoso produz um modelo mensuravelmente
@@ -925,19 +926,19 @@ html { scroll-behavior:smooth; }
 
         <h4>Bajulação</h4>
         <p>Modelos treinados em preferências humanas tendem a concordar com o usuário. Se os avaliadores
-          favorecem, mesmo que de leve, respostas que endossam a premissa da pergunta ou elogiam a opinião de
-          quem pergunta, o modelo aprende que concordar é premiado e começa a puxar a resposta para o lado do
-          usuário em vez do lado da precisão. Aquele assistente que abre com "você está absolutamente certo"
+          favorecem, mesmo que de leve, respostas que aceitam a premissa da pergunta, ou seja a ideia que a
+          pergunta já dá como certa, ou que elogiam a opinião de quem perguntou, o modelo aprende que concordar
+          é premiado e começa a puxar a resposta para o lado do usuário em vez do lado da precisão. Aquele assistente que abre com "você está absolutamente certo"
           antes de dizer algo errado adquiriu o hábito em avaliações.</p>
 
         <h4>Viés de tamanho e de formatação</h4>
-        <p>Num projeto de assistente de programação, os avaliadores recebiam dois trechos de código e deviam
-          escolher o melhor considerando correção, clareza, eficiência, estilo e comentários. Em poucas semanas
-          o modelo treinado passou a colocar comentários longos em funções triviais e a comentar quase toda
-          linha. Ao investigar, ficou claro que quem avaliava com pressa usava a densidade de comentários como
-          atalho para julgar correção e clareza, que são mais difíceis de conferir. Código mais comentado parecia
-          mais cuidadoso e era escolhido mais vezes. O modelo de recompensa absorveu essa preferência e o modelo
-          principal aprendeu a inflar a saída. Levou várias rodadas de retreino para desfazer.</p>
+        <p>Imagine um projeto de assistente de programação em que os avaliadores recebem dois trechos de código
+          e escolhem o melhor, considerando correção, clareza, eficiência, estilo e comentários. Em poucas
+          semanas, o modelo treinado começa a encher funções simples de comentários, quase linha por linha.</p>
+        <p>O motivo aparece quando se investiga: quem avalia com pressa usa a quantidade de comentários como
+          atalho para julgar correção e clareza, que são mais difíceis de conferir. Código mais comentado parece
+          mais cuidadoso, é escolhido mais vezes, o modelo de recompensa absorve essa preferência e o modelo
+          principal aprende a inchar a saída. Desfazer isso custa várias rodadas de treino.</p>
 
         <h4>Exploração da recompensa</h4>
         <p>É a forma geral do caso acima. O modelo encontra uma característica de superfície, barata de produzir,
@@ -1122,14 +1123,14 @@ html { scroll-behavior:smooth; }
           leitores preferiram aos de um treino supervisionado comum. Ficou demonstrado que o método atravessava
           do robô simulado para uma tarefa linguística real.</p>
         <p><em>InstructGPT</em> (Ouyang e outros, OpenAI, 2022) estendeu a abordagem para seguir instruções em
-          geral e publicou a receita completa pela primeira vez: ajuste supervisionado sobre demonstrações
-          humanas, depois um modelo de recompensa treinado em comparações de preferência, depois aprendizado por
-          reforço contra esse modelo de recompensa. É o processo de três estágios da aula 1. O artigo também
-          descreveu a força de trabalho por trás disso, cerca de quarenta pessoas selecionadas e pagas,
-          trabalhando a partir de guidelines detalhadas para produzir as demonstrações e as comparações. A mesma
-          receita virou a base do ChatGPT no fim daquele ano e da maioria dos assistentes desde então, e segue
-          sendo o relato público mais claro de um trabalho de avaliação como o que alimenta um modelo de
-          fronteira.</p>
+          geral e publicou a receita completa pela primeira vez. São três etapas: primeiro, o modelo é ajustado
+          com respostas escritas por pessoas; depois, um modelo de recompensa é treinado com as comparações que
+          elas fizeram; por fim, o modelo principal é ajustado para agradar esse modelo de recompensa. É o
+          processo de três estágios da aula 1.</p>
+        <p>O mesmo artigo descreve quem produziu esses dados: cerca de quarenta pessoas contratadas e pagas,
+          trabalhando a partir de instruções detalhadas. Essa receita virou a base do ChatGPT no fim daquele ano
+          e da maioria dos assistentes desde então, e segue sendo o relato público mais claro de um trabalho de
+          avaliação como o que alimenta um modelo grande.</p>
         <p>Vale reter esse ponto: o trabalho descrito nesse artigo é o mesmo tipo de trabalho anunciado nas vagas
           que você encontra hoje.</p>
 
@@ -1178,13 +1179,14 @@ html { scroll-behavior:smooth; }
             pessoas.</p>
         </div>
 
-        <p><span class="cu-termo">RLAIF</span>, aprendizado por reforço a partir de feedback de IA, vai além e
-          faz um modelo gerar parte das comparações de preferência que uma pessoa faria, trocando um pouco de
-          fidelidade aos valores humanos por um ganho grande de escala. Uma prática próxima, hoje comum, é o
-          <span class="cu-termo">LLM como juiz</span>, onde LLM é só a sigla em inglês para modelo de linguagem
-          grande: um modelo competente, guiado por uma rubrica, faz uma primeira passada de avaliação, que
-          pessoas depois conferem por amostragem. Rubrica, aqui, é a lista escrita de critérios e notas que o
-          avaliador deve aplicar, e ela vale tanto para a pessoa quanto para o modelo que faz esse papel.</p>
+        <p><span class="cu-termo">RLAIF</span>, aprendizado por reforço a partir de feedback de IA, vai além:
+          um modelo gera parte das comparações que uma pessoa faria. Troca-se um pouco de fidelidade aos valores
+          humanos por um ganho grande de escala.</p>
+        <p>Uma prática próxima, hoje comum, é o <span class="cu-termo">LLM como juiz</span>, onde LLM é só a
+          sigla em inglês para modelo de linguagem grande. Funciona assim: um modelo competente, guiado por uma
+          rubrica, faz a primeira passada de avaliação, e pessoas conferem uma amostra do resultado. Rubrica,
+          aqui, é a lista escrita de critérios e notas que o avaliador deve aplicar, e ela vale tanto para a
+          pessoa quanto para o modelo que faz esse papel.</p>
         <p>Nada disso tira o humano do processo, muda o lugar onde ele fica. À medida que os modelos absorvem as
           comparações rotineiras, os avaliadores migram para o trabalho mais difícil: escrever e refinar
           guidelines, decidir os casos ambíguos que um modelo não resolve, auditar julgamentos feitos por

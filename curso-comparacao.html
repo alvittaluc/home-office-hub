@@ -641,7 +641,8 @@ html { scroll-behavior:smooth; }
           respostas e dizer qual é melhor. <b>Modelo de recompensa</b> é um segundo programa, treinado com essas
           comparações, que aprende a prever qual resposta as pessoas escolheriam. E <b>RLHF</b> é a sigla do
           processo que junta as três coisas: coletar comparações humanas, treinar o modelo de recompensa com
-          elas, e ajustar o modelo principal para agradar esse juiz automático.</p>
+          elas, e ajustar o modelo principal para agradar esse juiz automático. Some a esses quatro a
+          <b>guideline</b>, que é o documento do projeto definindo a tarefa e as regras que você aplica.</p>
 
         <h3 id="a1-formato">O formato e as suas variações</h3>
         <p>A tarefa base é sempre a mesma: um pedido, duas respostas, uma escolha. O que varia é o quanto de
@@ -916,14 +917,15 @@ html { scroll-behavior:smooth; }
         <p><span class="cu-termo">LLM como juiz</span> é a prática de usar um modelo competente, guiado por uma
           rubrica escrita, para avaliar respostas. Rubrica, aqui, é a lista de critérios e notas que o avaliador
           deve aplicar, a mesma que uma pessoa receberia. Na forma mais comum, o juiz recebe o pedido, as duas
-          respostas, a rubrica, e devolve um veredito com justificativa.</p>
+          respostas e a rubrica, e devolve a decisão, chamada de veredito, junto com a justificativa.</p>
         <p>Três variações aparecem na literatura e nos projetos: comparação pareada, em que o juiz escolhe entre
           A e B; nota isolada, em que ele pontua uma resposta sozinha; e comparação com resposta de referência,
           em que existe uma resposta considerada boa e o juiz mede a distância até ela. A terceira é a mais
           confiável em tarefa com resposta verificável, como matemática.</p>
         <p>Note o que isso tem em comum com o seu trabalho: o juiz automático aplica uma guideline. Se a rubrica é
-          vaga, ele erra pelos mesmos motivos que uma pessoa erraria, e de forma mais uniforme, o que é pior,
-          porque erro sistemático não aparece como discordância.</p>
+          vaga, ele erra pelos mesmos motivos que uma pessoa erraria, e de forma mais uniforme, o que é pior.
+          Erro sistemático, ou seja, o mesmo erro repetido sempre do mesmo jeito, não aparece como discordância
+          entre avaliadores, e por isso passa despercebido.</p>
 
         <h3 id="a3-quanto">O quanto ela acerta, segundo a pesquisa</h3>
         <p>O número mais citado vem do artigo de Zheng e colegas, de 2023, que construiu dois conjuntos de
@@ -1113,7 +1115,8 @@ html { scroll-behavior:smooth; }
           <li><strong>Verifique o passo decisivo, não o texto inteiro.</strong> Numa resposta técnica, quase
             sempre existe uma afirmação que carrega o resto. Confira aquela.</li>
           <li><strong>Fonte no comentário quando houver divergência.</strong> Se você afirma que A erra a
-            alíquota ou a dosagem, dizer onde isso está escrito transforma a sua linha em algo que o projeto pode
+            alíquota de um imposto ou a dose de um remédio, dizer onde isso está escrito transforma a sua linha
+            em algo que o projeto pode
             usar sem refazer a pesquisa.</li>
           <li><strong>Não fingir domínio.</strong> Se o par está fora da sua área e o projeto tem caminho para
             devolver o item, devolver é o comportamento correto e é mais valioso que um palpite bem escrito.
