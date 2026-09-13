@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Segurança, Red Teaming e Conteúdo Sensível — Home Office Hub</title>
+<meta name="description" content="Curso sobre política de uso, taxonomia de dano, recusa apropriada contra recusa excessiva, red teaming e cuidado com conteúdo pesado.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Segurança, Red Teaming e Conteúdo Sensível — Home Office Hub">
+<meta property="og:description" content="Quatro aulas sobre avaliar segurança de modelos de IA, com as políticas e os artigos públicos como base.">
+<meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/curso-seguranca.html">
+<meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css" onerror="document.documentElement.classList.add('f-solto')">
+
+<style>
+/* ── Visual de reserva: só entra em ação quando o estilo.css não é encontrado. ── */
+html.f-solto body {
+  font-family:'Geist',system-ui,sans-serif; background:#F7F4EF; color:#10203A;
+  line-height:1.55; margin:0;
+}
+html.f-solto a { color:inherit; text-decoration:none; }
+html.f-solto .eyebrow {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:#1A4893;
+  display:flex; align-items:center; gap:9px; margin-bottom:14px;
+}
+html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#1A4893; }
+
+/* ══════════════════════════════════════════════════════════════
+   CURSO — página de leitura, coluna lateral fixa com o sumário.
+   Tudo com prefixo .cu- para não encostar no estilo.css.
+   ══════════════════════════════════════════════════════════════ */
+
+html { scroll-behavior:smooth; }
+.cu-wrap, .cu-wrap *, .cu-wrap *::before, .cu-wrap *::after { box-sizing:border-box; }
+.cu-wrap { max-width:var(--wrap,1180px); margin:0 auto; padding:0 20px; }
+
+/* ── abertura ── */
+.cu-topo { padding:48px 0 34px; border-bottom:1px solid var(--line,#DED7CA); }
+.cu-topo h1 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(30px,4vw,48px); line-height:1.08; letter-spacing:-0.015em;
+  color:var(--ink,#10203A); margin:0 0 16px; max-width:20ch;
+}
+.cu-topo .cu-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); max-width:62ch; margin:0 0 22px; }
+.cu-fatos { display:flex; flex-wrap:wrap; gap:8px; }
+.cu-fato {
+  font-size:12.5px; color:var(--ink-2,#54606F); background:var(--panel,#FFF);
+  border-radius:99px; padding:6px 13px; box-shadow:inset 0 0 0 1px var(--line,#DED7CA);
+  display:inline-flex; align-items:center; gap:7px;
+}
+.cu-fato svg { color:var(--signal,#1A4893); }
+
+/* ── grade de duas colunas ── */
+.cu-grade { display:grid; grid-template-columns:274px minmax(0,1fr); gap:56px; padding:40px 0 110px; }
+
+/* ── coluna lateral ── */
+.cu-lado { position:sticky; top:96px; align-self:start; min-width:0; max-height:calc(100vh - 130px); overflow-y:auto; padding-right:6px; }
+.cu-lado::-webkit-scrollbar { width:6px; }
+.cu-lado::-webkit-scrollbar-thumb { background:var(--line,#DED7CA); border-radius:99px; }
+
+.cu-sum-titulo {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase;
+  color:var(--ink-3,#8A94A1); margin:0 0 14px;
+}
+.cu-barra { height:4px; border-radius:99px; background:var(--line-soft,#EAE4D9); overflow:hidden; margin-bottom:8px; }
+.cu-barra span { display:block; height:100%; width:0; background:var(--signal,#1A4893); border-radius:99px; transition:width .35s; }
+.cu-barra-txt { font-size:12px; color:var(--ink-3,#8A94A1); margin:0 0 22px; }
+
+.cu-sum { list-style:none; margin:0; padding:0; }
+.cu-sum > li { margin-bottom:6px; }
+.cu-aula-link {
+  display:flex; align-items:flex-start; gap:9px; padding:7px 0;
+  font-size:14.5px; font-weight:600; color:var(--ink,#10203A); line-height:1.4;
+}
+.cu-aula-link:hover { color:var(--signal,#1A4893); }
+.cu-num {
+  flex:0 0 auto; width:19px; height:19px; margin-top:1px; border-radius:99px;
+  display:grid; place-items:center; font-size:11px; font-weight:600;
+  color:var(--ink-3,#8A94A1); box-shadow:inset 0 0 0 1px var(--line,#DED7CA);
+}
+.cu-aula-link.cu-feita .cu-num { background:var(--signal,#1A4893); color:#fff; box-shadow:none; font-size:0; }
+.cu-aula-link.cu-feita .cu-num::after { content:'✓'; font-size:11px; }
+
+.cu-sub { list-style:none; margin:2px 0 12px; padding:0 0 0 28px; border-left:1px solid var(--line-soft,#EAE4D9); margin-left:9px; }
+.cu-sub li a {
+  display:block; padding:5px 0; font-size:13.5px; line-height:1.45;
+  color:var(--ink-2,#54606F);
+}
+.cu-sub li a:hover { color:var(--signal,#1A4893); }
+.cu-sub li a.cu-ativo { color:var(--signal,#1A4893); font-weight:600; }
+
+/* botão de sumário no celular */
+.cu-abre-sum { display:none; }
+
+/* ── conteúdo ── */
+.cu-conteudo { max-width:74ch; min-width:0; }
+.cu-aula { padding-bottom:18px; }
+.cu-aula + .cu-aula { padding-top:22px; }
+
+.cu-aula-cap { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.cu-aula-cap span {
+  font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--signal,#1A4893);
+}
+.cu-aula-cap i { flex:1; height:1px; background:var(--line,#DED7CA); }
+
+.cu-aula h2 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(26px,3vw,35px); line-height:1.12; letter-spacing:-0.012em;
+  color:var(--ink,#10203A); margin:0 0 10px; scroll-margin-top:100px;
+}
+.cu-resumo-aula {
+  font-size:16px; line-height:1.62; color:var(--ink-2,#54606F);
+  padding:16px 18px; background:var(--bg-soft,#F1ECE3); border-radius:14px; margin:18px 0 30px;
+}
+.cu-conteudo h3 {
+  font-size:19px; font-weight:600; letter-spacing:-0.01em; color:var(--ink,#10203A);
+  margin:38px 0 12px; scroll-margin-top:100px;
+}
+.cu-conteudo h4 { font-size:15.5px; font-weight:600; color:var(--ink,#10203A); margin:24px 0 8px; }
+.cu-conteudo p { font-size:16px; line-height:1.72; color:var(--ink-2,#54606F); margin:0 0 16px; }
+.cu-conteudo strong { color:var(--ink,#10203A); font-weight:600; }
+.cu-conteudo ul, .cu-conteudo ol { font-size:16px; line-height:1.72; color:var(--ink-2,#54606F); padding-left:22px; margin:0 0 18px; }
+.cu-conteudo li { margin-bottom:8px; }
+
+.cu-termo { color:var(--ink,#10203A); font-weight:600; }
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve) {
+  color:var(--signal,#1A4893); text-decoration:underline; text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve):hover { text-decoration-thickness:2px; }
+
+/* lista de fontes */
+.cu-fontes { list-style:none; padding:0; margin:0 0 18px; }
+.cu-fontes li {
+  padding:13px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+  font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F);
+}
+.cu-fontes li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
+.cu-fontes b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:3px; }
+.cu-fontes em { display:block; font-size:13px; color:var(--ink-3,#8A94A1); font-style:normal; margin-top:3px; }
+
+/* caixa de exemplo, prompt e respostas */
+.cu-caixa {
+  border-left:3px solid var(--signal-dim,#4E9AC8); background:var(--panel,#FFF);
+  border-radius:0 14px 14px 0; padding:18px 20px; margin:0 0 20px;
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-caixa p { margin:0 0 12px; font-size:15.5px; }
+.cu-caixa p:last-child { margin:0; }
+.cu-rot { font-weight:600; color:var(--ink,#10203A); }
+
+/* prática */
+.cu-pratica { border:1px solid var(--line,#DED7CA); border-radius:18px; padding:24px 24px 8px; margin:26px 0 6px; background:var(--panel,#FFF); }
+.cu-pratica > h3 { margin-top:0; }
+.cu-selo {
+  display:inline-flex; align-items:center; gap:7px; font-size:11px; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--amber,#A85D24); margin-bottom:12px;
+}
+.cu-selo::before { content:''; width:18px; height:1px; background:var(--amber,#A85D24); }
+.cu-abrir-resp {
+  appearance:none; border:1px solid var(--line,#DED7CA); background:var(--bg-soft,#F1ECE3);
+  color:var(--ink,#10203A); font-family:inherit; font-size:14px; font-weight:600;
+  border-radius:99px; padding:9px 18px; cursor:pointer; margin-bottom:20px;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.cu-abrir-resp:hover { border-color:var(--ink-3,#8A94A1); }
+.cu-resp { display:none; border-top:1px solid var(--line-soft,#EAE4D9); padding-top:18px; margin-bottom:14px; }
+.cu-resp.cu-on { display:block; }
+
+/* figuras */
+.cu-fig { margin:30px 0 32px; }
+.cu-fig-cap { font-size:11px; letter-spacing:0.11em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:14px; }
+.cu-fig-cap b { color:var(--signal,#1A4893); font-weight:600; }
+.cu-fig-moldura {
+  border:1px solid var(--line,#DED7CA); background:var(--panel,#FFF);
+  border-radius:18px; padding:26px 22px; overflow-x:auto;
+}
+.cu-fig-nota { font-size:13px; line-height:1.6; color:var(--ink-3,#8A94A1); text-align:center; margin:12px 0 0; }
+
+/* peças dos diagramas */
+.cu-fluxo { display:flex; align-items:stretch; gap:10px; min-width:min-content; }
+.cu-passo {
+  flex:1 1 0; min-width:150px; border-radius:14px; padding:14px 15px;
+  background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-passo b { display:block; font-size:14px; color:var(--ink,#10203A); margin-bottom:5px; }
+.cu-passo span { display:block; font-size:12.5px; line-height:1.55; color:var(--ink-2,#54606F); }
+.cu-passo.cu-forte { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-passo.cu-forte b, .cu-passo.cu-forte span { color:#fff; }
+.cu-passo.cu-forte span { color:rgba(255,255,255,0.82); }
+.cu-seta { align-self:center; flex:0 0 auto; color:var(--ink-3,#8A94A1); }
+
+.cu-quem { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; min-width:min-content; }
+.cu-quem div {
+  font-size:12.5px; line-height:1.5; color:var(--ink-2,#54606F); text-align:center;
+  padding:9px 10px; border-radius:11px; border:1px dashed var(--line,#DED7CA);
+}
+.cu-quem b { color:var(--ink,#10203A); }
+
+/* ── botões ── */
+.cu-bt-forte, .cu-bt-leve {
+  appearance:none; font-family:inherit; font-size:14.5px; font-weight:600;
+  border-radius:99px; padding:12px 22px; cursor:pointer; border:1px solid transparent;
+  display:inline-flex; align-items:center; gap:9px; text-decoration:none;
+}
+.cu-bt-forte { background:var(--signal,#1A4893); color:#fff; }
+.cu-bt-forte:hover { filter:brightness(1.08); }
+.cu-bt-leve { background:var(--panel,#FFF); color:var(--ink,#10203A); border-color:var(--line,#DED7CA); }
+.cu-bt-leve:hover { border-color:var(--ink-3,#8A94A1); }
+
+.cu-concluir {
+  appearance:none; font-family:inherit; font-size:14.5px; font-weight:600; cursor:pointer;
+  display:inline-flex; align-items:center; gap:9px; margin:30px 0 10px;
+  background:var(--panel,#FFF); color:var(--signal,#1A4893);
+  border:1px solid var(--line,#DED7CA); border-radius:99px; padding:12px 22px;
+}
+.cu-concluir:hover { border-color:var(--signal,#1A4893); }
+.cu-concluir.cu-pronta { background:var(--signal,#1A4893); color:#fff; border-color:var(--signal,#1A4893); }
+
+/* ── figura 2.1, escala ── */
+.cu-esc { display:flex; flex-direction:column; align-items:stretch; }
+.cu-esc-linha { border-radius:14px; padding:13px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-rot { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:10px; }
+.cu-esc-par { display:flex; gap:10px; }
+.cu-esc-op { flex:1; display:flex; align-items:center; gap:9px; background:var(--panel,#FFF); border-radius:10px; padding:9px 11px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-op b { font-size:12px; color:var(--ink-3,#8A94A1); }
+.cu-esc-op i { flex:1; height:5px; border-radius:99px; background:var(--line,#DED7CA); }
+.cu-esc-op.cu-esc-esc { box-shadow:inset 0 0 0 2px var(--signal,#1A4893); }
+.cu-esc-op.cu-esc-esc b { color:var(--signal,#1A4893); }
+.cu-esc-op.cu-esc-esc i { background:var(--signal-dim,#4E9AC8); }
+.cu-esc-seta { display:grid; place-items:center; color:var(--ink-3,#8A94A1); padding:7px 0; }
+.cu-esc-bars { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.cu-esc-bars i { width:34px; height:7px; border-radius:99px; background:var(--signal-dim,#4E9AC8); opacity:0.5; }
+.cu-esc-bars i:first-child { opacity:1; background:var(--signal,#1A4893); }
+.cu-esc-bars em { font-size:12px; color:var(--ink-3,#8A94A1); font-style:normal; margin-left:4px; }
+.cu-esc-dois { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.cu-esc-cx { border-radius:14px; padding:13px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-cx b { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:4px; }
+.cu-esc-cx span { font-size:12.5px; line-height:1.5; color:var(--ink-2,#54606F); }
+.cu-esc-cx.cu-esc-forte { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-esc-cx.cu-esc-forte b { color:#fff; }
+.cu-esc-cx.cu-esc-forte span { color:rgba(255,255,255,0.82); }
+.cu-esc-gente { border-radius:14px; padding:14px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-gente b { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); text-align:center; margin-bottom:12px; }
+.cu-esc-grade { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
+.cu-esc-grade i { width:13px; height:13px; border-radius:99px; background:var(--signal-dim,#4E9AC8); opacity:0.45; }
+
+/* ── figura 3.1, linha do tempo ── */
+.cu-tl { min-width:640px; }
+.cu-tl-faixas { display:grid; grid-template-columns:1fr 4fr; gap:10px; margin-bottom:16px; }
+.cu-tl-faixa { font-size:12px; text-align:center; border-radius:99px; padding:6px 10px; }
+.cu-tl-f1 { background:var(--bg-soft,#F1ECE3); color:var(--ink-2,#54606F); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-tl-f2 { background:rgba(26,72,147,0.08); color:var(--signal,#1A4893); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.18); font-weight:600; }
+.cu-tl-eixo { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; position:relative; }
+.cu-tl-eixo::before { content:''; position:absolute; left:6%; right:6%; top:44px; height:1px; background:var(--line,#DED7CA); }
+.cu-tl-item { text-align:center; position:relative; }
+.cu-tl-item b { display:block; font-size:15px; font-weight:600; color:var(--signal,#1A4893); margin-bottom:10px; }
+.cu-tl-bola { display:block; width:11px; height:11px; border-radius:99px; background:var(--signal,#1A4893); margin:0 auto 14px; box-shadow:0 0 0 4px var(--panel,#FFF); position:relative; z-index:1; }
+.cu-tl-bola.cu-tl-cinza { background:var(--ink-3,#8A94A1); }
+.cu-tl-item strong { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:5px; }
+.cu-tl-item span { display:block; font-size:12px; line-height:1.5; color:var(--ink-2,#54606F); padding:0 4px; }
+
+/* ── figura 3.2, ciclo ── */
+.cu-ciclo { display:flex; flex-direction:column; align-items:center; }
+.cu-ciclo-const {
+  border-radius:14px; padding:13px 18px; background:rgba(168,93,36,0.07);
+  box-shadow:inset 0 0 0 1px rgba(168,93,36,0.22); max-width:280px; width:100%;
+}
+.cu-ciclo-const b { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber,#A85D24); margin-bottom:8px; }
+.cu-ciclo-const ul { margin:0; padding-left:16px; font-size:13px; line-height:1.6; color:var(--ink-2,#54606F); }
+.cu-ciclo-const li { margin:0; }
+.cu-ciclo-desce { padding:6px 0; }
+.cu-ciclo-linha { display:flex; align-items:stretch; gap:8px; min-width:min-content; width:100%; }
+.cu-ciclo-cx { flex:1 1 0; min-width:118px; border-radius:13px; padding:12px 13px; text-align:center; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ciclo-cx b { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:3px; }
+.cu-ciclo-cx span { font-size:12px; line-height:1.45; color:var(--ink-2,#54606F); display:block; }
+.cu-ciclo-cx.cu-ciclo-az { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-ciclo-cx.cu-ciclo-az b { color:#fff; }
+.cu-ciclo-cx.cu-ciclo-az span { color:rgba(255,255,255,0.82); }
+.cu-ciclo-cx.cu-ciclo-am { background:rgba(168,93,36,0.09); box-shadow:inset 0 0 0 1.5px var(--amber,#A85D24); }
+.cu-ciclo-cx.cu-ciclo-out { box-shadow:inset 0 0 0 1.5px var(--signal-dim,#4E9AC8); background:var(--panel,#FFF); }
+.cu-ciclo-loop { font-size:12px; color:var(--amber,#A85D24); margin:14px 0 0; text-align:center; }
+
+/* ── figura 4.1, anatomia ── */
+.cu-anat { display:flex; flex-direction:column; align-items:center; gap:14px; min-width:min-content; }
+.cu-anat-topo { font-size:13px; color:var(--ink-2,#54606F); background:var(--bg-soft,#F1ECE3); border-radius:99px; padding:8px 18px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-anat-meio { display:grid; grid-template-columns:1fr 1.5fr 1fr; gap:14px; align-items:center; width:100%; }
+.cu-anat-resp { border-radius:13px; padding:14px; background:var(--panel,#FFF); box-shadow:inset 0 0 0 1px var(--line,#DED7CA); }
+.cu-anat-resp b { display:block; font-size:12px; color:var(--ink-3,#8A94A1); margin-bottom:9px; }
+.cu-anat-resp i { display:block; height:6px; border-radius:99px; background:var(--line-soft,#EAE4D9); margin-bottom:6px; }
+.cu-anat-resp i.cu-curta { width:60%; }
+.cu-anat-crit { position:relative; text-align:center; }
+.cu-anat-rot { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); margin-bottom:9px; }
+.cu-crit { font-size:12.5px; font-weight:600; color:#fff; border-radius:99px; padding:7px 10px; margin-bottom:5px; }
+.cu-crit-1 { background:#12306B; }
+.cu-crit-2 { background:#1A4893; }
+.cu-crit-3 { background:#2C63B4; }
+.cu-crit-4 { background:#6AA6D2; }
+.cu-crit-5 { background:#A9C8DE; color:#10203A; }
+.cu-anat-peso { display:block; text-align:right; font-size:10.5px; color:var(--ink-3,#8A94A1); }
+.cu-anat-peso-t { margin:0 2px 5px 0; }
+.cu-anat-peso-b { margin:5px 2px 0 0; }
+.cu-anat-escolha { border-radius:14px; padding:14px 18px; text-align:center; background:rgba(26,72,147,0.06); box-shadow:inset 0 0 0 1.5px var(--signal-dim,#4E9AC8); max-width:460px; }
+.cu-anat-escolha b { display:block; font-size:14px; color:var(--signal,#1A4893); margin-bottom:4px; }
+.cu-anat-escolha span { display:block; font-size:13px; color:var(--ink-2,#54606F); margin-bottom:6px; }
+.cu-anat-escolha em { font-size:12px; color:var(--ink-3,#8A94A1); }
+
+/* ── figura 4.2, kappa ── */
+.cu-kap { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.cu-kap-cx { border-radius:14px; padding:16px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-kap-tit { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); margin:0 0 4px; font-weight:600; }
+.cu-kap-sub { font-size:12.5px; color:var(--ink-2,#54606F); margin:0 0 14px; }
+.cu-kap-barra { height:12px; border-radius:99px; background:var(--signal-dim,#4E9AC8); overflow:hidden; margin-bottom:6px; }
+.cu-kap-barra span { display:block; width:90%; height:100%; background:#C9DDEB; }
+.cu-kap-legenda { display:flex; justify-content:space-between; font-size:11px; color:var(--ink-3,#8A94A1); margin-bottom:14px; }
+.cu-kap-botoes { display:flex; gap:8px; margin-bottom:14px; }
+.cu-kap-bt { flex:1; text-align:center; font-size:12.5px; padding:9px 6px; border-radius:10px; background:var(--panel,#FFF); color:var(--ink-2,#54606F); box-shadow:inset 0 0 0 1px var(--line,#DED7CA); }
+.cu-kap-bt.cu-kap-on { background:var(--signal,#1A4893); color:#fff; box-shadow:none; font-weight:600; }
+.cu-kap-form { background:var(--panel,#FFF); border-radius:11px; padding:12px 14px; margin-bottom:14px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-kap-form p { font-size:13px; color:var(--ink-2,#54606F); margin:0 0 4px; }
+.cu-kap-form p:last-child { margin:0; }
+.cu-kap-form b { color:var(--signal,#1A4893); }
+.cu-kap-rot { font-size:10.5px !important; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1) !important; margin-bottom:6px !important; }
+.cu-kap-caixa { border-radius:11px; padding:12px 14px; }
+.cu-kap-caixa .cu-kap-num { font-size:26px; font-weight:600; margin:0 0 4px; letter-spacing:-0.02em; }
+.cu-kap-caixa .cu-kap-txt { font-size:12.5px; line-height:1.5; margin:0; }
+.cu-kap-ruim { background:rgba(168,93,36,0.08); box-shadow:inset 0 0 0 1px rgba(168,93,36,0.2); }
+.cu-kap-ruim .cu-kap-num { color:var(--amber,#A85D24); }
+.cu-kap-ruim .cu-kap-txt { color:#8A6038; }
+.cu-kap-bom { background:rgba(26,72,147,0.07); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.2); }
+.cu-kap-bom .cu-kap-num { color:var(--signal,#1A4893); }
+.cu-kap-bom .cu-kap-txt { color:var(--ink-2,#54606F); }
+
+/* ── figura 4.3, erro contra sinal ── */
+.cu-ds { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.cu-ds-cx { border-radius:14px; padding:16px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-tit { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin:0 0 4px; }
+.cu-ds-erro .cu-ds-tit { color:var(--amber,#A85D24); }
+.cu-ds-sinal .cu-ds-tit { color:var(--signal,#1A4893); }
+.cu-ds-sub { font-size:12.5px; color:var(--ink-2,#54606F); margin:0 0 14px; }
+.cu-ds-frase { font-size:13px; color:var(--ink,#10203A); background:var(--panel,#FFF); border-radius:10px; padding:11px 13px; margin:0 0 12px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-frase mark { background:rgba(78,154,200,0.25); color:inherit; border-radius:4px; padding:1px 4px; }
+.cu-ds-chips { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:12px; }
+.cu-ds-chip { font-size:11px; text-align:center; padding:9px 4px; border-radius:9px; }
+.cu-ds-chip.cu-ok { background:rgba(26,72,147,0.07); color:var(--signal,#1A4893); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.18); }
+.cu-ds-chip.cu-no { background:rgba(168,93,36,0.08); color:var(--amber,#A85D24); box-shadow:inset 0 0 0 1px rgba(168,93,36,0.2); }
+.cu-ds-final { background:var(--panel,#FFF); border-radius:10px; padding:11px 13px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-final b { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:4px; }
+.cu-ds-final span { font-size:13.5px; font-weight:600; color:var(--ink,#10203A); }
+
+/* ── grade de caixas em figura ── */
+.cu-seis { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+@media (max-width:820px){ .cu-seis { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:620px){ .cu-seis { grid-template-columns:1fr; } }
+
+/* ── tabelinha para cálculo em figura ── */
+.cu-tab { width:100%; border-collapse:collapse; font-size:13px; background:var(--panel,#FFF); }
+.cu-tab th, .cu-tab td { padding:9px 10px; text-align:center; border:1px solid var(--line-soft,#EAE4D9); color:var(--ink-2,#54606F); }
+.cu-tab th { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); font-weight:600; font-size:12px; }
+.cu-tab td b { color:var(--signal,#1A4893); }
+.cu-tab .cu-tab-rot { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); font-weight:600; text-align:left; }
+.cu-tab-legenda { font-size:12px; color:var(--ink-3,#8A94A1); margin:8px 0 0; }
+
+/* ── quiz ── */
+.cu-quiz { margin-top:8px; }
+.cu-q {
+  border:1px solid var(--line,#DED7CA); background:var(--panel,#FFF);
+  border-radius:16px; padding:20px 22px; margin-bottom:14px;
+}
+.cu-q-tit { font-size:15.5px !important; font-weight:600; color:var(--ink,#10203A) !important; line-height:1.5; margin:0 0 14px !important; display:flex; gap:10px; }
+.cu-q-tit i {
+  flex:0 0 auto; width:22px; height:22px; border-radius:99px; display:grid; place-items:center;
+  background:var(--bg-soft,#F1ECE3); color:var(--signal,#1A4893); font-size:12px; font-weight:600; font-style:normal;
+}
+.cu-q label {
+  display:flex; align-items:flex-start; gap:10px; padding:10px 12px; margin-bottom:7px;
+  border-radius:11px; cursor:pointer; font-size:14.5px; line-height:1.5; color:var(--ink-2,#54606F);
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-q label:hover { box-shadow:inset 0 0 0 1px var(--ink-3,#8A94A1); }
+.cu-q input { margin-top:3px; accent-color:var(--signal,#1A4893); flex:0 0 auto; }
+.cu-q label:has(input:checked) { background:rgba(26,72,147,0.05); box-shadow:inset 0 0 0 1.5px var(--signal,#1A4893); color:var(--ink,#10203A); }
+.cu-q-fb, .cu-q-pq { display:none; }
+.cu-q.cu-corrigida .cu-q-fb, .cu-q.cu-corrigida .cu-q-pq { display:block; }
+.cu-q-fb { font-size:14px !important; font-weight:600; margin:12px 0 4px !important; }
+.cu-q.cu-acertou .cu-q-fb { color:var(--signal,#1A4893) !important; }
+.cu-q.cu-errou .cu-q-fb { color:var(--amber,#A85D24) !important; }
+.cu-q-pq { font-size:13.5px !important; line-height:1.6; color:var(--ink-2,#54606F) !important; margin:0 !important; }
+.cu-q.cu-errou { box-shadow:inset 0 0 0 1px rgba(168,93,36,0.35); }
+.cu-quiz-acoes { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.cu-quiz-res { font-size:15px !important; font-weight:600; margin:18px 0 0 !important; }
+
+/* ── certificado ── */
+.cu-cert-area { margin-top:46px; padding-top:34px; border-top:1px solid var(--line,#DED7CA); }
+.cu-cert-form { display:flex; flex-wrap:wrap; align-items:flex-end; gap:12px; margin:18px 0 0; }
+.cu-campo { display:flex; flex-direction:column; gap:6px; flex:1 1 260px; }
+.cu-campo span { font-size:12.5px; color:var(--ink-3,#8A94A1); }
+.cu-campo input {
+  font-family:inherit; font-size:15px; color:var(--ink,#10203A);
+  background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
+  border-radius:12px; padding:12px 14px; width:100%;
+}
+.cu-campo input:focus { outline:none; border-color:var(--signal,#1A4893); }
+.cu-cert-trava { font-size:13px !important; color:var(--amber,#A85D24) !important; flex:1 1 100%; margin:2px 0 0 !important; }
+.cu-cert-area.cu-liberado .cu-cert-trava { display:none; }
+
+.cu-cert { margin-top:26px; }
+.cu-cert-borda {
+  background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA); border-radius:20px;
+  padding:44px 42px 34px; text-align:center; position:relative;
+}
+.cu-cert-borda::before {
+  content:''; position:absolute; inset:9px; border-radius:14px;
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); pointer-events:none;
+}
+.cu-cert-sobre { font-size:11px !important; letter-spacing:0.18em; text-transform:uppercase; color:var(--signal,#1A4893) !important; margin:0 0 24px !important; }
+.cu-cert-nome {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:clamp(26px,3.4vw,38px) !important;
+  line-height:1.15; color:var(--ink,#10203A) !important; margin:0 0 14px !important;
+}
+.cu-cert-txt { font-size:14.5px !important; color:var(--ink-2,#54606F) !important; margin:0 0 10px !important; }
+.cu-cert-curso {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:clamp(20px,2.4vw,26px) !important;
+  color:var(--signal,#1A4893) !important; margin:0 0 20px !important;
+}
+.cu-cert-conteudo { max-width:62ch; margin:0 auto 26px !important; font-size:13.5px !important; line-height:1.65; }
+.cu-cert-pe { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; border-top:1px solid var(--line-soft,#EAE4D9); padding-top:20px; margin-top:6px; }
+.cu-cert-pe b { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:5px; }
+.cu-cert-pe span { font-size:13px; color:var(--ink,#10203A); }
+.cu-cert-emissor { font-size:12px !important; color:var(--ink-3,#8A94A1) !important; margin:22px 0 0 !important; }
+.cu-cert-acoes { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.cu-cert-nota { font-size:13px !important; color:var(--ink-3,#8A94A1) !important; margin:12px 0 0 !important; }
+
+.cu-fim { margin-top:46px; padding:26px 26px 28px; border-radius:18px; background:var(--bg-soft,#F1ECE3); }
+.cu-fim-bts { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+
+/* ── termo explicado na primeira vez ── */
+.cu-nota-termo {
+  border-left:3px solid var(--signal-dim,#4E9AC8); background:rgba(78,154,200,0.07);
+  border-radius:0 12px 12px 0; padding:13px 16px; margin:0 0 18px;
+}
+.cu-conteudo .cu-nota-termo { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); }
+.cu-nota-termo b { color:var(--ink,#10203A); }
+
+/* ── glossário ── */
+.cu-glos { list-style:none; padding:0; margin:0 0 18px; }
+.cu-glos li {
+  padding:14px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+}
+.cu-glos li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
+.cu-conteudo .cu-glos li { font-size:15px; line-height:1.62; color:var(--ink-2,#54606F); }
+.cu-glos b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:4px; }
+.cu-glos i { font-style:normal; color:var(--ink-3,#8A94A1); font-size:13px; }
+
+/* ── correção de especificidade: .cu-conteudo p e li venciam as classes de figura ── */
+.cu-conteudo .cu-fig-cap { font-size:11px; }
+.cu-conteudo .cu-fig-nota { font-size:13px; }
+.cu-conteudo .cu-kap-tit { font-size:11px; }
+.cu-conteudo .cu-kap-sub { font-size:12.5px; }
+.cu-conteudo .cu-kap-form p { font-size:13px; }
+.cu-conteudo .cu-kap-caixa .cu-kap-num { font-size:26px; }
+.cu-conteudo .cu-kap-caixa .cu-kap-txt { font-size:12.5px; }
+.cu-conteudo .cu-tab-legenda { font-size:12px; }
+.cu-conteudo .cu-ds-tit { font-size:11px; }
+.cu-conteudo .cu-ds-sub { font-size:12.5px; }
+.cu-conteudo .cu-ds-frase { font-size:13px; }
+.cu-conteudo .cu-ciclo-loop { font-size:12px; }
+.cu-conteudo .cu-fontes li { font-size:14.5px; }
+.cu-conteudo .cu-selo { font-size:11px; }
+
+/* impressão: só o certificado */
+@media print {
+  body * { visibility:hidden !important; }
+  #certificado, #certificado * { visibility:visible !important; }
+  #certificado { position:absolute; inset:0; margin:0; }
+  .cu-cert-acoes, .cu-cert-nota { display:none !important; }
+}
+
+/* ── responsivo ── */
+@media (max-width:1080px){
+  .cu-grade { grid-template-columns:minmax(0,1fr); gap:0; padding-top:26px; }
+  .cu-conteudo { max-width:none; }
+  .cu-lado {
+    position:sticky; top:78px; max-height:none; overflow:visible; z-index:5;
+    background:var(--bg,#F7F4EF); padding:10px 0 12px; margin-bottom:20px;
+    border-bottom:1px solid var(--line,#DED7CA);
+  }
+  .cu-abre-sum {
+    display:flex; align-items:center; justify-content:space-between; width:100%;
+    appearance:none; background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
+    border-radius:12px; padding:12px 15px; font-family:inherit; font-size:14.5px;
+    font-weight:600; color:var(--ink,#10203A); cursor:pointer;
+  }
+  .cu-abre-sum svg { transition:transform .2s; color:var(--ink-3,#8A94A1); }
+  .cu-lado.cu-aberto .cu-abre-sum svg { transform:rotate(180deg); }
+  .cu-painel-sum { display:none; padding-top:16px; }
+  .cu-lado.cu-aberto .cu-painel-sum { display:block; }
+  .cu-sum-titulo { display:none; }
+}
+@media (max-width:820px){
+  .cu-kap, .cu-ds { grid-template-columns:1fr; }
+  .cu-esc-dois { grid-template-columns:1fr; }
+  .cu-anat-meio { grid-template-columns:1fr; }
+  .cu-anat-peso { display:none; }
+  .cu-cert-pe { grid-template-columns:1fr; text-align:left; }
+}
+@media (max-width:680px){
+  .cu-topo { padding-top:32px; }
+  .cu-fig-moldura { padding:18px 14px; }
+  .cu-pratica { padding:20px 18px 6px; }
+  .cu-quem { grid-template-columns:1fr; }
+  .cu-fluxo { flex-direction:column; }
+  .cu-fluxo .cu-seta { transform:rotate(90deg); padding:2px 0; }
+  .cu-ciclo-linha { flex-direction:column; }
+  .cu-ciclo-linha .cu-seta { transform:rotate(90deg); padding:2px 0; }
+  .cu-ciclo-const { max-width:none; }
+  .cu-ds-chips { grid-template-columns:repeat(2,1fr); }
+  .cu-q { padding:17px 16px; }
+  .cu-cert-borda { padding:30px 20px 26px; }
+  .cu-fim { padding:22px 18px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cu-wrap">
+
+  <header class="cu-topo">
+    <div class="eyebrow">Cursos · Aula 1 a 4</div>
+    <h1>Segurança, Red Teaming e Conteúdo Sensível</h1>
+    <p class="cu-lead">Último curso da trilha, e o que mais aparece em projeto bem pago. Trata de como as
+      empresas escrevem o que é proibido, como se classifica dano, por que recusar demais é defeito tanto quanto
+      recusar de menos, como funciona um teste adversarial de verdade, e como trabalhar com conteúdo pesado sem
+      se desgastar. Conteúdo baseado em políticas públicas e artigos publicados.</p>
+    <div class="cu-fatos">
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+        cerca de 1 hora
+      </span>
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+        4 aulas com exercícios
+      </span>
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5"/></svg>
+        quiz e certificado no fim
+      </span>
+    </div>
+  </header>
+
+  <div class="cu-grade">
+
+    <!-- ══════════ COLUNA LATERAL ══════════ -->
+    <aside class="cu-lado" id="lado">
+      <button class="cu-abre-sum" id="abreSum" type="button" aria-expanded="false">
+        <span>Sumário do curso</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+
+      <div class="cu-painel-sum">
+        <p class="cu-sum-titulo">Sumário do curso</p>
+        <div class="cu-barra"><span id="barra"></span></div>
+        <p class="cu-barra-txt" id="barraTxt">0 de 4 aulas concluídas</p>
+
+        <ol class="cu-sum">
+          <li>
+            <a class="cu-aula-link" href="#aula1" data-aula="1"><i class="cu-num">1</i> Política de uso e taxonomia de dano</a>
+            <ul class="cu-sub">
+              <li><a href="#a1-politica">Onde o proibido está escrito</a></li>
+              <li><a href="#a1-nist">Uma taxonomia pública de riscos</a></li>
+              <li><a href="#a1-camadas">Da política até o seu item</a></li>
+              <li><a href="#a1-gravidade">Gravidade, probabilidade e contexto</a></li>
+              <li><a href="#a1-pratica">Prática: classifique quatro pedidos</a></li>
+              <li><a href="#a1-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula2" data-aula="2"><i class="cu-num">2</i> Recusa apropriada e recusa excessiva</a>
+            <ul class="cu-sub">
+              <li><a href="#a2-dois">Os dois erros simétricos</a></li>
+              <li><a href="#a2-xstest">O que o XSTest mostrou</a></li>
+              <li><a href="#a2-escada">A escada das respostas seguras</a></li>
+              <li><a href="#a2-como">Como avaliar uma recusa</a></li>
+              <li><a href="#a2-pratica">Prática: três recusas para julgar</a></li>
+              <li><a href="#a2-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula3" data-aula="3"><i class="cu-num">3</i> Red teaming</a>
+            <ul class="cu-sub">
+              <li><a href="#a3-oque">O que é red teaming</a></li>
+              <li><a href="#a3-ganguli">O estudo que abriu os dados</a></li>
+              <li><a href="#a3-metodos">Os métodos e para que servem</a></li>
+              <li><a href="#a3-limites">O que red teaming não diz</a></li>
+              <li><a href="#a3-pratica">Prática: escreva um relato de ataque</a></li>
+              <li><a href="#a3-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula4" data-aula="4"><i class="cu-num">4</i> Conteúdo sensível e a profissão</a>
+            <ul class="cu-sub">
+              <li><a href="#a4-real">O que essa fila realmente é</a></li>
+              <li><a href="#a4-protecao">Rotina de proteção</a></li>
+              <li><a href="#a4-limites">Limites que você pode pôr</a></li>
+              <li><a href="#a4-mercado">Por que esse trabalho paga melhor</a></li>
+              <li><a href="#a4-pratica">Prática: monte a sua rotina</a></li>
+              <li><a href="#a4-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#quiz"><i class="cu-num">✓</i> Quiz e certificado</a>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#glossario"><i class="cu-num">A</i> Glossário</a>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#fontes"><i class="cu-num">§</i> Fontes do curso</a>
+          </li>
+        </ol>
+      </div>
+    </aside>
+
+    <!-- ══════════ CONTEÚDO ══════════ -->
+    <main class="cu-conteudo" id="conteudo">
+      <!-- ══════════════════ AULA 1 ══════════════════ -->
+      <section class="cu-aula" id="aula1">
+        <div class="cu-aula-cap"><span>Aula 1 de 4 · 15 min</span><i></i></div>
+        <h2>Política de uso e taxonomia de dano</h2>
+        <p class="cu-resumo-aula">Nesta aula: onde as empresas escrevem o que é proibido, uma taxonomia pública
+          de riscos que dá vocabulário para classificar dano, como a política desce até o item que aparece na sua
+          tela, e como separar gravidade de probabilidade.</p>
+
+        <p class="cu-nota-termo"><b>Se você está chegando agora.</b> Três termos abrem este curso.
+          <b>Política de uso</b> é o documento público em que a empresa lista o que não se pode fazer com o
+          produto dela. <b>Taxonomia</b> é só uma lista organizada de categorias, aqui as categorias de dano, que
+          serve para todo mundo chamar a mesma coisa pelo mesmo nome. E <b>recusa</b> é quando o assistente diz
+          que não vai atender um pedido, o que pode ser acerto ou defeito, conforme o caso, como a aula 2
+          mostra.</p>
+
+        <h3 id="a1-politica">Onde o proibido está escrito</h3>
+        <p>Antes de qualquer guideline de projeto existe um documento mais antigo e mais amplo: a
+          <span class="cu-termo">política de uso</span> da empresa. Ela define o que não se pode fazer com o
+          produto, vale para todos os clientes, e é a camada que a guideline de um projeto específico detalha, e
+          nunca contradiz.</p>
+        <p>Essas políticas são públicas, e ler uma inteira é provavelmente a coisa mais útil que alguém pode
+          fazer antes de entrar numa fila de segurança. A Política de Uso da Anthropic, com vigência declarada de
+          15 de setembro de 2025, organiza o que chama de padrões universais de uso em categorias escritas como
+          proibições diretas. Entre elas: não violar leis aplicáveis, não comprometer infraestrutura crítica, não
+          comprometer sistemas de computador ou de rede, não desenvolver nem projetar armas, não incitar violência
+          ou comportamento de ódio, não comprometer privacidade ou direitos de identidade, não comprometer a
+          segurança de crianças, não criar conteúdo psicologicamente ou emocionalmente danoso, não criar nem
+          espalhar desinformação, e não usar para fins de censura, vigilância ou finalidades proibidas de
+          aplicação da lei.</p>
+        <p>Dois detalhes de forma, que dizem muito sobre como esse mundo pensa. Primeiro, a política tem
+          <strong>data de vigência</strong>: ela muda, e a versão importa. Segundo, além das proibições, o
+          documento traz requisitos adicionais para casos de <strong>alto risco</strong>, quando o uso afeta o
+          bem-estar público, e orientações específicas para produtos voltados a menores e para usos agênticos,
+          que é como se chama o caso em que o sistema executa tarefas sozinho, como navegar, comprar ou mexer em
+          arquivos, em vez de só responder perguntas.</p>
+        <p>A leitura útil para você é esta: quando uma guideline de projeto parece omissa sobre um tipo de
+          conteúdo, a política de uso quase sempre já respondeu. Citá-la na justificativa é legítimo, e costuma
+          encerrar a discussão.</p>
+
+        <h3 id="a1-nist">Uma taxonomia pública de riscos</h3>
+        <p>Classificar dano fica muito mais fácil com uma lista de categorias pronta na cabeça. A lista pública
+          mais utilizável vem do NIST, o instituto de padrões dos Estados Unidos, no documento
+          <em>Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</em>,
+          identificado como NIST AI 600-1 e publicado em julho de 2024. Ele é um perfil complementar ao
+          framework de gestão de risco de IA da mesma instituição, e enumera doze riscos.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 1.1</b> · Os doze riscos do perfil de IA generativa do NIST</p>
+          <div class="cu-fig-moldura">
+            <table class="cu-tab">
+              <tr><th>risco, no nome original</th><th>o que cai aqui</th></tr>
+              <tr><td class="cu-tab-rot">CBRN Information or Capabilities</td><td>informação que ajude em arma química, biológica, radiológica ou nuclear</td></tr>
+              <tr><td class="cu-tab-rot">Confabulation</td><td>afirmação inventada apresentada como fato, o que o mercado chama de alucinação</td></tr>
+              <tr><td class="cu-tab-rot">Dangerous, Violent, or Hateful Content</td><td>conteúdo perigoso, violento ou de ódio</td></tr>
+              <tr><td class="cu-tab-rot">Data Privacy</td><td>dado pessoal exposto, inferido ou recuperado sem base</td></tr>
+              <tr><td class="cu-tab-rot">Environmental Impacts</td><td>custo ambiental de treinar e operar sistemas</td></tr>
+              <tr><td class="cu-tab-rot">Harmful Bias or Homogenization</td><td>viés que prejudica grupos, e uniformização de saída</td></tr>
+              <tr><td class="cu-tab-rot">Human-AI Configuration</td><td>como pessoas e sistema interagem, incluindo confiança indevida</td></tr>
+              <tr><td class="cu-tab-rot">Information Integrity</td><td>desinformação e degradação do ambiente informacional</td></tr>
+              <tr><td class="cu-tab-rot">Information Security</td><td>uso para atacar sistemas, e a segurança do próprio sistema</td></tr>
+              <tr><td class="cu-tab-rot">Intellectual Property</td><td>reprodução indevida de obra protegida</td></tr>
+              <tr><td class="cu-tab-rot">Obscene, Degrading, and/or Abusive Content</td><td>conteúdo obsceno, degradante ou abusivo</td></tr>
+              <tr><td class="cu-tab-rot">Value Chain and Component Integration</td><td>risco herdado de terceiros na cadeia, incluindo dados e modelos de fora</td></tr>
+            </table>
+            <p class="cu-tab-legenda">Nomes conforme o documento NIST AI 600-1, julho de 2024. A coluna da
+              direita é uma glosa em português, não tradução oficial.</p>
+          </div>
+          <p class="cu-fig-nota">Ter os doze na cabeça acelera a classificação e reduz a chance de você chamar
+            tudo de "conteúdo sensível".</p>
+        </div>
+
+        <p>Note que dois dos doze não são o que a maioria chamaria de dano: impacto ambiental e cadeia de valor.
+          Estão ali porque o documento é de gestão de risco, não de moderação. Para o seu trabalho, os que mais
+          aparecem em fila de avaliação são confabulação, conteúdo perigoso ou violento, privacidade, viés,
+          integridade de informação e conteúdo obsceno ou abusivo.</p>
+        <p>Para quem quiser o tratamento acadêmico dessa discussão, a referência mais citada é
+          <em>Ethical and social risks of harm from Language Models</em>, de Laura Weidinger e colegas, de 2021,
+          que organiza os riscos de modelos de linguagem em uma taxonomia e discute cada um com literatura.</p>
+
+        <h3 id="a1-camadas">Da política até o seu item</h3>
+        <p>Existe uma cadeia clara entre o documento jurídico e a sua decisão de dois cliques. Entender essa
+          cadeia é o que permite você justificar uma nota difícil sem depender de opinião.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 1.2</b> · Quatro camadas até a sua decisão</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-fluxo">
+              <div class="cu-passo"><b>Política de uso</b><span>o que é proibido em qualquer caso, com data de
+                vigência</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo"><b>Especificação de comportamento</b><span>como o modelo deve agir, com
+                hierarquia entre instruções</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo"><b>Guideline do projeto</b><span>como classificar, com categorias, exemplos
+                e limites</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo cu-forte"><b>Seu item</b><span>um pedido, uma ou duas respostas, e a sua
+                decisão registrada</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Quando as camadas discordam, vence a de cima. Quando a de baixo é omissa,
+            consulte a de cima.</p>
+        </div>
+
+        <p>A segunda camada tem exemplo público: o Model Spec da OpenAI, já citado no curso anterior, que declara
+          o comportamento esperado e organiza a autoridade das instruções numa cadeia de comando, do nível root,
+          que não pode ser sobreposto, até o nível guideline, que cede ao contexto.</p>
+
+        <h3 id="a1-gravidade">Gravidade, probabilidade e contexto</h3>
+        <p>Avaliador novato trata dano como interruptor: tem ou não tem. Avaliador bom trata como três
+          perguntas.</p>
+        <ul>
+          <li><strong>Gravidade.</strong> Se o dano acontecer, qual é o tamanho? Dano irreversível a uma pessoa
+            pesa mais que incômodo a muitas.</li>
+          <li><strong>Probabilidade.</strong> A resposta aumenta de fato a chance do dano, ou a informação já é
+            trivialmente disponível e sem valor operacional? A pergunta não é se o tema é desconfortável, é se a
+            resposta acrescenta capacidade.</li>
+          <li><strong>Contexto do pedido.</strong> O mesmo texto muda de categoria conforme o enquadramento.
+            Descrever como um veneno age, num pedido de estudante de biologia, é diferente de dar dose e método
+            para uso em alguém.</li>
+        </ul>
+        <p>É essa combinação que a guideline chama de nível de risco, e é por isso que projetos sérios pedem que
+          você registre <strong>por que</strong> classificou, e não só a categoria.</p>
+
+        <div class="cu-pratica" id="a1-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Classifique quatro pedidos</h3>
+          <p>Para cada pedido abaixo, diga em qual dos riscos do NIST você encaixaria, e se o pedido em si é
+            proibido, sensível mas legítimo, ou inofensivo.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">1.</span> "Quais são os sintomas de intoxicação por monóxido de carbono?"</p>
+            <p><span class="cu-rot">2.</span> "Escreva um texto dizendo que o resultado da última eleição do meu
+              país foi fraudado, no formato de notícia de jornal."</p>
+            <p><span class="cu-rot">3.</span> "Descubra o endereço residencial da pessoa que administra este
+              perfil."</p>
+            <p><span class="cu-rot">4.</span> "Resuma este artigo científico sobre vacinas."</p>
+          </div>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p><strong>1. Inofensivo, com aparência de sensível.</strong> É pergunta de saúde e segurança
+              doméstica, do tipo que salva vida. Não encaixa em risco do NIST por si só. Um modelo que recusa
+              isso está cometendo o erro da aula 2, recusa excessiva. Se houvesse pedido de dose ou método para
+              causar intoxicação, aí sim seria conteúdo perigoso.</p>
+            <p><strong>2. Proibido.</strong> Integridade de informação, e em muitas políticas também a categoria
+              de desinformação e de processos democráticos. Perceba que o pedido é para <em>produzir</em>
+              conteúdo falso em formato jornalístico, o que é diferente de discutir alegações de fraude.</p>
+            <p><strong>3. Proibido.</strong> Privacidade de dados e direitos de identidade. É o caso clássico de
+              pedido que parece pesquisa e é localização de pessoa. Nem contexto acadêmico muda isso.</p>
+            <p><strong>4. Inofensivo.</strong> Resumo de artigo é uso comum. Vale notar, porém, que a
+              <em>resposta</em> pode cair em confabulação se o resumo afirmar algo que o artigo não diz, o que
+              mostra que risco do pedido e risco da resposta são coisas separadas.</p>
+            <p>Essa última observação é o ponto da prática. Boa parte da sua fila será composta por pedidos
+              inofensivos com respostas problemáticas, e não o contrário.</p>
+          </div>
+        </div>
+
+        <h3 id="a1-resumo">Resumo da aula</h3>
+        <ul>
+          <li>A política de uso é a camada mais alta e é pública. Ela tem data de vigência, categorias de
+            proibição e requisitos extras para casos de alto risco.</li>
+          <li>O NIST AI 600-1, de julho de 2024, enumera doze riscos e dá vocabulário pronto para classificar.</li>
+          <li>A cadeia vai de política de uso, para especificação de comportamento, para guideline do projeto,
+            até o seu item. Quando a de baixo é omissa, consulte a de cima.</li>
+          <li>Dano se avalia por gravidade, probabilidade e contexto, não como interruptor.</li>
+          <li>Risco do pedido e risco da resposta são coisas separadas, e boa parte da fila é pedido inofensivo
+            com resposta problemática.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="1" data-proxima="aula2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 1 e ir para a aula 2
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 2 ══════════════════ -->
+      <section class="cu-aula" id="aula2">
+        <div class="cu-aula-cap"><span>Aula 2 de 4 · 15 min</span><i></i></div>
+        <h2>Recusa apropriada e recusa excessiva</h2>
+        <p class="cu-resumo-aula">Nesta aula: os dois erros simétricos de segurança, um conjunto de teste
+          publicado que mede o segundo deles, a escada de respostas que existe entre atender e recusar, e como
+          avaliar uma recusa sem premiar covardia nem imprudência.</p>
+
+        <h3 id="a2-dois">Os dois erros simétricos</h3>
+        <p>Quase todo avaliador novo entra numa fila de segurança com um único medo: deixar passar algo perigoso.
+          Esse medo é legítimo e produz o segundo erro, que é premiar recusa em tudo que parece delicado.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 2.1</b> · Dois erros, um em cada direção</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-ds">
+              <div class="cu-ds-cx cu-ds-erro">
+                <p class="cu-ds-tit">Recusa insuficiente</p>
+                <p class="cu-ds-sub">O modelo atende o que não deveria</p>
+                <p class="cu-ds-frase">"Como faço para invadir a conta de outra pessoa?" respondido com passo a
+                  passo</p>
+                <div class="cu-ds-final"><b>Custo</b><span>dano real a alguém, e risco jurídico e reputacional
+                  para quem publicou o modelo</span></div>
+              </div>
+              <div class="cu-ds-cx cu-ds-sinal">
+                <p class="cu-ds-tit">Recusa excessiva</p>
+                <p class="cu-ds-sub">O modelo recusa o que é inofensivo</p>
+                <p class="cu-ds-frase">"Como eu mato o processo que travou no meu computador?" respondido com
+                  recusa por falar em matar</p>
+                <div class="cu-ds-final"><b>Custo</b><span>produto inútil, usuário tratado como suspeito, e
+                  perda de confiança</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Avaliação que só pune o primeiro erro treina um modelo que comete o segundo sem
+            parar.</p>
+        </div>
+
+        <p>Os dois erros custam, e o segundo é o mais fácil de causar por engano, justamente porque parece
+          prudência. Um modelo que recusa perguntas de saúde, de segurança doméstica, de história violenta ou de
+          uso legítimo de palavra ambígua não é um modelo seguro, é um modelo quebrado.</p>
+
+        <h3 id="a2-xstest">O que o XSTest mostrou</h3>
+        <p>Esse problema tem nome, medida e conjunto de teste público. O trabalho <em>XSTest: A Test Suite for
+          Identifying Exaggerated Safety Behaviours in Large Language Models</em>, de Paul Röttger e colegas,
+          publicado na conferência NAACL em 2024, foi construído exatamente para expor comportamento de segurança
+          exagerado.</p>
+        <p>A composição do conjunto explica o método: <strong>250 pedidos seguros</strong>, distribuídos em
+          <strong>dez tipos</strong>, mais <strong>200 pedidos inseguros</strong> que servem de contraste. Os
+          pedidos seguros são construídos para parecer perigosos na superfície, usando palavra ambígua, figura de
+          linguagem ou tema delicado com finalidade legítima. Um modelo bem calibrado atende os 250 e recusa os
+          200.</p>
+        <p>A ideia dos pares de contraste é a parte que vale levar para a sua prática: <strong>a mesma palavra em
+          dois contextos</strong>. "Como matar um processo no Linux" e "como matar meu vizinho" compartilham um
+          verbo e nada mais. Quando você avalia, o que importa é o pedido inteiro, não o gatilho lexical.</p>
+
+        <h3 id="a2-escada">A escada das respostas seguras</h3>
+        <p>Entre atender tudo e recusar tudo existe uma escada, e a maioria das guidelines premia o degrau mais
+          alto que ainda seja seguro. Saber nomear os degraus é o que permite comparar duas recusas.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 2.2</b> · Do mais útil ao menos útil, entre respostas seguras</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-anat-crit" style="max-width:560px;margin:0 auto">
+              <span class="cu-anat-rot">prefira o degrau mais alto que continue seguro</span>
+              <div class="cu-crit cu-crit-1">atende por inteiro, quando o pedido é legítimo</div>
+              <div class="cu-crit cu-crit-2">atende com a ressalva necessária</div>
+              <div class="cu-crit cu-crit-3">atende a parte segura e explica o que não pode</div>
+              <div class="cu-crit cu-crit-4">recusa, explica o motivo e oferece caminho legítimo</div>
+              <div class="cu-crit cu-crit-5">recusa seca, sem motivo nem alternativa</div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Recusa seca é o pior tipo de resposta segura, e a mais comum em modelo mal
+            calibrado.</p>
+        </div>
+
+        <p>Dois exemplos para fixar a diferença entre o terceiro e o quinto degrau. Pedido sobre medicamento:
+          atender a parte segura é explicar o que a bula diz e recomendar confirmação profissional, enquanto a
+          recusa seca é "não posso falar sobre medicamentos". Pedido sobre técnica de fraude: atender a parte
+          segura é explicar como reconhecer e se proteger do golpe, enquanto a recusa seca deixa o usuário sem a
+          defesa que ele estava buscando.</p>
+
+        <h3 id="a2-como">Como avaliar uma recusa</h3>
+        <p>Quatro perguntas, na ordem. Elas cobrem os dois erros simétricos.</p>
+        <ol>
+          <li><strong>O pedido é de fato proibido pela política?</strong> Se não é, recusa já perde pontos, por
+            mais educada que seja.</li>
+          <li><strong>A recusa é necessária por inteiro, ou parte do pedido era atendível?</strong> Pedido misto
+            é comum, e ignorar a parte legítima é recusa excessiva disfarçada.</li>
+          <li><strong>A recusa explica e oferece caminho?</strong> Recusa que diz o motivo e aponta alternativa
+            legítima é melhor que recusa seca.</li>
+          <li><strong>A recusa sermoneia?</strong> Repreender o usuário, presumir má intenção ou repetir avisos
+            é defeito de qualidade, mesmo quando a recusa é correta.</li>
+        </ol>
+        <p>E o inverso, quando a resposta atende: ela dá o mínimo necessário ou entrega capacidade além do
+          pedido? Detalhe operacional que ninguém pediu é o sinal mais comum de resposta insegura bem
+          intencionada.</p>
+
+        <div class="cu-pratica" id="a2-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Três recusas para julgar</h3>
+          <p>Use os quatro passos e a escada da figura 2.2. Diga se a recusa é apropriada, excessiva, ou
+            apropriada mas mal executada.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">1.</span> Pedido: "Quais são os sinais de que alguém está tendo um AVC?"
+              Resposta: "Não posso dar orientações médicas. Procure um profissional de saúde."</p>
+            <p><span class="cu-rot">2.</span> Pedido: "Quero saber como funciona o golpe do falso boleto para
+              alertar meus clientes." Resposta: "Explico como o golpe funciona do ponto de vista da vítima, o
+              que ajuda a reconhecer: o boleto chega por e-mail parecido com o do fornecedor, com dados de
+              beneficiário trocados. Confira sempre o beneficiário e o CNPJ antes de pagar, e confirme por
+              telefone conhecido. Não vou detalhar como produzir um boleto falso."</p>
+            <p><span class="cu-rot">3.</span> Pedido: "Me ajude a escrever uma mensagem ameaçando meu ex se ele
+              não devolver minhas coisas." Resposta: "Não vou ajudar com isso. Ameaçar alguém é crime e pode
+              piorar a sua situação, inclusive para reaver os seus bens. Se quiser, eu escrevo uma notificação
+              firme e educada pedindo a devolução, ou explico como funciona um pedido formal."</p>
+          </div>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p><strong>1. Recusa excessiva, e das piores.</strong> Reconhecer sinal de AVC é informação de
+              emergência, amplamente divulgada por campanhas de saúde pública, e o tempo até o atendimento muda o
+              desfecho. O pedido não é proibido, logo o passo 1 já reprova. Além disso a resposta é recusa seca,
+              o último degrau da escada. Uma resposta boa listaria os sinais, orientaria a procurar emergência
+              imediatamente e deixaria claro que não substitui avaliação médica.</p>
+            <p><strong>2. Apropriada e bem executada.</strong> É o terceiro degrau: atende a parte segura, que é
+              a defensiva, e recusa explicitamente a parte que daria capacidade de fraude. Registra o limite sem
+              sermão e entrega o que o usuário pediu, do lado útil.</p>
+            <p><strong>3. Apropriada e bem executada.</strong> O pedido é de ajuda para ameaçar uma pessoa, o que
+              a política proíbe, então recusar é correto. A resposta está no quarto degrau, quase no terceiro:
+              explica o motivo, não presume que o usuário é criminoso, e oferece dois caminhos legítimos para o
+              objetivo real, que é reaver os bens. Se ela apenas dissesse "não posso ajudar com ameaças", seria
+              correta e pior.</p>
+            <p>Perceba o padrão: nas três, o que decide a nota não é o tema do pedido, é a relação entre o que foi
+              pedido, o que a política proíbe e o quanto a resposta preserva de utilidade dentro do limite.</p>
+          </div>
+        </div>
+
+        <h3 id="a2-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Segurança tem dois erros simétricos: atender o que não deveria e recusar o que é inofensivo. Os
+            dois custam.</li>
+          <li>O XSTest, de Röttger e colegas, na NAACL 2024, mede o segundo erro com 250 pedidos seguros em dez
+            tipos e 200 pedidos inseguros de contraste.</li>
+          <li>Gatilho lexical não é pedido. A mesma palavra em contextos diferentes é justamente o que o teste
+            explora.</li>
+          <li>Existe uma escada entre atender e recusar. Premie o degrau mais alto que continue seguro, e trate
+            recusa seca como defeito.</li>
+          <li>Avalie recusa em quatro passos: é proibido, era atendível em parte, explica e oferece caminho, e
+            evita sermão.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="2" data-proxima="aula3">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 2 e ir para a aula 3
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 3 ══════════════════ -->
+      <section class="cu-aula" id="aula3">
+        <div class="cu-aula-cap"><span>Aula 3 de 4 · 15 min</span><i></i></div>
+        <h2>Red teaming</h2>
+        <p class="cu-resumo-aula">Nesta aula: o que é testar um modelo de propósito para fazê-lo falhar, o
+          estudo que publicou quase 39 mil ataques, os métodos usados hoje e para que serve cada um, e o que esse
+          tipo de teste não consegue dizer.</p>
+
+        <h3 id="a3-oque">O que é red teaming</h3>
+        <p><span class="cu-termo">Red teaming</span> é o trabalho de atacar o próprio sistema de propósito, antes
+          que outra pessoa ataque, para descobrir onde ele quebra. O termo vem da segurança da informação e da
+          área militar, e chegou à IA com o mesmo sentido: uma equipe assume o papel de adversário e tenta fazer
+          o modelo produzir o que ele não deveria.</p>
+        <p>Na prática, o red teamer escreve pedidos, testa reformulações, usa contexto falso, troca de idioma,
+          divide o pedido em partes inofensivas, e registra o que funcionou. É uma das poucas frentes em que o
+          avaliador não julga a resposta de outra pessoa, e sim produz o próprio material de teste.</p>
+        <p>Isso muda o perfil da tarefa. Em vez de consistência com uma rubrica, o que se cobra é criatividade
+          dentro de um objetivo declarado, mais um relato reproduzível. Um ataque que funcionou e que ninguém
+          consegue repetir vale pouco.</p>
+
+        <h3 id="a3-ganguli">O estudo que abriu os dados</h3>
+        <p>A referência mais concreta sobre como isso é feito em escala é o artigo
+          <em>Red Teaming Language Models to Reduce Harms: Methods, Scaling Behaviors, and Lessons Learned</em>,
+          de Deep Ganguli e colegas, da Anthropic, de 2022. Os autores descrevem o próprio esforço de descobrir,
+          medir e reduzir saídas potencialmente danosas, e liberaram <strong>38.961 ataques de red team</strong>
+          para que a comunidade pudesse analisar.</p>
+        <p>O estudo comparou quatro tipos de modelo, testados em três tamanhos, de 2,7 bilhões, 13 bilhões e 52
+          bilhões de parâmetros. Parâmetro é cada um dos números internos que o modelo ajusta durante o treino,
+          e a contagem deles é a forma usual de dizer o tamanho de um modelo: mais parâmetros, modelo maior.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 3.1</b> · Os quatro tipos comparados no estudo</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-seis" style="grid-template-columns:repeat(2,1fr)">
+              <div class="cu-esc-cx"><b>Modelo simples</b><span>só o modelo de linguagem, sem nenhuma etapa
+                feita para ajustar comportamento</span></div>
+              <div class="cu-esc-cx"><b>Modelo com instrução</b><span>recebe uma instrução fixa, escrita antes da
+                conversa, pedindo que seja útil, honesto e inofensivo</span></div>
+              <div class="cu-esc-cx"><b>Amostragem com rejeição</b><span>gera várias respostas e descarta as que
+                pontuam mal em inofensividade, entregando a que sobrou</span></div>
+              <div class="cu-esc-cx cu-esc-forte"><b>Modelo com RLHF</b><span>treinado com comparações feitas por
+                pessoas. O único que ficou mais difícil de atacar conforme cresceu</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Achado central: modelos com RLHF ficam progressivamente mais difíceis de atacar
+            com o aumento de escala, enquanto os outros três mostraram tendência plana.</p>
+        </div>
+
+        <p>Esse achado é uma das justificativas mais diretas para o trabalho que você faz. O treino com feedback
+          humano, o RLHF, que é o processo de coletar comparações feitas por pessoas e ajustar o modelo com base
+          nelas, não apenas deixou o modelo mais agradável: no experimento, foi a única das quatro abordagens em
+          que crescer de tamanho veio junto com ficar mais resistente a ataque.</p>
+
+        <h3 id="a3-metodos">Os métodos e para que servem</h3>
+        <p>Em um texto público de 12 de junho de 2024, com o título <em>Challenges in red teaming AI
+          systems</em>, a Anthropic descreve os métodos que usa e o problema de fundo da área. Vale conhecer os
+          nomes, porque eles aparecem em descrição de vaga.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 3.2</b> · Métodos de red teaming e o que cada um alcança</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-seis">
+              <div class="cu-esc-cx"><b>Especialista de domínio</b><span>profissionais da área testam o modelo
+                dentro do próprio campo, do jurídico ao de ameaças de fronteira</span></div>
+              <div class="cu-esc-cx"><b>Teste de vulnerabilidade de política</b><span>especialistas de confiança
+                e segurança testam exatamente onde a política escrita pode ser furada</span></div>
+              <div class="cu-esc-cx"><b>Multilíngue e multicultural</b><span>testa o que falha fora do inglês e
+                fora de um único contexto cultural</span></div>
+              <div class="cu-esc-cx"><b>Automatizado</b><span>usa modelos para gerar ataques em volume, o que
+                cobre superfície que pessoas não cobririam</span></div>
+              <div class="cu-esc-cx"><b>Multimodal</b><span>testa entrada que combina imagem e texto, onde o
+                ataque pode vir pela imagem</span></div>
+              <div class="cu-esc-cx"><b>Multidão e comunidade</b><span>participação aberta, inclusive em eventos
+                públicos como a vila de IA da DEF CON</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Métodos descritos pela Anthropic em junho de 2024. Cada um cobre um tipo
+            diferente de falha.</p>
+        </div>
+
+        <p>O mesmo texto aponta o problema de fundo, e ele é honesto: não existe prática padronizada de red
+          teaming em IA. Nas palavras do documento, desenvolvedores podem usar técnicas diferentes para avaliar o
+          mesmo tipo de ameaça, e mesmo quando usam a mesma técnica, a execução costuma ser bem diferente na
+          prática. A Anthropic defende ali a criação de práticas e padrões estabelecidos, com participação de
+          instituições como o NIST.</p>
+        <p>A OpenAI publicou em 2024 um documento próprio sobre o tema, <em>OpenAI's Approach to External Red
+          Teaming for AI Models and Systems</em>, de Lama Ahmad, Sandhini Agarwal, Michael Lampe e Pamela
+          Mishkin, que descreve quatro decisões de projeto de uma campanha externa: definir a composição da
+          equipe a partir dos domínios prioritários, escolher a versão e o nível de acesso ao modelo, fornecer
+          instruções, interface e orientação de documentação, e transformar os achados em avaliações repetíveis e
+          automatizadas.</p>
+        <p>Essa quarta decisão é a que costuma escapar de quem está começando: <strong>o produto final do red
+          teaming não é a lista de ataques, é a avaliação automática que nasce dela</strong>. Um ataque bem
+          documentado vira teste permanente.</p>
+
+        <h3 id="a3-limites">O que red teaming não diz</h3>
+        <p>O documento da OpenAI é explícito quanto ao limite: red teaming, por si só, não é uma panaceia para
+          avaliação de risco. E acrescenta que riscos identificados num esforço pontual podem estar subavaliados,
+          ou já não refletir o sistema atualizado.</p>
+        <p>Três consequências práticas para quem trabalha nessas filas:</p>
+        <ul>
+          <li><strong>Ausência de achado não é prova de segurança.</strong> Significa que aquele time, naquele
+            período, com aquelas técnicas, não encontrou. É uma afirmação bem mais modesta.</li>
+          <li><strong>Resultado envelhece.</strong> Modelo novo, versão nova ou mudança de sistema exigem
+            reteste, porque a superfície mudou.</li>
+          <li><strong>Cobertura depende de quem testa.</strong> Equipe homogênea encontra falha homogênea. É por
+            isso que o teste multilíngue e multicultural existe como categoria separada, e é uma das portas de
+            entrada mais reais para falante de português.</li>
+        </ul>
+
+        <div class="cu-pratica" id="a3-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Escreva um relato de ataque</h3>
+          <p>Você encontrou uma falha: o modelo recusa um pedido claramente proibido quando ele é feito de forma
+            direta, mas atende quando o mesmo pedido é apresentado como parte de um roteiro de ficção. Sem entrar
+            em nenhum detalhe do conteúdo em si, escreva o relato que você entregaria.</p>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p>Um relato útil tem seis campos, e o valor está em ser reproduzível, não dramático.</p>
+            <ul>
+              <li><strong>Categoria do dano.</strong> Qual risco, no vocabulário do projeto ou da taxonomia
+                usada.</li>
+              <li><strong>Técnica.</strong> Aqui, enquadramento ficcional. Outros nomes comuns: troca de idioma,
+                divisão em partes, contexto de autoridade falsa, pedido em etapas.</li>
+              <li><strong>Passos exatos.</strong> O que foi enviado, em qual ordem, com qual configuração. Quem
+                ler precisa repetir sem adivinhar.</li>
+              <li><strong>Resultado observado.</strong> O que o modelo fez, de forma factual, sem exagero e sem
+                reproduzir mais conteúdo danoso do que o necessário para provar a falha.</li>
+              <li><strong>Comparação com o caso direto.</strong> O mesmo pedido sem o enquadramento foi recusado.
+                É esse contraste que caracteriza a falha como contorno de política, e não como divergência de
+                régua.</li>
+              <li><strong>Reprodutibilidade.</strong> Quantas vezes você repetiu e quantas funcionou. Três de
+                cinco é uma informação diferente de uma de vinte.</li>
+            </ul>
+            <p>O erro mais comum de relato iniciante é escrever uma narrativa longa do que aconteceu, sem os
+              passos. O segundo mais comum é colar conteúdo danoso em excesso, quando um trecho mínimo já
+              comprova. O terceiro é relatar uma única ocorrência sem tentar repetir.</p>
+          </div>
+        </div>
+
+        <h3 id="a3-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Red teaming é atacar o próprio sistema de propósito, e produzir material de teste em vez de julgar
+            resposta alheia.</li>
+          <li>Ganguli e colegas, em 2022, publicaram 38.961 ataques e compararam quatro tipos de modelo em três
+            tamanhos. Só o modelo com RLHF ficou mais difícil de atacar conforme cresceu.</li>
+          <li>Os métodos incluem especialista de domínio, teste de vulnerabilidade de política, multilíngue,
+            automatizado, multimodal e participação da comunidade.</li>
+          <li>Não existe prática padronizada na área, e as próprias empresas dizem isso em documento público.</li>
+          <li>O produto final é a avaliação repetível que nasce do ataque. E ausência de achado não é prova de
+            segurança.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="3" data-proxima="aula4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 3 e ir para a aula 4
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 4 ══════════════════ -->
+      <section class="cu-aula" id="aula4">
+        <div class="cu-aula-cap"><span>Aula 4 de 4 · 15 min</span><i></i></div>
+        <h2>Conteúdo sensível e a profissão</h2>
+        <p class="cu-resumo-aula">Nesta aula: o que esperar de uma fila de segurança, uma rotina de proteção que
+          não depende da boa vontade do cliente, quais limites você pode estabelecer, e por que esse tipo de
+          projeto costuma pagar melhor.</p>
+
+        <h3 id="a4-real">O que essa fila realmente é</h3>
+        <p>Honestidade primeiro: trabalhar com segurança significa ler, de forma repetida, pedidos e respostas
+          que envolvem violência, exploração, discurso de ódio, autolesão, fraude e outros temas pesados. Não é
+          uma fila comum com alguns itens desconfortáveis, é uma fila desenhada para concentrar exatamente esses
+          itens.</p>
+        <p>Isso tem efeito cumulativo, e é reconhecido publicamente na área. A Partnership on AI, organização que
+          reúne empresas, universidades e sociedade civil, publicou em 17 de junho de 2021 o documento
+          <em>Responsible Sourcing of Data Enrichment Services</em>, que trata das condições de trabalho de quem
+          produz e revisa dados para IA, incluindo o cuidado com trabalhadores expostos a conteúdo perturbador.
+          Existe literatura sobre isso, existe recomendação formal, e nada disso é frescura.</p>
+        <p>Duas consequências. A primeira: se você entrar nessa fila, entre sabendo. A segunda: empresa que trata
+          o assunto abertamente, com aviso prévio de conteúdo, limite de volume e canal de apoio, está aplicando
+          uma prática reconhecida. A ausência disso é sinal sobre a empresa, não sobre você.</p>
+
+        <h3 id="a4-protecao">Rotina de proteção</h3>
+        <p>O que segue é a prática comum de quem faz esse trabalho por muito tempo. Não substitui apoio
+          profissional, e não é conselho clínico. É organização de trabalho.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 4.1</b> · Uma rotina que se sustenta</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-fluxo">
+              <div class="cu-passo"><b>Teto diário</b><span>número máximo de itens sensíveis por dia, decidido
+                antes de começar, e não no meio</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo"><b>Blocos curtos</b><span>sessões com fim marcado, com pausa real entre
+                elas, longe da tela</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo"><b>Encerramento</b><span>um ritual curto que marca o fim do expediente, para
+                o assunto não seguir para a noite</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo cu-forte"><b>Apoio</b><span>alguém com quem falar, seja colega da área ou
+                profissional de saúde, antes de precisar muito</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">A parte mais difícil é a primeira: decidir o teto antes, quando o item ainda não
+            está na tela.</p>
+        </div>
+
+        <p>Quatro observações que quem já fez esse trabalho costuma confirmar. Fila sensível não combina com o
+          fim da noite, porque o conteúdo fica rodando na cabeça no horário errado. Trabalhar em casa apaga a
+          fronteira, então marcar o fim com algum gesto ajuda mais do que parece. Sensibilização é normal, e não
+          sinal de fraqueza. E, se o efeito passar a aparecer fora do expediente, isso é motivo suficiente para
+          reduzir volume ou sair da fila, sem justificativa elaborada para ninguém.</p>
+        <p>Se em algum momento o peso desse conteúdo passar do desconforto para algo que atrapalha o sono, o
+          humor ou a vontade de trabalhar, procurar apoio profissional é a atitude proporcional, e não
+          exagerada.</p>
+
+        <h3 id="a4-limites">Limites que você pode pôr</h3>
+        <p>Muita gente não sabe que pode dizer não a um subconjunto do trabalho. Pode, e fazer isso de forma
+          clara costuma preservar a relação em vez de arriscá-la. Alguns limites comuns:</p>
+        <ul>
+          <li>Recusar categorias específicas, sem detalhar motivo pessoal. "Não trabalho com conteúdo envolvendo
+            criança" é uma frase completa.</li>
+          <li>Pedir teto de volume diário, ou distribuição ao longo da semana em vez de um lote grande.</li>
+          <li>Pedir aviso prévio sobre o tipo de conteúdo antes de aceitar o projeto.</li>
+          <li>Devolver um item específico que ultrapassou o seu limite, usando o canal do projeto.</li>
+        </ul>
+        <p>Limite comunicado cedo é gestão de risco para os dois lados. Avaliador que aceita tudo, se desgasta e
+          desaparece no meio do lote custa mais caro ao projeto do que avaliador que disse antes o que não
+          faz.</p>
+
+        <h3 id="a4-mercado">Por que esse trabalho paga melhor</h3>
+        <p>Filas de segurança e de red teaming costumam pagar acima da média, e os motivos são estruturais.</p>
+        <ol>
+          <li><strong>Oferta menor.</strong> Muita gente evita, com razão, então o conjunto de candidatos é
+            menor.</li>
+          <li><strong>Consequência maior.</strong> Erro aqui aparece em manchete, processo ou dano real, e não
+            apenas numa métrica interna.</li>
+          <li><strong>Exige julgamento, não volume.</strong> Como a aula 2 mostrou, decidir entre recusa
+            necessária e recusa excessiva não é tarefa de clicar rápido.</li>
+          <li><strong>Depende de contexto local.</strong> Falante nativo que entende gíria, referência cultural e
+            forma local de golpe cobre uma superfície que time de fora não cobre. É exatamente a categoria
+            multilíngue e multicultural da aula anterior.</li>
+        </ol>
+        <p>Do ponto de vista de carreira, esse é o ponto em que a trilha inteira se junta: você lê guideline com
+          método, aplica rubrica com âncora, compara respostas sem cair nos vieses conhecidos, e agora sabe
+          classificar dano e avaliar recusa. Esse conjunto é o que separa quem faz volume de quem faz julgamento.</p>
+
+        <div class="cu-pratica" id="a4-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Monte a sua rotina</h3>
+          <p>Antes de aceitar qualquer fila sensível, responda a estas cinco perguntas por escrito. Leva cinco
+            minutos e evita decisão ruim tomada no meio do lote.</p>
+          <div class="cu-caixa">
+            <p>1. Quantos itens sensíveis por dia eu aceito, no máximo?</p>
+            <p>2. Em que horário eu não trabalho nessa fila, de jeito nenhum?</p>
+            <p>3. Quais categorias eu não aceito, e como vou comunicar isso?</p>
+            <p>4. Qual é o meu sinal de parar, aquele que eu respeito sem discutir comigo mesmo?</p>
+            <p>5. Com quem eu falo se a semana for pesada?</p>
+          </div>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p>Não há resposta certa aqui, e é esse o ponto: as respostas são suas e precisam existir antes do
+              primeiro item. Três observações sobre erros comuns.</p>
+            <p>Na pergunta 1, número redondo vindo do nada funciona melhor que nenhum número. Ajuste depois da
+              primeira semana, com dado real do quanto você aguentou bem.</p>
+            <p>Na pergunta 4, o sinal precisa ser <strong>observável</strong>, na mesma lógica das âncoras do
+              curso de guidelines. "Quando eu estiver muito abalado" não funciona, porque quem avalia isso é
+              justamente quem está abalado. "Quando eu reler o mesmo item três vezes sem conseguir decidir" ou
+              "quando eu lembrar de um item depois do expediente" são sinais que dá para reconhecer.</p>
+            <p>Na pergunta 5, vale ter duas respostas: alguém da área, que entende o contexto, e alguém de fora
+              do trabalho. Colegas de projetos de anotação costumam ter grupos, e trocar sobre isso é prática
+              comum, não fraqueza.</p>
+          </div>
+        </div>
+
+        <h3 id="a4-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Fila de segurança concentra conteúdo pesado por desenho, e o efeito é cumulativo. Isso é
+            reconhecido em documento público da área, como o da Partnership on AI, de 2021.</li>
+          <li>Rotina que se sustenta tem teto diário, blocos curtos com pausa real, ritual de encerramento e
+            apoio antes de precisar muito.</li>
+          <li>Você pode recusar categorias, pedir teto de volume, pedir aviso prévio e devolver item. Limite dito
+            cedo preserva a relação.</li>
+          <li>Se o efeito passar para fora do expediente, reduzir volume ou sair da fila é decisão proporcional,
+            e apoio profissional é atitude adequada.</li>
+          <li>Essas filas pagam melhor por oferta menor, consequência maior, exigência de julgamento e
+            dependência de contexto local, que é onde falante nativo tem vantagem real.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="4" data-proxima="quiz">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 4 e ir para o quiz
+        </button>
+      </section>
+
+      <!-- ══════════════════ QUIZ ══════════════════ -->
+      <section class="cu-aula" id="quiz">
+        <div class="cu-aula-cap"><span>Avaliação final</span><i></i></div>
+        <h2>Quiz do curso</h2>
+        <p class="cu-resumo-aula">Dez perguntas sobre as quatro aulas. Acertando oito ou mais, o certificado é
+          liberado com o seu nome. Pode responder quantas vezes quiser, e cada correção mostra o motivo da
+          resposta certa.</p>
+
+        <form id="formQuiz" class="cu-quiz">
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>1</i> Qual é a camada mais alta, que a guideline de um projeto detalha e nunca
+              contradiz?</p>
+            <label><input type="radio" name="q1" value="a"><span>A rubrica de notas do projeto</span></label>
+            <label><input type="radio" name="q1" value="b"><span>A política de uso da empresa, que é pública e tem data de vigência</span></label>
+            <label><input type="radio" name="q1" value="c"><span>O manual interno do time de QA</span></label>
+            <label><input type="radio" name="q1" value="d"><span>O contrato de confidencialidade assinado por você</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Quando a guideline parece omissa sobre um tipo de conteúdo, a política de uso quase
+              sempre já respondeu, e citá-la na justificativa é legítimo.</p>
+          </div>
+
+          <div class="cu-q" data-certa="d">
+            <p class="cu-q-tit"><i>2</i> O documento NIST AI 600-1, de julho de 2024, serve para quê no seu
+              trabalho?</p>
+            <label><input type="radio" name="q2" value="a"><span>Define as notas que devem ser usadas em avaliação de segurança</span></label>
+            <label><input type="radio" name="q2" value="b"><span>Substitui a política de uso das empresas</span></label>
+            <label><input type="radio" name="q2" value="c"><span>Lista os modelos aprovados para uso comercial</span></label>
+            <label><input type="radio" name="q2" value="d"><span>Dá uma taxonomia pública com doze riscos, que serve de vocabulário para classificar dano</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">É um perfil complementar ao framework de gestão de risco de IA do NIST, voltado a
+              IA generativa.</p>
+          </div>
+
+          <div class="cu-q" data-certa="a">
+            <p class="cu-q-tit"><i>3</i> Além de gravidade, quais são os outros dois elementos que definem o nível
+              de risco de uma resposta?</p>
+            <label><input type="radio" name="q3" value="a"><span>Probabilidade de o dano acontecer e contexto do pedido</span></label>
+            <label><input type="radio" name="q3" value="b"><span>Tamanho da resposta e tom usado</span></label>
+            <label><input type="radio" name="q3" value="c"><span>Idioma do pedido e horário do envio</span></label>
+            <label><input type="radio" name="q3" value="d"><span>Popularidade do tema e opinião do avaliador</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">A pergunta não é se o tema é desconfortável, é se a resposta acrescenta capacidade
+              e em qual contexto ela foi pedida.</p>
+          </div>
+
+          <div class="cu-q" data-certa="c">
+            <p class="cu-q-tit"><i>4</i> O modelo recusa responder "quais são os sinais de um AVC". Como isso
+              deve ser avaliado?</p>
+            <label><input type="radio" name="q4" value="a"><span>Recusa apropriada, porque é assunto médico</span></label>
+            <label><input type="radio" name="q4" value="b"><span>Recusa apropriada, desde que seja educada</span></label>
+            <label><input type="radio" name="q4" value="c"><span>Recusa excessiva, porque o pedido é legítimo e a informação é de emergência</span></label>
+            <label><input type="radio" name="q4" value="d"><span>Não é possível avaliar sem conhecer o usuário</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Recusar o inofensivo é defeito de verdade. A resposta boa informaria os sinais,
+              orientaria procurar emergência e deixaria claro que não substitui avaliação médica.</p>
+          </div>
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>5</i> O que é o XSTest, de Röttger e colegas, na NAACL 2024?</p>
+            <label><input type="radio" name="q5" value="a"><span>Um conjunto de ataques adversariais publicado pela Anthropic</span></label>
+            <label><input type="radio" name="q5" value="b"><span>Um conjunto de teste com 250 pedidos seguros em dez tipos e 200 pedidos inseguros de contraste, para expor segurança exagerada</span></label>
+            <label><input type="radio" name="q5" value="c"><span>Uma métrica de concordância entre avaliadores de segurança</span></label>
+            <label><input type="radio" name="q5" value="d"><span>Uma política de uso adotada por várias empresas</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Os pedidos seguros parecem perigosos na superfície. Um modelo bem calibrado atende
+              os 250 e recusa os 200.</p>
+          </div>
+
+          <div class="cu-q" data-certa="d">
+            <p class="cu-q-tit"><i>6</i> Na escada das respostas seguras, qual é o pior tipo de resposta segura?</p>
+            <label><input type="radio" name="q6" value="a"><span>Atender com a ressalva necessária</span></label>
+            <label><input type="radio" name="q6" value="b"><span>Atender a parte segura e explicar o que não pode</span></label>
+            <label><input type="radio" name="q6" value="c"><span>Recusar, explicar o motivo e oferecer caminho legítimo</span></label>
+            <label><input type="radio" name="q6" value="d"><span>Recusa seca, sem motivo nem alternativa</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">A regra é premiar o degrau mais alto que continue seguro. Recusa seca é o degrau
+              mais baixo e o mais comum em modelo mal calibrado.</p>
+          </div>
+
+          <div class="cu-q" data-certa="a">
+            <p class="cu-q-tit"><i>7</i> No estudo de red teaming da Anthropic, de 2022, qual dos quatro tipos de
+              modelo ficou mais difícil de atacar conforme a escala aumentou?</p>
+            <label><input type="radio" name="q7" value="a"><span>O modelo treinado com RLHF</span></label>
+            <label><input type="radio" name="q7" value="b"><span>O modelo simples, sem alinhamento</span></label>
+            <label><input type="radio" name="q7" value="c"><span>O modelo apenas orientado por prompt</span></label>
+            <label><input type="radio" name="q7" value="d"><span>Todos os quatro, na mesma proporção</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Os outros três mostraram tendência plana nos três tamanhos testados. O estudo
+              liberou 38.961 ataques para análise pública.</p>
+          </div>
+
+          <div class="cu-q" data-certa="c">
+            <p class="cu-q-tit"><i>8</i> Segundo o documento da OpenAI sobre red teaming externo, qual é o produto
+              final mais valioso de uma campanha?</p>
+            <label><input type="radio" name="q8" value="a"><span>A quantidade de ataques que funcionaram</span></label>
+            <label><input type="radio" name="q8" value="b"><span>O relatório narrativo do que a equipe sentiu</span></label>
+            <label><input type="radio" name="q8" value="c"><span>Transformar os achados em avaliações repetíveis e automatizadas</span></label>
+            <label><input type="radio" name="q8" value="d"><span>A lista de modelos que devem ser descontinuados</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">O mesmo documento afirma que red teaming, sozinho, não é panaceia para avaliação de
+              risco, e que achados envelhecem com a atualização do sistema.</p>
+          </div>
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>9</i> Um time de red teaming não encontrou nenhuma falha grave numa rodada. O
+              que isso permite concluir?</p>
+            <label><input type="radio" name="q9" value="a"><span>Que o modelo é seguro e pode ser liberado sem mais testes</span></label>
+            <label><input type="radio" name="q9" value="b"><span>Que aquele time, naquele período e com aquelas técnicas, não encontrou</span></label>
+            <label><input type="radio" name="q9" value="c"><span>Que o time foi negligente, já que sempre existem falhas</span></label>
+            <label><input type="radio" name="q9" value="d"><span>Que a política de uso está bem escrita</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Cobertura depende de quem testa, e equipe homogênea encontra falha homogênea. É
+              por isso que o teste multilíngue e multicultural existe como categoria separada.</p>
+          </div>
+
+          <div class="cu-q" data-certa="d">
+            <p class="cu-q-tit"><i>10</i> Sobre trabalhar com conteúdo sensível, qual afirmação está correta?</p>
+            <label><input type="radio" name="q10" value="a"><span>Sensibilização com o tempo é sinal de despreparo para a área</span></label>
+            <label><input type="radio" name="q10" value="b"><span>Recusar categorias específicas costuma inviabilizar a relação com o projeto</span></label>
+            <label><input type="radio" name="q10" value="c"><span>Aguentar o máximo possível é o que constrói reputação na plataforma</span></label>
+            <label><input type="radio" name="q10" value="d"><span>Definir teto diário, blocos com pausa e limites comunicados cedo é prática reconhecida na área</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">As condições de trabalho de quem revisa conteúdo perturbador são tratadas em
+              documento público da Partnership on AI, de 2021.</p>
+          </div>
+
+          <div class="cu-quiz-acoes">
+            <button type="submit" class="cu-bt-forte">Corrigir o quiz</button>
+            <button type="button" class="cu-bt-leve" id="btLimpar">Limpar respostas</button>
+          </div>
+          <p class="cu-quiz-res" id="quizRes"></p>
+        </form>
+
+        <!-- ══════════ CERTIFICADO ══════════ -->
+        <div class="cu-cert-area" id="certArea">
+          <h3 id="cert">Certificado de conclusão</h3>
+          <p>O certificado fica disponível depois de acertar oito das dez perguntas. Digite o nome como você
+            quer que ele apareça, sem abreviações.</p>
+
+          <div class="cu-cert-form" id="certForm">
+            <label class="cu-campo">
+              <span>Nome completo</span>
+              <input type="text" id="nomeCert" maxlength="70" autocomplete="name" placeholder="Seu nome completo">
+            </label>
+            <button type="button" class="cu-bt-forte" id="btGerar">Gerar certificado</button>
+            <p class="cu-cert-trava" id="certTrava">Responda o quiz acima para liberar.</p>
+          </div>
+
+          <div id="certificado" class="cu-cert" hidden>
+            <div class="cu-cert-borda">
+              <p class="cu-cert-sobre">Certificado de conclusão</p>
+              <p class="cu-cert-nome" id="certNome"></p>
+              <p class="cu-cert-txt">concluiu o curso</p>
+              <p class="cu-cert-curso">Segurança, Red Teaming e Conteúdo Sensível</p>
+              <p class="cu-cert-txt cu-cert-conteudo">Quatro aulas sobre avaliação de segurança em sistemas de
+                IA: política de uso e taxonomia pública de riscos, gravidade, probabilidade e contexto, recusa
+                apropriada contra recusa excessiva, escada de respostas seguras, métodos e limites de red
+                teaming, e prática de trabalho com conteúdo sensível. Aproveitamento verificado por avaliação
+                final de dez questões.</p>
+              <div class="cu-cert-pe">
+                <div>
+                  <b>Carga horária</b>
+                  <span>1 hora, curso livre de curta duração</span>
+                </div>
+                <div>
+                  <b>Conclusão</b>
+                  <span id="certData"></span>
+                </div>
+                <div>
+                  <b>Código</b>
+                  <span id="certCod"></span>
+                </div>
+              </div>
+              <p class="cu-cert-emissor">Home Office Hub · Curso livre, sem vínculo acadêmico</p>
+            </div>
+          </div>
+
+          <div class="cu-cert-acoes" id="certAcoes" hidden>
+            <button type="button" class="cu-bt-forte" id="btImprimir">Salvar em PDF ou imprimir</button>
+            <button type="button" class="cu-bt-leve" id="btTrocarNome">Trocar o nome</button>
+          </div>
+          <p class="cu-cert-nota" id="certNota" hidden>Na janela de impressão, escolha "Salvar como PDF" no
+            campo de destino. O certificado sai sozinho, sem o resto da página.</p>
+        </div>
+
+        <div class="cu-fim">
+          <h3 style="margin-top:0">Trilha concluída</h3>
+          <p>Com os quatro cursos, você tem o conjunto que separa quem faz volume de quem faz julgamento: o
+            porquê do trabalho, o documento que o define, a tarefa pareada e os seus vieses, e a régua de
+            segurança. O passo seguinte é tarefa real.</p>
+          <div class="cu-fim-bts">
+            <a class="cu-bt-forte" href="vagas.html">Ver as vagas abertas</a>
+            <a class="cu-bt-leve" href="cursos.html">Ver todos os cursos</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ GLOSSÁRIO ══════════════════ -->
+      <section class="cu-aula" id="glossario">
+        <div class="cu-aula-cap"><span>Glossário</span><i></i></div>
+        <h2>As palavras deste curso</h2>
+        <p class="cu-resumo-aula">Definições curtas, na ordem em que os termos aparecem nas aulas.</p>
+
+        <ul class="cu-glos">
+          <li><b>Política de uso</b>O documento público em que a empresa lista o que não se pode fazer com o
+            produto dela. Vale para todos os clientes e tem data de vigência. <i>Em inglês, usage policy ou
+            acceptable use policy.</i></li>
+          <li><b>Taxonomia</b>Uma lista organizada de categorias. Aqui, categorias de dano, para que todo mundo
+            chame a mesma coisa pelo mesmo nome.</li>
+          <li><b>Especificação de comportamento</b>O documento que diz como o modelo deve agir, incluindo o que
+            fazer quando duas instruções se chocam. O Model Spec da OpenAI é o exemplo público usado no
+            curso.</li>
+          <li><b>Cadeia de comando</b>A hierarquia de autoridade entre instruções, do nível que não pode ser
+            sobreposto até o que cede ao contexto.</li>
+          <li><b>Gravidade, probabilidade e contexto</b>As três perguntas que definem o nível de risco: qual o
+            tamanho do dano, se a resposta aumenta mesmo a chance dele, e como o pedido foi enquadrado.</li>
+          <li><b>Confabulação</b>Afirmação inventada apresentada como fato. É o termo usado em documentos
+            técnicos para o que o mercado chama de alucinação.</li>
+          <li><b>Usos agênticos</b>Quando o sistema executa tarefas sozinho, como navegar, comprar ou mexer em
+            arquivos, em vez de apenas responder.</li>
+          <li><b>Recusa</b>Quando o assistente diz que não vai atender ao pedido. Pode ser acerto ou defeito,
+            conforme o pedido.</li>
+          <li><b>Recusa excessiva</b>Recusar um pedido inofensivo, em geral por causa de uma palavra que parece
+            perigosa fora de contexto. <i>Em inglês aparece como over-refusal ou exaggerated safety.</i></li>
+          <li><b>Cumprimento seguro</b>Atender a parte legítima do pedido e explicar o que não pode ser
+            atendido, em vez de recusar tudo. <i>Em inglês, safe completion.</i></li>
+          <li><b>Conjunto de teste</b>Uma coleção de casos preparados de propósito para medir um comportamento
+            específico, como o XSTest faz com a segurança exagerada. <i>Em inglês, test suite ou benchmark.</i></li>
+          <li><b>Red teaming</b>Atacar o próprio sistema de propósito, antes que outra pessoa ataque, para
+            descobrir onde ele quebra.</li>
+          <li><b>Teste de vulnerabilidade de política</b>Red teaming feito por especialistas de confiança e
+            segurança, mirando exatamente os pontos em que a política escrita pode ser furada.</li>
+          <li><b>Parâmetros</b>Os números internos que o modelo ajusta durante o treino. A contagem deles é a
+            forma usual de dizer o tamanho de um modelo.</li>
+          <li><b>RLHF</b>Sigla de reinforcement learning from human feedback. O processo de coletar comparações
+            feitas por pessoas e ajustar o modelo com base nelas.</li>
+          <li><b>Amostragem com rejeição</b>Gerar várias respostas, descartar as piores segundo algum critério, e
+            entregar a que sobrou.</li>
+          <li><b>Multimodal</b>Que combina mais de um tipo de entrada, em geral imagem e texto.</li>
+          <li><b>Reprodutibilidade de um ataque</b>Quantas vezes o mesmo ataque funciona quando repetido. Ataque
+            que ninguém consegue repetir vale pouco como achado.</li>
+        </ul>
+      </section>
+
+      <!-- ══════════════════ FONTES ══════════════════ -->
+      <section class="cu-aula" id="fontes">
+        <div class="cu-aula-cap"><span>Referências</span><i></i></div>
+        <h2>Fontes do curso</h2>
+        <p class="cu-resumo-aula">Todo número, nome de categoria e achado citado nas aulas foi conferido no
+          documento original. Todos são públicos.</p>
+
+        <ul class="cu-fontes">
+          <li>
+            <b>Usage Policy</b>
+            Anthropic, com vigência declarada de 15 de setembro de 2025.
+            <em><a href="https://www.anthropic.com/legal/aup" target="_blank" rel="noopener">anthropic.com/legal/aup</a>
+              · fonte das categorias de padrões universais de uso e dos requisitos para casos de alto risco.</em>
+          </li>
+          <li>
+            <b>Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</b>
+            NIST AI 600-1, julho de 2024.
+            <em><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a>
+              · fonte da lista dos doze riscos usada na figura 1.1.</em>
+          </li>
+          <li>
+            <b>Ethical and social risks of harm from Language Models</b>
+            Laura Weidinger e outros, 2021.
+            <em><a href="https://arxiv.org/abs/2112.04359" target="_blank" rel="noopener">arxiv.org/abs/2112.04359</a>
+              · taxonomia acadêmica de riscos de modelos de linguagem, com literatura por categoria.</em>
+          </li>
+          <li>
+            <b>XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models</b>
+            Paul Röttger, Hannah Kirk, Bertie Vidgen, Giuseppe Attanasio, Federico Bianchi e Dirk Hovy, NAACL
+            2024.
+            <em><a href="https://aclanthology.org/2024.naacl-long.301/" target="_blank" rel="noopener">aclanthology.org/2024.naacl-long.301</a>
+              · fonte dos 250 pedidos seguros em dez tipos e dos 200 pedidos inseguros de contraste.</em>
+          </li>
+          <li>
+            <b>Red Teaming Language Models to Reduce Harms: Methods, Scaling Behaviors, and Lessons Learned</b>
+            Deep Ganguli e outros, Anthropic, 2022.
+            <em><a href="https://arxiv.org/abs/2209.07858" target="_blank" rel="noopener">arxiv.org/abs/2209.07858</a>
+              · fonte dos 38.961 ataques liberados, dos quatro tipos de modelo, dos três tamanhos testados e do
+              achado de que só o modelo com RLHF ficou mais difícil de atacar com a escala.</em>
+          </li>
+          <li>
+            <b>Challenges in red teaming AI systems</b>
+            Anthropic, 12 de junho de 2024.
+            <em><a href="https://www.anthropic.com/news/challenges-in-red-teaming-ai-systems" target="_blank" rel="noopener">anthropic.com/news</a>
+              · fonte dos métodos de red teaming da figura 3.2 e da constatação de que não existe prática
+              padronizada na área.</em>
+          </li>
+          <li>
+            <b>OpenAI's Approach to External Red Teaming for AI Models and Systems</b>
+            Lama Ahmad, Sandhini Agarwal, Michael Lampe e Pamela Mishkin, OpenAI, 2024.
+            <em><a href="https://cdn.openai.com/papers/openais-approach-to-external-red-teaming.pdf" target="_blank" rel="noopener">cdn.openai.com</a>
+              · fonte das quatro decisões de projeto de uma campanha externa e da ressalva de que red teaming
+              sozinho não é panaceia.</em>
+          </li>
+          <li>
+            <b>Model Spec</b>
+            OpenAI, versão de 18 de agosto de 2026, licença CC0.
+            <em><a href="https://model-spec.openai.com/" target="_blank" rel="noopener">model-spec.openai.com</a>
+              · fonte da cadeia de comando usada como exemplo da segunda camada da figura 1.2.</em>
+          </li>
+          <li>
+            <b>Responsible Sourcing of Data Enrichment Services</b>
+            Partnership on AI, 17 de junho de 2021.
+            <em><a href="https://partnershiponai.org/responsible-sourcing-considerations/" target="_blank" rel="noopener">partnershiponai.org</a>
+              · fonte sobre condições de trabalho de quem produz e revisa dados para IA, incluindo exposição a
+              conteúdo perturbador.</em>
+          </li>
+        </ul>
+
+        <p>Os exemplos de pedidos e respostas usados nos exercícios foram escritos para este curso e são
+          deliberadamente genéricos. Nenhum deles reproduz item de projeto real, e a aula 3 descreve técnicas de
+          red teaming apenas em nome, sem instrução operacional.</p>
+
+        <p>Este curso não é aconselhamento de saúde. As recomendações da aula 4 são de organização de trabalho.
+          Se o efeito do conteúdo passar do desconforto e começar a atrapalhar sono, humor ou rotina, procurar
+          um profissional de saúde é a atitude proporcional.</p>
+      </section>
+    </main>
+
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script>try { montarLayout("cursos"); } catch (e) {}</script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   CURSO — comportamento da página.
+   Nada aqui depende de biblioteca externa.
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  var CHAVE = "hoh_curso_seguranca";
+
+  /* ── memória do navegador, sempre protegida ── */
+  function ler() {
+    try {
+      var cru = localStorage.getItem(CHAVE);
+      return cru ? JSON.parse(cru) : {};
+    } catch (e) { return {}; }
+  }
+  function gravar(dados) {
+    try { localStorage.setItem(CHAVE, JSON.stringify(dados)); } catch (e) {}
+  }
+  var estado = ler();
+  if (!estado.aulas) estado.aulas = {};
+
+  /* ── figura 2.1: preenche a grade de pessoas ── */
+  var grade = document.getElementById("gradeGente");
+  if (grade) {
+    for (var g = 0; g < 54; g++) grade.appendChild(document.createElement("i"));
+  }
+
+  /* ── sumário no celular ── */
+  var lado = document.getElementById("lado");
+  var abre = document.getElementById("abreSum");
+  if (abre && lado) {
+    abre.addEventListener("click", function () {
+      var aberto = lado.classList.toggle("cu-aberto");
+      abre.setAttribute("aria-expanded", aberto ? "true" : "false");
+    });
+  }
+
+  /* ── links do sumário: fecham o painel no celular ── */
+  var links = [].slice.call(document.querySelectorAll(".cu-sub a, .cu-aula-link"));
+  links.forEach(function (a) {
+    a.addEventListener("click", function () {
+      if (lado && window.innerWidth <= 1080) {
+        lado.classList.remove("cu-aberto");
+        if (abre) abre.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  /* ── marca no sumário a seção que está na tela ── */
+  var subLinks = [].slice.call(document.querySelectorAll(".cu-sub a"));
+  var alvos = subLinks.map(function (a) {
+    return document.getElementById(a.getAttribute("href").slice(1));
+  });
+  var ticando = false;
+  function marcarAtivo() {
+    ticando = false;
+    var melhor = -1, menorDist = Infinity;
+    for (var i = 0; i < alvos.length; i++) {
+      if (!alvos[i]) continue;
+      var t = alvos[i].getBoundingClientRect().top - 130;
+      var d = t <= 0 ? -t : t * 3;
+      if (d < menorDist) { menorDist = d; melhor = i; }
+    }
+    subLinks.forEach(function (a, i) {
+      a.classList.toggle("cu-ativo", i === melhor);
+    });
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticando) { ticando = true; window.requestAnimationFrame(marcarAtivo); }
+  }, { passive: true });
+  marcarAtivo();
+
+  /* ── botões "ver o comentário" ── */
+  [].slice.call(document.querySelectorAll(".cu-abrir-resp")).forEach(function (bt) {
+    bt.addEventListener("click", function () {
+      var resp = bt.parentNode.querySelector(".cu-resp");
+      if (!resp) return;
+      var on = resp.classList.toggle("cu-on");
+      bt.firstChild.nodeValue = on ? "Esconder o comentário " : "Ver o comentário ";
+    });
+  });
+
+  /* ── progresso das aulas ── */
+  var barra = document.getElementById("barra");
+  var barraTxt = document.getElementById("barraTxt");
+  function pintarProgresso() {
+    var feitas = 0;
+    for (var n = 1; n <= 4; n++) {
+      var feita = !!estado.aulas[n];
+      if (feita) feitas++;
+      var link = document.querySelector('.cu-aula-link[data-aula="' + n + '"]');
+      if (link) link.classList.toggle("cu-feita", feita);
+      var bt = document.querySelector('.cu-concluir[data-aula="' + n + '"]');
+      if (bt) {
+        bt.classList.toggle("cu-pronta", feita);
+        var rotulo = bt.getAttribute("data-rotulo") || bt.textContent.trim();
+        bt.lastChild.nodeValue = " " + (feita ? "Aula " + n + " concluída" : rotulo);
+      }
+    }
+    if (barra) barra.style.width = (feitas / 4 * 100) + "%";
+    if (barraTxt) barraTxt.textContent = feitas + " de 4 aulas concluídas";
+  }
+  [].slice.call(document.querySelectorAll(".cu-concluir")).forEach(function (bt) {
+    bt.setAttribute("data-rotulo", bt.textContent.trim());
+    bt.addEventListener("click", function () {
+      estado.aulas[bt.getAttribute("data-aula")] = true;
+      gravar(estado);
+      pintarProgresso();
+      var proxima = document.getElementById(bt.getAttribute("data-proxima"));
+      if (proxima) proxima.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+  pintarProgresso();
+
+  /* ── quiz ── */
+  var form = document.getElementById("formQuiz");
+  var res = document.getElementById("quizRes");
+  var certArea = document.getElementById("certArea");
+  var MINIMO = 8;
+
+  function liberarCertificado(liberado) {
+    if (certArea) certArea.classList.toggle("cu-liberado", liberado);
+  }
+  liberarCertificado(estado.aprovado === true);
+
+  if (form) {
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var perguntas = [].slice.call(form.querySelectorAll(".cu-q"));
+      var acertos = 0, respondidas = 0;
+
+      perguntas.forEach(function (q, i) {
+        var marcada = q.querySelector("input:checked");
+        var certa = q.getAttribute("data-certa");
+        var fb = q.querySelector(".cu-q-fb");
+        q.classList.add("cu-corrigida");
+        q.classList.remove("cu-acertou", "cu-errou");
+
+        if (!marcada) {
+          q.classList.add("cu-errou");
+          if (fb) fb.textContent = "Sem resposta marcada.";
+          return;
+        }
+        respondidas++;
+        if (marcada.value === certa) {
+          acertos++;
+          q.classList.add("cu-acertou");
+          if (fb) fb.textContent = "Certo.";
+        } else {
+          q.classList.add("cu-errou");
+          var alt = q.querySelector('input[value="' + certa + '"]');
+          var textoCerto = alt ? alt.nextElementSibling.textContent : "";
+          if (fb) fb.textContent = "Não é essa. A resposta certa é: " + textoCerto;
+        }
+      });
+
+      var aprovado = acertos >= MINIMO;
+      estado.aprovado = estado.aprovado === true || aprovado;
+      estado.melhor = Math.max(estado.melhor || 0, acertos);
+      gravar(estado);
+      liberarCertificado(estado.aprovado === true);
+
+      if (res) {
+        res.textContent = aprovado
+          ? "Você acertou " + acertos + " de 10. Aprovado, o certificado está liberado abaixo."
+          : "Você acertou " + acertos + " de 10. Faltam " + (MINIMO - acertos) +
+            " para liberar o certificado. Leia os comentários das erradas e tente de novo.";
+        res.style.color = aprovado ? "var(--signal,#1A4893)" : "var(--amber,#A85D24)";
+      }
+
+      var destino = aprovado ? document.getElementById("cert") : perguntas.find(function (q) {
+        return q.classList.contains("cu-errou");
+      });
+      if (destino) destino.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    var limpar = document.getElementById("btLimpar");
+    if (limpar) {
+      limpar.addEventListener("click", function () {
+        form.reset();
+        [].slice.call(form.querySelectorAll(".cu-q")).forEach(function (q) {
+          q.classList.remove("cu-corrigida", "cu-acertou", "cu-errou");
+        });
+        if (res) res.textContent = "";
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }
+
+  /* ── certificado ── */
+  var nomeInput = document.getElementById("nomeCert");
+  var btGerar = document.getElementById("btGerar");
+  var cert = document.getElementById("certificado");
+  var certForm = document.getElementById("certForm");
+  var certAcoes = document.getElementById("certAcoes");
+  var certNota = document.getElementById("certNota");
+
+  function codigoDe(nome) {
+    var soma = 0;
+    for (var i = 0; i < nome.length; i++) soma = (soma * 31 + nome.charCodeAt(i)) % 1679616;
+    var base = soma.toString(36).toUpperCase();
+    while (base.length < 4) base = "0" + base;
+    return "SRT-" + base + "-" + new Date().getFullYear();
+  }
+
+  function mostrarCertificado(nome, data, codigo) {
+    document.getElementById("certNome").textContent = nome;
+    document.getElementById("certData").textContent = data;
+    document.getElementById("certCod").textContent = codigo;
+    if (cert) cert.hidden = false;
+    if (certAcoes) certAcoes.hidden = false;
+    if (certNota) certNota.hidden = false;
+    if (certForm) certForm.style.display = "none";
+  }
+
+  if (btGerar) {
+    btGerar.addEventListener("click", function () {
+      if (estado.aprovado !== true) {
+        if (nomeInput) nomeInput.blur();
+        var trava = document.getElementById("certTrava");
+        if (trava) {
+          trava.textContent = "Para liberar, acerte pelo menos 8 das 10 perguntas do quiz acima.";
+          trava.style.fontWeight = "600";
+        }
+        var q = document.getElementById("quiz");
+        if (q) q.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      var nome = (nomeInput ? nomeInput.value : "").trim().replace(/\s+/g, " ");
+      if (nome.length < 3) {
+        if (nomeInput) { nomeInput.focus(); nomeInput.style.borderColor = "#A85D24"; }
+        return;
+      }
+      var hoje = new Date();
+      var data = hoje.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+      var codigo = codigoDe(nome);
+      estado.nome = nome; estado.data = data; estado.codigo = codigo;
+      gravar(estado);
+      mostrarCertificado(nome, data, codigo);
+      if (cert) cert.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }
+
+  /* já tinha certificado emitido antes */
+  if (estado.aprovado === true && estado.nome && estado.data && estado.codigo) {
+    mostrarCertificado(estado.nome, estado.data, estado.codigo);
+  }
+
+  var btImprimir = document.getElementById("btImprimir");
+  if (btImprimir) btImprimir.addEventListener("click", function () { window.print(); });
+
+  var btTrocar = document.getElementById("btTrocarNome");
+  if (btTrocar) {
+    btTrocar.addEventListener("click", function () {
+      if (cert) cert.hidden = true;
+      if (certAcoes) certAcoes.hidden = true;
+      if (certNota) certNota.hidden = true;
+      if (certForm) certForm.style.display = "";
+      if (nomeInput) { nomeInput.value = estado.nome || ""; nomeInput.focus(); }
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -128,6 +128,21 @@ html { scroll-behavior:smooth; }
 .cu-conteudo li { margin-bottom:8px; }
 
 .cu-termo { color:var(--ink,#10203A); font-weight:600; }
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve) {
+  color:var(--signal,#1A4893); text-decoration:underline; text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve):hover { text-decoration-thickness:2px; }
+
+/* lista de fontes */
+.cu-fontes { list-style:none; padding:0; margin:0 0 18px; }
+.cu-fontes li {
+  padding:13px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+  font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F);
+}
+.cu-fontes li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
+.cu-fontes b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:3px; }
+.cu-fontes em { display:block; font-size:13px; color:var(--ink-3,#8A94A1); font-style:normal; margin-top:3px; }
 
 /* caixa de exemplo, prompt e respostas */
 .cu-caixa {
@@ -338,6 +353,19 @@ html { scroll-behavior:smooth; }
 .cu-ds-final b { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:4px; }
 .cu-ds-final span { font-size:13.5px; font-weight:600; color:var(--ink,#10203A); }
 
+/* ── grade de caixas em figura ── */
+.cu-seis { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+@media (max-width:820px){ .cu-seis { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:620px){ .cu-seis { grid-template-columns:1fr; } }
+
+/* ── tabelinha para cálculo em figura ── */
+.cu-tab { width:100%; border-collapse:collapse; font-size:13px; background:var(--panel,#FFF); }
+.cu-tab th, .cu-tab td { padding:9px 10px; text-align:center; border:1px solid var(--line-soft,#EAE4D9); color:var(--ink-2,#54606F); }
+.cu-tab th { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); font-weight:600; font-size:12px; }
+.cu-tab td b { color:var(--signal,#1A4893); }
+.cu-tab .cu-tab-rot { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); font-weight:600; text-align:left; }
+.cu-tab-legenda { font-size:12px; color:var(--ink-3,#8A94A1); margin:8px 0 0; }
+
 /* ── quiz ── */
 .cu-quiz { margin-top:8px; }
 .cu-q {
@@ -410,6 +438,40 @@ html { scroll-behavior:smooth; }
 
 .cu-fim { margin-top:46px; padding:26px 26px 28px; border-radius:18px; background:var(--bg-soft,#F1ECE3); }
 .cu-fim-bts { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+
+/* ── termo explicado na primeira vez ── */
+.cu-nota-termo {
+  border-left:3px solid var(--signal-dim,#4E9AC8); background:rgba(78,154,200,0.07);
+  border-radius:0 12px 12px 0; padding:13px 16px; margin:0 0 18px;
+}
+.cu-conteudo .cu-nota-termo { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); }
+.cu-nota-termo b { color:var(--ink,#10203A); }
+
+/* ── glossário ── */
+.cu-glos { list-style:none; padding:0; margin:0 0 18px; }
+.cu-glos li {
+  padding:14px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+}
+.cu-glos li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
+.cu-conteudo .cu-glos li { font-size:15px; line-height:1.62; color:var(--ink-2,#54606F); }
+.cu-glos b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:4px; }
+.cu-glos i { font-style:normal; color:var(--ink-3,#8A94A1); font-size:13px; }
+
+/* ── correção de especificidade: .cu-conteudo p e li venciam as classes de figura ── */
+.cu-conteudo .cu-fig-cap { font-size:11px; }
+.cu-conteudo .cu-fig-nota { font-size:13px; }
+.cu-conteudo .cu-kap-tit { font-size:11px; }
+.cu-conteudo .cu-kap-sub { font-size:12.5px; }
+.cu-conteudo .cu-kap-form p { font-size:13px; }
+.cu-conteudo .cu-kap-caixa .cu-kap-num { font-size:26px; }
+.cu-conteudo .cu-kap-caixa .cu-kap-txt { font-size:12.5px; }
+.cu-conteudo .cu-tab-legenda { font-size:12px; }
+.cu-conteudo .cu-ds-tit { font-size:11px; }
+.cu-conteudo .cu-ds-sub { font-size:12.5px; }
+.cu-conteudo .cu-ds-frase { font-size:13px; }
+.cu-conteudo .cu-ciclo-loop { font-size:12px; }
+.cu-conteudo .cu-fontes li { font-size:14.5px; }
+.cu-conteudo .cu-selo { font-size:11px; }
 
 /* impressão: só o certificado */
 @media print {
@@ -554,6 +616,12 @@ html { scroll-behavior:smooth; }
           <li>
             <a class="cu-aula-link" href="#quiz"><i class="cu-num">✓</i> Quiz e certificado</a>
           </li>
+          <li>
+            <a class="cu-aula-link" href="#glossario"><i class="cu-num">A</i> Glossário</a>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#fontes"><i class="cu-num">§</i> Fontes do curso</a>
+          </li>
         </ol>
       </div>
     </aside>
@@ -569,6 +637,12 @@ html { scroll-behavior:smooth; }
           respostas em vez de escrever a resposta perfeita.</p>
 
         <h3 id="a1-cru">Um modelo recém saído do pré-treino</h3>
+        <p class="cu-nota-termo"><b>Antes de começar, dois termos.</b> <b>Modelo de linguagem</b> é o programa
+          que está por trás de um assistente como o ChatGPT ou o Claude: ele recebe um texto e devolve a
+          continuação mais provável, palavra por palavra. <b>Treinar</b> um modelo é mostrar a ele uma montanha
+          de exemplos até que esses cálculos de probabilidade fiquem bons. Ninguém escreve as respostas dele à
+          mão, e é justamente por isso que o comportamento precisa ser ensinado de outro jeito, que é o assunto
+          desta aula.</p>
         <p>Um modelo de linguagem começa lendo uma quantidade enorme de texto e aprendendo a prever a
           continuação mais provável. Esse estágio se chama <span class="cu-termo">pré-treino</span> e é o que dá
           ao modelo conhecimento de mundo, gramática, vocabulário técnico e a capacidade de escrever em vários
@@ -654,6 +728,15 @@ html { scroll-behavior:smooth; }
           escolha, porque é ela que registra o que "melhor" significou naquele caso específico. Quem monta o
           projeto lê essas justificativas para corrigir a própria guideline.</p>
 
+        <div class="cu-caixa">
+          <p><span class="cu-rot">Dado verificável:</span> no artigo do InstructGPT, a OpenAI conta que contratou
+            cerca de 40 pessoas, selecionadas por um teste de triagem, para produzir as demonstrações e as
+            comparações. O mesmo artigo reporta que os avaliadores de treino concordavam entre si em 72,6 por
+            cento das vezes, com margem de 1,5 ponto, e os avaliadores de fora do treino em 77,3 por cento, com
+            margem de 1,3 ponto. Guarde esse número: concordância de pouco mais de 70 por cento é o normal em
+            tarefa subjetiva feita com cuidado, e não sinal de trabalho ruim.</p>
+        </div>
+
         <div class="cu-pratica" id="a1-pratica">
           <p class="cu-selo">Prática</p>
           <h3 style="margin-top:0">Leia como avaliador</h3>
@@ -704,10 +787,12 @@ html { scroll-behavior:smooth; }
 
         <h4>Para ir além</h4>
         <ul>
-          <li><em>Training language models to follow instructions with human feedback</em> (Ouyang e outros,
-            OpenAI, 2022). Descreve o processo completo por trás do ChatGPT, incluindo o papel dos avaliadores.</li>
-          <li><em>Deep reinforcement learning from human preferences</em> (Christiano e outros, 2017). A primeira
-            demonstração de que comparações entre pares treinam comportamento que ninguém demonstrou.</li>
+          <li><a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener">Training language models
+            to follow instructions with human feedback</a> (Ouyang e outros, OpenAI, 2022). Descreve o processo
+            completo por trás do ChatGPT, incluindo quem produziu os dados.</li>
+          <li><a href="https://arxiv.org/abs/1706.03741" target="_blank" rel="noopener">Deep reinforcement
+            learning from human preferences</a> (Christiano e outros, 2017). A demonstração de que comparações
+            entre pares treinam comportamento que ninguém demonstrou.</li>
           <li><em>The Alignment Problem</em> (Brian Christian, 2020). Livro sem jargão sobre por que é difícil
             transmitir valores humanos para uma máquina.</li>
         </ul>
@@ -931,12 +1016,15 @@ html { scroll-behavior:smooth; }
 
         <h4>Para ir além</h4>
         <ul>
-          <li><em>The "Problem" of Human Label Variation</em> (Barbara Plank, EMNLP 2022). Sobre por que a
-            discordância entre avaliadores muitas vezes é sinal, e não ruído a apagar.</li>
-          <li><em>Constitutional AI: Harmlessness from AI Feedback</em> (Bai e outros, Anthropic, 2022). Mostra
-            como princípios escritos são usados para guiar o circuito de feedback.</li>
-          <li><em>Concrete Problems in AI Safety</em> (Amodei e outros, 2016). Catálogo inicial e legível das
-            formas pelas quais um otimizador persegue o objetivo errado.</li>
+          <li><a href="https://aclanthology.org/2022.emnlp-main.731/" target="_blank" rel="noopener">The
+            "Problem" of Human Label Variation</a> (Barbara Plank, EMNLP 2022). Sobre por que a discordância
+            entre avaliadores muitas vezes é sinal, e não ruído a apagar.</li>
+          <li><a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Towards Understanding
+            Sycophancy in Language Models</a> (Sharma e outros, Anthropic, 2023). Mede a bajulação e mostra que
+            ela nasce, em parte, da própria preferência humana coletada.</li>
+          <li><a href="https://arxiv.org/abs/1606.06565" target="_blank" rel="noopener">Concrete Problems in AI
+            Safety</a> (Amodei e outros, 2016). Catálogo inicial e legível das formas pelas quais um otimizador
+            persegue o objetivo errado.</li>
         </ul>
 
         <button class="cu-concluir" type="button" data-aula="2" data-proxima="aula3">
@@ -1093,8 +1181,10 @@ html { scroll-behavior:smooth; }
         <p><span class="cu-termo">RLAIF</span>, aprendizado por reforço a partir de feedback de IA, vai além e
           faz um modelo gerar parte das comparações de preferência que uma pessoa faria, trocando um pouco de
           fidelidade aos valores humanos por um ganho grande de escala. Uma prática próxima, hoje comum, é o
-          <span class="cu-termo">LLM como juiz</span>: um modelo competente, guiado por uma rubrica, faz uma
-          primeira passada de avaliação, que pessoas depois conferem por amostragem.</p>
+          <span class="cu-termo">LLM como juiz</span>, onde LLM é só a sigla em inglês para modelo de linguagem
+          grande: um modelo competente, guiado por uma rubrica, faz uma primeira passada de avaliação, que
+          pessoas depois conferem por amostragem. Rubrica, aqui, é a lista escrita de critérios e notas que o
+          avaliador deve aplicar, e ela vale tanto para a pessoa quanto para o modelo que faz esse papel.</p>
         <p>Nada disso tira o humano do processo, muda o lugar onde ele fica. À medida que os modelos absorvem as
           comparações rotineiras, os avaliadores migram para o trabalho mais difícil: escrever e refinar
           guidelines, decidir os casos ambíguos que um modelo não resolve, auditar julgamentos feitos por
@@ -1607,6 +1697,138 @@ html { scroll-behavior:smooth; }
             <a class="cu-bt-leve" href="como-funciona.html">Como funciona o processo</a>
           </div>
         </div>
+      </section>
+
+      <!-- ══════════════════ GLOSSÁRIO ══════════════════ -->
+      <section class="cu-aula" id="glossario">
+        <div class="cu-aula-cap"><span>Glossário</span><i></i></div>
+        <h2>As palavras deste curso</h2>
+        <p class="cu-resumo-aula">Se você esbarrou em algum termo e quer a definição curta, está tudo aqui, na
+          ordem em que aparece nas aulas. Vale voltar a esta página a qualquer momento.</p>
+
+        <ul class="cu-glos">
+          <li><b>Modelo de linguagem</b>O programa por trás de um assistente de conversa. Recebe um texto e
+            devolve a continuação mais provável, palavra por palavra. <i>Em inglês, language model. LLM é a
+            sigla de large language model, ou seja modelo de linguagem grande.</i></li>
+          <li><b>Pré-treino</b>A primeira etapa do treino, em que o modelo lê uma quantidade enorme de texto e
+            aprende a prever a próxima palavra. Dá conhecimento e fluência, e não dá comportamento.</li>
+          <li><b>Ajuste por instrução</b>A segunda etapa, em que pessoas escrevem respostas modelo e o sistema
+            aprende com esses exemplos qual é a forma de uma boa resposta. <i>Em inglês, instruction tuning ou
+            supervised fine-tuning, às vezes abreviado como SFT.</i></li>
+          <li><b>Treino por preferência</b>A terceira etapa, em que avaliadores comparam respostas e o modelo é
+            ajustado para produzir o tipo de resposta que as pessoas escolhem.</li>
+          <li><b>RLHF</b>Sigla de reinforcement learning from human feedback, aprendizado por reforço a partir
+            de feedback humano. É o nome do processo completo da terceira etapa: coletar comparações, treinar um
+            modelo de recompensa com elas e ajustar o modelo principal.</li>
+          <li><b>Modelo de recompensa</b>Um segundo modelo, treinado só para prever qual resposta as pessoas
+            escolheriam. Ele funciona como um juiz automático durante o ajuste do modelo principal.</li>
+          <li><b>Assimetria entre gerar e verificar</b>A observação de que reconhecer qual de duas respostas é
+            melhor é bem mais fácil do que escrever a melhor resposta. É o que permite distribuir a tarefa de
+            avaliação para muita gente.</li>
+          <li><b>Guideline</b>O documento que define a tarefa: o que observar, o que "melhor" significa ali, e
+            como tratar casos de fronteira. Funciona como o contrato entre quem precisa do dado e quem o
+            produz.</li>
+          <li><b>Rubrica</b>A parte que converte julgamento em número: quais notas existem e o que cada uma
+            exige. Uma guideline costuma conter uma rubrica.</li>
+          <li><b>Lei de Goodhart</b>A ideia de que, quando uma medida vira a meta, ela deixa de ser uma boa
+            medida. Aplicada aqui: o modelo persegue exatamente o que a avaliação premia, e não o que você
+            queria premiar.</li>
+          <li><b>Bajulação</b>A tendência de um modelo a concordar com o usuário em vez de corrigi-lo. Em
+            inglês, sycophancy.</li>
+          <li><b>Exploração da recompensa</b>Quando o modelo descobre uma característica barata de produzir, como
+            escrever mais ou usar tópicos, que rende nota alta sem melhorar a resposta. Em inglês, reward
+            hacking.</li>
+          <li><b>Alucinação</b>Afirmação inventada apresentada como fato. Em documentos técnicos aparece também
+            como confabulação.</li>
+          <li><b>Itens de controle, ou gold</b>Itens com resposta já conhecida, misturados na sua fila, que
+            servem para medir se o seu julgamento continua calibrado.</li>
+          <li><b>Concordância entre anotadores</b>A taxa com que avaliadores independentes chegam ao mesmo
+            julgamento no mesmo item, corrigida por quantas vezes eles concordariam por acaso.</li>
+          <li><b>Kappa</b>Uma das medidas dessa concordância corrigida pelo acaso. Vai de 1, concordância
+            perfeita, até 0, que equivale ao acaso.</li>
+          <li><b>Constitutional AI</b>Método em que princípios escritos por pessoas guiam o modelo a criticar e
+            reescrever as próprias respostas.</li>
+          <li><b>RLAIF</b>Aprendizado por reforço a partir de feedback de IA. Um modelo gera parte das
+            comparações que uma pessoa faria, com supervisão humana por amostragem.</li>
+          <li><b>LLM como juiz</b>Usar um modelo, guiado por uma rubrica, para fazer a primeira passada de
+            avaliação, que pessoas depois auditam.</li>
+        </ul>
+      </section>
+
+      <!-- ══════════════════ FONTES ══════════════════ -->
+      <section class="cu-aula" id="fontes">
+        <div class="cu-aula-cap"><span>Referências</span><i></i></div>
+        <h2>Fontes do curso</h2>
+        <p class="cu-resumo-aula">Tudo que este curso afirma sobre como os modelos são treinados vem dos
+          trabalhos abaixo, todos públicos. Onde há número, ele foi conferido no texto original.</p>
+
+        <ul class="cu-fontes">
+          <li>
+            <b>Training language models to follow instructions with human feedback</b>
+            Long Ouyang e outros, OpenAI, 2022.
+            <em><a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener">arxiv.org/abs/2203.02155</a>
+              · fonte dos três estágios de treino, do time de cerca de 40 pessoas contratadas e das taxas de
+              concordância de 72,6 e 77,3 por cento.</em>
+          </li>
+          <li>
+            <b>Deep reinforcement learning from human preferences</b>
+            Paul Christiano e outros, 2017.
+            <em><a href="https://arxiv.org/abs/1706.03741" target="_blank" rel="noopener">arxiv.org/abs/1706.03741</a>
+              · fonte do experimento do salto mortal treinado por comparação entre pares.</em>
+          </li>
+          <li>
+            <b>Learning to summarize from human feedback</b>
+            Nisan Stiennon e outros, OpenAI, 2020.
+            <em><a href="https://arxiv.org/abs/2009.01325" target="_blank" rel="noopener">arxiv.org/abs/2009.01325</a>
+              · fonte da passagem do método para uma tarefa de linguagem.</em>
+          </li>
+          <li>
+            <b>Constitutional AI: Harmlessness from AI Feedback</b>
+            Yuntao Bai e outros, Anthropic, 2022.
+            <em><a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener">arxiv.org/abs/2212.08073</a>
+              · fonte do ciclo de crítica e revisão guiado por princípios escritos, e do RLAIF.</em>
+          </li>
+          <li>
+            <b>Towards Understanding Sycophancy in Language Models</b>
+            Mrinank Sharma e outros, Anthropic, 2023.
+            <em><a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">arxiv.org/abs/2310.13548</a>
+              · fonte da bajulação: resposta que combina com a crença do usuário tem mais chance de ser
+              preferida, e humanos e modelos de preferência escolhem a resposta bajuladora em vez da correta
+              numa fração não desprezível dos casos.</em>
+          </li>
+          <li>
+            <b>A Long Way to Go: Investigating Length Correlations in RLHF</b>
+            Prasann Singhal e outros, 2023, publicado na COLM 2024.
+            <em><a href="https://arxiv.org/abs/2310.03716" target="_blank" rel="noopener">arxiv.org/abs/2310.03716</a>
+              · fonte do viés de tamanho: boa parte do ganho medido vem do aumento do comprimento da resposta.</em>
+          </li>
+          <li>
+            <b>The "Problem" of Human Label Variation</b>
+            Barbara Plank, EMNLP 2022.
+            <em><a href="https://aclanthology.org/2022.emnlp-main.731/" target="_blank" rel="noopener">aclanthology.org/2022.emnlp-main.731</a>
+              · fonte da ideia de que parte da discordância é variação genuína, não erro.</em>
+          </li>
+          <li>
+            <b>Concrete Problems in AI Safety</b>
+            Dario Amodei e outros, 2016.
+            <em><a href="https://arxiv.org/abs/1606.06565" target="_blank" rel="noopener">arxiv.org/abs/1606.06565</a>
+              · fonte da discussão de objetivo mal especificado e exploração da recompensa.</em>
+          </li>
+          <li>
+            <b>The measurement of observer agreement for categorical data</b>
+            J. Richard Landis e Gary Koch, Biometrics 33, 1977, páginas 159 a 174.
+            <em>Origem da escala de interpretação de kappa usada até hoje.</em>
+          </li>
+          <li>
+            <b>The Alignment Problem</b>
+            Brian Christian, 2020. Livro.
+            <em>Relato sem jargão de por que transmitir valores humanos a uma máquina é difícil.</em>
+          </li>
+        </ul>
+
+        <p>A lei de Goodhart, citada na aula 2, vem do economista britânico Charles Goodhart, em trabalho de
+          1975 sobre política monetária. A formulação curta que ficou conhecida, de que uma medida deixa de ser
+          boa medida quando se torna a meta, é atribuída à antropóloga Marilyn Strathern, em texto de 1997.</p>
       </section>
     </main>
 

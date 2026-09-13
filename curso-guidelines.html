@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guidelines, Rubricas e Consistência — Home Office Hub</title>
+<meta name="description" content="Curso sobre ler guideline, usar rubrica com âncoras, medir concordância entre avaliadores e responder a feedback de QA.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guidelines, Rubricas e Consistência — Home Office Hub">
+<meta property="og:description" content="Quatro aulas sobre o documento que define a tarefa, as escalas de nota, kappa e alfa, e o que o QA mede em você.">
+<meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/curso-guidelines.html">
+<meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css" onerror="document.documentElement.classList.add('f-solto')">
+
+<style>
+/* ── Visual de reserva: só entra em ação quando o estilo.css não é encontrado. ── */
+html.f-solto body {
+  font-family:'Geist',system-ui,sans-serif; background:#F7F4EF; color:#10203A;
+  line-height:1.55; margin:0;
+}
+html.f-solto a { color:inherit; text-decoration:none; }
+html.f-solto .eyebrow {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:#1A4893;
+  display:flex; align-items:center; gap:9px; margin-bottom:14px;
+}
+html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#1A4893; }
+
+/* ══════════════════════════════════════════════════════════════
+   CURSO — página de leitura, coluna lateral fixa com o sumário.
+   Tudo com prefixo .cu- para não encostar no estilo.css.
+   ══════════════════════════════════════════════════════════════ */
+
+html { scroll-behavior:smooth; }
+.cu-wrap, .cu-wrap *, .cu-wrap *::before, .cu-wrap *::after { box-sizing:border-box; }
+.cu-wrap { max-width:var(--wrap,1180px); margin:0 auto; padding:0 20px; }
+
+/* ── abertura ── */
+.cu-topo { padding:48px 0 34px; border-bottom:1px solid var(--line,#DED7CA); }
+.cu-topo h1 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(30px,4vw,48px); line-height:1.08; letter-spacing:-0.015em;
+  color:var(--ink,#10203A); margin:0 0 16px; max-width:20ch;
+}
+.cu-topo .cu-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); max-width:62ch; margin:0 0 22px; }
+.cu-fatos { display:flex; flex-wrap:wrap; gap:8px; }
+.cu-fato {
+  font-size:12.5px; color:var(--ink-2,#54606F); background:var(--panel,#FFF);
+  border-radius:99px; padding:6px 13px; box-shadow:inset 0 0 0 1px var(--line,#DED7CA);
+  display:inline-flex; align-items:center; gap:7px;
+}
+.cu-fato svg { color:var(--signal,#1A4893); }
+
+/* ── grade de duas colunas ── */
+.cu-grade { display:grid; grid-template-columns:274px minmax(0,1fr); gap:56px; padding:40px 0 110px; }
+
+/* ── coluna lateral ── */
+.cu-lado { position:sticky; top:96px; align-self:start; min-width:0; max-height:calc(100vh - 130px); overflow-y:auto; padding-right:6px; }
+.cu-lado::-webkit-scrollbar { width:6px; }
+.cu-lado::-webkit-scrollbar-thumb { background:var(--line,#DED7CA); border-radius:99px; }
+
+.cu-sum-titulo {
+  font-size:11px; letter-spacing:0.13em; text-transform:uppercase;
+  color:var(--ink-3,#8A94A1); margin:0 0 14px;
+}
+.cu-barra { height:4px; border-radius:99px; background:var(--line-soft,#EAE4D9); overflow:hidden; margin-bottom:8px; }
+.cu-barra span { display:block; height:100%; width:0; background:var(--signal,#1A4893); border-radius:99px; transition:width .35s; }
+.cu-barra-txt { font-size:12px; color:var(--ink-3,#8A94A1); margin:0 0 22px; }
+
+.cu-sum { list-style:none; margin:0; padding:0; }
+.cu-sum > li { margin-bottom:6px; }
+.cu-aula-link {
+  display:flex; align-items:flex-start; gap:9px; padding:7px 0;
+  font-size:14.5px; font-weight:600; color:var(--ink,#10203A); line-height:1.4;
+}
+.cu-aula-link:hover { color:var(--signal,#1A4893); }
+.cu-num {
+  flex:0 0 auto; width:19px; height:19px; margin-top:1px; border-radius:99px;
+  display:grid; place-items:center; font-size:11px; font-weight:600;
+  color:var(--ink-3,#8A94A1); box-shadow:inset 0 0 0 1px var(--line,#DED7CA);
+}
+.cu-aula-link.cu-feita .cu-num { background:var(--signal,#1A4893); color:#fff; box-shadow:none; font-size:0; }
+.cu-aula-link.cu-feita .cu-num::after { content:'✓'; font-size:11px; }
+
+.cu-sub { list-style:none; margin:2px 0 12px; padding:0 0 0 28px; border-left:1px solid var(--line-soft,#EAE4D9); margin-left:9px; }
+.cu-sub li a {
+  display:block; padding:5px 0; font-size:13.5px; line-height:1.45;
+  color:var(--ink-2,#54606F);
+}
+.cu-sub li a:hover { color:var(--signal,#1A4893); }
+.cu-sub li a.cu-ativo { color:var(--signal,#1A4893); font-weight:600; }
+
+/* botão de sumário no celular */
+.cu-abre-sum { display:none; }
+
+/* ── conteúdo ── */
+.cu-conteudo { max-width:74ch; min-width:0; }
+.cu-aula { padding-bottom:18px; }
+.cu-aula + .cu-aula { padding-top:22px; }
+
+.cu-aula-cap { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.cu-aula-cap span {
+  font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--signal,#1A4893);
+}
+.cu-aula-cap i { flex:1; height:1px; background:var(--line,#DED7CA); }
+
+.cu-aula h2 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(26px,3vw,35px); line-height:1.12; letter-spacing:-0.012em;
+  color:var(--ink,#10203A); margin:0 0 10px; scroll-margin-top:100px;
+}
+.cu-resumo-aula {
+  font-size:16px; line-height:1.62; color:var(--ink-2,#54606F);
+  padding:16px 18px; background:var(--bg-soft,#F1ECE3); border-radius:14px; margin:18px 0 30px;
+}
+.cu-conteudo h3 {
+  font-size:19px; font-weight:600; letter-spacing:-0.01em; color:var(--ink,#10203A);
+  margin:38px 0 12px; scroll-margin-top:100px;
+}
+.cu-conteudo h4 { font-size:15.5px; font-weight:600; color:var(--ink,#10203A); margin:24px 0 8px; }
+.cu-conteudo p { font-size:16px; line-height:1.72; color:var(--ink-2,#54606F); margin:0 0 16px; }
+.cu-conteudo strong { color:var(--ink,#10203A); font-weight:600; }
+.cu-conteudo ul, .cu-conteudo ol { font-size:16px; line-height:1.72; color:var(--ink-2,#54606F); padding-left:22px; margin:0 0 18px; }
+.cu-conteudo li { margin-bottom:8px; }
+
+.cu-termo { color:var(--ink,#10203A); font-weight:600; }
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve) {
+  color:var(--signal,#1A4893); text-decoration:underline; text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+.cu-conteudo a:not(.cu-bt-forte):not(.cu-bt-leve):hover { text-decoration-thickness:2px; }
+
+/* lista de fontes */
+.cu-fontes { list-style:none; padding:0; margin:0 0 18px; }
+.cu-fontes li {
+  padding:13px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+  font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F);
+}
+.cu-fontes li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
+.cu-fontes b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:3px; }
+.cu-fontes em { display:block; font-size:13px; color:var(--ink-3,#8A94A1); font-style:normal; margin-top:3px; }
+
+/* caixa de exemplo, prompt e respostas */
+.cu-caixa {
+  border-left:3px solid var(--signal-dim,#4E9AC8); background:var(--panel,#FFF);
+  border-radius:0 14px 14px 0; padding:18px 20px; margin:0 0 20px;
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-caixa p { margin:0 0 12px; font-size:15.5px; }
+.cu-caixa p:last-child { margin:0; }
+.cu-rot { font-weight:600; color:var(--ink,#10203A); }
+
+/* prática */
+.cu-pratica { border:1px solid var(--line,#DED7CA); border-radius:18px; padding:24px 24px 8px; margin:26px 0 6px; background:var(--panel,#FFF); }
+.cu-pratica > h3 { margin-top:0; }
+.cu-selo {
+  display:inline-flex; align-items:center; gap:7px; font-size:11px; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--amber,#A85D24); margin-bottom:12px;
+}
+.cu-selo::before { content:''; width:18px; height:1px; background:var(--amber,#A85D24); }
+.cu-abrir-resp {
+  appearance:none; border:1px solid var(--line,#DED7CA); background:var(--bg-soft,#F1ECE3);
+  color:var(--ink,#10203A); font-family:inherit; font-size:14px; font-weight:600;
+  border-radius:99px; padding:9px 18px; cursor:pointer; margin-bottom:20px;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.cu-abrir-resp:hover { border-color:var(--ink-3,#8A94A1); }
+.cu-resp { display:none; border-top:1px solid var(--line-soft,#EAE4D9); padding-top:18px; margin-bottom:14px; }
+.cu-resp.cu-on { display:block; }
+
+/* figuras */
+.cu-fig { margin:30px 0 32px; }
+.cu-fig-cap { font-size:11px; letter-spacing:0.11em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:14px; }
+.cu-fig-cap b { color:var(--signal,#1A4893); font-weight:600; }
+.cu-fig-moldura {
+  border:1px solid var(--line,#DED7CA); background:var(--panel,#FFF);
+  border-radius:18px; padding:26px 22px; overflow-x:auto;
+}
+.cu-fig-nota { font-size:13px; line-height:1.6; color:var(--ink-3,#8A94A1); text-align:center; margin:12px 0 0; }
+
+/* peças dos diagramas */
+.cu-fluxo { display:flex; align-items:stretch; gap:10px; min-width:min-content; }
+.cu-passo {
+  flex:1 1 0; min-width:150px; border-radius:14px; padding:14px 15px;
+  background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-passo b { display:block; font-size:14px; color:var(--ink,#10203A); margin-bottom:5px; }
+.cu-passo span { display:block; font-size:12.5px; line-height:1.55; color:var(--ink-2,#54606F); }
+.cu-passo.cu-forte { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-passo.cu-forte b, .cu-passo.cu-forte span { color:#fff; }
+.cu-passo.cu-forte span { color:rgba(255,255,255,0.82); }
+.cu-seta { align-self:center; flex:0 0 auto; color:var(--ink-3,#8A94A1); }
+
+.cu-quem { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; min-width:min-content; }
+.cu-quem div {
+  font-size:12.5px; line-height:1.5; color:var(--ink-2,#54606F); text-align:center;
+  padding:9px 10px; border-radius:11px; border:1px dashed var(--line,#DED7CA);
+}
+.cu-quem b { color:var(--ink,#10203A); }
+
+/* ── botões ── */
+.cu-bt-forte, .cu-bt-leve {
+  appearance:none; font-family:inherit; font-size:14.5px; font-weight:600;
+  border-radius:99px; padding:12px 22px; cursor:pointer; border:1px solid transparent;
+  display:inline-flex; align-items:center; gap:9px; text-decoration:none;
+}
+.cu-bt-forte { background:var(--signal,#1A4893); color:#fff; }
+.cu-bt-forte:hover { filter:brightness(1.08); }
+.cu-bt-leve { background:var(--panel,#FFF); color:var(--ink,#10203A); border-color:var(--line,#DED7CA); }
+.cu-bt-leve:hover { border-color:var(--ink-3,#8A94A1); }
+
+.cu-concluir {
+  appearance:none; font-family:inherit; font-size:14.5px; font-weight:600; cursor:pointer;
+  display:inline-flex; align-items:center; gap:9px; margin:30px 0 10px;
+  background:var(--panel,#FFF); color:var(--signal,#1A4893);
+  border:1px solid var(--line,#DED7CA); border-radius:99px; padding:12px 22px;
+}
+.cu-concluir:hover { border-color:var(--signal,#1A4893); }
+.cu-concluir.cu-pronta { background:var(--signal,#1A4893); color:#fff; border-color:var(--signal,#1A4893); }
+
+/* ── figura 2.1, escala ── */
+.cu-esc { display:flex; flex-direction:column; align-items:stretch; }
+.cu-esc-linha { border-radius:14px; padding:13px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-rot { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:10px; }
+.cu-esc-par { display:flex; gap:10px; }
+.cu-esc-op { flex:1; display:flex; align-items:center; gap:9px; background:var(--panel,#FFF); border-radius:10px; padding:9px 11px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-op b { font-size:12px; color:var(--ink-3,#8A94A1); }
+.cu-esc-op i { flex:1; height:5px; border-radius:99px; background:var(--line,#DED7CA); }
+.cu-esc-op.cu-esc-esc { box-shadow:inset 0 0 0 2px var(--signal,#1A4893); }
+.cu-esc-op.cu-esc-esc b { color:var(--signal,#1A4893); }
+.cu-esc-op.cu-esc-esc i { background:var(--signal-dim,#4E9AC8); }
+.cu-esc-seta { display:grid; place-items:center; color:var(--ink-3,#8A94A1); padding:7px 0; }
+.cu-esc-bars { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.cu-esc-bars i { width:34px; height:7px; border-radius:99px; background:var(--signal-dim,#4E9AC8); opacity:0.5; }
+.cu-esc-bars i:first-child { opacity:1; background:var(--signal,#1A4893); }
+.cu-esc-bars em { font-size:12px; color:var(--ink-3,#8A94A1); font-style:normal; margin-left:4px; }
+.cu-esc-dois { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.cu-esc-cx { border-radius:14px; padding:13px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-cx b { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:4px; }
+.cu-esc-cx span { font-size:12.5px; line-height:1.5; color:var(--ink-2,#54606F); }
+.cu-esc-cx.cu-esc-forte { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-esc-cx.cu-esc-forte b { color:#fff; }
+.cu-esc-cx.cu-esc-forte span { color:rgba(255,255,255,0.82); }
+.cu-esc-gente { border-radius:14px; padding:14px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-esc-gente b { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); text-align:center; margin-bottom:12px; }
+.cu-esc-grade { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
+.cu-esc-grade i { width:13px; height:13px; border-radius:99px; background:var(--signal-dim,#4E9AC8); opacity:0.45; }
+
+/* ── figura 3.1, linha do tempo ── */
+.cu-tl { min-width:640px; }
+.cu-tl-faixas { display:grid; grid-template-columns:1fr 4fr; gap:10px; margin-bottom:16px; }
+.cu-tl-faixa { font-size:12px; text-align:center; border-radius:99px; padding:6px 10px; }
+.cu-tl-f1 { background:var(--bg-soft,#F1ECE3); color:var(--ink-2,#54606F); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-tl-f2 { background:rgba(26,72,147,0.08); color:var(--signal,#1A4893); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.18); font-weight:600; }
+.cu-tl-eixo { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; position:relative; }
+.cu-tl-eixo::before { content:''; position:absolute; left:6%; right:6%; top:44px; height:1px; background:var(--line,#DED7CA); }
+.cu-tl-item { text-align:center; position:relative; }
+.cu-tl-item b { display:block; font-size:15px; font-weight:600; color:var(--signal,#1A4893); margin-bottom:10px; }
+.cu-tl-bola { display:block; width:11px; height:11px; border-radius:99px; background:var(--signal,#1A4893); margin:0 auto 14px; box-shadow:0 0 0 4px var(--panel,#FFF); position:relative; z-index:1; }
+.cu-tl-bola.cu-tl-cinza { background:var(--ink-3,#8A94A1); }
+.cu-tl-item strong { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:5px; }
+.cu-tl-item span { display:block; font-size:12px; line-height:1.5; color:var(--ink-2,#54606F); padding:0 4px; }
+
+/* ── figura 3.2, ciclo ── */
+.cu-ciclo { display:flex; flex-direction:column; align-items:center; }
+.cu-ciclo-const {
+  border-radius:14px; padding:13px 18px; background:rgba(168,93,36,0.07);
+  box-shadow:inset 0 0 0 1px rgba(168,93,36,0.22); max-width:280px; width:100%;
+}
+.cu-ciclo-const b { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber,#A85D24); margin-bottom:8px; }
+.cu-ciclo-const ul { margin:0; padding-left:16px; font-size:13px; line-height:1.6; color:var(--ink-2,#54606F); }
+.cu-ciclo-const li { margin:0; }
+.cu-ciclo-desce { padding:6px 0; }
+.cu-ciclo-linha { display:flex; align-items:stretch; gap:8px; min-width:min-content; width:100%; }
+.cu-ciclo-cx { flex:1 1 0; min-width:118px; border-radius:13px; padding:12px 13px; text-align:center; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ciclo-cx b { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:3px; }
+.cu-ciclo-cx span { font-size:12px; line-height:1.45; color:var(--ink-2,#54606F); display:block; }
+.cu-ciclo-cx.cu-ciclo-az { background:var(--signal,#1A4893); box-shadow:none; }
+.cu-ciclo-cx.cu-ciclo-az b { color:#fff; }
+.cu-ciclo-cx.cu-ciclo-az span { color:rgba(255,255,255,0.82); }
+.cu-ciclo-cx.cu-ciclo-am { background:rgba(168,93,36,0.09); box-shadow:inset 0 0 0 1.5px var(--amber,#A85D24); }
+.cu-ciclo-cx.cu-ciclo-out { box-shadow:inset 0 0 0 1.5px var(--signal-dim,#4E9AC8); background:var(--panel,#FFF); }
+.cu-ciclo-loop { font-size:12px; color:var(--amber,#A85D24); margin:14px 0 0; text-align:center; }
+
+/* ── figura 4.1, anatomia ── */
+.cu-anat { display:flex; flex-direction:column; align-items:center; gap:14px; min-width:min-content; }
+.cu-anat-topo { font-size:13px; color:var(--ink-2,#54606F); background:var(--bg-soft,#F1ECE3); border-radius:99px; padding:8px 18px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-anat-meio { display:grid; grid-template-columns:1fr 1.5fr 1fr; gap:14px; align-items:center; width:100%; }
+.cu-anat-resp { border-radius:13px; padding:14px; background:var(--panel,#FFF); box-shadow:inset 0 0 0 1px var(--line,#DED7CA); }
+.cu-anat-resp b { display:block; font-size:12px; color:var(--ink-3,#8A94A1); margin-bottom:9px; }
+.cu-anat-resp i { display:block; height:6px; border-radius:99px; background:var(--line-soft,#EAE4D9); margin-bottom:6px; }
+.cu-anat-resp i.cu-curta { width:60%; }
+.cu-anat-crit { position:relative; text-align:center; }
+.cu-anat-rot { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); margin-bottom:9px; }
+.cu-crit { font-size:12.5px; font-weight:600; color:#fff; border-radius:99px; padding:7px 10px; margin-bottom:5px; }
+.cu-crit-1 { background:#12306B; }
+.cu-crit-2 { background:#1A4893; }
+.cu-crit-3 { background:#2C63B4; }
+.cu-crit-4 { background:#6AA6D2; }
+.cu-crit-5 { background:#A9C8DE; color:#10203A; }
+.cu-anat-peso { display:block; text-align:right; font-size:10.5px; color:var(--ink-3,#8A94A1); }
+.cu-anat-peso-t { margin:0 2px 5px 0; }
+.cu-anat-peso-b { margin:5px 2px 0 0; }
+.cu-anat-escolha { border-radius:14px; padding:14px 18px; text-align:center; background:rgba(26,72,147,0.06); box-shadow:inset 0 0 0 1.5px var(--signal-dim,#4E9AC8); max-width:460px; }
+.cu-anat-escolha b { display:block; font-size:14px; color:var(--signal,#1A4893); margin-bottom:4px; }
+.cu-anat-escolha span { display:block; font-size:13px; color:var(--ink-2,#54606F); margin-bottom:6px; }
+.cu-anat-escolha em { font-size:12px; color:var(--ink-3,#8A94A1); }
+
+/* ── figura 4.2, kappa ── */
+.cu-kap { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.cu-kap-cx { border-radius:14px; padding:16px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-kap-tit { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); margin:0 0 4px; font-weight:600; }
+.cu-kap-sub { font-size:12.5px; color:var(--ink-2,#54606F); margin:0 0 14px; }
+.cu-kap-barra { height:12px; border-radius:99px; background:var(--signal-dim,#4E9AC8); overflow:hidden; margin-bottom:6px; }
+.cu-kap-barra span { display:block; width:90%; height:100%; background:#C9DDEB; }
+.cu-kap-legenda { display:flex; justify-content:space-between; font-size:11px; color:var(--ink-3,#8A94A1); margin-bottom:14px; }
+.cu-kap-botoes { display:flex; gap:8px; margin-bottom:14px; }
+.cu-kap-bt { flex:1; text-align:center; font-size:12.5px; padding:9px 6px; border-radius:10px; background:var(--panel,#FFF); color:var(--ink-2,#54606F); box-shadow:inset 0 0 0 1px var(--line,#DED7CA); }
+.cu-kap-bt.cu-kap-on { background:var(--signal,#1A4893); color:#fff; box-shadow:none; font-weight:600; }
+.cu-kap-form { background:var(--panel,#FFF); border-radius:11px; padding:12px 14px; margin-bottom:14px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-kap-form p { font-size:13px; color:var(--ink-2,#54606F); margin:0 0 4px; }
+.cu-kap-form p:last-child { margin:0; }
+.cu-kap-form b { color:var(--signal,#1A4893); }
+.cu-kap-rot { font-size:10.5px !important; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1) !important; margin-bottom:6px !important; }
+.cu-kap-caixa { border-radius:11px; padding:12px 14px; }
+.cu-kap-caixa .cu-kap-num { font-size:26px; font-weight:600; margin:0 0 4px; letter-spacing:-0.02em; }
+.cu-kap-caixa .cu-kap-txt { font-size:12.5px; line-height:1.5; margin:0; }
+.cu-kap-ruim { background:rgba(168,93,36,0.08); box-shadow:inset 0 0 0 1px rgba(168,93,36,0.2); }
+.cu-kap-ruim .cu-kap-num { color:var(--amber,#A85D24); }
+.cu-kap-ruim .cu-kap-txt { color:#8A6038; }
+.cu-kap-bom { background:rgba(26,72,147,0.07); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.2); }
+.cu-kap-bom .cu-kap-num { color:var(--signal,#1A4893); }
+.cu-kap-bom .cu-kap-txt { color:var(--ink-2,#54606F); }
+
+/* ── figura 4.3, erro contra sinal ── */
+.cu-ds { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.cu-ds-cx { border-radius:14px; padding:16px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-tit { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin:0 0 4px; }
+.cu-ds-erro .cu-ds-tit { color:var(--amber,#A85D24); }
+.cu-ds-sinal .cu-ds-tit { color:var(--signal,#1A4893); }
+.cu-ds-sub { font-size:12.5px; color:var(--ink-2,#54606F); margin:0 0 14px; }
+.cu-ds-frase { font-size:13px; color:var(--ink,#10203A); background:var(--panel,#FFF); border-radius:10px; padding:11px 13px; margin:0 0 12px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-frase mark { background:rgba(78,154,200,0.25); color:inherit; border-radius:4px; padding:1px 4px; }
+.cu-ds-chips { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:12px; }
+.cu-ds-chip { font-size:11px; text-align:center; padding:9px 4px; border-radius:9px; }
+.cu-ds-chip.cu-ok { background:rgba(26,72,147,0.07); color:var(--signal,#1A4893); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.18); }
+.cu-ds-chip.cu-no { background:rgba(168,93,36,0.08); color:var(--amber,#A85D24); box-shadow:inset 0 0 0 1px rgba(168,93,36,0.2); }
+.cu-ds-final { background:var(--panel,#FFF); border-radius:10px; padding:11px 13px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
+.cu-ds-final b { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:4px; }
+.cu-ds-final span { font-size:13.5px; font-weight:600; color:var(--ink,#10203A); }
+
+/* ── grade de caixas em figura ── */
+.cu-seis { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+@media (max-width:820px){ .cu-seis { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:620px){ .cu-seis { grid-template-columns:1fr; } }
+
+/* ── tabelinha para cálculo em figura ── */
+.cu-tab { width:100%; border-collapse:collapse; font-size:13px; background:var(--panel,#FFF); }
+.cu-tab th, .cu-tab td { padding:9px 10px; text-align:center; border:1px solid var(--line-soft,#EAE4D9); color:var(--ink-2,#54606F); }
+.cu-tab th { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); font-weight:600; font-size:12px; }
+.cu-tab td b { color:var(--signal,#1A4893); }
+.cu-tab .cu-tab-rot { background:var(--bg-soft,#F1ECE3); color:var(--ink,#10203A); font-weight:600; text-align:left; }
+.cu-tab-legenda { font-size:12px; color:var(--ink-3,#8A94A1); margin:8px 0 0; }
+
+/* ── quiz ── */
+.cu-quiz { margin-top:8px; }
+.cu-q {
+  border:1px solid var(--line,#DED7CA); background:var(--panel,#FFF);
+  border-radius:16px; padding:20px 22px; margin-bottom:14px;
+}
+.cu-q-tit { font-size:15.5px !important; font-weight:600; color:var(--ink,#10203A) !important; line-height:1.5; margin:0 0 14px !important; display:flex; gap:10px; }
+.cu-q-tit i {
+  flex:0 0 auto; width:22px; height:22px; border-radius:99px; display:grid; place-items:center;
+  background:var(--bg-soft,#F1ECE3); color:var(--signal,#1A4893); font-size:12px; font-weight:600; font-style:normal;
+}
+.cu-q label {
+  display:flex; align-items:flex-start; gap:10px; padding:10px 12px; margin-bottom:7px;
+  border-radius:11px; cursor:pointer; font-size:14.5px; line-height:1.5; color:var(--ink-2,#54606F);
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-q label:hover { box-shadow:inset 0 0 0 1px var(--ink-3,#8A94A1); }
+.cu-q input { margin-top:3px; accent-color:var(--signal,#1A4893); flex:0 0 auto; }
+.cu-q label:has(input:checked) { background:rgba(26,72,147,0.05); box-shadow:inset 0 0 0 1.5px var(--signal,#1A4893); color:var(--ink,#10203A); }
+.cu-q-fb, .cu-q-pq { display:none; }
+.cu-q.cu-corrigida .cu-q-fb, .cu-q.cu-corrigida .cu-q-pq { display:block; }
+.cu-q-fb { font-size:14px !important; font-weight:600; margin:12px 0 4px !important; }
+.cu-q.cu-acertou .cu-q-fb { color:var(--signal,#1A4893) !important; }
+.cu-q.cu-errou .cu-q-fb { color:var(--amber,#A85D24) !important; }
+.cu-q-pq { font-size:13.5px !important; line-height:1.6; color:var(--ink-2,#54606F) !important; margin:0 !important; }
+.cu-q.cu-errou { box-shadow:inset 0 0 0 1px rgba(168,93,36,0.35); }
+.cu-quiz-acoes { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.cu-quiz-res { font-size:15px !important; font-weight:600; margin:18px 0 0 !important; }
+
+/* ── certificado ── */
+.cu-cert-area { margin-top:46px; padding-top:34px; border-top:1px solid var(--line,#DED7CA); }
+.cu-cert-form { display:flex; flex-wrap:wrap; align-items:flex-end; gap:12px; margin:18px 0 0; }
+.cu-campo { display:flex; flex-direction:column; gap:6px; flex:1 1 260px; }
+.cu-campo span { font-size:12.5px; color:var(--ink-3,#8A94A1); }
+.cu-campo input {
+  font-family:inherit; font-size:15px; color:var(--ink,#10203A);
+  background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
+  border-radius:12px; padding:12px 14px; width:100%;
+}
+.cu-campo input:focus { outline:none; border-color:var(--signal,#1A4893); }
+.cu-cert-trava { font-size:13px !important; color:var(--amber,#A85D24) !important; flex:1 1 100%; margin:2px 0 0 !important; }
+.cu-cert-area.cu-liberado .cu-cert-trava { display:none; }
+
+.cu-cert { margin-top:26px; }
+.cu-cert-borda {
+  background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA); border-radius:20px;
+  padding:44px 42px 34px; text-align:center; position:relative;
+}
+.cu-cert-borda::before {
+  content:''; position:absolute; inset:9px; border-radius:14px;
+  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); pointer-events:none;
+}
+.cu-cert-sobre { font-size:11px !important; letter-spacing:0.18em; text-transform:uppercase; color:var(--signal,#1A4893) !important; margin:0 0 24px !important; }
+.cu-cert-nome {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:clamp(26px,3.4vw,38px) !important;
+  line-height:1.15; color:var(--ink,#10203A) !important; margin:0 0 14px !important;
+}
+.cu-cert-txt { font-size:14.5px !important; color:var(--ink-2,#54606F) !important; margin:0 0 10px !important; }
+.cu-cert-curso {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:clamp(20px,2.4vw,26px) !important;
+  color:var(--signal,#1A4893) !important; margin:0 0 20px !important;
+}
+.cu-cert-conteudo { max-width:62ch; margin:0 auto 26px !important; font-size:13.5px !important; line-height:1.65; }
+.cu-cert-pe { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; border-top:1px solid var(--line-soft,#EAE4D9); padding-top:20px; margin-top:6px; }
+.cu-cert-pe b { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:5px; }
+.cu-cert-pe span { font-size:13px; color:var(--ink,#10203A); }
+.cu-cert-emissor { font-size:12px !important; color:var(--ink-3,#8A94A1) !important; margin:22px 0 0 !important; }
+.cu-cert-acoes { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.cu-cert-nota { font-size:13px !important; color:var(--ink-3,#8A94A1) !important; margin:12px 0 0 !important; }
+
+.cu-fim { margin-top:46px; padding:26px 26px 28px; border-radius:18px; background:var(--bg-soft,#F1ECE3); }
+.cu-fim-bts { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+
+/* ── termo explicado na primeira vez ── */
+.cu-nota-termo {
+  border-left:3px solid var(--signal-dim,#4E9AC8); background:rgba(78,154,200,0.07);
+  border-radius:0 12px 12px 0; padding:13px 16px; margin:0 0 18px;
+}
+.cu-conteudo .cu-nota-termo { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); }
+.cu-nota-termo b { color:var(--ink,#10203A); }
+
+/* ── glossário ── */
+.cu-glos { list-style:none; padding:0; margin:0 0 18px; }
+.cu-glos li {
+  padding:14px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+}
+.cu-glos li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
+.cu-conteudo .cu-glos li { font-size:15px; line-height:1.62; color:var(--ink-2,#54606F); }
+.cu-glos b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:4px; }
+.cu-glos i { font-style:normal; color:var(--ink-3,#8A94A1); font-size:13px; }
+
+/* ── correção de especificidade: .cu-conteudo p e li venciam as classes de figura ── */
+.cu-conteudo .cu-fig-cap { font-size:11px; }
+.cu-conteudo .cu-fig-nota { font-size:13px; }
+.cu-conteudo .cu-kap-tit { font-size:11px; }
+.cu-conteudo .cu-kap-sub { font-size:12.5px; }
+.cu-conteudo .cu-kap-form p { font-size:13px; }
+.cu-conteudo .cu-kap-caixa .cu-kap-num { font-size:26px; }
+.cu-conteudo .cu-kap-caixa .cu-kap-txt { font-size:12.5px; }
+.cu-conteudo .cu-tab-legenda { font-size:12px; }
+.cu-conteudo .cu-ds-tit { font-size:11px; }
+.cu-conteudo .cu-ds-sub { font-size:12.5px; }
+.cu-conteudo .cu-ds-frase { font-size:13px; }
+.cu-conteudo .cu-ciclo-loop { font-size:12px; }
+.cu-conteudo .cu-fontes li { font-size:14.5px; }
+.cu-conteudo .cu-selo { font-size:11px; }
+
+/* impressão: só o certificado */
+@media print {
+  body * { visibility:hidden !important; }
+  #certificado, #certificado * { visibility:visible !important; }
+  #certificado { position:absolute; inset:0; margin:0; }
+  .cu-cert-acoes, .cu-cert-nota { display:none !important; }
+}
+
+/* ── responsivo ── */
+@media (max-width:1080px){
+  .cu-grade { grid-template-columns:minmax(0,1fr); gap:0; padding-top:26px; }
+  .cu-conteudo { max-width:none; }
+  .cu-lado {
+    position:sticky; top:78px; max-height:none; overflow:visible; z-index:5;
+    background:var(--bg,#F7F4EF); padding:10px 0 12px; margin-bottom:20px;
+    border-bottom:1px solid var(--line,#DED7CA);
+  }
+  .cu-abre-sum {
+    display:flex; align-items:center; justify-content:space-between; width:100%;
+    appearance:none; background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
+    border-radius:12px; padding:12px 15px; font-family:inherit; font-size:14.5px;
+    font-weight:600; color:var(--ink,#10203A); cursor:pointer;
+  }
+  .cu-abre-sum svg { transition:transform .2s; color:var(--ink-3,#8A94A1); }
+  .cu-lado.cu-aberto .cu-abre-sum svg { transform:rotate(180deg); }
+  .cu-painel-sum { display:none; padding-top:16px; }
+  .cu-lado.cu-aberto .cu-painel-sum { display:block; }
+  .cu-sum-titulo { display:none; }
+}
+@media (max-width:820px){
+  .cu-kap, .cu-ds { grid-template-columns:1fr; }
+  .cu-esc-dois { grid-template-columns:1fr; }
+  .cu-anat-meio { grid-template-columns:1fr; }
+  .cu-anat-peso { display:none; }
+  .cu-cert-pe { grid-template-columns:1fr; text-align:left; }
+}
+@media (max-width:680px){
+  .cu-topo { padding-top:32px; }
+  .cu-fig-moldura { padding:18px 14px; }
+  .cu-pratica { padding:20px 18px 6px; }
+  .cu-quem { grid-template-columns:1fr; }
+  .cu-fluxo { flex-direction:column; }
+  .cu-fluxo .cu-seta { transform:rotate(90deg); padding:2px 0; }
+  .cu-ciclo-linha { flex-direction:column; }
+  .cu-ciclo-linha .cu-seta { transform:rotate(90deg); padding:2px 0; }
+  .cu-ciclo-const { max-width:none; }
+  .cu-ds-chips { grid-template-columns:repeat(2,1fr); }
+  .cu-q { padding:17px 16px; }
+  .cu-cert-borda { padding:30px 20px 26px; }
+  .cu-fim { padding:22px 18px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cu-wrap">
+
+  <header class="cu-topo">
+    <div class="eyebrow">Cursos · Aula 1 a 4</div>
+    <h1>Guidelines, Rubricas e Consistência</h1>
+    <p class="cu-lead">Este é o curso de não estragar o dado. Ele trata do documento que define a tarefa, das
+      escalas de nota e das suas âncoras, da medição de concordância entre avaliadores, e do que o controle de
+      qualidade realmente mede quando audita o seu trabalho. Continuação direta de Fundamentos da Avaliação de
+      IA, e ainda sem exigir programação nem estatística.</p>
+    <div class="cu-fatos">
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+        cerca de 1 hora
+      </span>
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+        4 aulas com exercícios
+      </span>
+      <span class="cu-fato">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5"/></svg>
+        quiz e certificado no fim
+      </span>
+    </div>
+  </header>
+
+  <div class="cu-grade">
+
+    <!-- ══════════ COLUNA LATERAL ══════════ -->
+    <aside class="cu-lado" id="lado">
+      <button class="cu-abre-sum" id="abreSum" type="button" aria-expanded="false">
+        <span>Sumário do curso</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+
+      <div class="cu-painel-sum">
+        <p class="cu-sum-titulo">Sumário do curso</p>
+        <div class="cu-barra"><span id="barra"></span></div>
+        <p class="cu-barra-txt" id="barraTxt">0 de 4 aulas concluídas</p>
+
+        <ol class="cu-sum">
+          <li>
+            <a class="cu-aula-link" href="#aula1" data-aula="1"><i class="cu-num">1</i> A guideline como contrato</a>
+            <ul class="cu-sub">
+              <li><a href="#a1-oque">O que é uma guideline</a></li>
+              <li><a href="#a1-anatomia">Anatomia de uma guideline</a></li>
+              <li><a href="#a1-spec">Um exemplo público: o Model Spec</a></li>
+              <li><a href="#a1-regra">Regra, padrão e o que você pode interpretar</a></li>
+              <li><a href="#a1-pratica">Prática: o que falta nesta guideline</a></li>
+              <li><a href="#a1-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula2" data-aula="2"><i class="cu-num">2</i> Rubricas, escalas e âncoras</a>
+            <ul class="cu-sub">
+              <li><a href="#a2-rubrica">Guideline e rubrica não são a mesma coisa</a></li>
+              <li><a href="#a2-escalas">Escala absoluta e escala comparativa</a></li>
+              <li><a href="#a2-ancoras">Âncoras: o que separa 3 de 4</a></li>
+              <li><a href="#a2-drift">Deriva de calibração</a></li>
+              <li><a href="#a2-pratica">Prática: transforme critério vago em âncora</a></li>
+              <li><a href="#a2-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula3" data-aula="3"><i class="cu-num">3</i> Concordância: kappa e alfa</a>
+            <ul class="cu-sub">
+              <li><a href="#a3-porque">Por que medir concordância</a></li>
+              <li><a href="#a3-kappa">Kappa de Cohen, passo a passo</a></li>
+              <li><a href="#a3-familia">Fleiss, Krippendorff e quando usar cada um</a></li>
+              <li><a href="#a3-ler">Como ler o número sem se enganar</a></li>
+              <li><a href="#a3-pratica">Prática: calcule e interprete</a></li>
+              <li><a href="#a3-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#aula4" data-aula="4"><i class="cu-num">4</i> Variação humana e QA</a>
+            <ul class="cu-sub">
+              <li><a href="#a4-variacao">Discordância que é informação</a></li>
+              <li><a href="#a4-agregar">Agregar por maioria ou preservar a divisão</a></li>
+              <li><a href="#a4-qa">Como o QA audita o seu trabalho</a></li>
+              <li><a href="#a4-cascata">Por que isso chega longe: cascatas de dados</a></li>
+              <li><a href="#a4-pratica">Prática: responda a um feedback de QA</a></li>
+              <li><a href="#a4-resumo">Resumo da aula</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#quiz"><i class="cu-num">✓</i> Quiz e certificado</a>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#glossario"><i class="cu-num">A</i> Glossário</a>
+          </li>
+          <li>
+            <a class="cu-aula-link" href="#fontes"><i class="cu-num">§</i> Fontes do curso</a>
+          </li>
+        </ol>
+      </div>
+    </aside>
+
+    <!-- ══════════ CONTEÚDO ══════════ -->
+    <main class="cu-conteudo" id="conteudo">
+      <!-- ══════════════════ AULA 1 ══════════════════ -->
+      <section class="cu-aula" id="aula1">
+        <div class="cu-aula-cap"><span>Aula 1 de 4 · 15 min</span><i></i></div>
+        <h2>A guideline como contrato</h2>
+        <p class="cu-resumo-aula">Nesta aula: o que uma guideline é e por que ela existe, quais partes toda
+          guideline séria tem, e um exemplo público e completo para você ler por fora, o Model Spec da OpenAI,
+          que mostra como uma empresa escreve as regras que o avaliador aplica.</p>
+
+        <p class="cu-nota-termo"><b>Se você está chegando agora.</b> Este curso é o segundo da trilha, e dá para
+          acompanhar sem ter feito o primeiro. Só três ideias são pressupostas. <b>Modelo de linguagem</b> é o
+          programa por trás de um assistente de conversa, que recebe um texto e devolve a continuação mais
+          provável. <b>Avaliar</b>, nesse mercado, é julgar respostas desse programa segundo regras dadas, em
+          geral comparando duas ou dando nota. E o modelo aprende com o conjunto dessas avaliações, e não com
+          cada uma isolada.</p>
+
+        <h3 id="a1-oque">O que é uma guideline</h3>
+        <p>Guideline é o documento que define a tarefa: o que observar, o que "melhor" significa ali, como tratar
+          caso de fronteira e o que fazer quando você travar. No curso anterior ela apareceu como contrato entre
+          quem precisa do dado e quem o produz. Nesta aula a gente abre o contrato.</p>
+        <p>Ela existe por um motivo específico. Como nenhuma definição de útil, honesto ou inofensivo cabe numa
+          regra única, a empresa precisa transmitir esse julgamento de outra forma: escrevendo o máximo possível
+          em regra, e deixando o resto para a interpretação de quem avalia, com exemplos que mostrem a régua.
+          Guideline é a tentativa de transformar valor em instrução operável.</p>
+        <p>Consequência prática: onde a guideline é clara e seguida, avaliadores comuns produzem dado consistente
+          em volume. Onde ela é vaga, talento individual não resolve, porque cada pessoa preenche a lacuna de um
+          jeito diferente e o resultado é ruído. O artigo do InstructGPT, da OpenAI, descreve exatamente esse
+          arranjo: cerca de 40 pessoas contratadas, selecionadas por um teste de triagem, trabalhando a partir de
+          instruções detalhadas para produzir demonstrações e comparações.</p>
+
+        <h3 id="a1-anatomia">Anatomia de uma guideline</h3>
+        <p>Guidelines variam muito de tamanho, de duas páginas a cem. As partes que importam, porém, são quase
+          sempre as mesmas seis. Quando uma delas falta, é ali que o erro nasce.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 1.1</b> · As seis partes de uma guideline</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-seis">
+              <div class="cu-esc-cx"><b>1. Escopo</b><span>que tipo de item entra na tarefa e o que deve ser
+                descartado ou marcado como inválido</span></div>
+              <div class="cu-esc-cx"><b>2. Definições</b><span>o que exatamente conta como cada termo usado, por
+                exemplo o que é "prejudicial" naquele projeto</span></div>
+              <div class="cu-esc-cx"><b>3. Critérios em ordem</b><span>a lista do que pesar e, principalmente,
+                qual critério vence quando dois se chocam</span></div>
+              <div class="cu-esc-cx"><b>4. Regras de decisão</b><span>o que fazer nos casos previsíveis: as duas
+                respostas erradas, item sem contexto, empate real</span></div>
+              <div class="cu-esc-cx"><b>5. Exemplos anotados</b><span>casos resolvidos com a justificativa, que
+                é onde a régua fica visível de verdade</span></div>
+              <div class="cu-esc-cx"><b>6. Via de escalonamento</b><span>para onde levar o item quando a
+                guideline não cobre, em vez de decidir por conta</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Leia as seis antes de começar. A parte 3 é a que mais falta, e a que mais
+            custa.</p>
+        </div>
+
+        <p>Duas observações sobre essa lista. A primeira: <strong>exemplo anotado vale mais que definição</strong>.
+          Uma definição diz "resposta deve ser relevante"; um exemplo mostra que aquela resposta específica foi
+          considerada irrelevante porque respondia a uma pergunta vizinha. É pelo exemplo que você calibra.</p>
+        <p>A segunda: a via de escalonamento não é um detalhe burocrático. Ela é o que impede que cada avaliador
+          invente a própria regra para o caso difícil. Usar o canal é sinal de bom avaliador, não de avaliador
+          inseguro, desde que você use para caso de fronteira real e não para cada item.</p>
+
+        <h3 id="a1-spec">Um exemplo público: o Model Spec</h3>
+        <p>Guideline de projeto pago costuma ser confidencial, e por isso muita gente nunca viu uma de dentro.
+          Existe, no entanto, um documento público que cumpre esse papel em nível de empresa: o
+          <span class="cu-termo">Model Spec</span> da OpenAI, que declara como os modelos devem se comportar. Ele
+          é publicado sob licença de domínio público, pode ser lido inteiro, e a versão consultada para este
+          curso é a de 18 de agosto de 2026.</p>
+        <p>Vale ler por três motivos. Primeiro, ele separa <strong>objetivo</strong> de <strong>regra</strong> e de
+          <strong>padrão</strong>, que é a distinção que você vai usar todo dia. Segundo, ele organiza a autoridade
+          das instruções numa hierarquia explícita, chamada de cadeia de comando. Terceiro, ele mostra o tom: um
+          documento de comportamento não é uma lista de proibições, é uma tentativa de resolver conflito entre
+          objetivos legítimos.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 1.2</b> · A cadeia de comando do Model Spec</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-anat-crit" style="max-width:520px;margin:0 auto">
+              <span class="cu-anat-rot">quem manda mais, de cima para baixo</span>
+              <span class="cu-anat-peso cu-anat-peso-t">não pode ser sobreposto</span>
+              <div class="cu-crit cu-crit-1">root · regras do próprio documento</div>
+              <div class="cu-crit cu-crit-2">system · instruções da empresa</div>
+              <div class="cu-crit cu-crit-3">developer · quem constrói o produto</div>
+              <div class="cu-crit cu-crit-4">user · quem está conversando</div>
+              <div class="cu-crit cu-crit-5">guideline · pode ceder ao contexto</div>
+              <span class="cu-anat-peso cu-anat-peso-b">pode ser sobreposto</span>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Estrutura descrita no Model Spec da OpenAI, versão de 18 de agosto de 2026.</p>
+        </div>
+
+        <p>Por que isso importa para quem avalia: quando você julga uma resposta, a pergunta não é só "isso é
+          bom". É "isso obedece a instrução de maior autoridade que se aplica aqui". Uma resposta que atende o
+          pedido do usuário mas viola uma regra de nível mais alto não é uma resposta melhor, é uma resposta
+          errada, mesmo que agrade.</p>
+
+        <h3 id="a1-regra">Regra, padrão e o que você pode interpretar</h3>
+        <p>Toda guideline mistura três tipos de conteúdo, e confundir os três é a origem de muita divergência
+          entre avaliadores.</p>
+        <ul>
+          <li><strong>Regra.</strong> Não admite exceção no nível em que está escrita. "Nunca escolher resposta
+            que dê instrução para fabricar arma" é regra. Se você se vê achando uma exceção, o lugar de levar
+            isso é o canal de escalonamento, não a sua própria decisão.</li>
+          <li><strong>Padrão.</strong> É o comportamento esperado quando nada diz o contrário, e pode ser
+            sobreposto por instrução mais específica. "Responder em português" é padrão: se o usuário pede em
+            inglês, o padrão cede.</li>
+          <li><strong>Julgamento.</strong> O que a guideline deliberadamente deixa para você, em geral porque
+            depende do caso. É aqui que a sua nota vale, e é aqui que a justificativa é obrigatória.</li>
+        </ul>
+        <p>Antes de avaliar, classifique mentalmente o item: isto é regra, padrão ou julgamento? A resposta muda
+          o que você faz quando tem dúvida. Em regra, você aplica. Em padrão, você procura a instrução mais
+          específica. Em julgamento, você decide e explica.</p>
+
+        <div class="cu-pratica" id="a1-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">O que falta nesta guideline</h3>
+          <p>Abaixo, uma guideline curta de um projeto fictício de avaliação de respostas de suporte técnico.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">Tarefa:</span> comparar duas respostas de suporte e escolher a melhor.</p>
+            <p><span class="cu-rot">Critérios:</span> a resposta deve ser correta, clara, cordial, completa e
+              bem formatada.</p>
+            <p><span class="cu-rot">Instrução:</span> escolha a melhor resposta e escreva uma justificativa. Se
+              as duas forem boas, escolha a que você preferiria receber.</p>
+          </div>
+          <p>Quais das seis partes da figura 1.1 estão faltando, e qual falta vai causar mais dano?</p>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p>Faltam quatro das seis. Não há <strong>escopo</strong>, então você não sabe o que fazer com um item
+              que não é pedido de suporte. Não há <strong>definições</strong>, então "completa" pode significar
+              cobrir todos os casos ou não deixar o usuário sem próximo passo. Não há <strong>exemplos
+              anotados</strong>, então cada avaliador calibra sozinho. E não há <strong>via de
+              escalonamento</strong>.</p>
+            <p>A falta mais grave, porém, é a de <strong>ordem entre os critérios</strong>. Cinco critérios sem
+              hierarquia é a mesma armadilha do caso do assistente de programação, do curso anterior: quem avalia
+              com pressa vai se apoiar no critério mais fácil de ver, que aqui provavelmente é formatação ou
+              cordialidade, e o modelo aprende a ser cordial e bem formatado em vez de correto.</p>
+            <p>Agrava o problema a frase final: "escolha a que você preferiria receber" transforma gosto pessoal
+              em critério oficial, o que é justamente o que não reproduz entre avaliadores. A pergunta certa a
+              enviar para quem conduz o projeto é curta: qual critério vence quando correção e cordialidade se
+              chocam?</p>
+          </div>
+        </div>
+
+        <h3 id="a1-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Guideline é a tentativa de transformar valor em instrução operável, porque útil, honesto e
+            inofensivo não caem numa regra única.</li>
+          <li>As seis partes que importam: escopo, definições, critérios em ordem, regras de decisão, exemplos
+            anotados e via de escalonamento.</li>
+          <li>A parte que mais falta é a ordem entre os critérios, e é a que mais estraga dado.</li>
+          <li>O Model Spec da OpenAI é um exemplo público e completo desse tipo de documento, com a cadeia de
+            comando de root até guideline.</li>
+          <li>Classifique cada item como regra, padrão ou julgamento. Isso define o que fazer quando você tem
+            dúvida.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="1" data-proxima="aula2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 1 e ir para a aula 2
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 2 ══════════════════ -->
+      <section class="cu-aula" id="aula2">
+        <div class="cu-aula-cap"><span>Aula 2 de 4 · 15 min</span><i></i></div>
+        <h2>Rubricas, escalas e âncoras</h2>
+        <p class="cu-resumo-aula">Nesta aula: a diferença entre guideline e rubrica, escala absoluta contra
+          escala comparativa, como uma âncora bem escrita elimina metade da divergência, e o que é deriva de
+          calibração.</p>
+
+        <h3 id="a2-rubrica">Guideline e rubrica não são a mesma coisa</h3>
+        <p>A guideline explica a tarefa. A <span class="cu-termo">rubrica</span> é a parte que converte
+          julgamento em número: quais são os valores possíveis, o que cada valor quer dizer, e como escolher
+          entre dois valores vizinhos. Projeto pequeno junta as duas no mesmo documento. Projeto grande separa,
+          porque a rubrica muda com mais frequência.</p>
+        <p>Uma rubrica tem três peças: a <strong>escala</strong>, ou seja quais notas existem; as
+          <strong>âncoras</strong>, que descrevem o que cada nota significa; e as <strong>regras de
+          arredondamento</strong>, que dizem para onde ir quando o caso fica no meio. Falta de âncora é o defeito
+          mais comum, e o mais caro.</p>
+
+        <h3 id="a2-escalas">Escala absoluta e escala comparativa</h3>
+        <p>Existem dois formatos principais, e eles medem coisas diferentes.</p>
+        <ul>
+          <li><strong>Escala absoluta.</strong> Você dá nota a um item isolado, em geral de 1 a 5. Serve quando
+            interessa o nível de qualidade em si, como em avaliação de áudio ou de tradução. O risco é a nota
+            deslizar com o tempo, porque "3" depende do que você viu antes.</li>
+          <li><strong>Escala comparativa.</strong> Você compara dois itens e diz qual é melhor, às vezes com
+            intensidade, do tipo muito melhor, melhor, pouco melhor, igual. Serve quando interessa preferência.
+            É mais estável, porque a referência está na tela, e é o formato que o treino por preferência
+            consome.</li>
+        </ul>
+        <p>Quando o projeto usa as duas, elas precisam concordar entre si: se você deu 4 para A, 2 para B e
+          depois marcou que B é melhor, alguém vai reabrir as suas linhas. Coerência interna é parte do que o QA
+          mede.</p>
+
+        <h3 id="a2-ancoras">Âncoras: o que separa 3 de 4</h3>
+        <p>Âncora é a descrição do que cada ponto da escala exige. Sem ela, o número vira gosto. Compare as duas
+          rubricas abaixo, para o mesmo critério.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 2.1</b> · Rubrica vaga e rubrica com âncora</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-ds">
+              <div class="cu-ds-cx cu-ds-erro">
+                <p class="cu-ds-tit">Rubrica vaga</p>
+                <p class="cu-ds-sub">Critério: clareza da resposta</p>
+                <p class="cu-ds-frase">5 excelente · 4 boa · 3 razoável · 2 fraca · 1 ruim</p>
+                <div class="cu-ds-final"><b>O que acontece</b><span>cada avaliador escolhe um ponto diferente
+                  para o mesmo item, e ninguém consegue dizer quem errou</span></div>
+              </div>
+              <div class="cu-ds-cx cu-ds-sinal">
+                <p class="cu-ds-tit">Rubrica com âncora</p>
+                <p class="cu-ds-sub">Critério: clareza da resposta</p>
+                <p class="cu-ds-frase"><b>5</b> leitor entende na primeira leitura, sem reler nada<br>
+                  <b>4</b> entende na primeira leitura, com uma frase ambígua<br>
+                  <b>3</b> precisa reler um trecho para entender<br>
+                  <b>2</b> precisa reler mais de um trecho, ou falta um passo<br>
+                  <b>1</b> não dá para saber o que a resposta quer dizer</p>
+                <div class="cu-ds-final"><b>O que acontece</b><span>a divergência cai, e quando sobra é possível
+                  discutir com base no texto</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Âncora boa descreve comportamento observável, não grau de satisfação.</p>
+        </div>
+
+        <p>A regra para escrever ou interpretar âncora é essa: ela precisa apontar para algo
+          <strong>observável no item</strong>. "Resposta excelente" não é observável. "O leitor entende sem
+          reler" é. Se a âncora do seu projeto for do primeiro tipo, você pode construir a sua própria versão
+          observável, por escrito, e usar sempre a mesma. É trabalho de cinco minutos que salva centenas de
+          linhas.</p>
+
+        <h3 id="a2-drift">Deriva de calibração</h3>
+        <p><span class="cu-termo">Deriva</span> é quando a sua régua muda sem você perceber. Depois de trinta
+          áudios ruins seguidos, um áudio médio começa a parecer bom, e você dá 4 no que ontem receberia 3. Não é
+          desatenção, é como a percepção humana funciona: em escala absoluta, o contexto recente empurra a
+          nota.</p>
+        <p>Três hábitos que reduzem deriva, e que dá para adotar sozinho:</p>
+        <ol>
+          <li><strong>Reancore de vez em quando.</strong> A cada bloco de itens, releia as âncoras antes de
+            continuar. Leva segundos.</li>
+          <li><strong>Guarde exemplos próprios.</strong> Um item que você considera 3 exemplar, outro que é 4
+            exemplar. Quando a dúvida vier, compare com eles em vez de comparar com o item anterior.</li>
+          <li><strong>Cuide do bloco de trabalho.</strong> Sessão muito longa derruba consistência. Pausa curta
+            entre blocos é parte da técnica, não preguiça.</li>
+        </ol>
+        <p>Itens de controle, também chamados de gold, existem em parte para detectar deriva. Eles são a forma
+          da plataforma medir se a sua régua continua no lugar. Vale repetir o que o curso anterior disse: esses
+          itens medem o seu julgamento, então tratá-los como alvo a adivinhar destrói a informação que eles
+          deveriam dar.</p>
+
+        <div class="cu-pratica" id="a2-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Transforme critério vago em âncora</h3>
+          <p>Um projeto de avaliação de respostas de assistente traz este critério, sem âncora nenhuma.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">Critério:</span> "A resposta deve ser útil."</p>
+            <p><span class="cu-rot">Escala:</span> 1 a 4, sendo 4 o melhor.</p>
+          </div>
+          <p>Escreva as quatro âncoras, cada uma descrevendo algo observável no texto da resposta. Depois compare
+            com a proposta abaixo.</p>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p>Uma versão defensável, ancorada no que a resposta faz:</p>
+            <p><strong>4</strong> responde o que foi pedido e dá ao usuário o próximo passo concreto, sem erro.
+              <strong>3</strong> responde o que foi pedido, sem erro, mas deixa o usuário sem saber o que fazer
+              em seguida. <strong>2</strong> responde parcialmente, ou responde a uma pergunta vizinha, ou tem
+              erro que não invalida o todo. <strong>1</strong> não responde ao pedido, ou o erro invalida a
+              resposta.</p>
+            <p>Repare em três decisões embutidas aí. A primeira: erro grave puxa para 1, porque correção está
+              acima de utilidade percebida. A segunda: a diferença entre 4 e 3 é uma coisa observável, existir ou
+              não o próximo passo, e não "quão útil parece". A terceira: nada na âncora menciona tamanho, tom ou
+              formatação, justamente para não abrir a porta para os atalhos que enviesam.</p>
+            <p>Se o seu projeto tiver âncora oficial, ela vence a sua. Este exercício serve para quando não
+              tiver, e para você perceber quando a oficial está vaga o suficiente para você pedir
+              esclarecimento.</p>
+          </div>
+        </div>
+
+        <h3 id="a2-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Guideline explica a tarefa, rubrica converte julgamento em número. Rubrica tem escala, âncoras e
+            regra de arredondamento.</li>
+          <li>Escala absoluta mede nível e deriva com o tempo. Escala comparativa mede preferência e é mais
+            estável, por isso alimenta o treino por preferência.</li>
+          <li>Âncora útil descreve algo observável no item, não grau de satisfação.</li>
+          <li>Deriva de calibração é normal e previsível. Reancorar, guardar exemplos próprios e trabalhar em
+            blocos reduz o efeito.</li>
+          <li>Quando a rubrica oficial é vaga, escreva a sua versão observável e aplique sempre igual, e pergunte
+            ao projeto em vez de inventar critério novo a cada item.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="2" data-proxima="aula3">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 2 e ir para a aula 3
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 3 ══════════════════ -->
+      <section class="cu-aula" id="aula3">
+        <div class="cu-aula-cap"><span>Aula 3 de 4 · 18 min</span><i></i></div>
+        <h2>Concordância: kappa e alfa</h2>
+        <p class="cu-resumo-aula">Nesta aula: por que a plataforma mede concordância, como o kappa de Cohen é
+          calculado passo a passo, qual a diferença entre kappa, Fleiss e alfa de Krippendorff, e como ler esses
+          números sem tirar conclusão errada. Só aritmética simples, nada além de somar, multiplicar e
+          dividir.</p>
+
+        <h3 id="a3-porque">Por que medir concordância</h3>
+        <p>Dado de avaliação serve quando é reprodutível: avaliadores diferentes e cuidadosos, olhando o mesmo
+          item com a mesma guideline, deveriam chegar perto do mesmo julgamento. Medir isso é a única forma de a
+          empresa saber se a tarefa está bem definida antes de treinar um modelo com aquele dado.</p>
+        <p>Um número real, para calibrar expectativa. No artigo do InstructGPT, a OpenAI relata que os
+          avaliadores de treino concordavam entre si em 72,6 por cento das vezes, com margem de 1,5 ponto, e os
+          avaliadores de fora do treino em 77,3 por cento, com margem de 1,3 ponto. O mesmo artigo lembra que no
+          trabalho anterior de resumos a concordância entre os próprios pesquisadores foi de 73 por cento, com
+          margem de 4 pontos.</p>
+        <p>Ou seja: em tarefa subjetiva feita com cuidado, por gente treinada e paga, pouco mais de 70 por cento
+          é o padrão. Se alguém prometer 95 por cento de concordância numa tarefa de preferência, desconfie da
+          tarefa ou da medida, não se admire do time.</p>
+
+        <h3 id="a3-kappa">Kappa de Cohen, passo a passo</h3>
+        <p>O problema da concordância bruta é o acaso, como o curso anterior mostrou. O
+          <span class="cu-termo">kappa de Cohen</span> corrige isso com uma conta de três passos. Ele vale para
+          dois avaliadores e categorias sem ordem.</p>
+        <ol>
+          <li>Calcule <strong>Po</strong>, a concordância observada: em quantos itens os dois deram o mesmo
+            rótulo, dividido pelo total.</li>
+          <li>Calcule <strong>Pe</strong>, a concordância esperada por acaso: para cada categoria, multiplique a
+            frequência com que o avaliador A a usou pela frequência com que o avaliador B a usou, e some tudo.</li>
+          <li>Aplique <strong>k = (Po menos Pe) dividido por (1 menos Pe)</strong>. O resultado vai de 1, que é
+            concordância perfeita, até 0, que é o mesmo que o acaso, e pode ficar negativo se a discordância for
+            pior que o acaso.</li>
+        </ol>
+        <p>A figura abaixo faz a conta em dois cenários que têm exatamente a mesma concordância bruta de 85 por
+          cento, e chegam a resultados muito diferentes.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 3.1</b> · A mesma concordância bruta, dois kappas</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-kap">
+              <div class="cu-kap-cx">
+                <p class="cu-kap-tit">Base equilibrada</p>
+                <p class="cu-kap-sub">100 itens, aprovado e reprovado quase meio a meio</p>
+                <table class="cu-tab">
+                  <tr><th></th><th>B: aprovado</th><th>B: reprovado</th><th>total A</th></tr>
+                  <tr><td class="cu-tab-rot">A: aprovado</td><td><b>45</b></td><td>10</td><td>55</td></tr>
+                  <tr><td class="cu-tab-rot">A: reprovado</td><td>5</td><td><b>40</b></td><td>45</td></tr>
+                  <tr><td class="cu-tab-rot">total B</td><td>50</td><td>50</td><td>100</td></tr>
+                </table>
+                <div class="cu-kap-form" style="margin-top:14px">
+                  <p class="cu-kap-rot">Conta</p>
+                  <p>Po = (45 + 40) / 100 = 0,85</p>
+                  <p>Pe = 0,55 × 0,50 + 0,45 × 0,50 = 0,50</p>
+                  <p>k = (0,85 − 0,50) / (1 − 0,50) = <b>0,70</b></p>
+                </div>
+                <div class="cu-kap-caixa cu-kap-bom">
+                  <p class="cu-kap-rot">Leitura</p>
+                  <p class="cu-kap-num">0,70</p>
+                  <p class="cu-kap-txt">Concordância real substancial. Os 85 por cento significavam algo.</p>
+                </div>
+              </div>
+              <div class="cu-kap-cx">
+                <p class="cu-kap-tit">Base desequilibrada</p>
+                <p class="cu-kap-sub">100 itens, quase tudo cai numa só categoria</p>
+                <table class="cu-tab">
+                  <tr><th></th><th>B: não é</th><th>B: é</th><th>total A</th></tr>
+                  <tr><td class="cu-tab-rot">A: não é</td><td><b>82</b></td><td>5</td><td>87</td></tr>
+                  <tr><td class="cu-tab-rot">A: é</td><td>10</td><td><b>3</b></td><td>13</td></tr>
+                  <tr><td class="cu-tab-rot">total B</td><td>92</td><td>8</td><td>100</td></tr>
+                </table>
+                <div class="cu-kap-form" style="margin-top:14px">
+                  <p class="cu-kap-rot">Conta</p>
+                  <p>Po = (82 + 3) / 100 = 0,85</p>
+                  <p>Pe = 0,87 × 0,92 + 0,13 × 0,08 = 0,8108</p>
+                  <p>k = (0,85 − 0,8108) / (1 − 0,8108) = <b>0,21</b></p>
+                </div>
+                <div class="cu-kap-caixa cu-kap-ruim">
+                  <p class="cu-kap-rot">Leitura</p>
+                  <p class="cu-kap-num">0,21</p>
+                  <p class="cu-kap-txt">Quase tudo era acaso. A categoria rara é onde os dois discordam.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Duas tarefas com 85 por cento de concordância bruta e qualidade de dado
+            completamente diferente.</p>
+        </div>
+
+        <p>Esse par de contas é o argumento inteiro da aula. Quando um projeto reporta só a concordância bruta,
+          ele não disse quase nada. Quando reporta kappa, ele disse quanto sobrou depois de descontar o acaso.</p>
+
+        <h3 id="a3-familia">Fleiss, Krippendorff e quando usar cada um</h3>
+        <p>Kappa de Cohen resolve o caso mais simples. A família tem mais membros, e a escolha depende do formato
+          da tarefa.</p>
+        <ul>
+          <li><strong>Kappa de Cohen.</strong> Dois avaliadores, categorias sem ordem, todos os itens avaliados
+            pelos dois.</li>
+          <li><strong>Kappa de Fleiss.</strong> Mais de dois avaliadores, e não precisa ser sempre a mesma
+            dupla. É o caso típico de plataforma com muita gente, onde cada item recebe três ou cinco
+            julgamentos.</li>
+          <li><strong>Alfa de Krippendorff.</strong> O mais flexível. Aceita qualquer número de avaliadores,
+            item sem avaliação de todos, e escalas com ordem ou com distância, como notas de 1 a 5, onde errar
+            por um ponto deveria pesar menos que errar por três.</li>
+        </ul>
+        <p>Detalhe que importa na prática: quando a escala tem ordem, usar uma medida que trata 1 e 5 como
+          categorias sem relação joga informação no lixo. Nesses casos a métrica correta é ponderada, seja alfa
+          de Krippendorff ou kappa com pesos.</p>
+        <p>A referência técnica em linguagem acessível para tudo isso é o artigo de revisão de Artstein e
+          Poesio, publicado na revista Computational Linguistics em 2008, que compara as medidas e explica onde
+          cada uma engana.</p>
+
+        <h3 id="a3-ler">Como ler o número sem se enganar</h3>
+        <p>Existe uma escala de interpretação que praticamente todo relatório usa, proposta por Landis e Koch
+          num artigo de 1977 na revista Biometrics.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 3.2</b> · A escala de Landis e Koch, e os limiares de Krippendorff</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-kap">
+              <div class="cu-kap-cx">
+                <p class="cu-kap-tit">Kappa, escala de 1977</p>
+                <table class="cu-tab">
+                  <tr><th>faixa</th><th>rótulo</th></tr>
+                  <tr><td>abaixo de 0,00</td><td>pobre</td></tr>
+                  <tr><td>0,00 a 0,20</td><td>leve</td></tr>
+                  <tr><td>0,21 a 0,40</td><td>razoável</td></tr>
+                  <tr><td>0,41 a 0,60</td><td>moderada</td></tr>
+                  <tr><td>0,61 a 0,80</td><td><b>substancial</b></td></tr>
+                  <tr><td>0,81 a 1,00</td><td><b>quase perfeita</b></td></tr>
+                </table>
+                <p class="cu-tab-legenda">Landis e Koch, Biometrics 33, 1977, página 165.</p>
+              </div>
+              <div class="cu-kap-cx">
+                <p class="cu-kap-tit">Alfa, limiares de Krippendorff</p>
+                <div class="cu-kap-caixa cu-kap-bom" style="margin-bottom:10px">
+                  <p class="cu-kap-rot">Aceitável</p>
+                  <p class="cu-kap-num">0,800</p>
+                  <p class="cu-kap-txt">Em geral se considera confiável a partir daqui.</p>
+                </div>
+                <div class="cu-kap-caixa cu-kap-ruim">
+                  <p class="cu-kap-rot">Piso</p>
+                  <p class="cu-kap-num">0,667</p>
+                  <p class="cu-kap-txt">Abaixo disso, o próprio autor recomenda não usar o dado, nem para
+                    conclusão provisória.</p>
+                </div>
+                <p class="cu-tab-legenda">Limiares propostos por Klaus Krippendorff para análise de
+                  conteúdo.</p>
+              </div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Escala é convenção, não lei da natureza. Ela ajuda a conversar, não a decidir
+            sozinha.</p>
+        </div>
+
+        <p>Três cuidados na leitura, que separam quem entendeu de quem decorou a tabela.</p>
+        <ul>
+          <li><strong>A escala é convenção.</strong> As faixas de 1977 vieram de uma proposta, não de uma
+            demonstração. Em tarefa muito subjetiva, 0,45 pode ser um bom resultado; em tarefa objetiva, 0,75
+            pode ser preocupante. O que importa é a comparação com o histórico daquela tarefa.</li>
+          <li><strong>Kappa desaba em base desequilibrada.</strong> É o que a figura 3.1 mostra. Dois projetos
+            com kappa diferente podem ter avaliadores igualmente bons e distribuições diferentes.</li>
+          <li><strong>Concordância alta não é sinônimo de qualidade.</strong> Se a guideline empurra todo mundo
+            para o mesmo atalho, a concordância sobe e o dado piora. Concordância mede consistência, não
+            acerto.</li>
+        </ul>
+
+        <div class="cu-pratica" id="a3-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Calcule e interprete</h3>
+          <p>Dois avaliadores classificaram 200 pedidos como "precisa de revisão humana" ou "pode seguir". O
+            resultado veio assim:</p>
+          <div class="cu-caixa">
+            <p>Os dois disseram "pode seguir" em 150 itens. Os dois disseram "precisa de revisão" em 20 itens.
+              Em 20 itens A disse "pode seguir" e B disse "precisa de revisão". Em 10 itens A disse "precisa de
+              revisão" e B disse "pode seguir".</p>
+          </div>
+          <p>Calcule Po, Pe e kappa. Depois diga o que você reportaria para quem conduz o projeto.</p>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p>Po = (150 + 20) / 200 = <strong>0,85</strong>.</p>
+            <p>Para Pe, as frequências: A disse "pode seguir" em 170 de 200, ou 0,85, e "precisa de revisão" em
+              30, ou 0,15. B disse "pode seguir" em 160, ou 0,80, e "precisa de revisão" em 40, ou 0,20. Então
+              Pe = 0,85 × 0,80 mais 0,15 × 0,20 = 0,68 mais 0,03 = <strong>0,71</strong>.</p>
+            <p>k = (0,85 − 0,71) / (1 − 0,71) = 0,14 / 0,29 = <strong>0,48</strong>, que cai na faixa moderada da
+              escala de Landis e Koch.</p>
+            <p>O que reportar: a concordância bruta de 85 por cento parece boa, mas o kappa de 0,48 mostra que
+              boa parte vinha do desequilíbrio, já que quase todo item é "pode seguir". E há um padrão no erro que
+              vale mencionar: as discordâncias não são simétricas, porque B marca "precisa de revisão" com mais
+              frequência que A, em 40 contra 30. Isso não é ruído aleatório, é diferença de régua entre os dois, e
+              o ponto provável é o limiar do que conta como "precisa de revisão". Uma âncora mais explícita nesse
+              limiar resolveria mais do que pedir para os dois "prestarem mais atenção".</p>
+          </div>
+        </div>
+
+        <h3 id="a3-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Concordância existe para dizer se a tarefa está bem definida. Em tarefa subjetiva bem feita, pouco
+            mais de 70 por cento é o normal, como o artigo do InstructGPT reporta.</li>
+          <li>Kappa de Cohen é Po menos Pe, dividido por 1 menos Pe. Corrigir pelo acaso muda o retrato.</li>
+          <li>A mesma concordância bruta de 85 por cento pode significar kappa de 0,70 ou de 0,21, dependendo do
+            equilíbrio da base.</li>
+          <li>Cohen para dois avaliadores, Fleiss para muitos, alfa de Krippendorff para escala com ordem, dado
+            faltante ou muitos avaliadores.</li>
+          <li>A escala de interpretação é convenção. E concordância alta mede consistência, não acerto: time
+            inteiro tomando o mesmo atalho concorda muito e entrega dado ruim.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="3" data-proxima="aula4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 3 e ir para a aula 4
+        </button>
+      </section>
+
+      <!-- ══════════════════ AULA 4 ══════════════════ -->
+      <section class="cu-aula" id="aula4">
+        <div class="cu-aula-cap"><span>Aula 4 de 4 · 15 min</span><i></i></div>
+        <h2>Variação humana e QA</h2>
+        <p class="cu-resumo-aula">Nesta aula: por que parte da discordância é informação legítima, quando
+          agregar por maioria e quando preservar a divisão, o que o controle de qualidade realmente olha no seu
+          trabalho, e por que um rótulo inconsistente sai caro lá na frente.</p>
+
+        <h3 id="a4-variacao">Discordância que é informação</h3>
+        <p>A tradição de anotação tratou discordância como ruído a eliminar. Dois trabalhos conhecidos
+          questionam isso de frente.</p>
+        <p>Lora Aroyo e Chris Welty, em artigo de 2015 na revista AI Magazine com o título
+          <em>Truth Is a Lie: Crowd Truth and the Seven Myths of Human Annotation</em>, argumentam que a ideia de
+          uma verdade única por item é um mito operacional: em muitas tarefas de linguagem, a distribuição de
+          respostas de várias pessoas carrega mais informação do que qualquer rótulo único escolhido como
+          oficial.</p>
+        <p>Barbara Plank, em artigo de 2022 na conferência EMNLP com o título
+          <em>The "Problem" of Human Label Variation</em>, defende que a variação humana no rótulo tem causas
+          legítimas, como desacordo genuíno, subjetividade e respostas múltiplas plausíveis, e que ela afeta
+          todas as etapas seguintes: dado, modelagem e avaliação.</p>
+        <p>O que isso muda para você, na prática: discordar de um colega não é, por si, sinal de erro. O trabalho
+          é classificar o tipo de discordância antes de reagir. São três tipos, e cada um pede uma conduta
+          diferente.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 4.1</b> · Três tipos de discordância</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-seis" style="grid-template-columns:repeat(3,1fr)">
+              <div class="cu-esc-cx"><b>Erro de leitura</b><span>você entendeu mal o item ou a regra. Conduta:
+                corrigir, recalibrar e seguir. Não precisa escalar.</span></div>
+              <div class="cu-esc-cx"><b>Lacuna na regra</b><span>a guideline não cobre o caso, e as duas leituras
+                se defendem. Conduta: escalar com o exemplo concreto.</span></div>
+              <div class="cu-esc-cx cu-esc-forte"><b>Ambiguidade real</b><span>o item é genuinamente dividido,
+                mesmo com a regra clara. Conduta: registrar como está, sem forçar consenso.</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Os dois últimos tipos são informação sobre a tarefa, não defeito do
+            avaliador.</p>
+        </div>
+
+        <h3 id="a4-agregar">Agregar por maioria ou preservar a divisão</h3>
+        <p>Quem monta o dado precisa decidir o que fazer com três ou cinco julgamentos do mesmo item. A escolha
+          padrão é maioria, que é simples e funciona quando existe uma resposta certa. O problema aparece quando
+          a divisão é real: nesse caso a maioria apaga justamente a informação mais útil.</p>
+        <p>Uma regra de bolso honesta: <strong>maioria quando existe verdade, distribuição quando existe
+          legitimidade nas duas leituras</strong>. Se três dizem "empresa" e um diz "pessoa" sobre o nome de uma
+          companhia, isso é erro e a maioria resolve. Se dois dizem "útil" e dois dizem "não é útil" sobre uma
+          resposta morna, a divisão em si é o achado, e forçar um rótulo único cria um alvo contraditório para o
+          modelo.</p>
+        <p>Você raramente decide isso, porque é decisão de quem projeta a tarefa. Mas entender a diferença muda
+          como você escreve a justificativa: num caso dividido, dizer por que a sua leitura se sustenta é mais
+          valioso do que a escolha em si, porque é o que permite a quem conduz o projeto reescrever a regra.</p>
+
+        <h3 id="a4-qa">Como o QA audita o seu trabalho</h3>
+        <p>Os nomes mudam de plataforma para plataforma, mas os instrumentos são quase sempre estes quatro. Vale
+          conhecer os quatro, porque cada um falha de um jeito e cada um pede uma resposta diferente da sua
+          parte.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 4.2</b> · Os quatro instrumentos do controle de qualidade</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-seis">
+              <div class="cu-esc-cx"><b>Itens de controle</b><span>itens com resposta conhecida, misturados na
+                fila, para medir se a sua régua continua no lugar</span></div>
+              <div class="cu-esc-cx"><b>Auditoria por amostra</b><span>um revisor relê parte das suas linhas e
+                compara com a guideline, não com a opinião dele</span></div>
+              <div class="cu-esc-cx"><b>Concordância com pares</b><span>o mesmo item vai para várias pessoas e o
+                sistema mede o quanto você fica perto do grupo</span></div>
+              <div class="cu-esc-cx"><b>Coerência interna</b><span>suas próprias linhas são cruzadas entre si,
+                para achar contradição, como nota alta com comentário negativo</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">Nenhum dos quatro mede se você é inteligente. Todos medem se você é
+            previsível.</p>
+        </div>
+
+        <p>Cada instrumento tem um modo de errar. Item de controle pode estar simplesmente errado, porque foi
+          rotulado por alguém sob a mesma pressão que você. Auditoria por amostra pode refletir a régua pessoal
+          do revisor. Concordância com pares pune quem está certo quando o grupo tomou um atalho. Coerência
+          interna reclama de contradição que, às vezes, é só uma nuance que a planilha não tem campo para
+          registrar.</p>
+        <p>Por isso a conduta profissional diante de feedback de QA não é nem aceitar tudo nem brigar. É esta,
+          em três passos: primeiro, reler a guideline no ponto citado; segundo, decidir se o feedback aponta erro
+          de leitura seu ou divergência de régua; terceiro, responder com a passagem da guideline quando você tem
+          base, e recalibrar sem drama quando não tem. Concordar com tudo, inclusive com o que a guideline
+          contradiz, degrada o dado tanto quanto teimar.</p>
+
+        <h3 id="a4-cascata">Por que isso chega longe: cascatas de dados</h3>
+        <p>Um estudo que vale citar aqui, porque coloca número no que parece abstrato. Nithya Sambasivan e
+          colegas, em artigo de 2021 na conferência CHI intitulado
+          <em>"Everyone wants to do the model work, not the data work": Data Cascades in High-Stakes AI</em>,
+          entrevistaram 53 profissionais de IA na Índia, nos Estados Unidos e em países da África do leste e do
+          oeste. O trabalho define cascata de dados como um encadeamento de eventos que produz efeitos negativos
+          rio abaixo, a partir de problemas nos dados, e que se acumula como dívida técnica com o tempo.</p>
+        <p>O número: <strong>92 por cento dos entrevistados passaram por ao menos uma cascata</strong>, e 45,3
+          por cento relataram duas ou mais num mesmo projeto.</p>
+
+        <div class="cu-fig">
+          <p class="cu-fig-cap"><b>Figura 4.3</b> · Como uma definição vaga vira retrabalho</p>
+          <div class="cu-fig-moldura">
+            <div class="cu-fluxo">
+              <div class="cu-passo"><b>Critério sem âncora</b><span>"a resposta deve ser útil", sem dizer o que
+                separa 3 de 4</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo"><b>Régua por pessoa</b><span>cada avaliador preenche a lacuna de um jeito, e
+                a concordância cai</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo"><b>Alvo contraditório</b><span>o modelo recebe sinais que se anulam e aprende
+                a característica mais fácil</span></div>
+              <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="cu-passo cu-forte"><b>Retrabalho</b><span>reescrever guideline, recoletar dado e
+                retreinar, semanas depois</span></div>
+            </div>
+          </div>
+          <p class="cu-fig-nota">O custo aparece longe da origem, e é isso que faz o problema demorar a ser
+            percebido.</p>
+        </div>
+
+        <p>Do lado da documentação, a proposta mais citada é a de <em>Datasheets for Datasets</em>, de Timnit
+          Gebru e colegas, que sugere que todo conjunto de dados venha acompanhado de uma ficha descrevendo como
+          foi coletado, por quem, com qual instrução e com quais limitações. Para quem avalia, a ideia útil é
+          simples: o seu dado vai ser usado por gente que não estava lá quando você decidiu. Justificativa clara
+          é o que sobra de você naquele registro.</p>
+
+        <div class="cu-pratica" id="a4-pratica">
+          <p class="cu-selo">Prática</p>
+          <h3 style="margin-top:0">Responda a um feedback de QA</h3>
+          <p>Você avaliou um par de respostas e recebeu o retorno abaixo.</p>
+          <div class="cu-caixa">
+            <p><span class="cu-rot">Seu julgamento:</span> escolheu a resposta B, com a justificativa "A afirma
+              que o prazo é de 5 dias úteis, e a documentação citada no item diz 10. B não afirma prazo".</p>
+            <p><span class="cu-rot">Feedback do QA:</span> "Julgamento incorreto. A resposta A é mais completa e
+              mais bem estruturada, e responde diretamente à pergunta do usuário. Favor recalibrar."</p>
+            <p><span class="cu-rot">Guideline do projeto:</span> lista os critérios nesta ordem, correção
+              factual, atendimento ao pedido, clareza, formatação.</p>
+          </div>
+          <p>O que você responde, e o que você muda no seu trabalho a partir daqui?</p>
+          <button class="cu-abrir-resp" type="button">Ver o comentário
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cu-resp">
+            <p>Este é um caso em que <strong>você tem base e deve responder</strong>, com educação e com a
+              guideline na mão. A guideline coloca correção factual acima de atendimento ao pedido, de clareza e
+              de formatação. A resposta A contém um erro factual verificável dentro do próprio item, e o feedback
+              do QA se apoia em completude e estrutura, que estão abaixo na ordem.</p>
+            <p>Uma resposta profissional soa assim: "Mantenho B, com base na ordem de critérios da guideline. A
+              afirma prazo de 5 dias úteis e a documentação fornecida no item diz 10, o que é erro factual. Como
+              correção factual vem antes de atendimento ao pedido e de formatação, o erro de A decide a
+              comparação. Se a régua do projeto for outra, me avisem que eu recalibro as próximas."</p>
+            <p>Note o último trecho. Você não está negando a autoridade do projeto, está pedindo a regra. Se a
+              resposta vier dizendo que naquele projeto erro de prazo conta como menor, você recalibra e segue,
+              agora com uma regra explícita que serve para todos os itens seguintes. Nos dois desfechos o dado
+              melhora.</p>
+            <p>O que não fazer: mudar para A sem entender o motivo. Isso conserta um número e estraga a régua,
+              porque nos próximos itens você vai premiar estrutura acima de correção, que é exatamente a falha de
+              viés de formatação do curso anterior.</p>
+          </div>
+        </div>
+
+        <h3 id="a4-resumo">Resumo da aula</h3>
+        <ul>
+          <li>Parte da discordância é variação humana legítima, não ruído. Aroyo e Welty em 2015 e Plank em 2022
+            sustentam isso com argumento e evidência.</li>
+          <li>Separe erro de leitura, lacuna na regra e ambiguidade real. Cada um tem uma conduta diferente.</li>
+          <li>Maioria quando existe verdade, distribuição quando as duas leituras se defendem.</li>
+          <li>O QA usa quatro instrumentos: itens de controle, auditoria por amostra, concordância com pares e
+            coerência interna. Todos medem previsibilidade, e todos têm modo de errar.</li>
+          <li>Diante de feedback, releia a guideline, decida se é erro seu ou divergência de régua, e responda
+            com a passagem quando tiver base. Aceitar tudo degrada o dado.</li>
+          <li>Rótulo inconsistente cobra caro longe da origem: 92 por cento dos profissionais entrevistados por
+            Sambasivan e colegas passaram por ao menos uma cascata de dados.</li>
+        </ul>
+
+        <button class="cu-concluir" type="button" data-aula="4" data-proxima="quiz">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+          Concluir a aula 4 e ir para o quiz
+        </button>
+      </section>
+
+      <!-- ══════════════════ QUIZ ══════════════════ -->
+      <section class="cu-aula" id="quiz">
+        <div class="cu-aula-cap"><span>Avaliação final</span><i></i></div>
+        <h2>Quiz do curso</h2>
+        <p class="cu-resumo-aula">Dez perguntas sobre as quatro aulas. Acertando oito ou mais, o certificado é
+          liberado com o seu nome. Pode responder quantas vezes quiser, e cada correção mostra o motivo da
+          resposta certa.</p>
+
+        <form id="formQuiz" class="cu-quiz">
+
+          <div class="cu-q" data-certa="c">
+            <p class="cu-q-tit"><i>1</i> Entre as seis partes de uma guideline, qual é a que mais costuma faltar
+              e a que causa mais dano ao dado?</p>
+            <label><input type="radio" name="q1" value="a"><span>O escopo da tarefa</span></label>
+            <label><input type="radio" name="q1" value="b"><span>A via de escalonamento</span></label>
+            <label><input type="radio" name="q1" value="c"><span>A ordem de prioridade entre os critérios</span></label>
+            <label><input type="radio" name="q1" value="d"><span>A lista de exemplos anotados</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Sem ordem declarada, quem avalia com pressa usa o critério mais fácil de ver, e o
+              modelo aprende a característica errada.</p>
+          </div>
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>2</i> Qual é a diferença entre uma regra e um padrão numa guideline?</p>
+            <label><input type="radio" name="q2" value="a"><span>Regra vale para o avaliador, padrão vale para o modelo</span></label>
+            <label><input type="radio" name="q2" value="b"><span>Padrão é o comportamento esperado quando nada diz o contrário, e pode ser sobreposto por instrução mais específica; regra não</span></label>
+            <label><input type="radio" name="q2" value="c"><span>Regra é escrita, padrão é combinado verbalmente no treinamento</span></label>
+            <label><input type="radio" name="q2" value="d"><span>Não há diferença prática, os dois termos são sinônimos</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Responder em português é padrão, porque cede se o usuário pede outro idioma. Nunca
+              dar instrução de fabricação de arma é regra.</p>
+          </div>
+
+          <div class="cu-q" data-certa="a">
+            <p class="cu-q-tit"><i>3</i> Na cadeia de comando descrita no Model Spec da OpenAI, qual nível não
+              pode ser sobreposto pelos demais?</p>
+            <label><input type="radio" name="q3" value="a"><span>root, as regras do próprio documento</span></label>
+            <label><input type="radio" name="q3" value="b"><span>developer, quem constrói o produto</span></label>
+            <label><input type="radio" name="q3" value="c"><span>user, quem está conversando</span></label>
+            <label><input type="radio" name="q3" value="d"><span>guideline, o nível mais específico</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">A ordem é root, system, developer, user e guideline. O nível guideline é o que
+              pode ceder ao contexto.</p>
+          </div>
+
+          <div class="cu-q" data-certa="d">
+            <p class="cu-q-tit"><i>4</i> Uma âncora de escala bem escrita descreve:</p>
+            <label><input type="radio" name="q4" value="a"><span>O grau de satisfação de quem avalia</span></label>
+            <label><input type="radio" name="q4" value="b"><span>A nota média esperada para aquele tipo de item</span></label>
+            <label><input type="radio" name="q4" value="c"><span>O tempo que se deve gastar em cada item</span></label>
+            <label><input type="radio" name="q4" value="d"><span>Algo observável no próprio item, que separa um ponto da escala do vizinho</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">"Resposta excelente" não é observável. "O leitor entende sem reler" é, e por isso
+              reproduz entre avaliadores.</p>
+          </div>
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>5</i> Você deu 4 hoje para um áudio que semana passada receberia 3, sem ter
+              mudado de opinião sobre a rubrica. O nome disso é:</p>
+            <label><input type="radio" name="q5" value="a"><span>Exploração da recompensa</span></label>
+            <label><input type="radio" name="q5" value="b"><span>Deriva de calibração</span></label>
+            <label><input type="radio" name="q5" value="c"><span>Cascata de dados</span></label>
+            <label><input type="radio" name="q5" value="d"><span>Variação de rótulo humano</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Em escala absoluta, o contexto recente empurra a nota. Reancorar nas âncoras e
+              guardar exemplos próprios reduz o efeito.</p>
+          </div>
+
+          <div class="cu-q" data-certa="c">
+            <p class="cu-q-tit"><i>6</i> Qual é a fórmula do kappa de Cohen?</p>
+            <label><input type="radio" name="q6" value="a"><span>Po dividido por Pe</span></label>
+            <label><input type="radio" name="q6" value="b"><span>Po menos Pe</span></label>
+            <label><input type="radio" name="q6" value="c"><span>(Po menos Pe) dividido por (1 menos Pe)</span></label>
+            <label><input type="radio" name="q6" value="d"><span>(1 menos Po) dividido por Pe</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Po é a concordância observada e Pe a esperada por acaso. O denominador normaliza o
+              que ainda havia para concordar além do acaso.</p>
+          </div>
+
+          <div class="cu-q" data-certa="c">
+            <p class="cu-q-tit"><i>7</i> Numa tarefa com Po de 0,85 e Pe de 0,50, quanto dá o kappa?</p>
+            <label><input type="radio" name="q7" value="a"><span>0,35</span></label>
+            <label><input type="radio" name="q7" value="b"><span>0,50</span></label>
+            <label><input type="radio" name="q7" value="c"><span>0,70</span></label>
+            <label><input type="radio" name="q7" value="d"><span>0,85</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">(0,85 menos 0,50) dividido por (1 menos 0,50) dá 0,35 sobre 0,50, que é 0,70. Faixa
+              substancial na escala de Landis e Koch.</p>
+          </div>
+
+          <div class="cu-q" data-certa="b">
+            <p class="cu-q-tit"><i>8</i> Dois projetos reportam 85 por cento de concordância bruta. No primeiro a
+              base é equilibrada, no segundo quase tudo cai numa só categoria. O que se conclui?</p>
+            <label><input type="radio" name="q8" value="a"><span>Os dois têm a mesma qualidade de dado, já que o número é o mesmo</span></label>
+            <label><input type="radio" name="q8" value="b"><span>O segundo pode ter concordância real muito menor, porque no desequilíbrio o acaso já explica quase tudo</span></label>
+            <label><input type="radio" name="q8" value="c"><span>O segundo tem qualidade melhor, porque a tarefa é mais fácil</span></label>
+            <label><input type="radio" name="q8" value="d"><span>Não é possível dizer nada sem saber quantos avaliadores havia</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">No exemplo da aula, a mesma concordância bruta dá kappa de 0,70 na base
+              equilibrada e 0,21 na desequilibrada.</p>
+          </div>
+
+          <div class="cu-q" data-certa="d">
+            <p class="cu-q-tit"><i>9</i> A tarefa tem seis avaliadores, nem todos avaliam todos os itens, e a
+              escala vai de 1 a 5, onde errar por um ponto é menos grave que errar por três. Qual medida é a
+              adequada?</p>
+            <label><input type="radio" name="q9" value="a"><span>Concordância bruta, por ser mais simples de explicar</span></label>
+            <label><input type="radio" name="q9" value="b"><span>Kappa de Cohen</span></label>
+            <label><input type="radio" name="q9" value="c"><span>Kappa de Fleiss sem pesos</span></label>
+            <label><input type="radio" name="q9" value="d"><span>Alfa de Krippendorff, ou uma medida ponderada equivalente</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Cohen serve para dois avaliadores. Medida sem peso trataria 1 e 5 como categorias
+              sem relação, o que joga informação fora.</p>
+          </div>
+
+          <div class="cu-q" data-certa="a">
+            <p class="cu-q-tit"><i>10</i> O QA aponta erro no seu julgamento usando um critério que a guideline
+              coloca abaixo do que você usou. Qual é a conduta profissional?</p>
+            <label><input type="radio" name="q10" value="a"><span>Responder mantendo o julgamento, citando a passagem da guideline, e pedir a régua se o projeto tiver outra</span></label>
+            <label><input type="radio" name="q10" value="b"><span>Mudar para a resposta do QA, porque ele tem a palavra final</span></label>
+            <label><input type="radio" name="q10" value="c"><span>Ignorar o feedback e seguir avaliando igual</span></label>
+            <label><input type="radio" name="q10" value="d"><span>Passar a usar o critério do QA em todos os itens seguintes, sem perguntar nada</span></label>
+            <p class="cu-q-fb"></p>
+            <p class="cu-q-pq">Mudar sem entender conserta um número e estraga a régua. Pedir a regra melhora o
+              dado nos dois desfechos possíveis.</p>
+          </div>
+
+          <div class="cu-quiz-acoes">
+            <button type="submit" class="cu-bt-forte">Corrigir o quiz</button>
+            <button type="button" class="cu-bt-leve" id="btLimpar">Limpar respostas</button>
+          </div>
+          <p class="cu-quiz-res" id="quizRes"></p>
+        </form>
+
+        <!-- ══════════ CERTIFICADO ══════════ -->
+        <div class="cu-cert-area" id="certArea">
+          <h3 id="cert">Certificado de conclusão</h3>
+          <p>O certificado fica disponível depois de acertar oito das dez perguntas. Digite o nome como você
+            quer que ele apareça, sem abreviações.</p>
+
+          <div class="cu-cert-form" id="certForm">
+            <label class="cu-campo">
+              <span>Nome completo</span>
+              <input type="text" id="nomeCert" maxlength="70" autocomplete="name" placeholder="Seu nome completo">
+            </label>
+            <button type="button" class="cu-bt-forte" id="btGerar">Gerar certificado</button>
+            <p class="cu-cert-trava" id="certTrava">Responda o quiz acima para liberar.</p>
+          </div>
+
+          <div id="certificado" class="cu-cert" hidden>
+            <div class="cu-cert-borda">
+              <p class="cu-cert-sobre">Certificado de conclusão</p>
+              <p class="cu-cert-nome" id="certNome"></p>
+              <p class="cu-cert-txt">concluiu o curso</p>
+              <p class="cu-cert-curso">Guidelines, Rubricas e Consistência</p>
+              <p class="cu-cert-txt cu-cert-conteudo">Quatro aulas sobre a guideline como especificação da
+                tarefa, construção e leitura de rubricas com âncoras observáveis, medição de concordância entre
+                anotadores com kappa de Cohen, kappa de Fleiss e alfa de Krippendorff, variação legítima de
+                rótulo humano, e resposta a auditoria de qualidade. Aproveitamento verificado por avaliação final
+                de dez questões.</p>
+              <div class="cu-cert-pe">
+                <div>
+                  <b>Carga horária</b>
+                  <span>1 hora, curso livre de curta duração</span>
+                </div>
+                <div>
+                  <b>Conclusão</b>
+                  <span id="certData"></span>
+                </div>
+                <div>
+                  <b>Código</b>
+                  <span id="certCod"></span>
+                </div>
+              </div>
+              <p class="cu-cert-emissor">Home Office Hub · Curso livre, sem vínculo acadêmico</p>
+            </div>
+          </div>
+
+          <div class="cu-cert-acoes" id="certAcoes" hidden>
+            <button type="button" class="cu-bt-forte" id="btImprimir">Salvar em PDF ou imprimir</button>
+            <button type="button" class="cu-bt-leve" id="btTrocarNome">Trocar o nome</button>
+          </div>
+          <p class="cu-cert-nota" id="certNota" hidden>Na janela de impressão, escolha "Salvar como PDF" no
+            campo de destino. O certificado sai sozinho, sem o resto da página.</p>
+        </div>
+
+        <div class="cu-fim">
+          <h3 style="margin-top:0">E agora</h3>
+          <p>O curso seguinte da trilha entra na tarefa em si: comparação de respostas, escalas de preferência,
+            os vieses já documentados nesse formato e o trabalho de auditar julgamento feito por modelo.</p>
+          <div class="cu-fim-bts">
+            <a class="cu-bt-forte" href="curso-comparacao.html">Ir para Comparação de Respostas</a>
+            <a class="cu-bt-leve" href="cursos.html">Ver todos os cursos</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ GLOSSÁRIO ══════════════════ -->
+      <section class="cu-aula" id="glossario">
+        <div class="cu-aula-cap"><span>Glossário</span><i></i></div>
+        <h2>As palavras deste curso</h2>
+        <p class="cu-resumo-aula">Definições curtas, na ordem em que os termos aparecem nas aulas. Vale voltar
+          aqui a qualquer momento.</p>
+
+        <ul class="cu-glos">
+          <li><b>Guideline</b>O documento que define a tarefa: escopo, definições, critérios em ordem, regras de
+            decisão, exemplos e para onde levar dúvida. Funciona como contrato entre quem precisa do dado e quem
+            o produz.</li>
+          <li><b>Rubrica</b>A parte que converte julgamento em número: quais notas existem, o que cada uma exige
+            e como decidir entre duas notas vizinhas.</li>
+          <li><b>Âncora</b>A descrição do que cada ponto da escala exige, escrita em termos observáveis no item.
+            "O leitor entende sem reler" é âncora, "resposta excelente" não é.</li>
+          <li><b>Regra, padrão e julgamento</b>Regra não admite exceção. Padrão é o comportamento esperado quando
+            nada diz o contrário, e cede a uma instrução mais específica. Julgamento é o que a guideline deixa
+            para você decidir e explicar.</li>
+          <li><b>Model Spec</b>Documento público da OpenAI que declara como os modelos dela devem se comportar.
+            Serve neste curso como exemplo de guideline em nível de empresa.</li>
+          <li><b>Cadeia de comando</b>A hierarquia de autoridade entre instruções, do nível que não pode ser
+            sobreposto até o que cede ao contexto. No Model Spec: root, system, developer, user e guideline.</li>
+          <li><b>Escala absoluta e escala comparativa</b>Na absoluta você dá nota a um item sozinho, em geral de
+            1 a 5. Na comparativa você diz qual de dois itens é melhor. A comparativa é mais estável, porque a
+            referência está na tela.</li>
+          <li><b>Deriva de calibração</b>Quando a sua régua muda sem você perceber, porque o contexto recente
+            empurra a nota. Depois de trinta itens ruins, um item médio parece bom.</li>
+          <li><b>Itens de controle, ou gold</b>Itens com resposta já conhecida, misturados na fila, usados para
+            medir se o seu julgamento continua calibrado.</li>
+          <li><b>Concordância observada, Po</b>A proporção de itens em que dois avaliadores deram o mesmo
+            rótulo. É a concordância bruta, sem nenhuma correção.</li>
+          <li><b>Concordância esperada por acaso, Pe</b>O quanto dois avaliadores concordariam só por
+            coincidência, dadas as frequências com que cada um usa cada categoria.</li>
+          <li><b>Kappa de Cohen</b>Medida de concordância corrigida pelo acaso, para dois avaliadores e
+            categorias sem ordem. Calcula-se como Po menos Pe, dividido por 1 menos Pe.</li>
+          <li><b>Kappa de Fleiss</b>A versão para mais de dois avaliadores, quando nem sempre é a mesma dupla que
+            avalia cada item.</li>
+          <li><b>Alfa de Krippendorff</b>A medida mais flexível: aceita qualquer número de avaliadores, itens
+            sem avaliação de todos, e escalas com ordem, em que errar por um ponto pesa menos que errar por
+            três.</li>
+          <li><b>Medida ponderada</b>Qualquer medida de concordância que leva em conta o tamanho do erro, em vez
+            de tratar todo desacordo como igual.</li>
+          <li><b>Variação de rótulo humano</b>A parte da discordância que não é erro, e sim consequência de
+            ambiguidade real, subjetividade ou múltiplas respostas plausíveis.</li>
+          <li><b>Agregação por maioria</b>Transformar vários julgamentos do mesmo item em um rótulo único, pelo
+            voto da maioria. Funciona quando existe resposta certa, e apaga informação quando a divisão é
+            legítima.</li>
+          <li><b>Cascata de dados</b>Um encadeamento de problemas que começa nos dados e produz efeitos negativos
+            lá na frente, acumulando custo com o tempo.</li>
+          <li><b>Datasheet de conjunto de dados</b>Ficha que acompanha um conjunto de dados descrevendo como foi
+            coletado, por quem, com qual instrução e com quais limitações.</li>
+        </ul>
+      </section>
+
+      <!-- ══════════════════ FONTES ══════════════════ -->
+      <section class="cu-aula" id="fontes">
+        <div class="cu-aula-cap"><span>Referências</span><i></i></div>
+        <h2>Fontes do curso</h2>
+        <p class="cu-resumo-aula">Todo número citado nas aulas foi conferido na fonte original. Os documentos
+          abaixo são públicos e podem ser lidos por inteiro.</p>
+
+        <ul class="cu-fontes">
+          <li>
+            <b>Model Spec</b>
+            OpenAI, versão de 18 de agosto de 2026, publicada sob licença de domínio público CC0.
+            <em><a href="https://model-spec.openai.com/" target="_blank" rel="noopener">model-spec.openai.com</a>
+              · fonte da cadeia de comando de root até guideline e da distinção entre regra e padrão.</em>
+          </li>
+          <li>
+            <b>Training language models to follow instructions with human feedback</b>
+            Long Ouyang e outros, OpenAI, 2022.
+            <em><a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener">arxiv.org/abs/2203.02155</a>
+              · fonte do time de cerca de 40 pessoas selecionadas por teste de triagem, e das concordâncias de
+              72,6 por cento entre avaliadores de treino e 77,3 por cento entre os de fora do treino, além da
+              concordância de 73 por cento entre pesquisadores no trabalho anterior de resumos.</em>
+          </li>
+          <li>
+            <b>The measurement of observer agreement for categorical data</b>
+            J. Richard Landis e Gary G. Koch, Biometrics, volume 33, 1977, páginas 159 a 174.
+            <em>Fonte da escala de interpretação de kappa: pobre, leve, razoável, moderada, substancial e quase
+              perfeita.</em>
+          </li>
+          <li>
+            <b>Survey Article: Inter-Coder Agreement for Computational Linguistics</b>
+            Ron Artstein e Massimo Poesio, Computational Linguistics, volume 34, número 4, 2008, páginas 555 a
+            596.
+            <em><a href="https://aclanthology.org/J08-4004/" target="_blank" rel="noopener">aclanthology.org/J08-4004</a>
+              · revisão das medidas de concordância e de onde cada uma engana.</em>
+          </li>
+          <li>
+            <b>Content Analysis: An Introduction to Its Methodology</b>
+            Klaus Krippendorff. Livro, com edições sucessivas.
+            <em>Fonte dos limiares do alfa: considerar confiável a partir de 0,800 e não aceitar dado abaixo de
+              0,667.</em>
+          </li>
+          <li>
+            <b>Truth Is a Lie: Crowd Truth and the Seven Myths of Human Annotation</b>
+            Lora Aroyo e Chris Welty, AI Magazine, volume 36, número 1, 2015.
+            <em><a href="https://onlinelibrary.wiley.com/doi/abs/10.1609/aimag.v36i1.2564" target="_blank" rel="noopener">doi 10.1609/aimag.v36i1.2564</a>
+              · fonte da crítica à ideia de uma verdade única por item.</em>
+          </li>
+          <li>
+            <b>The "Problem" of Human Label Variation: On Ground Truth in Data, Modeling and Evaluation</b>
+            Barbara Plank, EMNLP 2022, páginas 10671 a 10682.
+            <em><a href="https://aclanthology.org/2022.emnlp-main.731/" target="_blank" rel="noopener">aclanthology.org/2022.emnlp-main.731</a>
+              · fonte de que a variação humana tem causas legítimas e afeta dado, modelagem e avaliação.</em>
+          </li>
+          <li>
+            <b>"Everyone wants to do the model work, not the data work": Data Cascades in High-Stakes AI</b>
+            Nithya Sambasivan e outros, CHI 2021.
+            <em><a href="https://dl.acm.org/doi/abs/10.1145/3411764.3445518" target="_blank" rel="noopener">doi 10.1145/3411764.3445518</a>
+              · fonte das entrevistas com 53 profissionais e dos números de 92 por cento com ao menos uma
+              cascata e 45,3 por cento com duas ou mais.</em>
+          </li>
+          <li>
+            <b>Datasheets for Datasets</b>
+            Timnit Gebru e outros, 2018, com versões posteriores.
+            <em><a href="https://arxiv.org/abs/1803.09010" target="_blank" rel="noopener">arxiv.org/abs/1803.09010</a>
+              · proposta de documentar como o dado foi coletado, por quem e com qual instrução.</em>
+          </li>
+        </ul>
+
+        <p>Nada neste curso vem de guideline de cliente. Onde o curso fala de instrumentos de controle de
+          qualidade, a descrição é do mecanismo geral, do tipo que aparece em documentação pública e em artigos
+          como os citados acima.</p>
+      </section>
+    </main>
+
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script>try { montarLayout("cursos"); } catch (e) {}</script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   CURSO — comportamento da página.
+   Nada aqui depende de biblioteca externa.
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  var CHAVE = "hoh_curso_guidelines";
+
+  /* ── memória do navegador, sempre protegida ── */
+  function ler() {
+    try {
+      var cru = localStorage.getItem(CHAVE);
+      return cru ? JSON.parse(cru) : {};
+    } catch (e) { return {}; }
+  }
+  function gravar(dados) {
+    try { localStorage.setItem(CHAVE, JSON.stringify(dados)); } catch (e) {}
+  }
+  var estado = ler();
+  if (!estado.aulas) estado.aulas = {};
+
+  /* ── figura 2.1: preenche a grade de pessoas ── */
+  var grade = document.getElementById("gradeGente");
+  if (grade) {
+    for (var g = 0; g < 54; g++) grade.appendChild(document.createElement("i"));
+  }
+
+  /* ── sumário no celular ── */
+  var lado = document.getElementById("lado");
+  var abre = document.getElementById("abreSum");
+  if (abre && lado) {
+    abre.addEventListener("click", function () {
+      var aberto = lado.classList.toggle("cu-aberto");
+      abre.setAttribute("aria-expanded", aberto ? "true" : "false");
+    });
+  }
+
+  /* ── links do sumário: fecham o painel no celular ── */
+  var links = [].slice.call(document.querySelectorAll(".cu-sub a, .cu-aula-link"));
+  links.forEach(function (a) {
+    a.addEventListener("click", function () {
+      if (lado && window.innerWidth <= 1080) {
+        lado.classList.remove("cu-aberto");
+        if (abre) abre.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  /* ── marca no sumário a seção que está na tela ── */
+  var subLinks = [].slice.call(document.querySelectorAll(".cu-sub a"));
+  var alvos = subLinks.map(function (a) {
+    return document.getElementById(a.getAttribute("href").slice(1));
+  });
+  var ticando = false;
+  function marcarAtivo() {
+    ticando = false;
+    var melhor = -1, menorDist = Infinity;
+    for (var i = 0; i < alvos.length; i++) {
+      if (!alvos[i]) continue;
+      var t = alvos[i].getBoundingClientRect().top - 130;
+      var d = t <= 0 ? -t : t * 3;
+      if (d < menorDist) { menorDist = d; melhor = i; }
+    }
+    subLinks.forEach(function (a, i) {
+      a.classList.toggle("cu-ativo", i === melhor);
+    });
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticando) { ticando = true; window.requestAnimationFrame(marcarAtivo); }
+  }, { passive: true });
+  marcarAtivo();
+
+  /* ── botões "ver o comentário" ── */
+  [].slice.call(document.querySelectorAll(".cu-abrir-resp")).forEach(function (bt) {
+    bt.addEventListener("click", function () {
+      var resp = bt.parentNode.querySelector(".cu-resp");
+      if (!resp) return;
+      var on = resp.classList.toggle("cu-on");
+      bt.firstChild.nodeValue = on ? "Esconder o comentário " : "Ver o comentário ";
+    });
+  });
+
+  /* ── progresso das aulas ── */
+  var barra = document.getElementById("barra");
+  var barraTxt = document.getElementById("barraTxt");
+  function pintarProgresso() {
+    var feitas = 0;
+    for (var n = 1; n <= 4; n++) {
+      var feita = !!estado.aulas[n];
+      if (feita) feitas++;
+      var link = document.querySelector('.cu-aula-link[data-aula="' + n + '"]');
+      if (link) link.classList.toggle("cu-feita", feita);
+      var bt = document.querySelector('.cu-concluir[data-aula="' + n + '"]');
+      if (bt) {
+        bt.classList.toggle("cu-pronta", feita);
+        var rotulo = bt.getAttribute("data-rotulo") || bt.textContent.trim();
+        bt.lastChild.nodeValue = " " + (feita ? "Aula " + n + " concluída" : rotulo);
+      }
+    }
+    if (barra) barra.style.width = (feitas / 4 * 100) + "%";
+    if (barraTxt) barraTxt.textContent = feitas + " de 4 aulas concluídas";
+  }
+  [].slice.call(document.querySelectorAll(".cu-concluir")).forEach(function (bt) {
+    bt.setAttribute("data-rotulo", bt.textContent.trim());
+    bt.addEventListener("click", function () {
+      estado.aulas[bt.getAttribute("data-aula")] = true;
+      gravar(estado);
+      pintarProgresso();
+      var proxima = document.getElementById(bt.getAttribute("data-proxima"));
+      if (proxima) proxima.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+  pintarProgresso();
+
+  /* ── quiz ── */
+  var form = document.getElementById("formQuiz");
+  var res = document.getElementById("quizRes");
+  var certArea = document.getElementById("certArea");
+  var MINIMO = 8;
+
+  function liberarCertificado(liberado) {
+    if (certArea) certArea.classList.toggle("cu-liberado", liberado);
+  }
+  liberarCertificado(estado.aprovado === true);
+
+  if (form) {
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var perguntas = [].slice.call(form.querySelectorAll(".cu-q"));
+      var acertos = 0, respondidas = 0;
+
+      perguntas.forEach(function (q, i) {
+        var marcada = q.querySelector("input:checked");
+        var certa = q.getAttribute("data-certa");
+        var fb = q.querySelector(".cu-q-fb");
+        q.classList.add("cu-corrigida");
+        q.classList.remove("cu-acertou", "cu-errou");
+
+        if (!marcada) {
+          q.classList.add("cu-errou");
+          if (fb) fb.textContent = "Sem resposta marcada.";
+          return;
+        }
+        respondidas++;
+        if (marcada.value === certa) {
+          acertos++;
+          q.classList.add("cu-acertou");
+          if (fb) fb.textContent = "Certo.";
+        } else {
+          q.classList.add("cu-errou");
+          var alt = q.querySelector('input[value="' + certa + '"]');
+          var textoCerto = alt ? alt.nextElementSibling.textContent : "";
+          if (fb) fb.textContent = "Não é essa. A resposta certa é: " + textoCerto;
+        }
+      });
+
+      var aprovado = acertos >= MINIMO;
+      estado.aprovado = estado.aprovado === true || aprovado;
+      estado.melhor = Math.max(estado.melhor || 0, acertos);
+      gravar(estado);
+      liberarCertificado(estado.aprovado === true);
+
+      if (res) {
+        res.textContent = aprovado
+          ? "Você acertou " + acertos + " de 10. Aprovado, o certificado está liberado abaixo."
+          : "Você acertou " + acertos + " de 10. Faltam " + (MINIMO - acertos) +
+            " para liberar o certificado. Leia os comentários das erradas e tente de novo.";
+        res.style.color = aprovado ? "var(--signal,#1A4893)" : "var(--amber,#A85D24)";
+      }
+
+      var destino = aprovado ? document.getElementById("cert") : perguntas.find(function (q) {
+        return q.classList.contains("cu-errou");
+      });
+      if (destino) destino.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    var limpar = document.getElementById("btLimpar");
+    if (limpar) {
+      limpar.addEventListener("click", function () {
+        form.reset();
+        [].slice.call(form.querySelectorAll(".cu-q")).forEach(function (q) {
+          q.classList.remove("cu-corrigida", "cu-acertou", "cu-errou");
+        });
+        if (res) res.textContent = "";
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }
+
+  /* ── certificado ── */
+  var nomeInput = document.getElementById("nomeCert");
+  var btGerar = document.getElementById("btGerar");
+  var cert = document.getElementById("certificado");
+  var certForm = document.getElementById("certForm");
+  var certAcoes = document.getElementById("certAcoes");
+  var certNota = document.getElementById("certNota");
+
+  function codigoDe(nome) {
+    var soma = 0;
+    for (var i = 0; i < nome.length; i++) soma = (soma * 31 + nome.charCodeAt(i)) % 1679616;
+    var base = soma.toString(36).toUpperCase();
+    while (base.length < 4) base = "0" + base;
+    return "GRC-" + base + "-" + new Date().getFullYear();
+  }
+
+  function mostrarCertificado(nome, data, codigo) {
+    document.getElementById("certNome").textContent = nome;
+    document.getElementById("certData").textContent = data;
+    document.getElementById("certCod").textContent = codigo;
+    if (cert) cert.hidden = false;
+    if (certAcoes) certAcoes.hidden = false;
+    if (certNota) certNota.hidden = false;
+    if (certForm) certForm.style.display = "none";
+  }
+
+  if (btGerar) {
+    btGerar.addEventListener("click", function () {
+      if (estado.aprovado !== true) {
+        if (nomeInput) nomeInput.blur();
+        var trava = document.getElementById("certTrava");
+        if (trava) {
+          trava.textContent = "Para liberar, acerte pelo menos 8 das 10 perguntas do quiz acima.";
+          trava.style.fontWeight = "600";
+        }
+        var q = document.getElementById("quiz");
+        if (q) q.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      var nome = (nomeInput ? nomeInput.value : "").trim().replace(/\s+/g, " ");
+      if (nome.length < 3) {
+        if (nomeInput) { nomeInput.focus(); nomeInput.style.borderColor = "#A85D24"; }
+        return;
+      }
+      var hoje = new Date();
+      var data = hoje.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+      var codigo = codigoDe(nome);
+      estado.nome = nome; estado.data = data; estado.codigo = codigo;
+      gravar(estado);
+      mostrarCertificado(nome, data, codigo);
+      if (cert) cert.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }
+
+  /* já tinha certificado emitido antes */
+  if (estado.aprovado === true && estado.nome && estado.data && estado.codigo) {
+    mostrarCertificado(estado.nome, estado.data, estado.codigo);
+  }
+
+  var btImprimir = document.getElementById("btImprimir");
+  if (btImprimir) btImprimir.addEventListener("click", function () { window.print(); });
+
+  var btTrocar = document.getElementById("btTrocarNome");
+  if (btTrocar) {
+    btTrocar.addEventListener("click", function () {
+      if (cert) cert.hidden = true;
+      if (certAcoes) certAcoes.hidden = true;
+      if (certNota) certNota.hidden = true;
+      if (certForm) certForm.style.display = "";
+      if (nomeInput) { nomeInput.value = estado.nome || ""; nomeInput.focus(); }
+    });
+  }
+})();
+</script>
+</body>
+</html>

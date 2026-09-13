@@ -46,6 +46,23 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 }
 .c-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); margin:0; }
 
+.c-trilha { max-width:680px; margin:0 0 22px; padding-top:4px; }
+.c-trilha-rot {
+  display:inline-block; font-size:11px; letter-spacing:0.13em; text-transform:uppercase;
+  color:var(--signal,#1A4893); background:rgba(26,72,147,0.07); border-radius:99px;
+  padding:5px 12px; margin-bottom:12px;
+}
+.c-trilha h2 {
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400; font-size:clamp(22px,2.6vw,28px);
+  line-height:1.15; color:var(--ink,#10203A); margin:0 0 8px;
+}
+.c-trilha p { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); margin:0; }
+
+.c-ordem {
+  display:inline-block; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--ink-3,#8A94A1); margin-bottom:8px;
+}
+
 .c-grade { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
 
 .c-card {
@@ -122,7 +139,17 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
     <h1>Aprender o trabalho antes da primeira vaga</h1>
     <p class="c-lead">Boa parte das vagas pede experiência, e é aí que muita gente trava. Estes cursos servem para
       chegar na candidatura sabendo o que a empresa faz com o seu julgamento, o que a tarefa espera de você e
-      como é uma avaliação bem feita. São gratuitos, leem-se no navegador e terminam com certificado.</p>
+      como é uma avaliação bem feita. São gratuitos, leem-se no navegador e terminam com certificado. Todo
+      conteúdo é escrito a partir de artigos publicados, normas e políticas públicas, com as fontes listadas ao
+      fim de cada curso.</p>
+  </div>
+
+  <div class="c-trilha">
+    <span class="c-trilha-rot">Trilha 1</span>
+    <h2>Avaliação e julgamento</h2>
+    <p>Quatro cursos na ordem em que fazem sentido. Cada um se sustenta sozinho, e juntos cobrem o caminho
+      completo: por que o trabalho existe, o documento que define a tarefa, a tarefa em si, e a régua de
+      segurança.</p>
   </div>
 
   <div class="c-grade">
@@ -134,18 +161,97 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
           <path d="M12 6.5v14"/>
         </svg>
       </div>
+      <span class="c-ordem">Curso 1 de 4</span>
       <h2>Fundamentos da Avaliação de IA</h2>
       <p>O curso de entrada. Como um modelo de conversa é treinado, por que ele depende de gente comparando
         respostas, e o que separa uma avaliação que melhora o modelo de uma que o piora sem ninguém notar.</p>
       <div class="c-meta">
         <span>4 aulas</span><i></i>
         <span>cerca de 1 hora</span><i></i>
-        <span>nível introdutório</span>
+        <span>introdutório</span>
       </div>
       <div class="c-tags">
         <span class="c-tag">RLHF</span>
+        <span class="c-tag">Goodhart</span>
         <span class="c-tag">Julgamento</span>
-        <span class="c-tag">Guidelines</span>
+        <span class="c-tag c-cert">Com certificado</span>
+      </div>
+      <span class="c-abrir">Começar o curso
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+    <a class="c-card" href="curso-guidelines.html">
+      <div class="c-icone">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9.5 13.5l1.8 1.8 3.7-3.8"/>
+        </svg>
+      </div>
+      <span class="c-ordem">Curso 2 de 4</span>
+      <h2>Guidelines, Rubricas e Consistência</h2>
+      <p>O curso de não estragar o dado. Como ler a guideline, o que é uma âncora de escala, como se mede
+        concordância entre avaliadores com kappa e alfa, e o que o controle de qualidade olha no seu trabalho.</p>
+      <div class="c-meta">
+        <span>4 aulas</span><i></i>
+        <span>cerca de 1 hora</span><i></i>
+        <span>prático</span>
+      </div>
+      <div class="c-tags">
+        <span class="c-tag">Rubricas</span>
+        <span class="c-tag">Kappa</span>
+        <span class="c-tag">QA</span>
+        <span class="c-tag c-cert">Com certificado</span>
+      </div>
+      <span class="c-abrir">Começar o curso
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+    <a class="c-card" href="curso-comparacao.html">
+      <div class="c-icone">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h7v14H4z"/><path d="M13 5h7v14h-7z"/><path d="M16.5 9.5l1.4 1.4 2.6-2.6"/>
+        </svg>
+      </div>
+      <span class="c-ordem">Curso 3 de 4</span>
+      <h2>Comparação de Respostas e LLM como Juiz</h2>
+      <p>A tarefa mais comum do mercado. Formatos e escalas de preferência, os vieses já medidos nesse formato,
+        como funciona a avaliação feita por modelo, e o que fazer quando as duas respostas estão erradas.</p>
+      <div class="c-meta">
+        <span>4 aulas</span><i></i>
+        <span>cerca de 1 hora</span><i></i>
+        <span>prático</span>
+      </div>
+      <div class="c-tags">
+        <span class="c-tag">Pareado</span>
+        <span class="c-tag">Vieses</span>
+        <span class="c-tag">LLM como juiz</span>
+        <span class="c-tag c-cert">Com certificado</span>
+      </div>
+      <span class="c-abrir">Começar o curso
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+    <a class="c-card" href="curso-seguranca.html">
+      <div class="c-icone">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/>
+        </svg>
+      </div>
+      <span class="c-ordem">Curso 4 de 4</span>
+      <h2>Segurança, Red Teaming e Conteúdo Sensível</h2>
+      <p>Onde o trabalho paga melhor e onde mais gente erra. Política de uso e taxonomia de dano, recusa
+        apropriada contra recusa excessiva, métodos de red teaming, e como trabalhar com conteúdo pesado.</p>
+      <div class="c-meta">
+        <span>4 aulas</span><i></i>
+        <span>cerca de 1 hora</span><i></i>
+        <span>avançado</span>
+      </div>
+      <div class="c-tags">
+        <span class="c-tag">Política de uso</span>
+        <span class="c-tag">Recusa</span>
+        <span class="c-tag">Red teaming</span>
         <span class="c-tag c-cert">Com certificado</span>
       </div>
       <span class="c-abrir">Começar o curso
@@ -154,19 +260,13 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
     </a>
 
     <div class="c-vazio">
-      <strong>Em preparação</strong>
-      Os próximos cursos seguem a mesma linha, cada um sobre um tipo de tarefa que aparece nas vagas:
+      <strong>Trilha 2, em preparação</strong>
+      A próxima trilha é sobre voz e áudio, que é onde mais falta material em português:
       <ul>
-        <li>Transcrição e qualidade de áudio</li>
-        <li>Avaliação de busca e de mapas</li>
-        <li>Tradução, revisão e localização</li>
+        <li>Avaliação de TTS: MOS, CMOS e o que os números significam</li>
+        <li>Transcrição e convenções</li>
+        <li>Fonética prática para quem avalia voz</li>
       </ul>
-    </div>
-
-    <div class="c-vazio">
-      <strong>Como usar no currículo</strong>
-      Terminado o curso, o certificado traz o seu nome, o conteúdo das aulas e a carga horária. Dá uma linha
-      concreta para a seção de formação complementar, no lugar de deixar o campo de experiência vazio.
     </div>
 
   </div>
@@ -176,7 +276,9 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
     <p>Nenhum curso substitui tarefa feita, e nenhuma empresa contrata só por causa dele. O que ele resolve é
       outra coisa: você chega na entrevista e no teste de entrada entendendo o vocabulário da área, sabendo o
       que é uma guideline e por que a consistência é cobrada. Isso aparece na qualidade das suas respostas.</p>
-    <p>O conteúdo é escrito para quem está começando de fora da área, sem exigir programação nem estatística.</p>
+    <p>O conteúdo é escrito para quem está começando de fora da área, sem exigir programação nem estatística.
+      Termo técnico é explicado na primeira vez que aparece, e cada curso tem um glossário no fim, junto com a
+      lista de fontes com link. Nada aqui vem de material confidencial de cliente.</p>
   </div>
 
 </main>
