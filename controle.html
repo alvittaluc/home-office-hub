@@ -9,12 +9,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Meu Controle — Home Office Hub">
 <meta property="og:description" content="Onde você aplicou, quanto trabalhou e quanto ganhou. Tudo no seu navegador.">
-<meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/controle.html">
-<meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<link rel="canonical" href="https://alvittaluc.github.io/home-office-hub/controle.html">
+<meta property="og:url" content="https://alvittaluc.github.io/controle.html">
+<meta property="og:image" content="https://alvittaluc.github.io/og.jpg">
 
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon-32.png" type="image/png">
@@ -293,6 +289,7 @@ body > header.site .hd { max-width:1460px; }
 
       <div class="ct-carregando" id="carregando">Abrindo os seus dados…</div>
 
+      <section id="hoje" hidden></section>
       <section id="painel" hidden></section>
       <section id="aplicacoes" hidden></section>
       <section id="trabalhos" hidden></section>
@@ -312,6 +309,7 @@ body > header.site .hd { max-width:1460px; }
 <script src="controle-blocos.js"></script>
 <script src="controle-ui.js"></script>
 <script src="controle-trabalho.js"></script>
+<script src="controle-hoje.js"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
    junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
@@ -344,6 +342,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     aplicacoes: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5h8a1 1 0 0 1 1 1v10l-2.2-1.6L8.5 13.5 6.2 11.9 4 13.5v-10a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>',
     trabalhos:  '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4.5" width="12" height="9" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M6 4.5v-1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.4"/></svg>',
     dados:      '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="4" rx="5.5" ry="2" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 4v8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2V4M2.5 8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2" stroke="currentColor" stroke-width="1.4"/></svg>',
+    hoje:       '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M2 6.5h12M5.5 1.8v2.4M10.5 1.8v2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="10" r="1.5" fill="currentColor"/></svg>',
     mais:       '<svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3.5v9M3.5 8h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   };
 
@@ -408,6 +407,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   function desenharLado() {
     const mesDe = Dados.hoje().slice(0, 8) + "01";
     const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "entrevista"].indexOf(a.estado) >= 0).length;
+    // Contador da tela Hoje: só o que tem data marcada para hoje ou para trás.
+    const aFazer = APLICACOES.filter(a => a.proximo && a.proximoEm && a.proximoEm <= Dados.hoje() &&
+      ["aplicado", "teste", "entrevista", "banco"].indexOf(a.estado) >= 0).length;
 
     const itensTrab = TRABALHOS.map(t => {
       const horas = REGISTROS
@@ -427,6 +429,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         <span class="ct-lado-sub">vagas, horas e ganhos</span>
       </div>
 
+      <button class="ct-item" data-ir="hoje" aria-current="${rota.tela === "hoje"}">
+        ${IC.hoje}<span class="ct-txt">Hoje</span>
+        <span class="ct-cont">${aFazer ? aFazer : ""}</span></button>
       <button class="ct-item" data-ir="painel" aria-current="${rota.tela === "painel"}">
         ${IC.painel}<span class="ct-txt">Painel</span></button>
       <button class="ct-item" data-ir="aplicacoes" aria-current="${rota.tela === "aplicacoes"}">
@@ -453,7 +458,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      ROTAS
      ══════════════════════════════════════════════════════════ */
 
-  const TELAS = ["painel", "aplicacoes", "trabalhos", "trabalho", "dados"];
+  const TELAS = ["hoje", "painel", "aplicacoes", "trabalhos", "trabalho", "dados"];
 
   function irPara(caminho) {
     if (location.hash.slice(1) === caminho) return abrir(caminho);
@@ -461,9 +466,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   }
 
   async function abrir(caminho) {
-    const partes = (caminho || "painel").split("/");
+    const partes = (caminho || "hoje").split("/");
     let tela = partes[0], id = partes[1] || null;
-    if (TELAS.indexOf(tela) < 0) tela = "painel";
+    if (TELAS.indexOf(tela) < 0) tela = "hoje";
     if (tela === "trabalho" && !id) tela = "trabalhos";
 
     rota = { tela, id };
@@ -474,6 +479,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     window.scrollTo(0, 0);
     desenharLado();
 
+    if (tela === "hoje")       await desenharHoje();
     if (tela === "painel")     await desenharPainel();
     if (tela === "aplicacoes") desenharAplicacoes();
     if (tela === "trabalhos")  await desenharTrabalhos();
@@ -489,6 +495,24 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   }
 
   window.addEventListener("hashchange", () => abrir(location.hash.slice(1)));
+
+  /* ══════════════════════════════════════════════════════════
+     HOJE
+
+     A tela só junta o que já está no banco. Toda a lógica dela
+     mora no controle-hoje.js; aqui ficam apenas os ganchos.
+     ══════════════════════════════════════════════════════════ */
+
+  async function desenharHoje() {
+    await Hoje.montar($("#hoje"), {
+      trabalhos: TRABALHOS, aplicacoes: APLICACOES, registros: REGISTROS,
+      pagamentos: PAGAMENTOS, cfg: CFG,
+      estadoDe, marcaHtml, irPara,
+      registrarDia: (t, data) => registrarDiaRapido(t, data),
+      abrirAplicacao: (ap) => formAplicacao(ap),
+      aoMudar: async () => { await recarregar(); await desenharHoje(); },
+    });
+  }
 
   /* ══════════════════════════════════════════════════════════
      PAINEL
@@ -588,7 +612,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     alvo.querySelectorAll("[data-periodo]").forEach(b => b.addEventListener("click", () => {
       periodo = b.dataset.periodo; desenharPainel();
     }));
-    alvo.querySelector("[data-novo-dia]").addEventListener("click", registrarDiaRapido);
+    // Sem passar a função direta: o Event viraria o primeiro argumento.
+    alvo.querySelector("[data-novo-dia]").addEventListener("click", () => registrarDiaRapido());
     alvo.querySelector("[data-metas]").addEventListener("click", abrirMetas);
 
     if (CFG.metaHorasSemana || CFG.metaGanhoMes) await desenharMetas(alvo.querySelector("#caixaMetas"));
@@ -940,6 +965,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
         await recarregar();
         if (rota.tela === "aplicacoes") desenharAplicacoes();
+        if (rota.tela === "hoje") await desenharHoje();
         UI.aviso(novo ? "Aplicação registrada." : "Aplicação salva.");
 
         /* Pulso: só age se a pessoa tiver ligado, e só para vagas vindas do Hub. */
@@ -1142,21 +1168,29 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   }
 
   /* Registrar um dia sem entrar no trabalho. */
-  async function registrarDiaRapido() {
+  async function registrarDiaRapido(trabalho, data) {
     const ativos = TRABALHOS.filter(t => t.estado === "ativo");
     if (!ativos.length) { UI.aviso("Cadastre um trabalho primeiro."); return formTrabalho(); }
-    const depois = async () => { await recarregar(); if (rota.tela === "painel") await desenharPainel(); };
-    if (ativos.length === 1) return UI.abrirRegistroDia(ativos[0], { aoSalvar: depois });
+    const depois = async () => {
+      await recarregar();
+      if (rota.tela === "painel") await desenharPainel();
+      if (rota.tela === "hoje")   await desenharHoje();
+    };
+    const opcoes = { aoSalvar: depois };
+    if (data) opcoes.data = data;
+
+    if (trabalho) return UI.abrirRegistroDia(trabalho, opcoes);
+    if (ativos.length === 1) return UI.abrirRegistroDia(ativos[0], opcoes);
 
     UI.painel({
       titulo: "Registrar o dia",
-      subtitulo: "Em qual trabalho?",
+      subtitulo: data ? Dados.dataBonita(data) : "Em qual trabalho?",
       acaoTexto: "Continuar",
       corpo: UI.campo({ nome: "trabalho", rotulo: "Trabalho", tipo: "escolha",
         opcoes: ativos.map(t => ({ valor: t.id, nome: (t.projeto || t.empresa) })) }),
       acao: (d) => {
         const t = ativos.find(x => x.id === UI.ler(d, "trabalho"));
-        setTimeout(() => UI.abrirRegistroDia(t, { aoSalvar: depois }), 120);
+        setTimeout(() => UI.abrirRegistroDia(t, opcoes), 120);
       },
     });
   }
@@ -1453,7 +1487,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       return;
     }
 
-    await abrir(location.hash.slice(1) || "painel");
+    await abrir(location.hash.slice(1) || "hoje");
   })();
 })();
 </script>
