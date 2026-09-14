@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-13T12:55:02.841003+00:00",
-  "atualizado_br": "13/09/2026 às 12:55",
-  "total": 77,
+  "atualizado_em": "2026-09-14T11:51:08.805447+00:00",
+  "atualizado_br": "14/09/2026 às 11:51",
+  "total": 72,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -110,6 +110,21 @@
         "requisitos": "Português do Brasil em nível nativo e inglês escrito suficiente para entender guias e se comunicar com o time. Muita atenção a detalhe, pensamento analítico e autonomia para trabalhar sozinho seguindo regras extensas. Pede experiência em anotação, revisão de conteúdo, controle de qualidade, rotulagem de dados, localização ou área parecida. Já ter mexido com conteúdo multilíngue, multimídia ou de IA é diferencial forte.",
         "dica_cv": "Currículo em inglês, de uma página. Logo no resumo do topo escreva que você é falante nativo de português do Brasil com inglês avançado, porque é o primeiro filtro do recrutador. Depois liste qualquer experiência de revisão, tradução, transcrição, moderação ou digitação com números concretos, no estilo \"revisei em média 80 textos por dia com 98% de aprovação\". Se já trabalhou em plataformas como Appen, Telus, Toloka ou Welocalize, cite o nome do projeto e o tipo de tarefa."
       }
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Hydrus - Session Director - Portuguese (BR) - V2",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.lever.co/weloglobal/735ad01e-c44f-487a-81dc-d36a0a8f69f6",
+      "commitment": "Freelance-Remote",
+      "fonte": "direto",
+      "data_post": "2026-09-11",
+      "data_vista": "2026-09-14",
+      "data_ref": "2026-09-11",
+      "data_oficial": true,
+      "id": "eeaa6bfc02"
     },
     {
       "empresa": "welocalize",
@@ -261,6 +276,21 @@
     },
     {
       "empresa": "toloka",
+      "titulo": "AI Trainer - English-Spanish Bilingual Speaker - Voice Recording",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://apply.workable.com/j/9274639ED7",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-14",
+      "data_vista": "2026-09-14",
+      "data_ref": "2026-09-14",
+      "data_oficial": true,
+      "id": "9769d3a2a8"
+    },
+    {
+      "empresa": "toloka",
       "titulo": "AI Trainer - Freelance Data Annotator",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -295,21 +325,6 @@
         "contrato": "Freelance · Remoto · Por projeto",
         "remuneracao": ""
       }
-    },
-    {
-      "empresa": "toloka",
-      "titulo": "English-Spanish Bilingual Speaker - Voice Recording (Remote)",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/59CDC90141",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "data_vista": "2026-08-27",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "11d3503c88"
     },
     {
       "empresa": "toloka",
@@ -642,26 +657,6 @@
     },
     {
       "empresa": "meridial",
-      "titulo": "Coding Specialist (Fluent in Portuguese - Brazil) - Freelance AI Trainer Project",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4606977101",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2025-06-13",
-      "data_vista": "2026-08-05",
-      "data_ref": "2025-06-13",
-      "data_oficial": true,
-      "id": "4d59850d89",
-      "resumo": {
-        "o_que_faz": "Você usa a sua experiência de programação para testar e treinar modelos de IA, conversando com eles em português do Brasil sobre problemas reais de engenharia de software. Os temas vão de algoritmos e estruturas de dados a arquitetura, front-end, back-end, nuvem, programação assíncrona, integração de APIs REST, gerenciamento de memória, orientação a objetos, segurança e depuração de sistemas distribuídos. Além de avaliar se a resposta técnica está correta, você julga se o português usado soa natural. Faixa de US$ 8 a US$ 65 por hora, contrato remoto de nível pleno a sênior.",
-        "requisitos": "Experiência real de programação e fluência em português do Brasil. Graduação, mestrado ou doutorado em computação ou engenharia de software é o cenário ideal, mas experiência prática, escrita técnica em português e contribuições em código aberto também contam. Inglês para ler as diretrizes e capacidade de explicar o raciocínio passo a passo por escrito. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Currículo em inglês com as linguagens e o tempo de experiência em cada uma bem visíveis. Coloque o link do GitHub, porque contribuição em código aberto é citada como sinal de aderência. Descreva um problema técnico difícil que você resolveu e como chegou lá, já que a vaga valoriza quem sabe explicar o raciocínio. Se você escreve documentação ou dá aula de programação em português, destaque, porque é exatamente o cruzamento que essa vaga procura."
-      }
-    },
-    {
-      "empresa": "meridial",
       "titulo": "Language Alignment & Resource Partner (Brazilian Portuguese) - Freelance AI Trainer Project",
       "local": "Remoto · Brasil",
       "categoria": "transl",
@@ -698,26 +693,6 @@
         "o_que_faz": "É a mesma função de parceiro de alinhamento linguístico da Meridial, aqui na versão aberta para português em geral, sem especificar a variante do Brasil. Você revisa, anota e valida dados de IA olhando gramática, naturalidade e contexto cultural, faz o controle de qualidade durante a produção e cria materiais de orientação a partir das tendências de erro que encontra. Trabalho remoto como contratante independente, com faixa de US$ 6 a US$ 65 por hora.",
         "requisitos": "Proficiência comprovada em português no nível C1 ou C2 e formação ou experiência em linguística, educação ou área que exija atenção fina ao idioma. Experiência anterior em avaliação ou anotação de dados humanos. Capacidade de trabalhar sozinho e de transformar retorno bruto em documentação clara. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Como o anúncio fala de português sem separar Brasil de Portugal, escreva você mesmo qual variante domina e em que contextos, para não cair na fila errada. Vale se candidatar a esta e à versão específica do Brasil, já que são anúncios diferentes na mesma empresa. Destaque experiência em revisão, ensino de português, tradução e criação de material didático, e cite plataformas de dados para IA em que já trabalhou."
-      }
-    },
-    {
-      "empresa": "meridial",
-      "titulo": "Mathematics Specialist (Fluent in Portuguese - Brazil) - Freelance AI Trainer Project",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4606975101",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2025-06-13",
-      "data_vista": "2026-08-05",
-      "data_ref": "2025-06-13",
-      "data_oficial": true,
-      "id": "4cc90c09d7",
-      "resumo": {
-        "o_que_faz": "Você usa a sua bagagem em matemática para desafiar modelos de IA, propondo desde problemas de sala de aula até questões teóricas em álgebra, cálculo, teoria dos números, álgebra linear, equações diferenciais, estatística, geometria, lógica e matemática discreta. O trabalho é verificar se a resposta é correta e logicamente coerente, registrar as falhas de forma reproduzível e sugerir melhorias nos prompts e nas métricas. Faixa de US$ 6 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e domínio real de matemática. Mestrado ou doutorado na área é o cenário ideal, e publicações, experiência docente, pesquisa pura ou aplicada e modelagem matemática são sinais valorizados. Inglês para as diretrizes e, acima de tudo, capacidade de escrever a solução passo a passo, mostrando o raciocínio e não só o resultado. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Currículo em inglês listando formação, área de especialidade e publicações, se houver. Se você dá aula de matemática, escreva o nível, porque saber explicar é justamente o que a vaga compra. Inclua um exemplo de demonstração ou de resolução comentada, já que a triagem costuma pedir uma amostra de raciocínio. Domínio de LaTeX ajuda e vale citar."
       }
     },
     {
@@ -814,46 +789,6 @@
       "data_ref": "2025-11-07",
       "data_oficial": true,
       "id": "40bde685a9"
-    },
-    {
-      "empresa": "meridial",
-      "titulo": "Science Specialist (Fluent in Portuguese - Brazil) - Freelance AI Trainer Project",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4607782101",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2025-06-16",
-      "data_vista": "2026-08-05",
-      "data_ref": "2025-06-16",
-      "data_oficial": true,
-      "id": "56652b524e",
-      "resumo": {
-        "o_que_faz": "Você usa a sua formação científica para testar modelos de IA em física, química, astronomia, ciências da terra e do ambiente, cobrindo temas como transformação de energia, estrutura atômica, movimento dos planetas, sistemas ecológicos, ciclo da água e método científico. O trabalho é propor cenários e questões, checar se a resposta está factualmente certa e logicamente coerente, registrar as falhas e sugerir melhorias na avaliação. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e formação em uma área científica, com graduação, mestrado ou doutorado. Experiência docente, publicações, pesquisa de laboratório ou de campo e projetos de divulgação científica são sinais valorizados. Inglês para as diretrizes e clareza para explicar o raciocínio passo a passo. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Currículo em inglês, com a área de especialidade e a titulação bem visíveis. Se você é professor de ciências, física ou química, destaque o nível em que leciona, porque parte das tarefas simula problemas de sala de aula. Cite publicações, pesquisas ou trabalhos de divulgação, com link se possível. Escrever uma explicação curta e clara de um conceito difícil é a melhor amostra que você pode anexar."
-      }
-    },
-    {
-      "empresa": "meridial",
-      "titulo": "STEM Specialist (Fluent in Portuguese - Brazil) - Freelance AI Trainer Project",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4606976101",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2025-06-13",
-      "data_vista": "2026-08-05",
-      "data_ref": "2025-06-13",
-      "data_oficial": true,
-      "id": "e2481ca329",
-      "resumo": {
-        "o_que_faz": "Versão mais ampla das vagas técnicas da Meridial, cobrindo matemática, física, química, engenharia, ciência de dados, computação e computação científica. Você conversa com o modelo sobre problemas reais e questões teóricas em temas como termodinâmica, mecânica, cálculo, estatística, ciência dos materiais, eletrônica, projeto de algoritmos e modelagem quantitativa, verificando a precisão e documentando cada falha. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e graduação ou mestrado em alguma área de exatas ou engenharia. Pesquisa publicada, experiência com projeto de engenharia, análise de dados ou portfólio de código são sinais valorizados. Inglês para as diretrizes e capacidade de mostrar o raciocínio por escrito, o que é exigência explícita. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Se o seu perfil é técnico mas não se encaixa exatamente em matemática ou em ciências, esta é a vaga guarda-chuva certa. Escolha uma especialidade principal e deixe-a clara logo no topo, em vez de listar tudo em nível superficial. Inclua links de GitHub, projetos de dados ou trabalhos de engenharia. Vale se candidatar a mais de uma vaga da Meridial, já que são projetos independentes."
-      }
     },
     {
       "empresa": "micro1",
@@ -1067,21 +1002,6 @@
     },
     {
       "empresa": "turing",
-      "titulo": "Technical Content Writer",
-      "local": "Remoto · Brasil",
-      "categoria": "write",
-      "badge": "Escrita",
-      "url": "https://work.turing.com/jobs?jobId=60738",
-      "commitment": "Other",
-      "fonte": "direto",
-      "data_post": "2026-01-27",
-      "data_vista": "2026-08-28",
-      "data_ref": "2026-01-27",
-      "data_oficial": true,
-      "id": "5173d64568"
-    },
-    {
-      "empresa": "turing",
       "titulo": "MLE Bench – Data Analyst",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -1124,21 +1044,6 @@
       "data_ref": "2026-09-12",
       "data_oficial": false,
       "id": "02f69edb18"
-    },
-    {
-      "empresa": "mercor",
-      "titulo": "FP&A Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.mercor.com/jobs/list_AAABn7vftO1VIYJ3t4dFC6EW/fp-a-expert",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-11",
-      "data_oficial": false,
-      "id": "44c8fa428f"
     },
     {
       "empresa": "mercor",
