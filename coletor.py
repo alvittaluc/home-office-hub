@@ -29,6 +29,7 @@ import re
 import time
 import ssl
 from datetime import datetime, timezone
+from email.utils import format_datetime   # o RSS pede a data no formato de e-mail
 
 # Decide, pelo título, se a vaga é geral ou de uma área específica.
 try:
@@ -1183,6 +1184,85 @@ def gravar_datas(mapa: dict, chaves_de_hoje: set) -> None:
     print(f"  ✓ datas.json com {len(guardar)} registro(s)")
 
 
+def gerar_feed(vagas: list) -> None:
+    """Escreve o feed.xml com as vagas mais recentes.
+
+    O feed é o mesmo conteúdo da aba Vagas em outro formato, o que
+    programas de aviso sabem ler. Serve para alimentar canal e e-mail
+    sem precisar de servidor.
+
+    Ordena pelo dia em que a vaga entrou no hub, mais nova primeiro,
+    e corta em QUANTAS_NO_FEED para o arquivo não crescer sem limite.
+    """
+    QUANTAS_NO_FEED = 40
+
+    try:
+        with open("empresas.json", "r", encoding="utf-8") as f:
+            nomes = {e["id"]: e.get("nome", e["id"])
+                     for e in json.load(f).get("empresas", [])}
+    except Exception:
+        nomes = {}
+
+    def quando(v):
+        return v.get("data_vista") or v.get("data_ref") or "0000-00-00"
+
+    recentes = sorted(vagas, key=quando, reverse=True)[:QUANTAS_NO_FEED]
+
+    def xml(t):
+        return (str(t or "")
+                .replace("&", "&amp;").replace("<", "&lt;")
+                .replace(">", "&gt;").replace('"', "&quot;"))
+
+    def data_rfc(texto):
+        """RSS pede a data no formato de e-mail, não no ISO."""
+        try:
+            d = datetime.strptime(texto, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        except Exception:
+            d = datetime.now(timezone.utc)
+        return format_datetime(d)
+
+    itens = []
+    for v in recentes:
+        empresa = nomes.get(v.get("empresa"), v.get("empresa", ""))
+        titulo = f"{v.get('titulo', '')} — {empresa}" if empresa else v.get("titulo", "")
+        endereco = f"{SITE_PUBLICADO}vaga.html?id={v.get('id', '')}"
+
+        resumo = v.get("resumo") or {}
+        descricao = resumo.get("o_que_faz") or ""
+        if not descricao:
+            partes = [p for p in (v.get("local"), v.get("badge")) if p]
+            descricao = " · ".join(partes)
+
+        itens.append(
+            "    <item>\n"
+            f"      <title>{xml(titulo)}</title>\n"
+            f"      <link>{xml(endereco)}</link>\n"
+            f"      <guid isPermaLink=\"false\">{xml(v.get('id', ''))}</guid>\n"
+            f"      <pubDate>{data_rfc(quando(v))}</pubDate>\n"
+            f"      <description>{xml(descricao)}</description>\n"
+            "    </item>"
+        )
+
+    feed = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<rss version="2.0">\n'
+        "  <channel>\n"
+        "    <title>Home Office Hub — vagas abertas</title>\n"
+        f"    <link>{SITE_PUBLICADO}vagas.html</link>\n"
+        "    <description>Vagas remotas de IA, dados e tradução "
+        "abertas para quem mora no Brasil.</description>\n"
+        "    <language>pt-BR</language>\n"
+        f"    <lastBuildDate>{format_datetime(datetime.now(timezone.utc))}</lastBuildDate>\n"
+        + "\n".join(itens) + "\n"
+        "  </channel>\n"
+        "</rss>\n"
+    )
+
+    with open("feed.xml", "w", encoding="utf-8") as f:
+        f.write(feed)
+    print(f"  ✓ feed.xml com {len(itens)} vaga(s)")
+
+
 def main():
     print("═" * 60)
     print("  HOME OFFICE HUB — Coletor de Vagas")
@@ -1303,7 +1383,15 @@ def main():
     if USAR_AREAS and classificador:
         marcadas = 0
         for v in todas:
-            area = classificador.classificar_area(v.get("titulo", ""))
+            # A descrição entra como segundo sinal, para pegar título curto
+            # tipo "Circuit Design Expert". O try é para o caso de o
+            # classificador.py no ar ainda ser o antigo, que só aceita o
+            # título: aí a coleta segue como antes em vez de quebrar.
+            try:
+                area = classificador.classificar_area(
+                    v.get("titulo", ""), v.get("_desc", ""))
+            except TypeError:
+                area = classificador.classificar_area(v.get("titulo", ""))
             if area:
                 v["area"] = area
                 marcadas += 1
@@ -1503,6 +1591,13 @@ def main():
         json.dump(resultado, f, ensure_ascii=False, indent=2)
 
     print(f"\n  ✓ Salvo em 'vagas.json' ({len(gerais)} vaga(s) visíveis)")
+
+    # O feed sai do mesmo dado, logo depois do vagas.json. Se falhar, o
+    # coletor não pode parar por causa disso: as vagas já estão salvas.
+    try:
+        gerar_feed(gerais)
+    except Exception as e:
+        print(f"  ⚠ Não deu para gerar o feed.xml: {e}")
 
     if USAR_AREAS:
         areas_dispon = sorted({v["area"] for v in especificas})

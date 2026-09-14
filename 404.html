@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Página não encontrada — Home Office Hub</title>
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="/home-office-hub/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/home-office-hub/favicon-32.png">
+<link rel="apple-touch-icon" href="/home-office-hub/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+
+<!-- ══════════════════════════════════════════════════════════════
+     Página de erro do site.
+     O GitHub mostra este arquivo sozinho quando alguém digita um
+     endereço que não existe, ou abre um link antigo de uma vaga
+     que já saiu do ar.
+
+     Ela é independente de propósito: não usa o estilo.css nem o
+     layout.js, porque o erro pode acontecer em qualquer endereço e
+     os caminhos relativos quebrariam. Por isso todos os links aqui
+     começam com /home-office-hub/.
+     ══════════════════════════════════════════════════════════════ -->
+
+<style>
+  :root{
+    --paper:#F7F4EF; --panel:#FFFFFF; --soft:#F1ECE3; --line:#DED7CA;
+    --ink:#10203A; --ink-2:#54606F; --blue:#1A4893;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
+    line-height:1.6; min-height:100vh;
+    display:flex; flex-direction:column;
+    padding-left:20px; padding-right:20px;
+  }
+  a{color:inherit; text-decoration:none}
+
+  .topo{padding-block:26px}
+  .marca{display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:15px}
+  .marca img{width:30px; height:30px; object-fit:contain; display:block}
+
+  main{
+    flex:1; display:flex; flex-direction:column; justify-content:center;
+    max-width:620px; margin:0 auto; width:100%; padding-block:40px 80px;
+  }
+  .etiqueta{
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue);
+    display:flex; align-items:center; gap:9px; margin-bottom:16px; font-weight:500;
+  }
+  .etiqueta::before{content:''; width:24px; height:1px; background:var(--blue); flex:none}
+  h1{
+    font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+    font-size:clamp(30px,5vw,44px); line-height:1.08; letter-spacing:-.015em;
+    margin:0 0 16px; text-wrap:balance;
+  }
+  p{font-size:16.5px; color:var(--ink-2); margin:0 0 30px; max-width:52ch}
+
+  .saidas{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+  .saida{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:18px 20px; transition:border-color .18s, transform .18s;
+  }
+  .saida:hover{border-color:var(--blue); transform:translateY(-2px)}
+  .saida b{display:block; font-size:15px; font-weight:600; margin-bottom:3px}
+  .saida span{font-size:13.5px; color:var(--ink-2); line-height:1.5}
+
+  .voltar{
+    display:inline-flex; align-items:center; gap:8px; margin-top:28px;
+    font-size:14.5px; font-weight:600; color:var(--blue);
+  }
+
+  footer{
+    padding-block:22px; border-top:1px solid var(--line);
+    font-size:13px; color:var(--ink-2);
+    max-width:620px; margin:0 auto; width:100%;
+  }
+
+  @media (max-width:560px){
+    .saidas{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="topo">
+  <a class="marca" href="/home-office-hub/">
+    <img src="/home-office-hub/logo.png" alt="" onerror="this.style.display='none'">
+    Home Office Hub
+  </a>
+</div>
+
+<main>
+  <div class="etiqueta">Erro 404</div>
+  <h1>Esta página não existe mais</h1>
+  <p>
+    Ou o endereço veio com algum erro de digitação, ou era uma vaga que já foi
+    preenchida e saiu do ar. As vagas mudam bastante por aqui.
+  </p>
+
+  <div class="saidas">
+    <a class="saida" href="/home-office-hub/vagas.html">
+      <b>Ver as vagas abertas</b>
+      <span>A lista de hoje, com filtro por área e empresa.</span>
+    </a>
+    <a class="saida" href="/home-office-hub/cursos.html">
+      <b>Cursos</b>
+      <span>Aprender o trabalho antes da primeira candidatura.</span>
+    </a>
+    <a class="saida" href="/home-office-hub/empresas.html">
+      <b>Empresas</b>
+      <span>Quem contrata brasileiro, e como cada uma funciona.</span>
+    </a>
+    <a class="saida" href="/home-office-hub/como-funciona.html">
+      <b>Como funciona</b>
+      <span>Do primeiro cadastro ao dinheiro na conta.</span>
+    </a>
+  </div>
+
+  <a class="voltar" href="/home-office-hub/">
+    Voltar para o início
+  </a>
+</main>
+
+<footer>Home Office Hub</footer>
+
+</body>
+</html>

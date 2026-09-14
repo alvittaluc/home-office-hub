@@ -15,6 +15,9 @@
 <meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+
+<link rel="canonical" href="https://alvittaluc.github.io/home-office-hub/">
+<link rel="alternate" type="application/rss+xml" title="Vagas abertas — Home Office Hub" href="feed.xml">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -240,6 +243,89 @@
   }
   .passo h3 { font-weight:600; font-size:16px; color:var(--ink); margin-bottom:8px; letter-spacing:-0.01em; }
   .passo p { font-size:14px; color:var(--ink-2); line-height:1.6; }
+
+  /* ═══════════ CURSOS ═══════════
+     Faixa levemente mais escura, para quebrar a sequência de seções
+     claras e marcar que aqui começa outro assunto. As trilhas são
+     listas numeradas de propósito: os cursos têm ordem de verdade. */
+  .ini-cursos {
+    margin-top:82px; padding:66px 0 62px;
+    background:var(--bg-soft);
+    border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);
+  }
+  .ini-dentro { max-width:var(--wrap); margin:0 auto; padding:0 22px; }
+  .ini-cabeca { max-width:640px; margin-bottom:38px; }
+  .ini-cabeca h2 { text-wrap:balance; }
+  .ini-cabeca p { font-size:16px; color:var(--ink-2); margin-top:14px; }
+  .ini-fatos {
+    display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px;
+    font-size:13.5px; color:var(--ink-3);
+  }
+  .ini-fatos span { display:flex; align-items:center; gap:8px; }
+  .ini-fatos span::before {
+    content:''; width:4px; height:4px; border-radius:50%; background:var(--signal-dim); flex:none;
+  }
+
+  /* align-items:start para cada trilha ter a altura do próprio conteúdo.
+     Sem isso a trilha de 3 cursos esticava até a de 4 e sobrava um vazio. */
+  .ini-trilhas { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+  .ini-trilha { background:var(--panel); border:1px solid var(--line-soft); border-radius:18px; padding:26px 26px 20px; }
+  .ini-trilha > .eyebrow { margin-bottom:10px; }
+  .ini-trilha h3 {
+    font-family:var(--display); font-weight:400; font-size:23px; line-height:1.15;
+    letter-spacing:-0.012em; color:var(--ink); margin:0 0 4px;
+  }
+  .ini-trilha > p { font-size:14px; color:var(--ink-2); line-height:1.6; margin:0 0 16px; }
+
+  .ini-lista { display:flex; flex-direction:column; }
+  .ini-curso {
+    display:grid; grid-template-columns:26px 1fr 14px; gap:12px; align-items:center;
+    padding:13px 0; border-top:1px solid var(--line-soft);
+    font-size:14.5px; color:var(--ink); text-decoration:none;
+    transition:color .16s;
+  }
+  .ini-curso .num {
+    font-size:13px; color:var(--ink-3); font-variant-numeric:tabular-nums;
+    transition:color .16s;
+  }
+  .ini-curso .arr { color:var(--signal); opacity:0; transform:translateX(-4px); transition:opacity .16s, transform .16s; }
+  .ini-curso:hover { color:var(--signal); }
+  .ini-curso:hover .num { color:var(--signal); }
+  .ini-curso:hover .arr { opacity:1; transform:none; }
+
+  .ini-cursos .link-seta { margin-top:26px; }
+
+  /* ═══════════ FERRAMENTAS ═══════════
+     Só duas, e de propósito mais quietas que os cursos: linhas largas
+     em vez de cartões, para não abrir uma grade com um buraco. */
+  .ini-ferr { max-width:var(--wrap); margin:0 auto; padding:74px 22px 0; }
+  .ini-ferr .ini-cabeca { margin-bottom:30px; }
+  /* largura própria: sem isso a seta ficava a meia tela de distância do texto */
+  .ini-linhas { display:flex; flex-direction:column; gap:12px; max-width:880px; }
+  .ini-ferramenta {
+    display:grid; grid-template-columns:46px 1fr auto; gap:18px; align-items:center;
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:16px;
+    padding:20px 24px; text-decoration:none;
+    transition:border-color .18s, transform .18s, box-shadow .18s;
+  }
+  .ini-ferramenta:hover { border-color:var(--line); transform:translateY(-2px); box-shadow:var(--sombra-alta); }
+  .ini-icone {
+    width:46px; height:46px; border-radius:13px; display:grid; place-items:center;
+    background:var(--signal-suave); color:var(--signal);
+  }
+  .ini-ferramenta h3 { font-weight:600; font-size:16.5px; color:var(--ink); margin:0 0 3px; letter-spacing:-0.01em; }
+  .ini-ferramenta p { font-size:14px; color:var(--ink-2); line-height:1.55; margin:0; max-width:58ch; }
+  .ini-ferramenta .arr { color:var(--signal); font-size:15px; transition:transform .18s; }
+  .ini-ferramenta:hover .arr { transform:translateX(3px); }
+
+  @media (max-width:860px){
+    .ini-trilhas { grid-template-columns:1fr; }
+  }
+  @media (max-width:560px){
+    .ini-ferramenta { grid-template-columns:40px 1fr; gap:14px; padding:18px 18px; }
+    .ini-ferramenta .arr { display:none; }
+    .ini-icone { width:40px; height:40px; border-radius:11px; }
+  }
 
   /* ═══════════ CHAMADA FINAL ═══════════ */
   .fim { max-width:var(--wrap); margin:0 auto; padding:80px 22px 0; }
@@ -566,6 +652,112 @@
   </div>
 </section>
 
+<!-- ══════════ CURSOS ══════════ -->
+<section class="ini-cursos">
+  <div class="ini-dentro">
+
+    <div class="ini-cabeca">
+      <div class="eyebrow">Cursos</div>
+      <h2 class="sec">Chegar na candidatura já sabendo o que a empresa mede</h2>
+      <p>
+        Quase toda vaga tem um teste de entrada, e é ali que a maioria para. Estes cursos
+        cobrem o que a prova cobra: o vocabulário da área, o que é uma guideline, e por que
+        a consistência vale mais que a opinião.
+      </p>
+      <div class="ini-fatos">
+        <span>7 cursos</span>
+        <span>cerca de 1 hora cada</span>
+        <span>com certificado</span>
+        <span>grátis</span>
+      </div>
+    </div>
+
+    <div class="ini-trilhas">
+
+      <div class="ini-trilha">
+        <div class="eyebrow">Trilha 1</div>
+        <h3>Avaliação e julgamento</h3>
+        <p>Do porquê o trabalho existe até a régua de segurança. Na ordem em que fazem sentido.</p>
+        <div class="ini-lista">
+          <a class="ini-curso" href="curso-fundamentos.html">
+            <span class="num">01</span><span>Fundamentos da Avaliação de IA</span><span class="arr">→</span>
+          </a>
+          <a class="ini-curso" href="curso-guidelines.html">
+            <span class="num">02</span><span>Guidelines, Rubricas e Consistência</span><span class="arr">→</span>
+          </a>
+          <a class="ini-curso" href="curso-comparacao.html">
+            <span class="num">03</span><span>Comparação de Respostas e LLM como Juiz</span><span class="arr">→</span>
+          </a>
+          <a class="ini-curso" href="curso-seguranca.html">
+            <span class="num">04</span><span>Segurança, Red Teaming e Conteúdo Sensível</span><span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="ini-trilha">
+        <div class="eyebrow">Trilha 2</div>
+        <h3>Voz e áudio</h3>
+        <p>A área com mais vaga para quem fala português do Brasil, e a que menos tem material.</p>
+        <div class="ini-lista">
+          <a class="ini-curso" href="curso-tts.html">
+            <span class="num">01</span><span>Avaliação de TTS: MOS, CMOS e as Escalas</span><span class="arr">→</span>
+          </a>
+          <a class="ini-curso" href="curso-transcricao.html">
+            <span class="num">02</span><span>Transcrição e Convenções</span><span class="arr">→</span>
+          </a>
+          <a class="ini-curso" href="curso-fonetica.html">
+            <span class="num">03</span><span>Fonética Prática para Quem Avalia Voz</span><span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="cursos.html" class="link-seta">Ver todos os cursos <span class="arr">→</span></a>
+
+  </div>
+</section>
+
+<!-- ══════════ FERRAMENTAS ══════════ -->
+<section class="ini-ferr">
+
+  <div class="ini-cabeca">
+    <div class="eyebrow">Ferramentas</div>
+    <h2 class="sec">Duas coisas que resolvem o dia a dia</h2>
+  </div>
+
+  <div class="ini-linhas">
+
+    <a class="ini-ferramenta" href="transcricao.html">
+      <span class="ini-icone">
+        <svg width="21" height="21" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M10 2.2a2.6 2.6 0 0 0-2.6 2.6v5.1a2.6 2.6 0 1 0 5.2 0V4.8A2.6 2.6 0 0 0 10 2.2Z" fill="currentColor"/>
+          <path d="M4.5 9.3v.9a5.5 5.5 0 0 0 11 0v-.9M10 15.7v2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>
+        <h3>Transcrição ao vivo</h3>
+        <p>Transcreve o áudio que está tocando no computador, enquanto toca, no idioma original ou já em português. Serve para acompanhar reunião, aula ou vídeo em outro idioma.</p>
+      </span>
+      <span class="arr">→</span>
+    </a>
+
+    <a class="ini-ferramenta" href="controle.html">
+      <span class="ini-icone">
+        <svg width="21" height="21" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3.5 16.5V9M8 16.5V4M12.5 16.5v-5M17 16.5V7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>
+        <h3>Meu Controle</h3>
+        <p>Onde você aplicou e em que pé está cada processo, mais as horas e os ganhos do trabalho que você já faz.</p>
+      </span>
+      <span class="arr">→</span>
+    </a>
+
+  </div>
+</section>
+
 <!-- ══════════ CHAMADA FINAL ══════════ -->
 <section class="fim">
   <div class="escuro">
@@ -581,7 +773,7 @@
 <script src="layout.js"></script>
 <script>
 montarLayout("inicio");
-revelarAoRolar(".abertura, .areas .area, .passos-sec .passo, .fim .escuro");
+revelarAoRolar(".abertura, .areas .area, .passos-sec .passo, .ini-trilha, .ini-ferramenta, .fim .escuro");
 
 // onda de áudio da seção de coleta
 (function(){

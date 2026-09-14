@@ -171,6 +171,21 @@ function revelarAoRolar(seletores) {
   const alvos = document.querySelectorAll(seletores);
   if (!alvos.length) return;
 
+  /* Seguro contra página em branco.
+     O efeito abaixo esconde os blocos e devolve quando eles entram na tela.
+     Se isso não acontecer (impressão, salvar em PDF, navegador estranho,
+     aba aberta em segundo plano), a página ficaria vazia. Estas três linhas
+     garantem que o conteúdo sempre aparece. */
+  function mostrarTudo() {
+    alvos.forEach(el => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      el.style.willChange = "auto";
+    });
+  }
+  setTimeout(mostrarTudo, 3000);
+  window.addEventListener("beforeprint", mostrarTudo);
+
   alvos.forEach(el => {
     el.style.opacity = "0";
     el.style.transform = "translateY(16px)";
@@ -190,3 +205,32 @@ function revelarAoRolar(seletores) {
 
   alvos.forEach(el => obs.observe(el));
 }
+
+/* ══════════════════════════════════════════════════════════════
+   MEDIÇÃO DE VISITAS
+   Conta quantas pessoas abrem cada página. Não usa cookie, não
+   guarda nada sobre quem visitou, e por isso não exige aviso de
+   cookies no site.
+
+   PARA LIGAR:
+   1. Entre em dash.cloudflare.com, menu "Analytics & Logs",
+      depois "Web Analytics", e clique em "Add a site".
+   2. Informe o endereço:  alvittaluc.github.io/home-office-hub
+   3. A Cloudflare mostra um trecho de código com um token, que é
+      um monte de letras e números entre aspas.
+   4. Copie SÓ esse token e cole na linha abaixo, no lugar de
+      COLE-O-TOKEN-AQUI, mantendo as aspas.
+
+   Enquanto o token não estiver preenchido, nada é carregado e o
+   site funciona normalmente.
+   ══════════════════════════════════════════════════════════════ */
+const TOKEN_MEDICAO = "COLE-O-TOKEN-AQUI";
+
+(function medicao() {
+  if (!TOKEN_MEDICAO || TOKEN_MEDICAO === "COLE-O-TOKEN-AQUI") return;
+  const s = document.createElement("script");
+  s.defer = true;
+  s.src = "https://static.cloudflareinsights.com/beacon.min.js";
+  s.setAttribute("data-cf-beacon", JSON.stringify({ token: TOKEN_MEDICAO }));
+  document.head.appendChild(s);
+})();

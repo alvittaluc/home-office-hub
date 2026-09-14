@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aviso do canal</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+
+<!-- ══════════════════════════════════════════════════════════════
+     PÁGINA DE USO INTERNO.
+     Não entra no menu, não entra no sitemap e pede aos buscadores
+     para não indexar. Serve só para montar o texto do aviso do
+     canal: escolha o período, desmarque o que não quiser, clique
+     em copiar e cole no WhatsApp.
+
+     Guarde o endereço nos favoritos:
+     .../home-office-hub/aviso-canal.html
+
+     Ela não usa o estilo.css nem o layout.js de propósito, para
+     nunca aparecer com a cara de página do site.
+     ══════════════════════════════════════════════════════════════ -->
+
+<style>
+  :root{
+    --paper:#F7F4EF; --panel:#FFFFFF; --soft:#F1ECE3; --line:#DED7CA; --line-2:#EAE4D9;
+    --ink:#10203A; --ink-2:#54606F; --ink-3:#8A94A1; --blue:#1A4893; --amber:#A85D24;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
+    line-height:1.6; padding-left:20px; padding-right:20px; padding-block:0 70px;
+  }
+  .wrap{max-width:1020px; margin:0 auto}
+
+  header{padding-block:40px 26px; border-bottom:1px solid var(--line)}
+  .etiqueta{
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--amber);
+    display:flex; align-items:center; gap:9px; margin-bottom:14px; font-weight:600;
+  }
+  .etiqueta::before{content:''; width:24px; height:1px; background:var(--amber); flex:none}
+  h1{
+    font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+    font-size:34px; line-height:1.1; letter-spacing:-.015em; margin:0 0 10px;
+  }
+  header p{margin:0; color:var(--ink-2); font-size:15px; max-width:60ch}
+
+  .controles{
+    display:flex; flex-wrap:wrap; align-items:flex-end; gap:20px;
+    padding-block:24px; border-bottom:1px solid var(--line-2);
+  }
+  .campo{display:flex; flex-direction:column; gap:6px}
+  .campo label{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
+  select{
+    font:inherit; font-size:14.5px; color:var(--ink); background:var(--panel);
+    border:1px solid var(--line); border-radius:10px; padding:9px 12px; min-width:210px;
+  }
+  .contagem{margin-left:auto; font-size:14px; color:var(--ink-2)}
+  .contagem b{color:var(--ink); font-variant-numeric:tabular-nums}
+
+  .colunas{display:grid; grid-template-columns:1fr 1fr; gap:26px; padding-top:26px; align-items:start}
+
+  h2{font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3);
+     font-weight:600; margin:0 0 12px}
+
+  .lista{border:1px solid var(--line-2); border-radius:14px; background:var(--panel); overflow:hidden}
+  .linha{display:grid; grid-template-columns:20px 1fr; gap:11px; padding:12px 15px;
+         border-bottom:1px solid var(--line-2); align-items:start}
+  .linha:last-child{border-bottom:0}
+  .linha input{margin:3px 0 0; accent-color:var(--blue); width:16px; height:16px}
+  .linha b{display:block; font-size:14px; font-weight:600; line-height:1.4}
+  .linha span{font-size:12.5px; color:var(--ink-2)}
+  .vazio{padding:26px 18px; color:var(--ink-3); font-size:14px; text-align:center}
+
+  textarea{
+    width:100%; min-height:400px; resize:vertical;
+    font-family:'Geist',system-ui,sans-serif; font-size:14px; line-height:1.65;
+    color:var(--ink); background:var(--panel);
+    border:1px solid var(--line); border-radius:14px; padding:16px 18px;
+  }
+  textarea:focus{outline:2px solid var(--blue); outline-offset:2px}
+
+  .acoes{display:flex; gap:10px; align-items:center; margin-top:12px}
+  button{
+    font:inherit; font-size:14.5px; font-weight:600; cursor:pointer;
+    border-radius:999px; padding:11px 22px; border:1px solid transparent;
+    background:var(--blue); color:#fff; transition:opacity .15s;
+  }
+  button:hover{opacity:.9}
+  button.claro{background:var(--panel); color:var(--ink); border-color:var(--line)}
+  .aviso{font-size:13.5px; color:var(--ink-2)}
+
+  @media (max-width:820px){
+    .colunas{grid-template-columns:1fr}
+    .contagem{margin-left:0; width:100%}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="etiqueta">Uso interno</div>
+  <h1>Aviso do canal</h1>
+  <p>
+    Monta o texto das vagas novas para colar no canal do WhatsApp.
+    Escolha o período, desmarque o que não for entrar e copie.
+  </p>
+</header>
+
+<div class="controles">
+  <div class="campo">
+    <label for="periodo">Período</label>
+    <select id="periodo">
+      <option value="7" selected>Entraram nos últimos 7 dias</option>
+      <option value="14">Últimos 14 dias</option>
+      <option value="30">Últimos 30 dias</option>
+      <option value="3">Últimos 3 dias</option>
+    </select>
+  </div>
+  <div class="campo">
+    <label for="formato">Formato</label>
+    <select id="formato">
+      <option value="cada" selected>Link em cada vaga</option>
+      <option value="fim">Um link só no fim</option>
+    </select>
+  </div>
+  <div class="contagem" id="contagem">Carregando…</div>
+</div>
+
+<div class="colunas">
+
+  <section>
+    <h2>Vagas do período</h2>
+    <div class="lista" id="lista"><div class="vazio">Carregando…</div></div>
+  </section>
+
+  <section>
+    <h2>Texto do aviso</h2>
+    <textarea id="texto" spellcheck="false"></textarea>
+    <div class="acoes">
+      <button id="copiar" type="button">Copiar texto</button>
+      <button class="claro" id="marcar" type="button">Marcar todas</button>
+      <span class="aviso" id="recado"></span>
+    </div>
+  </section>
+
+</div>
+
+</div>
+
+<script>
+const SITE = "https://alvittaluc.github.io/home-office-hub/";
+
+let VAGAS = [];
+let NOMES = {};
+
+function diasDesde(iso) {
+  if (!iso) return 9999;
+  const d = new Date(iso + "T00:00:00Z");
+  if (isNaN(d)) return 9999;
+  return Math.floor((Date.now() - d.getTime()) / 86400000);
+}
+
+function doPeriodo() {
+  const limite = Number(document.getElementById("periodo").value);
+  return VAGAS
+    .filter(v => diasDesde(v.data_vista || v.data_ref) <= limite)
+    .sort((a, b) => (b.data_vista || "").localeCompare(a.data_vista || ""));
+}
+
+function montarLista() {
+  const lista = document.getElementById("lista");
+  const vagas = doPeriodo();
+  document.getElementById("contagem").innerHTML =
+    "<b>" + vagas.length + "</b> vaga(s) no período";
+
+  if (!vagas.length) {
+    lista.innerHTML = '<div class="vazio">Nenhuma vaga entrou nesse período.</div>';
+    montarTexto();
+    return;
+  }
+
+  lista.innerHTML = vagas.map((v, i) => `
+    <label class="linha">
+      <input type="checkbox" data-i="${i}" checked>
+      <span>
+        <b>${esc(v.titulo || "")}</b>
+        <span>${esc(NOMES[v.empresa] || v.empresa || "")} · entrou há ${diasDesde(v.data_vista || v.data_ref)} dia(s)</span>
+      </span>
+    </label>`).join("");
+
+  lista.querySelectorAll("input").forEach(c =>
+    c.addEventListener("change", montarTexto));
+  montarTexto();
+}
+
+function montarTexto() {
+  const vagas = doPeriodo();
+  const marcadas = [];
+  document.querySelectorAll("#lista input:checked").forEach(c => {
+    const v = vagas[Number(c.dataset.i)];
+    if (v) marcadas.push(v);
+  });
+
+  const formato = document.getElementById("formato").value;
+  const linhas = [];
+
+  if (!marcadas.length) {
+    document.getElementById("texto").value = "";
+    return;
+  }
+
+  linhas.push("*Vagas novas no Home Office Hub*");
+  linhas.push("");
+
+  marcadas.forEach(v => {
+    const empresa = NOMES[v.empresa] || v.empresa || "";
+    linhas.push("• " + (v.titulo || "") + (empresa ? " — " + empresa : ""));
+    if (formato === "cada") {
+      linhas.push(SITE + "vaga.html?id=" + (v.id || ""));
+    }
+    linhas.push("");
+  });
+
+  linhas.push("Todas abertas para quem mora no Brasil.");
+  if (formato === "fim") linhas.push(SITE + "vagas.html");
+
+  document.getElementById("texto").value = linhas.join("\n").trim();
+}
+
+function esc(s) {
+  return String(s || "").replace(/[&<>"]/g, c =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+function recado(msg) {
+  const el = document.getElementById("recado");
+  el.textContent = msg;
+  setTimeout(() => { el.textContent = ""; }, 2600);
+}
+
+document.getElementById("copiar").addEventListener("click", async () => {
+  const t = document.getElementById("texto");
+  if (!t.value) { recado("Nada marcado para copiar."); return; }
+  try {
+    await navigator.clipboard.writeText(t.value);
+    recado("Copiado.");
+  } catch (e) {
+    t.select();
+    recado("Use Ctrl+C: o texto já está selecionado.");
+  }
+});
+
+document.getElementById("marcar").addEventListener("click", () => {
+  const caixas = document.querySelectorAll("#lista input");
+  const faltando = [...caixas].some(c => !c.checked);
+  caixas.forEach(c => { c.checked = faltando; });
+  document.getElementById("marcar").textContent = faltando ? "Desmarcar todas" : "Marcar todas";
+  montarTexto();
+});
+
+document.getElementById("periodo").addEventListener("change", montarLista);
+document.getElementById("formato").addEventListener("change", montarTexto);
+
+(async function iniciar() {
+  try {
+    const [rv, re] = await Promise.all([
+      fetch("vagas.json?v=" + Date.now()),
+      fetch("empresas.json?v=" + Date.now())
+    ]);
+    VAGAS = (await rv.json()).vagas || [];
+    ((await re.json()).empresas || []).forEach(e => { NOMES[e.id] = e.nome; });
+    montarLista();
+  } catch (e) {
+    document.getElementById("lista").innerHTML =
+      '<div class="vazio">Não deu para ler as vagas. Abra esta página pelo endereço do site, não pelo arquivo no computador.</div>';
+    document.getElementById("contagem").textContent = "";
+  }
+})();
+</script>
+
+</body>
+</html>

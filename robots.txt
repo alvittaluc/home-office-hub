@@ -1,0 +1,21 @@
+# Home Office Hub
+# Este arquivo diz aos buscadores o que eles podem visitar.
+#
+# ATENÇÃO, IMPORTANTE:
+# Buscador só lê robots.txt na raiz do domínio, ou seja em
+# alvittaluc.github.io/robots.txt. Como o site mora numa subpasta
+# (/home-office-hub/), este arquivo aqui ainda NÃO tem efeito.
+# Ele passa a valer sozinho no dia em que o site ganhar domínio
+# próprio. Até lá, quem avisa o Google é o sitemap enviado pelo
+# Search Console, o que já funciona.
+
+User-agent: *
+Allow: /
+
+# Página de redirecionamento antiga, não precisa entrar na busca.
+Disallow: /trabalho.html
+
+# Página de uso interno, para montar o aviso do canal.
+Disallow: /aviso-canal.html
+
+Sitemap: https://alvittaluc.github.io/home-office-hub/sitemap.xml
