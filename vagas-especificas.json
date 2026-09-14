@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-14T11:51:08.805447+00:00",
-  "atualizado_br": "14/09/2026 às 11:51",
+  "atualizado_em": "2026-09-14T14:33:02.855939+00:00",
+  "atualizado_br": "14/09/2026 às 14:33",
   "total": 174,
   "areas": [
     "Biologia e Ciencias da Vida",
@@ -2795,22 +2795,6 @@
     },
     {
       "empresa": "turing",
-      "titulo": "Business Analyst - US Educational Raters - Gemini",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://work.turing.com/jobs?jobId=100063",
-      "commitment": "Analyst",
-      "fonte": "direto",
-      "data_post": "2026-08-14",
-      "area": "Economia e Negocios",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-14",
-      "data_oficial": true,
-      "id": "244a05fddf"
-    },
-    {
-      "empresa": "turing",
       "titulo": "Senior Marketing Managers (LATAM, US)",
       "local": "Remoto · Mundial",
       "categoria": "ai",
@@ -2824,6 +2808,22 @@
       "data_ref": "2026-08-18",
       "data_oficial": true,
       "id": "dabff4898e"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "Business Analyst - US Educational Raters - Gemini",
+      "local": "Remoto · Mundial",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://work.turing.com/jobs?jobId=100063",
+      "commitment": "Analyst",
+      "fonte": "direto",
+      "data_post": "2026-08-14",
+      "area": "Economia e Negocios",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-14",
+      "data_oficial": true,
+      "id": "244a05fddf"
     }
   ]
 }
