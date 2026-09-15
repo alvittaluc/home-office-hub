@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-14T14:33:02.855939+00:00",
-  "atualizado_br": "14/09/2026 às 14:33",
-  "total": 72,
+  "atualizado_em": "2026-09-15T12:58:12.191168+00:00",
+  "atualizado_br": "15/09/2026 às 12:58",
+  "total": 73,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -1002,6 +1002,21 @@
     },
     {
       "empresa": "turing",
+      "titulo": "LLM Trainer - Agent Function call",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.turing.com/jobs?jobId=106153",
+      "commitment": "Other",
+      "fonte": "direto",
+      "data_post": "2026-09-14",
+      "data_vista": "2026-09-15",
+      "data_ref": "2026-09-14",
+      "data_oficial": true,
+      "id": "6501a41ea4"
+    },
+    {
+      "empresa": "turing",
       "titulo": "MLE Bench – Data Analyst",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -1047,33 +1062,18 @@
     },
     {
       "empresa": "mercor",
-      "titulo": "Personalized Life Assistant Expert",
+      "titulo": "PDF Annotation & Transcription Experts – Odiya",
       "local": "Remoto · Mundial",
       "categoria": "sme",
       "badge": "Especialista",
-      "url": "https://work.mercor.com/jobs/list_AAABnr6UO2Q-_nQyuwJD6Ykq/personalized-life-assistant-expert",
+      "url": "https://work.mercor.com/jobs/list_AAABoGAQfhxYOAZAd21EGaDv/pdf-annotation-transcription-experts-odiya",
       "commitment": "",
       "fonte": "direto",
       "data_post": "",
-      "data_vista": "2026-09-13",
-      "data_ref": "2026-09-13",
+      "data_vista": "2026-09-15",
+      "data_ref": "2026-09-15",
       "data_oficial": false,
-      "id": "e122e102e8"
-    },
-    {
-      "empresa": "mercor",
-      "titulo": "Bilingual Writer - Portuguese (Brazil)",
-      "local": "Remoto · Brasil",
-      "categoria": "write",
-      "badge": "Escrita",
-      "url": "https://work.mercor.com/jobs/list_AAABoGrsxlOwlscUlUdGdJmZ/bilingual-writer-portuguese-brazil",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-11",
-      "data_oficial": false,
-      "id": "88a47d5e8b"
+      "id": "065d3238ba"
     },
     {
       "empresa": "turing",
@@ -1104,6 +1104,21 @@
       "data_ref": "2026-09-03",
       "data_oficial": true,
       "id": "e9aed46285"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "LLM Annotator - Master's Degree",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.turing.com/jobs?jobId=106222",
+      "commitment": "Analyst",
+      "fonte": "direto",
+      "data_post": "2026-09-14",
+      "data_vista": "2026-09-15",
+      "data_ref": "2026-09-14",
+      "data_oficial": true,
+      "id": "ec971e76be"
     },
     {
       "empresa": "turing",
