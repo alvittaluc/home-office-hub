@@ -443,101 +443,27 @@ html { scroll-behavior:smooth; }
 .cu-quiz-acoes { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
 .cu-quiz-res { font-size:15px !important; font-weight:600; margin:18px 0 0 !important; }
 
-/* ── certificado ── */
-.cu-cert-area { margin-top:46px; padding-top:34px; border-top:1px solid var(--line,#DED7CA); }
-.cu-cert-form { display:flex; flex-wrap:wrap; align-items:flex-end; gap:12px; margin:18px 0 0; }
-.cu-campo { display:flex; flex-direction:column; gap:6px; flex:1 1 260px; }
-.cu-campo span { font-size:12.5px; color:var(--ink-3,#8A94A1); }
-.cu-campo input {
-  font-family:inherit; font-size:15px; color:var(--ink,#10203A);
-  background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA);
-  border-radius:12px; padding:12px 14px; width:100%;
+/* ── conclusão do curso ── */
+.cu-fim-curso {
+  margin-top:46px; padding:34px 32px; border-radius:20px;
+  background:var(--bg-soft,#F1ECE3); border:1px solid var(--line-soft,#EAE4D9);
+  text-align:center;
 }
-.cu-campo input:focus { outline:none; border-color:var(--signal,#1A4893); }
-.cu-cert-trava { font-size:13px !important; color:var(--amber,#A85D24) !important; flex:1 1 100%; margin:2px 0 0 !important; }
-.cu-cert-area.cu-liberado .cu-cert-trava { display:none; }
-
-.cu-cert { margin-top:26px; }
-.cu-cert-borda {
-  background:var(--panel,#FFF); border:1px solid var(--line,#DED7CA); border-radius:20px;
-  padding:44px 42px 34px; text-align:center; position:relative;
+.cu-fim-selo {
+  width:52px; height:52px; margin:0 auto 18px; border-radius:50%;
+  display:grid; place-items:center;
+  background:var(--signal,#1A4893); color:#fff;
 }
-.cu-cert-borda::before {
-  content:''; position:absolute; inset:9px; border-radius:14px;
-  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); pointer-events:none;
+.cu-fim-curso h3 {
+  font-family:'Hedvig Letters Serif',Georgia,serif !important;
+  font-weight:400 !important; font-size:27px !important; line-height:1.15;
+  color:var(--ink,#10203A); margin:0 0 10px !important;
 }
-.cu-cert-sobre { font-size:11px !important; letter-spacing:0.18em; text-transform:uppercase; color:var(--signal,#1A4893) !important; margin:0 0 24px !important; }
-.cu-cert-nome {
-  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:clamp(26px,3.4vw,38px) !important;
-  line-height:1.15; color:var(--ink,#10203A) !important; margin:0 0 14px !important;
+.cu-fim-curso p {
+  font-size:15.5px !important; line-height:1.62; color:var(--ink-2,#54606F);
+  margin:0 auto !important; max-width:52ch;
 }
-.cu-cert-txt { font-size:14.5px !important; color:var(--ink-2,#54606F) !important; margin:0 0 10px !important; }
-.cu-cert-curso {
-  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:clamp(20px,2.4vw,26px) !important;
-  color:var(--signal,#1A4893) !important; margin:0 0 20px !important;
-}
-.cu-cert-conteudo { max-width:62ch; margin:0 auto 26px !important; font-size:13.5px !important; line-height:1.65; }
-.cu-cert-pe { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; border-top:1px solid var(--line-soft,#EAE4D9); padding-top:20px; margin-top:6px; }
-.cu-cert-pe b { display:block; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#8A94A1); margin-bottom:5px; }
-.cu-cert-pe span { font-size:13px; color:var(--ink,#10203A); }
-.cu-cert-emissor { font-size:12px !important; color:var(--ink-3,#8A94A1) !important; margin:22px 0 0 !important; }
-.cu-cert-acoes { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
-.cu-cert-nota { font-size:13px !important; color:var(--ink-3,#8A94A1) !important; margin:12px 0 0 !important; }
-
-.cu-fim { margin-top:46px; padding:26px 26px 28px; border-radius:18px; background:var(--bg-soft,#F1ECE3); }
-.cu-fim-bts { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
-
-/* ── termo explicado na primeira vez ── */
-.cu-nota-termo {
-  border-left:3px solid var(--signal-dim,#4E9AC8); background:rgba(78,154,200,0.07);
-  border-radius:0 12px 12px 0; padding:13px 16px; margin:0 0 18px;
-}
-.cu-conteudo .cu-nota-termo { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); }
-.cu-nota-termo b { color:var(--ink,#10203A); }
-
-/* ── glossário ── */
-.cu-glos { list-style:none; padding:0; margin:0 0 18px; }
-.cu-glos li {
-  padding:14px 0; border-top:1px solid var(--line-soft,#EAE4D9);
-}
-.cu-glos li:last-child { border-bottom:1px solid var(--line-soft,#EAE4D9); }
-.cu-conteudo .cu-glos li { font-size:15px; line-height:1.62; color:var(--ink-2,#54606F); }
-.cu-glos b { display:block; color:var(--ink,#10203A); font-weight:600; margin-bottom:4px; }
-.cu-glos i { font-style:normal; color:var(--ink-3,#8A94A1); font-size:13px; }
-
-/* ── correção de especificidade: .cu-conteudo p e li venciam as classes de figura ── */
-.cu-conteudo .cu-fig-cap { font-size:11px; }
-.cu-conteudo .cu-fig-nota { font-size:13px; }
-.cu-conteudo .cu-kap-tit { font-size:11px; }
-.cu-conteudo .cu-kap-sub { font-size:12.5px; }
-.cu-conteudo .cu-kap-form p { font-size:13px; }
-.cu-conteudo .cu-kap-caixa .cu-kap-num { font-size:26px; }
-.cu-conteudo .cu-kap-caixa .cu-kap-txt { font-size:12.5px; }
-.cu-conteudo .cu-tab-legenda { font-size:12px; }
-.cu-conteudo .cu-ds-tit { font-size:11px; }
-.cu-conteudo .cu-ds-sub { font-size:12.5px; }
-.cu-conteudo .cu-ds-frase { font-size:13px; }
-.cu-conteudo .cu-ciclo-loop { font-size:12px; }
-.cu-conteudo .cu-fontes li { font-size:14.5px; }
-.cu-conteudo .cu-selo { font-size:11px; }
-
-/* impressão: só o certificado */
-@media print {
-  @page { margin:12mm; }
-  body > * { display:none !important; }
-  body > .cu-wrap { display:block !important; max-width:none !important; padding:0 !important; }
-  .cu-wrap > * { display:none !important; }
-  .cu-wrap > .cu-grade { display:block !important; padding:0 !important; }
-  .cu-grade > * { display:none !important; }
-  .cu-grade > .cu-conteudo { display:block !important; max-width:none !important; margin:0 !important; }
-  .cu-conteudo > section.cu-aula { display:none !important; }
-  .cu-conteudo > section#quiz { display:block !important; animation:none !important; padding:0 !important; }
-  #quiz > * { display:none !important; }
-  #quiz > #certArea { display:block !important; margin:0 !important; padding:0 !important; border:0 !important; }
-  #certArea > * { display:none !important; }
-  #certArea > #certificado:not([hidden]) { display:block !important; margin:0 !important; }
-  .cu-cert-acoes, .cu-cert-nota { display:none !important; }
-}
+.cu-fim-curso .cu-bt-forte { margin-top:22px; }
 
 /* ── responsivo ── */
 @media (max-width:1239px){
@@ -622,7 +548,7 @@ html { scroll-behavior:smooth; }
       </span>
       <span class="cu-fato">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5"/></svg>
-        quiz e certificado no fim
+        quiz no fim
       </span>
     </div>
   </header>
@@ -684,9 +610,9 @@ html { scroll-behavior:smooth; }
           <a href="#a4-pratica">Prática: monte a sua rotina</a>
           <a href="#a4-resumo">Resumo da aula</a>
         </div>
-        <a class="cu-rail-item" href="#quiz" data-alvo="quiz" title="Quiz e certificado">
+        <a class="cu-rail-item" href="#quiz" data-alvo="quiz" title="Quiz">
           <i class="cu-rail-num">✓</i>
-          <span class="cu-rail-nome">Quiz e certificado</span>
+          <span class="cu-rail-nome">Quiz</span>
         </a>
         <a class="cu-rail-item" href="#glossario" data-alvo="glossario" title="Glossário">
           <i class="cu-rail-num">A</i>
@@ -1348,8 +1274,7 @@ html { scroll-behavior:smooth; }
       <section class="cu-aula" id="quiz">
         <div class="cu-aula-cap"><span>Avaliação final</span><i></i></div>
         <h2>Quiz do curso</h2>
-        <p class="cu-resumo-aula">Dez perguntas sobre as quatro aulas. Acertando oito ou mais, o certificado é
-          liberado com o seu nome. Pode responder quantas vezes quiser, e cada correção mostra o motivo da
+        <p class="cu-resumo-aula">Dez perguntas sobre as quatro aulas. Acertando oito ou mais, o curso é dado como concluído. Pode responder quantas vezes quiser, e cada correção mostra o motivo da
           resposta certa.</p>
 
         <form id="formQuiz" class="cu-quiz">
@@ -1478,56 +1403,20 @@ html { scroll-behavior:smooth; }
           <p class="cu-quiz-res" id="quizRes"></p>
         </form>
 
-        <!-- ══════════ CERTIFICADO ══════════ -->
-        <div class="cu-cert-area" id="certArea">
-          <h3 id="cert">Certificado de conclusão</h3>
-          <p>O certificado fica disponível depois de acertar oito das dez perguntas. Digite o nome como você
-            quer que ele apareça, sem abreviações.</p>
-
-          <div class="cu-cert-form" id="certForm">
-            <label class="cu-campo">
-              <span>Nome completo</span>
-              <input type="text" id="nomeCert" maxlength="70" autocomplete="name" placeholder="Seu nome completo">
-            </label>
-            <button type="button" class="cu-bt-forte" id="btGerar">Gerar certificado</button>
-            <p class="cu-cert-trava" id="certTrava">Responda o quiz acima para liberar.</p>
+        <!-- ══════════ CONCLUSÃO ══════════ -->
+        <div class="cu-fim-curso" id="fimCurso" hidden>
+          <div class="cu-fim-selo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 12.5l5.5 5.5L20 7"/>
+            </svg>
           </div>
-
-          <div id="certificado" class="cu-cert" hidden>
-            <div class="cu-cert-borda">
-              <p class="cu-cert-sobre">Certificado de conclusão</p>
-              <p class="cu-cert-nome" id="certNome"></p>
-              <p class="cu-cert-txt">concluiu o curso</p>
-              <p class="cu-cert-curso">Segurança, Red Teaming e Conteúdo Sensível</p>
-              <p class="cu-cert-txt cu-cert-conteudo">Quatro aulas sobre avaliação de segurança em sistemas de
-                IA: política de uso e taxonomia pública de riscos, gravidade, probabilidade e contexto, recusa
-                apropriada contra recusa excessiva, escada de respostas seguras, métodos e limites de red
-                teaming, e prática de trabalho com conteúdo sensível. Aproveitamento verificado por avaliação
-                final de dez questões.</p>
-              <div class="cu-cert-pe">
-                <div>
-                  <b>Carga horária</b>
-                  <span>1 hora, curso livre de curta duração</span>
-                </div>
-                <div>
-                  <b>Conclusão</b>
-                  <span id="certData"></span>
-                </div>
-                <div>
-                  <b>Código</b>
-                  <span id="certCod"></span>
-                </div>
-              </div>
-              <p class="cu-cert-emissor">Home Office Hub · Curso livre, sem vínculo acadêmico</p>
-            </div>
-          </div>
-
-          <div class="cu-cert-acoes" id="certAcoes" hidden>
-            <button type="button" class="cu-bt-forte" id="btImprimir">Salvar em PDF ou imprimir</button>
-            <button type="button" class="cu-bt-leve" id="btTrocarNome">Trocar o nome</button>
-          </div>
-          <p class="cu-cert-nota" id="certNota" hidden>Na janela de impressão, escolha "Salvar como PDF" no
-            campo de destino. O certificado sai sozinho, sem o resto da página.</p>
+          <h3>Parabéns, você concluiu o curso</h3>
+          <p>
+            Você passou no quiz de <b>Segurança, Red Teaming e Conteúdo Sensível</b>. O vocabulário e os critérios que apareceram
+            aqui são os mesmos que a empresa usa no teste de entrada e na conversa com o time.
+          </p>
+          <a class="cu-bt-forte" href="cursos.html">Ver os outros cursos</a>
         </div>
 
         <div class="cu-fim">
@@ -1908,13 +1797,13 @@ html { scroll-behavior:smooth; }
   /* ── quiz ── */
   var form = document.getElementById("formQuiz");
   var res = document.getElementById("quizRes");
-  var certArea = document.getElementById("certArea");
+  var fimCurso = document.getElementById("fimCurso");
   var MINIMO = 8;
 
-  function liberarCertificado(liberado) {
-    if (certArea) certArea.classList.toggle("cu-liberado", liberado);
+  function mostrarConclusao(passou) {
+    if (fimCurso) fimCurso.hidden = !passou;
   }
-  liberarCertificado(estado.aprovado === true);
+  mostrarConclusao(estado.aprovado === true);
 
   if (form) {
     form.addEventListener("submit", function (ev) {
@@ -1950,13 +1839,13 @@ html { scroll-behavior:smooth; }
       estado.aprovado = estado.aprovado === true || aprovado;
       estado.melhor = Math.max(estado.melhor || 0, acertos);
       gravar(estado);
-      liberarCertificado(estado.aprovado === true);
+      mostrarConclusao(estado.aprovado === true);
 
       if (res) {
         res.textContent = aprovado
-          ? "Você acertou " + acertos + " de 10. Aprovado, o certificado está liberado abaixo."
+          ? "Você acertou " + acertos + " de 10. Aprovado, o curso está concluído."
           : "Você acertou " + acertos + " de 10. Faltam " + (MINIMO - acertos) +
-            " para liberar o certificado. Leia os comentários das erradas e tente de novo.";
+            " para concluir. Leia os comentários das erradas e tente de novo.";
         res.style.color = aprovado ? "var(--signal,#1A4893)" : "var(--amber,#A85D24)";
       }
 
@@ -1977,77 +1866,6 @@ html { scroll-behavior:smooth; }
         form.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     }
-  }
-
-  /* ── certificado ── */
-  var nomeInput = document.getElementById("nomeCert");
-  var btGerar = document.getElementById("btGerar");
-  var cert = document.getElementById("certificado");
-  var certForm = document.getElementById("certForm");
-  var certAcoes = document.getElementById("certAcoes");
-  var certNota = document.getElementById("certNota");
-
-  function codigoDe(nome) {
-    var soma = 0;
-    for (var i = 0; i < nome.length; i++) soma = (soma * 31 + nome.charCodeAt(i)) % 1679616;
-    var base = soma.toString(36).toUpperCase();
-    while (base.length < 4) base = "0" + base;
-    return "SRT-" + base + "-" + new Date().getFullYear();
-  }
-
-  function mostrarCertificado(nome, data, codigo) {
-    document.getElementById("certNome").textContent = nome;
-    document.getElementById("certData").textContent = data;
-    document.getElementById("certCod").textContent = codigo;
-    if (cert) cert.hidden = false;
-    if (certAcoes) certAcoes.hidden = false;
-    if (certNota) certNota.hidden = false;
-    if (certForm) certForm.style.display = "none";
-  }
-
-  if (btGerar) {
-    btGerar.addEventListener("click", function () {
-      if (estado.aprovado !== true) {
-        if (nomeInput) nomeInput.blur();
-        var trava = document.getElementById("certTrava");
-        if (trava) {
-          trava.textContent = "Para liberar, acerte pelo menos 8 das 10 perguntas do quiz acima.";
-          trava.style.fontWeight = "600";
-        }
-        if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
-      }
-      var nome = (nomeInput ? nomeInput.value : "").trim().replace(/\s+/g, " ");
-      if (nome.length < 3) {
-        if (nomeInput) { nomeInput.focus(); nomeInput.style.borderColor = "#A85D24"; }
-        return;
-      }
-      var hoje = new Date();
-      var data = hoje.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
-      var codigo = codigoDe(nome);
-      estado.nome = nome; estado.data = data; estado.codigo = codigo;
-      gravar(estado);
-      mostrarCertificado(nome, data, codigo);
-      if (cert) cert.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-  }
-
-  if (estado.aprovado === true && estado.nome && estado.data && estado.codigo) {
-    mostrarCertificado(estado.nome, estado.data, estado.codigo);
-  }
-
-  var btImprimir = document.getElementById("btImprimir");
-  if (btImprimir) btImprimir.addEventListener("click", function () { window.print(); });
-
-  var btTrocar = document.getElementById("btTrocarNome");
-  if (btTrocar) {
-    btTrocar.addEventListener("click", function () {
-      if (cert) cert.hidden = true;
-      if (certAcoes) certAcoes.hidden = true;
-      if (certNota) certNota.hidden = true;
-      if (certForm) certForm.style.display = "";
-      if (nomeInput) { nomeInput.value = estado.nome || ""; nomeInput.focus(); }
-    });
   }
 
   /* ── abre a página certa ── */

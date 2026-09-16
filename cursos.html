@@ -37,14 +37,14 @@ html.f-solto .eyebrow {
 html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#1A4893; }
 
 /* ══════════════════════════════════════════════════════════════
-   CURSOS — vitrine. Um curso por cartão.
-   Para acrescentar o próximo, copie um bloco <a class="c-card">
-   e troque ícone, título, texto, etiquetas e o link.
+   CURSOS — uma trilha por bloco, com os cursos listados dentro.
+   Para acrescentar um curso, copie um bloco <li> e troque o
+   número, o título, a descrição, a linha de apoio e o link.
    ══════════════════════════════════════════════════════════════ */
 
 .c-main { max-width:var(--wrap,1180px); margin:0 auto; padding:52px 20px 100px; }
 
-.c-hero { max-width:680px; margin-bottom:44px; }
+.c-hero { max-width:680px; margin-bottom:46px; }
 .c-hero h1 {
   font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
   font-size:clamp(31px,4.2vw,50px); line-height:1.08; letter-spacing:-0.015em;
@@ -52,88 +52,61 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 }
 .c-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); margin:0; }
 
-.c-trilha { max-width:680px; margin:0 0 22px; padding-top:4px; }
+.c-trilhas { display:flex; flex-direction:column; gap:22px; max-width:820px; }
+
+.c-trilha {
+  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
+  border-radius:22px; padding:30px 32px 14px;
+}
 .c-trilha-rot {
   display:inline-block; font-size:11px; letter-spacing:0.13em; text-transform:uppercase;
   color:var(--signal,#1A4893); background:rgba(26,72,147,0.07); border-radius:99px;
-  padding:5px 12px; margin-bottom:12px;
+  padding:5px 12px; margin-bottom:13px;
 }
 .c-trilha h2 {
-  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400; font-size:clamp(22px,2.6vw,28px);
-  line-height:1.15; color:var(--ink,#10203A); margin:0 0 8px;
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
+  font-size:clamp(22px,2.6vw,28px); line-height:1.15; letter-spacing:-0.012em;
+  color:var(--ink,#10203A); margin:0 0 8px;
 }
-.c-trilha p { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); margin:0; }
+.c-trilha-txt { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); margin:0; max-width:62ch; }
 
-.c-ordem {
-  display:inline-block; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
-  color:var(--ink-3,#8A94A1); margin-bottom:8px;
+.c-lista { list-style:none; margin:22px 0 0; padding:0; }
+
+.c-curso {
+  display:grid; grid-template-columns:30px 1fr 16px; gap:16px; align-items:start;
+  padding:18px 0; border-top:1px solid var(--line-soft,#EAE4D9);
+  text-decoration:none; transition:opacity .16s;
+}
+.c-curso:hover { opacity:.72; }
+
+.c-num {
+  font-size:13px; color:var(--ink-3,#8A94A1); font-variant-numeric:tabular-nums;
+  padding-top:2px;
+}
+.c-curso:hover .c-num { color:var(--signal,#1A4893); }
+
+.c-nome {
+  display:block; font-size:16.5px; font-weight:600; letter-spacing:-0.012em;
+  color:var(--ink,#10203A); margin-bottom:5px;
+}
+.c-desc { display:block; font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F); }
+.c-apoio {
+  display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:8px;
 }
 
-.c-grade { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-
-.c-card {
-  display:flex; flex-direction:column;
-  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
-  border-radius:20px; padding:26px 26px 24px; min-height:280px;
-  transition:border-color .18s, transform .18s, box-shadow .18s;
-}
-.c-card:hover {
-  border-color:var(--ink-3,#8A94A1); transform:translateY(-2px);
-  box-shadow:0 12px 30px -18px rgba(16,32,58,0.35);
-}
-.c-icone {
-  width:44px; height:44px; border-radius:13px; display:grid; place-items:center;
-  background:var(--bg-soft,#F1ECE3); color:var(--signal,#1A4893);
-  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); margin-bottom:18px;
-}
-.c-card h2 { font-size:19px; font-weight:600; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:0 0 8px; }
-.c-card p { font-size:14.5px; line-height:1.62; color:var(--ink-2,#54606F); margin:0 0 16px; }
-
-.c-meta {
-  display:flex; flex-wrap:wrap; align-items:center; gap:8px;
-  font-size:13px; color:var(--ink-3,#8A94A1); margin:0 0 16px;
-}
-.c-meta span { display:inline-flex; align-items:center; gap:6px; }
-.c-meta i { width:3px; height:3px; border-radius:99px; background:var(--line,#DED7CA); }
-
-.c-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; }
-.c-tag {
-  font-size:11.5px; letter-spacing:0.04em; color:var(--ink-2,#54606F);
-  background:var(--bg-soft,#F1ECE3); border-radius:99px; padding:5px 11px;
-  box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
-}
-.c-tag.c-cert { color:var(--signal,#1A4893); background:rgba(26,72,147,0.07); box-shadow:inset 0 0 0 1px rgba(26,72,147,0.18); }
-
-.c-abrir {
-  display:inline-flex; align-items:center; gap:7px; margin-top:16px;
-  font-size:14px; font-weight:600; color:var(--signal,#1A4893);
-}
-.c-card:hover .c-abrir svg { transform:translateX(3px); }
-.c-abrir svg { transition:transform .18s; }
-
-/* cartão do que vem depois, para a grade não ficar torta com um curso só */
-.c-vazio {
-  border:1px dashed var(--line,#DED7CA); border-radius:20px;
-  display:flex; flex-direction:column; justify-content:center; padding:30px;
-  color:var(--ink-3,#8A94A1); font-size:14px; line-height:1.65; min-height:280px;
-  align-self:start;
-}
-.c-vazio strong { display:block; font-size:15px; font-weight:600; color:var(--ink-2,#54606F); margin-bottom:8px; }
-.c-vazio ul { margin:10px 0 0; padding-left:18px; }
-.c-vazio li { margin-bottom:5px; }
+.c-seta { color:var(--signal,#1A4893); font-size:15px; padding-top:2px; transition:transform .18s; }
+.c-curso:hover .c-seta { transform:translateX(3px); }
 
 .c-rodape { margin-top:54px; padding-top:32px; border-top:1px solid var(--line,#DED7CA); max-width:680px; }
 .c-rodape h3 { font-size:16px; font-weight:600; color:var(--ink,#10203A); margin:0 0 8px; }
 .c-rodape p { font-size:14.5px; line-height:1.65; color:var(--ink-2,#54606F); margin:0 0 10px; }
 .c-rodape p:last-child { margin:0; }
 
-@media (max-width:1000px){
-  .c-grade { grid-template-columns:repeat(2,1fr); }
-}
 @media (max-width:680px){
-  .c-grade { grid-template-columns:1fr; }
   .c-main { padding-top:36px; }
-  .c-vazio { min-height:0; padding:24px; }
+  .c-trilha { padding:24px 22px 8px; border-radius:18px; }
+  .c-curso { grid-template-columns:26px 1fr; gap:12px; }
+  .c-seta { display:none; }
 }
 </style>
 </head>
@@ -146,224 +119,104 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
     <h1>Aprender o trabalho antes da primeira vaga</h1>
     <p class="c-lead">Boa parte das vagas pede experiência, e é aí que muita gente trava. Estes cursos servem para
       chegar na candidatura sabendo o que a empresa faz com o seu julgamento, o que a tarefa espera de você e
-      como é uma avaliação bem feita. São gratuitos, leem-se no navegador e terminam com certificado. Todo
-      conteúdo é escrito a partir de artigos publicados, normas e políticas públicas, com as fontes listadas ao
-      fim de cada curso.</p>
+      como é uma avaliação bem feita. São gratuitos e leem-se no navegador. Todo conteúdo é escrito a partir de
+      artigos publicados, normas e políticas públicas, com as fontes listadas ao fim de cada curso.</p>
   </div>
 
-  <div class="c-trilha">
-    <span class="c-trilha-rot">Trilha 1</span>
-    <h2>Avaliação e julgamento</h2>
-    <p>Quatro cursos na ordem em que fazem sentido. Cada um se sustenta sozinho, e juntos cobrem o caminho
-      completo: por que o trabalho existe, o documento que define a tarefa, a tarefa em si, e a régua de
-      segurança.</p>
-  </div>
+  <div class="c-trilhas">
 
-  <div class="c-grade">
+    <section class="c-trilha">
+      <span class="c-trilha-rot">Trilha 1</span>
+      <h2>Avaliação e julgamento</h2>
+      <p class="c-trilha-txt">Quatro cursos na ordem em que fazem sentido. Cada um se sustenta sozinho, e juntos cobrem o caminho completo: por que o trabalho existe, o documento que define a tarefa, a tarefa em si, e a régua de segurança.</p>
+      <ol class="c-lista">
+        <li>
+          <a class="c-curso" href="curso-fundamentos.html">
+            <span class="c-num">01</span>
+            <span>
+              <span class="c-nome">Fundamentos da Avaliação de IA</span>
+              <span class="c-desc">O curso de entrada. Como um modelo de conversa é treinado, por que ele depende de gente comparando respostas, e o que separa uma avaliação que melhora o modelo de uma que o piora sem ninguém notar.</span>
+              <span class="c-apoio">4 aulas · cerca de 1 hora · introdutório</span>
+            </span>
+            <span class="c-seta" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a class="c-curso" href="curso-guidelines.html">
+            <span class="c-num">02</span>
+            <span>
+              <span class="c-nome">Guidelines, Rubricas e Consistência</span>
+              <span class="c-desc">O curso de não estragar o dado. Como ler a guideline, o que é uma âncora de escala, como se mede concordância entre avaliadores com kappa e alfa, e o que o controle de qualidade olha no seu trabalho.</span>
+              <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
+            </span>
+            <span class="c-seta" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a class="c-curso" href="curso-comparacao.html">
+            <span class="c-num">03</span>
+            <span>
+              <span class="c-nome">Comparação de Respostas e LLM como Juiz</span>
+              <span class="c-desc">A tarefa mais comum do mercado. Formatos e escalas de preferência, os vieses já medidos nesse formato, como funciona a avaliação feita por modelo, e o que fazer quando as duas respostas estão erradas.</span>
+              <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
+            </span>
+            <span class="c-seta" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a class="c-curso" href="curso-seguranca.html">
+            <span class="c-num">04</span>
+            <span>
+              <span class="c-nome">Segurança, Red Teaming e Conteúdo Sensível</span>
+              <span class="c-desc">Onde o trabalho paga melhor e onde mais gente erra. Política de uso e taxonomia de dano, recusa apropriada contra recusa excessiva, métodos de red teaming, e como trabalhar com conteúdo pesado.</span>
+              <span class="c-apoio">4 aulas · cerca de 1 hora · avançado</span>
+            </span>
+            <span class="c-seta" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ol>
+    </section>
 
-    <a class="c-card" href="curso-fundamentos.html">
-      <div class="c-icone">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 6.5C10.6 5.2 8.8 4.5 6.5 4.5H4v13h2.5c2.3 0 4.1.7 5.5 2 1.4-1.3 3.2-2 5.5-2H20v-13h-2.5c-2.3 0-4.1.7-5.5 2z"/>
-          <path d="M12 6.5v14"/>
-        </svg>
-      </div>
-      <span class="c-ordem">Curso 1 de 4</span>
-      <h2>Fundamentos da Avaliação de IA</h2>
-      <p>O curso de entrada. Como um modelo de conversa é treinado, por que ele depende de gente comparando
-        respostas, e o que separa uma avaliação que melhora o modelo de uma que o piora sem ninguém notar.</p>
-      <div class="c-meta">
-        <span>4 aulas</span><i></i>
-        <span>cerca de 1 hora</span><i></i>
-        <span>introdutório</span>
-      </div>
-      <div class="c-tags">
-        <span class="c-tag">RLHF</span>
-        <span class="c-tag">Goodhart</span>
-        <span class="c-tag">Julgamento</span>
-        <span class="c-tag c-cert">Com certificado</span>
-      </div>
-      <span class="c-abrir">Começar o curso
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="c-card" href="curso-guidelines.html">
-      <div class="c-icone">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9.5 13.5l1.8 1.8 3.7-3.8"/>
-        </svg>
-      </div>
-      <span class="c-ordem">Curso 2 de 4</span>
-      <h2>Guidelines, Rubricas e Consistência</h2>
-      <p>O curso de não estragar o dado. Como ler a guideline, o que é uma âncora de escala, como se mede
-        concordância entre avaliadores com kappa e alfa, e o que o controle de qualidade olha no seu trabalho.</p>
-      <div class="c-meta">
-        <span>4 aulas</span><i></i>
-        <span>cerca de 1 hora</span><i></i>
-        <span>prático</span>
-      </div>
-      <div class="c-tags">
-        <span class="c-tag">Rubricas</span>
-        <span class="c-tag">Kappa</span>
-        <span class="c-tag">QA</span>
-        <span class="c-tag c-cert">Com certificado</span>
-      </div>
-      <span class="c-abrir">Começar o curso
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="c-card" href="curso-comparacao.html">
-      <div class="c-icone">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 5h7v14H4z"/><path d="M13 5h7v14h-7z"/><path d="M16.5 9.5l1.4 1.4 2.6-2.6"/>
-        </svg>
-      </div>
-      <span class="c-ordem">Curso 3 de 4</span>
-      <h2>Comparação de Respostas e LLM como Juiz</h2>
-      <p>A tarefa mais comum do mercado. Formatos e escalas de preferência, os vieses já medidos nesse formato,
-        como funciona a avaliação feita por modelo, e o que fazer quando as duas respostas estão erradas.</p>
-      <div class="c-meta">
-        <span>4 aulas</span><i></i>
-        <span>cerca de 1 hora</span><i></i>
-        <span>prático</span>
-      </div>
-      <div class="c-tags">
-        <span class="c-tag">Pareado</span>
-        <span class="c-tag">Vieses</span>
-        <span class="c-tag">LLM como juiz</span>
-        <span class="c-tag c-cert">Com certificado</span>
-      </div>
-      <span class="c-abrir">Começar o curso
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="c-card" href="curso-seguranca.html">
-      <div class="c-icone">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/>
-        </svg>
-      </div>
-      <span class="c-ordem">Curso 4 de 4</span>
-      <h2>Segurança, Red Teaming e Conteúdo Sensível</h2>
-      <p>Onde o trabalho paga melhor e onde mais gente erra. Política de uso e taxonomia de dano, recusa
-        apropriada contra recusa excessiva, métodos de red teaming, e como trabalhar com conteúdo pesado.</p>
-      <div class="c-meta">
-        <span>4 aulas</span><i></i>
-        <span>cerca de 1 hora</span><i></i>
-        <span>avançado</span>
-      </div>
-      <div class="c-tags">
-        <span class="c-tag">Política de uso</span>
-        <span class="c-tag">Recusa</span>
-        <span class="c-tag">Red teaming</span>
-        <span class="c-tag c-cert">Com certificado</span>
-      </div>
-      <span class="c-abrir">Começar o curso
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-  </div>
-
-  <div class="c-trilha">
-    <span class="c-trilha-rot">Trilha 2</span>
-    <h2>Voz e áudio</h2>
-    <p>A área em que mais falta material em português, e a que mais aparece nas vagas de quem fala português do
-      Brasil. Os três cursos se completam, e cada um se sustenta sozinho.</p>
-  </div>
-
-  <div class="c-grade">
-
-    <a class="c-card" href="curso-tts.html">
-      <div class="c-icone">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/>
-        </svg>
-      </div>
-      <span class="c-ordem">Curso 1 de 3</span>
-      <h2>Avaliação de TTS: MOS, CMOS e as Escalas</h2>
-      <p>O que se mede numa voz sintética, de onde vêm as escalas da ITU, como um teste sério é montado, e como
-        escrever um comentário que o time consegue usar.</p>
-      <div class="c-meta">
-        <span>4 aulas</span><i></i>
-        <span>cerca de 1 hora</span><i></i>
-        <span>prático</span>
-      </div>
-      <div class="c-tags">
-        <span class="c-tag">MOS e CMOS</span>
-        <span class="c-tag">Normas ITU</span>
-        <span class="c-tag">Comentário</span>
-        <span class="c-tag c-cert">Com certificado</span>
-      </div>
-      <span class="c-abrir">Começar o curso
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="c-card" href="curso-transcricao.html">
-      <div class="c-icone">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 4a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0V7a3 3 0 0 1 3-3z"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v3"/>
-        </svg>
-      </div>
-      <span class="c-ordem">Curso 2 de 3</span>
-      <h2>Transcrição e Convenções</h2>
-      <p>A porta de entrada mais comum do mercado. Verbatim contra limpo, como marcar hesitação, ruído e trecho
-        ininteligível, números e ITN, e as métricas WER e CER.</p>
-      <div class="c-meta">
-        <span>4 aulas</span><i></i>
-        <span>cerca de 1 hora</span><i></i>
-        <span>introdutório</span>
-      </div>
-      <div class="c-tags">
-        <span class="c-tag">Verbatim</span>
-        <span class="c-tag">Convenções</span>
-        <span class="c-tag">WER</span>
-        <span class="c-tag c-cert">Com certificado</span>
-      </div>
-      <span class="c-abrir">Começar o curso
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <a class="c-card" href="curso-fonetica.html">
-      <div class="c-icone">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 12c3 0 3-6 6-6s3 12 6 12 3-6 6-6"/>
-        </svg>
-      </div>
-      <span class="c-ordem">Curso 3 de 3</span>
-      <h2>Fonética Prática para Quem Avalia Voz</h2>
-      <p>Para trocar "soou estranho" por uma descrição que o time corrige. Os sons do português brasileiro,
-        sílaba tônica, entonação, e como o texto vira som num sistema de fala.</p>
-      <div class="c-meta">
-        <span>4 aulas</span><i></i>
-        <span>cerca de 1 hora</span><i></i>
-        <span>avançado</span>
-      </div>
-      <div class="c-tags">
-        <span class="c-tag">Sons do PT-BR</span>
-        <span class="c-tag">Prosódia</span>
-        <span class="c-tag">SSML</span>
-        <span class="c-tag c-cert">Com certificado</span>
-      </div>
-      <span class="c-abrir">Começar o curso
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <div class="c-vazio">
-      <strong>Trilha 3, em preparação</strong>
-      As próximas frentes seguem o que aparece nas vagas:
-      <ul>
-        <li>Tradução, revisão e pós-edição</li>
-        <li>Avaliação de busca e de relevância</li>
-        <li>Anotação de imagem, vídeo e mapas</li>
-      </ul>
-    </div>
+    <section class="c-trilha">
+      <span class="c-trilha-rot">Trilha 2</span>
+      <h2>Voz e áudio</h2>
+      <p class="c-trilha-txt">A área em que mais falta material em português, e a que mais aparece nas vagas de quem fala português do Brasil. Os três cursos se completam, e cada um se sustenta sozinho.</p>
+      <ol class="c-lista">
+        <li>
+          <a class="c-curso" href="curso-tts.html">
+            <span class="c-num">01</span>
+            <span>
+              <span class="c-nome">Avaliação de TTS: MOS, CMOS e as Escalas</span>
+              <span class="c-desc">O que se mede numa voz sintética, de onde vêm as escalas da ITU, como um teste sério é montado, e como escrever um comentário que o time consegue usar.</span>
+              <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
+            </span>
+            <span class="c-seta" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a class="c-curso" href="curso-transcricao.html">
+            <span class="c-num">02</span>
+            <span>
+              <span class="c-nome">Transcrição e Convenções</span>
+              <span class="c-desc">A porta de entrada mais comum do mercado. Verbatim contra limpo, como marcar hesitação, ruído e trecho ininteligível, números e ITN, e as métricas WER e CER.</span>
+              <span class="c-apoio">4 aulas · cerca de 1 hora · introdutório</span>
+            </span>
+            <span class="c-seta" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        <li>
+          <a class="c-curso" href="curso-fonetica.html">
+            <span class="c-num">03</span>
+            <span>
+              <span class="c-nome">Fonética Prática para Quem Avalia Voz</span>
+              <span class="c-desc">Para trocar "soou estranho" por uma descrição que o time corrige. Os sons do português brasileiro, sílaba tônica, entonação, e como o texto vira som num sistema de fala.</span>
+              <span class="c-apoio">4 aulas · cerca de 1 hora · avançado</span>
+            </span>
+            <span class="c-seta" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ol>
+    </section>
 
   </div>
 
@@ -378,6 +231,7 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
   </div>
 
 </main>
+
 
 <script src="layout.js"></script>
 <script>try { montarLayout("cursos"); } catch (e) {}</script>
