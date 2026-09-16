@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-15T12:58:12.191168+00:00",
-  "atualizado_br": "15/09/2026 às 12:58",
-  "total": 73,
+  "atualizado_em": "2026-09-16T12:55:28.032298+00:00",
+  "atualizado_br": "16/09/2026 às 12:55",
+  "total": 74,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -879,9 +879,9 @@
       "url": "https://www.alignerr.com/jobs/38298a15-e54b-4a9f-aafd-b09717d850d1",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-08",
+      "data_post": "2026-09-16",
       "data_vista": "2026-09-01",
-      "data_ref": "2026-09-08",
+      "data_ref": "2026-09-16",
       "data_oficial": true,
       "id": "3043afd145"
     },
@@ -891,14 +891,19 @@
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
-      "url": "https://www.alignerr.com/jobs/52b0c682-a3ff-4992-ac71-cfc9e3535c1b",
+      "url": "https://www.alignerr.com/jobs/8775d557-175e-4dde-898a-f4a689e9e5c3",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-11",
+      "data_post": "2026-09-15",
       "data_vista": "2026-08-28",
-      "data_ref": "2026-09-11",
+      "data_ref": "2026-09-15",
       "data_oficial": true,
-      "id": "c3f214fe16"
+      "id": "94d3206e73",
+      "resumo": {
+        "o_que_faz": "Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.",
+        "requisitos": "Fluência nativa ou quase nativa em português e escrita forte no idioma. Bom domínio do português contemporâneo em registros diferentes, do formal ao coloquial. Método e consistência, já que o trabalho é avaliar qualidade em volume. Não exige experiência anterior com IA nem com tecnologia. Contam como diferencial tradução, localização, edição, linguística, comunicação, educação ou revisão de conteúdo, além de conhecer as variações regionais do português.",
+        "dica_cv": "A faixa de pagamento é alta, então a triagem é seletiva: capriche no perfil. Escreva em inglês, mas anexe ou descreva amostras do seu português. Destaque revisão, tradução, redação, edição ou ensino, com volume e tipo de material. Mostre que você sabe explicar por que uma frase soa errada, e não apenas corrigir, porque o retorno estruturado é o produto que eles compram. Informe a sua disponibilidade semanal em números."
+      }
     },
     {
       "empresa": "alignerr",
@@ -1061,21 +1066,6 @@
       "id": "02f69edb18"
     },
     {
-      "empresa": "mercor",
-      "titulo": "PDF Annotation & Transcription Experts – Odiya",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.mercor.com/jobs/list_AAABoGAQfhxYOAZAd21EGaDv/pdf-annotation-transcription-experts-odiya",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "data_vista": "2026-09-15",
-      "data_ref": "2026-09-15",
-      "data_oficial": false,
-      "id": "065d3238ba"
-    },
-    {
       "empresa": "turing",
       "titulo": "Professional Writing Human Data Collection",
       "local": "Remoto · Mundial",
@@ -1152,6 +1142,21 @@
     },
     {
       "empresa": "turing",
+      "titulo": "Engineering Manager – LLM Evaluation",
+      "local": "Remoto · Mundial",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://work.turing.com/jobs?jobId=106212",
+      "commitment": "Legal & Law Services",
+      "fonte": "direto",
+      "data_post": "2026-09-14",
+      "data_vista": "2026-09-16",
+      "data_ref": "2026-09-14",
+      "data_oficial": true,
+      "id": "3e3c96b1e1"
+    },
+    {
+      "empresa": "turing",
       "titulo": "Music and Audio experts",
       "local": "Remoto · Mundial",
       "categoria": "sme",
@@ -1179,6 +1184,21 @@
       "data_ref": "2026-09-07",
       "data_oficial": true,
       "id": "e307a9ddc5"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "Audio/Voice/Annotation Trainer - English (US) Language",
+      "local": "Remoto · Mundial",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://work.turing.com/jobs?jobId=106466",
+      "commitment": "Linguistics",
+      "fonte": "direto",
+      "data_post": "2026-09-15",
+      "data_vista": "2026-09-16",
+      "data_ref": "2026-09-15",
+      "data_oficial": true,
+      "id": "663de19d6d"
     },
     {
       "empresa": "turing",
