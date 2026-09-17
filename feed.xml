@@ -5,7 +5,28 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Wed, 16 Sep 2026 12:55:28 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 12:57:07 +0000</lastBuildDate>
+    <item>
+      <title>Search Engine Evaluator - Portuguese (Brazil) — RWS TrainAI</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=e22fdd38f1</link>
+      <guid isPermaLink="false">e22fdd38f1</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Brasilia · QA</description>
+    </item>
+    <item>
+      <title>AI - Analyst | Photographer - Portuguese — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f68f73733b</link>
+      <guid isPermaLink="false">f68f73733b</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Mundial · IA &amp; Dados</description>
+    </item>
+    <item>
+      <title>Chemical Defense Researcher &lt;div class=&quot;ml-auto flex items-center gap — Mercor</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=22d855d2a9</link>
+      <guid isPermaLink="false">22d855d2a9</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Mundial · IA &amp; Dados</description>
+    </item>
     <item>
       <title>Engineering Manager – LLM Evaluation — Turing</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3e3c96b1e1</link>
@@ -21,18 +42,18 @@
       <description>Remoto · Mundial · Tradução</description>
     </item>
     <item>
-      <title>LLM Trainer - Agent Function call — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=6501a41ea4</link>
-      <guid isPermaLink="false">6501a41ea4</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Brasil · IA &amp; Dados</description>
-    </item>
-    <item>
       <title>LLM Annotator - Master's Degree — Turing</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=ec971e76be</link>
       <guid isPermaLink="false">ec971e76be</guid>
       <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
       <description>Remoto · Mundial · IA &amp; Dados</description>
+    </item>
+    <item>
+      <title>LLM Trainer - Agent Function call — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=6501a41ea4</link>
+      <guid isPermaLink="false">6501a41ea4</guid>
+      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Brasil · IA &amp; Dados</description>
     </item>
     <item>
       <title>Hydrus - Session Director - Portuguese (BR) - V2 — Welocalize</title>
@@ -91,27 +112,6 @@
       <description>Remoto · Mundial · Especialista</description>
     </item>
     <item>
-      <title>Professional Writing Human Data Collection — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f6fe7cb0e0</link>
-      <guid isPermaLink="false">f6fe7cb0e0</guid>
-      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Mundial · Escrita</description>
-    </item>
-    <item>
-      <title>AI Quality Analyst - English — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=e9aed46285</link>
-      <guid isPermaLink="false">e9aed46285</guid>
-      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Mundial · QA</description>
-    </item>
-    <item>
-      <title>Image/Video Annotator — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=d55747ba61</link>
-      <guid isPermaLink="false">d55747ba61</guid>
-      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Mundial · IA &amp; Dados</description>
-    </item>
-    <item>
       <title>Board Game Reasoning Expert (AI Training &amp; Evaluation) — Turing</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=6d18b807d8</link>
       <guid isPermaLink="false">6d18b807d8</guid>
@@ -131,6 +131,13 @@
       <guid isPermaLink="false">e307a9ddc5</guid>
       <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
       <description>Remoto · Mundial · IA &amp; Dados</description>
+    </item>
+    <item>
+      <title>AI Quality Analyst - English — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=91d5f7ad1b</link>
+      <guid isPermaLink="false">91d5f7ad1b</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Mundial · QA</description>
     </item>
     <item>
       <title>CUA Quality Analysts — Turing</title>
@@ -154,6 +161,13 @@
       <description>Remoto · Mundial · QA</description>
     </item>
     <item>
+      <title>Professional Writing Human Data Collection — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f6fe7cb0e0</link>
+      <guid isPermaLink="false">f6fe7cb0e0</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Mundial · Escrita</description>
+    </item>
+    <item>
       <title>Lifestyle Experts — Turing</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=a810f248f8</link>
       <guid isPermaLink="false">a810f248f8</guid>
@@ -166,13 +180,6 @@
       <guid isPermaLink="false">95e6e4284d</guid>
       <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
       <description>Remoto · Mundial · IA &amp; Dados</description>
-    </item>
-    <item>
-      <title>Generative Audio Evaluation - Portuguese (Brazil) — RWS TrainAI</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=6d202244e4</link>
-      <guid isPermaLink="false">6d202244e4</guid>
-      <pubDate>Wed, 09 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Brasilia · QA</description>
     </item>
     <item>
       <title>Brazilian Portuguese Audio Transcriptionist (AI Training) — Alignerr</title>
@@ -238,16 +245,16 @@
       <description>Remoto · Mundial · QA</description>
     </item>
     <item>
-      <title>MLE Bench – Data Analyst — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=c8d1aaf983</link>
-      <guid isPermaLink="false">c8d1aaf983</guid>
+      <title>Prompt &amp; Verifier — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=7dedf39db7</link>
+      <guid isPermaLink="false">7dedf39db7</guid>
       <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
       <description>Remoto · Brasil · IA &amp; Dados</description>
     </item>
     <item>
-      <title>Prompt &amp; Verifier — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=7dedf39db7</link>
-      <guid isPermaLink="false">7dedf39db7</guid>
+      <title>MLE Bench – Data Analyst — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=c8d1aaf983</link>
+      <guid isPermaLink="false">c8d1aaf983</guid>
       <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
       <description>Remoto · Brasil · IA &amp; Dados</description>
     </item>
@@ -277,13 +284,6 @@
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=323bdf402d</link>
       <guid isPermaLink="false">323bdf402d</guid>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Brasil · IA &amp; Dados</description>
-    </item>
-    <item>
-      <title>AI Trainer - Freelance Data Annotator — Toloka AI</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3bc6ae6a7b</link>
-      <guid isPermaLink="false">3bc6ae6a7b</guid>
-      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
       <description>Remoto · Brasil · IA &amp; Dados</description>
     </item>
   </channel>
