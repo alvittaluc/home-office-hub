@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-18T12:26:47.630166+00:00",
-  "atualizado_br": "18/09/2026 às 12:26",
-  "total": 75,
+  "atualizado_em": "2026-09-19T12:08:41.953892+00:00",
+  "atualizado_br": "19/09/2026 às 12:08",
+  "total": 74,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -140,21 +140,6 @@
       "data_ref": "2026-08-25",
       "data_oficial": true,
       "id": "d61cde5def"
-    },
-    {
-      "empresa": "welocalize",
-      "titulo": "Portuguese (Brazil) Sports Localization Specialist (Football)",
-      "local": "Remoto · Mundial",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.lever.co/weloglobal/1b0531dc-6f40-4153-a86d-5bf940a9c9f2",
-      "commitment": "Remote",
-      "fonte": "direto",
-      "data_post": "2026-09-11",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-11",
-      "data_oficial": true,
-      "id": "d056af84e9"
     },
     {
       "empresa": "welocalize",
@@ -325,14 +310,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/9130A1740B",
+      "url": "https://apply.workable.com/j/7514E53106",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-11",
+      "data_post": "2026-09-18",
       "data_vista": "2026-08-27",
-      "data_ref": "2026-09-11",
+      "data_ref": "2026-09-18",
       "data_oficial": true,
-      "id": "bc9c7b064f"
+      "id": "c96046659e"
     },
     {
       "empresa": "toloka",
@@ -892,9 +877,9 @@
       "url": "https://www.alignerr.com/jobs/60e7cd1f-73a7-4027-8135-85ac0989135f",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-10",
+      "data_post": "2026-09-18",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-09-10",
+      "data_ref": "2026-09-18",
       "data_oficial": true,
       "id": "64c7fbed79",
       "resumo": {
@@ -912,9 +897,9 @@
       "url": "https://www.alignerr.com/jobs/4bf35e1c-de3b-4874-8376-45ad9f304f35",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-10",
+      "data_post": "2026-09-18",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-09-10",
+      "data_ref": "2026-09-18",
       "data_oficial": true,
       "id": "69b78f8163",
       "resumo": {
