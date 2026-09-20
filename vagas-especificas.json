@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-19T12:08:41.953892+00:00",
-  "atualizado_br": "19/09/2026 às 12:08",
+  "atualizado_em": "2026-09-20T12:44:13.142537+00:00",
+  "atualizado_br": "20/09/2026 às 12:44",
   "total": 186,
   "areas": [
     "Biologia e Ciencias da Vida",
@@ -1529,22 +1529,6 @@
     },
     {
       "empresa": "mercor",
-      "titulo": "General Clinician (MD/DO) - HLS Expert Pool",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.mercor.com/jobs/list_AAABoK32PA1tljTFSVZKApAs/general-clinician-md-do-hls-expert-pool",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "area": "Medicina e Saude",
-      "data_vista": "2026-09-17",
-      "data_ref": "2026-09-17",
-      "data_oficial": false,
-      "id": "2996e157b0"
-    },
-    {
-      "empresa": "mercor",
       "titulo": "Medicare Advantage Members (Devoted Health) – Insight Study",
       "local": "Remoto · Mundial",
       "categoria": "ai",
@@ -1590,6 +1574,22 @@
       "data_ref": "2026-09-15",
       "data_oficial": false,
       "id": "b5b5c5a9b3"
+    },
+    {
+      "empresa": "mercor",
+      "titulo": "General Clinician (MD/DO) - HLS Expert Pool",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://work.mercor.com/jobs/list_AAABoK32PA1tljTFSVZKApAs/general-clinician-md-do-hls-expert-pool",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-17",
+      "data_ref": "2026-09-17",
+      "data_oficial": false,
+      "id": "2996e157b0"
     },
     {
       "empresa": "mercor",
