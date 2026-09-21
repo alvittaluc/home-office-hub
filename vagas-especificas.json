@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-20T12:44:13.142537+00:00",
-  "atualizado_br": "20/09/2026 às 12:44",
+  "atualizado_em": "2026-09-21T14:40:07.273809+00:00",
+  "atualizado_br": "21/09/2026 às 14:40",
   "total": 186,
   "areas": [
     "Biologia e Ciencias da Vida",
@@ -1369,6 +1369,22 @@
     },
     {
       "empresa": "turing",
+      "titulo": "Bioinformatics / Computational Genomics Expert",
+      "local": "Remoto · Brasil",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://work.turing.com/jobs?jobId=107252",
+      "commitment": "Science",
+      "fonte": "direto",
+      "data_post": "2026-09-17",
+      "area": "Biologia e Ciencias da Vida",
+      "data_vista": "2026-09-21",
+      "data_ref": "2026-09-17",
+      "data_oficial": true,
+      "id": "9000d53dcf"
+    },
+    {
+      "empresa": "turing",
       "titulo": "Scientific Coding - STEM and Python",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -1657,7 +1673,7 @@
     },
     {
       "empresa": "mercor",
-      "titulo": "Commercial Blasting Engineer",
+      "titulo": "Commercial Blasting Engineer <div class=\"ml-auto flex items-center gap",
       "local": "Remoto · Mundial",
       "categoria": "ai",
       "badge": "IA & Dados",
@@ -1666,26 +1682,10 @@
       "fonte": "direto",
       "data_post": "",
       "area": "Engenharia",
-      "data_vista": "2026-09-18",
-      "data_ref": "2026-09-18",
+      "data_vista": "2026-09-21",
+      "data_ref": "2026-09-21",
       "data_oficial": false,
       "id": "be67e2a973"
-    },
-    {
-      "empresa": "mercor",
-      "titulo": "Propulsion & Effects Engineer <div class=\"ml-auto flex items-cente",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.mercor.com/jobs/list_AAABoKHcTOe_n6cwj1FA6Lko/propulsion-effects-engineer",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "area": "Engenharia",
-      "data_vista": "2026-09-18",
-      "data_ref": "2026-09-18",
-      "data_oficial": false,
-      "id": "2a761035f4"
     },
     {
       "empresa": "turing",
@@ -2329,6 +2329,22 @@
     },
     {
       "empresa": "turing",
+      "titulo": "Sr.ServiceNow Engineer (HRSD & Integrations)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.turing.com/jobs?jobId=107515",
+      "commitment": "Cloud & Infrastructure",
+      "fonte": "direto",
+      "data_post": "2026-09-21",
+      "area": "Engenharia",
+      "data_vista": "2026-09-21",
+      "data_ref": "2026-09-21",
+      "data_oficial": true,
+      "id": "14ba1d60aa"
+    },
+    {
+      "empresa": "turing",
       "titulo": "ML and Data Engineer — Data Quality & PII Compliance",
       "local": "Remoto · Mundial",
       "categoria": "qa",
@@ -2342,22 +2358,6 @@
       "data_ref": "2026-09-18",
       "data_oficial": true,
       "id": "27ebed4249"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Sr. ServiceNow Engineer(HRSD & Integrations)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/jobs?jobId=107458",
-      "commitment": "Cloud & Infrastructure",
-      "fonte": "direto",
-      "data_post": "2026-09-18",
-      "area": "Engenharia",
-      "data_vista": "2026-09-19",
-      "data_ref": "2026-09-18",
-      "data_oficial": true,
-      "id": "7925e906a4"
     },
     {
       "empresa": "turing",
@@ -2521,22 +2521,6 @@
     },
     {
       "empresa": "turing",
-      "titulo": "Subject Matter Expert : Engineering",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.turing.com/jobs?jobId=101815",
-      "commitment": "ML/Data Engineering",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "d9afedb9b7"
-    },
-    {
-      "empresa": "turing",
       "titulo": "Azure DevOps Engineer(LangGraph)",
       "local": "Remoto · Mundial",
       "categoria": "ai",
@@ -2678,6 +2662,22 @@
       "data_ref": "2025-01-24",
       "data_oficial": true,
       "id": "b6c760b51c"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "ServiceNow Engineer(CSM)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.turing.com/jobs?jobId=107458",
+      "commitment": "Cloud & Infrastructure",
+      "fonte": "direto",
+      "data_post": "2026-09-18",
+      "area": "Engenharia",
+      "data_vista": "2026-09-21",
+      "data_ref": "2026-09-18",
+      "data_oficial": true,
+      "id": "7925e906a4"
     },
     {
       "empresa": "turing",
