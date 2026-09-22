@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-21T14:40:07.273809+00:00",
-  "atualizado_br": "21/09/2026 às 14:40",
+  "atualizado_em": "2026-09-22T12:55:09.912693+00:00",
+  "atualizado_br": "22/09/2026 às 12:55",
   "total": 72,
   "vagas": [
     {
@@ -228,14 +228,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/9274639ED7",
+      "url": "https://apply.workable.com/j/C0ACA5CA35",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-14",
+      "data_post": "2026-09-22",
       "data_vista": "2026-09-14",
-      "data_ref": "2026-09-14",
+      "data_ref": "2026-09-22",
       "data_oficial": true,
-      "id": "9769d3a2a8"
+      "id": "2395898e22"
     },
     {
       "empresa": "toloka",
@@ -258,21 +258,6 @@
         "contrato": "Freelance · Remoto · Por projeto",
         "remuneracao": ""
       }
-    },
-    {
-      "empresa": "toloka",
-      "titulo": "Freelance Annotator (English) - AI Trainer",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/F2E2EDCC50",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-13",
-      "data_vista": "2026-08-23",
-      "data_ref": "2026-09-13",
-      "data_oficial": true,
-      "id": "4898cc531f"
     },
     {
       "empresa": "toloka",
@@ -317,14 +302,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/005EF1043F",
+      "url": "https://apply.workable.com/j/266CAE4F60",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-11",
+      "data_post": "2026-09-21",
       "data_vista": "2026-08-27",
-      "data_ref": "2026-09-11",
+      "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "d1e2b46ddd"
+      "id": "cf53d1c2e9"
     },
     {
       "empresa": "toloka",
@@ -332,14 +317,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/C0D25E1A86",
+      "url": "https://apply.workable.com/j/D8E9CE57D5",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-11",
+      "data_post": "2026-09-21",
       "data_vista": "2026-08-27",
-      "data_ref": "2026-09-11",
+      "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "323bdf402d"
+      "id": "048d4bda1f"
     },
     {
       "empresa": "oneforma",
@@ -1000,6 +985,21 @@
     },
     {
       "empresa": "mercor",
+      "titulo": "Mexican ChatGPT User",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.mercor.com/jobs/list_AAABoMXFnDgInlzMVqdJpINl/mexican-chatgpt-user",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "",
+      "data_vista": "2026-09-22",
+      "data_ref": "2026-09-22",
+      "data_oficial": false,
+      "id": "3a32c65f8b"
+    },
+    {
+      "empresa": "mercor",
       "titulo": "Quality Analyst",
       "local": "Remoto · Mundial",
       "categoria": "qa",
@@ -1015,18 +1015,18 @@
     },
     {
       "empresa": "mercor",
-      "titulo": "Chemical Defense Researcher",
+      "titulo": "Insurance Underwriting Specialists",
       "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.mercor.com/jobs/list_AAABoKHc30ZPmucsv_lExZ02/chemical-defense-researcher",
+      "categoria": "write",
+      "badge": "Escrita",
+      "url": "https://work.mercor.com/jobs/list_AAABoMYK0t7PpErLlBZDmqd3/insurance-underwriting-specialists",
       "commitment": "",
       "fonte": "direto",
       "data_post": "",
-      "data_vista": "2026-09-18",
-      "data_ref": "2026-09-18",
+      "data_vista": "2026-09-22",
+      "data_ref": "2026-09-22",
       "data_oficial": false,
-      "id": "22d855d2a9"
+      "id": "9a7b1ae409"
     },
     {
       "empresa": "turing",
