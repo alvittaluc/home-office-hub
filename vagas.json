@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-23T13:06:45.720529+00:00",
-  "atualizado_br": "23/09/2026 às 13:06",
+  "atualizado_em": "2026-09-24T12:59:31.245250+00:00",
+  "atualizado_br": "24/09/2026 às 12:59",
   "total": 71,
   "vagas": [
     {
@@ -161,28 +161,6 @@
         "dica_cv": "Boa vaga de entrada. Destaque: atenção a detalhes, capacidade de seguir instruções, e português nativo. Ideal para quem está começando na área de dados/IA.",
         "contrato": "Freelance · Remoto · Por tarefa",
         "remuneracao": ""
-      }
-    },
-    {
-      "empresa": "rws",
-      "titulo": "AI Data Specialist - Portuguese (Brazil)",
-      "local": "Remoto · São Paulo",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/rws/72796483-2495-4299-b1c1-c95c3800006f",
-      "commitment": "Temporary/Contract",
-      "fonte": "direto",
-      "data_post": "2025-09-16",
-      "data_vista": "2026-08-04",
-      "data_ref": "2025-09-16",
-      "data_oficial": true,
-      "id": "68fe02f200",
-      "resumo": {
-        "o_que_faz": "Como Especialista de Dados de IA (AI Data Specialist), você realiza tarefas diversas relacionadas a dados para melhorar conteúdo gerado por IA em inglês: coleta de dados, avaliação e comparação de respostas. Trabalho flexível, você escolhe quando trabalhar.",
-        "requisitos": "Inglês fluente (a maior parte do trabalho é em inglês). Aberto a estudantes, recém-formados, pais/mães em casa, e profissionais buscando trabalho remoto flexível. Interesse em IA.",
-        "dica_cv": "Ótima vaga de entrada e flexível. Destaque: nível de inglês (importante), atenção a detalhes, e interesse por IA. Não precisa de experiência prévia.",
-        "contrato": "Freelance · Meio período · Remoto",
-        "remuneracao": "US$ 6/hora"
       }
     },
     {
@@ -784,14 +762,14 @@
       "local": "Remoto · United States",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://www.alignerr.com/jobs/0060423d-eca1-4321-a802-93fb04195a46",
+      "url": "https://www.alignerr.com/jobs/8dd06a6c-fc20-44b5-80a9-7f3ec0b8ad12",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-16",
+      "data_post": "2026-09-24",
       "data_vista": "2026-09-01",
-      "data_ref": "2026-09-16",
+      "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "638708c365"
+      "id": "2f1eb1d641"
     },
     {
       "empresa": "alignerr",
@@ -802,9 +780,9 @@
       "url": "https://www.alignerr.com/jobs/38298a15-e54b-4a9f-aafd-b09717d850d1",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-16",
+      "data_post": "2026-09-24",
       "data_vista": "2026-09-01",
-      "data_ref": "2026-09-16",
+      "data_ref": "2026-09-24",
       "data_oficial": true,
       "id": "3043afd145"
     },
@@ -814,14 +792,19 @@
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
-      "url": "https://www.alignerr.com/jobs/52b0c682-a3ff-4992-ac71-cfc9e3535c1b",
+      "url": "https://www.alignerr.com/jobs/8775d557-175e-4dde-898a-f4a689e9e5c3",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-22",
+      "data_post": "2026-09-23",
       "data_vista": "2026-08-28",
-      "data_ref": "2026-09-22",
+      "data_ref": "2026-09-23",
       "data_oficial": true,
-      "id": "c3f214fe16"
+      "id": "94d3206e73",
+      "resumo": {
+        "o_que_faz": "Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.",
+        "requisitos": "Fluência nativa ou quase nativa em português e escrita forte no idioma. Bom domínio do português contemporâneo em registros diferentes, do formal ao coloquial. Método e consistência, já que o trabalho é avaliar qualidade em volume. Não exige experiência anterior com IA nem com tecnologia. Contam como diferencial tradução, localização, edição, linguística, comunicação, educação ou revisão de conteúdo, além de conhecer as variações regionais do português.",
+        "dica_cv": "A faixa de pagamento é alta, então a triagem é seletiva: capriche no perfil. Escreva em inglês, mas anexe ou descreva amostras do seu português. Destaque revisão, tradução, redação, edição ou ensino, com volume e tipo de material. Mostre que você sabe explicar por que uma frase soa errada, e não apenas corrigir, porque o retorno estruturado é o produto que eles compram. Informe a sua disponibilidade semanal em números."
+      }
     },
     {
       "empresa": "alignerr",
@@ -1015,6 +998,21 @@
     },
     {
       "empresa": "turing",
+      "titulo": "AI Safety and Policy Evaluator",
+      "local": "Remoto · Mundial",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://work.turing.com/jobs?jobId=108650",
+      "commitment": "Other",
+      "fonte": "direto",
+      "data_post": "2026-09-24",
+      "data_vista": "2026-09-24",
+      "data_ref": "2026-09-24",
+      "data_oficial": true,
+      "id": "f43f07400f"
+    },
+    {
+      "empresa": "turing",
       "titulo": "Professional Writing Human Data Collection",
       "local": "Remoto · Mundial",
       "categoria": "write",
@@ -1090,6 +1088,21 @@
     },
     {
       "empresa": "turing",
+      "titulo": "Professional Writing Human Data Collection - Academic and Education",
+      "local": "Remoto · Mundial",
+      "categoria": "write",
+      "badge": "Escrita",
+      "url": "https://work.turing.com/jobs?jobId=108647",
+      "commitment": "Design",
+      "fonte": "direto",
+      "data_post": "2026-09-24",
+      "data_vista": "2026-09-24",
+      "data_ref": "2026-09-24",
+      "data_oficial": true,
+      "id": "4c05c032ec"
+    },
+    {
+      "empresa": "turing",
       "titulo": "Python Engineering Manager – LLM Training & Evaluation",
       "local": "Remoto · Mundial",
       "categoria": "qa",
@@ -1162,21 +1175,6 @@
       "data_ref": "2026-09-15",
       "data_oficial": true,
       "id": "663de19d6d"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "CUA Quality Analysts",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://work.turing.com/jobs?jobId=102207",
-      "commitment": "Analyst",
-      "fonte": "direto",
-      "data_post": "2026-08-24",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-24",
-      "data_oficial": true,
-      "id": "c87e56ff35"
     },
     {
       "empresa": "turing",
