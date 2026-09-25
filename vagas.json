@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-24T12:59:31.245250+00:00",
-  "atualizado_br": "24/09/2026 às 12:59",
-  "total": 71,
+  "atualizado_em": "2026-09-25T13:06:00.587154+00:00",
+  "atualizado_br": "25/09/2026 às 13:06",
+  "total": 69,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -228,14 +228,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/A209AC5DC8",
+      "url": "https://apply.workable.com/j/F6A168F61D",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-18",
+      "data_post": "2026-09-25",
       "data_vista": "2026-09-23",
-      "data_ref": "2026-09-18",
+      "data_ref": "2026-09-25",
       "data_oficial": true,
-      "id": "db65272fed"
+      "id": "ec94ae3778"
     },
     {
       "empresa": "toloka",
@@ -762,14 +762,14 @@
       "local": "Remoto · United States",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://www.alignerr.com/jobs/8dd06a6c-fc20-44b5-80a9-7f3ec0b8ad12",
+      "url": "https://www.alignerr.com/jobs/0060423d-eca1-4321-a802-93fb04195a46",
       "commitment": "CONTRACT",
       "fonte": "direto",
       "data_post": "2026-09-24",
       "data_vista": "2026-09-01",
       "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "2f1eb1d641"
+      "id": "638708c365"
     },
     {
       "empresa": "alignerr",
@@ -890,21 +890,6 @@
       "data_ref": "2026-09-16",
       "data_oficial": true,
       "id": "f68f73733b"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Audio/Voice/Annotation Trainer - Portuguese (Brazil) Language",
-      "local": "Remoto · Mundial",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://work.turing.com/jobs?jobId=102290",
-      "commitment": "Linguistics",
-      "fonte": "direto",
-      "data_post": "2026-08-25",
-      "data_vista": "2026-08-28",
-      "data_ref": "2026-08-25",
-      "data_oficial": true,
-      "id": "eec2040956"
     },
     {
       "empresa": "turing",
@@ -1178,33 +1163,18 @@
     },
     {
       "empresa": "turing",
-      "titulo": "QA Specialist - Audio Annotation & Diarization (Portugese)",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://work.turing.com/jobs?jobId=102316",
-      "commitment": "Media & Communication",
-      "fonte": "direto",
-      "data_post": "2026-08-25",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-25",
-      "data_oficial": true,
-      "id": "36c7c4f9b6"
-    },
-    {
-      "empresa": "turing",
       "titulo": "Lifestyle Experts",
       "local": "Remoto · Mundial",
       "categoria": "sme",
       "badge": "Especialista",
-      "url": "https://work.turing.com/jobs?jobId=103328",
+      "url": "https://work.turing.com/jobs?jobId=108738",
       "commitment": "Science",
       "fonte": "direto",
-      "data_post": "2026-09-01",
+      "data_post": "2026-09-24",
       "data_vista": "2026-09-11",
-      "data_ref": "2026-09-01",
+      "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "a810f248f8"
+      "id": "c7e4f42eba"
     },
     {
       "empresa": "turing",
