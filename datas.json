@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-09-26T12:33:18.863464+00:00",
-  "total": 349,
+  "atualizado_em": "2026-09-27T13:23:42.068217+00:00",
+  "total": 352,
   "primeira_vez": {
     "alignerr|ai language expert portuguese": "2026-08-05",
     "alignerr|ian portuguese audio transcript editor": "2026-09-01",
@@ -224,7 +224,10 @@
     "turing|domain experts physicist modelling & simulation specialist": "2026-09-11",
     "turing|domain experts research & technical writing latex": "2026-09-11",
     "turing|domain experts scientific computing specialist": "2026-09-11",
+    "turing|domain experts task executors : aerodynamics flow5": "2026-09-27",
+    "turing|domain experts task executors : bioinformatics ugene": "2026-09-27",
     "turing|domain experts task executors : erp next system administration": "2026-09-26",
+    "turing|domain experts task executors : system administration erpnext": "2026-09-27",
     "turing|domain experts task executors : ugene biology bioinformatics": "2026-09-26",
     "turing|electrical engineering": "2026-09-11",
     "turing|engineering expert": "2026-09-11",
