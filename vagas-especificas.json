@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-27T13:23:42.073065+00:00",
-  "atualizado_br": "27/09/2026 às 13:23",
-  "total": 198,
+  "atualizado_em": "2026-09-28T16:12:10.507879+00:00",
+  "atualizado_br": "28/09/2026 às 16:12",
+  "total": 196,
   "areas": [
     "Biologia e Ciencias da Vida",
     "Design e Criacao",
@@ -1568,22 +1568,6 @@
     },
     {
       "empresa": "mercor",
-      "titulo": "Finance Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.mercor.com/jobs/list_AAABoMYLLjnYTu7guGBC84v6/finance-expert",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "area": "Financas e Contabilidade",
-      "data_vista": "2026-09-23",
-      "data_ref": "2026-09-23",
-      "data_oficial": false,
-      "id": "8382ef20a7"
-    },
-    {
-      "empresa": "mercor",
       "titulo": "Software Engineer Expert",
       "local": "Remoto · Mundial",
       "categoria": "sme",
@@ -1597,6 +1581,22 @@
       "data_ref": "2026-09-23",
       "data_oficial": false,
       "id": "c5e40b2e33"
+    },
+    {
+      "empresa": "mercor",
+      "titulo": "Finance Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://work.mercor.com/jobs/list_AAABoMYLLjnYTu7guGBC84v6/finance-expert",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "",
+      "area": "Financas e Contabilidade",
+      "data_vista": "2026-09-23",
+      "data_ref": "2026-09-23",
+      "data_oficial": false,
+      "id": "8382ef20a7"
     },
     {
       "empresa": "mercor",
@@ -2272,6 +2272,22 @@
     },
     {
       "empresa": "turing",
+      "titulo": "AI Systems Engineer - STEM Workflow",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.turing.com/jobs?jobId=109098",
+      "commitment": "ML/Data Engineering",
+      "fonte": "direto",
+      "data_post": "2026-09-28",
+      "area": "Engenharia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-28",
+      "data_oficial": true,
+      "id": "7bfd3d3be6"
+    },
+    {
+      "empresa": "turing",
       "titulo": "Mathematics Expert",
       "local": "Remoto · Mundial",
       "categoria": "sme",
@@ -2301,22 +2317,6 @@
       "data_ref": "2026-09-18",
       "data_oficial": true,
       "id": "137e68b9d4"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "AI Systems Engineer - STEM Workflow",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/jobs?jobId=103622",
-      "commitment": "Science",
-      "fonte": "direto",
-      "data_post": "2026-09-02",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-02",
-      "data_oficial": true,
-      "id": "461ee6af99"
     },
     {
       "empresa": "turing",
@@ -2701,38 +2701,6 @@
       "data_ref": "2026-09-04",
       "data_oficial": true,
       "id": "dd93b9c680"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Domain Experts - Audio Engineer (REAPER /Ardour)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.turing.com/jobs?jobId=102926",
-      "commitment": "Other",
-      "fonte": "direto",
-      "data_post": "2026-08-28",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-28",
-      "data_oficial": true,
-      "id": "ff30231b4b"
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Senior Infrastructure / Backend Engineer — GCP Production Systems",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/jobs?jobId=102910",
-      "commitment": "Engineering",
-      "fonte": "direto",
-      "data_post": "2026-08-28",
-      "area": "Programacao e Software",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-28",
-      "data_oficial": true,
-      "id": "9006a3a605"
     },
     {
       "empresa": "turing",
