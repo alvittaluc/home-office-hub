@@ -61,13 +61,13 @@
     position:sticky; top:84px; z-index:60;
     display:flex; align-items:center; gap:10px; flex-wrap:wrap;
     padding:10px; margin:14px 0 4px;
-    background:rgba(255,255,255,0.86); backdrop-filter:blur(16px) saturate(1.25);
+    background:rgba(255,255,255,0.97); backdrop-filter:blur(16px) saturate(1.25);
     border:1px solid var(--line-soft); border-radius:15px; box-shadow:var(--sombra);
   }
   @media (max-width:900px){ .barra{ top:74px; } }
 
   .barra .direita { margin-left:auto; display:flex; align-items:center; gap:12px; }
-  .contagem { font-size:13px; color:var(--ink-3); white-space:nowrap; }
+  .contagem { font-size:13px; color:var(--ink-3); white-space:nowrap; padding-left:6px; }
   .contagem b { color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums; }
   @media (max-width:760px){ .barra .direita{ margin-left:0; width:100%; justify-content:space-between; } }
 
@@ -385,6 +385,12 @@
   /* ═══════════════ LISTA HORIZONTAL ═══════════════ */
   .grupo-titulo {
     display:flex; align-items:baseline; gap:11px; margin:26px 0 12px;
+    scroll-margin-top:140px;
+  }
+  /* separa um grupo do seguinte: sem isto, "Em movimento" e o resto
+     encostavam e a lista parecia uma coisa só */
+  .lista + .grupo-titulo {
+    margin-top:32px; padding-top:22px; border-top:1px solid var(--line-soft);
   }
   .grupo-titulo h2 { font-family:var(--body); font-weight:600; font-size:15px; color:var(--ink); letter-spacing:-0.01em; }
   .grupo-titulo span { font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; }
@@ -572,8 +578,8 @@
         <button class="fbtn btFiltros" type="button" id="btFiltros" aria-expanded="false">
           Filtros <span class="cnt" hidden>0</span> <span class="chev"></span>
         </button>
+        <span class="contagem" id="contagem">carregando</span>
         <div class="direita">
-          <span class="contagem" id="contagem">carregando</span>
           <select class="ordenar" id="ordem" aria-label="Ordenar vagas">
             <option value="relevancia">Relevância</option>
             <option value="recentes">Mais recentes</option>
@@ -1209,7 +1215,9 @@ function aplicar() {
              <div class="lista">${novas.map(linha).join("")}</div>`;
   }
   if (resto.length) {
-    html += novas.length
+    /* o título só era desnecessário quando o resto era o único grupo da tela.
+       Com "Em movimento" em cima, sem ele os dois grupos viram um borrão. */
+    html += (destacadas.length || novas.length)
       ? `<div class="grupo-titulo"><h2>Demais vagas abertas</h2><span>${resto.length}</span></div>`
       : "";
     html += `<div class="lista">${resto.map(linha).join("")}</div>`;
