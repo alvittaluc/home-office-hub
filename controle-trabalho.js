@@ -245,7 +245,7 @@ const Trabalho = (function () {
       const caixa = CAIXA.querySelector(`[data-bloco-id="${b.id}"] .t-corpo`);
       if (!caixa) return;
       try { Blocos.montar(caixa, b, ctx); }
-      catch (e) { console.error("bloco", b.tipo, e); caixa.innerHTML = '<p class="b-erro">Este bloco não desenhou.</p>'; }
+      catch (e) { console.error("bloco", b.tipo, e); caixa.innerHTML = '<p class="b-erro">Não foi possível exibir este bloco.</p>'; }
     });
   }
 

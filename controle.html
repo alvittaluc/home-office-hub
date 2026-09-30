@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Meu Controle — Home Office Hub</title>
-<meta name="description" content="Controle das suas aplicações de vaga e do seu trabalho: horas, ganhos e gráficos. Tudo fica no seu computador.">
+<meta name="description" content="Controle das suas candidaturas a vagas e do seu trabalho: horas, ganhos e gráficos. Tudo fica no seu computador.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Meu Controle — Home Office Hub">
-<meta property="og:description" content="Onde você aplicou, quanto trabalhou e quanto ganhou. Tudo no seu navegador.">
+<meta property="og:description" content="Onde você se candidatou, quanto trabalhou e quanto ganhou. Tudo no seu navegador.">
 <meta property="og:url" content="https://alvittaluc.github.io/controle.html">
 <meta property="og:image" content="https://alvittaluc.github.io/og.jpg">
 
@@ -326,7 +326,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      ══════════════════════════════════════════════════════════ */
 
   const ESTADOS = [
-    { id: "aplicado",    nome: "Aplicado",          fundo: "#F1ECE3", texto: "#54606F", borda: "#DED7CA" },
+    { id: "aplicado",    nome: "Currículo enviado", fundo: "#F1ECE3", texto: "#54606F", borda: "#DED7CA" },
     { id: "teste",       nome: "Teste",             fundo: "#EAF1F8", texto: "#1A4893", borda: "#D3E2F1" },
     { id: "entrevista",  nome: "Entrevista",        fundo: "#FBF0E4", texto: "#A85D24", borda: "#F0DCC6" },
     { id: "aprovado",    nome: "Aprovado",          fundo: "#E4F3F0", texto: "#1F7A6E", borda: "#C6E5DE" },
@@ -435,7 +435,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       <button class="ct-item" data-ir="painel" aria-current="${rota.tela === "painel"}">
         ${IC.painel}<span class="ct-txt">Painel</span></button>
       <button class="ct-item" data-ir="aplicacoes" aria-current="${rota.tela === "aplicacoes"}">
-        ${IC.aplicacoes}<span class="ct-txt">Aplicações</span>
+        ${IC.aplicacoes}<span class="ct-txt">Candidaturas</span>
         <span class="ct-cont">${emProcesso ? emProcesso + "/" + APLICACOES.length : (APLICACOES.length || "")}</span></button>
       <button class="ct-item" data-ir="trabalhos" aria-current="${rota.tela === "trabalhos"}">
         ${IC.trabalhos}<span class="ct-txt">Trabalhos</span>
@@ -577,7 +577,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
             <div class="ct-tile-sub">trabalhado e ainda não pago</div></div>
           <div class="ct-tile"><div class="ct-tile-rot">Processos abertos</div>
             <div class="ct-tile-val">${emProcesso}</div>
-            <div class="ct-tile-sub">de ${APLICACOES.length} ${APLICACOES.length === 1 ? "aplicação" : "aplicações"}</div></div>
+            <div class="ct-tile-sub">de ${APLICACOES.length} ${APLICACOES.length === 1 ? "candidatura" : "candidaturas"}</div></div>
         </div>
       </div>
 
@@ -624,14 +624,14 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     return `<div class="ct-cartao ct-vazio">
       <div class="ct-vazio-ic">◔</div>
       <h3>Nada registrado ainda</h3>
-      <p>Duas coisas moram aqui: as vagas em que você aplicou, e o trabalho que você já faz.
+      <p>Duas coisas moram aqui: as vagas a que você se candidatou e o trabalho que você já faz.
          Comece por qualquer uma das duas.</p>
       <div class="ct-passos">
         <div class="ct-passo">
-          <b>Já apliquei para essa vaga?</b>
+          <b>Já me candidatei a esta vaga?</b>
           <p>Registre para onde você mandou currículo, quando, e em que pé está.
-             Quando abrir uma vaga aqui no Hub, ela avisa se você já aplicou.</p>
-          <button class="ct-b" data-ir-ap>Registrar uma aplicação</button>
+             Quando abrir uma vaga aqui no Hub, ela avisa se você já se candidatou.</p>
+          <button class="ct-b" data-ir-ap>Registrar uma candidatura</button>
         </div>
         <div class="ct-passo">
           <b>Quanto eu já fiz este mês?</b>
@@ -813,8 +813,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     $("#aplicacoes").innerHTML = `
       <div class="ct-cab-tela">
-        <div><h1>Aplicações</h1><p>Para onde você mandou currículo, e em que pé está cada um.</p></div>
-        <div class="ct-cab-bts"><button class="ct-b pequeno forte" data-nova-ap>Nova aplicação</button></div>
+        <div><h1>Candidaturas</h1><p>Para onde você mandou currículo, e em que pé está cada um.</p></div>
+        <div class="ct-cab-bts"><button class="ct-b pequeno forte" data-nova-ap>Nova candidatura</button></div>
       </div>
       <div class="ct-filtros" id="filtrosAp"></div>
       <div id="listaAp"></div>`;
@@ -826,7 +826,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       ${ESTADOS.filter(e => cont[e.id]).map(e =>
         `<button class="ct-chip" data-estado="${e.id}" aria-pressed="${filtro.estado === e.id}">${esc(e.nome)} <span class="ct-cont">${cont[e.id]}</span></button>`).join("")}
       <div class="ct-sep"></div>
-      <div class="ct-busca"><input type="search" id="buscaAp" placeholder="Buscar por empresa ou vaga" aria-label="Buscar aplicação" value="${esc(filtro.busca)}"></div>`;
+      <div class="ct-busca"><input type="search" id="buscaAp" placeholder="Buscar por empresa ou vaga" aria-label="Buscar candidatura" value="${esc(filtro.busca)}"></div>`;
 
     $("#filtrosAp").querySelectorAll("[data-estado]").forEach(b => b.addEventListener("click", () => {
       filtro.estado = b.dataset.estado; desenharAplicacoes();
@@ -848,7 +848,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     if (!lista.length) {
       alvo.innerHTML = `<div class="ct-cartao ct-vazio">
         <div class="ct-vazio-ic">◍</div>
-        <h3>${APLICACOES.length ? "Nada com esse filtro" : "Nenhuma aplicação registrada"}</h3>
+        <h3>${APLICACOES.length ? "Nada com esse filtro" : "Nenhuma candidatura registrada"}</h3>
         <p>${APLICACOES.length ? "Tente outro estado ou limpe a busca."
           : "Cada vaga em que você mandar currículo entra aqui. Depois, quando bater a dúvida de \"será que já apliquei?\", a resposta está nesta lista, e também dentro da própria página da vaga."}</p>
         ${APLICACOES.length ? "" : `<button class="ct-b forte" data-nova2>Registrar a primeira</button>`}
@@ -869,7 +869,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           <span class="ct-emp">${esc(a.empresa || "")}${a.origem ? " · " + esc(a.origem) : ""}</span>
         </span>
         <span class="ct-esconde2">
-          <span class="ct-col-rot">Aplicada em</span>
+          <span class="ct-col-rot">Enviada em</span>
           <span class="ct-col-val">${esc(Dados.dataBonita(a.data))}</span>
         </span>
         <span>
@@ -904,7 +904,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     const corpo = `
       <div class="u-tripla">
         ${UI.campo({ nome: "empresa", rotulo: "Empresa", valor: ap.empresa, obrigatorio: true, lista: "listaEmpresas", dica: "Welocalize" })}
-        ${UI.campo({ nome: "data", rotulo: "Aplicada em", tipo: "date", valor: ap.data, obrigatorio: true })}
+        ${UI.campo({ nome: "data", rotulo: "Enviada em", tipo: "date", valor: ap.data, obrigatorio: true })}
       </div>
       ${UI.campo({ nome: "titulo", rotulo: "Título da vaga", valor: ap.titulo, obrigatorio: true, dica: "AI Data Annotator - Portuguese (Brazil)" })}
       ${UI.campo({ nome: "url", rotulo: "Link do anúncio", tipo: "url", valor: ap.url, dica: "https://" })}
@@ -920,7 +920,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       </div>
       ${UI.campo({ nome: "curriculo", rotulo: "Currículo enviado", valor: ap.curriculo, lista: "listaCurriculos",
                    dica: "Currículo IA 2026",
-                   ajuda: "Dê um apelido à versão. Nas próximas aplicações ele aparece na lista, e depois dá para ver qual teve mais resposta." })}
+                   ajuda: "Dê um apelido à versão. Nas próximas candidaturas ele aparece na lista, e depois dá para ver qual teve mais resposta." })}
       <datalist id="listaCurriculos">${curriculos.map(c => `<option value="${esc(c)}">`).join("")}</datalist>
       <div class="u-tripla">
         ${UI.campo({ nome: "proximo", rotulo: "Próximo passo", valor: ap.proximo, dica: "Fazer a prova de qualificação" })}
@@ -931,7 +931,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       <div id="avisoRepetida"></div>`;
 
     const dlg = UI.painel({
-      titulo: novo ? "Nova aplicação" : "Editar aplicação",
+      titulo: novo ? "Nova candidatura" : "Editar candidatura",
       subtitulo: novo ? "" : ap.empresa,
       acaoTexto: novo ? "Registrar" : "Salvar",
       corpo,
@@ -966,7 +966,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         await recarregar();
         if (rota.tela === "aplicacoes") desenharAplicacoes();
         if (rota.tela === "hoje") await desenharHoje();
-        UI.aviso(novo ? "Aplicação registrada." : "Aplicação salva.");
+        UI.aviso(novo ? "Candidatura registrada." : "Candidatura salva.");
 
         /* Pulso: só age se a pessoa tiver ligado, e só para vagas vindas do Hub. */
         if (typeof Pulso !== "undefined") Pulso.porEstado(salvo.vagaId, estadoNovo, ap.estado);
@@ -993,7 +993,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       if (!achada || (ap.id && achada.id === ap.id)) { caixa.innerHTML = ""; return; }
       const e = estadoDe(achada.estado);
       caixa.innerHTML = `<div class="u-nota">
-        Você já aplicou para esta vaga em <b>${esc(Dados.dataBonita(achada.data))}</b>, e ela está como
+        Você já se candidatou a esta vaga em <b>${esc(Dados.dataBonita(achada.data))}</b>, e ela está como
         <b>${esc(e.nome)}</b>. Dá para abrir aquela ou registrar assim mesmo, se for uma nova rodada.
         <br><button type="button" class="u-link" data-abrir-antiga>Abrir a de ${esc(Dados.dataBonita(achada.data))}</button>
       </div>`;
@@ -1009,13 +1009,13 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     const apagar = dlg.querySelector("[data-apagar]");
     if (apagar) apagar.addEventListener("click", async () => {
-      const ok = await UI.confirmar({ titulo: "Apagar esta aplicação?", texto: "Não dá para desfazer.", acaoTexto: "Apagar", perigo: true });
+      const ok = await UI.confirmar({ titulo: "Apagar esta candidatura?", texto: "Não dá para desfazer.", acaoTexto: "Apagar", perigo: true });
       if (!ok) return;
       await Dados.remover("aplicacoes", ap.id);
       dlg.close(); dlg.remove();
       await recarregar();
       if (rota.tela === "aplicacoes") desenharAplicacoes();
-      UI.aviso("Aplicação apagada.");
+      UI.aviso("Candidatura apagada.");
     });
   }
 
@@ -1255,7 +1255,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         <div class="ct-cab-cartao"><h2>Pulso do Hub</h2><p id="pulsoEstado"></p></div>
         <p>
           A única coisa que pode sair deste navegador. Quando está ligado, o Hub recebe o código
-          da vaga e a data em que você aplicou, e nada além disso. Serve para a página de vagas
+          da vaga e a data em que você se candidatou, e nada além disso. Serve para a página de vagas
           mostrar quais vagas estão movimentando e quais empresas costumam responder.
         </p>
         <p>
@@ -1277,7 +1277,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     $("#btApagar").addEventListener("click", async () => {
       const ok = await UI.confirmar({
         titulo: "Apagar tudo?",
-        texto: "Some toda a sua lista de aplicações, os trabalhos, os dias registrados e os pagamentos, deste navegador. Não dá para desfazer. Exporte um backup antes se tiver qualquer dúvida.",
+        texto: "Some toda a sua lista de candidaturas, os trabalhos, os dias registrados e os pagamentos, deste navegador. Não dá para desfazer. Exporte um backup antes se tiver qualquer dúvida.",
         acaoTexto: "Apagar tudo", perigo: true,
       });
       if (!ok) return;
@@ -1331,9 +1331,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     const quantas = await Pulso.tamanhoDoHistorico();
     if (quantas > 0) {
       const sim = await UI.confirmar({
-        titulo: "Contar as aplicações que você já tinha?",
+        titulo: "Contar as candidaturas que você já tinha?",
         texto: "Você já registrou <b>" + quantas + "</b> " +
-               (quantas === 1 ? "aplicação vinda" : "aplicações vindas") +
+               (quantas === 1 ? "candidatura vinda" : "candidaturas vindas") +
                " do Hub. Dá para contar " + (quantas === 1 ? "ela" : "elas") +
                " também, com as datas originais, para o Pulso começar a servir para alguma coisa desde já.",
         acaoTexto: "Contar também",
@@ -1354,7 +1354,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     if (!APLICACOES.some(a => a.vagaId)) { fita.hidden = true; return; }
 
     fita.hidden = false;
-    fita.innerHTML = `<span><b>Contar as suas aplicações no Pulso?</b>
+    fita.innerHTML = `<span><b>Contar as suas candidaturas no Pulso?</b>
       Sai só o código da vaga e a data, para a página de vagas mostrar o que está movimentando.
       Nada da sua ficha.</span>
       <button class="ct-b pequeno" data-pulso-sim>Ligar</button>
@@ -1415,7 +1415,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           <thead><tr><th></th><th style="text-align:right;padding:6px 10px;color:var(--ink-3);">No arquivo</th>
           <th style="text-align:right;padding:6px 10px;color:var(--ink-3);">Aqui hoje</th></tr></thead>
           <tbody style="text-align:right;">
-            ${linha("Aplicações", p.aplicacoes, p.atual.aplicacoes)}
+            ${linha("Candidaturas", p.aplicacoes, p.atual.aplicacoes)}
             ${linha("Trabalhos", p.trabalhos, p.atual.trabalhos)}
             ${linha("Dias registrados", p.registros, p.atual.registros)}
             ${linha("Pagamentos", p.pagamentos, p.atual.pagamentos)}

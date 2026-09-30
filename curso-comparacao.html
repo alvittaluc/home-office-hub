@@ -605,7 +605,7 @@ html { scroll-behavior:smooth; }
         <div class="cu-rail-subs">
           <a href="#a4-just">A anatomia de uma justificativa útil</a>
           <a href="#a4-erradas">Quando as duas estão erradas</a>
-          <a href="#a4-seguranca">Quando segurança sobrepõe a preferência</a>
+          <a href="#a4-seguranca">Quando a segurança se sobrepõe à preferência</a>
           <a href="#a4-especialista">Tarefa de especialista</a>
           <a href="#a4-pratica">Prática: escreva três justificativas</a>
           <a href="#a4-resumo">Resumo da aula</a>
@@ -690,7 +690,7 @@ html { scroll-behavior:smooth; }
           trios treinam um modelo de recompensa, que aprende a prever qual resposta as pessoas escolheriam, e
           esse modelo passa a servir de referência no ajuste do modelo principal. É o processo de três estágios
           publicado no artigo do InstructGPT, da OpenAI, em 2022.</p>
-        <p>Duas consequências práticas que vale interiorizar.</p>
+        <p>Duas consequências práticas que vale guardar.</p>
         <p>A primeira: <strong>o par importa mais que a nota</strong>. Como o dado é relativo, o que o sistema
           aprende é "esta foi preferida àquela, neste contexto". Uma escolha correta por um motivo errado ainda
           ensina a coisa errada, porque o modelo não lê a sua justificativa, ele lê o padrão das escolhas.</p>
@@ -756,8 +756,7 @@ html { scroll-behavior:smooth; }
             <p><strong>Par 2: B.</strong> Aqui as duas estão corretas e nenhuma é insegura, então a decisão desce
               até o filtro 4. A resposta A é cordial e não erra nada, mas termina sem dar ao usuário nada para
               fazer. B nomeia as causas prováveis e dá o caminho para descobrir qual é o caso, inclusive um passo
-              de segurança. Justificativa: "B dá ao usuário como descobrir a causa e o que fazer em cada uma. A é
-              cordial mas não move o problema."</p>
+              de segurança. Justificativa: "B dá ao usuário como descobrir a causa e o que fazer em cada uma. A é cordial, mas não ajuda a resolver o problema."</p>
             <p>Repare no contraste entre os dois pares. No primeiro, a decisão foi rápida e o resto do texto era
               irrelevante. No segundo, foi preciso descer quatro filtros. Saber em qual filtro você parou é o que
               torna a justificativa fácil de escrever.</p>
@@ -771,7 +770,7 @@ html { scroll-behavior:smooth; }
           <li>Empate é legítimo por equivalência ou por troca entre critérios de peso igual. Empate por não
             conseguir decidir é ruído.</li>
           <li>Cada linha sua vira um trio de pedido, escolhida e rejeitada, que treina o modelo de recompensa.</li>
-          <li>O modelo aprende do padrão das escolhas, não da sua justificativa. Escolha certa por motivo errado
+          <li>O modelo aprende com o padrão das escolhas, não com a sua justificativa. Escolha certa por motivo errado
             ensina errado.</li>
           <li>Leia por filtros, do decisivo ao cosmético, e pare no primeiro que separa as duas respostas.</li>
         </ul>
@@ -792,7 +791,7 @@ html { scroll-behavior:smooth; }
         <h3 id="a2-quatro">Quatro vieses medidos</h3>
         <p>O artigo <em>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</em>, de Zheng e colegas, de 2023,
           examinou o uso de modelos como juízes e nomeou quatro limitações desse tipo de julgamento: viés de
-          posição, viés de verbosidade, viés de auto-favorecimento e capacidade limitada de raciocínio. Três dos
+          posição, viés de verbosidade, viés de autofavorecimento e capacidade limitada de raciocínio. Três dos
           quatro têm equivalente direto no julgamento humano.</p>
 
         <div class="cu-fig">
@@ -804,7 +803,7 @@ html { scroll-behavior:smooth; }
                 mentalmente A e B.</span></div>
               <div class="cu-esc-cx"><b>Verbosidade</b><span>preferir a resposta mais longa por parecer mais
                 completa. Contramedida: perguntar se o texto extra acrescenta informação ou repete.</span></div>
-              <div class="cu-esc-cx"><b>Auto-favorecimento</b><span>no juiz automático, preferir texto parecido
+              <div class="cu-esc-cx"><b>Autofavorecimento</b><span>no juiz automático, preferir texto parecido
                 com o próprio estilo. No humano, o equivalente é preferir o que soa como você escreveria.</span></div>
               <div class="cu-esc-cx"><b>Raciocínio limitado</b><span>julgar mal problema de matemática ou lógica
                 por não conferir a conta. Contramedida: verificar o passo decisivo em vez de confiar no
@@ -837,7 +836,7 @@ html { scroll-behavior:smooth; }
           preferida. Segundo, e mais grave: tanto pessoas quanto modelos de preferência escolhem uma resposta
           bajuladora bem escrita em vez da resposta correta numa fração não desprezível dos casos.</p>
         <p>Isso desmonta a ideia de que bajulação é defeito do modelo. Ela é, em boa medida, um retrato da
-          preferência que foi coletada. O que significa que cada avaliador tem uma decisão real em mão: quando o
+          preferência que foi coletada. O que significa que cada avaliador tem uma decisão real nas mãos: quando o
           usuário afirma algo errado e uma resposta o corrige enquanto a outra o elogia, premiar a correção é o
           que impede o hábito de se formar.</p>
 
@@ -891,7 +890,7 @@ html { scroll-behavior:smooth; }
         <h3 id="a2-resumo">Resumo da aula</h3>
         <ul>
           <li>Zheng e colegas nomearam quatro vieses do juiz automático: posição, verbosidade,
-            auto-favorecimento e raciocínio limitado. Os três primeiros valem para humanos.</li>
+            autofavorecimento e raciocínio limitado. Os três primeiros valem para humanos.</li>
           <li>O viés de tamanho é o mais documentado: parte do ganho atribuído ao RLHF acompanha o aumento do
             comprimento, segundo Singhal e colegas.</li>
           <li>Bajulação nasce, em parte, da preferência humana coletada. Sharma e colegas mostram que respostas
@@ -934,8 +933,7 @@ html { scroll-behavior:smooth; }
           avaliação, o MT-Bench e o Chatbot Arena, e publicou 3 mil votos de especialistas e 30 mil conversas
           com preferência humana.</p>
         <p>O achado central: juízes fortes, como o GPT-4 na época do estudo, alcançaram <strong>mais de 80 por
-          cento de concordância</strong> com a preferência humana, tanto em cenário controlado quanto em
-          multidão, o que os autores descrevem como o mesmo nível de concordância que humanos têm entre si.</p>
+          cento de concordância</strong> com a preferência humana, tanto em cenário controlado quanto em votação aberta ao público, o que os autores descrevem como o mesmo nível de concordância que humanos têm entre si.</p>
         <p>Esse resultado costuma ser lido de duas formas erradas. A primeira é "então o humano não é mais
           necessário". A segunda é "então o juiz automático é inútil". As duas ignoram o mesmo detalhe: 80 por
           cento de concordância significa que <strong>um em cada cinco casos difere</strong>, e os casos que
@@ -946,8 +944,7 @@ html { scroll-behavior:smooth; }
           <p class="cu-fig-cap"><b>Figura 3.1</b> · O que muda quando a primeira passada é automática</p>
           <div class="cu-fig-moldura">
             <div class="cu-fluxo">
-              <div class="cu-passo"><b>Fila de pares</b><span>volume que nenhum time humano avaliaria por
-                inteiro</span></div>
+              <div class="cu-passo"><b>Fila de pares</b><span>volume que nenhuma equipe humana avaliaria por inteiro</span></div>
               <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
               <div class="cu-passo"><b>Juiz automático</b><span>aplica a rubrica e devolve veredito com
                 justificativa</span></div>
@@ -959,7 +956,7 @@ html { scroll-behavior:smooth; }
                 guideline</span></div>
             </div>
           </div>
-          <p class="cu-fig-nota">O humano sai do volume e entra na amostra difícil, e na régua.</p>
+          <p class="cu-fig-nota">O humano sai do volume e passa a cuidar da amostra difícil e da régua.</p>
         </div>
 
         <h3 id="a3-rm">Modelos de recompensa e RewardBench</h3>
@@ -1059,7 +1056,7 @@ html { scroll-behavior:smooth; }
           segurança contra utilidade, e tarefa que exige conhecimento de especialista.</p>
 
         <h3 id="a4-just">A anatomia de uma justificativa útil</h3>
-        <p>Justificativa boa tem três partes e caber em duas frases. Nada além disso é exigido, e quase tudo
+        <p>Uma boa justificativa tem três partes e cabe em duas frases. Nada além disso é exigido, e quase tudo
           além disso é enfeite.</p>
         <div class="cu-fig">
           <p class="cu-fig-cap"><b>Figura 4.1</b> · Três partes de uma justificativa</p>
@@ -1097,7 +1094,7 @@ html { scroll-behavior:smooth; }
           escolhi B por errar menos e por não recomendar ação irreversível" é um dos registros mais valiosos que
           um avaliador produz, porque revela um problema que aparece nas duas respostas, e portanto no modelo.</p>
 
-        <h3 id="a4-seguranca">Quando segurança sobrepõe a preferência</h3>
+        <h3 id="a4-seguranca">Quando a segurança se sobrepõe à preferência</h3>
         <p>Em praticamente toda guideline de assistente, segurança fica acima de utilidade. O Model Spec da
           OpenAI, documento público que declara o comportamento esperado dos modelos da empresa, organiza isso
           como uma cadeia de comando, em que instruções de nível mais alto não podem ser sobrepostas por pedido
@@ -1122,7 +1119,7 @@ html { scroll-behavior:smooth; }
             usar sem refazer a pesquisa.</li>
           <li><strong>Não fingir domínio.</strong> Se o par está fora da sua área e o projeto tem caminho para
             devolver o item, devolver é o comportamento correto e é mais valioso que um palpite bem escrito.
-            Palpite de especialista entra no dado como se fosse conhecimento.</li>
+            Um palpite entra no dado como se fosse conhecimento de especialista.</li>
         </ol>
 
         <div class="cu-pratica" id="a4-pratica">
@@ -1216,7 +1213,7 @@ html { scroll-behavior:smooth; }
           <div class="cu-q" data-certa="a">
             <p class="cu-q-tit"><i>3</i> Por que uma escolha certa por um motivo errado ainda prejudica o
               treino?</p>
-            <label><input type="radio" name="q3" value="a"><span>Porque o modelo aprende do padrão das escolhas, e não do texto da sua justificativa</span></label>
+            <label><input type="radio" name="q3" value="a"><span>Porque o modelo aprende com o padrão das escolhas, e não com o texto da sua justificativa</span></label>
             <label><input type="radio" name="q3" value="b"><span>Porque a justificativa é o único dado usado no treino</span></label>
             <label><input type="radio" name="q3" value="c"><span>Porque o QA desconta pontos por justificativa fraca</span></label>
             <label><input type="radio" name="q3" value="d"><span>Não prejudica, desde que a escolha esteja correta</span></label>
@@ -1241,7 +1238,7 @@ html { scroll-behavior:smooth; }
             <p class="cu-q-tit"><i>5</i> Quais são os quatro vieses de juiz que Zheng e colegas nomearam em
               2023?</p>
             <label><input type="radio" name="q5" value="a"><span>Posição, idioma, formatação e cansaço</span></label>
-            <label><input type="radio" name="q5" value="b"><span>Posição, verbosidade, auto-favorecimento e capacidade limitada de raciocínio</span></label>
+            <label><input type="radio" name="q5" value="b"><span>Posição, verbosidade, autofavorecimento e capacidade limitada de raciocínio</span></label>
             <label><input type="radio" name="q5" value="c"><span>Tamanho, tom, tempo de resposta e custo</span></label>
             <label><input type="radio" name="q5" value="d"><span>Bajulação, alucinação, recusa e vazamento</span></label>
             <p class="cu-q-fb"></p>
@@ -1269,7 +1266,7 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q7" value="d"><span>Bajulação só aparece em idiomas com tratamento formal</span></label>
             <p class="cu-q-fb"></p>
             <p class="cu-q-pq">Ou seja, ela é em parte um retrato da preferência coletada, e cada avaliador tem
-              uma decisão real na mão quando o usuário afirma algo errado.</p>
+              uma decisão real nas mãos quando o usuário afirma algo errado.</p>
           </div>
 
           <div class="cu-q" data-certa="d">
@@ -1325,7 +1322,7 @@ html { scroll-behavior:smooth; }
           <h3>Parabéns, você concluiu o curso</h3>
           <p>
             Você passou no quiz de <b>Comparação de Respostas e LLM como Juiz</b>. O vocabulário e os critérios que apareceram
-            aqui são os mesmos que a empresa usa no teste de entrada e na conversa com o time.
+            aqui são os mesmos que a empresa usa no teste de entrada e na conversa com a equipe.
           </p>
           <a class="cu-bt-forte" href="cursos.html">Ver os outros cursos</a>
         </div>
@@ -1367,7 +1364,7 @@ html { scroll-behavior:smooth; }
             primeira, independentemente do conteúdo.</li>
           <li><b>Viés de verbosidade</b>Tendência a preferir a resposta mais longa por parecer mais completa.
             Também chamado de viés de tamanho.</li>
-          <li><b>Viés de auto-favorecimento</b>No juiz automático, a tendência a preferir texto parecido com o
+          <li><b>Viés de autofavorecimento</b>No juiz automático, a tendência a preferir texto parecido com o
             próprio estilo. No humano, preferir o que soa como você escreveria.</li>
           <li><b>Bajulação</b>A tendência a concordar com o usuário em vez de corrigi-lo. Em inglês,
             sycophancy.</li>

@@ -30,8 +30,8 @@
   const RESPOSTA = ["teste", "entrevista", "aprovado"];
 
   const SELOS = {
-    alta: { texto: "em alta", titulo: "Muita gente do Hub aplicou nos últimos dias" },
-    responde: { texto: "costuma responder", titulo: "Boa parte de quem aplicou teve retorno" },
+    alta: { texto: "em alta", titulo: "Muita gente do Hub se candidatou nos últimos dias" },
+    responde: { texto: "costuma responder", titulo: "Boa parte de quem se candidatou teve retorno" },
   };
 
   let dados = null;

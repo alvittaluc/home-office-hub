@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-30T16:52:53.364680+00:00",
-  "atualizado_br": "30/09/2026 às 13:52",
-  "total": 193,
+  "atualizado_em": "2026-09-30T18:33:02.690603+00:00",
+  "atualizado_br": "30/09/2026 às 15:33",
+  "total": 191,
   "areas": [
     "Biologia e Ciencias da Vida",
     "Design e Criacao",
@@ -1216,22 +1216,6 @@
     },
     {
       "empresa": "micro1",
-      "titulo": "AI Software Engineering Domain Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/9c1927de-288b-45c9-b3d2-e68c6fb07c1f",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-04",
-      "data_oficial": true,
-      "id": "f893b592cb"
-    },
-    {
-      "empresa": "micro1",
       "titulo": "Senior Software Engineer",
       "local": "Remoto · Mundial",
       "categoria": "ai",
@@ -1341,22 +1325,6 @@
       "data_ref": "2026-08-27",
       "data_oficial": true,
       "id": "b6ed89bb5a"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "AI Finance Domain Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/0b30881e-512e-459e-be5d-108c4a455b7b",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "area": "Financas e Contabilidade",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-04",
-      "data_oficial": true,
-      "id": "642f69b388"
     },
     {
       "empresa": "micro1",
@@ -1533,22 +1501,6 @@
       "data_ref": "2026-08-13",
       "data_oficial": true,
       "id": "d316848dee"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Marketing, Sales & Communications Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/b1ed213f-d9b2-4d3b-99f2-12ca2c6b8e84",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-18",
-      "area": "Marketing e Vendas",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-18",
-      "data_oficial": true,
-      "id": "7ff827cf5d"
     },
     {
       "empresa": "micro1",
@@ -2621,6 +2573,22 @@
       "data_ref": "2026-09-16",
       "data_oficial": true,
       "id": "127290a323"
+    },
+    {
+      "empresa": "turing",
+      "titulo": "Senior Software Engineer - AI Evaluation / Coding Agents ($100-150/hr)",
+      "local": "Remoto · Mundial",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://work.turing.com/jobs?jobId=104644",
+      "commitment": "Software development",
+      "fonte": "direto",
+      "data_post": "2026-09-09",
+      "area": "Programacao e Software",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-09",
+      "data_oficial": true,
+      "id": "ecb5d256c2"
     },
     {
       "empresa": "turing",

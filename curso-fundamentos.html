@@ -567,7 +567,7 @@ html { scroll-behavior:smooth; }
           <span class="cu-rail-nome">O que é RLHF e por que existe avaliação</span>
         </a>
         <div class="cu-rail-subs">
-          <a href="#a1-cru">Um modelo recém saído do pré-treino</a>
+          <a href="#a1-cru">Um modelo recém-saído do pré-treino</a>
           <a href="#a1-tres">Onde entra o julgamento humano</a>
           <a href="#a1-assim">Julgar é mais fácil que escrever</a>
           <a href="#a1-rlhf">O que é RLHF</a>
@@ -638,7 +638,7 @@ html { scroll-behavior:smooth; }
           delas o julgamento humano entra, e por que a tarefa que você recebe é quase sempre comparar duas
           respostas em vez de escrever a resposta perfeita.</p>
 
-        <h3 id="a1-cru">Um modelo recém saído do pré-treino</h3>
+        <h3 id="a1-cru">Um modelo recém-saído do pré-treino</h3>
         <p class="cu-nota-termo"><b>Antes de começar, dois termos.</b> <b>Modelo de linguagem</b> é o programa
           que está por trás de um assistente como o ChatGPT ou o Claude: ele recebe um texto e devolve a
           continuação mais provável, palavra por palavra. <b>Treinar</b> um modelo é mostrar a ele uma montanha
@@ -928,7 +928,7 @@ html { scroll-behavior:smooth; }
 
         <h4>Bajulação</h4>
         <p>Modelos treinados em preferências humanas tendem a concordar com o usuário. Se os avaliadores
-          favorecem, mesmo que de leve, respostas que aceitam a premissa da pergunta, ou seja a ideia que a
+          favorecem, mesmo que de leve, respostas que aceitam a premissa da pergunta, ou seja, a ideia que a
           pergunta já dá como certa, ou que elogiam a opinião de quem perguntou, o modelo aprende que concordar
           é premiado e começa a puxar a resposta para o lado do usuário em vez do lado da precisão. Aquele assistente que abre com "você está absolutamente certo"
           antes de dizer algo errado adquiriu o hábito em avaliações.</p>
@@ -945,7 +945,7 @@ html { scroll-behavior:smooth; }
         <h4>Exploração da recompensa</h4>
         <p>É a forma geral do caso acima. O modelo encontra uma característica de superfície, barata de produzir,
           que se correlaciona com nota alta: mais texto, mais estrutura, tom mais confiante. E passa a entregar
-          essa característica no lugar da qualidade que ela deveria indicar. A resposta lê como melhor sem ser
+          essa característica no lugar da qualidade que ela deveria indicar. A resposta parece melhor sem ser
           melhor.</p>
 
         <h4>Alucinação confiante</h4>
@@ -992,8 +992,7 @@ html { scroll-behavior:smooth; }
           <div class="cu-resp">
             <p>A conversa mostra <strong>bajulação</strong>, junto com uma forma leve de <strong>alucinação
               confiante</strong>. A afirmação do usuário é falsa, porque o núcleo é composto principalmente de
-              ferro e níquel, e o assistente não corrige nem deixa de endossar: ele valida o raciocínio e passa
-              por cima do erro.</p>
+              ferro e níquel, e o assistente não corrige o erro e ainda endossa a ideia: ele valida o raciocínio e passa por cima do engano.</p>
             <p>Para evitar, os avaliadores que compararam respostas a esse tipo de pergunta precisariam preferir,
               de forma consistente, a resposta que corrige a premissa falsa em vez da que agrada o usuário, mesmo
               quando a resposta agradável soa mais simpática. Aplicada a muitos casos parecidos, essa preferência
@@ -1122,8 +1121,7 @@ html { scroll-behavior:smooth; }
         <p><em>Learning to summarize from human feedback</em> (Stiennon e outros, OpenAI, 2020) aplicou
           preferências e um modelo de recompensa à tarefa de resumir textos. Pessoas comparavam pares de resumos,
           um modelo de recompensa aprendeu essas preferências, e o modelo resultante produziu resumos que os
-          leitores preferiram aos de um treino supervisionado comum. Ficou demonstrado que o método atravessava
-          do robô simulado para uma tarefa linguística real.</p>
+          leitores preferiram aos de um treino supervisionado comum. Ficou demonstrado que o método funcionava também fora do robô simulado, numa tarefa real de linguagem.</p>
         <p><em>InstructGPT</em> (Ouyang e outros, OpenAI, 2022) estendeu a abordagem para seguir instruções em
           geral e publicou a receita completa pela primeira vez. São três etapas: primeiro, o modelo é ajustado
           com respostas escritas por pessoas; depois, um modelo de recompensa é treinado com as comparações que
@@ -1193,8 +1191,7 @@ html { scroll-behavior:smooth; }
           comparações rotineiras, os avaliadores migram para o trabalho mais difícil: escrever e refinar
           guidelines, decidir os casos ambíguos que um modelo não resolve, auditar julgamentos feitos por
           máquina, e cobrir domínios novos que ainda não têm regra estabelecida. A fatia do treino que depende de
-          julgamento humano cresceu com o tempo, e o julgamento exigido ficou mais qualificado e mais
-          consequente.</p>
+          julgamento humano cresceu com o tempo, e o julgamento exigido ficou mais qualificado e de maior impacto.</p>
 
         <div class="cu-pratica" id="a3-pratica">
           <p class="cu-selo">Prática</p>
@@ -1216,11 +1213,11 @@ html { scroll-behavior:smooth; }
               comparações em vez de respostas certas. O RLHF então encontra a limitação (a), o custo de coletar
               todas essas comparações, que o Constitutional AI (3) alivia fazendo uma pessoa escrever princípios
               uma vez em lugar de julgar cada caso. A necessidade restante, estender o julgamento para áreas
-              novas, (c), é o que o RLAIF (4) endereça deixando um modelo gerar comparações que pessoas
+              novas, (c), é o que o RLAIF (4) resolve deixando um modelo gerar comparações que pessoas
               supervisionam.</p>
             <p>Cada técnica responde a um gargalo concreto, em vez de ser uma melhoria sem ressalva. Saber qual
               gargalo cada uma resolve é o que torna a sequência fácil de acompanhar, e o que faz um briefing de
-              projeto parar de parecer sopa de letras.</p>
+              projeto parar de parecer sopa de letrinhas.</p>
           </div>
         </div>
 
@@ -1263,7 +1260,7 @@ html { scroll-behavior:smooth; }
           tempo, os avaliadores recorreram ao critério mais fácil de ver de relance, a densidade de comentários,
           e o modelo aprendeu a inflar o código. A culpa foi menos dos avaliadores do que de uma guideline que
           deu a um critério decisivo, correção, e a um critério menor, comentários, o mesmo peso.</p>
-        <p>A instrução que segue disso é simples: <strong>encontre a ordem de prioridade</strong>. Se correção
+        <p>A lição que fica é simples: <strong>encontre a ordem de prioridade</strong>. Se correção
           vem primeiro, uma resposta simples e correta tem que vencer uma resposta polida e errada, por mais
           agradável que a segunda seja de ler. Quando a ordem não está no documento, vale perguntar, porque um
           atalho vai ocupar esse espaço vazio, com ou sem a sua intenção.</p>
@@ -1274,7 +1271,7 @@ html { scroll-behavior:smooth; }
         <h3 id="a4-defensavel">A forma de um julgamento defensável</h3>
         <p>Um julgamento de preferência defensável compara as duas respostas nos critérios que importam, aplica o
           mesmo padrão de um caso para o outro, e registra o raciocínio de forma clara o suficiente para outra
-          pessoa seguir. Uma impressão rápida, ou uma lista de conferência tocada de memória, não alcança esse
+          pessoa seguir. Uma impressão rápida, ou uma lista de conferência feita de memória, não alcança esse
           patamar.</p>
 
         <div class="cu-fig">
@@ -1299,7 +1296,7 @@ html { scroll-behavior:smooth; }
               <div class="cu-anat-escolha">
                 <b>Escolhida: B</b>
                 <span>Corrige a premissa falsa antes de responder, onde A a endossa.</span>
-                <em>escreva a justificativa em uma frase. o motivo é o sinal.</em>
+                <em>escreva a justificativa em uma frase. O motivo é o sinal.</em>
               </div>
             </div>
           </div>
@@ -1377,13 +1374,12 @@ html { scroll-behavior:smooth; }
                   <p class="cu-kap-rot">Fórmula</p>
                   <p>k = (Po − Pe) / (1 − Pe)</p>
                   <p>= (0,82 − 0,82) / (1 − 0,82)</p>
-                  <p>= 0 / 0,18 = <b>0,04</b></p>
+                  <p>= 0 / 0,18 = <b>0</b></p>
                 </div>
                 <div class="cu-kap-caixa cu-kap-bom">
                   <p class="cu-kap-rot">Kappa</p>
-                  <p class="cu-kap-num">0,04</p>
-                  <p class="cu-kap-txt">Perto de zero. Aqueles 82 por cento não carregavam quase nenhum sinal
-                    real.</p>
+                  <p class="cu-kap-num">0</p>
+                  <p class="cu-kap-txt">Zero. Aqueles 82 por cento eram puro acaso, sem nenhum sinal real.</p>
                 </div>
               </div>
             </div>
@@ -1439,8 +1435,7 @@ html { scroll-behavior:smooth; }
         </div>
 
         <p>Na prática, quando você se vê discordando de um colega ou de um item de controle, não conclua
-          automaticamente que o errado é você. Decida primeiro de que tipo de discordância se trata. Se leu a
-          guideline errado, corrija a leitura e recalibre. Se o item está de fato numa fronteira, leve o caso a
+          automaticamente que o errado é você. Decida primeiro de que tipo de discordância se trata. Se você leu a guideline de forma errada, corrija a leitura e recalibre. Se o item está de fato numa fronteira, leve o caso a
           quem conduz o projeto, porque em geral isso indica uma regra que precisa ser afinada. Avaliadores que
           fazem isso contribuem de duas formas: pelos rótulos que entregam, e pela melhoria que as perguntas
           deles provocam na guideline que todo mundo usa.</p>
@@ -1477,7 +1472,7 @@ html { scroll-behavior:smooth; }
               o faz parecer confiável. B recusa a ação perigosa, explica o motivo, que é a liberação de gás
               cloro, e ainda oferece uma alternativa segura. Segurança está acima de riqueza de detalhe nesta
               tarefa, então o detalhe extra de A conta contra ela, e não a favor."</p>
-            <p>Essa justificativa nomeia o critério decisivo, coloca ele acima dos outros, e seria alcançada de
+            <p>Essa justificativa nomeia o critério decisivo, coloca-o acima dos outros e seria alcançada de
               novo por outro avaliador cuidadoso. É esse o padrão a perseguir.</p>
           </div>
         </div>
@@ -1623,7 +1618,7 @@ html { scroll-behavior:smooth; }
           <div class="cu-q" data-certa="b">
             <p class="cu-q-tit"><i>10</i> Você e um colega, ambos seguindo a guideline com cuidado, chegam a
               julgamentos diferentes num item que fica numa fronteira real. O que fazer?</p>
-            <label><input type="radio" name="q10" value="a"><span>Assumir que o errado é você e mudar para a resposta do colega</span></label>
+            <label><input type="radio" name="q10" value="a"><span>Presumir que o errado é você e mudar para a resposta do colega</span></label>
             <label><input type="radio" name="q10" value="b"><span>Levar o caso a quem conduz o projeto, porque a divisão em geral aponta uma regra que precisa ser afinada</span></label>
             <label><input type="radio" name="q10" value="c"><span>Tirar a média das duas respostas e seguir</span></label>
             <label><input type="radio" name="q10" value="d"><span>Marcar o item como inválido e pular</span></label>
@@ -1650,7 +1645,7 @@ html { scroll-behavior:smooth; }
           <h3>Parabéns, você concluiu o curso</h3>
           <p>
             Você passou no quiz de <b>Fundamentos da Avaliação de IA</b>. O vocabulário e os critérios que apareceram
-            aqui são os mesmos que a empresa usa no teste de entrada e na conversa com o time.
+            aqui são os mesmos que a empresa usa no teste de entrada e na conversa com a equipe.
           </p>
           <a class="cu-bt-forte" href="cursos.html">Ver os outros cursos</a>
         </div>
@@ -1677,7 +1672,7 @@ html { scroll-behavior:smooth; }
         <ul class="cu-glos">
           <li><b>Modelo de linguagem</b>O programa por trás de um assistente de conversa. Recebe um texto e
             devolve a continuação mais provável, palavra por palavra. <i>Em inglês, language model. LLM é a
-            sigla de large language model, ou seja modelo de linguagem grande.</i></li>
+            sigla de large language model, ou seja, modelo de linguagem grande.</i></li>
           <li><b>Pré-treino</b>A primeira etapa do treino, em que o modelo lê uma quantidade enorme de texto e
             aprende a prever a próxima palavra. Dá conhecimento e fluência, e não dá comportamento.</li>
           <li><b>Ajuste por instrução</b>A segunda etapa, em que pessoas escrevem respostas modelo e o sistema
@@ -1735,7 +1730,7 @@ html { scroll-behavior:smooth; }
             <b>Training language models to follow instructions with human feedback</b>
             Long Ouyang e outros, OpenAI, 2022.
             <em><a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener">arxiv.org/abs/2203.02155</a>
-              · fonte dos três estágios de treino, do time de cerca de 40 pessoas contratadas e das taxas de
+              · fonte dos três estágios de treino, da equipe de cerca de 40 pessoas contratadas e das taxas de
               concordância de 72,6 e 77,3 por cento.</em>
           </li>
           <li>

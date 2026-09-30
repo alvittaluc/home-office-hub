@@ -217,7 +217,7 @@
       ],
       "resumo": "Plataforma operada pela Scale AI, com projetos de escrita, avaliação e correção de respostas de IA. Paga acima da média do setor. A parte de especialista pede formação superior, mas há frentes que não exigem diploma. Avaliação de 4,1 de 5 no Trustpilot, com mais de 3 mil avaliações de participantes.",
       "curto": "Plataforma da Scale AI, com pagamento semanal. Tem projeto de especialista e também frentes abertas a quem não tem graduação.",
-      "o_que_voce_faz": "Escrever perguntas difíceis que confundem o modelo e dar a resposta correta, criar critérios de correção e ranquear respostas geradas por IA.",
+      "o_que_voce_faz": "Escrever perguntas difíceis que confundem o modelo e dar a resposta correta, criar critérios de correção e ordenar respostas geradas por IA por qualidade.",
       "bom_para": "Quem escreve bem e gosta de raciocinar sobre problemas difíceis. Tem projeto para quem vem de área técnica e também frentes abertas a quem não tem graduação.",
       "como_entrar": "Criar perfil, importar habilidades, verificar identidade e passar por validação de conhecimento. O processo leva de 30 a 90 minutos. Exigem documento válido e celular do próprio país, currículo e perfil no LinkedIn.",
       "pagamento": "Semanal, com bônus por qualidade. Sem exigência de horas mínimas.",
@@ -307,7 +307,7 @@
         "Tradução",
         "Avaliação de busca"
       ],
-      "resumo": "Alignerr é a rede de especialistas da Labelbox, uma das empresas mais conhecidas de rotulagem de dados. A plataforma anuncia média de 80 dólares por hora, com faixas que variam bastante conforme o projeto. ",
+      "resumo": "Alignerr é a rede de especialistas da Labelbox, uma das empresas mais conhecidas de rotulagem de dados. A plataforma anuncia média de 80 dólares por hora, com faixas que variam bastante conforme o projeto.",
       "curto": "Rede de especialistas da Labelbox, com faixas de pagamento altas.",
       "o_que_voce_faz": "Avaliar e comparar respostas de modelos, escrever tarefas de treino e revisar conteúdo em português brasileiro.",
       "bom_para": "Quem quer faixas de pagamento mais altas e tem disponibilidade flexível.",
@@ -344,7 +344,7 @@
       "como_entrar": "Cadastro no site com currículo e perfil profissional, seguido de entrevista dentro da plataforma. A partir daí ela oferece os projetos que combinam com o seu perfil.",
       "pagamento": "Por hora de projeto, com valor definido conforme a área e a senioridade.",
       "clientes": "Laboratórios de IA",
-      "atencao": "A entrada não é por vaga publicada, e sim por entrevista dentro da plataforma.  Também não é toda temporada que há projeto em português brasileiro, então vale deixar o perfil pronto e acompanhar."
+      "atencao": "A entrada não é por vaga publicada, e sim por entrevista dentro da plataforma. Também não é toda temporada que há projeto em português brasileiro, então vale deixar o perfil pronto e acompanhar."
     },
     {
       "id": "turing",

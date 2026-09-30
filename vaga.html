@@ -218,14 +218,14 @@ function erro(msg) {
       tarja.hidden = false;
       if (achada) {
         tarja.className = "aplic sim";
-        tarja.innerHTML = `<span class="aplic-txt">Você aplicou para esta vaga em
+        tarja.innerHTML = `<span class="aplic-txt">Você se candidatou a esta vaga em
           <b>${esc(Dados.dataBonita(achada.data))}</b>.</span>
           <a class="bt" href="controle.html#aplicacoes">Ver no Meu Controle</a>`;
       } else {
         tarja.className = "aplic";
         tarja.innerHTML = `<span class="aplic-txt">Guarde esta candidatura no
           <b>Meu Controle</b> para não ficar em dúvida depois.</span>
-          <button type="button" id="btMarcar">Marcar como aplicada</button>`;
+          <button type="button" id="btMarcar">Marcar como candidatura enviada</button>`;
         document.getElementById("btMarcar").addEventListener("click", async function () {
           this.disabled = true;
           try {

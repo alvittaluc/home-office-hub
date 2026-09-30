@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-30T16:52:53.364680+00:00",
-  "atualizado_br": "30/09/2026 às 13:52",
+  "atualizado_em": "2026-09-30T18:33:02.690603+00:00",
+  "atualizado_br": "30/09/2026 às 15:33",
   "total": 69,
   "vagas": [
     {
@@ -127,7 +127,7 @@
       "id": "7845a05fd7",
       "resumo": {
         "o_que_faz": "Você revisa, anota e avalia conteúdo em português do Brasil que serve de material de treino para sistemas de IA generativa usados no mundo todo. O dia a dia mistura anotação de dados, revisão de texto e controle de qualidade em projetos multilíngues e multimídia, sempre seguindo um guia de instruções detalhado. É contrato freelancer de 4 semanas, 100% remoto, com pagamento de US$ 4 por hora.",
-        "requisitos": "Português do Brasil em nível nativo e inglês escrito suficiente para entender guias e se comunicar com o time. Muita atenção a detalhe, pensamento analítico e autonomia para trabalhar sozinho seguindo regras extensas. Pede experiência em anotação, revisão de conteúdo, controle de qualidade, rotulagem de dados, localização ou área parecida. Já ter mexido com conteúdo multilíngue, multimídia ou de IA é diferencial forte.",
+        "requisitos": "Português do Brasil em nível nativo e inglês escrito suficiente para entender guias e se comunicar com a equipe. Muita atenção a detalhe, pensamento analítico e autonomia para trabalhar sozinho seguindo regras extensas. Pede experiência em anotação, revisão de conteúdo, controle de qualidade, rotulagem de dados, localização ou área parecida. Já ter mexido com conteúdo multilíngue, multimídia ou de IA é diferencial forte.",
         "dica_cv": "Currículo em inglês, de uma página. Logo no resumo do topo escreva que você é falante nativo de português do Brasil com inglês avançado, porque é o primeiro filtro do recrutador. Depois liste qualquer experiência de revisão, tradução, transcrição, moderação ou digitação com números concretos, no estilo \"revisei em média 80 textos por dia com 98% de aprovação\". Se já trabalhou em plataformas como Appen, Telus, Toloka ou Welocalize, cite o nome do projeto e o tipo de tarefa."
       }
     },
@@ -560,7 +560,7 @@
       "data_oficial": true,
       "id": "3240bec5b6",
       "resumo": {
-        "o_que_faz": "Você é o filtro final de qualidade linguística de um projeto de dados de IA em português do Brasil. Isso inclui revisar e anotar saídas do modelo procurando erro gramatical, frase artificial e escorregão cultural, atuar como conferência durante a produção e, além disso, transformar os padrões de erro que você identifica em materiais de orientação para o resto da equipe. É uma função autônoma, mais sênior que uma anotação comum. Faixa de US$ 6 a US$ 65 por hora, como contratante independente.",
+        "o_que_faz": "Você é o filtro final de qualidade linguística de um projeto de dados de IA em português do Brasil. Isso inclui revisar e anotar saídas do modelo procurando erro gramatical, frase artificial e escorregão cultural, atuar como conferência durante a produção e, além disso, transformar os padrões de erro que você identifica em materiais de orientação para o resto da equipe. É uma função autônoma, mais sênior que uma anotação comum. Faixa de US$ 6 a US$ 65 por hora, como prestador de serviço independente.",
         "requisitos": "Português do Brasil comprovado em nível C1 ou C2 e experiência de trabalho ou formação em linguística, educação ou outra área que exija rigor com a língua. Pede experiência anterior comprovável em avaliação ou anotação de dados humanos. Também é preciso saber transformar retorno solto e tendências de qualidade em documentos organizados e úteis, o que exige boa escrita didática. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Deixe claro que é português do Brasil e informe o nível C1 ou C2, com certificação se tiver. Este perfil é mais alto que o de anotador comum, então destaque as vezes em que você treinou pessoas, escreveu guia de estilo, montou material de treinamento ou liderou revisão de equipe. Se já trabalhou em plataformas de dados para IA, cite o nome e o tipo de tarefa. Um exemplo curto de documento didático que você criou vale mais que uma lista de adjetivos."
       }
@@ -580,7 +580,7 @@
       "data_oficial": true,
       "id": "acd5e97e92",
       "resumo": {
-        "o_que_faz": "É a mesma função de parceiro de alinhamento linguístico da Meridial, aqui na versão aberta para português em geral, sem especificar a variante do Brasil. Você revisa, anota e valida dados de IA olhando gramática, naturalidade e contexto cultural, faz o controle de qualidade durante a produção e cria materiais de orientação a partir das tendências de erro que encontra. Trabalho remoto como contratante independente, com faixa de US$ 6 a US$ 65 por hora.",
+        "o_que_faz": "É a mesma função de parceiro de alinhamento linguístico da Meridial, aqui na versão aberta para português em geral, sem especificar a variante do Brasil. Você revisa, anota e valida dados de IA olhando gramática, naturalidade e contexto cultural, faz o controle de qualidade durante a produção e cria materiais de orientação a partir das tendências de erro que encontra. Trabalho remoto como prestador de serviço independente, com faixa de US$ 6 a US$ 65 por hora.",
         "requisitos": "Proficiência comprovada em português no nível C1 ou C2 e formação ou experiência em linguística, educação ou área que exija atenção fina ao idioma. Experiência anterior em avaliação ou anotação de dados humanos. Capacidade de trabalhar sozinho e de transformar retorno bruto em documentação clara. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Como o anúncio fala de português sem separar Brasil de Portugal, escreva você mesmo qual variante domina e em que contextos, para não cair na fila errada. Vale se candidatar a esta e à versão específica do Brasil, já que são anúncios diferentes na mesma empresa. Destaque experiência em revisão, ensino de português, tradução e criação de material didático, e cite plataformas de dados para IA em que já trabalhou."
       }
@@ -1261,7 +1261,7 @@
       "id": "cd1faf6315",
       "resumo": {
         "o_que_faz": "Projeto curto de dois dias em que você ouve trechos de áudio e identifica a família do instrumento (cordas, metais, madeiras, percussão, teclas) e o instrumento específico. Você usa áudios de referência para guiar as decisões e segue regras de anotação. O horário é flexível dentro dos dois dias e o ganho estimado é de cerca de US$ 150 a US$ 160 para quem trabalhar os dois dias inteiros, com chance de extensão.",
-        "requisitos": "Graduação em música ou área relacionada. Pelo menos 3 anos de experiência com performance, produção musical, engenharia de áudio ou trabalho parecido. Ouvido treinado para reconhecer instrumentos pelo som. Bom inglês e disposição para tarefas repetitivas de escuta. Há um teste de qualificação de uns 15 minutos antes de começar.",
+        "requisitos": "Graduação em música ou área relacionada. Pelo menos 3 anos de experiência com apresentações musicais, produção musical, engenharia de áudio ou trabalho parecido. Ouvido treinado para reconhecer instrumentos pelo som. Bom inglês e disposição para tarefas repetitivas de escuta. Há um teste de qualificação de uns 15 minutos antes de começar.",
         "dica_cv": "Coloque a formação em música logo no início e liste os instrumentos que você toca ou com que trabalha. Cite experiência com produção, mixagem, transcrição musical ou estúdio. Como o projeto dura só dois dias, faça o teste de qualificação assim que puder e use fones de boa qualidade."
       }
     },

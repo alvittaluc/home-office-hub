@@ -210,7 +210,7 @@ const Hoje = (function () {
           ${ctx.marcaHtml(a.empresa, 34)}
           <span class="h-item-txt">
             <span class="h-item-tit">${esc(a.titulo || "Vaga sem título")}</span>
-            <span class="h-item-sub">${esc(a.empresa || "")} · aplicada em ${esc(Dados.dataBonita(a.data))}</span>
+            <span class="h-item-sub">${esc(a.empresa || "")} · enviada em ${esc(Dados.dataBonita(a.data))}</span>
           </span>
           <span class="h-quando">${dias} dias</span>
         </button>`;
@@ -320,11 +320,11 @@ const Hoje = (function () {
       alvo.innerHTML = cabecalho + `
         <div class="ct-cartao h-calmo">
           <p>${ctx.trabalhos.length || ctx.aplicacoes.length
-            ? "Nada marcado para hoje e nenhuma aplicação parada."
-            : "Comece cadastrando um trabalho ou registrando uma aplicação."}</p>
+            ? "Nada marcado para hoje e nenhuma candidatura parada."
+            : "Comece cadastrando um trabalho ou registrando uma candidatura."}</p>
           <div class="ct-cab-bts">
             ${ativos.length ? `<button class="ct-b forte" data-dia="${esc(ativos[0].id)}">Registrar o dia</button>` : ""}
-            <button class="ct-b" data-ir="aplicacoes">Ver as aplicações</button>
+            <button class="ct-b" data-ir="aplicacoes">Ver as candidaturas</button>
             <button class="ct-b" data-ir="painel">Ver o painel</button>
           </div>
         </div>`;
@@ -360,8 +360,8 @@ const Hoje = (function () {
       const ok = await UI.confirmar({
         titulo: "Marcar como sem resposta",
         texto: velhas.length === 1
-          ? "Uma aplicação passou de 30 dias sem resposta. Ela continua na lista, só muda de estado."
-          : velhas.length + " aplicações passaram de 30 dias sem resposta. Elas continuam na lista, só mudam de estado.",
+          ? "Uma candidatura passou de 30 dias sem resposta. Ela continua na lista, só muda de estado."
+          : velhas.length + " candidaturas passaram de 30 dias sem resposta. Elas continuam na lista, só mudam de estado.",
         acaoTexto: "Marcar",
       });
       if (!ok) return;

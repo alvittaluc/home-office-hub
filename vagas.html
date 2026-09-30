@@ -862,7 +862,7 @@ function montarMenus() {
   if (APLICADAS.ids.size || APLICADAS.chaves.size) {
     const q = TODAS.filter(v => jaApliquei(v) && passa(v, "aplic")).length;
     mostrar.push(`<button class="opcao${esconderAplicadas ? " on" : ""}" type="button" data-mostrar="aplic">
-      <span class="caixa">✓</span><span class="nm">Esconder as já aplicadas</span><span class="qt">${q}</span></button>`);
+      <span class="caixa">✓</span><span class="nm">Esconder onde já me candidatei</span><span class="qt">${q}</span></button>`);
   }
   document.getElementById("grupoMostrar").hidden = mostrar.length === 0;
   document.getElementById("menuMostrar").innerHTML = mostrar.join("");
@@ -915,7 +915,7 @@ function montarAtivos() {
   fCats.forEach(c => itens.push({ rotulo: CAT_NOME[c] || c, tipo: "cat", valor: c }));
   fEmps.forEach(id => itens.push({ rotulo: (EMPRESAS[id] || {}).nome || id, tipo: "emp", valor: id }));
   if (busca) itens.push({ rotulo: '"' + busca + '"', tipo: "busca" });
-  if (esconderAplicadas) itens.push({ rotulo: "sem as já aplicadas", tipo: "aplic" });
+  if (esconderAplicadas) itens.push({ rotulo: "sem onde já me candidatei", tipo: "aplic" });
 
   const alvo = document.getElementById("ativos");
   alvo.innerHTML = itens.map(i =>
@@ -1207,7 +1207,7 @@ function aplicar() {
   let html = "";
   if (destacadas.length) {
     html += `<div class="grupo-titulo"><h2>Em movimento</h2>
-             <span>onde os alunos do Hub estão aplicando e ouvindo resposta</span></div>
+             <span>onde os alunos do Hub estão se candidatando e recebendo resposta</span></div>
              <div class="lista">${destacadas.map(linha).join("")}</div>`;
   }
   if (novas.length) {
@@ -1260,7 +1260,7 @@ function marcarAplicadas() {
       if (!onde || onde.querySelector(".selo-aplicada")) return;
       const selo = document.createElement("span");
       selo.className = "selo-aplicada";
-      selo.textContent = "já apliquei";
+      selo.textContent = "já me candidatei";
       onde.appendChild(selo);
     });
   } catch (e) {
