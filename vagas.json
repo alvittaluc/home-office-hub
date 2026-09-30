@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-30T14:23:30.467932+00:00",
-  "atualizado_br": "30/09/2026 às 14:23",
+  "atualizado_em": "2026-09-30T16:06:41.825102+00:00",
+  "atualizado_br": "30/09/2026 às 13:06",
   "total": 70,
   "vagas": [
     {
@@ -244,14 +244,14 @@
       "local": "Remoto · Brasil",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://apply.workable.com/j/D8E9CE57D5",
+      "url": "https://apply.workable.com/j/D3493CA8BC",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-21",
+      "data_post": "2026-09-30",
       "data_vista": "2026-08-27",
-      "data_ref": "2026-09-21",
+      "data_ref": "2026-09-30",
       "data_oficial": true,
-      "id": "048d4bda1f"
+      "id": "b247972218"
     },
     {
       "empresa": "oneforma",
@@ -402,6 +402,21 @@
     },
     {
       "empresa": "telus",
+      "titulo": "Multilingual Image & Text AI Quality Expert",
+      "local": "Remoto · Brasil",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129381",
+      "commitment": "freelancer",
+      "fonte": "direto",
+      "data_post": "2026-09-23",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-23",
+      "data_oficial": true,
+      "id": "cdf300f69a"
+    },
+    {
+      "empresa": "telus",
       "titulo": "Fieldwork Brazil (Salvador)  :  Mobile Data Collector",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -464,21 +479,6 @@
         "requisitos": "Ser pai, mãe ou responsável por adolescente na faixa de 13 a 17 anos. Computador ou celular com internet e disposição para passar por uma etapa de confirmação de identidade. Inglês básico para acompanhar as instruções. Por ser tarefa única, não há meta de horas nem continuidade garantida.",
         "dica_cv": "Não é uma vaga de currículo, é um cadastro de participação. Antes de concluir, leia com atenção quais dados serão pedidos e como serão usados, porque a tarefa envolve verificação de identidade. Faça o processo apenas pelo site oficial da Telus International AI, com a conta que você já usa na plataforma, e desconfie de qualquer pedido fora dele. Como o pagamento é por unidade, encare como um extra rápido, não como fonte de renda."
       }
-    },
-    {
-      "empresa": "telus",
-      "titulo": "Quality Assurance Rater - Portuguese (Brazil)",
-      "local": "Remoto · Brasil",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/128798",
-      "commitment": "freelancer",
-      "fonte": "direto",
-      "data_post": "2026-06-05",
-      "data_vista": "2026-08-23",
-      "data_ref": "2026-06-05",
-      "data_oficial": true,
-      "id": "2edd9d5f33"
     },
     {
       "empresa": "meridial",
@@ -637,23 +637,18 @@
     },
     {
       "empresa": "micro1",
-      "titulo": "Portuguese Audio Recording Expert (Brazil)",
+      "titulo": "Portuguese Language Expert",
       "local": "Remoto · Brasil",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/065d39e1-31ac-4a73-9bae-bf5bdaaf2b7c",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.micro1.ai/post/05b5f054-aa5c-428d-b05e-45d97ec9cdb6",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-07-30",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-07-30",
+      "data_post": "2026-09-19",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-19",
       "data_oficial": true,
-      "id": "86ed8a6806",
-      "resumo": {
-        "o_que_faz": "O anúncio da micro1 é curto e cita apenas a habilidade de gravação de áudio. Pelo título e pelo formato dos projetos da plataforma, o trabalho é gravar amostras de voz em português do Brasil para treinar sistemas de IA de fala, seguindo roteiros e padrões técnicos de qualidade. É remoto e por hora, com faixa informada de US$ 20 a US$ 40 por hora, valor bem acima da média das plataformas de anotação.",
-        "requisitos": "Português do Brasil nativo e boa dicção. Microfone de qualidade e ambiente silencioso, já que gravação com ruído ou eco costuma ser reprovada. Computador com internet estável. Como a micro1 faz triagem por entrevista com IA, é bom estar preparado para uma conversa avaliativa antes de receber tarefas. Inglês para o cadastro e as instruções da plataforma.",
-        "dica_cv": "Como a descrição é vaga, o que decide é o cadastro na plataforma: preencha o perfil por completo e faça a entrevista com calma, em ambiente silencioso. Informe o modelo do microfone e anexe uma amostra de voz curta e limpa, se houver espaço. Destaque locução, narração, podcast, rádio ou canto. Confirme o escopo exato e o volume de trabalho antes de contar com essa renda, porque o anúncio não detalha nem uma coisa nem outra."
-      }
+      "id": "270ba47e26"
     },
     {
       "empresa": "micro1",
@@ -669,36 +664,6 @@
       "data_ref": "2026-09-07",
       "data_oficial": true,
       "id": "8b767c8133"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Creative & Design Specialist",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/6fd5d25f-168b-4752-9274-16a2d7cf981a",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-08",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-08",
-      "data_oficial": true,
-      "id": "b45cfea4e3"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Circuit Design Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/40ed9a70-5415-4571-9f7b-6840f0db924a",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "583fa38ce4"
     },
     {
       "empresa": "alignerr",
@@ -939,6 +904,36 @@
       "data_ref": "2026-09-18",
       "data_oficial": false,
       "id": "22d855d2a9"
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Industrial Design CAD Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/e929836f-3c6e-40ef-824d-90d65f99e817",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-11",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-11",
+      "data_oficial": true,
+      "id": "183a139a4e"
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Circuit Design Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/40ed9a70-5415-4571-9f7b-6840f0db924a",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-07",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-07",
+      "data_oficial": true,
+      "id": "583fa38ce4"
     },
     {
       "empresa": "turing",

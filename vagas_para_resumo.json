@@ -1,5 +1,5 @@
 {
-  "total": 35,
+  "total": 43,
   "vagas": [
     {
       "id": "a5eacac204",
@@ -79,10 +79,10 @@
       "remuneracao": ""
     },
     {
-      "id": "048d4bda1f",
+      "id": "b247972218",
       "empresa": "toloka",
       "titulo": "Record Your Daily Routine & Get Paid - AI Training (Remote)",
-      "url": "https://apply.workable.com/j/D8E9CE57D5",
+      "url": "https://apply.workable.com/j/D3493CA8BC",
       "local": "Remoto · Brasil",
       "categoria_badge": "IA & Dados",
       "descricao": "<p>This is a project-based opportunity on an AI training platform — not a job. No fixed hours, no commitment beyond what fits your schedule. You record, you get paid.</p><p><strong>About the Role</strong></p><p>We're looking for people to record point-of-view videos of everyday household activities. You mount your smartphone on your head, go about your routine, and the camera captures exactly what you see. These videos help train AI systems and robots to understand how people interact with objects in real-world environments.<br><br>Do you wash dishes every day? Vacuum the rug? Walk the dog? Fold laundry? What if you could get paid just for recording it?</p><p></p><p><strong>Responsibilities</strong></p><ul><li>Record everyday household activities from a first-person perspective — cooking, cleaning, tidying up, folding laundry, gardening, walking the dog, and more</li><li>Record in your own home, yard, garage, or workspace</li><li>Follow short recording guidelines per session</li><li>Upload videos through the project app</li></ul><p></p><p><strong>Requirements</strong></p><ul><li>Equipment: Own or use a smartphone or alternative camera device capable of 30 FPS or greater and 1080p resolution or greater. iPhone 12 or newer, Google Pixel 6+, or Samsung Galaxy S21+ (must have a wide-angle / 0.5x lens)</li><li>Capture method: Mount the device at forehead or eye-level for an egocentric perspective, maintaining a downward angle to maximize hand visibility.</li><li>Software: Utilize the designated \"D&amp;A\" application for all data capture and upload.</li><li>Quality control: Ensure all video footage is clear, stable, well-lit, at least 15 seconds long, and accurately depicts useful, intentional tasks without unnecessary pauses or contrived movements.</li></ul><p></p><p><strong>Why is this freelance opportunity a great fit for you?</strong></p><p>• Earn while you do your household chores: up to <strong>$6 per hour equivalent</strong> depending on the project</p><p>• This is project-based freelance work — pick up recording sessions when they fit your schedule</p><p>• Influence the future of how AI and robots understand and interact with the real world</p>",
@@ -101,6 +101,50 @@
       "remuneracao": "Fixed rate per hour"
     },
     {
+      "id": "cdf300f69a",
+      "empresa": "telus",
+      "titulo": "Multilingual Image & Text AI Quality Expert",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129381",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "QA",
+      "descricao": "About the Role \n\n Join the TELUS Digital AI Community and make a direct impact on the machine learning models of some of the world’s largest brands.\n\n As a Multilingual Image & Text AI Evaluator , you will participate in a specialized two-stage visual evaluation project for generative AI models. You will evaluate AI-generated images for text accuracy, identify visual distortions, and perform precise localized corrections to ensure AI outputs meet high linguistic and visual standards.\n\n Target Languages Requested \n\n We are currently seeking language experts with native or fluent proficiency in any of the following target languages:\n • Thai \n• French (France) \n• Vietnamese \n• Malay \n• Japanese \n• Korean \n• Indonesian \n• Arabic (Gulf) \n• Spanish (Mexico) \n• Portuguese (Brazil) \n• Tagalog \n ﻿ \n Key Responsibilities \n • Two-Stage Visual & Text Evaluation:\n • Text Correctness Scoring: Evaluate and score text embedded within AI-generated images for spelling, grammar, vocabulary, and contextual accuracy.\n• Localized Bounding-Box Corrections: Perform precise spatial bounding-box annotations to capture, flag, and correct spelling errors, typographical issues, and visual rendering distortions.\n • Guideline & Quality Adherence: Consistently learn, apply, and maintain complex visual and linguistic annotation guidelines across all assigned tasks.\n• Feedback & Escalation: Identify subtle visual/textual anomalies, flag ambiguous data, and ensure high annotation trustworthiness across project workflows",
+      "requisitos": "",
+      "remuneracao": "USD 7.21 / por hour"
+    },
+    {
+      "id": "49300de21b",
+      "empresa": "telus",
+      "titulo": "Fieldwork Brazil (Salvador)  :  Mobile Data Collector",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129282",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "IA & Dados",
+      "descricao": "Mobile Data Collection Contributor \n\n Location: Brazil (Salvador) \n Work Type: Flexible, Field-Based Contributor Opportunity \n\n About the Opportunity \n\n We are seeking reliable Mobile Data Collection Contributors to support a field-based technology project across Brazil (Salvador).\n\n In this role, you will travel to designated stores, retail locations, landmarks, and other points of interest and use your Android smartphone to capture high-quality photos, short videos, and location-based information. \n\n This is a flexible opportunity for people who enjoy exploring their city, working independently, and using mobile technology. Experience in field research, mystery shopping, photography, auditing, surveys, delivery, or similar gig work is helpful but not required . \n\n ﻿Pay Rate: $3 USD per task completed",
+      "requisitos": "",
+      "remuneracao": "USD 10 / por hour"
+    },
+    {
+      "id": "3eb1712983",
+      "empresa": "telus",
+      "titulo": "Portuguese Native AI Data Annotator (AI Community)",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129100",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "IA & Dados",
+      "descricao": "TELUS Digital AI Community \n Our global AI Community is a vibrant network of more than one million contributors from diverse backgrounds who help customers collect, enhance, train, translate, and localize content to build better AI models. Become part of our growing community and contribute to the development of innovative AI technologies used by some of the world's largest brands.\n\n About the Role: \n\n Are you looking for an easy way to get started in the world of Artificial Intelligence? At TELUS Digital , we are looking for AI Data Annotators to join our global community. You don’t need a technical degree or previous experience in AI to succeed here. Your job is to help AI \"see\" and \"understand\" the world by labeling images, text, and videos. You are the teacher providing the basic lessons that make AI smart. \n\n Key Responsibilities: \n\n • Image Labeling: Look at photos and draw boxes around objects like cars, trees, or people so the AI learns to recognize them. \n• Text Categorizing: Read short sentences and tag them based on their meaning (for example: \"Is this a question about the weather?\" or \"Is this a customer complaint?\"). \n• Data Cleaning: Review lists of information and remove duplicates or fix simple spelling errors so the AI has clean data to learn from. \n• Simple Comparisons: Look at two different answers written by an AI and pick which one is better and easier to understand. \n ﻿",
+      "requisitos": "",
+      "remuneracao": "USD 10 / por hour"
+    },
+    {
+      "id": "5523b8cd28",
+      "empresa": "telus",
+      "titulo": "Portuguese Native : AI Speech & Audio Specialist",
+      "url": "https://www.telusinternational.ai/cmp/public/jobs/available/129095",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "IA & Dados",
+      "descricao": "TELUS Digital AI Community \n\n Our global AI Community is a vibrant network of more than one million contributors from diverse backgrounds who help customers collect, enhance, train, translate, and localize content to build better AI models. Become part of our growing community and contribute to the development of innovative AI technologies used by some of the world's largest brands. \n\n About the Role: \n\n At TELUS Digital, we are advancing the future of Artificial Intelligence by helping AI systems understand, process, and generate human speech with greater accuracy and naturalness. \n As an AI Speech & Audio Specialist in our AI Community, you will contribute to the development and improvement of next-generation speech AI technologies, including Automatic Speech Recognition (ASR), Text-to-Speech (TTS), Voice AI, and audio machine learning systems . \n We rely on our global community of specialists to evaluate, create, refine, and improve high-quality speech and audio datasets. Your expertise in audio production, speech analysis, linguistics, or voice technology will help ensure AI models deliver natural, accurate, culturally relevant, and human-like voice experiences. \n At TELUS Digital, you will play a key role in shaping how AI listens, understands, and communicates with people around the world. \n\n Key Responsibilities: \n\n • Evaluate AI-generated speech (TTS) for naturalness, pronunciation accuracy, rhythm, tone, emotion, and overall voice quality. \n• Review and improve speech recognition outputs (ASR) by identifying transcription errors, pronunciation issues, accents, and linguistic nuances. \n• Perform professional audio editing tasks including segmentation, trimming, noise reduction, silence adjustment, and quality enhancement. \n• Analyze audio recordings using waveform and spectrogram-based tools to identify quality issues. \n• Support the creation and validation of high-quality speech datasets used for AI model training and evaluation. \n• Review voice recordings for clarity, consistency, articulation, and technical quality. \n• Perform audio quality checks including loudness levels, background noise detection, clipping, distortion, and export specifications. \n• Support voice AI projects including TTS, ASR, voice generation, voice similarity, voice mimicry, and conversational AI evaluation. \n• Apply expertise in phonetics, linguistics, audio engineering, or speech technology to improve AI-generated voice experiences.",
+      "requisitos": "",
+      "remuneracao": "USD 6 / por hour"
+    },
+    {
       "id": "40bde685a9",
       "empresa": "meridial",
       "titulo": "Portuguese Voice Actor - Freelance AI Trainer Project",
@@ -110,6 +154,28 @@
       "descricao": "Are you an experienced Portuguese voice actor eager to shape the future of AI? Large-scale language models and speech technologies are evolving rapidly, moving beyond simple interactions into expressive, human-like communication. With high-quality training data, tomorrow’s AI can deliver more natural, accurate, and engaging voice experiences across education, entertainment, accessibility, and beyond. That training data begins with you—your voice expertise will help power the next generation of AI.\n\n We’re looking for a highly skilled Portuguese voice acting professional who can bring nuance, clarity, and authenticity to training data. You’ll work with cutting-edge AI tools, record and evaluate Portuguese speech samples, and provide expert feedback on pronunciation, tone, pacing, and emotional expression to strengthen voice models.\n\n On a typical day, you will record scripted material, assess AI-generated outputs for linguistic accuracy and naturalness, annotate errors, and collaborate with our team to refine prompts, evaluation methods, and voice design guidelines.\n\n Fluency in Portuguese is required, along with demonstrated experience in professional voice acting, dubbing, narration, or related performance work. Experience in training, coaching, or linguistic annotation is a plus. Clear communication skills and attention to detail are essential. A high-quality recording setup—including a reliable microphone and a quiet environment—is required.\n\n Ready to channel your Portuguese voice expertise into building the AI voices of tomorrow? Apply today and help shape the model that will speak to millions around the world.\n\n We offer a pay range of $6 to $65 per hour, with the exact rate determined after evaluating your experience, expertise, and geographic location. Final offer amounts may vary from the pay range listed above. As a contractor you’ll supply a secure computer, high-quality microphone and recording setup, and stable internet connection; company-sponsored benefits such as health insurance and PTO do not apply.\n\n Job title: Portuguese Voice Acting Specialist – AI Trainer\nEmployment type: Contract\nWorkplace type: Remote\nSeniority level: Mid-Senior",
       "requisitos": "",
       "remuneracao": ""
+    },
+    {
+      "id": "270ba47e26",
+      "empresa": "micro1",
+      "titulo": "Portuguese Language Expert",
+      "url": "https://jobs.micro1.ai/post/05b5f054-aa5c-428d-b05e-45d97ec9cdb6",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "Tradução",
+      "descricao": "Habilidades pedidas: Audio Transcription, Attention to detail, AI Training.",
+      "requisitos": "Audio Transcription, Attention to detail, AI Training",
+      "remuneracao": "USD 20-36 / hora"
+    },
+    {
+      "id": "8b767c8133",
+      "empresa": "micro1",
+      "titulo": "Portuguese Transcription Expert",
+      "url": "https://jobs.micro1.ai/post/9a37ff42-0165-4992-95af-986223b55fcf",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "Especialista",
+      "descricao": "Habilidades pedidas: Audio Transcription, Attention to detail, AI Training.",
+      "requisitos": "Audio Transcription, Attention to detail, AI Training",
+      "remuneracao": "USD 10-18 / hora"
     },
     {
       "id": "638708c365",
@@ -209,6 +275,28 @@
       "descricao": "About Turing \n\n Based in San Francisco, California, Turing is the world’s leading research accelerator for frontier AI labs and a trusted partner for global enterprises deploying advanced AI systems. Turing supports customers in two ways: first, by accelerating frontier research with high-quality data, advanced training pipelines, plus top AI researchers who specialize in coding, reasoning, STEM, multilinguality, multimodality, and agents; and second, by applying that expertise to help enterprises transform AI from proof of concept into proprietary intelligence with systems that perform reliably, deliver measurable impact, and drive lasting results on the P&L\n\n Role Overview \n\n We are seeking an AI Prompt & Policy Specialist to help design, evaluate, and improve how AI systems interact with tools, APIs, and users across multiple locales. In this role, you will work at the intersection of prompt engineering, policy design, and safety , ensuring that AI-driven workflows are accurate, compliant, and user-friendly.\n You will use your API/JSON literacy, SQL basics, policy creation skills, and strong critical reasoning to review, refine, and design prompts and behaviors for AI systems interacting with products like Slack, PayPal, and other third-party tools. This role also requires strong communication skills and awareness of safety and content filtering , especially across a wide range of languages and locales .\n\n What does day-to-day life look like? \n • Design, review, and refine prompts and instructions for AI systems interacting with tools, APIs, and external services.\n • Read and understand API/JSON schemas and arguments to ensure correct parameter usage and tool behavior.\n • Apply SQL basics to validate data, perform simple checks, and support analysis of AI or tool behavior.\n • Create, document, and maintain policies and guidelines governing AI interactions, content handling, and tool workflows.\n • Develop workflow knowledge for specific tools (e.g., Slack, PayPal and similar platforms) and encode that into prompts and policies.\n • Ensure safety and compliance by applying content filtering guidelines and detecting unsafe or non-compliant outputs.\n • Evaluate AI responses for critical reasoning quality , correctness of parameters, and adherence to policies.\n • Support multilingual use cases by validating prompts and responses across multiple locales, with attention to nuance and clarity.\n • Collaborate with product, engineering, and safety teams to iterate on prompts, policies, and workflows based on evaluation findings.\n • Document edge cases, decision rationales, and recommendations with clear, concise written communication.\n Requirements \n • 3–6 years of experience in any combination of: AI operations, content review, QA, product operations, policy, or technical support roles.\n • Strong API / JSON literacy : ability to read schemas, understand arguments, and verify correct parameter usage.\n • SQL basics : ability to run simple queries to validate data, investigate issues, or support analysis.\n • Demonstrated experience with prompt engineering or writing clear, structured instructions for AI or automation systems.\n • Proven policy creation skills : drafting, interpreting, and applying guidelines or policies in an operational setting.\n • Familiarity with tool-specific workflows (e.g., Slack, PayPal, or similar SaaS platforms), including typical user actions and edge cases.\n • Strong communication skills , with the ability to write clear, concise rationales and explanations; comfort working with multilingual contexts across many locales.\n • High safety awareness for content filtering, including sensitivity to harmful, abusive, or policy-violating content.\n • Excellent critical reasoning and judgment , especially when evaluating ambiguous or complex cases.\n • Strong attention to detail , particularly in checking parameters, arguments, and compliance with specified schemas or policies.\n Perks of Freelancing With Turing \n • Work in a fully remote environment.\n • Opportunity to work on cutting-edge AI projects with leading LLM companies.\n Offer Details \n • Commitments Required: At least 4 hours per day and minimum 20 hours per week with overlap of 4 hours with PST. \n • Engagement Type: Contractor assignment (no medical/paid leave)\n • Duration of Contract: 3 months (adjustable based on engagement)\n • Location: India, Pakistan, Nigeria, Kenya, Egypt, Ghana, Bangladesh, Turkey, Brazil, Mexico\n Evaluation Process \n • Technical Interview for 60 mins",
       "requisitos": "SQL, JSON",
       "remuneracao": ""
+    },
+    {
+      "id": "183a139a4e",
+      "empresa": "micro1",
+      "titulo": "Industrial Design CAD Expert",
+      "url": "https://jobs.micro1.ai/post/e929836f-3c6e-40ef-824d-90d65f99e817",
+      "local": "Remoto · Mundial",
+      "categoria_badge": "Especialista",
+      "descricao": "Habilidades pedidas: freecad, cad assembly interpretation, mechanical engineering, technical documentation, written communication.",
+      "requisitos": "freecad, cad assembly interpretation, mechanical engineering, technical documentation, written communication",
+      "remuneracao": "USD 40-80 / hora"
+    },
+    {
+      "id": "583fa38ce4",
+      "empresa": "micro1",
+      "titulo": "Circuit Design Expert",
+      "url": "https://jobs.micro1.ai/post/40ed9a70-5415-4571-9f7b-6840f0db924a",
+      "local": "Remoto · Mundial",
+      "categoria_badge": "Especialista",
+      "descricao": "Habilidades pedidas: Python, Circuit Design.",
+      "requisitos": "Python, Circuit Design",
+      "remuneracao": "USD 80-150 / hora"
     },
     {
       "id": "f43f07400f",
