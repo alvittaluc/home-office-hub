@@ -1,5 +1,5 @@
 {
-  "total": 131,
+  "total": 138,
   "vagas": [
     {
       "id": "65762fd387",
@@ -945,7 +945,7 @@
       "id": "0d4c678ebd",
       "resumo": {
         "o_que_faz": "Você compara áudios em português brasileiro com transcrições geradas por máquina e corrige tudo que estiver errado: palavras trocadas ou faltando, erros de escrita, pontuação e marcações de tempo. Também aponta trechos com áudio ruim ou falas sobrepostas. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.",
-        "requisitos": "Português brasileiro nativo, com excelente domínio da escrita e boa escuta mesmo com áudio de qualidade variável. Paciência para trabalhar palavra por palavra e seguir regras de formatação à risca. Não precisa de experiência com IA. A localização aparece como Estados Unidos, então confirme na inscrição se o Brasil é aceito.",
+        "requisitos": "Português brasileiro nativo, com excelente domínio da escrita e boa escuta mesmo com áudio de qualidade variável. Paciência para trabalhar palavra por palavra e seguir regras de formatação à risca. Não precisa de experiência com IA. A vaga é remota e sem país fixo.",
         "dica_cv": "A Alignerr cita transcrição, legendagem, closed caption, estenotipia e linguística como experiências valiosas. Se você tem alguma delas, coloque no topo do currículo, em inglês. Se não tem, destaque revisão de texto e atenção a detalhe com exemplos concretos."
       }
     },
@@ -953,7 +953,7 @@
       "id": "2dd3d94eeb",
       "resumo": {
         "o_que_faz": "Você transforma áudios em português brasileiro em texto preciso, ajudando a IA a entender a fala real. Os áudios têm conversas com várias pessoas, ruído de fundo, hesitações e linguagem informal, e você precisa separar quem está falando e marcar sons e trechos inaudíveis conforme o guia. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.",
-        "requisitos": "Português brasileiro nativo, com ouvido treinado para sotaques regionais e expressões do dia a dia. Paciência para áudios difíceis e disciplina para aplicar regras detalhadas sempre do mesmo jeito. Não precisa de experiência com IA. Como a localização aparece como Estados Unidos, confirme na inscrição se quem mora no Brasil é aceito.",
+        "requisitos": "Português brasileiro nativo, com ouvido treinado para sotaques regionais e expressões do dia a dia. Paciência para áudios difíceis e disciplina para aplicar regras detalhadas sempre do mesmo jeito. Não precisa de experiência com IA. A vaga é remota e sem país fixo.",
         "dica_cv": "Currículo em inglês, destacando transcrição, legendagem ou qualquer trabalho com áudio. Cite a sua familiaridade com sotaques de diferentes regiões do Brasil, porque isso é um diferencial real nesse tipo de projeto. Treine com áudios de conversas antes do teste da Alignerr."
       }
     },
@@ -1139,6 +1139,62 @@
         "o_que_faz": "Você cria perguntas de pesquisa tão difíceis que nem as IAs mais avançadas, com acesso completo à internet, conseguem responder. Você parte de um fato verificável e constrói a pergunta de trás para frente, com pistas que envolvem datas, pessoas, lugares, organizações e registros. Depois comprova tudo com um registro detalhado das fontes e das buscas óbvias que não levam à resposta. É trabalho de investigação, não de redação.",
         "requisitos": "Mestrado ou mais de 3 anos de experiência. Habilidade comprovada de pesquisa na internet, incluindo registros oficiais, arquivos, bases de dados públicas e documentos em PDF. Precisão ao citar fontes, com página e seção exatas. Inglês escrito nativo ou quase nativo. Experiência com avaliação de IA, biblioteconomia, jornalismo investigativo, checagem de fatos ou OSINT é um diferencial.",
         "dica_cv": "Mostre casos concretos de pesquisa difícil que você resolveu e como documentou as fontes. Destaque experiência com arquivos, cartórios, bases governamentais, jornalismo ou checagem de fatos. Tenha paciência com a papelada: a própria vaga avisa que documentar as evidências é a maior parte do trabalho."
+      }
+    },
+    {
+      "id": "85d0029fbf",
+      "resumo": {
+        "o_que_faz": "Você grava vídeos em primeira pessoa fazendo tarefas comuns de casa, como cozinhar, limpar, organizar espaços e lavar roupa. Nada de estúdio ou equipamento especial: é o seu celular, a sua rotina e o ponto de vista dos seus olhos. Os vídeos treinam sistemas de IA e robótica a entender como as pessoas fazem as coisas. Você grava quando quiser e recebe US$ 6 por hora de conteúdo aprovado, com bônus na primeira hora aprovada.",
+        "requisitos": "Não exige experiência anterior. Precisa de iPhone 12 ou mais novo, Google Pixel 6 ou superior, ou Samsung Galaxy S21 ou superior, além de acesso à internet e inglês básico para entender as instruções. Só o conteúdo aprovado é pago, então a imagem precisa ser nítida, estável e mostrar a tarefa de verdade.",
+        "dica_cv": "Aqui o currículo pesa pouco, então dedique o esforço ao cadastro: informe o modelo exato do celular. Grave um teste curto e assista antes de enviar, conferindo foco, luz e se as suas mãos aparecem no quadro. Se você já se inscreveu em outros projetos de gravação da Toloka, use os mesmos dados para não parecer cadastro duplicado."
+      }
+    },
+    {
+      "id": "2adad7cee3",
+      "resumo": {
+        "o_que_faz": "Você transcreve áudios em português brasileiro para treinar sistemas de IA a entender como as pessoas falam de verdade. Os áudios são conversas reais, com várias pessoas falando, ruído de fundo, hesitações como \"é...\" e \"tipo...\" e linguagem informal, e você identifica quem está falando e segue regras de formatação. Contrato por hora, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.",
+        "requisitos": "Português brasileiro nativo, ouvido treinado para sotaques e expressões coloquiais, e paciência com áudios difíceis. Não precisa de experiência com IA. O anúncio é voltado a quem mora em São Paulo e região, mas o trabalho é todo remoto.",
+        "dica_cv": "Currículo em inglês, destacando transcrição, legendagem, closed caption ou revisão. A Alignerr costuma aplicar um teste prático, então treine com áudios de conversa real antes. Informe no cadastro que você mora no Brasil, já que esta versão do anúncio é voltada para cá."
+      }
+    },
+    {
+      "id": "8a3767e28f",
+      "resumo": {
+        "o_que_faz": "Você ouve áudios em português brasileiro e corrige transcrições feitas por máquina: palavras erradas ou faltando, erros de escrita, pontuação e marcações de tempo. Também sinaliza trechos com áudio ruim ou falas sobrepostas. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.",
+        "requisitos": "Português brasileiro nativo com ótimo domínio da escrita, boa escuta e atenção extrema a acentos, vírgulas e tempos. Não precisa de experiência com IA. O anúncio procura pessoas em São Paulo e no resto do Brasil.",
+        "dica_cv": "Currículo em inglês. A Alignerr valoriza experiência com transcrição, legendagem, closed caption, estenotipia e linguística. Se você não tem nenhuma delas, destaque revisão de texto e domínio da norma culta com exemplos concretos."
+      }
+    },
+    {
+      "id": "c3f214fe16",
+      "resumo": {
+        "o_que_faz": "Você avalia textos e traduções em português gerados por IA, apontando erros de tradução, frases pouco naturais, registro inadequado e problemas culturais. Depois sugere versões melhores e escreve um retorno estruturado sobre a qualidade. É remoto, no seu horário, de 10 a 40 horas por semana, pagando entre US$ 20 e US$ 40 por hora.",
+        "requisitos": "Português nativo ou quase nativo e boa escrita em português e em inglês. Domínio do português atual em contextos variados e atenção a detalhe. Não precisa de experiência com IA. Experiência com tradução, localização ou revisão é um diferencial.",
+        "dica_cv": "Destaque trabalhos com tradução, revisão, redação ou ensino de português, com exemplos. Se você conhece as diferenças entre o português do Brasil e o de Portugal, mencione. A Alignerr tem várias vagas parecidas: escolha a que mais combina com você e capriche nela."
+      }
+    },
+    {
+      "id": "dc2a3c4873",
+      "resumo": {
+        "o_que_faz": "Você cria tarefas realistas de suporte ao cliente para treinar e avaliar agentes de IA. Cada tarefa simula um chamado: ler o problema, conferir a configuração da conta, consultar manuais internos e decidir entre resolver ou escalar. Você também escreve os critérios de correção, monta o ambiente da tarefa e resolve cada uma para garantir que a resposta certa é clara. Remoto, de 10 a 40 horas por semana, entre US$ 20 e US$ 50 por hora.",
+        "requisitos": "Experiência prática como analista de suporte técnico, engenheiro de suporte ou customer success. Conhecimento de sistemas de chamados, bases de conhecimento e fluxos de escalonamento. Escrita precisa e inglês fluente. A vaga é voltada a profissionais em São Paulo e no resto do Brasil.",
+        "dica_cv": "Mostre casos reais: tipos de problema que você resolvia, ferramentas de chamados que usou (Zendesk, Jira, Freshdesk, ServiceNow) e como decidia quando escalar. Se já escreveu manuais, playbooks ou artigos de base de conhecimento, destaque isso, porque é o coração da vaga."
+      }
+    },
+    {
+      "id": "02f69edb18",
+      "resumo": {
+        "o_que_faz": "Você revisa trabalhos entregues por outros colaboradores e confere se seguem os padrões de qualidade e os critérios do projeto. Aponta erros, inconsistências e lacunas, escreve um retorno claro e acompanha indicadores de qualidade para identificar problemas que se repetem. Também ajuda a melhorar checklists e processos de avaliação. Contrato remoto, com cerca de 40 horas por semana e pagamento entre US$ 20 e US$ 50 por hora.",
+        "requisitos": "Experiência comprovada em controle de qualidade, garantia de qualidade ou outra função de revisão. Atenção a detalhe, boa escrita para dar feedback construtivo e facilidade com regras que mudam rápido. Internet estável e local de trabalho silencioso. Inglês fluente, já que a equipe é internacional.",
+        "dica_cv": "Currículo em inglês, com exemplos de revisão: o que você conferia, com que critérios e que melhorias trouxe. Experiência com anotação de dados ou avaliação de conteúdo é um diferencial. A Mercor seleciona com entrevista em vídeo por IA, então pratique contar essas experiências em inglês."
+      }
+    },
+    {
+      "id": "22d855d2a9",
+      "resumo": {
+        "o_que_faz": "Painel de especialistas em defesa química para testar a segurança de modelos de IA. Você escreve perguntas técnicas classificadas como inofensivas, de uso duplo ou adversariais, avalia se a IA respondeu o que devia e recusou o que era perigoso, e escreve a resposta de referência com a justificativa técnica. O pagamento é por tarefa, entre US$ 65 e US$ 75.",
+        "requisitos": "Experiência institucional com ameaças químicas pelo lado da defesa: contramedidas, proteção, detecção, descontaminação, toxicologia de agentes químicos ou trabalho ligado à Convenção sobre Armas Químicas. Escrita técnica clara para leigos. Experiência com testes adversariais em IA é um diferencial. Inglês fluente.",
+        "dica_cv": "Vaga muito específica, para quem trabalhou em institutos de pesquisa, forças armadas, defesa civil ou laboratórios da área. Envie amostra de escrita técnica, artigo publicado ou parecer. O trabalho envolve ler e escrever sobre cenários de uso indevido por longos períodos, então avalie se isso é confortável para você."
       }
     }
   ]

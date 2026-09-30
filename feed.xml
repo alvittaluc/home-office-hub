@@ -5,7 +5,7 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Wed, 30 Sep 2026 16:30:58 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 16:52:53 +0000</lastBuildDate>
     <item>
       <title>Andromeda Delta- Portuguese cultural expertise in Brazil — Welocalize</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=a5eacac204</link>
@@ -28,18 +28,25 @@
       <description>Vaga da micro1 para especialista em português, com foco em transcrição de áudio para treinar IA. O trabalho envolve ouvir gravações e produzir ou revisar textos com precisão, seguindo as regras do projeto. É remoto e paga entre US$ 20 e US$ 36 por hora, uma das melhores faixas para transcrição no hub.</description>
     </item>
     <item>
+      <title>Audio Transcript Editor — Portuguese Brasileiro (AI Training) — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=8a3767e28f</link>
+      <guid isPermaLink="false">8a3767e28f</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Você ouve áudios em português brasileiro e corrige transcrições feitas por máquina: palavras erradas ou faltando, erros de escrita, pontuação e marcações de tempo. Também sinaliza trechos com áudio ruim ou falas sobrepostas. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.</description>
+    </item>
+    <item>
+      <title>Customer Support Task Author (AI Training) — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=dc2a3c4873</link>
+      <guid isPermaLink="false">dc2a3c4873</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Você cria tarefas realistas de suporte ao cliente para treinar e avaliar agentes de IA. Cada tarefa simula um chamado: ler o problema, conferir a configuração da conta, consultar manuais internos e decidir entre resolver ou escalar. Você também escreve os critérios de correção, monta o ambiente da tarefa e resolve cada uma para garantir que a resposta certa é clara. Remoto, de 10 a 40 horas por semana, entre US$ 20 e US$ 50 por hora.</description>
+    </item>
+    <item>
       <title>Industrial Design CAD Expert — micro1</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=183a139a4e</link>
       <guid isPermaLink="false">183a139a4e</guid>
       <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
       <description>Vaga da micro1 para especialistas em desenho industrial e CAD. O trabalho envolve interpretar montagens mecânicas no FreeCAD e escrever documentação técnica clara, provavelmente para treinar e avaliar modelos de IA em tarefas de engenharia. É remoto e paga entre US$ 40 e US$ 80 por hora.</description>
-    </item>
-    <item>
-      <title>Generalist (Must own MacBook) — Mercor</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=55baa5d6db</link>
-      <guid isPermaLink="false">55baa5d6db</guid>
-      <pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Mundial · IA &amp; Dados</description>
     </item>
     <item>
       <title>Context Elicitation &amp; Conversation Evaluation Specialists - Latam, Southeastern Europe, Asia, Africa — Turing</title>
@@ -74,7 +81,7 @@
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=22d855d2a9</link>
       <guid isPermaLink="false">22d855d2a9</guid>
       <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Mundial · IA &amp; Dados</description>
+      <description>Painel de especialistas em defesa química para testar a segurança de modelos de IA. Você escreve perguntas técnicas classificadas como inofensivas, de uso duplo ou adversariais, avalia se a IA respondeu o que devia e recusou o que era perigoso, e escreve a resposta de referência com a justificativa técnica. O pagamento é por tarefa, entre US$ 65 e US$ 75.</description>
     </item>
     <item>
       <title>Python Engineering Manager – LLM Training &amp; Evaluation — Turing</title>
@@ -137,7 +144,7 @@
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=02f69edb18</link>
       <guid isPermaLink="false">02f69edb18</guid>
       <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Mundial · QA</description>
+      <description>Você revisa trabalhos entregues por outros colaboradores e confere se seguem os padrões de qualidade e os critérios do projeto. Aponta erros, inconsistências e lacunas, escreve um retorno claro e acompanha indicadores de qualidade para identificar problemas que se repetem. Também ajuda a melhorar checklists e processos de avaliação. Contrato remoto, com cerca de 40 horas por semana e pagamento entre US$ 20 e US$ 50 por hora.</description>
     </item>
     <item>
       <title>Portuguese Transcription Expert — micro1</title>
@@ -218,17 +225,10 @@
     </item>
     <item>
       <title>Brazilian Portuguese Audio Transcriptionist (AI Training) — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=638708c365</link>
-      <guid isPermaLink="false">638708c365</guid>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=2adad7cee3</link>
+      <guid isPermaLink="false">2adad7cee3</guid>
       <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você transcreve áudios em português brasileiro para treinar sistemas de IA a entender como as pessoas falam de verdade. Os áudios são reais e desafiadores: várias pessoas falando ao mesmo tempo, ruído de fundo, hesitações como &quot;é...&quot; e &quot;tipo...&quot; e linguagem informal. Você identifica quem está falando e segue regras detalhadas de formatação. Contrato por hora, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.</description>
-    </item>
-    <item>
-      <title>Brazilian Portuguese Audio Transcript Editor — Remote (AI Training) — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3043afd145</link>
-      <guid isPermaLink="false">3043afd145</guid>
-      <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você ouve áudios em português brasileiro e corrige transcrições feitas por máquina: palavras erradas, faltando ou mal escritas, pontuação e marcações de tempo. O objetivo é deixar cada palavra e cada marcação exatamente certas, seguindo um guia de estilo. Também sinaliza trechos com áudio ruim ou falas sobrepostas. Contrato por hora, de 10 a 40 horas semanais, pagando entre US$ 10 e US$ 35 por hora.</description>
+      <description>Você transcreve áudios em português brasileiro para treinar sistemas de IA a entender como as pessoas falam de verdade. Os áudios são conversas reais, com várias pessoas falando, ruído de fundo, hesitações como &quot;é...&quot; e &quot;tipo...&quot; e linguagem informal, e você identifica quem está falando e segue regras de formatação. Contrato por hora, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.</description>
     </item>
     <item>
       <title>Brazilian Portuguese - Audio Transcript Editor — Alignerr</title>
@@ -260,10 +260,10 @@
     </item>
     <item>
       <title>Portuguese Language Expert — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=94d3206e73</link>
-      <guid isPermaLink="false">94d3206e73</guid>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=c3f214fe16</link>
+      <guid isPermaLink="false">c3f214fe16</guid>
       <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.</description>
+      <description>Você avalia textos e traduções em português gerados por IA, apontando erros de tradução, frases pouco naturais, registro inadequado e problemas culturais. Depois sugere versões melhores e escreve um retorno estruturado sobre a qualidade. É remoto, no seu horário, de 10 a 40 horas por semana, pagando entre US$ 20 e US$ 40 por hora.</description>
     </item>
     <item>
       <title>AI Quality Analyst (Personalization) - Portuguese — Turing</title>

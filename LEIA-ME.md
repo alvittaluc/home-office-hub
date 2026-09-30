@@ -199,5 +199,16 @@ basta adicionar `.json` na URL de busca por país. O scraper usa isso e é
 
 **Arquivo novo:** `scraper_telus.py` (precisa subir junto no GitHub)
 
+## 🔎 Curadoria de local (`vagas-curadoria.json`)
+
+**Regra do hub:** só aparece vaga **remota** que aceita o **mundo todo** ou quem **mora no Brasil**.
+Vaga que exige morar em outro país ou cidade de fora (ex.: "brasileiros em Berlim"), ou que é presencial, não entra.
+
+- O filtro automático pega a maior parte pelo texto, mas não lê entrelinhas.
+  Por isso cada vaga visível é revisada e registrada no `vagas-curadoria.json`:
+  - `aprovadas`: já conferidas, podem aparecer
+  - `bloqueadas`: somem do site em todas as rodadas, inclusive a automática do GitHub
+- Quando o coletor roda no PC, ele gera o `vagas_revisao.json` (só local, não vai
+  para o GitHub) com as vagas que ainda faltam revisar.
 
 Qualquer dúvida em qualquer passo, é só chamar! 🙂

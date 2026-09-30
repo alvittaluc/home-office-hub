@@ -168,6 +168,33 @@ ARQUIVO_ESPECIFICAS = "vagas-especificas.json"
 # vagas_para_resumo.json para não encher o arquivo de resumos.
 RESUMO_INCLUI_ESPECIFICAS = False
 
+# ─── CURADORIA MANUAL ───
+# vagas-curadoria.json guarda a decisão de cada vaga já revisada:
+#   "aprovadas"  → remota para o mundo todo ou aberta ao Brasil
+#   "bloqueadas" → exige morar fora do Brasil (Berlim, EUA...), some do site
+# vagas_revisao.json é gerado só no PC, com as vagas que faltam revisar.
+ARQUIVO_CURADORIA = "vagas-curadoria.json"
+ARQUIVO_REVISAO = "vagas_revisao.json"
+
+
+def carregar_curadoria():
+    """Lê o vagas-curadoria.json. Se não existir ou estiver quebrado,
+    devolve listas vazias: a coleta segue sem curadoria em vez de parar."""
+    vazio = {"aprovadas": [], "bloqueadas": []}
+    try:
+        # utf-8-sig aceita o arquivo salvo pelo Bloco de Notas, que põe BOM
+        with open(ARQUIVO_CURADORIA, "r", encoding="utf-8-sig") as f:
+            dados = json.load(f)
+    except FileNotFoundError:
+        return vazio
+    except Exception as e:
+        print(f"\n  ⚠ ERRO ao ler {ARQUIVO_CURADORIA}: {str(e)[:80]}")
+        return vazio
+    return {
+        "aprovadas": [a for a in dados.get("aprovadas", []) if a.get("id")],
+        "bloqueadas": [b for b in dados.get("bloqueadas", []) if b.get("id")],
+    }
+
 # ─── FASE 4: LINKEDIN via GMAIL ───
 # As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
 # planilha, e a planilha é publicada como CSV. O coletor lê esse CSV aqui.
@@ -1432,6 +1459,42 @@ def main():
     for v in todas:
         base = (v.get("url") or v.get("titulo") or "").encode("utf-8")
         v["id"] = hashlib.md5(base).hexdigest()[:10]
+
+    # ─── CURADORIA MANUAL (vagas-curadoria.json) ───
+    # O filtro automático decide pelo texto do local e do título, e deixa
+    # passar vaga que na descrição exige morar em Berlim, nos EUA etc.
+    # Por isso cada vaga visível é lida por uma pessoa (ou pelo Claude) e
+    # vai para "aprovadas" ou "bloqueadas". As bloqueadas somem daqui em
+    # diante, inclusive na rodada automática do GitHub.
+    # Regra do hub: só entra vaga remota aberta ao mundo ou aberta ao Brasil.
+    curadoria = carregar_curadoria()
+    bloqueadas = {b["id"] for b in curadoria["bloqueadas"]}
+    antes = len(todas)
+    todas = [v for v in todas if v["id"] not in bloqueadas]
+    if antes != len(todas):
+        print(f"  → {antes - len(todas)} vaga(s) removida(s) pela curadoria")
+
+    # Arquivo só do PC: as vagas visíveis que ainda ninguém revisou, com o
+    # texto completo, para a revisão manual. Não vai para o GitHub.
+    if not RODANDO_NO_GITHUB:
+        aprovadas = {a["id"] for a in curadoria["aprovadas"]}
+        pendentes = [{
+            "id": v["id"],
+            "empresa": v.get("empresa", ""),
+            "titulo": v.get("titulo", ""),
+            "local": v.get("local", ""),
+            "url": v.get("url", ""),
+            "descricao": v.get("_desc", ""),
+            "requisitos": v.get("_req", ""),
+        } for v in todas if not v.get("area") and v["id"] not in aprovadas]
+        with open(ARQUIVO_REVISAO, "w", encoding="utf-8") as f:
+            json.dump({"total": len(pendentes), "vagas": pendentes},
+                      f, ensure_ascii=False, indent=2)
+        if pendentes:
+            print(f"  ⚠ {len(pendentes)} vaga(s) visível(is) sem revisão de "
+                  f"local. Veja '{ARQUIVO_REVISAO}'.")
+        else:
+            print("  ✓ Todas as vagas visíveis já passaram pela curadoria")
 
     # ─── RESUMO DAS VAGAS (função + requisitos + dica de CV) ───
     # SOMENTE resumos de qualidade, escritos à mão, vindos do resumos.json.

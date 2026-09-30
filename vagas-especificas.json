@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-30T16:30:58.525128+00:00",
-  "atualizado_br": "30/09/2026 às 13:30",
-  "total": 192,
+  "atualizado_em": "2026-09-30T16:52:53.364680+00:00",
+  "atualizado_br": "30/09/2026 às 13:52",
+  "total": 193,
   "areas": [
     "Biologia e Ciencias da Vida",
     "Design e Criacao",
@@ -271,6 +271,22 @@
       }
     },
     {
+      "empresa": "alignerr",
+      "titulo": "Mathematician – Formal Proof & AI Foundations (Remote Contract)",
+      "local": "Remoto · Brasil",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://www.alignerr.com/jobs/7677c530-09e1-46ee-a0a4-f7f12c15ed99",
+      "commitment": "CONTRACT",
+      "fonte": "direto",
+      "data_post": "2026-09-28",
+      "area": "Matematica e Estatistica",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-28",
+      "data_oficial": true,
+      "id": "8283867b1d"
+    },
+    {
       "empresa": "turing",
       "titulo": "Bioinformatics / Computational Genomics Expert",
       "local": "Remoto · Brasil",
@@ -432,6 +448,22 @@
     },
     {
       "empresa": "mercor",
+      "titulo": "Generalist (Must own MacBook)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://work.mercor.com/jobs/list_AAABn5vEYCY9JpDvdTdM1Y-0/generalist-must-own-macbook",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "",
+      "area": "Engenharia",
+      "data_vista": "2026-09-29",
+      "data_ref": "2026-09-29",
+      "data_oficial": false,
+      "id": "55baa5d6db"
+    },
+    {
+      "empresa": "mercor",
       "titulo": "Data Science Expert",
       "local": "Remoto · Mundial",
       "categoria": "sme",
@@ -445,22 +477,6 @@
       "data_ref": "2026-09-23",
       "data_oficial": false,
       "id": "8e5f287369"
-    },
-    {
-      "empresa": "mercor",
-      "titulo": "Financial Crime, AML & KYC Analyst",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.mercor.com/jobs/list_AAABn6aQ7bCK9CZbQvJHDaYA/financial-crime-aml-kyc-analyst",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "area": "Financas e Contabilidade",
-      "data_vista": "2026-09-15",
-      "data_ref": "2026-09-15",
-      "data_oficial": false,
-      "id": "b5b5c5a9b3"
     },
     {
       "empresa": "mercor",

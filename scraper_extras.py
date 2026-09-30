@@ -601,6 +601,21 @@ def coletar_alignerr(pausa=0.6):
         local = (det.get("location") or "").strip()
         if not titulo:
             continue
+
+        # Setembro de 2026: a Alignerr publica cópias regionais da mesma
+        # vaga, com cidade e país preenchidos (ex.: Berlin / DE, texto
+        # "brasileiros morando na Alemanha"). A vaga-mãe não tem país e
+        # aceita qualquer lugar. Cópia presa a outro país sai do hub.
+        pais_vaga = (det.get("countryCode") or "").strip().upper()
+        if pais_vaga and pais_vaga != "BR":
+            continue
+        # O campo "location" diz "United States" em quase tudo, até na cópia
+        # de São Paulo. É o padrão da Alignerr, não uma exigência: a própria
+        # página diz "Location: Remote". Quem manda é o countryCode.
+        if pais_vaga == "BR":
+            local = "Brazil"
+        elif local.lower() == "united states":
+            local = "Remote"
         desc = limpar_html(det.get("longDescription")
                            or det.get("htmlLongDescription")
                            or v.get("description", ""))
@@ -931,6 +946,51 @@ def _titulo_do_cartao(texto, slug):
     return titulo[:160]
 
 
+# Setembro de 2026: a lista não diz quem pode se candidatar, mas a página
+# de cada vaga traz isso no JSON embutido. Atenção: o bloco
+# "applicantLocationRequirements" diz "US" em TODAS as vagas, é padrão e
+# não vale nada. A restrição de verdade fica nestes campos:
+#     "eligibleLocation":["USA"]   → só quem está nos EUA
+#     "eligibleResidenceLocation":[...] / "ineligible...":[...]
+# Lista vazia ou null = sem restrição.
+_ELEGIVEL_MERCOR = re.compile(
+    r'"(eligibleLocation|eligibleResidenceLocation|ineligibleLocation|'
+    r'ineligibleResidenceLocation)":(\[[^\]]*\]|null)')
+_DESCRICAO_MERCOR = re.compile(r'"description":("(?:[^"\\]|\\.)*")')
+_EH_BRASIL = re.compile(r"^(br|bra|brazil|brasil)$", re.I)
+
+
+def _detalhe_mercor(url):
+    """Abre a página da vaga e devolve (aceita_brasil, descricao).
+    Se a página falhar, a vaga fica (True, ""): melhor mostrar do que sumir
+    com uma vaga boa por causa de um erro de rede."""
+    try:
+        html = _baixar(url, tipo_json=False, origem=ORIGEM_MERCOR)
+    except Exception:
+        return True, ""
+
+    aceita = True
+    for campo, bruto in _ELEGIVEL_MERCOR.findall(html):
+        try:
+            lista = json.loads(bruto) or []
+        except Exception:
+            continue
+        tem_brasil = any(_EH_BRASIL.match(str(p).strip()) for p in lista)
+        if campo.startswith("eligible") and lista and not tem_brasil:
+            aceita = False
+        if campo.startswith("ineligible") and tem_brasil:
+            aceita = False
+
+    descricao = ""
+    m = _DESCRICAO_MERCOR.search(html)
+    if m:
+        try:
+            descricao = limpar_html(json.loads(m.group(1)))
+        except Exception:
+            pass
+    return aceita, descricao
+
+
 def coletar_mercor(pausa=0.8, max_paginas=MERCOR_MAX_PAGINAS):
     """Lê as páginas de /explore e devolve as vagas que servem ao Brasil.
 
@@ -970,13 +1030,19 @@ def coletar_mercor(pausa=0.8, max_paginas=MERCOR_MAX_PAGINAS):
             if pais_estrangeiro(titulo) or idioma_estrangeiro(titulo):
                 continue
 
+            url = URL_MERCOR_VAGA.format(id=id_vaga, slug=slug)
+            aceita, descricao = _detalhe_mercor(url)
+            time.sleep(pausa)
+            if not aceita:
+                continue
+
             pag = _PAGAMENTO_MERCOR.search(texto)
             vagas.append({
                 "titulo": titulo,
                 "local": ("Remoto · Brasil" if _BRASIL.search(titulo)
                           else "Remoto · Mundial"),
-                "url": URL_MERCOR_VAGA.format(id=id_vaga, slug=slug),
-                "desc": "",
+                "url": url,
+                "desc": descricao,
                 "requisitos": "",
                 "pagamento": pag.group(1).strip() if pag else "",
                 "horario": "",
