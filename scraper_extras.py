@@ -811,6 +811,15 @@ URL_IMERIT = "https://imerit.ai/jobs.json"
 ORIGEM_IMERIT = "https://imerit.ai"
 
 
+def _texto_imerit(valor):
+    """Setembro de 2026: a iMerit passou a mandar responsibilities,
+    requirements etc. como LISTA de itens em vez de texto. Aceita os dois
+    formatos e devolve sempre texto, um item por linha."""
+    if isinstance(valor, list):
+        return "\n".join(_texto_imerit(i) for i in valor if i)
+    return str(valor or "")
+
+
 def coletar_imerit():
     """Lê o feed JSON da iMerit e devolve só o que aceita o Brasil."""
     print("  → iMerit ...", end=" ")
@@ -834,11 +843,11 @@ def coletar_imerit():
         idioma = (v.get("language") or "").strip()
 
         # blocos de texto: a iMerit separa em about/description/etc.
-        blocos = [v.get(k) or "" for k in
+        blocos = [_texto_imerit(v.get(k)) for k in
                   ("description", "about", "responsibilities")]
         desc = limpar_html("\n\n".join(b for b in blocos if b))
         requisitos = limpar_html("\n".join(
-            v.get(k) or "" for k in ("requirements", "nice_to_have")))
+            _texto_imerit(v.get(k)) for k in ("requirements", "nice_to_have")))
 
         if not aceita_brasil(titulo, local_bruto, idioma, desc):
             continue
