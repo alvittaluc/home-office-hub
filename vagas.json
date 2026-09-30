@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-29T14:26:40.505522+00:00",
-  "atualizado_br": "29/09/2026 às 14:26",
-  "total": 69,
+  "atualizado_em": "2026-09-30T14:23:30.467932+00:00",
+  "atualizado_br": "30/09/2026 às 14:23",
+  "total": 70,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -68,6 +68,21 @@
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
       }
+    },
+    {
+      "empresa": "welocalize",
+      "titulo": "Andromeda Delta- Portuguese cultural expertise in Brazil",
+      "local": "Remoto · Brasil",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.lever.co/weloglobal/634d8900-77fa-4451-97a5-b0726c477696",
+      "commitment": "Freelance",
+      "fonte": "direto",
+      "data_post": "2026-09-30",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-30",
+      "data_oficial": true,
+      "id": "a5eacac204"
     },
     {
       "empresa": "welocalize",
@@ -142,26 +157,19 @@
       "id": "d61cde5def"
     },
     {
-      "empresa": "welocalize",
-      "titulo": "Project Epsilon - Portuguese (Brazil) Data Trainer",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.lever.co/weloglobal/64a0c74c-57fb-482e-b9a2-cfaff52db6df",
-      "commitment": "Freelance-Remote",
+      "empresa": "rws",
+      "titulo": "Search Engine Evaluator - Portuguese (Brazil)",
+      "local": "Remoto · Brasilia",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.lever.co/rws/1e4ede55-b1ba-4884-a89d-63bb30676910",
+      "commitment": "Temporary/Contract",
       "fonte": "direto",
-      "data_post": "2026-07-20",
-      "data_vista": "2026-08-04",
-      "data_ref": "2026-07-20",
+      "data_post": "2024-10-14",
+      "data_vista": "2026-09-17",
+      "data_ref": "2024-10-14",
       "data_oficial": true,
-      "id": "65e5914d72",
-      "resumo": {
-        "o_que_faz": "Como Treinador(a) de Dados (Data Trainer) do Projeto Epsilon, você analisa perguntas pré-definidas junto com imagens e fornece as respostas 'douradas' (corretas) com base no que observa. Trabalho por tarefas, ideal para quem é meticuloso.",
-        "requisitos": "Português (Brasil). Atenção a detalhes e capacidade de seguir instruções detalhadas com consistência. Não exige experiência prévia específica.",
-        "dica_cv": "Boa vaga de entrada. Destaque: atenção a detalhes, capacidade de seguir instruções, e português nativo. Ideal para quem está começando na área de dados/IA.",
-        "contrato": "Freelance · Remoto · Por tarefa",
-        "remuneracao": ""
-      }
+      "id": "e22fdd38f1"
     },
     {
       "empresa": "rws",
@@ -751,9 +759,9 @@
       "url": "https://www.alignerr.com/jobs/60e7cd1f-73a7-4027-8135-85ac0989135f",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-18",
+      "data_post": "2026-09-29",
       "data_vista": "2026-08-05",
-      "data_ref": "2026-09-18",
+      "data_ref": "2026-09-29",
       "data_oficial": true,
       "id": "64c7fbed79",
       "resumo": {
