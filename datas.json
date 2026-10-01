@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-10-01T00:35:36.433741+00:00",
-  "total": 390,
+  "atualizado_em": "2026-10-01T14:55:14.586012+00:00",
+  "total": 393,
   "primeira_vez": {
     "alignerr|ai language expert portuguese": "2026-08-05",
     "alignerr|audio transcript editor portuguese eiro ai training": "2026-09-30",
@@ -42,6 +42,7 @@
     "mercor|general clinician md do ajax": "2026-09-16",
     "mercor|general clinician md do hls expert pool": "2026-09-17",
     "mercor|generalist must own macbook": "2026-09-29",
+    "mercor|hazardous device specialist public safety professional <div class=\"m": "2026-10-01",
     "mercor|healthcare administrative specialist": "2026-09-16",
     "mercor|industrial hygienist process safety engineer": "2026-09-15",
     "mercor|industrial hygienist process safety engineer <div class=\"ml auto fle": "2026-09-22",
@@ -58,6 +59,7 @@
     "mercor|propulsion & effects engineer <div class=\"ml auto flex items cente": "2026-09-18",
     "mercor|quality analyst": "2026-09-12",
     "mercor|software engineer expert": "2026-09-23",
+    "mercor|specialty materials chemist pyrotechnics or propulsion": "2026-10-01",
     "mercor|specialty materials chemist pyrotechnics or propulsion <div class=\"m": "2026-10-01",
     "mercor|stem phds and technical domain experts": "2026-09-11",
     "mercor|synthetic process chemist": "2026-09-17",
@@ -374,6 +376,7 @@
     "welocalize|*scout junior quality coordinator portuguese": "2026-07-31",
     "welocalize|ads quality rater german": "2026-08-04",
     "welocalize|ads quality rater italian": "2026-08-04",
+    "welocalize|andromeda delta audio transcription reviewer portuguese": "2026-10-01",
     "welocalize|andromeda delta portuguese cultural expertise in": "2026-09-30",
     "welocalize|circinus audio contributor portuguese": "2026-08-04",
     "welocalize|english to portuguese linguist for patent": "2026-09-09",
