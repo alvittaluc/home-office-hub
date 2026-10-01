@@ -523,7 +523,8 @@ const Blocos = (function () {
     const hoje = Dados.hoje();
     let de = "0000-01-01";
     if (periodo === "semana") de = Dados.segundaDa(hoje);
-    else if (periodo === "mês" || periodo === "mes" || !periodo) de = hoje.slice(0, 8) + "01";
+    // "mês" é o período atual do trabalho, que pode começar no dia 20 e não no dia 1
+    else if (periodo === "mês" || periodo === "mes" || !periodo) de = UI.periodoDe(hoje, UI.diaDoPeriodo(ctx.trabalho)).de;
 
     let total = 0;
     regs.forEach(r => {

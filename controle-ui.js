@@ -458,6 +458,19 @@ const UI = (function () {
            " a " + b[2] + " " + MESES_CURTOS[b[1] - 1] + " de " + b[0];
   }
 
+  /* O mês a que um dia de trabalho pertence nas contas do Painel: o mês em
+     que o período daquele trabalho FECHA. Num projeto que conta do dia 20 ao
+     dia 19, o dia 25/09 pertence a outubro. No mês normal não muda nada. */
+  function mesDeFechamento(dataISO, trabalho) {
+    return periodoDe(dataISO, diaDoPeriodo(trabalho)).ate.slice(0, 7);
+  }
+
+  /* O dia cai no período atual do trabalho? */
+  function noPeriodoAtual(dataISO, trabalho) {
+    const hoje = Dados.hoje();
+    return dataISO >= periodoDe(hoje, diaDoPeriodo(trabalho)).de && dataISO <= hoje;
+  }
+
   function ultimoDiaDoMes(ym) {
     const hoje = Dados.hoje();
     if (ym === hoje.slice(0, 7)) return hoje;
@@ -476,13 +489,18 @@ const UI = (function () {
     return cacheTaxas[chave];
   }
 
-  /* Resumo de um período. de e ate são datas ISO, ambas incluídas. */
-  async function resumo({ trabalhos, registros, pagamentos, de, ate }) {
+  /* Resumo de um período. de e ate são datas ISO, ambas incluídas.
+     Em vez de datas, dá para passar cabe(registro, trabalho) e
+     cabePg(pagamento, trabalho): funções que dizem o que entra. É o que o
+     Painel usa, porque lá cada trabalho tem o próprio período. */
+  async function resumo({ trabalhos, registros, pagamentos, de, ate, cabe, cabePg }) {
     const porId = {};
     trabalhos.forEach(t => porId[t.id] = t);
 
-    const regs = registros.filter(r => r.data >= de && r.data <= ate);
-    const pgs = pagamentos.filter(p => p.data >= de && p.data <= ate);
+    const regs = cabe ? registros.filter(r => cabe(r, porId[r.trabalhoId]))
+                      : registros.filter(r => r.data >= de && r.data <= ate);
+    const pgs = cabePg ? pagamentos.filter(p => cabePg(p, porId[p.trabalhoId]))
+                       : pagamentos.filter(p => p.data >= de && p.data <= ate);
 
     let horas = 0;
     const dias = new Set();
@@ -671,7 +689,7 @@ const UI = (function () {
     esc, painel, confirmar, aviso, erroNoPainel, campo, ler,
     abrirRegistroDia, abrirPagamento,
     ganhoBruto, taxaDoMes, resumo, escreverPorMoeda,
-    diaDoPeriodo, periodoDe, periodoVizinho, nomeDoPeriodo,
+    diaDoPeriodo, periodoDe, periodoVizinho, nomeDoPeriodo, mesDeFechamento, noPeriodoAtual,
     PAGAMENTOS, CICLOS,
   };
 })();

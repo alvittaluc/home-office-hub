@@ -173,6 +173,7 @@ body > header.site .hd { max-width:1460px; }
 @media (max-width:1040px){ .ct-grade { grid-template-columns:minmax(0,1fr); } }
 
 /* ── barra de filtros ── */
+.ct-nota-per { font-size:12.5px; color:var(--ink-3,#8A94A1); margin:-6px 6px 16px; line-height:1.55; }
 .ct-filtros {
   display:flex; align-items:center; gap:9px; flex-wrap:wrap;
   padding:11px 14px; margin-bottom:16px; border-radius:16px;
@@ -306,9 +307,9 @@ body > header.site .hd { max-width:1460px; }
 <script src="controle-dados.js"></script>
 <script src="pulso-site.js"></script>
 <script src="controle-graficos.js"></script>
-<script src="controle-blocos.js"></script>
-<script src="controle-ui.js?v=2"></script>
-<script src="controle-trabalho.js?v=2"></script>
+<script src="controle-blocos.js?v=2"></script>
+<script src="controle-ui.js?v=3"></script>
+<script src="controle-trabalho.js?v=3"></script>
 <script src="controle-hoje.js"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
@@ -405,7 +406,6 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      ══════════════════════════════════════════════════════════ */
 
   function desenharLado() {
-    const mesDe = Dados.hoje().slice(0, 8) + "01";
     const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "entrevista"].indexOf(a.estado) >= 0).length;
     // Contador da tela Hoje: só o que tem data marcada para hoje ou para trás.
     const aFazer = APLICACOES.filter(a => a.proximo && a.proximoEm && a.proximoEm <= Dados.hoje() &&
@@ -413,7 +413,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     const itensTrab = TRABALHOS.map(t => {
       const horas = REGISTROS
-        .filter(r => r.trabalhoId === t.id && r.data >= mesDe)
+        .filter(r => r.trabalhoId === t.id && UI.noPeriodoAtual(r.data, t))   // horas do período atual do trabalho
         .reduce((s, r) => s + (+r.horas || 0), 0);
       return `<button class="ct-item ct-trab-item${t.estado !== "ativo" ? " ct-pausado" : ""}"
                 data-ir="trabalho/${esc(t.id)}" aria-current="${rota.tela === "trabalho" && rota.id === t.id}">
@@ -518,11 +518,34 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      PAINEL
      ══════════════════════════════════════════════════════════ */
 
+  /* O Painel soma trabalhos com períodos diferentes: um conta do dia 1 ao
+     31, outro do dia 20 ao 19. Para as telas não se contradizerem:
+
+       "mes"  é o período ATUAL de cada trabalho, somados. É exatamente a
+              soma do que a página de cada trabalho mostra.
+       os outros filtros e os gráficos por mês usam o mês em que o período
+              de cada trabalho FECHA (UI.mesDeFechamento).
+
+     Pagamento recebido conta sempre pela data em que caiu.
+     cabe(registro, trabalho) e cabePg(pagamento, trabalho) dizem o que entra. */
+  function mesAtras(n) {
+    const d = new Date(Dados.hoje().slice(0, 8) + "01T12:00:00");
+    d.setMonth(d.getMonth() - n);
+    return d.toISOString().slice(0, 7);
+  }
+  const temPeriodoProprio = () => TRABALHOS.some(t => UI.diaDoPeriodo(t) !== 1);
+
   const PERIODOS = {
-    mes:  { nome: "Este mês",        de: () => Dados.hoje().slice(0, 8) + "01" },
-    tres: { nome: "Últimos 3 meses", de: () => { const d = new Date(Dados.hoje() + "T12:00:00"); d.setMonth(d.getMonth() - 2); return d.toISOString().slice(0, 8) + "01"; } },
-    ano:  { nome: "Este ano",        de: () => Dados.hoje().slice(0, 4) + "-01-01" },
-    tudo: { nome: "Tudo",            de: () => "0000-01-01" },
+    mes:  { nome: () => (temPeriodoProprio() ? "Período atual" : "Este mês"),
+            cabe: (r, t) => UI.noPeriodoAtual(r.data, t),
+            cabePg: (p, t) => UI.noPeriodoAtual(p.data, t) },
+    tres: { nome: () => "Últimos 3 meses",
+            cabe: (r, t) => UI.mesDeFechamento(r.data, t) >= mesAtras(2),
+            cabePg: p => p.data.slice(0, 7) >= mesAtras(2) },
+    ano:  { nome: () => "Este ano",
+            cabe: (r, t) => UI.mesDeFechamento(r.data, t).slice(0, 4) === Dados.hoje().slice(0, 4),
+            cabePg: p => p.data.slice(0, 4) === Dados.hoje().slice(0, 4) },
+    tudo: { nome: () => "Tudo", cabe: () => true, cabePg: () => true },
   };
 
   async function desenharPainel() {
@@ -530,13 +553,16 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     if (!TRABALHOS.length && !APLICACOES.length) { alvo.innerHTML = htmlPrimeirosPassos(); ligarPrimeirosPassos(alvo); return; }
 
-    const de = PERIODOS[periodo].de(), ate = Dados.hoje();
-    const r = await UI.resumo({ trabalhos: TRABALHOS, registros: REGISTROS, pagamentos: PAGAMENTOS, de, ate });
+    const filtro = PERIODOS[periodo];
+    const r = await UI.resumo({ trabalhos: TRABALHOS, registros: REGISTROS, pagamentos: PAGAMENTOS,
+                                cabe: filtro.cabe, cabePg: filtro.cabePg });
     const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "entrevista"].indexOf(a.estado) >= 0).length;
 
     alvo.innerHTML = `
       <div class="ct-cab-tela">
-        <div><h1>Painel</h1><p>Como está o mês, somando todos os trabalhos.</p></div>
+        <div><h1>Painel</h1><p>${temPeriodoProprio()
+          ? "Todos os trabalhos somados, cada um pelo período dele."
+          : "Como está o mês, somando todos os trabalhos."}</p></div>
         <div class="ct-cab-bts">
           <button class="ct-b pequeno" data-metas>Metas</button>
           <button class="ct-b pequeno forte" data-novo-dia>Registrar um dia</button>
@@ -546,14 +572,18 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       <div class="ct-filtros">
         <span class="ct-col-rot" style="margin:0 4px 0 6px;">Período</span>
         ${Object.keys(PERIODOS).map(p =>
-          `<button class="ct-chip" data-periodo="${p}" aria-pressed="${p === periodo}">${esc(PERIODOS[p].nome)}</button>`).join("")}
+          `<button class="ct-chip" data-periodo="${p}" aria-pressed="${p === periodo}">${esc(PERIODOS[p].nome())}</button>`).join("")}
       </div>
+      ${temPeriodoProprio() ? `<p class="ct-nota-per">${periodo === "mes"
+        ? "Soma o período atual de cada trabalho: " + esc(TRABALHOS.filter(t => t.estado === "ativo").map(t =>
+            (t.projeto || t.empresa) + " (" + UI.nomeDoPeriodo(UI.periodoDe(Dados.hoje(), UI.diaDoPeriodo(t)), UI.diaDoPeriodo(t)) + ")").join(", ")) + "."
+        : "Cada período entra no mês em que fecha. Num trabalho que conta do dia 20 ao dia 19, os dias de 20 a 30 de setembro entram em outubro."}</p>` : ""}
 
       <div class="ct-cartao">
         <div class="ct-heroi">
           <div>
             <div class="ct-heroi-num">${esc(Dados.escreverDinheiro(r.previstoBRL, "BRL"))}</div>
-            <div class="ct-heroi-rot">ganho bruto em ${esc(PERIODOS[periodo].nome.toLowerCase())}${r.estimado ? ", com câmbio estimado" : ""}</div>
+            <div class="ct-heroi-rot">ganho bruto, ${esc(PERIODOS[periodo].nome().toLowerCase())}${r.estimado ? ", com câmbio estimado" : ""}</div>
           </div>
           <div class="ct-heroi-lado">
             ${Object.keys(r.previstoPorMoeda).filter(m => m !== "BRL" && r.previstoPorMoeda[m]).map(m => `
@@ -588,7 +618,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
       <div class="ct-grade">
         <div class="ct-cartao ct-larga">
-          <div class="ct-cab-cartao"><h2>Ganho por mês</h2><p>últimos 12 meses, em reais, empilhado por trabalho</p></div>
+          <div class="ct-cab-cartao"><h2>Ganho por mês</h2><p>${temPeriodoProprio()
+            ? "em reais, por trabalho, no mês em que cada período fecha"
+            : "últimos 12 meses, em reais, empilhado por trabalho"}</p></div>
           <div id="grGanhos"></div>
         </div>
         <div class="ct-cartao">
@@ -617,7 +649,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     alvo.querySelector("[data-metas]").addEventListener("click", abrirMetas);
 
     if (CFG.metaHorasSemana || CFG.metaGanhoMes) await desenharMetas(alvo.querySelector("#caixaMetas"));
-    await desenharGraficos(de, ate);
+    await desenharGraficos(filtro);
   }
 
   function htmlPrimeirosPassos() {
@@ -671,19 +703,24 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     }
 
     if (CFG.metaGanhoMes) {
-      const de = Dados.hoje().slice(0, 8) + "01";
-      const r = await UI.resumo({ trabalhos: TRABALHOS, registros: REGISTROS, pagamentos: PAGAMENTOS, de, ate: Dados.hoje() });
+      // Mesma conta do topo do Painel: o período atual de cada trabalho.
+      const r = await UI.resumo({ trabalhos: TRABALHOS, registros: REGISTROS, pagamentos: PAGAMENTOS,
+                                  cabe: PERIODOS.mes.cabe, cabePg: PERIODOS.mes.cabePg });
       const alvo = +CFG.metaGanhoMes;
       const parte = Math.min(1, r.previstoBRL / alvo);
       const falta = Math.max(0, alvo - r.previstoBRL);
       const hoje = new Date(Dados.hoje() + "T12:00:00");
       const noMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
       const diasQueFaltam = Math.max(1, noMes - hoje.getDate() + 1);
+      // Com períodos diferentes entre os trabalhos não existe um "fim do mês"
+      // único, então a conta de quanto falta por dia só vale no mês normal.
+      const proprio = temPeriodoProprio();
       html += `<div>
         <div class="ct-meta-topo"><span class="ct-meta-num">${esc(Dados.escreverDinheiro(r.previstoBRL, "BRL"))}</span>
-          <span class="ct-meta-de">de ${esc(Dados.escreverDinheiro(alvo, "BRL"))} neste mês</span></div>
+          <span class="ct-meta-de">de ${esc(Dados.escreverDinheiro(alvo, "BRL"))} ${proprio ? "no período atual" : "neste mês"}</span></div>
         <div class="ct-barra${parte >= 1 ? " cheia" : ""}"><span style="width:${(parte * 100).toFixed(1)}%"></span></div>
-        <div class="ct-meta-nota">${falta <= 0 ? "Meta do mês alcançada."
+        <div class="ct-meta-nota">${falta <= 0 ? (proprio ? "Meta alcançada." : "Meta do mês alcançada.")
+          : proprio ? "Faltam " + esc(Dados.escreverDinheiro(falta, "BRL")) + "."
           : "Faltam " + esc(Dados.escreverDinheiro(falta, "BRL")) + ", restam " + diasQueFaltam + " dias, cerca de "
             + esc(Dados.escreverDinheiro(falta / diasQueFaltam, "BRL")) + " por dia."}</div>
       </div>`;
@@ -692,22 +729,31 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   }
 
   /* ── os cinco gráficos ── */
-  async function desenharGraficos(de, ate) {
+  async function desenharGraficos(filtro) {
     const porId = {}; TRABALHOS.forEach((t, i) => porId[t.id] = Object.assign({ cor: t.cor || Graficos.corDe(i) }, t));
     const NOMES_MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 
+    // O mês de cada registro, para os gráficos por mês: o do fechamento do
+    // período do trabalho. Calculado uma vez só.
+    const mesDe = {};
+    REGISTROS.forEach(r => { mesDe[r.id] = UI.mesDeFechamento(r.data, porId[r.trabalhoId]); });
+
+    // Doze meses, terminando no mês atual ou, se já existe dia lançado num
+    // período que fecha no mês que vem, nesse mês seguinte.
+    let fim = Dados.hoje().slice(0, 7);
+    REGISTROS.forEach(r => { if (r.data <= Dados.hoje() && mesDe[r.id] > fim) fim = mesDe[r.id]; });
     const meses = [];
-    const base = new Date(Dados.hoje() + "T12:00:00"); base.setDate(1);
+    const base = new Date(fim + "-01T12:00:00");
     for (let i = 11; i >= 0; i--) {
-      const d = new Date(base.getFullYear(), base.getMonth() - i, 1);
-      meses.push(d.toISOString().slice(0, 7));
+      const d = new Date(base.getFullYear(), base.getMonth() - i, 1, 12);
+      meses.push(d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0"));
     }
     const ativos = TRABALHOS.filter(t => REGISTROS.some(r => r.trabalhoId === t.id) || t.pagamento === "mes").slice(0, 8);
     const series = [];
     for (const t of ativos) {
       const valores = [];
       for (const ym of meses) {
-        const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data.slice(0, 7) === ym);
+        const regs = REGISTROS.filter(r => r.trabalhoId === t.id && mesDe[r.id] === ym);
         let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
         if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
         const tx = await UI.taxaDoMes(t.moeda || "BRL", ym);
@@ -726,7 +772,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     const DIAS = ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"];
     const somaDia = [0, 0, 0, 0, 0, 0, 0], contaDia = [0, 0, 0, 0, 0, 0, 0];
-    REGISTROS.filter(r => r.data >= de && r.data <= ate).forEach(r => {
+    REGISTROS.filter(r => filtro.cabe(r, porId[r.trabalhoId])).forEach(r => {
       const d = new Date(r.data + "T12:00:00");
       const i = (d.getDay() + 6) % 7;
       somaDia[i] += +r.horas || 0;
@@ -745,20 +791,20 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     const fatias = [];
     for (const t of TRABALHOS) {
-      const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data >= de && r.data <= ate);
+      const regs = REGISTROS.filter(r => r.trabalhoId === t.id && filtro.cabe(r, t));
       let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
       if (t.pagamento === "mes" && regs.length) {
-        const m = new Set(regs.map(r => r.data.slice(0, 7)));
+        const m = new Set(regs.map(r => mesDe[r.id]));   // o fixo entra uma vez por período
         bruto += (+t.valor || 0) * m.size;
       }
       if (!bruto) continue;
-      const tx = await UI.taxaDoMes(t.moeda || "BRL", ate.slice(0, 7));
+      const tx = await UI.taxaDoMes(t.moeda || "BRL", Dados.hoje().slice(0, 7));
       fatias.push({ nome: t.projeto || t.empresa, valor: bruto * tx.taxa, cor: porId[t.id].cor });
     }
     Graficos.rosca($("#grRosca"), {
       fatias: fatias.sort((a, b) => b.valor - a.valor),
       formatar: v => Dados.escreverDinheiro(v, "BRL"),
-      rotuloCentro: PERIODOS[periodo].nome.toLowerCase(),
+      rotuloCentro: PERIODOS[periodo].nome().toLowerCase(),
       titulo: "Ganho por trabalho no período",
       vazio: "Sem ganho registrado neste período.",
     });
@@ -775,7 +821,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     for (const ym of meses) {
       let p = 0;
       for (const t of TRABALHOS) {
-        const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data.slice(0, 7) === ym);
+        const regs = REGISTROS.filter(r => r.trabalhoId === t.id && mesDe[r.id] === ym);
         let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
         if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
         if (!bruto) continue;
