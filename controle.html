@@ -307,8 +307,8 @@ body > header.site .hd { max-width:1460px; }
 <script src="pulso-site.js"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js"></script>
-<script src="controle-ui.js"></script>
-<script src="controle-trabalho.js"></script>
+<script src="controle-ui.js?v=2"></script>
+<script src="controle-trabalho.js?v=2"></script>
 <script src="controle-hoje.js"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
@@ -1040,9 +1040,11 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       return;
     }
 
-    const mesDe = Dados.hoje().slice(0, 8) + "01";
     const cartoes = TRABALHOS.map(t => {
-      const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data >= mesDe);
+      // cada cartão soma o período atual do próprio trabalho, que pode não ser o mês do calendário
+      const per = UI.periodoDe(Dados.hoje(), UI.diaDoPeriodo(t));
+      const rotPer = UI.diaDoPeriodo(t) === 1 ? "no mês" : "no período";
+      const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data >= per.de && r.data <= per.ate);
       const horas = regs.reduce((s, r) => s + (+r.horas || 0), 0);
       let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
       if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
@@ -1058,8 +1060,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           </div>
         </div>
         <div class="ct-trab-nums">
-          <div><div class="ct-trab-num">${esc(Dados.escreverHoras(horas) || "0h")}</div><div class="ct-trab-rot">no mês</div></div>
-          <div><div class="ct-trab-num">${esc(Dados.escreverDinheiro(bruto, t.moeda || "BRL"))}</div><div class="ct-trab-rot">bruto no mês</div></div>
+          <div><div class="ct-trab-num">${esc(Dados.escreverHoras(horas) || "0h")}</div><div class="ct-trab-rot">${rotPer}</div></div>
+          <div><div class="ct-trab-num">${esc(Dados.escreverDinheiro(bruto, t.moeda || "BRL"))}</div><div class="ct-trab-rot">bruto ${rotPer}</div></div>
         </div>
         <div class="ct-trab-pe">
           <span class="ct-etiq">${esc((UI.PAGAMENTOS[t.pagamento] || {}).nome || "")}</span>
@@ -1118,6 +1120,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         </div>
         ${UI.campo({ nome: "ciclo", rotulo: "Quando paga", tipo: "escolha", valor: t.ciclo,
                      opcoes: Object.keys(UI.CICLOS).map(k => ({ valor: k, nome: UI.CICLOS[k] })) })}
+        ${UI.campo({ nome: "diaPeriodo", rotulo: "Dia em que o período começa", tipo: "number",
+                     valor: UI.diaDoPeriodo(t), min: 1, max: 31,
+                     ajuda: "Deixe 1 para o mês normal, do dia 1 ao último dia. Se o projeto conta do dia 20 de um mês ao dia 19 do seguinte, escreva 20." })}
         <div class="d-linha">
           <span class="d-rot">Cor de identificação</span>
           <div style="display:flex;gap:7px;flex-wrap:wrap;" id="cores"></div>
@@ -1134,6 +1139,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           valor: UI.ler(d, "valor") === "" ? 0 : +UI.ler(d, "valor"),
           moeda: UI.ler(d, "moeda"),
           ciclo: UI.ler(d, "ciclo"),
+          diaPeriodo: UI.diaDoPeriodo({ diaPeriodo: UI.ler(d, "diaPeriodo") }),
           estado: "ativo",
           inicio: UI.ler(d, "inicio"),
           cor: d.querySelector('[name="cor"]').value,

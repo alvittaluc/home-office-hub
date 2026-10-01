@@ -23,6 +23,20 @@ const Trabalho = (function () {
   let T = null, REGISTROS = [], PAGAMENTOS = [], BLOCOS = [];
   let editando = false;
 
+  /* Uma data qualquer dentro do período que está na tela. null = o período
+     de hoje. É o que as setas e a tabela de períodos mudam. */
+  let REF = null;
+
+  function periodoNaTela() { return UI.periodoDe(REF || Dados.hoje(), UI.diaDoPeriodo(T)); }
+  function periodoDeHoje() { return UI.periodoDe(Dados.hoje(), UI.diaDoPeriodo(T)); }
+  function ehOAtual(per) { return per.de === periodoDeHoje().de; }
+
+  async function resumoDoPeriodo(per) {
+    return await UI.resumo({
+      trabalhos: [T], registros: REGISTROS, pagamentos: PAGAMENTOS, de: per.de, ate: per.ate,
+    });
+  }
+
   /* ══════════════════════════════════════════════════════════
      CARREGAR
      ══════════════════════════════════════════════════════════ */
@@ -44,6 +58,7 @@ const Trabalho = (function () {
   async function montar(caixa, id, opcoes) {
     CAIXA = caixa; ID = id; OPC = opcoes || {};
     editando = false;
+    REF = null;
     if (!(await ler())) {
       caixa.innerHTML = `<div class="t-cartao t-vaziao">
         <h3>Este trabalho não existe mais</h3>
@@ -66,12 +81,10 @@ const Trabalho = (function () {
      ══════════════════════════════════════════════════════════ */
 
   async function desenhar() {
-    const mesDe = Dados.hoje().slice(0, 8) + "01";
-    const resumo = await UI.resumo({
-      trabalhos: [T], registros: REGISTROS, pagamentos: PAGAMENTOS, de: mesDe, ate: Dados.hoje(),
-    });
+    const resumo = await resumoDoPeriodo(periodoNaTela());
     const moeda = T.moeda || "BRL";
     const meus = BLOCOS.slice().sort((a, b) => (a.ordem || 0) - (b.ordem || 0));
+    const diaPer = UI.diaDoPeriodo(T);
 
     CAIXA.innerHTML = `
       <div class="t-cab" style="--cor:${esc(T.cor || "#2C6BB5")}">
@@ -85,6 +98,7 @@ const Trabalho = (function () {
             <span class="t-etiq viva">${esc((UI.PAGAMENTOS[T.pagamento] || {}).nome || "")}${
               T.pagamento !== "dia" && T.valor ? " · " + esc(Dados.escreverDinheiro(T.valor, moeda)) + (T.pagamento === "hora" ? " por hora" : " por mês") : ""}</span>
             <span class="t-etiq">${esc(UI.CICLOS[T.ciclo] || "")}</span>
+            ${diaPer !== 1 ? `<span class="t-etiq">Período começa no dia ${diaPer}</span>` : ""}
             ${T.inicio ? `<span class="t-etiq">Desde ${esc(Dados.dataBonita(T.inicio))}</span>` : ""}
             ${T.estado !== "ativo" ? `<span class="t-etiq">${esc(T.estado === "pausado" ? "Pausado" : "Encerrado")}</span>` : ""}
           </div>
@@ -123,6 +137,7 @@ const Trabalho = (function () {
 
   /* Os quatro blocos que não se apagam. */
   function htmlFixos(resumo, moeda) {
+    const per = periodoNaTela(), dia = UI.diaDoPeriodo(T), atual = ehOAtual(per);
     const brutoMoeda = resumo.previstoPorMoeda[moeda] || 0;
     const hoje = REGISTROS.find(r => r.data === Dados.hoje());
     return `
@@ -140,29 +155,81 @@ const Trabalho = (function () {
       </div>
 
       <div class="t-cartao t-l2">
-        <h2>Este mês</h2>
+        <div class="t-per">
+          <button class="t-per-seta" data-per="-1" title="Período anterior" aria-label="Período anterior">‹</button>
+          <div class="t-per-meio">
+            <h2>${esc(UI.nomeDoPeriodo(per, dia))}</h2>
+            <span>${atual ? "Período atual" : "Período encerrado"} · ${esc(Dados.dataBonita(per.de))} a ${esc(Dados.dataBonita(per.ate))}</span>
+          </div>
+          <button class="t-per-seta" data-per="1" title="Próximo período" aria-label="Próximo período"${atual ? " disabled" : ""}>›</button>
+          ${atual ? "" : `<button class="t-b pequeno" data-per-atual>Voltar ao atual</button>`}
+        </div>
         <div class="t-corpo t-nums">
           <div><div class="t-num">${esc(Dados.escreverHoras(resumo.horas) || "0h")}</div>
             <div class="t-rot">horas em ${resumo.dias} ${resumo.dias === 1 ? "dia" : "dias"}</div></div>
           <div><div class="t-num">${esc(Dados.escreverDinheiro(brutoMoeda, moeda))}</div>
-            <div class="t-rot">bruto no mês</div>
+            <div class="t-rot">bruto no período</div>
             ${moeda !== "BRL" ? `<div class="t-menor">${esc(Dados.escreverDinheiro(resumo.previstoBRL, "BRL"))}${resumo.estimado ? " (câmbio estimado)" : ""}</div>` : ""}</div>
           <div><div class="t-num">${esc(Dados.escreverDinheiro(resumo.recebidoBRL, "BRL"))}</div>
-            <div class="t-rot">recebido no mês</div></div>
+            <div class="t-rot">recebido no período</div></div>
           <div><div class="t-num">${esc(Dados.escreverDinheiro(resumo.porHoraBRL, "BRL"))}</div>
             <div class="t-rot">por hora, na prática</div></div>
         </div>
       </div>
 
       <div class="t-cartao t-l2">
-        <h2>Últimos dias</h2>
-        <div class="t-corpo b-rolagem">${htmlHistorico()}</div>
+        <h2>Dias deste período</h2>
+        <div class="t-corpo b-rolagem">${htmlHistorico(per)}</div>
       </div>
 
       <div class="t-cartao">
         <h2>Pagamentos recebidos</h2>
         <div class="t-corpo">${htmlPagamentos()}</div>
+      </div>
+
+      <div class="t-cartao t-l3">
+        <h2>Todos os períodos</h2>
+        <div class="t-corpo b-rolagem">${htmlPeriodos(per)}</div>
       </div>`;
+  }
+
+  /* Uma linha por período em que houve dia registrado ou pagamento, do mais
+     novo para o mais antigo. Clicar numa linha abre aquele período. */
+  function htmlPeriodos(naTela) {
+    const dia = UI.diaDoPeriodo(T);
+    const moeda = T.moeda || "BRL";
+    const mapa = {};
+    const linhaDe = data => {
+      const p = UI.periodoDe(data, dia);
+      return mapa[p.de] || (mapa[p.de] = { per: p, horas: 0, dias: new Set(), bruto: 0, recebido: {}, temRegistro: false });
+    };
+    REGISTROS.forEach(r => {
+      if (!(r.horas || r.valor || r.observacoes)) return;
+      const l = linhaDe(r.data);
+      l.temRegistro = true;
+      l.horas += +r.horas || 0;
+      if (r.horas) l.dias.add(r.data);
+      l.bruto += UI.ganhoBruto(r, T);
+    });
+    PAGAMENTOS.forEach(p => {
+      const l = linhaDe(p.data);
+      l.recebido[p.moeda || "BRL"] = (l.recebido[p.moeda || "BRL"] || 0) + (+p.valor || 0);
+    });
+    linhaDe(Dados.hoje());   // o período atual aparece sempre, mesmo vazio
+
+    const linhas = Object.keys(mapa).sort().reverse().map(k => mapa[k]);
+    linhas.forEach(l => { if (T.pagamento === "mes" && l.temRegistro) l.bruto += +T.valor || 0; });
+
+    return `<table class="t-hist t-pers">
+      <thead><tr><th>Período</th><th>Horas</th><th>Dias</th><th>Bruto</th><th>Recebido</th></tr></thead>
+      <tbody>${linhas.map(l => `<tr data-abrir-per="${esc(l.per.de)}"${l.per.de === naTela.de ? ' class="t-sel"' : ""}>
+        <td class="t-dia">${esc(UI.nomeDoPeriodo(l.per, dia))}${ehOAtual(l.per) ? ' <span class="t-agora">atual</span>' : ""}</td>
+        <td class="t-h">${esc(Dados.escreverHoras(l.horas) || "—")}</td>
+        <td class="t-h">${l.dias.size || "—"}</td>
+        <td class="t-h">${l.bruto ? esc(Dados.escreverDinheiro(l.bruto, moeda)) : "—"}</td>
+        <td class="t-h">${Object.keys(l.recebido).length ? esc(UI.escreverPorMoeda(l.recebido)) : "—"}</td>
+      </tr>`).join("")}</tbody></table>
+      <p class="t-menor" style="padding:11px 10px 0;">Clique em um período para ver os dias e os números dele. "Recebido" conta pela data em que o dinheiro caiu.</p>`;
   }
 
   /* Dias sem registro na semana, dito sem cobrar nada de ninguém. */
@@ -176,10 +243,13 @@ const Trabalho = (function () {
       Dá para lançar depois, é só escolher a data.</p>`;
   }
 
-  function htmlHistorico() {
-    const comAlgo = REGISTROS.filter(r => r.horas || r.valor || r.observacoes);
-    if (!comAlgo.length) return `<p class="t-vazio">Nenhum dia registrado ainda.</p>`;
-    const lista = comAlgo.slice(0, 14);
+  function htmlHistorico(per) {
+    const comAlgo = REGISTROS.filter(r => r.data >= per.de && r.data <= per.ate &&
+                                          (r.horas || r.valor || r.observacoes));
+    if (!comAlgo.length) {
+      return `<p class="t-vazio">${REGISTROS.length ? "Nenhum dia registrado neste período." : "Nenhum dia registrado ainda."}</p>`;
+    }
+    const lista = comAlgo;
     const porTarefa = T.pagamento === "dia";
     return `<table class="t-hist">
       <thead><tr><th>Dia</th><th>Horas</th>${porTarefa ? "<th>Ganho</th>" : ""}<th>Observações</th></tr></thead>
@@ -188,8 +258,7 @@ const Trabalho = (function () {
         <td class="t-h">${esc(Dados.escreverHoras(r.horas) || "—")}</td>
         ${porTarefa ? `<td class="t-h">${esc(r.valor ? Dados.escreverDinheiro(r.valor, T.moeda || "BRL") : "—")}</td>` : ""}
         <td class="t-obs">${esc(r.observacoes || "")}</td>
-      </tr>`).join("")}</tbody></table>
-      ${comAlgo.length > 14 ? `<p class="t-menor" style="padding:11px 10px 0;">Mostrando os 14 dias mais recentes, de ${comAlgo.length}.</p>` : ""}`;
+      </tr>`).join("")}</tbody></table>`;
   }
 
   function htmlPagamentos() {
@@ -285,12 +354,7 @@ const Trabalho = (function () {
   /* Redesenha os números do topo e os blocos que leem o histórico
      (meta e gráfico), menos o bloco que a pessoa está mexendo. */
   async function atualizarDependentes(pular) {
-    const mesDe = Dados.hoje().slice(0, 8) + "01";
-    const resumo = await UI.resumo({
-      trabalhos: [T], registros: REGISTROS, pagamentos: PAGAMENTOS, de: mesDe, ate: Dados.hoje(),
-    });
-    const fixos = CAIXA.querySelector("#tFixos");
-    if (fixos) { fixos.innerHTML = htmlFixos(resumo, T.moeda || "BRL"); ligarFixos(); }
+    await desenharFixos();
 
     const ctx = contexto();
     BLOCOS.forEach(b => {
@@ -306,7 +370,31 @@ const Trabalho = (function () {
      LIGAÇÕES
      ══════════════════════════════════════════════════════════ */
 
+  /* Redesenha só os cartões de cima, para o período que está na tela. */
+  async function desenharFixos() {
+    const fixos = CAIXA.querySelector("#tFixos");
+    if (!fixos) return;
+    const resumo = await resumoDoPeriodo(periodoNaTela());
+    fixos.innerHTML = htmlFixos(resumo, T.moeda || "BRL");
+    ligarFixos();
+  }
+
+  async function irParaPeriodo(per) {
+    REF = ehOAtual(per) ? null : per.de;
+    await desenharFixos();
+  }
+
   function ligarFixos() {
+    CAIXA.querySelectorAll("#tFixos [data-per]").forEach(b => b.addEventListener("click", () =>
+      irParaPeriodo(UI.periodoVizinho(periodoNaTela(), UI.diaDoPeriodo(T), +b.dataset.per))));
+    const voltar = CAIXA.querySelector("#tFixos [data-per-atual]");
+    if (voltar) voltar.addEventListener("click", () => irParaPeriodo(periodoDeHoje()));
+    CAIXA.querySelectorAll("#tFixos [data-abrir-per]").forEach(tr => tr.addEventListener("click", async () => {
+      await irParaPeriodo(UI.periodoDe(tr.dataset.abrirPer, UI.diaDoPeriodo(T)));
+      const topo = CAIXA.querySelector("#tFixos");
+      if (topo) topo.scrollIntoView({ behavior: "smooth", block: "start" });
+    }));
+
     CAIXA.querySelectorAll("#tFixos [data-dia]").forEach(b => b.addEventListener("click", abrirDia));
     CAIXA.querySelectorAll("[data-pg]").forEach(b => b.addEventListener("click", () =>
       UI.abrirPagamento(T, { pagamento: PAGAMENTOS.find(p => p.id === b.dataset.pg), aoSalvar: recarregar })));
@@ -557,6 +645,9 @@ const Trabalho = (function () {
           ${UI.campo({ nome: "estado", rotulo: "Situação", tipo: "escolha", valor: T.estado,
                        opcoes: [{ valor: "ativo", nome: "Ativo" }, { valor: "pausado", nome: "Pausado" }, { valor: "encerrado", nome: "Encerrado" }] })}
         </div>
+        ${UI.campo({ nome: "diaPeriodo", rotulo: "Dia em que o período começa", tipo: "number",
+                     valor: UI.diaDoPeriodo(T), min: 1, max: 31,
+                     ajuda: "Deixe 1 para o mês normal, do dia 1 ao último dia. Se o projeto conta do dia 20 de um mês ao dia 19 do seguinte, escreva 20." })}
         <div class="d-linha">
           <span class="d-rot">Cor de identificação</span>
           <div style="display:flex;gap:7px;flex-wrap:wrap;" id="cores"></div>
@@ -572,8 +663,10 @@ const Trabalho = (function () {
           valor: UI.ler(d, "valor") === "" ? 0 : +UI.ler(d, "valor"),
           moeda: UI.ler(d, "moeda"), ciclo: UI.ler(d, "ciclo"),
           estado: UI.ler(d, "estado"), inicio: UI.ler(d, "inicio"),
+          diaPeriodo: UI.diaDoPeriodo({ diaPeriodo: UI.ler(d, "diaPeriodo") }),
           cor: d.querySelector('[name="cor"]').value,
         }));
+        REF = null;   // o dia do período pode ter mudado: volta para o atual
         await recarregar();
         UI.aviso("Trabalho salvo.");
       },
@@ -688,6 +781,22 @@ const Trabalho = (function () {
   .t-hist .t-dia { color:var(--ink,#10203A); font-weight:500; white-space:nowrap; font-variant-numeric:tabular-nums; }
   .t-hist .t-h { font-variant-numeric:tabular-nums; white-space:nowrap; }
   .t-hist .t-obs { color:var(--ink-3,#8A94A1); max-width:340px; }
+  /* ── navegação entre períodos ── */
+  .t-per { display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
+  .t-per-meio { flex:1; min-width:150px; }
+  .t-per-meio h2 { font-family:var(--body,'Geist',sans-serif); font-weight:600; font-size:16px; color:var(--ink,#10203A); margin:0 0 2px; }
+  .t-per-meio span { font-size:12px; color:var(--ink-3,#8A94A1); }
+  .t-per-seta {
+    width:34px; height:34px; border-radius:10px; border:1px solid var(--line,#DED7CA); background:var(--panel,#fff);
+    color:var(--ink,#10203A); font-size:20px; line-height:1; cursor:pointer; flex-shrink:0;
+  }
+  .t-per-seta:hover:not([disabled]) { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
+  .t-per-seta[disabled] { opacity:.35; cursor:default; }
+  .t-pers tr.t-sel td { background:var(--signal-suave,#EAF1F8); }
+  .t-agora {
+    font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;
+    padding:2px 7px; border-radius:999px; background:#E4F3F0; color:#1F7A6E;
+  }
   .t-vazio { padding:30px 10px; text-align:center; font-size:13.5px; color:var(--ink-3,#8A94A1); }
   .t-vaziao { text-align:center; padding:60px 24px; }
   .t-vaziao h3 { font-size:17px; font-weight:600; color:var(--ink,#10203A); margin-bottom:7px; }

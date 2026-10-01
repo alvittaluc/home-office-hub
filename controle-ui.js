@@ -402,6 +402,62 @@ const UI = (function () {
     return 0;   // fixo no mês não sai do registro do dia
   }
 
+  /* ══════════════════════════════════════════════════════════
+     PERÍODO DE PAGAMENTO
+
+     Nem todo projeto fecha do dia 1 ao dia 30. Muitos contam do dia
+     20 de um mês ao dia 19 do seguinte. Cada trabalho guarda em
+     diaPeriodo o dia em que o período dele começa (1 = mês normal).
+
+     Um período é { de, ate }, datas ISO, as duas incluídas.
+     ══════════════════════════════════════════════════════════ */
+
+  const MESES_CURTOS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+  const MESES_LONGOS = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
+                        "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+  function diaDoPeriodo(trabalho) {
+    const d = Math.round(+((trabalho && trabalho.diaPeriodo) || 1));
+    return d >= 1 && d <= 31 ? d : 1;
+  }
+
+  function isoDe(ano, mes0, dia) { return new Date(Date.UTC(ano, mes0, dia)).toISOString().slice(0, 10); }
+  function somarDias(iso, n) {
+    const p = iso.split("-").map(Number);
+    return isoDe(p[0], p[1] - 1, p[2] + n);
+  }
+
+  /* Início do período dentro de um mês. Dia 31 num mês de 30 vira dia 30,
+     e dia 30 em fevereiro vira o último dia de fevereiro. */
+  function inicioNoMes(ano, mes0, dia) {
+    const ultimo = new Date(Date.UTC(ano, mes0 + 1, 0)).getUTCDate();
+    return isoDe(ano, mes0, Math.min(dia, ultimo));
+  }
+
+  /* O período que contém uma data. */
+  function periodoDe(dataISO, dia) {
+    dia = dia || 1;
+    const p = (dataISO || Dados.hoje()).split("-").map(Number);
+    let ano = p[0], mes0 = p[1] - 1;
+    let de = inicioNoMes(ano, mes0, dia);
+    if ((dataISO || Dados.hoje()) < de) { mes0 -= 1; de = inicioNoMes(ano, mes0, dia); }
+    const proximo = inicioNoMes(ano, mes0 + 1, dia);
+    return { de, ate: somarDias(proximo, -1) };
+  }
+
+  /* O período de antes (sentido -1) ou o de depois (+1). */
+  function periodoVizinho(periodo, dia, sentido) {
+    return periodoDe(sentido < 0 ? somarDias(periodo.de, -1) : somarDias(periodo.ate, 1), dia);
+  }
+
+  /* "Outubro de 2026" no mês normal, "20 set a 19 out de 2026" no resto. */
+  function nomeDoPeriodo(periodo, dia) {
+    const a = periodo.de.split("-").map(Number), b = periodo.ate.split("-").map(Number);
+    if ((dia || 1) === 1) return MESES_LONGOS[a[1] - 1] + " de " + a[0];
+    return a[2] + " " + MESES_CURTOS[a[1] - 1] + (a[0] !== b[0] ? " de " + a[0] : "") +
+           " a " + b[2] + " " + MESES_CURTOS[b[1] - 1] + " de " + b[0];
+  }
+
   function ultimoDiaDoMes(ym) {
     const hoje = Dados.hoje();
     if (ym === hoje.slice(0, 7)) return hoje;
@@ -443,10 +499,13 @@ const UI = (function () {
       previstoPorMoeda[m] = (previstoPorMoeda[m] || 0) + g;
     });
 
-    // Fixo no mês: entra uma vez por mês em que o trabalho teve algum registro.
+    // Fixo no mês: entra uma vez por período em que o trabalho teve algum
+    // registro. O período é o do próprio trabalho: num projeto que conta do
+    // dia 20 ao dia 19, os dias 25/09 e 05/10 são o mesmo período, e o valor
+    // fixo entra uma vez só, não duas.
     const mesesComRegistro = {};
     regs.forEach(r => {
-      const ym = r.data.slice(0, 7);
+      const ym = periodoDe(r.data, diaDoPeriodo(porId[r.trabalhoId])).de.slice(0, 7);
       (mesesComRegistro[r.trabalhoId] = mesesComRegistro[r.trabalhoId] || new Set()).add(ym);
     });
     trabalhos.filter(t => t.pagamento === "mes").forEach(t => {
@@ -612,6 +671,7 @@ const UI = (function () {
     esc, painel, confirmar, aviso, erroNoPainel, campo, ler,
     abrirRegistroDia, abrirPagamento,
     ganhoBruto, taxaDoMes, resumo, escreverPorMoeda,
+    diaDoPeriodo, periodoDe, periodoVizinho, nomeDoPeriodo,
     PAGAMENTOS, CICLOS,
   };
 })();
