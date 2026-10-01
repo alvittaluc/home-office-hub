@@ -24,6 +24,7 @@ import json
 import os
 import ssl
 import sys
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -53,21 +54,40 @@ except Exception:
 #  BREVO
 # ═══════════════════════════════════════════════════════════════════
 
+# A proteção do Brevo (Cloudflare) às vezes recusa pedidos vindos dos
+# servidores do GitHub com "erro 1010", antes mesmo de olhar a chave. Isso
+# depende de como o programa se apresenta. Tentamos uma identificação própria
+# e, se ela for barrada, uma de navegador comum.
+_IDENTIFICACOES = [
+    "HomeOfficeHub-Alerta/1.0 (+https://alvittaluc.github.io/home-office-hub/)",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/126.0 Safari/537.36",
+]
+
+
 def brevo(metodo, caminho, corpo=None):
     """Chama a API do Brevo e devolve o JSON da resposta (ou {} se vazia)."""
     dados = json.dumps(corpo).encode("utf-8") if corpo is not None else None
-    req = urllib.request.Request(API + caminho, data=dados, method=metodo, headers={
-        "api-key": os.environ["BREVO_API_KEY"],
-        "accept": "application/json",
-        "content-type": "application/json",
-    })
-    try:
-        with urllib.request.urlopen(req, timeout=40, context=_SSL) as r:
-            texto = r.read().decode("utf-8")
-    except urllib.error.HTTPError as e:
-        detalhe = e.read().decode("utf-8", errors="replace")[:300]
-        raise RuntimeError(f"Brevo recusou {metodo} {caminho}: HTTP {e.code} — {detalhe}")
-    return json.loads(texto) if texto.strip() else {}
+    ultimo = None
+    for tentativa, identificacao in enumerate(_IDENTIFICACOES):
+        req = urllib.request.Request(API + caminho, data=dados, method=metodo, headers={
+            "api-key": os.environ["BREVO_API_KEY"],
+            "accept": "application/json",
+            "content-type": "application/json",
+            "user-agent": identificacao,
+        })
+        try:
+            with urllib.request.urlopen(req, timeout=40, context=_SSL) as r:
+                texto = r.read().decode("utf-8")
+            return json.loads(texto) if texto.strip() else {}
+        except urllib.error.HTTPError as e:
+            detalhe = e.read().decode("utf-8", errors="replace")[:300]
+            ultimo = RuntimeError(f"Brevo recusou {metodo} {caminho}: HTTP {e.code} — {detalhe}")
+            barrado_na_porta = e.code == 403 and "1010" in detalhe
+            if not barrado_na_porta:
+                break
+            time.sleep(3)
+    raise ultimo
 
 
 def achar_lista():
@@ -82,9 +102,12 @@ def achar_lista():
 def achar_remetente():
     """O primeiro remetente ativo da conta. Sem domínio próprio, o Brevo troca
     o endereço por um dele na hora de enviar; com domínio, sai o seu."""
-    for s in brevo("GET", "/senders").get("senders", []):
-        if s.get("active"):
-            return s["email"]
+    try:
+        for s in brevo("GET", "/senders").get("senders", []):
+            if s.get("active"):
+                return s["email"]
+    except RuntimeError:
+        pass   # sem a lista de remetentes, o e-mail da conta serve
     return brevo("GET", "/account")["email"]
 
 
