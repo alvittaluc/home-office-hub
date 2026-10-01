@@ -5,7 +5,7 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 01 Oct 2026 22:11:49 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 23:28:43 +0000</lastBuildDate>
     <item>
       <title>Andromeda Delta - Audio Transcription Reviewer Portuguese (Brazil) — Welocalize</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=a5eacac204</link>
@@ -18,7 +18,7 @@
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=ffeacd91fe</link>
       <guid isPermaLink="false">ffeacd91fe</guid>
       <pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Remoto · Mundial · QA</description>
+      <description>Você constrói e coloca em produção um agente de IA que vigia sozinho os fluxos de dados da empresa. Ele prevê atrasos de entrega antes que aconteçam, confere a qualidade dos dados com base no histórico, investiga gargalos e propõe correções de código para falhas rotineiras, que uma pessoa aprova. Você é responsável pelo agente do começo ao fim. Contrato de cerca de 2 meses, 40 horas por semana, com início previsto para 1º de novembro de 2026.</description>
     </item>
     <item>
       <title>Multilingual Image &amp; Text AI Quality Expert — TELUS Digital</title>
@@ -35,13 +35,6 @@
       <description>Vaga da micro1 para especialista em português, com foco em transcrição de áudio para treinar IA. O trabalho envolve ouvir gravações e produzir ou revisar textos com precisão, seguindo as regras do projeto. É remoto e paga entre US$ 20 e US$ 36 por hora, uma das melhores faixas para transcrição no hub.</description>
     </item>
     <item>
-      <title>Industrial Design CAD Expert — micro1</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=183a139a4e</link>
-      <guid isPermaLink="false">183a139a4e</guid>
-      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Vaga da micro1 para especialistas em desenho industrial e CAD. O trabalho envolve interpretar montagens mecânicas no FreeCAD e escrever documentação técnica clara, provavelmente para treinar e avaliar modelos de IA em tarefas de engenharia. É remoto e paga entre US$ 40 e US$ 80 por hora.</description>
-    </item>
-    <item>
       <title>Audio Transcript Editor — Portuguese Brasileiro (AI Training) — Alignerr</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=8a3767e28f</link>
       <guid isPermaLink="false">8a3767e28f</guid>
@@ -54,6 +47,13 @@
       <guid isPermaLink="false">dc2a3c4873</guid>
       <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
       <description>Você cria tarefas realistas de suporte ao cliente para treinar e avaliar agentes de IA. Cada tarefa simula um chamado: ler o problema, conferir a configuração da conta, consultar manuais internos e decidir entre resolver ou escalar. Você também escreve os critérios de correção, monta o ambiente da tarefa e resolve cada uma para garantir que a resposta certa é clara. Remoto, de 10 a 40 horas por semana, entre US$ 20 e US$ 50 por hora.</description>
+    </item>
+    <item>
+      <title>Industrial Design CAD Expert — micro1</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=183a139a4e</link>
+      <guid isPermaLink="false">183a139a4e</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Vaga da micro1 para especialistas em desenho industrial e CAD. O trabalho envolve interpretar montagens mecânicas no FreeCAD e escrever documentação técnica clara, provavelmente para treinar e avaliar modelos de IA em tarefas de engenharia. É remoto e paga entre US$ 40 e US$ 80 por hora.</description>
     </item>
     <item>
       <title>Context Elicitation &amp; Conversation Evaluation Specialists - Latam, Southeastern Europe, Asia, Africa — Turing</title>
@@ -260,10 +260,10 @@
     </item>
     <item>
       <title>Portuguese Voice Actor - Freelance AI Trainer Project — Meridial</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=8a110bdc35</link>
-      <guid isPermaLink="false">8a110bdc35</guid>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=40bde685a9</link>
+      <guid isPermaLink="false">40bde685a9</guid>
       <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Você grava material roteirizado em português e avalia vozes geradas por IA, dando retorno especializado sobre pronúncia, entonação, ritmo, expressão emocional e variação regional. Também anota erros e ajuda a equipe a refinar prompts, métodos de avaliação e diretrizes de design de voz. É a vaga mais sênior desse conjunto, voltada a quem já vive de locução. Faixa de US$ 6 a US$ 65 por hora, remoto.</description>
+      <description>Você grava roteiros em português e avalia falas geradas por IA, dando feedback sobre pronúncia, tom, ritmo e emoção para melhorar vozes sintéticas. Também anota erros e ajuda a refinar os critérios de avaliação e as orientações de design de voz junto com a equipe. É um contrato remoto como freelancer, com pagamento entre US$ 6 e US$ 65 por hora, definido pela sua experiência e localização.</description>
     </item>
     <item>
       <title>Portuguese Language Expert — Alignerr</title>

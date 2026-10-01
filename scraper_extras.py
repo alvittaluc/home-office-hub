@@ -666,11 +666,21 @@ def coletar_alignerr(pausa=0.6):
 # É essa linha que decide se a vaga serve ou não. Sem ela, a busca por
 # "brazil" traria vagas que só citam o Brasil de passagem.
 #
-# Link da vaga: https://work.turing.com/jobs?jobId={id}
-# (os cards não são links de verdade, o site troca a URL no clique)
+# Link da vaga. Outubro de 2026: o endereço /jobs?jobId={id}, que é o que o
+# site põe na barra quando se clica num card, NÃO abre a vaga para quem chega
+# de fora no celular ou em janela estreita: mostra só a lista geral, e a
+# pessoa fica perdida. O site tem uma página própria de vaga, que funciona em
+# qualquer tela:
+#
+#     https://work.turing.com/job/home?jobCode={jobCode}
+#
+# O endereço antigo continua guardado em "url_id" só para calcular o id da
+# vaga, que nasce da URL. Sem isso, trocar o link mudaria o id de todas as
+# vagas da Turing, e elas perderiam resumo, data e curadoria.
 
 URL_TURING = "https://work.turing.com/api/jobs/all"
-URL_TURING_VAGA = "https://work.turing.com/jobs?jobId={id}"
+URL_TURING_VAGA = "https://work.turing.com/job/home?jobCode={codigo}"
+URL_TURING_ID = "https://work.turing.com/jobs?jobId={id}"
 ORIGEM_TURING = "https://work.turing.com"
 
 # A busca é por texto livre e olha título + descrição. Três termos cobrem
@@ -782,9 +792,12 @@ def coletar_turing(termos=None, modo_area=False):
         pagamento = um_paga.group(1).replace(" ", "") + " / hora" if um_paga else ""
 
         contrato = v.get("contract") or v.get("roleGroup") or ""
+        url_antiga = URL_TURING_ID.format(id=v.get("id"))
+        codigo = (v.get("jobCode") or v.get("public_code") or "").strip()
         vagas.append({
             "titulo": titulo,
-            "url": URL_TURING_VAGA.format(id=v.get("id")),
+            "url": URL_TURING_VAGA.format(codigo=codigo) if codigo else url_antiga,
+            "url_id": url_antiga,
             "local": local,
             "desc": desc,
             "requisitos": ", ".join(

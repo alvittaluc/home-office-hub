@@ -979,6 +979,9 @@ def _buscar_extra(nome_interno, nome_funcao, **kwargs) -> list:
             "categoria": cat_id,
             "badge": badge,
             "url": v["url"],
+            # endereço usado só para calcular o id, quando o link de
+            # candidatura mudou de formato (caso da Turing)
+            "_url_id": v.get("url_id", ""),
             "commitment": v.get("horario", ""),
             "fonte": "direto",
             "data_post": normalizar_data(v.get("data_post")),
@@ -1507,7 +1510,7 @@ def main():
     import hashlib
     for v in todas:
         v["url"] = sem_indicacao(v.get("empresa", ""), v.get("url", ""))
-        base = (v.get("url") or v.get("titulo") or "").encode("utf-8")
+        base = (v.get("_url_id") or v.get("url") or v.get("titulo") or "").encode("utf-8")
         v["id"] = hashlib.md5(base).hexdigest()[:10]
 
     # ─── CURADORIA MANUAL (vagas-curadoria.json) ───
@@ -1693,7 +1696,7 @@ def main():
 
     # remove os campos temporários de descrição (não vão pro arquivo final)
     for v in todas:
-        for campo in ("_desc", "_req", "_comp"):
+        for campo in ("_desc", "_req", "_comp", "_url_id"):
             v.pop(campo, None)
 
     # ─── Separa o que aparece do que fica escondido ───

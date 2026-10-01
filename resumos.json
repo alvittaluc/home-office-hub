@@ -1,5 +1,5 @@
 {
-  "total": 138,
+  "total": 139,
   "vagas": [
     {
       "id": "65762fd387",
@@ -1195,6 +1195,14 @@
         "o_que_faz": "Painel de especialistas em defesa química para testar a segurança de modelos de IA. Você escreve perguntas técnicas classificadas como inofensivas, de uso duplo ou adversariais, avalia se a IA respondeu o que devia e recusou o que era perigoso, e escreve a resposta de referência com a justificativa técnica. O pagamento é por tarefa, entre US$ 65 e US$ 75.",
         "requisitos": "Experiência institucional com ameaças químicas pelo lado da defesa: contramedidas, proteção, detecção, descontaminação, toxicologia de agentes químicos ou trabalho ligado à Convenção sobre Armas Químicas. Escrita técnica clara para leigos. Experiência com testes adversariais em IA é um diferencial. Inglês fluente.",
         "dica_cv": "Vaga muito específica, para quem trabalhou em institutos de pesquisa, forças armadas, defesa civil ou laboratórios da área. Envie amostra de escrita técnica, artigo publicado ou parecer. O trabalho envolve ler e escrever sobre cenários de uso indevido por longos períodos, então avalie se isso é confortável para você."
+      }
+    },
+    {
+      "id": "ffeacd91fe",
+      "resumo": {
+        "o_que_faz": "Você constrói e coloca em produção um agente de IA que vigia sozinho os fluxos de dados da empresa. Ele prevê atrasos de entrega antes que aconteçam, confere a qualidade dos dados com base no histórico, investiga gargalos e propõe correções de código para falhas rotineiras, que uma pessoa aprova. Você é responsável pelo agente do começo ao fim. Contrato de cerca de 2 meses, 40 horas por semana, com início previsto para 1º de novembro de 2026.",
+        "requisitos": "Python e SQL avançados em ambiente de produção. Experiência prática com orquestração de dados em Airflow, Dagster ou Prefect e com dbt. Conhecimento de qualidade e observabilidade de dados, detecção de anomalias e séries temporais. Experiência com agentes de IA e chamada de ferramentas, em frameworks como Claude Agent SDK ou LangGraph. Atenção: a vaga exige pelo menos 6 horas por dia no horário da Índia, o que no Brasil cai de madrugada e de manhã cedo.",
+        "dica_cv": "Vaga sênior de engenharia de dados com IA. Antes de se candidatar, veja se o horário da Índia cabe na sua rotina, porque são 6 horas diárias de sobreposição. O valor por hora é você quem propõe, então pesquise a faixa de mercado antes. No currículo em inglês, liste as ferramentas pelo nome (Airflow, dbt, Snowflake, BigQuery, Great Expectations) e projetos em que você automatizou a detecção ou a correção de falhas. A seleção tem entrevista com IA, exercício prático de revisão de código gerado por IA e conversa com o gestor."
       }
     }
   ]
