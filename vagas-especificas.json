@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-09-30T18:33:02.690603+00:00",
-  "atualizado_br": "30/09/2026 às 15:33",
-  "total": 191,
+  "atualizado_em": "2026-10-01T00:35:36.449887+00:00",
+  "atualizado_br": "30/09/2026 às 21:35",
+  "total": 185,
   "areas": [
     "Biologia e Ciencias da Vida",
     "Design e Criacao",
@@ -35,7 +35,8 @@
       "data_vista": "2026-09-19",
       "data_ref": "2026-06-17",
       "data_oficial": true,
-      "id": "ec8dee1b01"
+      "id": "ec8dee1b01",
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -51,7 +52,8 @@
       "data_vista": "2026-09-19",
       "data_ref": "2026-06-17",
       "data_oficial": true,
-      "id": "c36ad3bc00"
+      "id": "c36ad3bc00",
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -67,7 +69,8 @@
       "data_vista": "2026-09-18",
       "data_ref": "2026-06-17",
       "data_oficial": true,
-      "id": "1e3c8e9bc3"
+      "id": "1e3c8e9bc3",
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -83,7 +86,8 @@
       "data_vista": "2026-09-19",
       "data_ref": "2026-06-17",
       "data_oficial": true,
-      "id": "07a7c068f2"
+      "id": "07a7c068f2",
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -106,7 +110,8 @@
         "dica_cv": "Destaque: sua formação/experiência em Política ou ciências sociais, capacidade analítica e de escrita, e nível de inglês.",
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -129,7 +134,8 @@
         "dica_cv": "Destaque: sua formação/experiência em Filosofia, Teologia ou Ciências da Religião, capacidade analítica e de escrita, e nível de inglês.",
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -145,7 +151,8 @@
       "data_vista": "2026-09-29",
       "data_ref": "2026-09-23",
       "data_oficial": true,
-      "id": "e0b7afb31d"
+      "id": "e0b7afb31d",
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -168,7 +175,8 @@
         "dica_cv": "Destaque: diploma na área, 2+ anos com tradução técnica/patentes, domínio de terminologia científica (especialmente biologia), e inglês avançado. É uma vaga mais sênior.",
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "telus",
@@ -184,7 +192,8 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-30",
       "data_oficial": true,
-      "id": "e6eaa7c02e"
+      "id": "e6eaa7c02e",
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -205,7 +214,8 @@
         "o_que_faz": "Você usa a sua experiência de programação para testar e treinar modelos de IA, conversando com eles em português do Brasil sobre problemas reais de engenharia de software. Os temas vão de algoritmos e estruturas de dados a arquitetura, front-end, back-end, nuvem, programação assíncrona, integração de APIs REST, gerenciamento de memória, orientação a objetos, segurança e depuração de sistemas distribuídos. Além de avaliar se a resposta técnica está correta, você julga se o português usado soa natural. Faixa de US$ 8 a US$ 65 por hora, contrato remoto de nível pleno a sênior.",
         "requisitos": "Experiência real de programação e fluência em português do Brasil. Graduação, mestrado ou doutorado em computação ou engenharia de software é o cenário ideal, mas experiência prática, escrita técnica em português e contribuições em código aberto também contam. Inglês para ler as diretrizes e capacidade de explicar o raciocínio passo a passo por escrito. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Currículo em inglês com as linguagens e o tempo de experiência em cada uma bem visíveis. Coloque o link do GitHub, porque contribuição em código aberto é citada como sinal de aderência. Descreva um problema técnico difícil que você resolveu e como chegou lá, já que a vaga valoriza quem sabe explicar o raciocínio. Se você escreve documentação ou dá aula de programação em português, destaque, porque é exatamente o cruzamento que essa vaga procura."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -226,7 +236,8 @@
         "o_que_faz": "Você usa a sua bagagem em matemática para desafiar modelos de IA, propondo desde problemas de sala de aula até questões teóricas em álgebra, cálculo, teoria dos números, álgebra linear, equações diferenciais, estatística, geometria, lógica e matemática discreta. O trabalho é verificar se a resposta é correta e logicamente coerente, registrar as falhas de forma reproduzível e sugerir melhorias nos prompts e nas métricas. Faixa de US$ 6 a US$ 65 por hora, remoto, nível pleno a sênior.",
         "requisitos": "Fluência em português do Brasil e domínio real de matemática. Mestrado ou doutorado na área é o cenário ideal, e publicações, experiência docente, pesquisa pura ou aplicada e modelagem matemática são sinais valorizados. Inglês para as diretrizes e, acima de tudo, capacidade de escrever a solução passo a passo, mostrando o raciocínio e não só o resultado. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Currículo em inglês listando formação, área de especialidade e publicações, se houver. Se você dá aula de matemática, escreva o nível, porque saber explicar é justamente o que a vaga compra. Inclua um exemplo de demonstração ou de resolução comentada, já que a triagem costuma pedir uma amostra de raciocínio. Domínio de LaTeX ajuda e vale citar."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -247,7 +258,8 @@
         "o_que_faz": "Você usa a sua formação científica para testar modelos de IA em física, química, astronomia, ciências da terra e do ambiente, cobrindo temas como transformação de energia, estrutura atômica, movimento dos planetas, sistemas ecológicos, ciclo da água e método científico. O trabalho é propor cenários e questões, checar se a resposta está factualmente certa e logicamente coerente, registrar as falhas e sugerir melhorias na avaliação. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
         "requisitos": "Fluência em português do Brasil e formação em uma área científica, com graduação, mestrado ou doutorado. Experiência docente, publicações, pesquisa de laboratório ou de campo e projetos de divulgação científica são sinais valorizados. Inglês para as diretrizes e clareza para explicar o raciocínio passo a passo. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Currículo em inglês, com a área de especialidade e a titulação bem visíveis. Se você é professor de ciências, física ou química, destaque o nível em que leciona, porque parte das tarefas simula problemas de sala de aula. Cite publicações, pesquisas ou trabalhos de divulgação, com link se possível. Escrever uma explicação curta e clara de um conceito difícil é a melhor amostra que você pode anexar."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -268,7 +280,858 @@
         "o_que_faz": "Versão mais ampla das vagas técnicas da Meridial, cobrindo matemática, física, química, engenharia, ciência de dados, computação e computação científica. Você conversa com o modelo sobre problemas reais e questões teóricas em temas como termodinâmica, mecânica, cálculo, estatística, ciência dos materiais, eletrônica, projeto de algoritmos e modelagem quantitativa, verificando a precisão e documentando cada falha. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
         "requisitos": "Fluência em português do Brasil e graduação ou mestrado em alguma área de exatas ou engenharia. Pesquisa publicada, experiência com projeto de engenharia, análise de dados ou portfólio de código são sinais valorizados. Inglês para as diretrizes e capacidade de mostrar o raciocínio por escrito, o que é exigência explícita. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Se o seu perfil é técnico mas não se encaixa exatamente em matemática ou em ciências, esta é a vaga guarda-chuva certa. Escolha uma especialidade principal e deixe-a clara logo no topo, em vez de listar tudo em nível superficial. Inclua links de GitHub, projetos de dados ou trabalhos de engenharia. Vale se candidatar a mais de uma vaga da Meridial, já que são projetos independentes."
-      }
+      },
+      "indicacao": false
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Lawyer/Legal Writer",
+      "local": "Remoto · Mundial",
+      "categoria": "write",
+      "badge": "Escrita",
+      "url": "https://jobs.micro1.ai/post/c99724a5-d4e7-48d0-92b1-73dde88ad9c8?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-18",
+      "area": "Direito",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-18",
+      "data_oficial": true,
+      "id": "13a495ee49",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Lawyer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/b0a3fdc5-49ed-40d9-9f7b-8724b8e8500d?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-16",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-16",
+      "data_oficial": true,
+      "id": "2feed77ee0",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Family Law Attorney (AAML Registered)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/bd70678c-f7bd-4c23-959d-9b5cd6748410?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-21",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-21",
+      "data_oficial": true,
+      "id": "4b11972e7a",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Litigation Associate Attorney (BigLaw Firms)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/4b2e063b-ad86-429f-a54a-c50e0dd99b8c?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-21",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-21",
+      "data_oficial": true,
+      "id": "194b189e5b",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Mergers & Acquisitions (M&A) Attorney (BigLaw Firms)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/78a9efa0-b074-4dd8-9e3e-c0cd5675c74a?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-21",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-21",
+      "data_oficial": true,
+      "id": "4709ce8b65",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Corporate Attorney (BigLaw Firms)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/fa297c7f-e5d5-4e52-a4ad-ec74c4763e17?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-21",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-21",
+      "data_oficial": true,
+      "id": "bd1e03d3c0",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "BigLaw lawyers",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/6d7b9372-c7ad-4ea6-a017-95e6e80a33a5?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-21",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-21",
+      "data_oficial": true,
+      "id": "9051563ff2",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "BigLaw lawyers (Litigation/Corporate/M&A)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/c955d596-4b9c-4702-a134-74763c47c624?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-17",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-17",
+      "data_oficial": true,
+      "id": "7b480630aa",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Healthcare Attorney (BigLaw Firms)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/ef5498e4-f232-48b8-b8aa-9067e487c74a?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-04",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-04",
+      "data_oficial": true,
+      "id": "9058a7ef7c",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Civil Rights Attorney (BigLaw Firms)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/8c60d801-f16d-4896-82d1-a37559be1314?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-04",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-04",
+      "data_oficial": true,
+      "id": "cc00353cb6",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Criminal Lawyer (BigLaw Firms)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/11539bac-d048-4e27-8bbd-a9bfa0629cf1?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-04",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-04",
+      "data_oficial": true,
+      "id": "69316aa9d0",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Criminal Defense Attorney (BigLaw Firms)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/03f08d8d-79a9-4e5b-a976-f97d2e32f33b?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-04",
+      "area": "Direito",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-04",
+      "data_oficial": true,
+      "id": "95f54dbca6",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "AI Legal Fellow — Litigation & Motion Practice",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/dbddaa98-09fd-4dde-b301-568d794b085d?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-19",
+      "area": "Direito",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-19",
+      "data_oficial": true,
+      "id": "e702330615",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Medical Communications Manager",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/d130c45f-c85a-4ce6-9a12-53c980a63be7?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-18",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-18",
+      "data_oficial": true,
+      "id": "fd5adaa1a9",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Medical Writer (Pharmaceutical)",
+      "local": "Remoto · Mundial",
+      "categoria": "write",
+      "badge": "Escrita",
+      "url": "https://jobs.micro1.ai/post/6da7a95c-8ab7-4b76-a835-b1a6554da382?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-18",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-18",
+      "data_oficial": true,
+      "id": "b83eea3da1",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Medical Evaluation Specialist (students, residents, physicians)",
+      "local": "Remoto · Mundial",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.micro1.ai/post/97da7176-3c19-4443-bde5-3dceb56929e9?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-21",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-21",
+      "data_oficial": true,
+      "id": "292fddea0c",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Medical Auditor",
+      "local": "Remoto · Mundial",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.micro1.ai/post/eae14e1c-d44c-4486-b773-61f57b0f3d64?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-04",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-04",
+      "data_oficial": true,
+      "id": "21a597a222",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Medical Coder",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/eac2bf43-4fa7-46ed-8db8-ec2b6d3a52d5?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-04",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-04",
+      "data_oficial": true,
+      "id": "c7e3528833",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Primary Care Physician",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/9ebedb7a-9911-4b0c-b771-13f3325bdc7d?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-30",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-30",
+      "data_oficial": true,
+      "id": "0d5279d29d",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Hospitalist Physician",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/ca9b762b-356d-41a7-be51-80b14a5a5dbb?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-18",
+      "area": "Medicina e Saude",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-18",
+      "data_oficial": true,
+      "id": "f066ed232d",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Mathematics Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/eb647954-2290-49e6-8c30-7213a7555a62?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-07",
+      "area": "Matematica e Estatistica",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-07",
+      "data_oficial": true,
+      "id": "d035e22301",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Physics Expert (PhD / Postdoc)",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/d65941c5-6aff-4e80-b3d6-4f56c9aede18?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-07",
+      "area": "Fisica e Astronomia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-07",
+      "data_oficial": true,
+      "id": "36edb21173",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Physics Expert PhD (AMO / Optical Properties of Materials)",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/1e8c2077-7a9d-4a91-adcd-f96404dc8226?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-07",
+      "area": "Fisica e Astronomia",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-07",
+      "data_oficial": true,
+      "id": "96e2edd9b2",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Physics Expert PhD (Statistical Physics / Quantum Information / Condensed Matter)",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/3a757d40-98c5-4717-a401-382999db9a3f?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-07",
+      "area": "Matematica e Estatistica",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-07",
+      "data_oficial": true,
+      "id": "1a48075d26",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Physics Expert (Postdoc / Junior professor)",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/70a8467d-117d-41c9-a508-f4b5fdb9a533?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-03",
+      "area": "Fisica e Astronomia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-03",
+      "data_oficial": true,
+      "id": "9c0d886ceb",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Physics Expert (Professor / Principal Investigator)",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/c90c2d11-bdb6-42fc-91fd-a753a3c72ebf?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-03",
+      "area": "Fisica e Astronomia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-03",
+      "data_oficial": true,
+      "id": "01ae6cafed",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Computational Biology & Cheminformatics Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/a50167d7-bd8d-4710-90e6-7cfeadc24f16?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-03",
+      "area": "Biologia e Ciencias da Vida",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-03",
+      "data_oficial": true,
+      "id": "056776ff36",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Software Engineering Specialist",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/b4ce7861-a888-4f57-bb63-c50fb01ae65d?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-25",
+      "area": "Engenharia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-25",
+      "data_oficial": true,
+      "id": "6165811c54",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Mechanical Engineering Technician",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/de0e8e60-91b7-48a1-a948-75b67578e848?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-16",
+      "area": "Engenharia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-16",
+      "data_oficial": true,
+      "id": "a5f527a582",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Mechanical Engineering Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/9ece7cf2-3d00-497e-ab11-4793d1858646?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-07",
+      "area": "Engenharia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-07",
+      "data_oficial": true,
+      "id": "d539d076d7",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "CUDA Engineering Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/c5d8a217-2f8c-42a8-8b41-8c8e88f160c1?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-11",
+      "area": "Engenharia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-11",
+      "data_oficial": true,
+      "id": "371eca3a98",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Senior Software Engineer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/9b3377c5-01da-40d7-9304-39cc8cd20932?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-20",
+      "area": "Programacao e Software",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-20",
+      "data_oficial": true,
+      "id": "a719c77290",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Sr. Full-Stack Software Engineer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/4010d2c5-4a3d-41fe-9e33-28bc218626e5?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-16",
+      "area": "Programacao e Software",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-16",
+      "data_oficial": true,
+      "id": "f021346078",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Software Engineer -  Open Source Contributions",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/5c9777fe-afb2-40b1-abbb-31cee8a8d4b6?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-14",
+      "area": "Programacao e Software",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-14",
+      "data_oficial": true,
+      "id": "62a08cfeee",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Software Engineer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/d98ab3b0-dfc2-43d6-986a-e75b0d4c35f9?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-07",
+      "area": "Programacao e Software",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-07",
+      "data_oficial": true,
+      "id": "67c1e797bc",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Software Developer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/92b81bda-6c3f-42c1-9cad-9e3cdb911ad9?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-15",
+      "area": "Programacao e Software",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-15",
+      "data_oficial": true,
+      "id": "7b2ab487b0",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Finance Specialist",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/e107daa7-2cc8-4153-94c2-ff7806bb9d6e?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-25",
+      "area": "Financas e Contabilidade",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-25",
+      "data_oficial": true,
+      "id": "629e13c16b",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Investment & Finance Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/3b1f3a6f-51b3-4622-8baa-28b88e58f3d4?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-27",
+      "area": "Financas e Contabilidade",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-27",
+      "data_oficial": true,
+      "id": "b6ed89bb5a",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Developmental Psychology (PhD)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/159f218d-0ea1-4fdb-8bf5-693cb3a55a1c?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-10",
+      "area": "Psicologia e Ciencias Sociais",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-10",
+      "data_oficial": true,
+      "id": "2797e8ac34",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Linguistics Specialists",
+      "local": "Remoto · Mundial",
+      "categoria": "transl",
+      "badge": "Tradução",
+      "url": "https://jobs.micro1.ai/post/ba976b4a-3b64-4797-adbf-a33770f3a44f?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-12",
+      "area": "Linguistica",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-12",
+      "data_oficial": true,
+      "id": "711666d894",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Sound Designer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/c5f03d74-f6cd-47e2-bdad-3d0da851320e?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-29",
+      "area": "Design e Criacao",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-29",
+      "data_oficial": true,
+      "id": "28427e6ab8",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Game Designer / Gameplay Developer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/43c43368-acf4-42f8-8351-74173291c5ac?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-29",
+      "area": "Programacao e Software",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-29",
+      "data_oficial": true,
+      "id": "f61cd1b708",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Mechanical Design Engineer – CAD & Manufacturing",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/484708eb-dd2c-4d03-bb59-34684e78579f?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-25",
+      "area": "Engenharia",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-25",
+      "data_oficial": true,
+      "id": "514aa8b385",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Altium Designer Specialist",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/cca1a8fa-3a37-4485-91f0-99d1fe2b95bc?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-24",
+      "area": "Design e Criacao",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-24",
+      "data_oficial": true,
+      "id": "847286438c",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "UX/UI Designer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/d02122f3-eaec-42b2-ad3f-edc218b94294?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-22",
+      "area": "Design e Criacao",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-22",
+      "data_oficial": true,
+      "id": "9c7c511b05",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Graphic Designer - Editorial, Poster & Marketing Layout",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/22bec98f-7484-42b4-af15-17e033f0136f?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-26",
+      "area": "Design e Criacao",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-26",
+      "data_oficial": true,
+      "id": "d8cce07c20",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "UI/UX Designer",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/32d47282-866f-420c-8d11-eb243aae997d?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-21",
+      "area": "Design e Criacao",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-21",
+      "data_oficial": true,
+      "id": "8e2b3073da",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Manufacturing Design Engineer (FreeCAD)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/dfe89be3-0fe9-4f7a-9a50-d43b4af0a6b3?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-18",
+      "area": "Engenharia",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-18",
+      "data_oficial": true,
+      "id": "102b992f52",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Visual Designer (Deck/Presentation focused)",
+      "local": "Remoto · Mundial",
+      "categoria": "ai",
+      "badge": "IA & Dados",
+      "url": "https://jobs.micro1.ai/post/0faef422-476d-482f-827f-d6a3c18d59b9?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-13",
+      "area": "Design e Criacao",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-13",
+      "data_oficial": true,
+      "id": "d316848dee",
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Research Evaluation Specialist (PhD / Researcher / Professor)",
+      "local": "Remoto · Mundial",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://jobs.micro1.ai/post/0006f93d-d277-4451-941a-00a540c1fa22?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-08-21",
+      "area": "Outras areas",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-08-21",
+      "data_oficial": true,
+      "id": "99d645c1a2",
+      "indicacao": true
     },
     {
       "empresa": "alignerr",
@@ -284,7 +1147,8 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-28",
       "data_oficial": true,
-      "id": "8283867b1d"
+      "id": "8283867b1d",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -300,7 +1164,8 @@
       "data_vista": "2026-09-21",
       "data_ref": "2026-09-17",
       "data_oficial": true,
-      "id": "9000d53dcf"
+      "id": "9000d53dcf",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -316,7 +1181,8 @@
       "data_vista": "2026-09-10",
       "data_ref": "2026-09-09",
       "data_oficial": true,
-      "id": "c4b89dd8cc"
+      "id": "c4b89dd8cc",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -332,7 +1198,8 @@
       "data_vista": "2026-09-03",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "72efec266a"
+      "id": "72efec266a",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -348,7 +1215,8 @@
       "data_vista": "2026-09-03",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "a0f4f0fe51"
+      "id": "a0f4f0fe51",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -364,7 +1232,8 @@
       "data_vista": "2026-09-03",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "6bf225a685"
+      "id": "6bf225a685",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -380,7 +1249,8 @@
       "data_vista": "2026-09-03",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "5aa3d1cb29"
+      "id": "5aa3d1cb29",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -396,7 +1266,8 @@
       "data_vista": "2026-08-28",
       "data_ref": "2026-01-27",
       "data_oficial": true,
-      "id": "5173d64568"
+      "id": "5173d64568",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -412,7 +1283,8 @@
       "data_vista": "2026-08-28",
       "data_ref": "2026-01-27",
       "data_oficial": true,
-      "id": "a6d52e1c93"
+      "id": "a6d52e1c93",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -428,7 +1300,8 @@
       "data_vista": "2026-08-28",
       "data_ref": "2026-01-27",
       "data_oficial": true,
-      "id": "fc1ba3b015"
+      "id": "fc1ba3b015",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -444,7 +1317,8 @@
       "data_vista": "2026-08-28",
       "data_ref": "2025-11-24",
       "data_oficial": true,
-      "id": "2ef77d298e"
+      "id": "2ef77d298e",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -460,7 +1334,8 @@
       "data_vista": "2026-09-29",
       "data_ref": "2026-09-29",
       "data_oficial": false,
-      "id": "55baa5d6db"
+      "id": "55baa5d6db",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -476,23 +1351,8 @@
       "data_vista": "2026-09-23",
       "data_ref": "2026-09-23",
       "data_oficial": false,
-      "id": "8e5f287369"
-    },
-    {
-      "empresa": "mercor",
-      "titulo": "Software Engineer Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.mercor.com/jobs/list_AAABoMYQ0qNlviukgg1BYo3b/software-engineer-expert",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "area": "Programacao e Software",
-      "data_vista": "2026-09-23",
-      "data_ref": "2026-09-23",
-      "data_oficial": false,
-      "id": "c5e40b2e33"
+      "id": "8e5f287369",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -508,7 +1368,8 @@
       "data_vista": "2026-09-23",
       "data_ref": "2026-09-23",
       "data_oficial": false,
-      "id": "8382ef20a7"
+      "id": "8382ef20a7",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -524,7 +1385,8 @@
       "data_vista": "2026-09-15",
       "data_ref": "2026-09-15",
       "data_oficial": false,
-      "id": "6512275dcb"
+      "id": "6512275dcb",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -540,7 +1402,8 @@
       "data_vista": "2026-09-15",
       "data_ref": "2026-09-15",
       "data_oficial": false,
-      "id": "c5a2497e8e"
+      "id": "c5a2497e8e",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -556,7 +1419,8 @@
       "data_vista": "2026-09-15",
       "data_ref": "2026-09-15",
       "data_oficial": false,
-      "id": "f068b4d1c3"
+      "id": "f068b4d1c3",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -572,7 +1436,8 @@
       "data_vista": "2026-09-17",
       "data_ref": "2026-09-17",
       "data_oficial": false,
-      "id": "5a286e3dfd"
+      "id": "5a286e3dfd",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -588,7 +1453,8 @@
       "data_vista": "2026-09-18",
       "data_ref": "2026-09-18",
       "data_oficial": false,
-      "id": "be67e2a973"
+      "id": "be67e2a973",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -604,11 +1470,12 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-30",
       "data_oficial": false,
-      "id": "2a761035f4"
+      "id": "2a761035f4",
+      "indicacao": false
     },
     {
       "empresa": "mercor",
-      "titulo": "Federal Certified Materials Specialist / Incident Analyst <div class=\"",
+      "titulo": "Federal Certified Materials Specialist / Incident Analyst",
       "local": "Remoto · Mundial",
       "categoria": "ai",
       "badge": "IA & Dados",
@@ -617,906 +1484,28 @@
       "fonte": "direto",
       "data_post": "",
       "area": "Engenharia",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-30",
+      "data_vista": "2026-10-01",
+      "data_ref": "2026-10-01",
       "data_oficial": false,
-      "id": "26c80737ad"
+      "id": "26c80737ad",
+      "indicacao": false
     },
     {
-      "empresa": "micro1",
-      "titulo": "Lawyer/Legal Writer",
-      "local": "Remoto · Mundial",
-      "categoria": "write",
-      "badge": "Escrita",
-      "url": "https://jobs.micro1.ai/post/c99724a5-d4e7-48d0-92b1-73dde88ad9c8",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-18",
-      "area": "Direito",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-18",
-      "data_oficial": true,
-      "id": "13a495ee49"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Lawyer",
+      "empresa": "mercor",
+      "titulo": "Specialty Materials Chemist — Pyrotechnics or Propulsion <div class=\"m",
       "local": "Remoto · Mundial",
       "categoria": "ai",
       "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/b0a3fdc5-49ed-40d9-9f7b-8724b8e8500d",
+      "url": "https://work.mercor.com/jobs/list_AAABoKHb4faM2SbEMuFOMK3h/specialty-materials-chemist-pyrotechnics-or-propulsion",
       "commitment": "",
       "fonte": "direto",
-      "data_post": "2026-09-16",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-16",
-      "data_oficial": true,
-      "id": "2feed77ee0"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Family Law Attorney (AAML Registered)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/bd70678c-f7bd-4c23-959d-9b5cd6748410",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "4b11972e7a"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Litigation Associate Attorney (BigLaw Firms)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/4b2e063b-ad86-429f-a54a-c50e0dd99b8c",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "194b189e5b"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Mergers & Acquisitions (M&A) Attorney (BigLaw Firms)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/78a9efa0-b074-4dd8-9e3e-c0cd5675c74a",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "4709ce8b65"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Corporate Attorney (BigLaw Firms)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/fa297c7f-e5d5-4e52-a4ad-ec74c4763e17",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "bd1e03d3c0"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "BigLaw lawyers",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/6d7b9372-c7ad-4ea6-a017-95e6e80a33a5",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "9051563ff2"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "BigLaw lawyers (Litigation/Corporate/M&A)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/c955d596-4b9c-4702-a134-74763c47c624",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-17",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-17",
-      "data_oficial": true,
-      "id": "7b480630aa"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Healthcare Attorney (BigLaw Firms)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/ef5498e4-f232-48b8-b8aa-9067e487c74a",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-04",
-      "data_oficial": true,
-      "id": "9058a7ef7c"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Civil Rights Attorney (BigLaw Firms)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/8c60d801-f16d-4896-82d1-a37559be1314",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-04",
-      "data_oficial": true,
-      "id": "cc00353cb6"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Criminal Lawyer (BigLaw Firms)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/11539bac-d048-4e27-8bbd-a9bfa0629cf1",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-04",
-      "data_oficial": true,
-      "id": "69316aa9d0"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Criminal Defense Attorney (BigLaw Firms)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/03f08d8d-79a9-4e5b-a976-f97d2e32f33b",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "area": "Direito",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-04",
-      "data_oficial": true,
-      "id": "95f54dbca6"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "AI Legal Fellow — Litigation & Motion Practice",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/dbddaa98-09fd-4dde-b301-568d794b085d",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-19",
-      "area": "Direito",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-19",
-      "data_oficial": true,
-      "id": "e702330615"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Medical Communications Manager",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/d130c45f-c85a-4ce6-9a12-53c980a63be7",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-18",
-      "area": "Medicina e Saude",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-18",
-      "data_oficial": true,
-      "id": "fd5adaa1a9"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Medical Writer (Pharmaceutical)",
-      "local": "Remoto · Mundial",
-      "categoria": "write",
-      "badge": "Escrita",
-      "url": "https://jobs.micro1.ai/post/6da7a95c-8ab7-4b76-a835-b1a6554da382",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-18",
-      "area": "Medicina e Saude",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-18",
-      "data_oficial": true,
-      "id": "b83eea3da1"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Medical Evaluation Specialist (students, residents, physicians)",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.micro1.ai/post/97da7176-3c19-4443-bde5-3dceb56929e9",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Medicina e Saude",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "292fddea0c"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Medical Auditor",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.micro1.ai/post/eae14e1c-d44c-4486-b773-61f57b0f3d64",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "area": "Medicina e Saude",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-04",
-      "data_oficial": true,
-      "id": "21a597a222"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Medical Coder",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/eac2bf43-4fa7-46ed-8db8-ec2b6d3a52d5",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-04",
-      "area": "Medicina e Saude",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-04",
-      "data_oficial": true,
-      "id": "c7e3528833"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Primary Care Physician",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/9ebedb7a-9911-4b0c-b771-13f3325bdc7d",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-30",
-      "area": "Medicina e Saude",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-30",
-      "data_oficial": true,
-      "id": "0d5279d29d"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Hospitalist Physician",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/ca9b762b-356d-41a7-be51-80b14a5a5dbb",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-18",
-      "area": "Medicina e Saude",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-18",
-      "data_oficial": true,
-      "id": "f066ed232d"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Mathematics Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/eb647954-2290-49e6-8c30-7213a7555a62",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-07",
-      "area": "Matematica e Estatistica",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-07",
-      "data_oficial": true,
-      "id": "d035e22301"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (PhD / Postdoc)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/d65941c5-6aff-4e80-b3d6-4f56c9aede18",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "area": "Fisica e Astronomia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "36edb21173"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert PhD (AMO / Optical Properties of Materials)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/1e8c2077-7a9d-4a91-adcd-f96404dc8226",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "area": "Fisica e Astronomia",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "96e2edd9b2"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert PhD (Statistical Physics / Quantum Information / Condensed Matter)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/3a757d40-98c5-4717-a401-382999db9a3f",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "area": "Matematica e Estatistica",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "1a48075d26"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (Postdoc / Junior professor)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/70a8467d-117d-41c9-a508-f4b5fdb9a533",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-03",
-      "area": "Fisica e Astronomia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-03",
-      "data_oficial": true,
-      "id": "9c0d886ceb"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (Professor / Principal Investigator)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/c90c2d11-bdb6-42fc-91fd-a753a3c72ebf",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-03",
-      "area": "Fisica e Astronomia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-03",
-      "data_oficial": true,
-      "id": "01ae6cafed"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (Condensed Matter / Magnetic Materials)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/e97e0e7c-6788-4298-9f14-716aa6c34ded",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-02",
-      "area": "Fisica e Astronomia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-02",
-      "data_oficial": true,
-      "id": "34ae69e9d4"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (Condensed Matter / Quantum Information)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/6127bd10-eb44-4b7c-bac5-cfe629893526",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-02",
-      "area": "Fisica e Astronomia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-02",
-      "data_oficial": true,
-      "id": "4fccd5e51e"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (AMO / Quantum Information)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/cf86ac29-1d6f-42e8-bfd9-5b1a5094bd0b",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-02",
-      "area": "Fisica e Astronomia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-02",
-      "data_oficial": true,
-      "id": "3bfd999cb0"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (Gravitation / Cosmology / Astrophysics)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/dbd04789-74da-461f-8e20-a6c596f7a4e9",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-02",
-      "area": "Fisica e Astronomia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-02",
-      "data_oficial": true,
-      "id": "dedc1e2e55"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (Biophysics / Statistical Physics)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/ab03236f-d339-473c-89d1-be944ce53d97",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-02",
-      "area": "Matematica e Estatistica",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-02",
-      "data_oficial": true,
-      "id": "096b180483"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Physics Expert (High Energy / Mathematical Physics)",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/ec92f108-3713-478c-9ddf-2d20c5af02c7",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-02",
-      "area": "Matematica e Estatistica",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-02",
-      "data_oficial": true,
-      "id": "55966299c7"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Computational Biology & Cheminformatics Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/a50167d7-bd8d-4710-90e6-7cfeadc24f16",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-03",
-      "area": "Biologia e Ciencias da Vida",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-03",
-      "data_oficial": true,
-      "id": "056776ff36"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Software Engineering Specialist",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/b4ce7861-a888-4f57-bb63-c50fb01ae65d",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-25",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-25",
-      "data_oficial": true,
-      "id": "6165811c54"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Mechanical Engineering Technician",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/de0e8e60-91b7-48a1-a948-75b67578e848",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-16",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-16",
-      "data_oficial": true,
-      "id": "a5f527a582"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Mechanical Engineering Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/9ece7cf2-3d00-497e-ab11-4793d1858646",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "d539d076d7"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "CUDA Engineering Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/c5d8a217-2f8c-42a8-8b41-8c8e88f160c1",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-11",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-11",
-      "data_oficial": true,
-      "id": "371eca3a98"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Senior Software Engineer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/9b3377c5-01da-40d7-9304-39cc8cd20932",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-20",
-      "area": "Programacao e Software",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-20",
-      "data_oficial": true,
-      "id": "a719c77290"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Sr. Full-Stack Software Engineer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/4010d2c5-4a3d-41fe-9e33-28bc218626e5",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-16",
-      "area": "Programacao e Software",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-16",
-      "data_oficial": true,
-      "id": "f021346078"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Software Engineer -  Open Source Contributions",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/5c9777fe-afb2-40b1-abbb-31cee8a8d4b6",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-14",
-      "area": "Programacao e Software",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-14",
-      "data_oficial": true,
-      "id": "62a08cfeee"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Software Engineer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/d98ab3b0-dfc2-43d6-986a-e75b0d4c35f9",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "area": "Programacao e Software",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "67c1e797bc"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Software Developer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/92b81bda-6c3f-42c1-9cad-9e3cdb911ad9",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-15",
-      "area": "Programacao e Software",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-15",
-      "data_oficial": true,
-      "id": "7b2ab487b0"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Finance Specialist",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/e107daa7-2cc8-4153-94c2-ff7806bb9d6e",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-25",
-      "area": "Financas e Contabilidade",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-25",
-      "data_oficial": true,
-      "id": "629e13c16b"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Investment & Finance Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/3b1f3a6f-51b3-4622-8baa-28b88e58f3d4",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-27",
-      "area": "Financas e Contabilidade",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-27",
-      "data_oficial": true,
-      "id": "b6ed89bb5a"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Developmental Psychology (PhD)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/159f218d-0ea1-4fdb-8bf5-693cb3a55a1c",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-10",
-      "area": "Psicologia e Ciencias Sociais",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-10",
-      "data_oficial": true,
-      "id": "2797e8ac34"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Linguistics Specialists",
-      "local": "Remoto · Mundial",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://jobs.micro1.ai/post/ba976b4a-3b64-4797-adbf-a33770f3a44f",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-12",
-      "area": "Linguistica",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-12",
-      "data_oficial": true,
-      "id": "711666d894"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Sound Designer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/c5f03d74-f6cd-47e2-bdad-3d0da851320e",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-29",
-      "area": "Design e Criacao",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-29",
-      "data_oficial": true,
-      "id": "28427e6ab8"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Game Designer / Gameplay Developer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/43c43368-acf4-42f8-8351-74173291c5ac",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-29",
-      "area": "Programacao e Software",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-29",
-      "data_oficial": true,
-      "id": "f61cd1b708"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Mechanical Design Engineer – CAD & Manufacturing",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/484708eb-dd2c-4d03-bb59-34684e78579f",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-25",
-      "area": "Engenharia",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-25",
-      "data_oficial": true,
-      "id": "514aa8b385"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Altium Designer Specialist",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/cca1a8fa-3a37-4485-91f0-99d1fe2b95bc",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-24",
-      "area": "Design e Criacao",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-24",
-      "data_oficial": true,
-      "id": "847286438c"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "UX/UI Designer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/d02122f3-eaec-42b2-ad3f-edc218b94294",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-22",
-      "area": "Design e Criacao",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-22",
-      "data_oficial": true,
-      "id": "9c7c511b05"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Graphic Designer - Editorial, Poster & Marketing Layout",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/22bec98f-7484-42b4-af15-17e033f0136f",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-26",
-      "area": "Design e Criacao",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-26",
-      "data_oficial": true,
-      "id": "d8cce07c20"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "UI/UX Designer",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/32d47282-866f-420c-8d11-eb243aae997d",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Design e Criacao",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "8e2b3073da"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Manufacturing Design Engineer (FreeCAD)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/dfe89be3-0fe9-4f7a-9a50-d43b4af0a6b3",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-18",
-      "area": "Engenharia",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-18",
-      "data_oficial": true,
-      "id": "102b992f52"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Visual Designer (Deck/Presentation focused)",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://jobs.micro1.ai/post/0faef422-476d-482f-827f-d6a3c18d59b9",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-13",
-      "area": "Design e Criacao",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-13",
-      "data_oficial": true,
-      "id": "d316848dee"
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Research Evaluation Specialist (PhD / Researcher / Professor)",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://jobs.micro1.ai/post/0006f93d-d277-4451-941a-00a540c1fa22",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-08-21",
-      "area": "Outras areas",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-21",
-      "data_oficial": true,
-      "id": "99d645c1a2"
+      "data_post": "",
+      "area": "Quimica",
+      "data_vista": "2026-10-01",
+      "data_ref": "2026-10-01",
+      "data_oficial": false,
+      "id": "dacfde1055",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1532,7 +1521,8 @@
       "data_vista": "2026-09-26",
       "data_ref": "2026-09-25",
       "data_oficial": true,
-      "id": "d91a9c0fc7"
+      "id": "d91a9c0fc7",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1548,7 +1538,8 @@
       "data_vista": "2026-09-24",
       "data_ref": "2026-09-23",
       "data_oficial": true,
-      "id": "66a3c02a7e"
+      "id": "66a3c02a7e",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1564,7 +1555,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-16",
       "data_oficial": true,
-      "id": "9f268ef8fd"
+      "id": "9f268ef8fd",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1580,7 +1572,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-15",
       "data_oficial": true,
-      "id": "80df1145ee"
+      "id": "80df1145ee",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1596,7 +1589,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-14",
       "data_oficial": true,
-      "id": "6da27d4759"
+      "id": "6da27d4759",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1612,7 +1606,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-11",
       "data_oficial": true,
-      "id": "b88b3ac6a0"
+      "id": "b88b3ac6a0",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1628,7 +1623,8 @@
       "data_vista": "2026-09-16",
       "data_ref": "2026-09-11",
       "data_oficial": true,
-      "id": "57e8f1242d"
+      "id": "57e8f1242d",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1644,7 +1640,8 @@
       "data_vista": "2026-09-12",
       "data_ref": "2026-09-11",
       "data_oficial": true,
-      "id": "395a238783"
+      "id": "395a238783",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1660,7 +1657,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-04",
       "data_oficial": true,
-      "id": "03360dcbbb"
+      "id": "03360dcbbb",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1676,7 +1674,8 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-29",
       "data_oficial": true,
-      "id": "949c5a738e"
+      "id": "949c5a738e",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1692,7 +1691,8 @@
       "data_vista": "2026-09-24",
       "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "c810fbbbf3"
+      "id": "c810fbbbf3",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1708,7 +1708,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-22",
       "data_oficial": true,
-      "id": "820f37f071"
+      "id": "820f37f071",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1724,7 +1725,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "81687741a0"
+      "id": "81687741a0",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1740,7 +1742,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "a77dfa9ff9"
+      "id": "a77dfa9ff9",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1756,7 +1759,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "1577083d7a"
+      "id": "1577083d7a",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1772,7 +1776,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "171651feb8"
+      "id": "171651feb8",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1788,7 +1793,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "d9fa4303e6"
+      "id": "d9fa4303e6",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1804,7 +1810,8 @@
       "data_vista": "2026-09-19",
       "data_ref": "2026-09-17",
       "data_oficial": true,
-      "id": "1b24231a8f"
+      "id": "1b24231a8f",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1820,7 +1827,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-04",
       "data_oficial": true,
-      "id": "b21404d05f"
+      "id": "b21404d05f",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1836,7 +1844,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "4c99bb45e9"
+      "id": "4c99bb45e9",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1852,7 +1861,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-08-03",
       "data_oficial": true,
-      "id": "67337f968a"
+      "id": "67337f968a",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1868,7 +1878,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-08-03",
       "data_oficial": true,
-      "id": "6fd19a9368"
+      "id": "6fd19a9368",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1884,7 +1895,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-08-03",
       "data_oficial": true,
-      "id": "5ad0028e63"
+      "id": "5ad0028e63",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1900,7 +1912,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-08-03",
       "data_oficial": true,
-      "id": "02b074566b"
+      "id": "02b074566b",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1916,7 +1929,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-08-22",
       "data_oficial": true,
-      "id": "813e6e77d1"
+      "id": "813e6e77d1",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1932,7 +1946,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-06-09",
       "data_oficial": true,
-      "id": "55863ecfba"
+      "id": "55863ecfba",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1948,7 +1963,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-05-20",
       "data_oficial": true,
-      "id": "f44f8e5b36"
+      "id": "f44f8e5b36",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1964,7 +1980,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-05-20",
       "data_oficial": true,
-      "id": "74aaaa4df8"
+      "id": "74aaaa4df8",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1980,7 +1997,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-05-14",
       "data_oficial": true,
-      "id": "c784a92293"
+      "id": "c784a92293",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1996,7 +2014,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-05-05",
       "data_oficial": true,
-      "id": "68cfca05dc"
+      "id": "68cfca05dc",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2012,7 +2031,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2024-06-28",
       "data_oficial": true,
-      "id": "dda4245ee1"
+      "id": "dda4245ee1",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2028,7 +2048,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2024-06-17",
       "data_oficial": true,
-      "id": "3d7cb445f1"
+      "id": "3d7cb445f1",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2044,7 +2065,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2024-06-14",
       "data_oficial": true,
-      "id": "1391fd4438"
+      "id": "1391fd4438",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2060,7 +2082,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2024-01-27",
       "data_oficial": true,
-      "id": "cf8c8039a0"
+      "id": "cf8c8039a0",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2076,7 +2099,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2024-01-27",
       "data_oficial": true,
-      "id": "0f2fe187f6"
+      "id": "0f2fe187f6",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2092,7 +2116,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2024-01-25",
       "data_oficial": true,
-      "id": "7ba9b791bc"
+      "id": "7ba9b791bc",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2108,7 +2133,8 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-30",
       "data_oficial": true,
-      "id": "94be335121"
+      "id": "94be335121",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2124,7 +2150,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-28",
       "data_oficial": true,
-      "id": "7bfd3d3be6"
+      "id": "7bfd3d3be6",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2140,7 +2167,8 @@
       "data_vista": "2026-09-25",
       "data_ref": "2026-09-25",
       "data_oficial": true,
-      "id": "dc1e8a680a"
+      "id": "dc1e8a680a",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2156,7 +2184,8 @@
       "data_vista": "2026-09-19",
       "data_ref": "2026-09-18",
       "data_oficial": true,
-      "id": "137e68b9d4"
+      "id": "137e68b9d4",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2172,7 +2201,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "1519051ad3"
+      "id": "1519051ad3",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2188,7 +2218,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-07-24",
       "data_oficial": true,
-      "id": "598f0efc18"
+      "id": "598f0efc18",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2204,7 +2235,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-05-20",
       "data_oficial": true,
-      "id": "b76c4b6296"
+      "id": "b76c4b6296",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2220,7 +2252,8 @@
       "data_vista": "2026-09-25",
       "data_ref": "2026-09-25",
       "data_oficial": true,
-      "id": "fa4c6882d4"
+      "id": "fa4c6882d4",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2236,7 +2269,8 @@
       "data_vista": "2026-09-25",
       "data_ref": "2026-09-22",
       "data_oficial": true,
-      "id": "8232f5f11d"
+      "id": "8232f5f11d",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2252,7 +2286,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "5c215fb0be"
+      "id": "5c215fb0be",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2268,7 +2303,8 @@
       "data_vista": "2026-09-29",
       "data_ref": "2026-09-29",
       "data_oficial": true,
-      "id": "8bdfae0dd9"
+      "id": "8bdfae0dd9",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2284,7 +2320,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "81776c642c"
+      "id": "81776c642c",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2300,7 +2337,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-05-20",
       "data_oficial": true,
-      "id": "e5689899bb"
+      "id": "e5689899bb",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2316,7 +2354,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-30",
       "data_oficial": true,
-      "id": "ae23760cd7"
+      "id": "ae23760cd7",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2332,7 +2371,8 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-29",
       "data_oficial": true,
-      "id": "353f53ce90"
+      "id": "353f53ce90",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2348,7 +2388,8 @@
       "data_vista": "2026-09-27",
       "data_ref": "2026-09-26",
       "data_oficial": true,
-      "id": "350ea9be3c"
+      "id": "350ea9be3c",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2364,7 +2405,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "0567748636"
+      "id": "0567748636",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2380,7 +2422,8 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-29",
       "data_oficial": true,
-      "id": "c111866d6f"
+      "id": "c111866d6f",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2396,7 +2439,8 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-29",
       "data_oficial": true,
-      "id": "c3eddc78e9"
+      "id": "c3eddc78e9",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2412,7 +2456,8 @@
       "data_vista": "2026-09-29",
       "data_ref": "2026-09-29",
       "data_oficial": true,
-      "id": "be633d41a1"
+      "id": "be633d41a1",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2428,7 +2473,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-29",
       "data_oficial": true,
-      "id": "b207380c24"
+      "id": "b207380c24",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2444,7 +2490,8 @@
       "data_vista": "2026-09-19",
       "data_ref": "2026-09-28",
       "data_oficial": true,
-      "id": "486e9da016"
+      "id": "486e9da016",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2460,7 +2507,8 @@
       "data_vista": "2026-09-26",
       "data_ref": "2026-09-25",
       "data_oficial": true,
-      "id": "4a878f3b23"
+      "id": "4a878f3b23",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2476,7 +2524,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "a3a8d4169f"
+      "id": "a3a8d4169f",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2492,7 +2541,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "1ff8717b11"
+      "id": "1ff8717b11",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2508,7 +2558,8 @@
       "data_vista": "2026-09-22",
       "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "2736dc48dd"
+      "id": "2736dc48dd",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2524,7 +2575,8 @@
       "data_vista": "2026-09-21",
       "data_ref": "2026-09-21",
       "data_oficial": true,
-      "id": "14ba1d60aa"
+      "id": "14ba1d60aa",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2540,7 +2592,8 @@
       "data_vista": "2026-09-18",
       "data_ref": "2026-09-18",
       "data_oficial": true,
-      "id": "27ebed4249"
+      "id": "27ebed4249",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2556,7 +2609,8 @@
       "data_vista": "2026-09-19",
       "data_ref": "2026-09-18",
       "data_oficial": true,
-      "id": "ace8b662e0"
+      "id": "ace8b662e0",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2572,7 +2626,8 @@
       "data_vista": "2026-09-17",
       "data_ref": "2026-09-16",
       "data_oficial": true,
-      "id": "127290a323"
+      "id": "127290a323",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2588,7 +2643,8 @@
       "data_vista": "2026-09-30",
       "data_ref": "2026-09-09",
       "data_oficial": true,
-      "id": "ecb5d256c2"
+      "id": "ecb5d256c2",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2604,7 +2660,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-09",
       "data_oficial": true,
-      "id": "dd5a557b74"
+      "id": "dd5a557b74",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2620,7 +2677,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-08",
       "data_oficial": true,
-      "id": "14b1ece416"
+      "id": "14b1ece416",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2636,7 +2694,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-04",
       "data_oficial": true,
-      "id": "dd93b9c680"
+      "id": "dd93b9c680",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2652,7 +2711,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-06-26",
       "data_oficial": true,
-      "id": "69e430ebf6"
+      "id": "69e430ebf6",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2668,7 +2728,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-06-12",
       "data_oficial": true,
-      "id": "6308a6eafa"
+      "id": "6308a6eafa",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2684,7 +2745,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-05-20",
       "data_oficial": true,
-      "id": "65cfd72334"
+      "id": "65cfd72334",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2700,7 +2762,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-08-14",
       "data_oficial": true,
-      "id": "0f12aa64a3"
+      "id": "0f12aa64a3",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2716,7 +2779,8 @@
       "data_vista": "2026-09-27",
       "data_ref": "2026-09-26",
       "data_oficial": true,
-      "id": "92033e60f5"
+      "id": "92033e60f5",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2732,7 +2796,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-22",
       "data_oficial": true,
-      "id": "f485a7982f"
+      "id": "f485a7982f",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2748,7 +2813,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-17",
       "data_oficial": true,
-      "id": "14803b03d2"
+      "id": "14803b03d2",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2764,7 +2830,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-03",
       "data_oficial": true,
-      "id": "1331e5d78d"
+      "id": "1331e5d78d",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2780,7 +2847,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "4f34caab59"
+      "id": "4f34caab59",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2796,7 +2864,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2025-01-24",
       "data_oficial": true,
-      "id": "b6c760b51c"
+      "id": "b6c760b51c",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2812,7 +2881,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-23",
       "data_oficial": true,
-      "id": "3b82d95e3b"
+      "id": "3b82d95e3b",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2828,7 +2898,8 @@
       "data_vista": "2026-09-21",
       "data_ref": "2026-09-18",
       "data_oficial": true,
-      "id": "7925e906a4"
+      "id": "7925e906a4",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2844,7 +2915,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "12201c8d6e"
+      "id": "12201c8d6e",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2860,7 +2932,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "6f133587ea"
+      "id": "6f133587ea",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2876,7 +2949,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-06-02",
       "data_oficial": true,
-      "id": "08eeccbfff"
+      "id": "08eeccbfff",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2892,7 +2966,8 @@
       "data_vista": "2026-09-27",
       "data_ref": "2026-09-26",
       "data_oficial": true,
-      "id": "73c0fea925"
+      "id": "73c0fea925",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2908,7 +2983,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-09",
       "data_oficial": true,
-      "id": "97a4f0e11b"
+      "id": "97a4f0e11b",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2924,7 +3000,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "6721f92a08"
+      "id": "6721f92a08",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2940,7 +3017,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "7c82c0ce44"
+      "id": "7c82c0ce44",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2956,7 +3034,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "a981ab9e97"
+      "id": "a981ab9e97",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2972,7 +3051,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "3beb83e14a"
+      "id": "3beb83e14a",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -2988,7 +3068,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-24",
       "data_oficial": true,
-      "id": "190e7fb99b"
+      "id": "190e7fb99b",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -3004,7 +3085,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-10",
       "data_oficial": true,
-      "id": "c009e85b3d"
+      "id": "c009e85b3d",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -3020,7 +3102,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-02",
       "data_oficial": true,
-      "id": "1fd53cc90c"
+      "id": "1fd53cc90c",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -3036,7 +3119,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "b89c8d10af"
+      "id": "b89c8d10af",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -3052,7 +3136,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "ddc2be7393"
+      "id": "ddc2be7393",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -3068,7 +3153,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "2a8e62f9a3"
+      "id": "2a8e62f9a3",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -3084,7 +3170,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "e94cf14ff9"
+      "id": "e94cf14ff9",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -3100,7 +3187,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-09-01",
       "data_oficial": true,
-      "id": "9a1dabe312"
+      "id": "9a1dabe312",
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -3116,7 +3204,8 @@
       "data_vista": "2026-09-11",
       "data_ref": "2026-08-26",
       "data_oficial": true,
-      "id": "0f7422c9b4"
+      "id": "0f7422c9b4",
+      "indicacao": false
     }
   ]
 }

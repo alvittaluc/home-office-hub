@@ -168,6 +168,55 @@ ARQUIVO_ESPECIFICAS = "vagas-especificas.json"
 # vagas_para_resumo.json para não encher o arquivo de resumos.
 RESUMO_INCLUI_ESPECIFICAS = False
 
+# ─── LINKS DE INDICAÇÃO (referral) ───
+# Algumas empresas pagam por candidato indicado. O link de indicação é o
+# endereço normal da vaga com parâmetros a mais no fim. Para cada empresa:
+#   "dominio": só mexe em URL desse endereço (segurança contra link estranho)
+#   "params":  o que vai no fim da URL
+# Para pausar uma empresa, apague a entrada dela. Código de indicação não é
+# senha: ele aparece no próprio link que a pessoa clica.
+INDICACOES = {
+    "micro1": {
+        "dominio": "jobs.micro1.ai",
+        "params": {
+            "referralCode": "71758114-f00e-4969-8de1-6480c2f99ee8",
+            "utm_source": "referral",
+            "utm_medium": "share",
+            "utm_campaign": "job_referral",
+        },
+    },
+}
+
+
+def com_indicacao(empresa, url):
+    """Devolve a URL da vaga com o código de indicação da empresa, se houver.
+    Mantém os parâmetros que a URL já tinha e não duplica o código."""
+    regra = INDICACOES.get(empresa)
+    if not regra or not url:
+        return url
+    partes = urllib.parse.urlsplit(url)
+    if partes.netloc.lower() != regra["dominio"]:
+        return url
+    params = dict(urllib.parse.parse_qsl(partes.query))
+    params.update(regra["params"])
+    return urllib.parse.urlunsplit(partes._replace(query=urllib.parse.urlencode(params)))
+
+
+def sem_indicacao(empresa, url):
+    """O contrário de com_indicacao. Necessário porque, no GitHub, as vagas
+    da micro1 são reaproveitadas do vagas.json, que já tem o código na URL.
+    O id sai sempre da URL limpa, para não mudar entre uma rodada e outra."""
+    regra = INDICACOES.get(empresa)
+    if not regra or not url:
+        return url
+    partes = urllib.parse.urlsplit(url)
+    if partes.netloc.lower() != regra["dominio"]:
+        return url
+    params = [(k, v) for k, v in urllib.parse.parse_qsl(partes.query)
+              if k not in regra["params"]]
+    return urllib.parse.urlunsplit(partes._replace(query=urllib.parse.urlencode(params)))
+
+
 # ─── CURADORIA MANUAL ───
 # vagas-curadoria.json guarda a decisão de cada vaga já revisada:
 #   "aprovadas"  → remota para o mundo todo ou aberta ao Brasil
@@ -1457,6 +1506,7 @@ def main():
     # dá um id único e estável a cada vaga (usado nos resumos e na página)
     import hashlib
     for v in todas:
+        v["url"] = sem_indicacao(v.get("empresa", ""), v.get("url", ""))
         base = (v.get("url") or v.get("titulo") or "").encode("utf-8")
         v["id"] = hashlib.md5(base).hexdigest()[:10]
 
@@ -1630,6 +1680,16 @@ def main():
         else:
             print("\n  ✓ Todas as vagas já têm resumo. "
                   "Nada a enviar ao Claude desta vez.")
+
+    # ─── LINKS DE INDICAÇÃO ───
+    # Entra só aqui no fim, depois do id calculado. O id nasce da URL, então
+    # trocar a URL antes mudaria o id e a vaga perderia resumo, data e
+    # curadoria. Na próxima rodada a URL chega limpa de novo e o id é o mesmo.
+    for v in todas:
+        nova = com_indicacao(v.get("empresa", ""), v.get("url", ""))
+        # o site usa este campo para avisar que o link é de indicação
+        v["indicacao"] = nova != v.get("url", "")
+        v["url"] = nova
 
     # remove os campos temporários de descrição (não vão pro arquivo final)
     for v in todas:

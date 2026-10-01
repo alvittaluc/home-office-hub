@@ -175,8 +175,10 @@ function erro(msg) {
     ${partes}
     <div class="aplic" id="jaApliquei" hidden></div>
     <div class="barra">
-      <a href="${esc(v.url)}" target="_blank" rel="noopener" class="candidatar">Candidatar para esta vaga →</a>
-      <div class="nota">Você vai para a página oficial da vaga, sem intermediário.</div>
+      <a href="${esc(v.url)}" target="_blank" rel="noopener" class="candidatar">Candidatar-se a esta vaga →</a>
+      <div class="nota">${v.indicacao
+        ? "Você vai para a página oficial da vaga. Este é um link de indicação: se você for contratado, a empresa paga uma comissão ao Home Office Hub, sem nenhum custo ou desconto para você."
+        : "Você vai para a página oficial da vaga, sem intermediário."}</div>
     </div>
     ${v.empresa === "turing" ? `
     <div class="avisoLogin">

@@ -1,6 +1,6 @@
 {
-  "atualizado_em": "2026-09-30T18:33:02.690603+00:00",
-  "atualizado_br": "30/09/2026 às 15:33",
+  "atualizado_em": "2026-10-01T00:35:36.449887+00:00",
+  "atualizado_br": "30/09/2026 às 21:35",
   "total": 69,
   "vagas": [
     {
@@ -23,7 +23,8 @@
         "dica_cv": "Destaque: experiência com avaliação/qualidade de conteúdo, organização e coordenação de tarefas, e seu nível de inglês (mencione B2/C1). Deixe claro que mora no Brasil.",
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -45,7 +46,8 @@
         "dica_cv": "Esta vaga exige ALEMÃO. Só vale a pena se você fala alemão. Destaque: fluência em alemão, nível de inglês, e familiaridade com internet/buscadores.",
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -67,7 +69,8 @@
         "dica_cv": "Esta vaga exige ITALIANO. Só vale a pena se você fala italiano. Destaque: fluência em italiano, nível de inglês, e familiaridade com internet/buscadores.",
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -87,7 +90,8 @@
         "o_que_faz": "Projeto piloto de anotação de fala chamado Andromeda Delta. Você ouve trechos curtos de áudio em português e confere as transcrições e os cortes palavra por palavra que um sistema automático gerou, corrigindo o que estiver errado. É um trabalho pequeno: de 3 a 5 horas por semana, somando 15 a 20 horas no total. Pagamento de US$ 5,20 por hora, como freelancer.",
         "requisitos": "Morar no Brasil e ter português brasileiro nativo, com boa compreensão auditiva e conhecimento da cultura do país. Experiência com transcrição, anotação ou rotulagem de dados ajuda, mas não é obrigatória. Precisa de muita atenção a detalhe, principalmente para marcar o início e o fim de cada palavra, além de internet estável, ambiente silencioso e um bom fone de ouvido.",
         "dica_cv": "Como é um piloto curto, a Welocalize escolhe quem mostra precisão. Cite qualquer experiência com transcrição, legendagem, revisão de texto ou trabalho que dependa de ouvido atento. Deixe claro que você tem fone de qualidade e lugar silencioso para trabalhar. Um bom desempenho no piloto costuma abrir portas para os projetos maiores da empresa."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -109,7 +113,8 @@
         "dica_cv": "Vaga simples, ótima para começar. Destaque: boa dicção, português nativo, e que tem ambiente silencioso e equipamento para gravar. Não precisa de experiência prévia.",
         "contrato": "Freelance · Remoto · Tarefa pontual",
         "remuneracao": ""
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -129,7 +134,8 @@
         "o_que_faz": "Você revisa, anota e avalia conteúdo em português do Brasil que serve de material de treino para sistemas de IA generativa usados no mundo todo. O dia a dia mistura anotação de dados, revisão de texto e controle de qualidade em projetos multilíngues e multimídia, sempre seguindo um guia de instruções detalhado. É contrato freelancer de 4 semanas, 100% remoto, com pagamento de US$ 4 por hora.",
         "requisitos": "Português do Brasil em nível nativo e inglês escrito suficiente para entender guias e se comunicar com a equipe. Muita atenção a detalhe, pensamento analítico e autonomia para trabalhar sozinho seguindo regras extensas. Pede experiência em anotação, revisão de conteúdo, controle de qualidade, rotulagem de dados, localização ou área parecida. Já ter mexido com conteúdo multilíngue, multimídia ou de IA é diferencial forte.",
         "dica_cv": "Currículo em inglês, de uma página. Logo no resumo do topo escreva que você é falante nativo de português do Brasil com inglês avançado, porque é o primeiro filtro do recrutador. Depois liste qualquer experiência de revisão, tradução, transcrição, moderação ou digitação com números concretos, no estilo \"revisei em média 80 textos por dia com 98% de aprovação\". Se já trabalhou em plataformas como Appen, Telus, Toloka ou Welocalize, cite o nome do projeto e o tipo de tarefa."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -149,7 +155,8 @@
         "o_que_faz": "Você conduz sessões de gravação ao vivo com locutores do Projeto Hydrus, que coleta áudio para criar vozes sintéticas de assistentes de IA. O papel é de diretor de voz: explicar a cena para quem está gravando, orientar para a fala soar natural e não lida, improvisar quando o roteiro trava e adaptar frases para soarem como o português falado de verdade. Também cuida da qualidade técnica em tempo real, como distância do microfone, ritmo e ruído de fundo.",
         "requisitos": "Português brasileiro nativo, com ouvido apurado para a fala coloquial. Experiência comprovada dirigindo, orientando ou produzindo voz: direção de dublagem, casting, produção de podcast, teatro ou algo parecido. Conhecimento básico de técnica de gravação, facilidade para improvisar e boa habilidade para deixar pessoas sem experiência à vontade diante do microfone.",
         "dica_cv": "O currículo precisa mostrar direção, não só atuação. Liste projetos em que você orientou outras pessoas: peças, podcasts, dublagem, gravações corporativas. Cite o que você corrigia na prática, como dicção, respiração e ritmo. Se tiver um link com trabalhos que você dirigiu ou produziu, coloque logo no início."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "welocalize",
@@ -169,7 +176,8 @@
         "o_que_faz": "Você grava a sua própria voz para o Projeto Hydrus, que cria vozes sintéticas para assistentes de IA. São duas sessões supervisionadas de cerca de 4 horas cada, guiadas ao vivo por um diretor de sessão em uma plataforma de gravação. Parte do material é lido de roteiro e parte é fala espontânea, e o objetivo é soar como uma conversa real do dia a dia.",
         "requisitos": "Português brasileiro nativo e fala natural e clara. Ambiente silencioso e equipamento que garanta um áudio limpo. Atenção: as gravações podem ser usadas para criar vozes geradas por IA. Antes de qualquer sessão paga você recebe e assina um termo de consentimento explicando como sua voz será usada, compartilhada e guardada.",
         "dica_cv": "Leia o termo de consentimento com calma antes de assinar, porque ele define o que pode ser feito com a sua voz. No cadastro, informe seu sotaque e sua região: projetos de voz costumam buscar variedade de sotaques. Experiência com locução, teatro ou podcast ajuda, mas o que conta mesmo é soar natural. Uma gravação de teste num cômodo silencioso mostra que você tem as condições técnicas."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "rws",
@@ -189,7 +197,8 @@
         "o_que_faz": "Você avalia os resultados de um buscador para pesquisas comuns feitas por brasileiros, dizendo se a resposta é relevante e útil. Também pode avaliar textos, áudios, imagens e vídeos usados por redes sociais e plataformas de streaming. É meio período e flexível: de 5 a 20 horas por semana, com média de 15. Pagamento de até US$ 6 por hora.",
         "requisitos": "Morar no Brasil, ter português brasileiro e inglês suficiente para as instruções, e conhecer bem a cultura popular do país. Precisa de computador, celular, internet estável e antivírus, ter 18 anos ou mais e assinar um acordo de confidencialidade. Antes de começar é preciso passar pelo treinamento e por uma prova do cliente. Só é aceita uma pessoa avaliadora por residência. Não exige experiência.",
         "dica_cv": "A prova do cliente é o verdadeiro filtro, então reserve tempo para estudar as diretrizes antes de fazê-la. No currículo, destaque o hábito de pesquisar na internet, a familiaridade com redes sociais e qualquer trabalho de análise ou revisão. Se alguém da sua casa já trabalha como avaliador de busca, você não pode se candidatar ao mesmo projeto."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "rws",
@@ -211,7 +220,8 @@
         "dica_cv": "Boa vaga de entrada e flexível. Destaque: português nativo, boa dicção/comunicação falada, e disponibilidade. Não exige experiência prévia. Mencione seu nível de inglês.",
         "contrato": "Freelance · Meio período (10+ h/semana) · Remoto",
         "remuneracao": "US$ 6/hora"
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "toloka",
@@ -231,7 +241,8 @@
         "o_que_faz": "Você grava clipes curtos de voz, de 1 a 2 minutos, falando naturalmente e misturando inglês com chinês, como faria numa conversa com amigos. Não tem roteiro: você comenta um vídeo, fala do seu dia ou dá sua opinião sobre um assunto. É trabalho por projeto, sem horário fixo, pago por gravação aprovada. A Toloka anuncia até US$ 30 por hora, dependendo do seu ritmo e da taxa de aprovação.",
         "requisitos": "Ser bilíngue de verdade em inglês e chinês, com o hábito de alternar entre as duas línguas ao falar. Qualquer aparelho serve, inclusive o celular. O essencial é um cômodo silencioso, sem TV, música ou outras vozes, e falar perto do microfone. Um fone com microfone ajuda, mas não é obrigatório.",
         "dica_cv": "Apesar de aparecer para o Brasil, esta vaga só serve para quem fala chinês fluente. Se esse for o seu caso, capriche no áudio: ruído de fundo é o principal motivo de reprovação. Faça um teste gravando e ouvindo antes de enviar. Não precisa de currículo elaborado, o que importa é a qualidade das primeiras gravações."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "toloka",
@@ -251,7 +262,8 @@
         "o_que_faz": "Você grava vídeos em primeira pessoa fazendo tarefas de casa, como lavar louça, cozinhar, dobrar roupa, passar aspirador, cuidar do jardim ou passear com o cachorro. O celular fica preso na cabeça e filma exatamente o que você vê. Os vídeos treinam sistemas de IA e robôs a entender como as pessoas lidam com objetos no mundo real. É por projeto, sem horário fixo, e paga até o equivalente a US$ 6 por hora.",
         "requisitos": "Celular que grave em 1080p a 30 quadros por segundo ou mais, com lente grande angular (0,5x): iPhone 12 ou mais novo, Google Pixel 6 ou superior, ou Samsung Galaxy S21 ou superior. É preciso prender o aparelho na altura da testa, levemente inclinado para baixo, e usar o aplicativo \"D&A\" para gravar e enviar. Os vídeos precisam ser nítidos, estáveis, bem iluminados e ter pelo menos 15 segundos.",
         "dica_cv": "Não é vaga de currículo, e sim de cadastro e qualidade de gravação. Confira se o seu celular tem a lente 0,5x antes de se inscrever. Vale investir num suporte de cabeça barato para celular, porque segurar na mão não serve. Grave de dia ou com a casa bem iluminada e faça as tarefas de verdade, sem pausas longas."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "toloka",
@@ -271,7 +283,8 @@
         "o_que_faz": "Você grava vídeos em primeira pessoa fazendo tarefas comuns de casa, como cozinhar, limpar, organizar espaços e lavar roupa. Nada de estúdio ou equipamento especial: é o seu celular, a sua rotina e o ponto de vista dos seus olhos. Os vídeos treinam sistemas de IA e robótica a entender como as pessoas fazem as coisas. Você grava quando quiser e recebe US$ 6 por hora de conteúdo aprovado, com bônus na primeira hora aprovada.",
         "requisitos": "Não exige experiência anterior. Precisa de iPhone 12 ou mais novo, Google Pixel 6 ou superior, ou Samsung Galaxy S21 ou superior, além de acesso à internet e inglês básico para entender as instruções. Só o conteúdo aprovado é pago, então a imagem precisa ser nítida, estável e mostrar a tarefa de verdade.",
         "dica_cv": "Aqui o currículo pesa pouco, então dedique o esforço ao cadastro: informe o modelo exato do celular. Grave um teste curto e assista antes de enviar, conferindo foco, luz e se as suas mãos aparecem no quadro. Se você já se inscreveu em outros projetos de gravação da Toloka, use os mesmos dados para não parecer cadastro duplicado."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "toloka",
@@ -291,7 +304,8 @@
         "o_que_faz": "Você grava vídeos em primeira pessoa das suas tarefas domésticas, com o celular preso na cabeça: lavar louça, dobrar roupa, cozinhar, arrumar a casa, cuidar do quintal. Os vídeos ensinam sistemas de IA e robôs a entender como as pessoas usam objetos no dia a dia. A própria Toloka avisa que é trabalho por projeto e não um emprego: sem horário fixo, você pega sessões quando puder. Pagamento de até o equivalente a US$ 6 por hora.",
         "requisitos": "Celular que grave em 1080p a 30 quadros por segundo ou mais, com lente grande angular (0,5x): iPhone 12 ou mais novo, Google Pixel 6 ou superior, ou Samsung Galaxy S21 ou superior. O aparelho vai na altura da testa, inclinado para baixo para mostrar as mãos, e tudo é gravado e enviado pelo aplicativo \"D&A\". Cada vídeo precisa ter pelo menos 15 segundos e ser nítido, estável e bem iluminado.",
         "dica_cv": "O filtro é o equipamento, não o currículo. Antes de se inscrever, confira se o seu celular tem a lente 0,5x. Um suporte de cabeça para celular faz toda a diferença na aprovação. Evite movimentos forçados ou pausas: a Toloka quer ver a tarefa sendo feita de forma natural."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "oneforma",
@@ -310,7 +324,8 @@
         "o_que_faz": "Você revisa transcrições de áudios longos já prontas, conferindo se o texto está fiel ao que foi dito. Também verifica se cada fala está atribuída à pessoa certa, se as marcações de tempo e a divisão dos trechos estão corretas, e sinaliza problemas no áudio conforme as regras do projeto. O trabalho é remoto e pago por hora, com valor fixo.",
         "requisitos": "Português brasileiro nativo, porque o projeto contrata falantes nativos de 31 idiomas. Atenção a detalhe, boa escuta e disposição para seguir diretrizes detalhadas. Computador, internet estável e um bom fone de ouvido são essenciais para esse tipo de revisão.",
         "dica_cv": "Por ser uma vaga de revisão, a OneForma busca quem já tem prática com transcrição. Cite experiências com transcrição, legendagem ou revisão de texto, e se possível o volume de horas de áudio que você já trabalhou. Os testes de entrada costumam cobrar as regras do guia à risca, então leia tudo antes de começar."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "oneforma",
@@ -329,7 +344,8 @@
         "o_que_faz": "Você transcreve áudios longos de podcast, identifica e rotula quem está falando em cada trecho, insere marcações de tempo e avalia a qualidade da gravação. Esse material vira base de treino para modelos de fala multilíngues. É trabalho remoto, pago por hora trabalhada, com 36 combinações de idioma e localidade disponíveis no projeto.",
         "requisitos": "Domínio nativo ou fluente do idioma escolhido e ouvido treinado para separar vozes, sotaques e falas sobrepostas. Digitação rápida e precisa, com cuidado em pontuação, nomes próprios e sincronia dos horários. Computador com internet estável e fone de ouvido de qualidade razoável. Como em todos os projetos da OneForma, é preciso criar conta na plataforma e passar por uma avaliação de entrada antes de começar.",
         "dica_cv": "Destaque experiência com transcrição, legendagem, digitação, secretariado ou atendimento por áudio, sempre com números, como palavras por minuto ou minutos de áudio transcritos por hora. Cite pelo nome as ferramentas que você já usou, por exemplo Express Scribe, oTranscribe, Audacity, Subtitle Edit ou plataformas de legenda. Se você conhece regras de transcrição verbatim e não verbatim, escreva isso, porque mostra que você entende o vocabulário da área."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "oneforma",
@@ -348,7 +364,8 @@
         "o_que_faz": "Você avalia respostas de referência geradas por IA em vários idiomas e também as rubricas usadas para dar nota nessas respostas. Na prática, é apontar erros críticos, checar se o critério de avaliação faz sentido e sugerir melhorias para que o processo de correção do modelo fique mais confiável. Trabalho remoto e flexível, pago por hora, aberto a sete combinações de idioma e localidade.",
         "requisitos": "Fluência nativa no idioma do projeto e leitura confortável em inglês, já que as rubricas costumam vir nesse idioma. Raciocínio analítico para julgar com consistência e explicar por escrito o motivo de cada nota. Atenção a erro factual, alucinação, tom inadequado e instrução não cumprida. Disciplina para seguir critérios longos sem mudar o padrão ao longo do dia. Cadastro e teste de qualificação na OneForma.",
         "dica_cv": "Mostre experiência em avaliação, revisão, correção de provas, docência ou qualquer função em que você tenha aplicado critérios de nota. Escreva uma ou duas linhas explicando como você garante consistência, porque é exatamente isso que o projeto compra. Se já fez avaliação de resposta de IA, RLHF, red teaming ou search evaluation, coloque em destaque com o nome da plataforma."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "oneforma",
@@ -367,7 +384,8 @@
         "o_que_faz": "Você adapta conteúdo já traduzido para que a terminologia, o tom e as expressões soem certos na região de destino. É menos tradução e mais ajuste fino cultural, o famoso trabalho de localização, resolvendo casos em que a frase está tecnicamente correta mas soa estranha para quem mora ali. Remoto, com pagamento fixo por item aprovado.",
         "requisitos": "Ser profissional nativo do idioma de destino, com experiência em tradução, edição ou localização. Conhecer as diferenças regionais do idioma, incluindo gírias, formalidade, formatos de data, moeda e unidades. Bom senso para decidir o que mudar e o que preservar, e capacidade de justificar as escolhas. Cadastro e qualificação na OneForma.",
         "dica_cv": "Escreva explicitamente a variante que você domina, por exemplo português do Brasil, e não apenas \"português\", porque a plataforma separa Brasil de Portugal. Dê um exemplo curto de adaptação que você já fez, do tipo trocar um termo de Portugal pelo equivalente brasileiro. Palavras que ajudam na triagem: localização, transcriação, guia de estilo, glossário e adaptação regional."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "oneforma",
@@ -386,7 +404,8 @@
         "o_que_faz": "Você rotula o que o usuário pediu e o que a IA respondeu, classificando a intenção por trás de cada mensagem para que o sistema entenda melhor o que as pessoas querem. É um trabalho de anotação com regras claras e volume constante. Remoto, pago por hora, com expectativa de 30 a 50 horas por mês, então dá para conciliar com outra atividade.",
         "requisitos": "Ser falante nativo do idioma do projeto e conseguir concluir o onboarding e o treinamento antes de pegar tarefas. Disponibilidade real de 30 a 50 horas mensais, o que dá algo entre 7 e 12 horas por semana. Atenção a detalhe e consistência para aplicar a mesma regra da primeira à última tarefa do dia. Leitura de inglês para os guias e cadastro aprovado na OneForma.",
         "dica_cv": "Como a vaga é de longo prazo, deixe clara a sua disponibilidade semanal em números logo no início do perfil. Destaque experiência com anotação, categorização, triagem de tickets, moderação ou atendimento, tudo que envolva classificar mensagens em categorias. Uma frase sobre você seguir guias longos sem perder o padrão pesa bastante aqui."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "oneforma",
@@ -405,7 +424,8 @@
         "o_que_faz": "Você compara parágrafos do texto original com a versão traduzida, decide se a tradução é aceitável e faz o casamento dos trechos correspondentes, seguindo critérios de avaliação definidos pelo cliente. É trabalho por tarefa, remoto, com pagamento fixo por item aprovado, então você encaixa nos horários que quiser.",
         "requisitos": "Ser nativo ou fluente nos idiomas listados no projeto e ler bem em nível de parágrafo, percebendo perda de sentido, omissão e trecho inventado. Capacidade de aplicar uma escala de avaliação sem deixar o gosto pessoal interferir. Ritmo constante, já que o ganho depende do volume aprovado. Cadastro e teste de qualificação na OneForma.",
         "dica_cv": "Deixe os pares de idiomas visíveis no topo do perfil. Destaque revisão, avaliação de qualidade de tradução ou correção de textos, e cite se já trabalhou com critérios formais de avaliação. Como o pagamento é por item, vale mencionar sua produtividade, algo como quantos textos ou páginas você revisa por hora."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "oneforma",
@@ -424,7 +444,8 @@
         "o_que_faz": "Você lê a frase original, compara com a tradução e dá uma nota de qualidade seguindo uma escala definida. O foco é frase a frase, o que torna o trabalho mais rápido e mecânico do que revisar textos longos. Remoto, pago por item aprovado.",
         "requisitos": "Ser falante nativo do idioma de destino e ter proficiência sólida no idioma de origem. Consistência ao aplicar a escala de notas, porque a plataforma mede a sua concordância com outros avaliadores. Atenção a erro de sentido, termo trocado, número errado e omissão. Cadastro e aprovação no teste de qualificação da OneForma.",
         "dica_cv": "Informe o par de idiomas e o seu nível em cada um, de preferência com certificação se tiver. Destaque experiência em revisão, avaliação ou controle de qualidade de tradução. Se você já participou de projetos com escalas de nota, LQA ou MQM, cite pelo nome. Nos primeiros lotes, prefira acertar o critério a correr, porque a nota de consistência define se você continua no projeto."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "oneforma",
@@ -443,7 +464,8 @@
         "o_que_faz": "Você avalia resultados de busca em loja de aplicativos e em serviços de música, julgando se o que aparece é útil, se corresponde à intenção de quem buscou e se a experiência faz sentido. Na prática, é usar o iPhone ou iPad, fazer buscas indicadas e dar notas seguindo diretrizes. Remoto, pago por item aprovado.",
         "requisitos": "Ter um Apple ID ativo e um dispositivo iOS, condição eliminatória do projeto, e morar em uma localidade elegível. Bom conhecimento de aplicativos, artistas e cultura pop local, porque muita avaliação depende de saber o que o usuário provavelmente queria. Atenção a detalhe e disciplina para seguir diretrizes longas. Cadastro e qualificação na OneForma.",
         "dica_cv": "Diga logo que você tem iPhone ou iPad e Apple ID ativo, porque é a primeira coisa checada. Cite familiaridade com App Store, Apple Music, Spotify e o cenário musical brasileiro. Se já fez search evaluation, moderação de conteúdo ou pesquisa de mercado, destaque. Reserve um tempo para estudar as diretrizes antes do teste, já que a aprovação depende quase toda dele."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "telus",
@@ -463,7 +485,8 @@
         "o_que_faz": "Você avalia imagens geradas por IA que contêm texto, em duas etapas. Primeiro dá nota para a ortografia, a gramática e o sentido do texto que aparece na imagem. Depois marca com caixas os pontos exatos onde há erros de escrita ou distorções visuais e indica a correção. O projeto é da comunidade de IA da Telus Digital e paga US$ 7,21 por hora.",
         "requisitos": "Português brasileiro nativo ou fluente, já que a vaga busca pessoas para vários idiomas, incluindo o português do Brasil. Inglês para ler as diretrizes, que são longas e detalhadas. Muita atenção a detalhe visual e ortográfico e consistência ao aplicar as mesmas regras em todas as tarefas.",
         "dica_cv": "Destaque experiência com revisão de texto, diagramação, design gráfico ou qualquer função que exija olho treinado para erros. Se você já trabalhou com anotação de imagens ou com ferramentas de marcação, cite isso. Na inscrição, deixe claro que o seu idioma é o português do Brasil, para ser encaminhado ao grupo certo."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "telus",
@@ -483,7 +506,8 @@
         "o_que_faz": "Porta de entrada para quem quer começar a trabalhar com IA. Você ensina sistemas de IA a reconhecer coisas: desenha caixas em volta de objetos em fotos, classifica frases pelo sentido, limpa listas removendo duplicados e erros simples, e compara duas respostas de IA para dizer qual é melhor. O trabalho faz parte da comunidade de IA da Telus Digital e paga US$ 10 por hora.",
         "requisitos": "Português brasileiro nativo. Não precisa de formação técnica nem de experiência anterior com IA. É preciso ter atenção a detalhe, seguir instruções com cuidado e ter computador com internet estável. Inglês ajuda para ler as orientações da plataforma.",
         "dica_cv": "É uma das vagas mais acessíveis do hub, ótima para quem está começando. No currículo, valorize qualquer trabalho que exigiu organização, conferência de dados ou atendimento. Faça os testes de entrada com calma: nessa área, acertar o critério vale mais que ser rápido."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "telus",
@@ -503,7 +527,8 @@
         "o_que_faz": "Você ajuda a melhorar sistemas de reconhecimento de fala e vozes sintéticas em português. As tarefas incluem avaliar vozes geradas por IA (naturalidade, pronúncia, ritmo e emoção), corrigir transcrições automáticas e editar áudios: cortar, dividir, reduzir ruído e ajustar silêncios. Também analisa gravações com ferramentas de forma de onda e espectrograma para achar problemas de qualidade. Pagamento de US$ 6 por hora.",
         "requisitos": "Português brasileiro nativo. Experiência com produção de áudio, análise de fala, linguística ou tecnologia de voz. Familiaridade com editores de áudio e noções técnicas como volume, ruído de fundo, clipping e distorção. Bom ouvido e atenção a detalhe para perceber erros sutis de pronúncia e entonação.",
         "dica_cv": "Cite os programas de áudio que você usa, como Audacity, Adobe Audition, Reaper ou similares, e dê exemplos do que já editou. Se tiver experiência com transcrição, locução, podcast ou linguística, coloque em destaque. Quem já avaliou vozes de IA ou fez testes de TTS deve mencionar isso logo no início."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "telus",
@@ -523,7 +548,8 @@
         "o_que_faz": "É uma tarefa curta e pontual, não um trabalho contínuo. A Telus convida pais e responsáveis por adolescentes de 13 a 17 anos a participar de uma coleta de dados online que ajuda a desenvolver sistemas de verificação de idade, usados para impedir que menores acessem conteúdo inadequado. A participação leva cerca de 30 minutos, é feita de casa e envolve confirmar informações básicas para verificação de identidade. Pagamento de US$ 20 por unidade concluída.",
         "requisitos": "Ser pai, mãe ou responsável por adolescente na faixa de 13 a 17 anos. Computador ou celular com internet e disposição para passar por uma etapa de confirmação de identidade. Inglês básico para acompanhar as instruções. Por ser tarefa única, não há meta de horas nem continuidade garantida.",
         "dica_cv": "Não é uma vaga de currículo, é um cadastro de participação. Antes de concluir, leia com atenção quais dados serão pedidos e como serão usados, porque a tarefa envolve verificação de identidade. Faça o processo apenas pelo site oficial da Telus International AI, com a conta que você já usa na plataforma, e desconfie de qualquer pedido fora dele. Como o pagamento é por unidade, encare como um extra rápido, não como fonte de renda."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -543,7 +569,8 @@
         "o_que_faz": "Você conversa com modelos de IA em português falado no Rio de Janeiro e tenta fazê-los errar, testando gramática, sintaxe, morfologia, semântica, uso de tempos verbais, ordem das palavras e variação de estilo. Cada falha encontrada é documentada de forma que possa ser reproduzida, com explicação do que saiu errado e por quê. Também entram sugestões de melhoria nos prompts e nas métricas de avaliação. Freelance remoto, com faixa de US$ 6 a US$ 65 por hora definida conforme experiência e localização.",
         "requisitos": "Domínio profundo do português falado no Rio, incluindo gírias, entonação e expressões que só quem é da região usa naturalmente. Graduação em letras, linguística ou área próxima é o ideal, mas fluência nativa somada a experiência em ensino, tradução ou projetos linguísticos comunitários substitui o diploma. Inglês para ler as instruções e, principalmente, capacidade de explicar o seu raciocínio por escrito, o que a empresa chama de mostrar o seu trabalho. Computador seguro e internet rápida por sua conta, sem benefícios de CLT.",
         "dica_cv": "Currículo em inglês, mas com exemplos concretos de português carioca, do tipo apontar uma expressão que um modelo usaria errado. Destaque ensino de português, revisão, tradução, redação ou pesquisa em linguística. Vale saber que o anúncio é um modelo genérico reaproveitado e cita coisas que não existem em português, como sistema de casos e declinações, então não se assuste: na prática o que conta é o seu domínio real do dialeto. Se você é do Rio ou morou lá por muitos anos, diga isso logo na primeira linha."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -563,7 +590,8 @@
         "o_que_faz": "Você é o filtro final de qualidade linguística de um projeto de dados de IA em português do Brasil. Isso inclui revisar e anotar saídas do modelo procurando erro gramatical, frase artificial e escorregão cultural, atuar como conferência durante a produção e, além disso, transformar os padrões de erro que você identifica em materiais de orientação para o resto da equipe. É uma função autônoma, mais sênior que uma anotação comum. Faixa de US$ 6 a US$ 65 por hora, como prestador de serviço independente.",
         "requisitos": "Português do Brasil comprovado em nível C1 ou C2 e experiência de trabalho ou formação em linguística, educação ou outra área que exija rigor com a língua. Pede experiência anterior comprovável em avaliação ou anotação de dados humanos. Também é preciso saber transformar retorno solto e tendências de qualidade em documentos organizados e úteis, o que exige boa escrita didática. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Deixe claro que é português do Brasil e informe o nível C1 ou C2, com certificação se tiver. Este perfil é mais alto que o de anotador comum, então destaque as vezes em que você treinou pessoas, escreveu guia de estilo, montou material de treinamento ou liderou revisão de equipe. Se já trabalhou em plataformas de dados para IA, cite o nome e o tipo de tarefa. Um exemplo curto de documento didático que você criou vale mais que uma lista de adjetivos."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -583,7 +611,8 @@
         "o_que_faz": "É a mesma função de parceiro de alinhamento linguístico da Meridial, aqui na versão aberta para português em geral, sem especificar a variante do Brasil. Você revisa, anota e valida dados de IA olhando gramática, naturalidade e contexto cultural, faz o controle de qualidade durante a produção e cria materiais de orientação a partir das tendências de erro que encontra. Trabalho remoto como prestador de serviço independente, com faixa de US$ 6 a US$ 65 por hora.",
         "requisitos": "Proficiência comprovada em português no nível C1 ou C2 e formação ou experiência em linguística, educação ou área que exija atenção fina ao idioma. Experiência anterior em avaliação ou anotação de dados humanos. Capacidade de trabalhar sozinho e de transformar retorno bruto em documentação clara. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Como o anúncio fala de português sem separar Brasil de Portugal, escreva você mesmo qual variante domina e em que contextos, para não cair na fila errada. Vale se candidatar a esta e à versão específica do Brasil, já que são anúncios diferentes na mesma empresa. Destaque experiência em revisão, ensino de português, tradução e criação de material didático, e cite plataformas de dados para IA em que já trabalhou."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -603,7 +632,8 @@
         "o_que_faz": "Mesma estrutura da vaga de dialeto carioca, aqui voltada ao português falado em São Paulo. Você conversa com modelos avançados de IA, testa como eles lidam com gramática, sintaxe, semântica, ordem das palavras e variação de estilo do falar paulistano, e documenta cada erro de forma reproduzível, sugerindo melhorias nos prompts e nas métricas de avaliação. Freelance remoto, faixa de US$ 6 a US$ 65 por hora.",
         "requisitos": "Conhecimento profundo e vivido do português paulistano, incluindo gírias, ritmo e expressões do cotidiano. Graduação em letras ou linguística é o ideal, mas fluência nativa com experiência em ensino, tradução ou projetos linguísticos comunitários substitui o diploma. Inglês para as instruções e clareza para explicar o próprio raciocínio por escrito. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Diga logo que você é de São Paulo ou mora na região há anos, porque é o critério central. Dê um ou dois exemplos concretos de expressão paulistana e de como um modelo erraria ao usá-la. Assim como na versão carioca, o anúncio é um modelo genérico e menciona conceitos que não existem em português, como declinações, então ignore essa parte e foque no seu domínio real do falar local. Se você domina os dois dialetos, candidate-se aos dois anúncios."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -623,7 +653,8 @@
         "o_que_faz": "Você avalia modelos de IA que conversam por voz, simulando atendimentos reais de clientes em áreas como reserva de voos, serviços financeiros e telecomunicações. Na prática você faz dramatizações por áudio, testa se o modelo conclui a tarefa, se soa natural e se entende o que foi dito, e ainda avalia a parte técnica, checando se ele lida bem com estruturas JSON, funções, métodos e lógica simples. O resultado alimenta bases de áudio de alta qualidade. Faixa de US$ 6 a US$ 65 por hora, remoto.",
         "requisitos": "Proficiência nativa ou bilíngue no idioma do projeto, com boa fala, escuta, leitura e escrita, já que você vai conduzir simulações por voz. Experiência profissional comprovada em atendimento ao cliente complexo, suporte técnico ou avaliação de IA conversacional. Noção básica de programação, o suficiente para entender JSON, funções e métodos. Microfone de boa qualidade é exigência formal, além de computador seguro e internet estável.",
         "dica_cv": "Esta vaga cruza dois mundos, então mostre os dois: atendimento ou suporte técnico de um lado, e familiaridade com JSON e lógica do outro, mesmo que básica. Descreva os setores em que você atendeu, porque o projeto cita viagem, finanças e suporte técnico. Informe o modelo do microfone e diga que grava em ambiente silencioso. Se você tem desenvoltura para falar em voz alta e improvisar num roteiro, deixe isso explícito, já que boa parte do trabalho é dramatização."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -643,7 +674,8 @@
         "o_que_faz": "Você contribui com dados em português do Brasil em vários formatos, o que inclui texto, áudio, imagem e vídeo, com gravações da sua voz e da sua imagem. O trabalho principal é conversar com modelos de IA testando fonética, morfologia, sintaxe, semântica, pragmática, concordância, acentuação e expressões coloquiais, verificando a precisão das respostas e registrando os erros de forma reproduzível. Faixa de US$ 6 a US$ 65 por hora, remoto, nível de entrada.",
         "requisitos": "Ter 18 anos ou mais e aceitar os termos de consentimento, já que o projeto envolve fornecer voz e imagem. Formação em letras, linguística ou área próxima é o ideal, e experiência docente ou em análise linguística conta pontos. Inglês para as diretrizes e clareza para explicar o raciocínio por escrito. O material enviado deve conter apenas você, sem terceiros nem informações pessoais sensíveis. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Antes de aceitar, leia o termo de consentimento com atenção, porque aqui você cede gravações da sua voz e da sua imagem para treino de IA, o que é diferente de um trabalho só de texto. Se estiver confortável, é uma das portas de entrada mais acessíveis da Meridial, já que é nível de entrada. No currículo, destaque ensino de português, revisão, locução ou qualquer experiência diante de câmera e microfone, e informe o seu equipamento de gravação."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -663,7 +695,8 @@
         "o_que_faz": "Você atua como especialista em língua portuguesa do Brasil desafiando modelos avançados de IA em fonética, morfologia, sintaxe, semântica, pragmática e sociolinguística. O dia a dia é conversar com o modelo sobre cenários linguísticos, verificar precisão e coerência, capturar os erros de forma reproduzível e sugerir melhorias nos prompts e nas métricas de avaliação. É a versão mais sênior das vagas de língua da Meridial. Faixa de US$ 6 a US$ 65 por hora, remoto.",
         "requisitos": "Mestrado ou doutorado em letras, linguística ou área próxima é o perfil ideal deste anúncio, que está classificado como pleno a sênior. Publicações revisadas por pares, experiência docente e projetos de análise linguística são sinais valorizados. Inglês para as diretrizes e comunicação clara, com o hábito de mostrar o raciocínio por escrito. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Se você tem pós-graduação na área, este é o anúncio da Meridial em que a titulação mais pesa, então coloque formação e publicações no topo. Se você não tem mestrado, prefira a versão multimodal, que é de nível de entrada, ou as de dialeto. Inclua uma amostra curta de análise linguística escrita, porque vale mais que qualquer descrição genérica."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "meridial",
@@ -683,7 +716,8 @@
         "o_que_faz": "Você grava roteiros em português e avalia falas geradas por IA, dando feedback sobre pronúncia, tom, ritmo e emoção para melhorar vozes sintéticas. Também anota erros e ajuda a refinar os critérios de avaliação e as orientações de design de voz junto com a equipe. É um contrato remoto como freelancer, com pagamento entre US$ 6 e US$ 65 por hora, definido pela sua experiência e localização.",
         "requisitos": "Português fluente e experiência profissional comprovada com locução, dublagem, narração ou atuação. Experiência com treinamento de voz ou anotação linguística é um diferencial. Você precisa ter um bom microfone, ambiente silencioso, computador seguro e internet estável, tudo por sua conta.",
         "dica_cv": "A faixa salarial é enorme, e o que define onde você cai é a experiência comprovada. Inclua o link de um material de demonstração com estilos variados de voz e liste trabalhos com clientes, estúdios ou produções. Cite o seu equipamento de gravação, como modelo do microfone e tratamento acústico. Se já deu aulas de voz ou dicção, isso também conta."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "micro1",
@@ -691,7 +725,7 @@
       "local": "Remoto · Brasil",
       "categoria": "transl",
       "badge": "Tradução",
-      "url": "https://jobs.micro1.ai/post/05b5f054-aa5c-428d-b05e-45d97ec9cdb6",
+      "url": "https://jobs.micro1.ai/post/05b5f054-aa5c-428d-b05e-45d97ec9cdb6?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-09-19",
@@ -703,7 +737,8 @@
         "o_que_faz": "Vaga da micro1 para especialista em português, com foco em transcrição de áudio para treinar IA. O trabalho envolve ouvir gravações e produzir ou revisar textos com precisão, seguindo as regras do projeto. É remoto e paga entre US$ 20 e US$ 36 por hora, uma das melhores faixas para transcrição no hub.",
         "requisitos": "Português brasileiro nativo, prática com transcrição de áudio e muita atenção a detalhe. A micro1 costuma fazer uma entrevista em vídeo conduzida por IA na inscrição, geralmente em inglês. Computador, internet estável e um bom fone de ouvido são essenciais.",
         "dica_cv": "A micro1 seleciona pela entrevista com IA, então prepare-se para falar sobre sua experiência com exemplos concretos: tipos de áudio que já transcreveu, ferramentas que usou e como garante a precisão. Faça a entrevista num lugar silencioso e com boa conexão. No currículo, destaque transcrição, legendagem, revisão e qualquer trabalho anterior com dados de IA."
-      }
+      },
+      "indicacao": true
     },
     {
       "empresa": "micro1",
@@ -711,7 +746,7 @@
       "local": "Remoto · Brasil",
       "categoria": "sme",
       "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/9a37ff42-0165-4992-95af-986223b55fcf",
+      "url": "https://jobs.micro1.ai/post/9a37ff42-0165-4992-95af-986223b55fcf?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
       "commitment": "",
       "fonte": "direto",
       "data_post": "2026-09-07",
@@ -723,7 +758,50 @@
         "o_que_faz": "Vaga da micro1 para transcrever áudios em português que serão usados no treinamento de IA. Você ouve gravações e escreve exatamente o que foi dito, seguindo as regras de formatação do projeto. É remoto e paga entre US$ 10 e US$ 18 por hora.",
         "requisitos": "Português brasileiro nativo, experiência com transcrição de áudio e muita atenção a detalhe. A seleção da micro1 costuma incluir uma entrevista em vídeo conduzida por IA, geralmente em inglês. Computador, internet estável e um bom fone de ouvido.",
         "dica_cv": "Prepare-se para a entrevista com IA contando exemplos reais: que tipo de áudio você transcreveu, quantas horas e com qual ferramenta. Se tiver um teste de transcrição ou certificado de curso, mencione. A micro1 também tem a vaga de Portuguese Language Expert, que paga mais; vale se inscrever nas duas."
-      }
+      },
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Industrial Design CAD Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/e929836f-3c6e-40ef-824d-90d65f99e817?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-11",
+      "data_vista": "2026-09-30",
+      "data_ref": "2026-09-11",
+      "data_oficial": true,
+      "id": "183a139a4e",
+      "resumo": {
+        "o_que_faz": "Vaga da micro1 para especialistas em desenho industrial e CAD. O trabalho envolve interpretar montagens mecânicas no FreeCAD e escrever documentação técnica clara, provavelmente para treinar e avaliar modelos de IA em tarefas de engenharia. É remoto e paga entre US$ 40 e US$ 80 por hora.",
+        "requisitos": "Formação ou experiência em engenharia mecânica ou desenho industrial. Domínio do FreeCAD e capacidade de ler e interpretar montagens complexas. Boa escrita técnica em inglês. A micro1 costuma fazer uma entrevista em vídeo conduzida por IA na seleção.",
+        "dica_cv": "Cite os softwares de CAD que você domina, com destaque para o FreeCAD, e projetos concretos com montagens. Se já produziu documentação técnica, manuais ou desenhos de fabricação, mencione. Prepare-se para explicar seu raciocínio de engenharia na entrevista com IA, em inglês."
+      },
+      "indicacao": true
+    },
+    {
+      "empresa": "micro1",
+      "titulo": "Circuit Design Expert",
+      "local": "Remoto · Mundial",
+      "categoria": "sme",
+      "badge": "Especialista",
+      "url": "https://jobs.micro1.ai/post/40ed9a70-5415-4571-9f7b-6840f0db924a?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+      "commitment": "",
+      "fonte": "direto",
+      "data_post": "2026-09-07",
+      "data_vista": "2026-09-11",
+      "data_ref": "2026-09-07",
+      "data_oficial": true,
+      "id": "583fa38ce4",
+      "resumo": {
+        "o_que_faz": "Vaga da micro1 para especialistas em projeto de circuitos eletrônicos, provavelmente para criar e avaliar tarefas que treinam IA nessa área. O trabalho combina conhecimento de eletrônica com programação em Python. É remoto e está entre as mais bem pagas do hub: de US$ 80 a US$ 150 por hora.",
+        "requisitos": "Experiência sólida em projeto de circuitos eletrônicos e domínio de Python. Formação em engenharia elétrica, eletrônica ou área parecida é o esperado para essa faixa de pagamento. Inglês para a entrevista em vídeo com IA que a micro1 costuma aplicar.",
+        "dica_cv": "Liste projetos reais de circuitos, as ferramentas que você usa (KiCad, Altium, SPICE ou outras) e scripts em Python ligados à eletrônica. Mencione títulos acadêmicos e publicações, se tiver. Na entrevista, explique decisões de projeto com exemplos concretos."
+      },
+      "indicacao": true
     },
     {
       "empresa": "alignerr",
@@ -743,7 +821,8 @@
         "o_que_faz": "Você transcreve áudios em português brasileiro para treinar sistemas de IA a entender como as pessoas falam de verdade. Os áudios são conversas reais, com várias pessoas falando, ruído de fundo, hesitações como \"é...\" e \"tipo...\" e linguagem informal, e você identifica quem está falando e segue regras de formatação. Contrato por hora, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.",
         "requisitos": "Português brasileiro nativo, ouvido treinado para sotaques e expressões coloquiais, e paciência com áudios difíceis. Não precisa de experiência com IA. O anúncio é voltado a quem mora em São Paulo e região, mas o trabalho é todo remoto.",
         "dica_cv": "Currículo em inglês, destacando transcrição, legendagem, closed caption ou revisão. A Alignerr costuma aplicar um teste prático, então treine com áudios de conversa real antes. Informe no cadastro que você mora no Brasil, já que esta versão do anúncio é voltada para cá."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "alignerr",
@@ -763,7 +842,8 @@
         "o_que_faz": "Você ouve áudios em português brasileiro e corrige transcrições feitas por máquina: palavras erradas ou faltando, erros de escrita, pontuação e marcações de tempo. Também sinaliza trechos com áudio ruim ou falas sobrepostas. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.",
         "requisitos": "Português brasileiro nativo com ótimo domínio da escrita, boa escuta e atenção extrema a acentos, vírgulas e tempos. Não precisa de experiência com IA. O anúncio procura pessoas em São Paulo e no resto do Brasil.",
         "dica_cv": "Currículo em inglês. A Alignerr valoriza experiência com transcrição, legendagem, closed caption, estenotipia e linguística. Se você não tem nenhuma delas, destaque revisão de texto e domínio da norma culta com exemplos concretos."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "alignerr",
@@ -783,7 +863,8 @@
         "o_que_faz": "Você avalia textos e traduções em português gerados por IA, apontando erros de tradução, frases pouco naturais, registro inadequado e problemas culturais. Depois sugere versões melhores e escreve um retorno estruturado sobre a qualidade. É remoto, no seu horário, de 10 a 40 horas por semana, pagando entre US$ 20 e US$ 40 por hora.",
         "requisitos": "Português nativo ou quase nativo e boa escrita em português e em inglês. Domínio do português atual em contextos variados e atenção a detalhe. Não precisa de experiência com IA. Experiência com tradução, localização ou revisão é um diferencial.",
         "dica_cv": "Destaque trabalhos com tradução, revisão, redação ou ensino de português, com exemplos. Se você conhece as diferenças entre o português do Brasil e o de Portugal, mencione. A Alignerr tem várias vagas parecidas: escolha a que mais combina com você e capriche nela."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "alignerr",
@@ -803,7 +884,8 @@
         "o_que_faz": "É a vaga irmã da Alignerr, com foco em localização. Você revisa traduções e conteúdos em português gerados por IA, aponta erro de tradução, frase artificial, registro trocado e problema cultural, e sugere versões mais idiomáticas, entregando retorno organizado. Trabalho assíncrono, no seu ritmo, com 10 a 40 horas por semana e faixa de US$ 20 a US$ 40 por hora.",
         "requisitos": "Fluência nativa ou quase nativa em português e boa escrita tanto em português quanto em inglês, que aqui é pedido de forma explícita. Familiaridade com as normas do português do Brasil e de Portugal e com o uso regional. Consistência e atenção a detalhe para avaliar em escala. Não exige experiência prévia com IA. Tradução, localização e adaptação de conteúdo contam como diferencial.",
         "dica_cv": "A diferença para a outra vaga da Alignerr é o peso do inglês e do conhecimento das duas variantes do português, então destaque exatamente isso. Cite pares de idiomas, tipos de material localizados e ferramentas como Trados, memoQ, Phrase ou Smartcat. Vale se candidatar às duas vagas da Alignerr, já que os projetos são diferentes e a faixa de pagamento também."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "alignerr",
@@ -823,7 +905,8 @@
         "o_que_faz": "Voltada a quem tem experiência em ensino ou avaliação de português. Você avalia fala e texto em português gerados por IA quanto a precisão, naturalidade e qualidade pedagógica, e também analisa a produção de estudantes em diferentes níveis de proficiência, do Pré-A1 ao B2+ do quadro europeu. Identifica erros típicos de aprendiz e lacunas didáticas, sugere melhorias e dá retorno estruturado que aprimora modelos de tutoria e de ensino de idiomas. Remoto e assíncrono, com mínimo de 15 horas por semana e faixa de US$ 25 a US$ 30 por hora.",
         "requisitos": "Português nativo, do Brasil ou de Portugal, e inglês em nível C1 ou C2. Experiência ensinando português ou avaliando a produção de alunos é exigência central. Familiaridade com o quadro CEFR e com os padrões de erro de quem está aprendendo. Estar cursando ou ter concluído pelo menos a graduação. Atenção a detalhe e julgamento linguístico consistente. Não exige experiência prévia com IA.",
         "dica_cv": "Esta é a vaga certa se você dá ou já deu aula de português para estrangeiros, mesmo que particular ou em plataforma online. Diga há quanto tempo ensina, para quais níveis e se conhece o CEFR pelo nome. Se já corrigiu provas, elaborou material didático ou trabalhou com avaliação padronizada, destaque. Confirme que consegue as 15 horas semanais mínimas antes de se candidatar, porque é piso e não teto."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "alignerr",
@@ -843,7 +926,8 @@
         "o_que_faz": "Você compara áudios em português brasileiro com transcrições geradas por máquina e corrige tudo que estiver errado: palavras trocadas ou faltando, erros de escrita, pontuação e marcações de tempo. Também aponta trechos com áudio ruim ou falas sobrepostas. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.",
         "requisitos": "Português brasileiro nativo, com excelente domínio da escrita e boa escuta mesmo com áudio de qualidade variável. Paciência para trabalhar palavra por palavra e seguir regras de formatação à risca. Não precisa de experiência com IA. A vaga é remota e sem país fixo.",
         "dica_cv": "A Alignerr cita transcrição, legendagem, closed caption, estenotipia e linguística como experiências valiosas. Se você tem alguma delas, coloque no topo do currículo, em inglês. Se não tem, destaque revisão de texto e atenção a detalhe com exemplos concretos."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "alignerr",
@@ -863,7 +947,8 @@
         "o_que_faz": "Você transforma áudios em português brasileiro em texto preciso, ajudando a IA a entender a fala real. Os áudios têm conversas com várias pessoas, ruído de fundo, hesitações e linguagem informal, e você precisa separar quem está falando e marcar sons e trechos inaudíveis conforme o guia. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.",
         "requisitos": "Português brasileiro nativo, com ouvido treinado para sotaques regionais e expressões do dia a dia. Paciência para áudios difíceis e disciplina para aplicar regras detalhadas sempre do mesmo jeito. Não precisa de experiência com IA. A vaga é remota e sem país fixo.",
         "dica_cv": "Currículo em inglês, destacando transcrição, legendagem ou qualquer trabalho com áudio. Cite a sua familiaridade com sotaques de diferentes regiões do Brasil, porque isso é um diferencial real nesse tipo de projeto. Treine com áudios de conversas antes do teste da Alignerr."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "alignerr",
@@ -874,16 +959,17 @@
       "url": "https://www.alignerr.com/jobs/6032566e-9090-4246-8d34-4cfe3e82f464",
       "commitment": "CONTRACT",
       "fonte": "direto",
-      "data_post": "2026-09-22",
+      "data_post": "2026-09-30",
       "data_vista": "2026-09-30",
-      "data_ref": "2026-09-22",
+      "data_ref": "2026-09-30",
       "data_oficial": true,
       "id": "dc2a3c4873",
       "resumo": {
         "o_que_faz": "Você cria tarefas realistas de suporte ao cliente para treinar e avaliar agentes de IA. Cada tarefa simula um chamado: ler o problema, conferir a configuração da conta, consultar manuais internos e decidir entre resolver ou escalar. Você também escreve os critérios de correção, monta o ambiente da tarefa e resolve cada uma para garantir que a resposta certa é clara. Remoto, de 10 a 40 horas por semana, entre US$ 20 e US$ 50 por hora.",
         "requisitos": "Experiência prática como analista de suporte técnico, engenheiro de suporte ou customer success. Conhecimento de sistemas de chamados, bases de conhecimento e fluxos de escalonamento. Escrita precisa e inglês fluente. A vaga é voltada a profissionais em São Paulo e no resto do Brasil.",
         "dica_cv": "Mostre casos reais: tipos de problema que você resolvia, ferramentas de chamados que usou (Zendesk, Jira, Freshdesk, ServiceNow) e como decidia quando escalar. Se já escreveu manuais, playbooks ou artigos de base de conhecimento, destaque isso, porque é o coração da vaga."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -903,7 +989,8 @@
         "o_que_faz": "Você cria desafios para testar agentes de IA que pesquisam na internet. Primeiro encontra fotos reais de lugares, produtos e mídia ligados ao Brasil, com licença livre ou de sua autoria. Depois corta, cobre ou degrada partes da imagem para esconder o que ela mostra, de um jeito que a IA precise pesquisar em vários passos, com Google Lens ou busca reversa, para descobrir. Para cada desafio você escreve o enunciado em inglês, os critérios de correção e a solução com as fontes.",
         "requisitos": "Português fluente e bom inglês escrito. Saber usar Photoshop ou editor parecido para recortar e mascarar imagens. Habilidade com pesquisa online e cuidado para verificar e documentar a licença de cada foto. Experiência com fotografia ajuda bastante.",
         "dica_cv": "Mostre que você sabe pesquisar e documentar fontes, não só fotografar. Cite experiência com fotografia, edição de imagem, jornalismo ou checagem de fatos. Se você entende de licenças como Creative Commons, mencione. Um portfólio com fotos próprias de lugares brasileiros é um ótimo diferencial."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -923,7 +1010,8 @@
         "o_que_faz": "Você avalia um recurso de personalização do Gemini, o assistente de IA do Google. A ideia é testar se o Gemini usa bem as informações das suas conversas anteriores, do Gmail, das buscas no Google e do YouTube para dar respostas mais úteis. Você cria perguntas a partir das suas próprias experiências e depois analisa as respostas em critérios como embasamento, integração e utilidade. Pagamento de US$ 15 por hora.",
         "requisitos": "Ler e escrever bem em português, que é o idioma do projeto. Aceitar usar a sua conta pessoal principal do Google, e não uma conta de teste, com essas fontes de dados ativadas. Disponibilidade em tempo integral no seu fuso, porque a operação funciona 24 horas. Pensamento analítico e criatividade para montar conversas de várias etapas.",
         "dica_cv": "Pense bem antes de se inscrever: o projeto exige usar a sua conta pessoal do Google com Gmail e histórico ativados. Se estiver tranquilo com isso, destaque experiência com avaliação de IA, testes de produto ou análise de qualidade. Dê exemplos de como você usa assistentes de IA no dia a dia, porque isso mostra que você sabe criar boas perguntas."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -943,7 +1031,8 @@
         "o_que_faz": "Você cria conversas simuladas entre uma pessoa e um assistente de IA que usa ferramentas como agenda, e-mail, mapas e armazenamento na nuvem. Você faz os dois papéis: escreve o que o usuário pede e como o assistente responde, decidindo quando ele deve chamar cada ferramenta. As conversas ensinam a IA a completar tarefas possíveis, reconhecer as impossíveis e conversar bem quando não precisa de ferramenta. O trabalho é para um grande laboratório de IA.",
         "requisitos": "Noções de programação em Python, Java ou JavaScript e entendimento de como funcionam chamadas de função e APIs. Excelente escrita, raciocínio lógico e atenção à coerência em conversas longas. Inglês fluente, já que esse tipo de projeto costuma ser conduzido nesse idioma.",
         "dica_cv": "Destaque experiência com APIs, integrações ou automações, mesmo que simples, e mostre que você escreve bem. Se já trabalhou com treinamento de IA, criação de prompts ou roteiros de chatbot, coloque no topo. Um exemplo curto de conversa bem estruturada no portfólio pode fazer diferença."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -963,7 +1052,8 @@
         "o_que_faz": "Você atua como analista de dados em projetos que medem o desempenho de sistemas de aprendizado de máquina. O trabalho envolve analisar dados gerados por treinamento e testes de modelos, definir e calcular métricas, investigar falhas e casos extremos, e escrever código em Python e SQL para gerar relatórios. Também ajuda engenheiros e pesquisadores a criar cenários de avaliação realistas.",
         "requisitos": "Pelo menos 3 anos como analista de dados ou engenheiro focado em análise. Domínio de Python para análise de dados e experiência sólida com SQL e bancos relacionais. Familiaridade com aprendizado de máquina e com avaliação de modelos. Inglês fluente.",
         "dica_cv": "É uma vaga técnica e sênior. Liste as bibliotecas que você usa (pandas, numpy, scikit-learn), projetos em que definiu métricas e exemplos de problemas que encontrou em dados. Um link para o GitHub com análises reproduzíveis vale mais que qualquer descrição. Currículo em inglês."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -983,7 +1073,8 @@
         "o_que_faz": "Você cria, revisa e melhora as instruções que orientam sistemas de IA a usar ferramentas como Slack, PayPal e outros serviços. Isso envolve ler esquemas de API em JSON, fazer consultas simples em SQL para checar dados, escrever políticas de uso e garantir que as respostas da IA sejam seguras e adequadas em vários idiomas e países. É uma mistura de engenharia de prompt, criação de regras e segurança.",
         "requisitos": "Saber ler JSON e esquemas de API e ter noções básicas de SQL. Capacidade de escrever políticas e diretrizes claras e bom raciocínio crítico. Conhecimento sobre moderação de conteúdo e segurança é um diferencial. Inglês fluente e boa comunicação escrita.",
         "dica_cv": "Destaque qualquer experiência com APIs, automação, moderação de conteúdo ou criação de regras e processos. Se você já escreveu prompts complexos ou documentação técnica, dê exemplos. Mencione os idiomas que domina, porque o projeto cobre várias regiões."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -1003,7 +1094,8 @@
         "o_que_faz": "Você revisa trabalhos entregues por outros colaboradores e confere se seguem os padrões de qualidade e os critérios do projeto. Aponta erros, inconsistências e lacunas, escreve um retorno claro e acompanha indicadores de qualidade para identificar problemas que se repetem. Também ajuda a melhorar checklists e processos de avaliação. Contrato remoto, com cerca de 40 horas por semana e pagamento entre US$ 20 e US$ 50 por hora.",
         "requisitos": "Experiência comprovada em controle de qualidade, garantia de qualidade ou outra função de revisão. Atenção a detalhe, boa escrita para dar feedback construtivo e facilidade com regras que mudam rápido. Internet estável e local de trabalho silencioso. Inglês fluente, já que a equipe é internacional.",
         "dica_cv": "Currículo em inglês, com exemplos de revisão: o que você conferia, com que critérios e que melhorias trouxe. Experiência com anotação de dados ou avaliação de conteúdo é um diferencial. A Mercor seleciona com entrevista em vídeo por IA, então pratique contar essas experiências em inglês."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "mercor",
@@ -1023,47 +1115,8 @@
         "o_que_faz": "Painel de especialistas em defesa química para testar a segurança de modelos de IA. Você escreve perguntas técnicas classificadas como inofensivas, de uso duplo ou adversariais, avalia se a IA respondeu o que devia e recusou o que era perigoso, e escreve a resposta de referência com a justificativa técnica. O pagamento é por tarefa, entre US$ 65 e US$ 75.",
         "requisitos": "Experiência institucional com ameaças químicas pelo lado da defesa: contramedidas, proteção, detecção, descontaminação, toxicologia de agentes químicos ou trabalho ligado à Convenção sobre Armas Químicas. Escrita técnica clara para leigos. Experiência com testes adversariais em IA é um diferencial. Inglês fluente.",
         "dica_cv": "Vaga muito específica, para quem trabalhou em institutos de pesquisa, forças armadas, defesa civil ou laboratórios da área. Envie amostra de escrita técnica, artigo publicado ou parecer. O trabalho envolve ler e escrever sobre cenários de uso indevido por longos períodos, então avalie se isso é confortável para você."
-      }
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Industrial Design CAD Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/e929836f-3c6e-40ef-824d-90d65f99e817",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-11",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-11",
-      "data_oficial": true,
-      "id": "183a139a4e",
-      "resumo": {
-        "o_que_faz": "Vaga da micro1 para especialistas em desenho industrial e CAD. O trabalho envolve interpretar montagens mecânicas no FreeCAD e escrever documentação técnica clara, provavelmente para treinar e avaliar modelos de IA em tarefas de engenharia. É remoto e paga entre US$ 40 e US$ 80 por hora.",
-        "requisitos": "Formação ou experiência em engenharia mecânica ou desenho industrial. Domínio do FreeCAD e capacidade de ler e interpretar montagens complexas. Boa escrita técnica em inglês. A micro1 costuma fazer uma entrevista em vídeo conduzida por IA na seleção.",
-        "dica_cv": "Cite os softwares de CAD que você domina, com destaque para o FreeCAD, e projetos concretos com montagens. Se já produziu documentação técnica, manuais ou desenhos de fabricação, mencione. Prepare-se para explicar seu raciocínio de engenharia na entrevista com IA, em inglês."
-      }
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Circuit Design Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/40ed9a70-5415-4571-9f7b-6840f0db924a",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "583fa38ce4",
-      "resumo": {
-        "o_que_faz": "Vaga da micro1 para especialistas em projeto de circuitos eletrônicos, provavelmente para criar e avaliar tarefas que treinam IA nessa área. O trabalho combina conhecimento de eletrônica com programação em Python. É remoto e está entre as mais bem pagas do hub: de US$ 80 a US$ 150 por hora.",
-        "requisitos": "Experiência sólida em projeto de circuitos eletrônicos e domínio de Python. Formação em engenharia elétrica, eletrônica ou área parecida é o esperado para essa faixa de pagamento. Inglês para a entrevista em vídeo com IA que a micro1 costuma aplicar.",
-        "dica_cv": "Liste projetos reais de circuitos, as ferramentas que você usa (KiCad, Altium, SPICE ou outras) e scripts em Python ligados à eletrônica. Mencione títulos acadêmicos e publicações, se tiver. Na entrevista, explique decisões de projeto com exemplos concretos."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1083,7 +1136,8 @@
         "o_que_faz": "Você testa a segurança de sistemas de IA que editam imagens. O trabalho é classificar pedidos de edição e os resultados gerados de acordo com um guia detalhado e categorias de risco, como imagens realistas de pessoas, rosto de pessoas reais, menores de idade, conteúdo sexual, violência, discurso de ódio e atividades ilegais. Você também cria testes para descobrir onde as proteções falham e escreve justificativas. É contrato por projeto, sem vínculo empregatício.",
         "requisitos": "Capacidade analítica e bom julgamento para aplicar regras de segurança em casos ambíguos. Criatividade para pensar em formas de burlar as proteções da IA. Escrita clara para justificar cada decisão. Inglês fluente. É importante estar preparado para lidar com conteúdo sensível.",
         "dica_cv": "Destaque experiência com moderação de conteúdo, confiança e segurança (trust & safety), políticas ou avaliação de IA. Se já fez testes adversariais (red teaming) ou análise de riscos, coloque em primeiro lugar. Considere com cuidado o tipo de conteúdo antes de aceitar: o trabalho envolve temas pesados."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1103,7 +1157,8 @@
         "o_que_faz": "Você escreve textos profissionais de marketing que servem como exemplos para treinar IA. São casos reais de negócio, como campanhas, e-mails, estratégias de marca e análises de mercado, escritos com tom profissional, estrutura clara e objetivo definido. A Turing aceita especialistas em dezenas de áreas do marketing, de SEO e mídia paga a marketing de influência e comunicação corporativa.",
         "requisitos": "Experiência prática em pelo menos uma área do marketing. Escrita excelente em inglês. Conhecimento das práticas de marketing dos Estados Unidos e das regras e leis que se aplicam por lá, como publicidade e privacidade de dados.",
         "dica_cv": "Escolha as duas ou três áreas do marketing em que você é mais forte e dê exemplos concretos com resultados. Anexe amostras de textos em inglês, porque a escrita é o que será avaliado. Se já trabalhou com clientes ou marcas dos Estados Unidos, deixe isso em destaque."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1123,7 +1178,8 @@
         "o_que_faz": "Você avalia um recurso de personalização do Gemini, o assistente de IA do Google, em inglês. A ideia é testar se o Gemini usa bem as informações das suas conversas anteriores, do Gmail, das buscas no Google e do YouTube para dar respostas mais relevantes. Você cria perguntas a partir das suas experiências e analisa as respostas em critérios como embasamento, integração e utilidade.",
         "requisitos": "Inglês avançado de leitura e escrita, já que é o idioma do projeto. Aceitar usar a sua conta pessoal principal do Google, e não uma conta de teste, com essas fontes de dados ativadas. Disponibilidade em tempo integral no seu fuso, porque a operação funciona 24 horas. Pensamento analítico e criatividade para montar conversas.",
         "dica_cv": "Existe uma versão desta vaga em português, que pode ser mais fácil de conseguir para quem é brasileiro. Nas duas, o projeto usa a sua conta pessoal do Google, então pense se você está confortável com isso. No currículo, destaque avaliação de IA, testes de produto ou análise de qualidade, com exemplos em inglês."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1143,7 +1199,8 @@
         "o_que_faz": "Você cria perguntas difíceis que testam a capacidade de uma IA de buscar, analisar e raciocinar sobre dados estruturados, como tabelas. Depois avalia as respostas quanto à precisão, lógica e completude, identifica erros, contradições e informações inventadas, e documenta tudo com explicações baseadas em evidências.",
         "requisitos": "Mestrado ou doutorado em qualquer área. Pelo menos 3 anos de experiência profissional, em pesquisa ou em docência. Forte capacidade analítica e pensamento crítico. Inglês escrito excelente.",
         "dica_cv": "O mestrado é eliminatório, então coloque o título e a área logo no início. Destaque experiência com análise de dados, pesquisa ou ensino, mostrando que você sabe verificar informações com rigor. Se já usa IA no trabalho e percebe quando ela erra, dê exemplos."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1163,7 +1220,8 @@
         "o_que_faz": "Você analisa vídeos curtos e imagens e descreve em detalhe o que aparece: pessoas, objetos, ambientes, ações, emoções e a relação entre eles. Nos vídeos, também descreve a sequência dos acontecimentos, as mudanças de cena e as interações. Além disso, confere se descrições geradas por IA estão corretas. O trabalho treina modelos a entender o mundo visual como as pessoas entendem.",
         "requisitos": "Inglês avançado de leitura e escrita, já que as descrições são feitas nesse idioma. Muita atenção a detalhe e capacidade de seguir instruções precisas. Familiaridade com ferramentas básicas de computador. Experiência anterior com anotação de imagens ou vídeos é um diferencial.",
         "dica_cv": "Como tudo é escrito em inglês, capriche na escrita do próprio currículo. Destaque experiência com anotação de dados, audiodescrição, legendagem, fotografia, cinema ou crítica de arte, que mostram olhar treinado. Se já descreveu imagens para acessibilidade, mencione."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1183,7 +1241,8 @@
         "o_que_faz": "Você cria e revisa desafios baseados em jogos de tabuleiro para treinar e avaliar o raciocínio de IAs. O trabalho envolve analisar situações de jogo, árvores de decisão e sistemas de regras, avaliar se as respostas da IA estão corretas e bem justificadas, e identificar erros de lógica ou violações de regras. Também ajuda a montar critérios de avaliação e bancos de testes.",
         "requisitos": "Graduação em computação, matemática, ciência cognitiva, design de jogos, filosofia, economia ou área analítica. Pelo menos 2 anos de experiência em design de jogos de tabuleiro, testes de jogos, comunidades de jogos de mesa ou ambientes de estratégia. Conhecimento de lógica, probabilidade, teoria dos jogos e regras complexas. Inglês fluente.",
         "dica_cv": "Liste os jogos que você domina (xadrez, jogos modernos de tabuleiro, card games, RPG) e sua experiência concreta: torneios, rankings, criação ou teste de jogos, comunidades que organiza. Relacione isso com a sua formação analítica. Se criou algum jogo ou escreveu análises de estratégia, coloque o link."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1203,7 +1262,8 @@
         "o_que_faz": "Você escreve textos profissionais das áreas de educação e academia que servem de exemplo para treinar IA. Podem ser planos de aula, materiais de orientação acadêmica, avaliações, textos de pesquisa e outros documentos, sempre com tom profissional, bem estruturados e embasados. A vaga aceita especialistas de muitas áreas, de pedagogia e ciências humanas a ciências exatas e tecnologia.",
         "requisitos": "Experiência prática em ensino, orientação acadêmica, desenvolvimento de currículo, design instrucional ou pesquisa em alguma área do conhecimento. Escrita excelente em inglês. Familiaridade com as práticas educacionais e os padrões acadêmicos dos Estados Unidos.",
         "dica_cv": "Destaque a sua área de formação e o tempo de docência ou pesquisa, com exemplos de materiais que você criou. Anexe amostras de escrita em inglês. Se já trabalhou com instituições ou programas dos Estados Unidos, ou conhece o sistema educacional de lá, deixe isso bem visível."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1223,7 +1283,8 @@
         "o_que_faz": "Cargo de liderança: você gerencia equipes grandes de engenheiros Python e cientistas de dados que produzem dados para treinar grandes modelos de linguagem, com técnicas como ajuste fino supervisionado e aprendizado por reforço com feedback humano. É responsável pela entrega do projeto do início ao fim, pela qualidade do código e dos dados, pelo contato com os clientes e pelos indicadores de desempenho. É freelancer e remoto, voltado para a América Latina.",
         "requisitos": "Pelo menos 5 anos de engenharia de software com domínio prático de Python. Experiência comprovada gerenciando equipes técnicas grandes com foco em entrega. Conhecimento de como funciona o treinamento de modelos de linguagem. Inglês fluente para lidar com clientes.",
         "dica_cv": "Mostre números: tamanho das equipes que você liderou, prazos e resultados de entrega. Destaque experiência com Python na prática, não só gestão. Se já trabalhou com treinamento de IA, RLHF ou produção de dados, coloque logo no início. Currículo em inglês."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1243,7 +1304,8 @@
         "o_que_faz": "Você lidera equipes que criam conversas para treinar e avaliar grandes modelos de linguagem. São diálogos realistas entre usuários e assistentes de IA que usam ferramentas como agenda, e-mail, mapas e armazenamento na nuvem. Você define fluxos de trabalho e padrões de qualidade, orienta a equipe sobre APIs, JSON e chamadas de função, acompanha prazos e riscos e conversa com as áreas de engenharia e produto.",
         "requisitos": "Pelo menos 5 anos de experiência em engenharia de software, operações técnicas, dados, IA ou área parecida. Experiência liderando ou orientando equipes técnicas. Conhecimento de APIs, JSON e integrações. Inglês fluente.",
         "dica_cv": "Destaque experiência de liderança com números: tamanho das equipes, projetos entregues e melhorias de processo que você implantou. Mostre que entende a parte técnica, citando APIs e integrações com que trabalhou. Experiência com treinamento de IA ou chatbots é um grande diferencial."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1263,7 +1325,8 @@
         "o_que_faz": "Projeto curto de dois dias em que você ouve trechos de áudio e identifica a família do instrumento (cordas, metais, madeiras, percussão, teclas) e o instrumento específico. Você usa áudios de referência para guiar as decisões e segue regras de anotação. O horário é flexível dentro dos dois dias e o ganho estimado é de cerca de US$ 150 a US$ 160 para quem trabalhar os dois dias inteiros, com chance de extensão.",
         "requisitos": "Graduação em música ou área relacionada. Pelo menos 3 anos de experiência com apresentações musicais, produção musical, engenharia de áudio ou trabalho parecido. Ouvido treinado para reconhecer instrumentos pelo som. Bom inglês e disposição para tarefas repetitivas de escuta. Há um teste de qualificação de uns 15 minutos antes de começar.",
         "dica_cv": "Coloque a formação em música logo no início e liste os instrumentos que você toca ou com que trabalha. Cite experiência com produção, mixagem, transcrição musical ou estúdio. Como o projeto dura só dois dias, faça o teste de qualificação assim que puder e use fones de boa qualidade."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1283,7 +1346,8 @@
         "o_que_faz": "Você transforma processos reais de empresas que usam ServiceNow em tarefas estruturadas para treinar IA. Isso inclui criar cenários como atendimento de chamados, controle de prazos de SLA, pedidos de RH e resposta a incidentes de TI, escrever as instruções, representar as tarefas em JSON e checar os dados com SQL. Não é configuração da plataforma: é traduzir o conhecimento de negócio em material de treinamento.",
         "requisitos": "Conhecimento funcional profundo em módulos do ServiceNow, como CSM, ITSM ou HRSD. Capacidade analítica, noções de engenharia de prompt, familiaridade com JSON e SQL básico. Inglês fluente e boa escrita.",
         "dica_cv": "Destaque os módulos do ServiceNow com que você trabalhou e os processos de negócio que conhece a fundo, com exemplos. Certificações ServiceNow ajudam muito. Se já documentou fluxos de trabalho ou escreveu requisitos de negócio, mencione, porque é a habilidade central da vaga."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1303,7 +1367,8 @@
         "o_que_faz": "Você grava a tela do seu computador enquanto executa tarefas passo a passo, como configurar programas, usar ferramentas de produtividade, organizar dados ou explorar aplicativos. Cada tarefa pode ter mais de 100 interações, entre cliques e teclas. As gravações ensinam IAs a entender como as pessoas usam o computador. Às vezes você também precisa marcar ou conferir as ações registradas.",
         "requisitos": "Computador próprio e facilidade para usar programas variados. Capacidade de seguir instruções detalhadas sem pular etapas e de fazer gravações completas e sem interrupções. Organização com nomes de arquivos e documentação. Compromisso com privacidade e confidencialidade. Inglês para entender as instruções.",
         "dica_cv": "Mostre que você domina vários programas: planilhas, editores, ferramentas de gestão e de design. Se já trabalhou com suporte técnico, treinamentos em software ou gravação de tutoriais, destaque. Antes de gravar, feche notificações e qualquer janela com dados pessoais."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1323,7 +1388,8 @@
         "o_que_faz": "Vaga de locução em inglês americano para projetos de IA. Você grava falas dando vida a personagens e histórias, com a emoção, a personalidade e o tom certos. Trabalha a partir de roteiros, recebe direção e refaz gravações conforme o retorno, entregando os arquivos no prazo e no formato pedido. É um contrato flexível, não um emprego fixo.",
         "requisitos": "Experiência anterior como ator ou atriz de voz, com controle vocal, versatilidade e boa dicção em inglês americano. Equipamento de gravação de qualidade para trabalhar de casa. Capacidade de seguir direção e cumprir prazos. Experiência com dublagem ou localização e um material de demonstração de voz são diferenciais.",
         "dica_cv": "Esta vaga é para quem fala inglês americano em nível de locução profissional, não para português. Se esse for o seu caso, envie um material de demonstração com vários estilos e cite o seu equipamento de estúdio. Experiência com dublagem e formação em artes cênicas também contam pontos."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1343,7 +1409,8 @@
         "o_que_faz": "Você analisa conversas entre pessoas e assistentes de IA sobre situações do dia a dia e relacionamentos. Avalia se a IA reuniu contexto suficiente antes de dar uma recomendação, aponta perguntas que deveriam ter sido feitas e separa as informações essenciais das secundárias. Documenta tudo seguindo diretrizes de avaliação estruturadas. A vaga é aberta para a América Latina, entre outras regiões.",
         "requisitos": "De 3 a 5 anos de prática profissional em áreas como serviço social, psicologia, aconselhamento, terapia, pesquisa qualitativa, comunicação, mediação de conflitos ou coaching. Muitas opções pedem pós-graduação ou registro profissional na área, como CRP ou CRESS no Brasil. Inglês fluente.",
         "dica_cv": "Coloque formação, registro profissional e tempo de prática logo no início. Dê exemplos de como você conduz entrevistas ou avaliações de caso, porque essa é a habilidade central: saber o que perguntar antes de orientar alguém. Se já trabalhou com atendimento online ou pesquisa qualitativa, destaque."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1363,7 +1430,8 @@
         "o_que_faz": "Você escreve \"receitas\" que ensinam um assistente de IA dentro do Google Sheets a transformar pedidos simples em aplicativos interativos, como controle de treinos, planejamento de eventos, roteiros de viagem ou cuidados com animais. Você cuida de cada receita do começo ao fim: escreve as orientações sobre o tema, as perguntas que o assistente deve fazer e monta planilhas de referência. O cliente avalia se o texto soa humano de verdade, então não pode parecer escrito por IA.",
         "requisitos": "Experiência prática e real com o tema da receita, como quem já organizou casamentos ou controla os próprios treinos. Escrita excelente em inglês, 100% própria: a IA só pode ajustar a gramática. Domínio do Google Sheets com fórmulas e várias abas. Disponibilidade para plantão nos fins de semana, com 35 a 50 horas por ciclo e reuniões diárias.",
         "dica_cv": "Escolha temas que você vive de verdade e conte as situações práticas que já resolveu. Mostre uma planilha sua bem organizada, como link de exemplo. Escreva a candidatura com a sua própria voz: o cliente reprova texto com cara de IA. Confirme se você consegue cumprir a disponibilidade de fins de semana antes de se inscrever."
-      }
+      },
+      "indicacao": false
     },
     {
       "empresa": "turing",
@@ -1383,7 +1451,8 @@
         "o_que_faz": "Você cria perguntas de pesquisa tão difíceis que nem as IAs mais avançadas, com acesso completo à internet, conseguem responder. Você parte de um fato verificável e constrói a pergunta de trás para frente, com pistas que envolvem datas, pessoas, lugares, organizações e registros. Depois comprova tudo com um registro detalhado das fontes e das buscas óbvias que não levam à resposta. É trabalho de investigação, não de redação.",
         "requisitos": "Mestrado ou mais de 3 anos de experiência. Habilidade comprovada de pesquisa na internet, incluindo registros oficiais, arquivos, bases de dados públicas e documentos em PDF. Precisão ao citar fontes, com página e seção exatas. Inglês escrito nativo ou quase nativo. Experiência com avaliação de IA, biblioteconomia, jornalismo investigativo, checagem de fatos ou OSINT é um diferencial.",
         "dica_cv": "Mostre casos concretos de pesquisa difícil que você resolveu e como documentou as fontes. Destaque experiência com arquivos, cartórios, bases governamentais, jornalismo ou checagem de fatos. Tenha paciência com a papelada: a própria vaga avisa que documentar as evidências é a maior parte do trabalho."
-      }
+      },
+      "indicacao": false
     }
   ]
 }
