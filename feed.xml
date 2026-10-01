@@ -5,13 +5,20 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 01 Oct 2026 14:55:14 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 21:41:57 +0000</lastBuildDate>
     <item>
       <title>Andromeda Delta - Audio Transcription Reviewer Portuguese (Brazil) — Welocalize</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=a5eacac204</link>
       <guid isPermaLink="false">a5eacac204</guid>
       <pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate>
       <description>Projeto piloto de anotação de fala chamado Andromeda Delta. Você ouve trechos curtos de áudio em português e confere as transcrições e os cortes palavra por palavra que um sistema automático gerou, corrigindo o que estiver errado. É um trabalho pequeno: de 3 a 5 horas por semana, somando 15 a 20 horas no total. Pagamento de US$ 5,20 por hora, como freelancer.</description>
+    </item>
+    <item>
+      <title>Senior AI Engineer, Data Quality &amp; Pipeline Automation — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=ffeacd91fe</link>
+      <guid isPermaLink="false">ffeacd91fe</guid>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Mundial · QA</description>
     </item>
     <item>
       <title>Multilingual Image &amp; Text AI Quality Expert — TELUS Digital</title>
@@ -278,13 +285,6 @@
       <guid isPermaLink="false">c8d1aaf983</guid>
       <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
       <description>Você atua como analista de dados em projetos que medem o desempenho de sistemas de aprendizado de máquina. O trabalho envolve analisar dados gerados por treinamento e testes de modelos, definir e calcular métricas, investigar falhas e casos extremos, e escrever código em Python e SQL para gerar relatórios. Também ajuda engenheiros e pesquisadores a criar cenários de avaliação realistas.</description>
-    </item>
-    <item>
-      <title>Prompt &amp; Verifier — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=7dedf39db7</link>
-      <guid isPermaLink="false">7dedf39db7</guid>
-      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Você cria, revisa e melhora as instruções que orientam sistemas de IA a usar ferramentas como Slack, PayPal e outros serviços. Isso envolve ler esquemas de API em JSON, fazer consultas simples em SQL para checar dados, escrever políticas de uso e garantir que as respostas da IA sejam seguras e adequadas em vários idiomas e países. É uma mistura de engenharia de prompt, criação de regras e segurança.</description>
     </item>
   </channel>
 </rss>

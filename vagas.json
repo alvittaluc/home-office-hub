@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-10-01T14:55:14.639054+00:00",
-  "atualizado_br": "01/10/2026 às 14:55",
-  "total": 69,
+  "atualizado_em": "2026-10-01T21:41:57.324799+00:00",
+  "atualizado_br": "01/10/2026 às 21:41",
+  "total": 70,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -1242,6 +1242,22 @@
         "requisitos": "Graduação em computação, matemática, ciência cognitiva, design de jogos, filosofia, economia ou área analítica. Pelo menos 2 anos de experiência em design de jogos de tabuleiro, testes de jogos, comunidades de jogos de mesa ou ambientes de estratégia. Conhecimento de lógica, probabilidade, teoria dos jogos e regras complexas. Inglês fluente.",
         "dica_cv": "Liste os jogos que você domina (xadrez, jogos modernos de tabuleiro, card games, RPG) e sua experiência concreta: torneios, rankings, criação ou teste de jogos, comunidades que organiza. Relacione isso com a sua formação analítica. Se criou algum jogo ou escreveu análises de estratégia, coloque o link."
       },
+      "indicacao": false
+    },
+    {
+      "empresa": "turing",
+      "titulo": "Senior AI Engineer, Data Quality & Pipeline Automation",
+      "local": "Remoto · Mundial",
+      "categoria": "qa",
+      "badge": "QA",
+      "url": "https://work.turing.com/jobs?jobId=110234",
+      "commitment": "ML/Data Engineering",
+      "fonte": "direto",
+      "data_post": "2026-10-01",
+      "data_vista": "2026-10-01",
+      "data_ref": "2026-10-01",
+      "data_oficial": true,
+      "id": "ffeacd91fe",
       "indicacao": false
     },
     {
