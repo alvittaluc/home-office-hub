@@ -241,14 +241,26 @@ def main():
         return
 
     if modo_teste:
+        # O teste usa o mesmo caminho do envio de verdade (campanha), só que
+        # com o "enviar teste" do Brevo, que manda apenas para o dono da conta.
+        # Conta nova do Brevo não vem com e-mail transacional liberado, por
+        # isso o teste não usa /smtp/email.
         conta = brevo("GET", "/account")
-        brevo("POST", "/smtp/email", {
-            "sender": {"name": NOME_DO_REMETENTE, "email": achar_remetente()},
-            "to": [{"email": conta["email"]}],
+        id_lista, _ = achar_lista()
+        if id_lista is None:
+            raise RuntimeError(f"Não achei no Brevo a lista chamada \"{NOME_DA_LISTA}\".")
+        campanha = brevo("POST", "/emailCampaigns", {
+            "name": "[TESTE] Alerta de vagas " + datetime.now().strftime("%d/%m/%Y %H:%M"),
             "subject": "[TESTE] " + assunto_para(amostra),
-            "htmlContent": montar_html(amostra).replace("{{ unsubscribe }}", SITE),
+            "sender": {"name": NOME_DO_REMETENTE, "email": achar_remetente()},
+            "type": "classic",
+            "htmlContent": montar_html(amostra),
+            "recipients": {"listIds": [id_lista]},
         })
-        print(f"  ✓ Teste enviado só para o e-mail da conta Brevo, com {len(amostra)} vaga(s).")
+        brevo("POST", f"/emailCampaigns/{campanha['id']}/sendTest",
+              {"emailTo": [conta["email"]]})
+        print(f"  ✓ Teste enviado só para o e-mail da conta Brevo, com {len(amostra)} vaga(s). "
+              "A campanha de teste fica como rascunho no Brevo e não vai para a lista.")
         return
 
     # Primeira vez: ninguém recebe o catálogo inteiro. Só marca o ponto de
@@ -296,4 +308,9 @@ if __name__ == "__main__":
     except Exception as erro:
         # Falha no e-mail nunca pode derrubar a atualização das vagas.
         print(f"  ⚠ Alerta por e-mail falhou: {erro}")
+        # No GitHub, esta linha faz o motivo aparecer no resumo da execução,
+        # sem precisar abrir o log. A mensagem do Brevo não contém a chave.
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            limpo = " ".join(str(erro).split())[:400]
+            print(f"::error title=Alerta por e-mail::{limpo}")
         sys.exit(1)
