@@ -269,9 +269,14 @@ def main():
         # Conta nova do Brevo não vem com e-mail transacional liberado, por
         # isso o teste não usa /smtp/email.
         conta = brevo("GET", "/account")
-        id_lista, _ = achar_lista()
+        id_lista, inscritos = achar_lista()
         if id_lista is None:
             raise RuntimeError(f"Não achei no Brevo a lista chamada \"{NOME_DA_LISTA}\".")
+        if inscritos == 0:
+            raise RuntimeError(
+                f"A lista \"{NOME_DA_LISTA}\" ainda não tem nenhum inscrito, e o Brevo não "
+                "monta envio para lista vazia. Inscreva um e-mail pelo campo do site, "
+                "confirme pelo link que chega, e rode o teste de novo.")
         campanha = brevo("POST", "/emailCampaigns", {
             "name": "[TESTE] Alerta de vagas " + datetime.now().strftime("%d/%m/%Y %H:%M"),
             "subject": "[TESTE] " + assunto_para(amostra),
