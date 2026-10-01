@@ -3,7 +3,12 @@ name: Atualizar vagas
 on:
   schedule:
     - cron: "0 8 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      teste_email:
+        description: "Mandar um e-mail de TESTE só para o dono da conta Brevo (não envia para a lista)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -23,12 +28,26 @@ jobs:
       - name: Rodar o coletor
         run: python3 coletor.py
 
+      # Falha aqui não pode impedir a atualização das vagas, por isso o
+      # continue-on-error. Sem o secret BREVO_API_KEY o script não faz nada.
+      - name: Avisar as vagas novas por e-mail
+        continue-on-error: true
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: |
+          if [ "${{ inputs.teste_email }}" = "true" ]; then
+            python3 enviar_alerta.py --teste
+          else
+            python3 enviar_alerta.py
+          fi
+
       - name: Salvar as vagas atualizadas
         run: |
           git config user.name "Robô de Vagas"
           git config user.email "actions@github.com"
           git add vagas.json vagas-especificas.json vagas_para_resumo.json datas.json feed.xml
           if [ -f resumos.json ]; then git add resumos.json; fi
+          if [ -f alertas-enviados.json ]; then git add alertas-enviados.json; fi
           if git diff --staged --quiet; then
             echo "Nenhuma mudança nas vagas hoje."
           else
