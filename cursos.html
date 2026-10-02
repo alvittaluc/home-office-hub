@@ -52,7 +52,43 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 }
 .c-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); margin:0; }
 
-.c-trilhas { display:flex; flex-direction:column; gap:22px; max-width:820px; }
+/* trilhas à esquerda e, no computador, o progresso da pessoa à direita */
+.c-corpo { display:grid; grid-template-columns:minmax(0,820px) minmax(0,1fr); gap:26px; align-items:start; }
+.c-trilhas { display:flex; flex-direction:column; gap:22px; min-width:0; }
+
+.c-lado {
+  position:sticky; top:96px; min-width:0;
+  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
+  border-radius:22px; padding:24px 24px 22px;
+}
+.c-lado h2 { font-size:16px; font-weight:600; letter-spacing:-0.012em; color:var(--ink,#10203A); margin:0 0 4px; }
+.c-lado-txt { font-size:13.5px; line-height:1.55; color:var(--ink-2,#54606F); margin:0 0 14px; }
+.c-barra { height:8px; border-radius:99px; background:var(--bg-soft,#F1ECE3); overflow:hidden; }
+.c-barra i { display:block; height:100%; width:0; border-radius:99px; background:var(--signal,#1A4893); transition:width .4s; }
+.c-continuar {
+  display:block; text-align:center; margin:16px 0 0; padding:12px 16px; border-radius:12px;
+  background:var(--signal,#1A4893); color:#fff; font-size:14.5px; font-weight:600; text-decoration:none;
+}
+.c-continuar:hover { filter:brightness(1.08); }
+.c-continuar small { display:block; font-size:12px; font-weight:400; opacity:.85; margin-top:2px; }
+.c-andamento { list-style:none; margin:18px 0 0; padding:14px 0 0; border-top:1px solid var(--line-soft,#EAE4D9); display:grid; gap:9px; }
+.c-andamento li { display:grid; grid-template-columns:1fr auto; gap:10px; align-items:baseline; font-size:13px; color:var(--ink-2,#54606F); }
+.c-andamento a { color:inherit; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.c-andamento a:hover { color:var(--signal,#1A4893); }
+.c-andamento span { font-size:12px; color:var(--ink-3,#8A94A1); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.c-andamento li.feito span { color:#1F7A6E; font-weight:600; }
+.c-lado-nota { font-size:12.5px; line-height:1.5; color:var(--ink-3,#8A94A1); margin:14px 0 0; }
+.c-lado-nota a { color:var(--signal,#1A4893); }
+/* marca de andamento ao lado de cada curso da lista */
+.c-apoio b { font-weight:600; color:var(--signal,#1A4893); }
+.c-apoio b.feito { color:#1F7A6E; }
+
+@media (max-width:1040px){
+  .c-corpo { grid-template-columns:1fr; }
+  .c-trilhas { max-width:820px; }
+  .c-lado { position:static; order:-1; max-width:820px; border-radius:18px; padding:20px 22px; }
+  .c-andamento { display:none; }
+}
 
 .c-trilha {
   background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
@@ -122,6 +158,7 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
       artigos publicados, normas e políticas públicas, com as fontes listadas ao fim de cada curso.</p>
   </div>
 
+  <div class="c-corpo">
   <div class="c-trilhas">
 
     <section class="c-trilha">
@@ -219,6 +256,17 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 
   </div>
 
+  <!-- ── progresso da pessoa (preenchido pelo script do fim da página) ── -->
+  <aside class="c-lado" id="lado" aria-label="Seu progresso nos cursos">
+    <h2>Seu progresso</h2>
+    <p class="c-lado-txt" id="ladoTxt">Nenhuma aula concluída ainda.</p>
+    <div class="c-barra"><i id="ladoBarra"></i></div>
+    <a class="c-continuar" id="ladoBotao" href="curso-fundamentos.html">Começar pelo primeiro curso<small>Fundamentos da Avaliação de IA</small></a>
+    <ul class="c-andamento" id="ladoLista"></ul>
+    <p class="c-lado-nota" id="ladoNota" hidden></p>
+  </aside>
+  </div>
+
   <div class="c-rodape">
     <h3>Por que isso conta</h3>
     <p>Nenhum curso substitui tarefa feita, e nenhuma empresa contrata só por causa dele. O que ele resolve é
@@ -234,5 +282,85 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 
 <script src="layout.js"></script>
 <script>try { montarLayout("cursos"); } catch (e) {}</script>
+<script>
+/* ══════════════════════════════════════════════════════════════
+   PROGRESSO NOS CURSOS
+   Cada curso guarda no navegador quais aulas a pessoa concluiu
+   (chave hoh_curso_<nome>, campo "aulas"). Aqui a gente só lê e
+   soma. Se o navegador não deixar ler, a página fica como estava.
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+  var AULAS = 4;   // toda página de curso tem 4 aulas
+
+  var cursos = [].slice.call(document.querySelectorAll("a.c-curso")).map(function (a) {
+    var arquivo = a.getAttribute("href");
+    var feitas = 0, proxima = 1;
+    try {
+      var est = JSON.parse(localStorage.getItem("hoh_curso_" + arquivo.replace(/^curso-|\.html$/g, "")) || "{}");
+      var aulas = est.aulas || {};
+      for (var n = AULAS; n >= 1; n--) if (aulas[n]) feitas++;
+      for (var m = 1; m <= AULAS && aulas[m]; m++) proxima = m + 1;
+    } catch (e) { /* sem acesso à memória do navegador */ }
+    return { el: a, arquivo: arquivo, nome: a.querySelector(".c-nome").textContent, feitas: feitas, proxima: proxima };
+  });
+  if (!cursos.length) return;
+
+  var total = cursos.length * AULAS;
+  var feitas = cursos.reduce(function (s, c) { return s + c.feitas; }, 0);
+
+  // marca de andamento em cada curso da lista
+  cursos.forEach(function (c) {
+    if (!c.feitas) return;
+    var apoio = c.el.querySelector(".c-apoio");
+    if (!apoio) return;
+    var b = document.createElement("b");
+    if (c.feitas >= AULAS) { b.className = "feito"; b.textContent = "concluído"; }
+    else b.textContent = c.feitas + " de " + AULAS + " aulas feitas";
+    apoio.appendChild(document.createTextNode(" · "));
+    apoio.appendChild(b);
+  });
+
+  // coluna do lado
+  document.getElementById("ladoBarra").style.width = Math.round(100 * feitas / total) + "%";
+  document.getElementById("ladoTxt").textContent = feitas
+    ? feitas + " de " + total + " aulas concluídas, em " + cursos.length + " cursos."
+    : "São " + cursos.length + " cursos e " + total + " aulas. Nenhuma concluída ainda.";
+
+  var botao = document.getElementById("ladoBotao");
+  var emAndamento = cursos.filter(function (c) { return c.feitas > 0 && c.feitas < AULAS; })[0];
+  var naoComecado = cursos.filter(function (c) { return c.feitas === 0; })[0];
+  var alvo = emAndamento || naoComecado;
+  function rotulo(titulo, sub) {
+    botao.textContent = titulo;
+    var s = document.createElement("small"); s.textContent = sub; botao.appendChild(s);
+  }
+  if (!alvo) {
+    botao.href = cursos[0].arquivo;
+    rotulo("Todos os cursos concluídos", "Rever desde o começo");
+  } else if (alvo.feitas > 0 && alvo.proxima <= AULAS) {
+    botao.href = alvo.arquivo + "#aula" + alvo.proxima;
+    rotulo("Continuar na aula " + alvo.proxima, alvo.nome);
+  } else {
+    botao.href = alvo.arquivo;
+    rotulo(feitas ? "Começar o próximo curso" : "Começar pelo primeiro curso", alvo.nome);
+  }
+
+  document.getElementById("ladoLista").innerHTML = cursos.map(function (c) {
+    return '<li' + (c.feitas >= AULAS ? ' class="feito"' : "") + '><a href="' + c.arquivo + '">' + esc(c.nome) + "</a><span>" +
+      (c.feitas >= AULAS ? "concluído" : c.feitas + " de " + AULAS) + "</span></li>";
+  }).join("");
+
+  // quem não tem conta lê a primeira aula de cada curso; o resto pede login
+  try {
+    if (typeof Acesso !== "undefined" && Acesso.trancado()) {
+      var nota = document.getElementById("ladoNota");
+      nota.innerHTML = 'A primeira aula de cada curso é aberta. Para seguir da segunda em diante, <a href="' +
+        Acesso.linkEntrar() + '">entre na sua conta</a>.';
+      nota.hidden = false;
+    }
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>

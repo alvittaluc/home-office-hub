@@ -183,10 +183,11 @@ const Acesso = (function () {
   };
 })();
 
-/* A marca é o arquivo logo.png, que precisa estar na mesma pasta dos HTML.
-   Para trocar a logo no futuro, basta substituir esse arquivo. */
+/* A marca é o arquivo logo.svg, que precisa estar na mesma pasta dos HTML.
+   É um desenho em vetor, então fica nítido em qualquer tamanho. As cópias em
+   imagem (logo.png, favicon e apple-touch-icon) são o mesmo desenho. */
 function marca(tam) {
-  return `<img src="logo.png" alt="Home Office Hub" width="${tam}" height="${tam}"
+  return `<img src="logo.svg" alt="Home Office Hub" width="${tam}" height="${tam}"
     style="width:${tam}px;height:${tam}px;display:block;object-fit:contain;">`;
 }
 

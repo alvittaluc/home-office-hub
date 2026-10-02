@@ -53,6 +53,18 @@
   .num .n .u { color:var(--signal); font-size:17px; }
   .num.amb .n { color:var(--amber); }
   .num .l { font-size:11px; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-3); }
+  /* celular: os números viram uma linha só, para a primeira vaga aparecer
+     sem precisar rolar a tela */
+  @media (max-width:720px){
+    .topo { padding:26px 22px 14px; }
+    .topo h1 { font-size:26px; margin-bottom:11px; }
+    .numeros { gap:5px 16px; padding-top:12px; }
+    .num { flex-direction:row; align-items:baseline; gap:5px; }
+    .num .n { font-size:16px; }
+    .num .n .u { font-size:13px; }
+    .num .l { font-size:12px; letter-spacing:0; text-transform:none; color:var(--ink-2); }
+    .num:nth-child(4) { display:none; }
+  }
 
   /* ═══════════════ BARRA DE FILTROS ═══════════════ */
   .corpo { max-width:var(--wrap); margin:0 auto; padding:0 22px 70px; }
@@ -423,7 +435,17 @@
     font-weight:600; font-size:15px; line-height:1.32; color:var(--ink); letter-spacing:-0.01em;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
   }
-  .v-emp { display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--ink-2); min-width:0; }
+  /* a vaga em uma frase, em português (os títulos vêm em inglês) */
+  .v-frase {
+    font-size:13px; line-height:1.4; color:var(--ink-2);
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .v-emp { display:flex; flex-wrap:wrap; align-items:center; gap:5px 7px; font-size:12.5px; color:var(--ink-2); min-width:0; }
+  /* pagamento anunciado pela empresa; só aparece quando ela informa */
+  .v-emp .selo-pg {
+    font-size:11.5px; font-weight:600; color:#1F7A6E; background:#E4F3F0; border:1px solid #C6E5DE;
+    border-radius:20px; padding:1px 9px; flex-shrink:0; white-space:nowrap;
+  }
   .v-emp .e { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .v-emp .selo-novo {
     font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
@@ -489,6 +511,7 @@
     .v-col .r { font-size:10px; }
     .v-col .r span { display:none; }
     .v-col .v { font-size:13px; font-weight:400; color:var(--ink-2); }
+    .v-frase { white-space:normal; }
     .v-acao { grid-column:2; justify-self:start; color:var(--signal); }
     .vaga .col-area { display:flex; }
   }
@@ -512,6 +535,7 @@
     .v-col .r { font-size:10px; }
     .v-col .r span { display:none; }
     .v-col .v { font-size:13px; font-weight:400; color:var(--ink-2); }
+    .v-frase { white-space:normal; }
     .vaga .v-acao { display:inline-flex; grid-column:2; justify-self:start; color:var(--signal); }
     .vaga .col-area { display:flex; }
   }
@@ -983,14 +1007,21 @@ function linha(v) {
   const destino = `href="vaga.html?id=${encodeURIComponent(v.id || "")}"`;
   const rotulo = 'ver detalhes <span class="arr">→</span>';
   const real = v.empresa_real ? ` · ${esc(v.empresa_real)}` : "";
+  /* frase e pagamento vêm do resumo escrito à mão (resumos.json). Vaga sem
+     esses campos fica exatamente como era. */
+  const r = v.resumo || {};
+  const pg = r.remuneracao
+    ? `<span class="selo-pg" title="Pagamento anunciado pela empresa">${esc(r.remuneracao.replace(/ por hora\b/, "/h"))}</span>` : "";
 
   return `<a class="vaga${nova ? " nova" : ""}" ${destino} data-vid="${esc(v.id || "")}">
     <span class="v-marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e,44)}</span>
 
     <span class="v-nome">
       <span class="v-tit">${esc(v.titulo)}</span>
+      ${r.frase ? `<span class="v-frase">${esc(r.frase)}</span>` : ""}
       <span class="v-emp">
         <span class="e">${esc(e.nome)}${real}</span>
+        ${pg}
         ${nova ? '<span class="selo-novo">nova</span>' : ""}
         ${v.area ? `<span class="selo-area">${esc(v.area)}</span>` : ""}
       </span>

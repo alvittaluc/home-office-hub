@@ -37,6 +37,16 @@
   .co-linha a.sobre:hover { color:var(--signal); }
   .metas { display:flex; gap:8px; flex-wrap:wrap; margin-top:18px; }
   .metas .tag { font-size:11.5px; padding:5px 11px; }
+  /* a vaga em uma frase, em português, logo abaixo do título em inglês */
+  .cabeca h1:has(+ .frase) { margin-bottom:8px; }
+  .cabeca .frase { font-size:16.5px; line-height:1.5; color:var(--ink-2); margin-bottom:18px; }
+  /* pagamento, carga e contrato, na frente do texto */
+  .fatos { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:16px; }
+  .fato { background:var(--panel); border:1px solid var(--line-soft); border-radius:13px; padding:11px 14px; min-width:0; }
+  .fato small { display:block; font-size:10.5px; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-3); margin-bottom:3px; }
+  .fato b { font-size:14.5px; font-weight:600; color:var(--ink); line-height:1.35; }
+  .fato.pg { background:#E4F3F0; border-color:#C6E5DE; }
+  .fato.pg small, .fato.pg b { color:#1F7A6E; }
 
   .parte { margin-bottom:26px; }
   .parte h2 {
@@ -156,10 +166,19 @@ function erro(msg) {
   if (r.requisitos) partes += `<div class="parte"><h2>Requisitos</h2><p>${esc(r.requisitos)}</p></div>`;
   if (!partes) partes = `<div class="parte"><p style="color:var(--ink-3);font-size:14.5px;">Esta vaga ainda não tem resumo detalhado. Clique em candidatar para ver todos os detalhes na página oficial da empresa.</p></div>`;
 
+  /* Os fatos que a pessoa procura primeiro. Só entra o que a empresa informou;
+     se não informou nada, o quadro inteiro não aparece. */
+  const fatos = [
+    ["Pagamento", r.remuneracao, true],
+    ["Carga", r.carga],
+    ["Contrato", r.contrato],
+  ].filter(f => f[1]);
+
   cont.innerHTML = `
     <div class="cabeca">
       <div class="cat">${esc(v.badge || "Vaga")}</div>
       <h1>${esc(v.titulo)}</h1>
+      ${r.frase ? `<p class="frase">${esc(r.frase)}</p>` : ""}
       <div class="co-linha">
         <span class="logo-box" style="background:${e.bg};color:${e.cor};">${logoHtml(e,40)}</span>
         <div><div class="nm">${esc(e.nome)}</div><div class="sb">${esc(e.desc || "")}</div></div>
@@ -167,10 +186,10 @@ function erro(msg) {
       </div>
       <div class="metas">
         <span class="tag">${esc(v.local || "Remoto · Brasil")}</span>
-        ${r.contrato ? `<span class="tag">${esc(r.contrato)}</span>` : ""}
-        ${r.remuneracao ? `<span class="tag sig">${esc(r.remuneracao)}</span>` : ""}
         ${seloData(v)}
       </div>
+      ${fatos.length ? `<div class="fatos">${fatos.map(f =>
+        `<div class="fato${f[2] ? " pg" : ""}"><small>${f[0]}</small><b>${esc(f[1])}</b></div>`).join("")}</div>` : ""}
     </div>
     ${partes}
     <div class="aplic" id="jaApliquei" hidden></div>
