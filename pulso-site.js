@@ -55,6 +55,11 @@
     return dados.destaques.map(d => d.id).filter(Boolean);
   }
 
+  /** Verdadeiro quando a lista foi escolhida à mão pela equipe ("manual": true
+      no pulso.json), e não calculada pelas candidaturas. A página usa isto para
+      não dizer que há movimento medido onde só há escolha da equipe. */
+  function manual() { return !!(dados && dados.manual === true); }
+
   /** Selos de uma vaga, inclusive das que não couberam no destaque. */
   function selos(id) {
     if (!dados || !dados.sinais || !dados.sinais[id]) return [];
@@ -72,7 +77,7 @@
       const chave = lista.indexOf("responde") >= 0 ? "responde" : "alta";
       const s = document.createElement("span");
       s.className = "selo-pulso " + chave;
-      s.title = SELOS[chave].titulo;
+      s.title = manual() ? "Vaga em destaque, escolhida pela equipe do Hub" : SELOS[chave].titulo;
       s.textContent = SELOS[chave].texto;
       onde.appendChild(s);
     });
@@ -214,7 +219,7 @@
   }
 
   window.Pulso = {
-    carregar, destaques, selos, marcar,
+    carregar, destaques, selos, marcar, manual,
     enviar, porEstado, enviarHistorico, tamanhoDoHistorico,
     ligar, desligar, ligado, respondeu,
   };

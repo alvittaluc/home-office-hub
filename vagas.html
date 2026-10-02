@@ -644,7 +644,7 @@
 <script src="alerta-email.js"></script>
 <script src="layout.js"></script>
 <script src="controle-dados.js"></script>
-<script src="pulso-site.js"></script>
+<script src="pulso-site.js?v=2"></script>
 <script>
 montarLayout("vagas");
 
@@ -1345,11 +1345,18 @@ function aplicar() {
   let html = "";
   if (destacadas.length) {
     const lista = `<div class="lista">${destacadas.map(linha).join("")}</div>`;
-    html += `<div class="grupo-titulo"><h2>Em movimento</h2>
-             <span>onde os alunos do Hub estão se candidatando e recebendo resposta</span></div>
+    /* Enquanto o Pulso não mede as candidaturas, a lista é escolhida à mão
+       pela equipe ("manual" no pulso.json), e o texto diz isso. */
+    const aMao = typeof Pulso.manual === "function" && Pulso.manual();
+    html += `<div class="grupo-titulo"><h2>${aMao ? "Em alta" : "Em movimento"}</h2>
+             <span>${aMao ? "as vagas que a equipe do Hub destaca agora"
+                          : "onde os alunos do Hub estão se candidatando e recebendo resposta"}</span></div>
              ${fechado
-               ? Acesso.cortina(lista, "As vagas em movimento são para quem tem conta",
-                   "Veja quais vagas estão recebendo mais candidaturas e quais empresas estão respondendo.")
+               ? (aMao
+                 ? Acesso.cortina(lista, "As vagas em alta são para quem tem conta",
+                     "Veja quais vagas a equipe do Hub está destacando agora.")
+                 : Acesso.cortina(lista, "As vagas em movimento são para quem tem conta",
+                     "Veja quais vagas estão recebendo mais candidaturas e quais empresas estão respondendo."))
                : lista}`;
   }
   if (novas.length) {
