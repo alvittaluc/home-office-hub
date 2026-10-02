@@ -58,6 +58,7 @@
   border-bottom:2px solid transparent; padding:11px 14px; cursor:pointer; white-space:nowrap; }
 .mt-abas button:hover { color:var(--ink,#10203A); }
 .mt-abas button[aria-selected="true"] { color:var(--ink,#10203A); font-weight:600; border-bottom-color:var(--signal,#1A4893); }
+.mt-quantas { font-size:12.5px; font-weight:400; color:var(--ink-3,#8A94A1); margin-left:3px; }
 .mt-conta { display:inline-block; min-width:20px; padding:1px 6px; margin-left:4px; border-radius:99px; font-size:12px; font-weight:600;
   text-align:center; color:#fff; background:var(--signal,#1A4893); }
 .mt-den { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:18px 22px 20px; margin-bottom:12px; max-width:860px; }
@@ -131,17 +132,33 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
                         pedido: "pedido enviado", aprovado: "participando", recusado: "não aceito" };
   const etq = s => `<span class="md-etq ${e(s)}">${e(NOME_STATUS[s] || s)}</span>`;
 
+  /* Mentoria encerrada ou recusada não some: vai sozinha para a aba
+     "Arquivadas", para a lista principal ficar só com o que está em andamento. */
+  const arquivada = m => m.status === "encerrada" || m.status === "recusada";
+  const arquivadas = () => minhas.como_mentor.concat(minhas.como_membro).filter(arquivada);
+
+  function htmlArquivadas() {
+    const cartoes = minhas.como_mentor.filter(arquivada).map(m => cartao(m, etq(m.status)))
+      .concat(minhas.como_membro.filter(arquivada).map(m => cartao(m, etq(m.status))));
+    return `<div class="mt-hero" style="margin-bottom:22px">
+        <h1>Arquivadas</h1>
+        <p class="mt-lead">As mentorias suas que já foram encerradas e os pedidos que não foram aprovados. Nada é apagado:
+          dá para abrir cada uma e reler o mural.</p>
+      </div>
+      <div class="mt-grade">${cartoes.join("")}</div>`;
+  }
+
   function desenhar() {
-    const meus = minhas.como_mentor.map(m => cartao(m, etq(m.status) +
+    const meus = minhas.como_mentor.filter(m => !arquivada(m)).map(m => cartao(m, etq(m.status) +
         (m.pedidos ? ` <span class="md-etq pedido">${m.pedidos} ${m.pedidos === 1 ? "pedido" : "pedidos"}</span>` : "")))
-      .concat(minhas.como_membro.map(m => cartao(m, etq(m.meu_status))));
+      .concat(minhas.como_membro.filter(m => !arquivada(m)).map(m => cartao(m, etq(m.meu_status))));
     const idsMeus = new Set(minhas.como_mentor.concat(minhas.como_membro).map(m => m.id));
     const outras = lista.filter(m => !idsMeus.has(m.id));
 
     tela.innerHTML = `
       ${MD.demo ? `<div class="mt-demo">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : ""}
       ${htmlAbas()}
-      ${aba === "denuncias" ? htmlDenuncias() : `
+      ${aba === "denuncias" ? htmlDenuncias() : aba === "arquivadas" ? htmlArquivadas() : `
       ${topo}
       ${meus.length ? `<div class="mt-tit"><h2>As suas</h2><span>as que você abriu e as de que participa</span></div>
         <div class="mt-grade">${meus.join("")}</div>` : ""}
@@ -163,21 +180,25 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   }
 
   /* ── Abas ──
-     Quem nunca denunciou nada não vê aba nenhuma: a página é só a lista.
-     Quem já denunciou ganha a aba "Suas denúncias", separada das mentorias. */
+     Quem não tem mentoria arquivada nem denúncia não vê aba nenhuma: a página
+     é só a lista. As abas "Arquivadas" e "Suas denúncias" só aparecem para
+     quem tem alguma coisa nelas. */
   let aba = "mentorias";
+  const temAba = nome => nome === "denuncias" ? denuncias.length > 0 : nome === "arquivadas" ? arquivadas().length > 0 : nome === "mentorias";
   function htmlAbas() {
-    if (!denuncias.length) return "";
+    if (!temAba("denuncias") && !temAba("arquivadas")) return "";
     const novas = denuncias.filter(d => esperaVoce(d) || faltaNota(d)).length;
     return `<nav class="mt-abas" role="tablist" aria-label="Partes da página">
       <button type="button" role="tab" data-aba="mentorias" aria-selected="${aba === "mentorias"}">Mentorias</button>
-      <button type="button" role="tab" data-aba="denuncias" aria-selected="${aba === "denuncias"}">Suas denúncias
-        ${novas ? `<span class="mt-conta" title="Há novidade da equipe do Hub">${novas}</span>` : ""}</button>
+      ${temAba("arquivadas") ? `<button type="button" role="tab" data-aba="arquivadas" aria-selected="${aba === "arquivadas"}">Arquivadas
+        <span class="mt-quantas">${arquivadas().length}</span></button>` : ""}
+      ${temAba("denuncias") ? `<button type="button" role="tab" data-aba="denuncias" aria-selected="${aba === "denuncias"}">Suas denúncias
+        ${novas ? `<span class="mt-conta" title="Há novidade da equipe do Hub">${novas}</span>` : ""}</button>` : ""}
     </nav>`;
   }
   function abrirAba(nome) {
-    aba = (nome === "denuncias" && denuncias.length) ? "denuncias" : "mentorias";
-    try { history.replaceState(null, "", aba === "denuncias" ? "#denuncias" : location.pathname + location.search); } catch (err) {}
+    aba = temAba(nome) ? nome : "mentorias";
+    try { history.replaceState(null, "", aba === "mentorias" ? location.pathname + location.search : "#" + aba); } catch (err) {}
     desenhar();
     window.scrollTo(0, 0);
   }
@@ -364,7 +385,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   // as denúncias são um extra: se a leitura falhar, a página abre sem elas
   try { denuncias = (await MD.minhasDenuncias()) || []; } catch (err) { console.warn(err); }
   espera.hidden = true; tela.hidden = false;
-  if (location.hash === "#denuncias" && denuncias.length) aba = "denuncias";
+  if (["denuncias", "arquivadas"].indexOf(location.hash.slice(1)) >= 0 && temAba(location.hash.slice(1))) aba = location.hash.slice(1);
   desenhar();
   if (location.hash === "#serMentor") abrirForm();
 })();

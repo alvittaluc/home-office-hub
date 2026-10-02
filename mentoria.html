@@ -161,7 +161,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         ${M.meu_papel === "mentor" && provas.length < 6 ? `<label class="md-anexar"><input id="maisProva" type="file" accept="image/*" multiple>+ Anexar prints ou fotos</label>` : ""}
         <div class="md-msg" id="provaMsg" role="status" hidden></div></div>`;
     if (M.status === "recusada") return `<div class="mo-aviso ruim"><b>Pedido não aprovado.</b> ${M.motivo ? e(M.motivo) : "A administração não aprovou este pedido."}</div>`;
-    if (M.status === "encerrada") return `<div class="mo-aviso ruim"><b>Mentoria encerrada.</b> ${M.motivo ? e(M.motivo) + " " : ""}O mural ficou só para leitura e não entram novos participantes.</div>`;
+    if (M.status === "encerrada") return `<div class="mo-aviso ruim"><b>Mentoria encerrada.</b> ${M.motivo ? e(M.motivo) + " " : ""}O mural ficou só para leitura e não entram novos participantes.${M.meu_papel ? " Ela fica guardada na aba Arquivadas da página Mentorias." : ""}</div>`;
     return "";
   }
 
