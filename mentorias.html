@@ -53,6 +53,14 @@
 .mt-form > p { font-size:14px; line-height:1.55; color:var(--ink-2,#54606F); margin:0; }
 .mt-form .regra { font-size:13px; line-height:1.55; color:var(--ink-2,#54606F); background:var(--bg-soft,#F1ECE3); border-radius:12px; padding:12px 14px; margin-top:18px; }
 .mt-acoes { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:18px; }
+.mt-recado { display:block; background:var(--signal-suave,#EAF1F8); color:var(--ink,#10203A); border-radius:14px; padding:13px 16px;
+  font-size:14.5px; text-decoration:none; margin:0 0 8px; max-width:860px; }
+.mt-recado b { font-weight:600; }
+.mt-den { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:18px 22px 20px; margin-bottom:12px; max-width:860px; }
+.mt-den-cab { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; font-size:15px; color:var(--ink,#10203A); }
+.mt-den-cab b { font-weight:600; }
+.mt-den-nota { font-size:13.5px; color:var(--ink-3,#8A94A1); margin:12px 0 0; }
+.mt-den textarea { min-height:70px; }
 .mt-anexo-nota { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-left:10px; }
 .mt-demo {font-size:12.5px; background:#FBF0E4; color:#A85D24; border-radius:10px; padding:8px 12px; margin-bottom:18px; }
 
@@ -68,7 +76,7 @@
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="mentorias-dados.js?v=3"></script>
+<script src="mentorias-dados.js?v=4"></script>
 <script>
 try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
@@ -99,7 +107,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   }
 
   U.porCss();
-  let perfil = null, lista = [], minhas = { como_mentor: [], como_membro: [] };
+  let perfil = null, lista = [], minhas = { como_mentor: [], como_membro: [] }, denuncias = [];
 
   function cartao(m, extra) {
     const nota = m.nota ? `<span>${U.estrelas(m.nota)} <span class="nota">${String(m.nota).replace(".", ",")}</span> (${m.avaliacoes})</span>` : `<span>ainda sem avaliação</span>`;
@@ -127,12 +135,15 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     tela.innerHTML = `
       ${MD.demo ? `<div class="mt-demo">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : ""}
       ${topo}
+      ${denuncias.some(esperaVoce) ? `<a class="mt-recado" href="#denuncias"><b>A equipe do Hub respondeu à sua denúncia.</b> Ver a resposta ↓</a>` : ""}
       ${meus.length ? `<div class="mt-tit"><h2>As suas</h2><span>as que você abriu e as de que participa</span></div>
         <div class="mt-grade">${meus.join("")}</div>` : ""}
       <div class="mt-tit"><h2>${meus.length ? "Outras mentorias abertas" : "Mentorias abertas"}</h2><span>${outras.length}</span></div>
       ${outras.length ? `<div class="mt-grade">${outras.map(m => cartao(m)).join("")}</div>`
         : `<div class="mt-vazio">${lista.length ? "Você já está em todas as mentorias abertas."
             : "Ainda não há mentoria no ar. As primeiras entram assim que os mentores forem aprovados.<br>Se você já trabalha em alguma vaga, pode ser o primeiro."}</div>`}
+
+      ${htmlDenuncias()}
 
       <section class="mt-serMentor" id="serMentor">
         <h2>Já trabalha numa dessas vagas? Seja mentor</h2>
@@ -144,6 +155,44 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
     tela.querySelector("#btAbrirForm").addEventListener("click", abrirForm);
   }
+
+  /* ── As denúncias que a pessoa fez e a conversa com a equipe ──
+     Só aparece para quem já denunciou alguma coisa. Só ela e a equipe leem. */
+  const esperaVoce = d => !d.resolvida && d.mensagens.length && d.mensagens[d.mensagens.length - 1].da_equipe;
+  const rascunhos = {};
+  function htmlDenuncias() {
+    if (!denuncias.length) return "";
+    return `<div class="mt-tit" id="denuncias"><h2>Suas denúncias</h2><span>só você e a equipe do Hub leem esta conversa</span></div>
+      ${denuncias.map(d => `<div class="mt-den">
+        <div class="mt-den-cab"><b>${d.tipo === "post" ? "Mensagem no mural" : "Mentoria inteira"}${d.mentoria ? " · " + e(d.mentoria.vaga_titulo) : ""}</b>
+          ${d.resolvida ? `<span class="md-etq aprovada">resolvida</span>` : esperaVoce(d) ? `<span class="md-etq pedido">a equipe respondeu</span>` : `<span class="md-etq pendente">em análise</span>`}</div>
+        ${U.conversa(d, "Você")}
+        ${d.resolvida ? `<p class="mt-den-nota">A equipe marcou esta denúncia como resolvida. A conversa foi fechada.</p>`
+          : d.mensagens.length ? `<label class="md-campo"><textarea maxlength="2000" data-resposta="${e(d.id)}" placeholder="Responder à equipe do Hub">${e(rascunhos[d.id] || "")}</textarea></label>
+              <div class="mt-acoes" style="margin-top:10px"><button class="md-bt pequeno" type="button" data-responder="${e(d.id)}">Enviar</button></div>`
+            : `<p class="mt-den-nota">A equipe do Hub vai ler e, se precisar de mais detalhes, responde por aqui.</p>`}
+      </div>`).join("")}
+      <div class="md-msg" id="denMsg" role="status" hidden></div>`;
+  }
+  tela.addEventListener("input", ev => {
+    const c = ev.target.closest("[data-resposta]"); if (c) rascunhos[c.dataset.resposta] = c.value;
+  });
+  tela.addEventListener("click", async ev => {
+    const b = ev.target.closest("[data-responder]"); if (!b) return;
+    const id = b.dataset.responder, campo = tela.querySelector('[data-resposta="' + id + '"]');
+    const texto = campo.value.trim();
+    if (!texto) { campo.focus(); return; }
+    b.disabled = true;
+    try {
+      await MD.responderDenuncia(id, texto, false);
+      delete rascunhos[id];
+      denuncias = (await MD.minhasDenuncias()) || [];
+      desenhar();
+      const alvo = tela.querySelector("#denuncias"); if (alvo) alvo.scrollIntoView({ block: "start" });
+    } catch (err) {
+      const m = tela.querySelector("#denMsg"); m.textContent = err.message; m.className = "md-msg erro"; m.hidden = false; b.disabled = false;
+    }
+  });
 
   function abrirForm() {
     const alvo = tela.querySelector("#formMentor");
@@ -252,6 +301,8 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     const r = await Promise.all([MD.meuPerfil(), MD.listar(), MD.minhas()]);
     perfil = r[0]; lista = r[1] || []; minhas = r[2] || minhas;
   } catch (err) { espera.textContent = err.message; return; }
+  // as denúncias são um extra: se a leitura falhar, a página abre sem elas
+  try { denuncias = (await MD.minhasDenuncias()) || []; } catch (err) { console.warn(err); }
   espera.hidden = true; tela.hidden = false;
   desenhar();
   if (location.hash === "#serMentor") abrirForm();

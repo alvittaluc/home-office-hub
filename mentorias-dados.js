@@ -101,6 +101,9 @@ const MD = (function () {
     anexarProva: (id, imagem) => rpc("mentoria_prova_anexar", { p_id: id, p_imagem: imagem }),
     provas: id => rpc("mentoria_provas_lista", { p_id: id }),
     provasTotal: id => rpc("mentoria_provas_total", { p_id: id }),
+    /* conversa de uma denúncia: a equipe escreve para quem denunciou, e a pessoa responde */
+    responderDenuncia: (id, texto, comoEquipe) => rpc("denuncia_responder", { p_id: id, p_texto: texto, p_como_equipe: !!comoEquipe }),
+    minhasDenuncias: () => rpc("denuncias_minhas"),
     /* equipe da administração */
     equipe: () => rpc("admin_equipe"),
     equipeAdicionar: email => rpc("admin_equipe_adicionar", { p_email: email }),
@@ -257,14 +260,31 @@ const MD = (function () {
             link: m.link, comprovacao: m.comprovacao, motivo: m.motivo, provas: (PROVAS[m.id] || []).length, mentor_email: pessoa(m.mentor_id).nome.split(" ")[0].toLowerCase() + "@exemplo.com" })),
           denuncias: S.denuncias.map(d => {
             const p = d.tipo === "post" ? S.posts.find(x => x.id === d.alvo_id) : null;
+            const mid = p ? p.mentoria_id : d.alvo_id;
             return { id: d.id, tipo: d.tipo, alvo_id: d.alvo_id, motivo: d.motivo, criado_em: d.criado_em, resolvida: d.resolvida,
-                     quem: pessoa(d.autor_id), mentoria_id: p ? p.mentoria_id : d.alvo_id,
+                     quem: pessoa(d.autor_id), mentoria_id: mid, mensagens: d.mensagens || [],
+                     mentoria_titulo: (S.mentorias.find(m => m.id === mid) || {}).vaga_titulo || "",
                      post: p ? { texto: p.texto, removido: p.removido, autor: pessoa(p.autor_id) } : null };
           }),
         };
       },
       async adminDecidir(id, status, motivo) { const m = S.mentorias.find(x => x.id === id); m.status = status; m.motivo = motivo || ""; salvar(); },
       async adminResolver(id) { S.denuncias.find(d => d.id === id).resolvida = true; salvar(); },
+      async responderDenuncia(id, texto, comoEquipe) {
+        const d = S.denuncias.find(x => x.id === id) || erro("Denúncia não encontrada.");
+        if (comoEquipe && !admin) erro("Somente a administração.");
+        if (!comoEquipe && d.resolvida) erro("Esta denúncia já foi encerrada pela equipe.");
+        (d.mensagens = d.mensagens || []).push({ da_equipe: !!comoEquipe, texto, criado_em: agora() }); salvar();
+      },
+      async minhasDenuncias() {
+        // no modo de demonstração todas as denúncias de exemplo contam como suas, para dar para ver a tela
+        return S.denuncias.map(d => {
+          const p = d.tipo === "post" ? S.posts.find(x => x.id === d.alvo_id) : null;
+          const m = S.mentorias.find(x => x.id === (p ? p.mentoria_id : d.alvo_id));
+          return { id: d.id, tipo: d.tipo, motivo: d.motivo, criado_em: d.criado_em, resolvida: d.resolvida,
+                   mentoria: m ? { id: m.id, vaga_titulo: m.vaga_titulo, empresa: m.empresa } : null, mensagens: d.mensagens || [] };
+        });
+      },
       /* no modo de demonstração os prints ficam só na memória da página */
       async anexarProva(id, imagem) { (PROVAS[id] = PROVAS[id] || []).push(imagem); },
       async provas(id) { return PROVAS[id] || []; },
@@ -315,6 +335,12 @@ const MD = (function () {
     background:rgba(16,32,58,.78); color:#fff; font-size:15px; line-height:1; }
   .md-luz { position:fixed; inset:0; z-index:200; background:rgba(10,18,32,.88); display:grid; place-items:center; padding:20px; cursor:zoom-out; overflow:auto; }
   .md-luz img { max-width:100%; max-height:none; border-radius:8px; background:#fff; }
+  /* conversa de uma denúncia: quem denunciou de um lado, a equipe do outro */
+  .md-conv { display:grid; gap:8px; margin:12px 0 0; }
+  .md-fala { max-width:min(640px,88%); padding:10px 14px; border-radius:14px; font-size:14.5px; line-height:1.55; color:var(--ink,#10203A);
+    background:var(--bg-soft,#F1ECE3); justify-self:start; overflow-wrap:anywhere; white-space:pre-wrap; }
+  .md-fala.equipe { background:var(--signal-suave,#EAF1F8); justify-self:end; }
+  .md-fala small { display:block; font-size:12px; color:var(--ink-3,#8A94A1); margin-bottom:2px; white-space:normal; }
   .md-conf { position:fixed; inset:0; z-index:210; background:rgba(10,18,32,.55); display:grid; place-items:center; padding:20px; }
   .md-conf-cx { width:100%; max-width:430px; background:var(--panel,#fff); border-radius:20px; padding:26px 26px 22px;
     box-shadow:0 30px 70px -30px rgba(10,18,32,.6); }
@@ -401,6 +427,15 @@ const MD = (function () {
       };
       leitor.readAsDataURL(arquivo);
     });
+  }
+
+  /* A conversa de uma denúncia. A primeira fala é sempre o motivo que a
+     pessoa escreveu ao denunciar. "nomeDela" é como chamar quem denunciou
+     ("Você", na tela dela; o nome, na tela da equipe). */
+  function conversa(d, nomeDela) {
+    porCss();
+    const fala = (daEquipe, txt, quando) => `<div class="md-fala${daEquipe ? " equipe" : ""}"><small>${daEquipe ? "Equipe do Hub" : e(nomeDela)} · ${e(haQuanto(quando))}</small>${e(txt)}</div>`;
+    return `<div class="md-conv">${fala(false, d.motivo, d.criado_em)}${(d.mensagens || []).map(m => fala(m.da_equipe, m.texto, m.criado_em)).join("")}</div>`;
   }
 
   /* Reduz um print de comprovação antes de mandar: mantém a proporção, lado
@@ -503,6 +538,6 @@ const MD = (function () {
   return Object.assign({}, api, {
     demo: papelDemo,
     disponivel: !!papelDemo || (typeof supabase !== "undefined" && !!supabase.createClient),
-    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, confirmar, e },
+    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, confirmar, conversa, e },
   });
 })();
