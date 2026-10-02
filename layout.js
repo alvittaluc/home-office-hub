@@ -35,7 +35,7 @@ const Acesso = (function () {
             Para ver como fica, abra qualquer página com ?previa=1 no fim
             do endereço (e ?previa=0 para voltar ao normal).
      true:  as portas valem para todo mundo. */
-  const PORTAS_LIGADAS = false;
+  const PORTAS_LIGADAS = true;
 
   const PROJETO = "zrqucjktympnwilbvisw";   // o mesmo do controle-conta.js
 
