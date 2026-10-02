@@ -5,7 +5,7 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Fri, 02 Oct 2026 14:17:28 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 14:37:11 +0000</lastBuildDate>
     <item>
       <title>Paid Photo Contributor Opportunity — micro1</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f4f33bc06</link>
@@ -124,6 +124,27 @@
       <guid isPermaLink="false">049320a653</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
       <description>Você grava vídeos em primeira pessoa fazendo as tarefas comuns de casa, com o celular preso na cabeça por uma faixa. Os vídeos ajudam a treinar sistemas de IA e robôs a entender como as pessoas usam as mãos e os objetos. A vaga é aberta a quem mora na América Latina e no Caribe, e o Brasil está na lista de países. O pagamento é por hora de vídeo aprovado, e a micro1 paga US$ 20 de bônus, que também cobre a compra da faixa, depois de 20 horas de trabalho.</description>
+    </item>
+    <item>
+      <title>Generalist Expert — Mercor</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=59e016f425</link>
+      <guid isPermaLink="false">59e016f425</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Não é uma vaga com projeto definido: é o cadastro permanente da Mercor para generalistas. Você entra num banco de pessoas e é chamado quando surge um projeto de raciocínio geral. O trabalho, quando vem, é escrever perguntas e respostas de referência sobre assuntos do dia a dia, dar nota a respostas de IA e apontar onde o modelo errou com segurança, se contradisse ou respondeu outra coisa. A Mercor diz que a maioria dos contratos desse grupo pagou de US$ 40 a US$ 70 por hora.</description>
+    </item>
+    <item>
+      <title>Language &amp; Audio Expert — Mercor</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=51fd054a81</link>
+      <guid isPermaLink="false">51fd054a81</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>É o cadastro permanente da Mercor para quem trabalha com idiomas e áudio, e não uma vaga com projeto definido. Quem entra no banco é chamado quando surge um projeto no seu idioma ou na sua especialidade. O trabalho inclui escrever perguntas e respostas de referência no seu idioma, avaliar se a IA escreve e traduz de forma natural e julgar a qualidade de voz, música e som. O português está na lista de idiomas. A faixa informada é de US$ 35 a US$ 50 por hora.</description>
+    </item>
+    <item>
+      <title>Audiobook QA Expert — Portuguese (Brazil) — Mercor</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3af7827b01</link>
+      <guid isPermaLink="false">3af7827b01</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você ouve audiolivros narrados por IA em português do Brasil e avalia se a narração soa natural, correta e agradável. Sempre que a voz escorrega, você registra o erro e marca o trecho exato: palavra pulada, trocada ou mal pronunciada, número lido errado, abreviação expandida do jeito errado, entonação estranha ou falha no áudio. É trabalho remoto de meio período, com cerca de 20 horas por semana. A Mercor aceita gente de qualquer lugar e prefere quem mora onde se fala português do Brasil.</description>
     </item>
     <item>
       <title>Andromeda Delta - Audio Transcription Reviewer Portuguese (Brazil) — Welocalize</title>
@@ -264,27 +285,6 @@
       <guid isPermaLink="false">3225a6f2e1</guid>
       <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
       <description>Você revisa transcrições de áudios longos já prontas, conferindo se o texto está fiel ao que foi dito. Também verifica se cada fala está atribuída à pessoa certa, se as marcações de tempo e a divisão dos trechos estão corretas, e sinaliza problemas no áudio conforme as regras do projeto. O trabalho é remoto e pago por hora, com valor fixo.</description>
-    </item>
-    <item>
-      <title>Portuguese Voice Actor - Freelance AI Trainer Project — Meridial</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=40bde685a9</link>
-      <guid isPermaLink="false">40bde685a9</guid>
-      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Você grava roteiros em português e avalia falas geradas por IA, dando feedback sobre pronúncia, tom, ritmo e emoção para melhorar vozes sintéticas. Também anota erros e ajuda a refinar os critérios de avaliação e as orientações de design de voz junto com a equipe. É um contrato remoto como freelancer, com pagamento entre US$ 6 e US$ 65 por hora, definido pela sua experiência e localização.</description>
-    </item>
-    <item>
-      <title>Portuguese Language Expert — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=94d3206e73</link>
-      <guid isPermaLink="false">94d3206e73</guid>
-      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.</description>
-    </item>
-    <item>
-      <title>AI Quality Analyst (Personalization) - Portuguese — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=36497ae306</link>
-      <guid isPermaLink="false">36497ae306</guid>
-      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Você avalia um recurso de personalização do Gemini, o assistente de IA do Google. A ideia é testar se o Gemini usa bem as informações das suas conversas anteriores, do Gmail, das buscas no Google e do YouTube para dar respostas mais úteis. Você cria perguntas a partir das suas próprias experiências e depois analisa as respostas em critérios como embasamento, integração e utilidade. Pagamento de US$ 15 por hora.</description>
     </item>
   </channel>
 </rss>

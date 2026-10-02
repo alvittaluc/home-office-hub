@@ -96,6 +96,18 @@ EXCECOES = {
     "Customer Support Task Author": "Outras areas",
     # "music" agora e palavra de area; esta aqui e avaliacao de busca, geral
     "App Store And Music Search Evaluator": "",
+
+    # ── Mercor inteira (outubro de 2026) ──
+    # A Mercor e quase toda de especialista. "Expert" no titulo agora manda
+    # para as areas (lista TITULO_DE_ESPECIALISTA). Estas sao as excecoes:
+    # tem "Expert" no nome, mas nao pedem formacao em area nenhuma.
+    "=Generalist Expert": "",
+    "Multilingual Image & Text AI Quality Expert": "",
+    "=Customer Service Expert": "",
+    "=Lifestyle Experts": "",
+    # pedem o programa instalado e uso profissional dele
+    "Application Users": "Outras areas",
+    "Generalist (Must own MacBook)": "Outras areas",
     "Dispatcher": "Outras areas",
 }
 
@@ -121,6 +133,7 @@ AREAS = [
     ("Direito", [
         "law", "laws", "legal", "lawyer", "attorney", "paralegal", "litigation",
         "juris doctor", "jurist", "counsel", "contract law", "patent",
+        "public defender",
         "intellectual property", "direito", "advogado", "juridico",
     ]),
     ("Medicina e Saude", [
@@ -224,7 +237,17 @@ ESPECIALISTA_GENERICO = [
     "domain expert", "domain experts", "technical expert", "sme", "expert in",
     "specialist in", "graduate degree", "masters degree", "m.d.", "science",
     "master s degree", "master degree", "masters", "degree", "researcher",
-    "research scientist",
+    "research scientist", "nuclear", "radiological", "radiologicals",
+    "nonproliferation", "safeguards", "source security",
+]
+
+# Palavras que, no titulo, dizem que a vaga e para quem ja e profissional de
+# alguma area. Valem depois do portugues/Brasil e fora do trabalho geral do
+# ramo: "Portuguese Language Expert" e "Video Annotation Expert" continuam
+# gerais, "Biotechnology Expert" nao.
+TITULO_DE_ESPECIALISTA = [
+    "expert", "talent network", "scientist", "officer", "professional",
+    "benchmark specialist",
 ]
 
 # Cargo de chefia ou senioridade no titulo. So vale quando o titulo nao fala
@@ -379,9 +402,10 @@ def classificar_area(titulo, descricao=""):
 
     # 4. cargo senior ou de chefia, fora do trabalho geral do ramo
     if not any(_tem(texto, termo) for termo in TRABALHO_GERAL):
-        for termo in SENIORIDADE:
+        for termo in SENIORIDADE + TITULO_DE_ESPECIALISTA:
             if _tem(texto, termo):
-                return AREA_RESERVA
+                # a descricao pode dizer de que area e; se nao disser, reserva
+                return _area_no_texto(_frases_de_exigencia(descricao)) or AREA_RESERVA
 
     return _pela_descricao(texto, descricao)
 
@@ -470,6 +494,20 @@ if __name__ == "__main__":
         ("Professional Writing Human Data Collection - Academic and Education", "", "Humanidades"),
         ("Professional Writing Human Data Collection", "", "Marketing e Vendas"),
         ("Operations Lead", "", "Outras areas"),
+        # ── Mercor inteira ──
+        ("Audiobook QA Expert — Portuguese (Brazil)", "", "GERAL"),
+        ("Video Annotation Expert", "", "GERAL"),
+        ("Customer Service Expert", "", "GERAL"),
+        ("Multilingual Image & Text AI Quality Expert", "", "GERAL"),
+        ("Generalist Expert", "", "GERAL"),
+        ("Quality Analyst", "", "GERAL"),
+        ("Biotechnology Expert", "", "Outras areas"),
+        ("Consumer & Lifestyle Expert", "", "Outras areas"),
+        ("HR & Administration Specialist Talent Network", "", "Outras areas"),
+        ("Radiation Safety Officer", "", "Outras areas"),
+        ("Nonproliferation Analyst", "", "Outras areas"),
+        ("Application Users - Photoshop on Windows - Generalist", "", "Outras areas"),
+        ("Public Defenders — Paid Research Study", "", "Direito"),
     ]
 
     falhas = 0

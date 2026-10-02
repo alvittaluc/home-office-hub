@@ -1,5 +1,5 @@
 {
-  "total": 157,
+  "total": 160,
   "vagas": [
     {
       "id": "65762fd387",
@@ -1548,6 +1548,40 @@
         "frase": "Tirar fotos com o seu irmão gêmeo para um banco de imagens de IA.",
         "remuneracao": "US$ 140 por participante",
         "contrato": "Tarefa pontual"
+      }
+    },
+    {
+      "id": "3af7827b01",
+      "resumo": {
+        "o_que_faz": "Você ouve audiolivros narrados por IA em português do Brasil e avalia se a narração soa natural, correta e agradável. Sempre que a voz escorrega, você registra o erro e marca o trecho exato: palavra pulada, trocada ou mal pronunciada, número lido errado, abreviação expandida do jeito errado, entonação estranha ou falha no áudio. É trabalho remoto de meio período, com cerca de 20 horas por semana. A Mercor aceita gente de qualquer lugar e prefere quem mora onde se fala português do Brasil.",
+        "requisitos": "Português do Brasil nativo ou quase nativo e o hábito real de ouvir audiolivros. Inglês suficiente para relatar os problemas e falar com a equipe, sem precisar ser bilíngue. Alguma experiência com anotação, transcrição, revisão de texto ou outro trabalho minucioso. Ouvido atento e disciplina para manter a qualidade em sessões longas.",
+        "dica_cv": "Conte que você ouve audiolivros com frequência e cite alguns títulos ou plataformas que usa. Destaque qualquer experiência com revisão, transcrição, anotação de dados ou áudio. A Mercor aplica uma entrevista curta conduzida por IA, em inglês.",
+        "frase": "Ouvir audiolivros narrados por IA e apontar os erros da narração.",
+        "remuneracao": "US$ 15 a 20 por hora",
+        "carga": "Cerca de 20 h por semana",
+        "contrato": "Meio período"
+      }
+    },
+    {
+      "id": "59e016f425",
+      "resumo": {
+        "o_que_faz": "Não é uma vaga com projeto definido: é o cadastro permanente da Mercor para generalistas. Você entra num banco de pessoas e é chamado quando surge um projeto de raciocínio geral. O trabalho, quando vem, é escrever perguntas e respostas de referência sobre assuntos do dia a dia, dar nota a respostas de IA e apontar onde o modelo errou com segurança, se contradisse ou respondeu outra coisa. A Mercor diz que a maioria dos contratos desse grupo pagou de US$ 40 a US$ 70 por hora.",
+        "requisitos": "Nenhum diploma específico é exigido. A Mercor pede leitura cuidadosa, bom julgamento e escrita clara em inglês, vindos de uma trajetória profissional ou acadêmica em qualquer área. Na inscrição você envia o currículo, informa de onde trabalha e faz uma entrevista com IA de uns 20 minutos.",
+        "dica_cv": "Currículo em inglês, mostrando trabalhos em que você precisou ler com atenção, revisar ou explicar por escrito por que algo estava errado. Se já fez avaliação de IA em outras plataformas, coloque no início. Entrar no banco não garante trabalho: o convite depende de aparecer um projeto.",
+        "frase": "Entrar no banco de generalistas da Mercor para avaliar respostas de IA.",
+        "remuneracao": "US$ 40 a 70 por hora",
+        "contrato": "Cadastro para projetos futuros"
+      }
+    },
+    {
+      "id": "51fd054a81",
+      "resumo": {
+        "o_que_faz": "É o cadastro permanente da Mercor para quem trabalha com idiomas e áudio, e não uma vaga com projeto definido. Quem entra no banco é chamado quando surge um projeto no seu idioma ou na sua especialidade. O trabalho inclui escrever perguntas e respostas de referência no seu idioma, avaliar se a IA escreve e traduz de forma natural e julgar a qualidade de voz, música e som. O português está na lista de idiomas. A faixa informada é de US$ 35 a US$ 50 por hora.",
+        "requisitos": "Fluência nativa ou profissional em pelo menos um dos idiomas da lista, ou experiência profissional com tradução, locução, música ou produção de áudio. Escrita clara em inglês para explicar o seu raciocínio. Na inscrição você envia o currículo, informa de onde trabalha e faz uma entrevista com IA de uns 20 minutos.",
+        "dica_cv": "Deixe claro no currículo que o português do Brasil é a sua língua nativa e liste os outros idiomas com o nível de cada um. Trabalhos de tradução, revisão, locução ou áudio contam bastante. Entrar no banco não garante trabalho: o convite depende de aparecer um projeto.",
+        "frase": "Entrar no banco de idiomas e áudio da Mercor para avaliar IA em português.",
+        "remuneracao": "US$ 35 a 50 por hora",
+        "contrato": "Cadastro para projetos futuros"
       }
     }
   ]

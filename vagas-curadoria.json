@@ -630,6 +630,27 @@
       "titulo": "Paid Photo Contributor Opportunity (Twins)",
       "revisado_em": "2026-10-02",
       "motivo": "Location: Remote. Elegibilidade no anúncio: NAMER, LATAM, EMEA, o que inclui o Brasil."
+    },
+    {
+      "id": "3af7827b01",
+      "empresa": "mercor",
+      "titulo": "Audiobook QA Expert — Portuguese (Brazil)",
+      "revisado_em": "2026-10-02",
+      "motivo": "Local: Remote, preferência por Brasil. O anúncio diz que a pessoa pode estar em qualquer lugar."
+    },
+    {
+      "id": "59e016f425",
+      "empresa": "mercor",
+      "titulo": "Generalist Expert",
+      "revisado_em": "2026-10-02",
+      "motivo": "Remote, sem lista de países nos campos da vaga. Cadastro permanente, sem exigência de diploma."
+    },
+    {
+      "id": "51fd054a81",
+      "empresa": "mercor",
+      "titulo": "Language & Audio Expert",
+      "revisado_em": "2026-10-02",
+      "motivo": "Remote, sem lista de países. Cadastro permanente; português está entre os idiomas."
     }
   ],
   "bloqueadas": [
@@ -660,6 +681,20 @@
       "titulo": "Bilingual Mental Health Expert",
       "revisado_em": "2026-10-02",
       "motivo": "Exige ser nativo em um de 16 idiomas listados (francês, russo, mandarim, japonês e outros). O português não está na lista."
+    },
+    {
+      "id": "77ed6bdff3",
+      "empresa": "mercor",
+      "titulo": "Apple Watch Users: Opportunity for You",
+      "revisado_em": "2026-10-02",
+      "motivo": "Só vale para quem tem prontuário em uma lista de hospitais dos Estados Unidos ligado ao Apple Health."
+    },
+    {
+      "id": "86a2352fc3",
+      "empresa": "mercor",
+      "titulo": "Fitness Data Contributor",
+      "revisado_em": "2026-10-02",
+      "motivo": "Mesma coleta de dados de saúde: exige prontuário em hospitais dos Estados Unidos ligado ao Apple Health."
     }
   ]
 }

@@ -49,6 +49,7 @@
 """
 import json
 import re
+import unicodedata
 import ssl
 import time
 import urllib.request
@@ -1006,170 +1007,145 @@ def coletar_imerit():
 #  MERCOR  (work.mercor.com)
 # ═══════════════════════════════════════════════════════════════════
 #
-# Setembro de 2026. Diferente das outras, a Mercor NÃO precisa de API:
-# a página /explore já vem pronta no HTML, com o link de cada vaga.
-# Não tem login, não tem chave, é só ler a página.
+# Outubro de 2026. A página /explore traz a lista INTEIRA de vagas dentro
+# do bloco __NEXT_DATA__ (um JSON embutido no HTML), já com descrição,
+# pagamento e os campos de país de cada uma. Uma requisição só resolve.
 #
-#     GET https://work.mercor.com/explore?page=1
+#     GET https://work.mercor.com/explore
 #
-# Cada vaga aparece como um link no formato:
+# Até setembro a gente lia os links do HTML e ia pedindo ?page=2, ?page=3...
+# A Mercor mudou a página: o HTML passou a mostrar só os 15 primeiros
+# cartões e o ?page= deixou de fazer efeito. Resultado: o coletor via 15
+# vagas de mais de 300, e vagas como a "Audiobook QA Expert — Portuguese
+# (Brazil)" nunca entravam.
 #
-#     /jobs/list_AAABxxxxxxxx/titulo-da-vaga?returnPath=/explore
-#
-# O texto do cartão vem logo em seguida, tudo junto, mais ou menos assim:
-#
-#     Bilingual Writer - Portuguese (Brazil)Apply $12.6 / task...
-#
-# São cerca de 24 páginas. Paramos quando uma página não traz id novo.
+# Campos de país (lista vazia ou null = sem restrição):
+#     "eligibleLocation":["USA"]            → só quem está nos EUA
+#     "eligibleResidenceLocation":[...]     → só quem mora nesses países
+#     "ineligibleLocation"/"ineligibleResidenceLocation" → quem NÃO pode
+# O campo "location" é texto livre ("Remote", "Remote (US)", "Bay Area, CA")
+# e "workArrangement" diz se é remoto, híbrido ou presencial.
 
-URL_MERCOR = "https://work.mercor.com/explore?page={n}"
+URL_MERCOR = "https://work.mercor.com/explore"
 URL_MERCOR_VAGA = "https://work.mercor.com/jobs/{id}/{slug}"
 ORIGEM_MERCOR = "https://work.mercor.com"
 
-MERCOR_MAX_PAGINAS = 30
-
-# O link de cada vaga dentro do HTML
-_LINK_MERCOR = re.compile(r'href="/jobs/(list_[A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)')
-
-# Valor por hora ou por tarefa, do jeito que a Mercor escreve
-_PAGAMENTO_MERCOR = re.compile(
-    r"(\$\s?\d[\d.,]*(?:\s*(?:-|–|to)\s*\$?\s?\d[\d.,]*)?\s*/\s*"
-    r"(?:hour|hr|task|word|project))", re.I)
-
-
-def _texto_do_cartao(html, inicio, fim):
-    """Pega o pedaço de HTML do cartão e devolve só o texto."""
-    trecho = html[inicio:fim]
-    # o corte cai no meio da tag <a ...>: pula o resto dela
-    fecha = trecho.find(">")
-    if 0 <= fecha < 200:
-        trecho = trecho[fecha + 1:]
-    trecho = re.sub(r"<[^>]+>", " ", trecho)
-    trecho = _html.unescape(trecho)
-    return re.sub(r"\s+", " ", trecho).strip()
-
-
-def _titulo_do_cartao(texto, slug):
-    """O título é o que vem antes do botão Apply. Sem ele, usa o endereço."""
-    titulo = re.split(r"\bApply\b", texto)[0].strip(" -–·|")
-    if len(titulo) < 4:
-        titulo = slug.replace("-", " ").strip().title()
-    return titulo[:160]
-
-
-# Setembro de 2026: a lista não diz quem pode se candidatar, mas a página
-# de cada vaga traz isso no JSON embutido. Atenção: o bloco
-# "applicantLocationRequirements" diz "US" em TODAS as vagas, é padrão e
-# não vale nada. A restrição de verdade fica nestes campos:
-#     "eligibleLocation":["USA"]   → só quem está nos EUA
-#     "eligibleResidenceLocation":[...] / "ineligible...":[...]
-# Lista vazia ou null = sem restrição.
-_ELEGIVEL_MERCOR = re.compile(
-    r'"(eligibleLocation|eligibleResidenceLocation|ineligibleLocation|'
-    r'ineligibleResidenceLocation)":(\[[^\]]*\]|null)')
-_DESCRICAO_MERCOR = re.compile(r'"description":("(?:[^"\\]|\\.)*")')
+_DADOS_MERCOR = re.compile(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.S)
+# o endereço oficial de cada vaga, com o nome dela no fim
+_URL_MERCOR = re.compile(r'"url":"(https://work\.mercor\.com/jobs/(list_[A-Za-z0-9_\-]+)/[A-Za-z0-9_\-]+)"')
 _EH_BRASIL = re.compile(r"^(br|bra|brazil|brasil)$", re.I)
+# português de Portugal, pedido de forma que exclui o brasileiro
+_SEM_BRASILEIRO = re.compile(r"excluding\s+brazilian", re.I)
+_FREQ_MERCOR = {"hourly": "hora", "per-task": "tarefa", "one-time": "pagamento único",
+                "yearly": "ano", "monthly": "mês", "per-word": "palavra"}
 
 
-def _detalhe_mercor(url):
-    """Abre a página da vaga e devolve (aceita_brasil, descricao).
-    Se a página falhar, a vaga fica (True, ""): melhor mostrar do que sumir
-    com uma vaga boa por causa de um erro de rede."""
-    try:
-        html = _baixar(url, tipo_json=False, origem=ORIGEM_MERCOR)
-    except Exception:
-        return True, ""
-
-    aceita = True
-    for campo, bruto in _ELEGIVEL_MERCOR.findall(html):
-        try:
-            lista = json.loads(bruto) or []
-        except Exception:
-            continue
-        tem_brasil = any(_EH_BRASIL.match(str(p).strip()) for p in lista)
-        if campo.startswith("eligible") and lista and not tem_brasil:
-            aceita = False
-        if campo.startswith("ineligible") and tem_brasil:
-            aceita = False
-
-    descricao = ""
-    m = _DESCRICAO_MERCOR.search(html)
-    if m:
-        try:
-            descricao = limpar_html(json.loads(m.group(1)))
-        except Exception:
-            pass
-    return aceita, descricao
+def _listagens_mercor(html):
+    """Acha a lista de vagas dentro do __NEXT_DATA__, onde quer que esteja."""
+    m = _DADOS_MERCOR.search(html)
+    if not m:
+        return []
+    dados = json.loads(m.group(1))
+    consultas = (((dados.get("props") or {}).get("pageProps") or {})
+                 .get("dehydratedState") or {}).get("queries") or []
+    for c in consultas:
+        d = (c.get("state") or {}).get("data")
+        if isinstance(d, dict) and isinstance(d.get("listings"), list):
+            return d["listings"]
+    return []
 
 
-def coletar_mercor(pausa=0.8, max_paginas=MERCOR_MAX_PAGINAS):
-    """Lê as páginas de /explore e devolve as vagas que servem ao Brasil.
+def _slug_mercor(titulo):
+    t = unicodedata.normalize("NFKD", titulo or "")
+    t = "".join(ch for ch in t if not unicodedata.combining(ch)).lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-") or "vaga"
 
-    Mesma regra da micro1 e da Turing: vaga presa a outro país sai, vaga de
-    outro idioma sai, o resto fica. A separação entre vaga geral e vaga de
-    área é feita depois, no coletor.
+
+def aceita_mercor(v):
+    """Decide se a vaga serve a quem mora no Brasil. Devolve (aceita, local)."""
+    titulo = (v.get("title") or "").strip()
+    local = v.get("location") or ""
+    desc = (v.get("description") or "").replace("*", "")
+
+    if (v.get("workArrangement") or "remote") != "remote":
+        return False, ""
+    tem_brasil_na_lista = False
+    for campo in ("eligibleLocation", "eligibleResidenceLocation"):
+        lista = v.get(campo) or []
+        if lista:
+            if not any(_EH_BRASIL.match(str(p).strip()) for p in lista):
+                return False, ""
+            tem_brasil_na_lista = True
+    for campo in ("ineligibleLocation", "ineligibleResidenceLocation"):
+        if any(_EH_BRASIL.match(str(p).strip()) for p in (v.get(campo) or [])):
+            return False, ""
+
+    brasil = bool(tem_brasil_na_lista or _BRASIL.search(titulo) or _BRASIL.search(local)
+                  or _LATAM.search(titulo) or _LATAM.search(local))
+    if not brasil:
+        # o texto do local cita algum lugar que não é o Brasil ("Remote (US)")
+        sobra = re.sub(r"[^a-zà-ú]+", "", _SO_REMOTO.sub(" ", _GLOBAL.sub(" ", local.lower())))
+        if sobra:
+            return False, ""
+        if (pais_estrangeiro(titulo) or idioma_estrangeiro(titulo)
+                or _REGIAO_NO_TITULO.search(titulo)):
+            return False, ""
+        if _SO_EUA.search(desc):
+            return False, ""
+    if _SEM_BRASILEIRO.search(titulo) or _SEM_BRASILEIRO.search(desc[:1500]):
+        return False, ""
+    return True, ("Remoto · Brasil" if brasil else "Remoto · Mundial")
+
+
+def coletar_mercor(pausa=0.8, max_paginas=None):
+    """Lê a lista inteira da Mercor e devolve as vagas que servem ao Brasil.
+
+    A separação entre vaga geral e vaga de área é feita depois, no coletor.
+    (pausa e max_paginas ficaram só para não quebrar quem chama.)
     """
     print("  → Mercor ...", end=" ")
-    vagas, ids_vistos = [], set()
-    paginas_lidas = 0
-    erros = []
+    html = _baixar(URL_MERCOR, tipo_json=False, origem=ORIGEM_MERCOR)
+    listagens = _listagens_mercor(html)
+    if not listagens:
+        raise RuntimeError("a página /explore veio sem a lista de vagas (mudou de formato?)")
+    enderecos = {i: u for u, i in _URL_MERCOR.findall(html)}
 
-    for n in range(1, max_paginas + 1):
-        try:
-            html = _baixar(URL_MERCOR.format(n=n), tipo_json=False,
-                           origem=ORIGEM_MERCOR)
-        except Exception as e:
-            erros.append(f"pág {n}: {str(e)[:60]}")
-            break
+    vagas, vistos = [], set()
+    for v in listagens:
+        jid = v.get("listingId")
+        titulo = (v.get("title") or "").strip()
+        if not jid or not titulo or jid in vistos:
+            continue
+        vistos.add(jid)
+        if v.get("status") not in (None, "active") or v.get("isPrivate") or v.get("disableApplications"):
+            continue
+        aceita, local = aceita_mercor(v)
+        if not aceita:
+            continue
 
-        achados = list(_LINK_MERCOR.finditer(html))
-        if not achados:
-            break
+        pagamento = ""
+        lo, hi = v.get("rateMin"), v.get("rateMax")
+        freq = _FREQ_MERCOR.get(v.get("payRateFrequency") or "", v.get("payRateFrequency") or "")
+        if lo and hi and lo != hi:
+            pagamento = f"USD {lo:g}-{hi:g} / {freq}"
+        elif lo or hi:
+            pagamento = f"USD {(lo or hi):g} / {freq}"
+        horas = v.get("hoursPerWeek")
+        horario = " · ".join(x for x in [v.get("commitment") or "",
+                                         f"{horas:g} h/semana" if horas else ""] if x)
 
-        novos_na_pagina = 0
-        for i, m in enumerate(achados):
-            id_vaga, slug = m.group(1), m.group(2)
-            if id_vaga in ids_vistos:
-                continue
-            ids_vistos.add(id_vaga)
-            novos_na_pagina += 1
+        vagas.append({
+            "titulo": titulo[:160],
+            "local": local,
+            "url": enderecos.get(jid) or URL_MERCOR_VAGA.format(id=jid, slug=_slug_mercor(titulo)),
+            "desc": limpar_html(v.get("description") or ""),
+            "requisitos": "",
+            "pagamento": pagamento,
+            "horario": horario,
+            "data_post": (v.get("postedAt") or v.get("createdAt") or "")[:10],
+        })
 
-            fim = achados[i + 1].start() if i + 1 < len(achados) else m.end() + 400
-            texto = _texto_do_cartao(html, m.end(), fim)
-            titulo = _titulo_do_cartao(texto, slug)
-
-            if pais_estrangeiro(titulo) or idioma_estrangeiro(titulo):
-                continue
-
-            url = URL_MERCOR_VAGA.format(id=id_vaga, slug=slug)
-            aceita, descricao = _detalhe_mercor(url)
-            time.sleep(pausa)
-            if not aceita:
-                continue
-
-            pag = _PAGAMENTO_MERCOR.search(texto)
-            vagas.append({
-                "titulo": titulo,
-                "local": ("Remoto · Brasil" if _BRASIL.search(titulo)
-                          else "Remoto · Mundial"),
-                "url": url,
-                "desc": descricao,
-                "requisitos": "",
-                "pagamento": pag.group(1).strip() if pag else "",
-                "horario": "",
-                "data_post": "",
-            })
-
-        paginas_lidas += 1
-        if novos_na_pagina == 0:
-            break
-        time.sleep(pausa)
-
-    if not paginas_lidas:
-        raise RuntimeError("; ".join(erros) or "nenhuma página lida")
-
-    print(f"{len(vagas)} vaga(s) de {len(ids_vistos)} lidas "
-          f"em {paginas_lidas} página(s)")
+    print(f"{len(vagas)} vaga(s) de {len(vistos)} na lista")
     return vagas
 
 
