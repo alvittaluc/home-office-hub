@@ -185,6 +185,20 @@ INDICACOES = {
             "utm_campaign": "job_referral",
         },
     },
+    # Mercor: o código é da pessoa, não da vaga. O mesmo código vale no link
+    # geral (work.mercor.com?referralCode=...) e no link de cada vaga. A
+    # política deles permite divulgar vaga em público, desde que o site não se
+    # passe pela Mercor. Limite: 100 inscrições pelo link a cada 30 dias.
+    # Vaga de pagamento único ("one-time") não gera comissão.
+    "mercor": {
+        "dominio": "work.mercor.com",
+        "params": {
+            "referralCode": "6ef1021b-2496-4d9a-afe1-71ef4a17af9e",
+            "utm_source": "referral",
+            "utm_medium": "share",
+            "utm_campaign": "job_referral",
+        },
+    },
 }
 
 
