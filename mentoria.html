@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentoria — Home Office Hub</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   UMA MENTORIA — apresentação do mentor, entrada e mural.
+   O que cada pessoa enxerga depende do papel dela, e quem decide o
+   papel é o banco: visitante, pedido enviado, participante ou mentor.
+   ══════════════════════════════════════════════════════════════ */
+.mo-main { max-width:820px; margin:0 auto; padding:34px 20px 96px; min-height:60vh; }
+.mo-volta { display:inline-block; font-size:13px; color:var(--ink-3,#8A94A1); margin-bottom:18px; text-decoration:none; }
+.mo-volta:hover { color:var(--signal,#1A4893); }
+.mo-espera { text-align:center; padding:70px 20px; color:var(--ink-3,#8A94A1); font-size:14px; }
+.mo-cab { display:flex; gap:16px; align-items:flex-start; }
+.mo-cab h1 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400; font-size:clamp(25px,3.6vw,34px);
+  line-height:1.14; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:2px 0 6px; }
+.mo-cab .emp { font-size:15px; color:var(--ink-2,#54606F); }
+.mo-quem { font-size:14px; color:var(--ink-2,#54606F); margin-top:10px; }
+.mo-quem b { color:var(--ink,#10203A); font-weight:600; }
+.mo-nums { display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; color:var(--ink-3,#8A94A1); margin:14px 0 0; padding-top:14px; border-top:1px solid var(--line-soft,#EAE4D9); }
+.mo-nums b { color:var(--ink,#10203A); font-weight:600; }
+.mo-aviso { border-radius:14px; padding:14px 16px; font-size:14px; line-height:1.55; margin:20px 0 0; }
+.mo-aviso.pendente { background:#FBF0E4; color:#7A4318; } .mo-aviso.ruim { background:#FBE9EB; color:#8E2233; }
+.mo-aviso b { font-weight:600; }
+.mo-sec { margin-top:28px; }
+.mo-sec h2 { font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-2,#54606F); margin:0 0 10px; }
+.mo-sec p { font-size:15.5px; line-height:1.7; color:var(--ink,#10203A); margin:0 0 10px; overflow-wrap:anywhere; }
+.mo-cx { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:22px 24px; margin-top:28px; }
+.mo-cx h2 { font-size:17px; font-weight:600; color:var(--ink,#10203A); margin:0 0 6px; letter-spacing:-0.01em; }
+.mo-cx > p { font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F); margin:0 0 6px; }
+.mo-passo { display:grid; grid-template-columns:30px 1fr; gap:12px; margin-top:16px; }
+.mo-passo .n { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-weight:600; font-size:14px;
+  background:var(--signal-suave,#EAF1F8); color:var(--signal,#1A4893); }
+.mo-passo b { display:block; font-size:15px; color:var(--ink,#10203A); margin-bottom:3px; }
+.mo-passo p { font-size:14px; line-height:1.55; color:var(--ink-2,#54606F); margin:0 0 10px; }
+.mo-pedido { display:grid; grid-template-columns:40px 1fr auto; gap:12px; align-items:center; padding:12px 0; border-top:1px solid var(--line-soft,#EAE4D9); }
+.mo-pedido:first-of-type { border-top:0; }
+.mo-pedido .nm { font-weight:600; font-size:14.5px; color:var(--ink,#10203A); }
+.mo-pedido .ms { font-size:13.5px; color:var(--ink-2,#54606F); line-height:1.45; overflow-wrap:anywhere; }
+.mo-pedido .bts { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+
+/* mural */
+.mo-novo textarea { min-height:78px; }
+.mo-post { display:grid; grid-template-columns:40px 1fr; gap:12px; padding:16px 0; border-top:1px solid var(--line-soft,#EAE4D9); }
+.mo-post-cab { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 9px; margin-bottom:4px; }
+.mo-post-cab .nm { font-weight:600; font-size:14.5px; color:var(--ink,#10203A); }
+.mo-post-cab .qd { font-size:12.5px; color:var(--ink-3,#8A94A1); }
+.mo-post .tx p { font-size:15px; line-height:1.6; color:var(--ink,#10203A); margin:0 0 8px; overflow-wrap:anywhere; }
+.mo-post .tx a { color:var(--signal,#1A4893); }
+.mo-post .apagado { font-size:14px; color:var(--ink-3,#8A94A1); font-style:italic; }
+.mo-post-acoes { display:flex; gap:14px; }
+.mo-respostas { margin-top:6px; padding-left:14px; border-left:2px solid var(--line-soft,#EAE4D9); }
+.mo-respostas .mo-post { grid-template-columns:30px 1fr; padding:11px 0; border-top:0; }
+.mo-responder { margin-top:8px; }
+.mo-responder textarea { min-height:56px; }
+.mo-estrelas { display:flex; gap:4px; margin:10px 0 2px; }
+.mo-estrelas button { font-size:28px; line-height:1; background:none; border:0; cursor:pointer; color:var(--line,#DED7CA); padding:0 2px; }
+.mo-estrelas button.on { color:#C98A1B; }
+.mo-coment { padding:12px 0; border-top:1px solid var(--line-soft,#EAE4D9); font-size:14.5px; line-height:1.55; color:var(--ink,#10203A); }
+.mo-coment small { display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:3px; }
+.mo-rodape { margin-top:30px; display:flex; flex-wrap:wrap; gap:8px 18px; }
+@media (max-width:560px){ .mo-pedido { grid-template-columns:40px 1fr; } .mo-pedido .bts { grid-column:1 / -1; justify-content:flex-start; } }
+</style>
+</head>
+<body>
+
+<main class="mo-main">
+  <a class="mo-volta" href="mentorias.html">← todas as mentorias</a>
+  <div class="mo-espera" id="espera">Abrindo…</div>
+  <div id="tela" hidden></div>
+</main>
+
+<script src="layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="mentorias-dados.js?v=1"></script>
+<script>
+try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
+
+(async function () {
+  "use strict";
+  const U = MD.ui, e = U.e;
+  const espera = document.getElementById("espera"), tela = document.getElementById("tela");
+  const ID = new URLSearchParams(location.search).get("id") || "";
+  const aqui = "mentoria.html?id=" + encodeURIComponent(ID);
+
+  if (!MD.disponivel) { espera.textContent = "Não deu para falar com o servidor de contas. Confira a internet e recarregue a página."; return; }
+  let eu = null;
+  try { eu = await MD.eu(); } catch (err) { console.warn(err); }
+  if (!eu) {
+    espera.hidden = true; tela.hidden = false;
+    tela.innerHTML = Acesso.htmlAviso("As mentorias são para quem tem conta", "Entre na sua conta para ver esta mentoria.");
+    return;
+  }
+  if (!ID) { espera.textContent = "Mentoria não informada."; return; }
+
+  U.porCss();
+  let M = null, perfil = null, posts = [], pedidos = [];
+  const noMural = () => M.meu_papel === "mentor" || M.meu_papel === "aprovado" || M.sou_admin;
+  const aberta = () => M.status === "aprovada";
+
+  async function carregar() {
+    const r = await Promise.all([MD.abrir(ID), MD.meuPerfil()]);
+    M = r[0]; perfil = r[1];
+    posts = noMural() ? await MD.posts(ID) : [];
+    pedidos = (M.meu_papel === "mentor" || M.sou_admin) ? await MD.pedidos(ID) : [];
+  }
+
+  /* ── pedaços da tela ── */
+  function htmlCabecalho() {
+    const nota = M.nota ? `${U.estrelas(M.nota)} <b>${String(M.nota).replace(".", ",")}</b> em ${M.avaliacoes} ${M.avaliacoes === 1 ? "avaliação" : "avaliações"}` : "ainda sem avaliação";
+    return `
+      <div class="mo-cab">${U.foto(M.mentor, 64)}
+        <div><h1>${e(M.vaga_titulo)}</h1><div class="emp">${e(M.empresa)}</div>
+          <div class="mo-quem">Mentoria de <b>${e(M.mentor.nome)}</b>${M.mentor_bio ? ". " + e(M.mentor_bio) : ""}</div></div></div>
+      <div class="mo-nums"><span>${nota}</span><span><b>${M.membros}</b> ${M.membros === 1 ? "participante" : "participantes"}</span>
+        <span>${e(U.ultimaResposta(M))}</span></div>`;
+  }
+
+  function htmlSituacao() {
+    if (M.status === "pendente") return `<div class="mo-aviso pendente"><b>Em análise.</b> O seu pedido para ser mentor foi enviado.
+      A administração do Hub vai conferir a comprovação e pode escrever para o e-mail da sua conta. Enquanto isso, só você vê esta página.</div>`;
+    if (M.status === "recusada") return `<div class="mo-aviso ruim"><b>Pedido não aprovado.</b> ${M.motivo ? e(M.motivo) : "A administração não aprovou este pedido."}</div>`;
+    if (M.status === "encerrada") return `<div class="mo-aviso ruim"><b>Mentoria encerrada.</b> ${M.motivo ? e(M.motivo) + " " : ""}O mural ficou só para leitura e não entram novos participantes.</div>`;
+    return "";
+  }
+
+  function htmlEntrada() {
+    if (!aberta() || M.meu_papel === "mentor" || M.meu_papel === "aprovado") return "";
+    if (M.meu_papel === "pedido") return `<div class="mo-cx"><h2>Pedido enviado</h2>
+      <p>${e(M.mentor.nome)} vai conferir e liberar a sua entrada. Assim que isso acontecer, o mural aparece aqui.</p>
+      <div style="margin-top:12px"><button class="md-link" type="button" data-sair>cancelar o pedido</button></div></div>`;
+    const recusado = M.meu_papel === "recusado";
+    return `<div class="mo-cx"><h2>${recusado ? "O mentor não liberou a sua entrada" : "Como participar"}</h2>
+      <p>${recusado ? "Se você se candidatou pelo link dele e acha que foi engano, pode pedir de novo explicando." : "São dois passos. A mentoria é gratuita."}</p>
+      <div class="mo-passo"><span class="n">1</span><div><b>Candidate-se pelo link do mentor</b>
+        <p>É o link de indicação de ${e(M.mentor.nome)}. A candidatura acontece na página oficial da empresa.</p>
+        <a class="md-bt" href="${e(M.link)}" target="_blank" rel="noopener nofollow">Abrir a vaga pelo link do mentor →</a></div></div>
+      <div class="mo-passo"><span class="n">2</span><div><b>Peça para entrar no grupo</b>
+        <p>O mentor aprova a entrada de cada pessoa. Diga com que nome ou e-mail você se candidatou, para ele reconhecer você.</p>
+        ${perfil ? `<label class="md-campo" style="margin-top:0"><textarea id="pedMsg" maxlength="600" placeholder="Me candidatei hoje pelo seu link, com o e-mail que começa com…"></textarea></label>
+          <div style="margin-top:10px"><button class="md-bt" type="button" data-pedir>Pedir para entrar</button></div>`
+        : `<a class="md-bt claro" href="perfil.html?voltar=${encodeURIComponent(aqui)}">Antes, preencher meu perfil</a>`}
+      </div></div>
+      <div class="md-msg" id="entMsg" role="status" hidden></div></div>`;
+  }
+
+  function htmlPedidos() {
+    if (M.meu_papel !== "mentor" && !M.sou_admin) return "";
+    const pend = pedidos.filter(p => p.status === "pedido"), dentro = pedidos.filter(p => p.status === "aprovado");
+    const linha = (p, botoes) => `<div class="mo-pedido">${U.foto(p.quem, 40)}
+      <div><div class="nm">${e(p.quem.nome)}</div>${p.mensagem ? `<div class="ms">${e(p.mensagem)}</div>` : ""}</div>
+      <div class="bts">${botoes}</div></div>`;
+    return `<div class="mo-cx"><h2>Pedidos de entrada</h2>
+      ${pend.length ? pend.map(p => linha(p, M.meu_papel === "mentor"
+            ? `<button class="md-bt pequeno" data-aprovar="${e(p.quem.id)}">Aceitar</button><button class="md-bt claro pequeno" data-recusar="${e(p.quem.id)}">Recusar</button>` : "")).join("")
+        : `<p>Nenhum pedido esperando resposta.</p>`}
+      ${dentro.length ? `<h2 style="margin-top:20px">Participantes</h2>` + dentro.map(p => linha(p, M.meu_papel === "mentor"
+            ? `<button class="md-link" data-recusar="${e(p.quem.id)}">tirar do grupo</button>` : "")).join("") : ""}
+      <div class="md-msg" id="pedMsgMentor" role="status" hidden></div></div>`;
+  }
+
+  function htmlPost(p, resposta) {
+    return `<div class="mo-post" id="post-${e(p.id)}">${U.foto(p.autor, resposta ? 30 : 40)}<div>
+      <div class="mo-post-cab"><span class="nm">${e(p.autor.nome)}</span>${p.do_mentor ? '<span class="md-etq aprovada">mentor</span>' : ""}
+        <span class="qd">${e(U.haQuanto(p.criado_em))}</span></div>
+      ${p.removido ? `<div class="apagado">mensagem apagada</div>` : `<div class="tx"><p>${U.texto(p.texto)}</p></div>
+        <div class="mo-post-acoes">
+          ${!resposta && aberta() && M.meu_papel ? `<button class="md-link" data-responder="${e(p.id)}">responder</button>` : ""}
+          ${p.meu || M.sou_admin ? `<button class="md-link" data-apagar="${e(p.id)}">apagar</button>` : ""}
+          ${!p.meu ? `<button class="md-link" data-denunciar-post="${e(p.id)}">denunciar</button>` : ""}
+        </div>`}
+      ${resposta ? "" : `<div class="mo-respostas">${posts.filter(r => r.pai_id === p.id).map(r => htmlPost(r, true)).join("")}</div>
+        <div class="mo-responder" id="resp-${e(p.id)}" hidden></div>`}
+    </div></div>`;
+  }
+
+  function htmlMural() {
+    if (!noMural()) return "";
+    const raiz = posts.filter(p => !p.pai_id).slice().reverse();
+    const podeEscrever = aberta() && (M.meu_papel === "mentor" || M.meu_papel === "aprovado");
+    return `<div class="mo-cx" id="mural"><h2>Mural</h2>
+      <p>Só o mentor e os participantes leem o que é escrito aqui.</p>
+      ${podeEscrever ? `<div class="mo-novo"><label class="md-campo"><textarea id="novoPost" maxlength="4000" placeholder="${M.meu_papel === "mentor" ? "Escreva um aviso ou uma orientação para o grupo" : "Escreva a sua dúvida ou conte como está o seu processo"}"></textarea></label>
+        <div style="margin-top:10px"><button class="md-bt" type="button" data-postar>Publicar</button></div></div>` : ""}
+      <div class="md-msg" id="muralMsg" role="status" hidden></div>
+      <div style="margin-top:14px">${raiz.length ? raiz.map(p => htmlPost(p, false)).join("")
+        : `<p style="padding:14px 0 0;color:var(--ink-3,#8A94A1)">Ninguém escreveu ainda.</p>`}</div></div>`;
+  }
+
+  function htmlAvaliacao() {
+    const pode = M.meu_papel === "aprovado";
+    const coment = (M.comentarios || []).map(c => `<div class="mo-coment">${U.estrelas(c.nota)} ${e(c.comentario)}
+      <small>${e(c.quem.nome)} · ${e(U.haQuanto(c.criado_em))}</small></div>`).join("");
+    if (!pode && !coment) return "";
+    return `<div class="mo-cx"><h2>Avaliações</h2>
+      ${pode ? `<p>${M.minha_nota ? "Você já avaliou. Pode mudar a nota quando quiser." : "Como está sendo a mentoria? A sua nota ajuda quem ainda vai escolher."}</p>
+        <div class="mo-estrelas" id="estrelas">${[1, 2, 3, 4, 5].map(n => `<button type="button" data-nota="${n}" class="${(M.minha_nota || 0) >= n ? "on" : ""}" aria-label="${n} de 5">★</button>`).join("")}</div>
+        <label class="md-campo"><textarea id="avCom" maxlength="600" placeholder="Opcional: conte em uma ou duas frases como o mentor ajudou"></textarea></label>
+        <div style="margin-top:10px"><button class="md-bt claro" type="button" data-avaliar>Salvar avaliação</button></div>
+        <div class="md-msg" id="avMsg" role="status" hidden></div>` : ""}
+      ${coment ? `<div style="margin-top:${pode ? 18 : 6}px">${coment}</div>` : ""}</div>`;
+  }
+
+  function desenhar() {
+    document.title = M.vaga_titulo + " — Mentoria — Home Office Hub";
+    tela.innerHTML = `
+      ${MD.demo ? `<div class="mo-aviso pendente" style="margin:0 0 18px">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : ""}
+      ${htmlCabecalho()}
+      ${htmlSituacao()}
+      <div class="mo-sec"><h2>Quem é o mentor</h2><p>${U.texto(M.apresentacao)}</p></div>
+      <div class="mo-sec"><h2>Como vai ajudar</h2><p>${U.texto(M.como_ajuda)}</p></div>
+      ${htmlPedidos()}
+      ${htmlEntrada()}
+      ${htmlMural()}
+      ${htmlAvaliacao()}
+      <div class="mo-rodape">
+        ${M.meu_papel === "aprovado" ? `<button class="md-link" type="button" data-sair>sair desta mentoria</button>` : ""}
+        ${M.meu_papel === "mentor" && aberta() ? `<button class="md-link" type="button" data-encerrar>encerrar esta mentoria</button>` : ""}
+        ${M.meu_papel !== "mentor" && aberta() ? `<button class="md-link" type="button" data-denunciar-mentoria>denunciar esta mentoria</button>` : ""}
+      </div>
+      <div class="md-msg" id="geralMsg" role="status" hidden></div>`;
+    notaEscolhida = M.minha_nota || 0;
+  }
+
+  let notaEscolhida = 0;
+  const dizer = (id, t, tipo) => { const m = tela.querySelector("#" + id) || tela.querySelector("#geralMsg"); if (!m) return;
+    m.textContent = t; m.className = "md-msg " + (tipo || "erro"); m.hidden = false; };
+
+  /* refaz a tela depois de uma ação, mostrando o erro se houver */
+  async function agir(onde, acao, depois) {
+    try { await acao(); await carregar(); desenhar(); if (depois) depois(); }
+    catch (err) { dizer(onde, err.message, "erro"); }
+  }
+
+  /* pergunta sem usar as caixas do navegador: abre um campo logo abaixo */
+  function pedirMotivo(ancora, titulo, feito) {
+    const velho = tela.querySelector(".mo-motivo"); if (velho) velho.remove();
+    const cx = document.createElement("div");
+    cx.className = "mo-motivo mo-responder";
+    cx.innerHTML = `<label class="md-campo"><span>${e(titulo)}</span><textarea maxlength="600"></textarea></label>
+      <div style="margin-top:8px;display:flex;gap:10px;align-items:center"><button class="md-bt pequeno" type="button">Enviar</button>
+      <button class="md-link" type="button">cancelar</button></div>`;
+    ancora.insertAdjacentElement("afterend", cx);
+    const bts = cx.querySelectorAll("button");
+    bts[1].addEventListener("click", () => cx.remove());
+    bts[0].addEventListener("click", () => {
+      const v = cx.querySelector("textarea").value.trim();
+      if (v.length < 3) { cx.querySelector("textarea").focus(); return; }
+      cx.remove(); feito(v);
+    });
+    cx.querySelector("textarea").focus();
+  }
+
+  tela.addEventListener("click", ev => {
+    const b = ev.target.closest("button"); if (!b) return;
+    const d = b.dataset;
+
+    if (d.nota) {
+      notaEscolhida = +d.nota;
+      tela.querySelectorAll("#estrelas button").forEach(x => x.classList.toggle("on", +x.dataset.nota <= notaEscolhida));
+    }
+    else if ("pedir" in d) agir("entMsg", () => MD.pedirEntrada(ID, (tela.querySelector("#pedMsg") || {}).value || ""));
+    else if ("sair" in d) agir("geralMsg", () => MD.sair(ID));
+    else if (d.aprovar) agir("pedMsgMentor", () => MD.responderPedido(ID, d.aprovar, true));
+    else if (d.recusar) agir("pedMsgMentor", () => MD.responderPedido(ID, d.recusar, false));
+    else if ("postar" in d) {
+      const t = (tela.querySelector("#novoPost").value || "").trim();
+      if (!t) { dizer("muralMsg", "Escreva alguma coisa antes de publicar.", "erro"); return; }
+      b.disabled = true;
+      agir("muralMsg", () => MD.postar(ID, t, null));
+    }
+    else if (d.responder) {
+      const cx = tela.querySelector("#resp-" + CSS.escape(d.responder));
+      cx.hidden = false;
+      cx.innerHTML = `<label class="md-campo" style="margin-top:0"><textarea maxlength="4000" placeholder="Sua resposta"></textarea></label>
+        <div style="margin-top:8px;display:flex;gap:10px;align-items:center"><button class="md-bt pequeno" type="button" data-enviar-resposta="${e(d.responder)}">Responder</button>
+        <button class="md-link" type="button" data-fechar-resposta="${e(d.responder)}">cancelar</button></div>`;
+      cx.querySelector("textarea").focus();
+    }
+    else if (d.fecharResposta) { const cx = tela.querySelector("#resp-" + CSS.escape(d.fecharResposta)); cx.hidden = true; cx.innerHTML = ""; }
+    else if (d.enviarResposta) {
+      const t = tela.querySelector("#resp-" + CSS.escape(d.enviarResposta) + " textarea").value.trim();
+      if (!t) return;
+      b.disabled = true;
+      agir("muralMsg", () => MD.postar(ID, t, d.enviarResposta));
+    }
+    else if (d.apagar) agir("muralMsg", () => MD.apagarPost(d.apagar));
+    else if (d.denunciarPost) pedirMotivo(b.parentElement, "O que há de errado nesta mensagem?", motivo =>
+      agir("muralMsg", () => MD.denunciar("post", d.denunciarPost, motivo), () => dizer("muralMsg", "Denúncia enviada para a administração do Hub.", "ok")));
+    else if ("denunciarMentoria" in d) pedirMotivo(b.parentElement, "O que há de errado nesta mentoria?", motivo =>
+      agir("geralMsg", () => MD.denunciar("mentoria", ID, motivo), () => dizer("geralMsg", "Denúncia enviada para a administração do Hub.", "ok")));
+    else if ("avaliar" in d) {
+      if (!notaEscolhida) { dizer("avMsg", "Escolha de 1 a 5 estrelas.", "erro"); return; }
+      const com = (tela.querySelector("#avCom").value || "").trim();
+      agir("avMsg", () => MD.avaliar(ID, notaEscolhida, com), () => dizer("avMsg", "Avaliação salva. Obrigado.", "ok"));
+    }
+    else if ("encerrar" in d) {
+      if (b.dataset.certeza) agir("geralMsg", () => MD.encerrar(ID));
+      else { b.dataset.certeza = "1"; b.textContent = "clique de novo para confirmar: encerrar não tem volta"; }
+    }
+  });
+
+  try { await carregar(); }
+  catch (err) { espera.textContent = err.message; return; }
+  espera.hidden = true; tela.hidden = false;
+  desenhar();
+})();
+</script>
+
+</body>
+</html>

@@ -11,6 +11,7 @@ const ABAS = [
   { id: "ferramentas", nome: "Ferramentas", href: "ferramentas.html" },
   { id: "guia",     nome: "Como funciona", href: "como-funciona.html" },
   { id: "cursos", nome: "Cursos", href: "cursos.html" },
+  { id: "mentorias", nome: "Mentorias", href: "mentorias.html" },
 ];
 
 /* ══════════════════════════════════════════════════════════════
@@ -262,8 +263,10 @@ const Acesso = (function () {
       d.innerHTML = `<summary class="hd-conta dentro">Minha conta</summary>
         <div class="hd-menu-cx">
           <div class="hd-menu-quem">${esc(email())}</div>
+          <a href="perfil.html?voltar=${volta}">Meu perfil<small>nome, apresentação e foto</small></a>
           <a href="entrar.html?areas=1&voltar=${volta}">Minhas áreas de formação<small>${esc(resumo)}</small></a>
           <a href="vagas.html${minhas && minhas.length ? "?ver=voce" : ""}">Vagas para mim</a>
+          <a href="mentorias.html">Mentorias</a>
           <a href="controle.html">Meu Controle</a>
           <a href="controle.html#dados">Dados da conta e sair</a>
         </div>`;

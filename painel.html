@@ -64,6 +64,18 @@ table.p-tab { width:100%; border-collapse:collapse; font-size:13.5px; }
 
 .p-nota { font-size:12px; line-height:1.55; color:var(--ink-3,#8A94A1); margin:22px 4px 0; max-width:760px; }
 
+/* mentorias: pedidos para aprovar e denúncias */
+.p-ment { margin-bottom:26px; }
+.p-pedido { border-top:1px solid var(--line-soft,#EAE4D9); padding:16px 0; }
+.p-pedido:first-of-type { border-top:0; padding-top:4px; }
+.p-pedido h3 { font-size:15.5px; font-weight:600; color:var(--ink,#10203A); margin:0 0 3px; }
+.p-pedido .quem { font-size:13px; color:var(--ink-3,#8A94A1); margin-bottom:10px; overflow-wrap:anywhere; }
+.p-pedido dl { margin:0; display:grid; gap:8px; }
+.p-pedido dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3,#8A94A1); }
+.p-pedido dd { margin:2px 0 0; font-size:14px; line-height:1.55; color:var(--ink,#10203A); white-space:pre-wrap; overflow-wrap:anywhere; }
+.p-pedido dd a { color:var(--signal,#1A4893); }
+.p-bts { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:12px; }
+.p-bts input { flex:1; min-width:200px; font:inherit; font-size:14px; padding:9px 12px; border:1px solid var(--line,#DED7CA); border-radius:10px; background:var(--bg,#F7F4EF); }
 @media (max-width:900px){ .p-nums { grid-template-columns:repeat(2,1fr); } .p-grade { grid-template-columns:1fr; } }
 @media (max-width:520px){ .p-num .val { font-size:32px; } .p-main { padding-top:30px; } }
 </style>
@@ -72,11 +84,13 @@ table.p-tab { width:100%; border-collapse:collapse; font-size:13.5px; }
 
 <main class="p-main">
   <div class="p-espera" id="espera">Abrindo…</div>
+  <div id="mentoriasAdmin"></div>
   <div id="painel" hidden></div>
 </main>
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="mentorias-dados.js?v=1"></script>
 <script>
 try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e); }
 
@@ -261,7 +275,96 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     desenhar(r.data || {});
   }
 
+  /* ══════════════════════════════════════════════════════════
+     MENTORIAS: aprovar mentores e cuidar das denúncias
+     Usa as mesmas funções do banco das páginas de mentoria. Quem
+     não é da administração recebe erro do banco e o bloco some.
+     ══════════════════════════════════════════════════════════ */
+  async function mentoriasAdmin() {
+    const alvo = document.getElementById("mentoriasAdmin");
+    if (typeof MD === "undefined") return;
+    let d;
+    try { d = await MD.adminTudo(); } catch (e) { alvo.innerHTML = ""; return; }
+    const U = MD.ui;
+    U.porCss();
+    const pend = d.mentorias.filter(m => m.status === "pendente");
+    const outras = d.mentorias.filter(m => m.status !== "pendente");
+    const den = d.denuncias.filter(x => !x.resolvida);
+    const NOME = { aprovada: "no ar", recusada: "recusada", encerrada: "encerrada", pendente: "em análise" };
+
+    const pedido = m => `<div class="p-pedido">
+      <h3>${esc(m.vaga_titulo)} · ${esc(m.empresa)}</h3>
+      <div class="quem">${esc(m.mentor.nome)} · ${esc(m.mentor_email || "")} · pedido ${esc(U.haQuanto(m.criado_em))}</div>
+      <dl>
+        <div><dt>Link de indicação</dt><dd><a href="${esc(m.link)}" target="_blank" rel="noopener nofollow">${esc(m.link)}</a></dd></div>
+        <div><dt>Comprovação (só você lê)</dt><dd>${U.texto(m.comprovacao)}</dd></div>
+        <div><dt>Apresentação</dt><dd>${esc(m.apresentacao)}</dd></div>
+        <div><dt>Como vai ajudar</dt><dd>${esc(m.como_ajuda)}</dd></div>
+      </dl>
+      <div class="p-bts">
+        <button class="md-bt pequeno" data-decidir="aprovada" data-id="${esc(m.id)}">Aprovar</button>
+        <input type="text" maxlength="300" placeholder="Motivo, se for recusar (o mentor lê)" data-motivo="${esc(m.id)}">
+        <button class="md-bt claro pequeno" data-decidir="recusada" data-id="${esc(m.id)}">Recusar</button>
+      </div></div>`;
+
+    alvo.innerHTML = `<div class="p-ment">
+      <div class="p-topo"><div><div class="eyebrow">Administração</div><h1>Mentorias</h1>
+        <p>Pedidos de quem quer ser mentor e denúncias feitas pelos participantes.</p></div></div>
+      <div class="p-grade" style="margin-top:0">
+        <section class="p-cx larga"><h2>Pedidos para ser mentor</h2>
+          <p class="sub">${pend.length ? "Confira a comprovação antes de aprovar. Se precisar de mais prova, escreva para o e-mail da pessoa." : ""}</p>
+          ${pend.length ? pend.map(pedido).join("") : `<div class="p-vazio">Nenhum pedido esperando análise.</div>`}
+        </section>
+        <section class="p-cx larga"><h2>Denúncias</h2><p class="sub">Só as que ainda não foram resolvidas.</p>
+          ${den.length ? den.map(x => `<div class="p-pedido">
+              <h3>${x.tipo === "post" ? "Mensagem no mural" : "Mentoria inteira"}</h3>
+              <div class="quem">denunciado por ${esc(x.quem.nome)} ${esc(U.haQuanto(x.criado_em))}</div>
+              <dl><div><dt>Motivo</dt><dd>${esc(x.motivo)}</dd></div>
+                ${x.post ? `<div><dt>Mensagem de ${esc(x.post.autor.nome)}${x.post.removido ? " (já apagada)" : ""}</dt><dd>${esc(x.post.texto)}</dd></div>` : ""}</dl>
+              <div class="p-bts">
+                ${x.mentoria_id ? `<a class="md-bt claro pequeno" href="mentoria.html?id=${encodeURIComponent(x.mentoria_id)}">Abrir a mentoria</a>` : ""}
+                ${x.post && !x.post.removido ? `<button class="md-bt claro pequeno" data-apagar-post="${esc(x.alvo_id)}" data-den="${esc(x.id)}">Apagar a mensagem</button>` : ""}
+                <button class="md-bt pequeno" data-resolver="${esc(x.id)}">Marcar como resolvida</button>
+              </div></div>`).join("") : `<div class="p-vazio">Nenhuma denúncia em aberto.</div>`}
+        </section>
+        <section class="p-cx larga"><h2>Todas as mentorias</h2><p class="sub">Para encerrar uma mentoria no ar ou reabrir a análise de uma recusada.</p>
+          ${outras.length ? `<div class="p-rolagem"><table class="p-tab"><thead><tr><th>Mentoria</th><th>Situação</th><th class="n">Participantes</th><th class="n">Nota</th><th></th></tr></thead><tbody>
+            ${outras.map(m => `<tr><td class="tit"><a href="mentoria.html?id=${encodeURIComponent(m.id)}">${esc(m.vaga_titulo)}</a><span class="emp">${esc(m.mentor.nome)} · ${esc(m.empresa)}</span></td>
+              <td>${esc(NOME[m.status] || m.status)}</td><td class="n">${num(m.membros)}</td><td class="n">${m.nota ? String(m.nota).replace(".", ",") : "–"}</td>
+              <td class="n">${m.status === "aprovada" ? `<button class="md-link" data-decidir="encerrada" data-id="${esc(m.id)}">encerrar</button>`
+                : `<button class="md-link" data-decidir="pendente" data-id="${esc(m.id)}">voltar para análise</button>`}</td></tr>`).join("")}
+            </tbody></table></div>` : `<div class="p-vazio">Ainda não há mentoria aprovada.</div>`}
+        </section>
+      </div>
+      <div class="md-msg" id="mentMsg" role="status" hidden></div></div>`;
+
+    alvo.onclick = async ev => {
+      const b = ev.target.closest("button"); if (!b) return;
+      const d2 = b.dataset;
+      const erro = e => { const m = alvo.querySelector("#mentMsg"); m.textContent = e.message; m.className = "md-msg erro"; m.hidden = false; };
+      try {
+        if (d2.decidir) {
+          const campo = alvo.querySelector('[data-motivo="' + d2.id + '"]');
+          const motivo = campo ? campo.value.trim() : "";
+          if (d2.decidir === "recusada" && motivo.length < 3) { campo.focus(); campo.placeholder = "Escreva o motivo da recusa"; return; }
+          if (d2.decidir === "encerrada" && !d2.certeza) { d2.certeza = "1"; b.textContent = "clique de novo para encerrar"; return; }
+          b.disabled = true;
+          await MD.adminDecidir(d2.id, d2.decidir, d2.decidir === "recusada" ? motivo : "");
+        } else if (d2.apagarPost) {
+          b.disabled = true;
+          await MD.apagarPost(d2.apagarPost); await MD.adminResolver(d2.den);
+        } else if (d2.resolver) {
+          b.disabled = true;
+          await MD.adminResolver(d2.resolver);
+        } else return;
+        mentoriasAdmin();
+      } catch (e) { erro(e); b.disabled = false; }
+    };
+  }
+
   (async function () {
+    // modo de demonstração (só no localhost): mostra a parte de mentorias com dados de exemplo
+    if (typeof MD !== "undefined" && MD.demo) { espera.hidden = true; mentoriasAdmin(); return; }
     if (typeof supabase === "undefined" || !supabase.createClient) {
       dizer("Não deu para falar com o servidor de contas. Confira a internet e recarregue a página.");
       return;
@@ -277,6 +380,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       painel.innerHTML = Acesso.htmlAviso("O painel é só para a administração", "Entre na sua conta para continuar.");
       return;
     }
+    mentoriasAdmin();
     carregar();
   })();
 })();

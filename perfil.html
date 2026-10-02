@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu perfil — Home Office Hub</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<style>
+/* Perfil: o nome, a apresentação curta e a foto que aparecem para os outros
+   nas mentorias. O e-mail nunca aparece. */
+.pf-main { max-width:560px; margin:0 auto; padding:44px 20px 90px; min-height:60vh; }
+.pf-main h1 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400; font-size:clamp(28px,3.6vw,38px);
+  line-height:1.1; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:0 0 8px; }
+.pf-lead { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); margin:0 0 22px; }
+.pf-cx { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:24px 26px 26px; }
+.pf-foto { display:flex; align-items:center; gap:16px; }
+.pf-foto-bts { display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
+.pf-espera { text-align:center; padding:80px 20px; color:var(--ink-3,#8A94A1); font-size:14px; }
+.pf-acoes { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:20px; }
+</style>
+</head>
+<body>
+
+<main class="pf-main">
+  <div class="pf-espera" id="espera">Abrindo…</div>
+  <div id="tela" hidden></div>
+</main>
+
+<script src="layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="mentorias-dados.js?v=1"></script>
+<script>
+try { montarLayout(""); } catch (e) { console.warn(e); }
+
+(async function () {
+  "use strict";
+  const U = MD.ui, espera = document.getElementById("espera"), tela = document.getElementById("tela");
+  const pedido = new URLSearchParams(location.search).get("voltar") || "";
+  // só volta para página do próprio site
+  const voltar = /^[a-z0-9-]+\.html(\?[\w=&%.-]*)?(#[\w\/.-]*)?$/i.test(pedido) ? pedido : "mentorias.html";
+
+  if (!MD.disponivel) { espera.textContent = "Não deu para falar com o servidor de contas. Confira a internet e recarregue a página."; return; }
+  let eu = null;
+  try { eu = await MD.eu(); } catch (e) { console.warn(e); }
+  if (!eu) {
+    espera.hidden = true; tela.hidden = false;
+    tela.innerHTML = Acesso.htmlAviso("O perfil é para quem tem conta", "Entre na sua conta para preencher o seu perfil.");
+    return;
+  }
+
+  let perfil = null;
+  try { perfil = await MD.meuPerfil(); }
+  catch (e) { espera.textContent = e.message; return; }
+  let fotoAtual = (perfil && perfil.foto) || "";
+
+  U.porCss();
+  tela.innerHTML = `
+    <div class="eyebrow">Sua conta</div>
+    <h1>Meu perfil</h1>
+    <p class="pf-lead">É assim que você aparece para as outras pessoas nas mentorias. O seu e-mail nunca é mostrado.</p>
+    <form class="pf-cx" novalidate>
+      <div class="pf-foto">
+        <span id="fotoVer"></span>
+        <div class="pf-foto-bts">
+          <label class="md-bt claro pequeno" style="cursor:pointer">Escolher foto
+            <input type="file" id="fotoArq" accept="image/*" hidden></label>
+          <button type="button" class="md-link" id="fotoTirar">tirar a foto</button>
+        </div>
+      </div>
+      <label class="md-campo"><span>Nome</span>
+        <small>O nome ou o apelido pelo qual você quer ser chamado.</small>
+        <input id="nome" type="text" maxlength="60" autocomplete="name" required></label>
+      <label class="md-campo"><span>Sobre você</span>
+        <small>Opcional. Duas ou três linhas: onde trabalha, há quanto tempo, o que faz.</small>
+        <textarea id="bio" maxlength="600"></textarea></label>
+      <div class="pf-acoes">
+        <button class="md-bt" type="submit">Salvar perfil</button>
+        <a class="md-link" href="${U.e(voltar)}">voltar sem salvar</a>
+      </div>
+      <div class="md-msg" id="msg" role="status" hidden></div>
+    </form>`;
+  espera.hidden = true; tela.hidden = false;
+
+  const $ = s => tela.querySelector(s);
+  $("#nome").value = (perfil && perfil.nome) || "";
+  $("#bio").value = (perfil && perfil.bio) || "";
+  const pintarFoto = () => {
+    $("#fotoVer").innerHTML = U.foto({ nome: $("#nome").value || "?", foto: fotoAtual }, 76);
+    $("#fotoTirar").hidden = !fotoAtual;
+  };
+  pintarFoto();
+  $("#nome").addEventListener("input", () => { if (!fotoAtual) pintarFoto(); });
+  const dizer = (t, tipo) => { const m = $("#msg"); m.textContent = t; m.className = "md-msg " + tipo; m.hidden = false; };
+
+  $("#fotoArq").addEventListener("change", async ev => {
+    try { fotoAtual = await U.reduzirFoto(ev.target.files[0]); pintarFoto(); }
+    catch (e) { dizer(e.message, "erro"); }
+    ev.target.value = "";
+  });
+  $("#fotoTirar").addEventListener("click", () => { fotoAtual = ""; pintarFoto(); });
+
+  tela.querySelector("form").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const nome = $("#nome").value.trim();
+    if (nome.length < 2) { dizer("Escreva o seu nome ou apelido, com pelo menos duas letras.", "erro"); return; }
+    const bt = tela.querySelector("button[type=submit]");
+    bt.disabled = true; bt.textContent = "Salvando…";
+    try {
+      await MD.salvarPerfil({ nome, bio: $("#bio").value.trim(), foto: fotoAtual });
+      location.href = voltar;
+    } catch (e) {
+      dizer(e.message, "erro"); bt.disabled = false; bt.textContent = "Salvar perfil";
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -146,6 +146,8 @@ const Conta = (function () {
         <h1>Criar a sua conta</h1>
         <p>É grátis. Com a conta você usa as ferramentas, continua os cursos e vê as vagas em movimento.</p>
         <form novalidate>
+          <label for="cp-nome">Seu nome</label>
+          <input id="cp-nome" type="text" autocomplete="name" maxlength="60" required>
           <label for="cp-email">E-mail</label>
           <input id="cp-email" type="email" autocomplete="username" required>
           <label for="cp-nova">Senha</label>
@@ -167,6 +169,8 @@ const Conta = (function () {
       ev.preventDefault();
       const email = p.querySelector("#cp-email").value.trim();
       const a = p.querySelector("#cp-nova").value, b = p.querySelector("#cp-nova2").value;
+      const nome = p.querySelector("#cp-nome").value.trim();
+      if (nome.length < 2) { dizer("Escreva o seu nome ou o apelido pelo qual quer ser chamado.", "erro"); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { dizer("Confira o e-mail: parece que falta alguma parte.", "erro"); return; }
       if (a.length < 8) { dizer("A senha precisa ter pelo menos 8 caracteres.", "erro"); return; }
       if (a !== b) { dizer("As duas senhas estão diferentes.", "erro"); return; }
@@ -174,7 +178,8 @@ const Conta = (function () {
 
       // o link de confirmação leva ao Meu Controle, que sabe receber a pessoa
       const destino = location.origin + location.pathname.replace(/[^\/]*$/, "") + "controle.html";
-      const r = await cliente().auth.signUp({ email, password: a, options: { emailRedirectTo: destino } });
+      // o nome vai junto com a conta e vira o perfil das mentorias (mentorias-dados.js)
+      const r = await cliente().auth.signUp({ email, password: a, options: { emailRedirectTo: destino, data: { nome: nome } } });
       bt.disabled = false; bt.textContent = "Criar conta";
       if (r.error) { dizer(traduzir(r.error), "erro"); return; }
 
