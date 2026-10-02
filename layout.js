@@ -94,6 +94,7 @@ const Acesso = (function () {
   .ac-aviso a.ac-bt { display:inline-block; font-weight:600; font-size:14.5px; text-decoration:none !important; color:#fff !important;
     background:var(--signal,#1A4893); padding:12px 22px; border-radius:12px; }
   .ac-aviso .ac-nota { font-size:12.5px; color:var(--ink-3,#8A94A1); margin:14px 0 0; }
+  .ac-aviso .ac-nota a { color:var(--signal,#1A4893) !important; text-decoration:underline; }
 
   .ac-trancada > *:not(.ac-aviso) { display:none !important; }
   main.ac-pagina-trancada > *:not(.ac-aviso) { display:none !important; }
@@ -123,7 +124,7 @@ const Acesso = (function () {
       <h2>${titulo}</h2>
       <p>${texto}</p>
       <a class="ac-bt" href="${linkEntrar()}">Entrar na conta</a>
-      <p class="ac-nota">Ainda não tem conta? Por enquanto o acesso é por convite.</p>
+      <p class="ac-nota">Ainda não tem conta? <a href="${linkEntrar().replace("entrar.html?", "entrar.html?criar=1&")}">Crie a sua, é grátis</a>.</p>
     </div>`;
   }
 

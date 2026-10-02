@@ -306,7 +306,7 @@ body > header.site .hd { max-width:1460px; }
 <script src="layout.js"></script>
 <script src="controle-dados.js?v=2"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="controle-conta.js?v=2"></script>
+<script src="controle-conta.js?v=3"></script>
 <script src="pulso-site.js"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
@@ -1304,9 +1304,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           <button class="ct-b" id="btApagarConta">Apagar a minha conta</button>
         </div>
       </div>` : (temConta ? `<div class="ct-cartao ct-dados" style="margin-bottom:18px">
-        <div class="ct-cab-cartao"><h2>Conta</h2><p>acesso por convite</p></div>
+        <div class="ct-cab-cartao"><h2>Conta</h2><p>grátis</p></div>
         <p>Com uma conta, os seus registros ficam guardados fora deste navegador e acompanham você em qualquer aparelho.</p>
-        <div class="ct-dados-bts"><a class="ct-b" href="controle.html?entrar=1">Entrar na conta</a></div>
+        <div class="ct-dados-bts"><a class="ct-b" href="entrar.html?voltar=controle.html">Entrar na conta</a><a class="ct-b" href="entrar.html?criar=1&voltar=controle.html">Criar conta</a></div>
       </div>` : "")}
 
       <div class="ct-cartao ct-dados">

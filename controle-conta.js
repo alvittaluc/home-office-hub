@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════════════════════
    MEU CONTROLE — conta e sincronização
 
-   Login por convite (Supabase) e cópia dos dados do Meu Controle
+   Conta com cadastro aberto (Supabase) e cópia dos dados do Meu Controle
    para a conta da pessoa.
 
    Como funciona, em uma frase: o navegador continua guardando tudo,
@@ -122,24 +122,88 @@ const Conta = (function () {
   function traduzir(erro) {
     const m = (erro && (erro.message || erro.error_description || String(erro))) || "";
     if (/Invalid login credentials/i.test(m)) return "E-mail ou senha incorretos.";
-    if (/Email not confirmed/i.test(m)) return "Este e-mail ainda não foi confirmado. Abra o convite que chegou no seu e-mail.";
-    if (/expired|invalid.*(token|link)|otp/i.test(m)) return "Este link já foi usado ou expirou. Peça um novo convite, ou use \"Esqueci a senha\".";
+    if (/Email not confirmed/i.test(m)) return "Este e-mail ainda não foi confirmado. Abra o e-mail de confirmação que enviamos e clique no link dele.";
+    if (/expired|invalid.*(token|link)|otp/i.test(m)) return "Este link já foi usado ou expirou. Use \"Esqueci a senha\" para receber um novo.";
     if (/should be different/i.test(m)) return "A senha nova precisa ser diferente da anterior.";
     if (/at least|weak|should contain|characters/i.test(m)) return "Senha fraca. Use pelo menos 8 caracteres, misturando letras e números.";
     if (/rate limit|too many|security purposes/i.test(m)) return "Muitas tentativas seguidas. Espere um minuto e tente de novo.";
-    if (/signups? not allowed|not allowed/i.test(m)) return "O acesso é só por convite. Este e-mail ainda não foi convidado.";
+    if (/already registered|already exists/i.test(m)) return "Já existe uma conta com este e-mail. Use \"Já tenho conta\" e, se precisar, \"Esqueci a senha\".";
+    if (/signups? not allowed|not allowed/i.test(m)) return "O cadastro está fechado no momento. Tente de novo mais tarde.";
+    if (/sending.*email|email.*send|smtp/i.test(m)) return "Não conseguimos enviar o e-mail de confirmação agora. Tente de novo em alguns minutos.";
     if (/fetch|network|failed/i.test(m)) return "Sem conexão com o servidor agora. Confira a internet e tente de novo.";
     return "Não deu certo: " + m;
   }
 
-  function telaEntrar(avisoInicial) {
-    return new Promise(resolver => {
+  /* Tela de criar conta. O cadastro é aberto: a pessoa informa e-mail e
+     senha, recebe um e-mail de confirmação e, ao clicar no link dele, cai
+     no Meu Controle já logada. Esta tela não "resolve": ela termina com o
+     aviso para a pessoa abrir o e-mail, ou volta para a tela de entrar. */
+  function telaCriarConta(resolver) {
+    const p = porta();
+    p.innerHTML = `
+      <div class="cp-cx">
+        <div class="cp-olho">Home Office Hub</div>
+        <h1>Criar a sua conta</h1>
+        <p>É grátis. Com a conta você usa as ferramentas, continua os cursos e vê as vagas em movimento.</p>
+        <form novalidate>
+          <label for="cp-email">E-mail</label>
+          <input id="cp-email" type="email" autocomplete="username" required>
+          <label for="cp-nova">Senha</label>
+          <input id="cp-nova" type="password" autocomplete="new-password" minlength="8" required>
+          <label for="cp-nova2">Repita a senha</label>
+          <input id="cp-nova2" type="password" autocomplete="new-password" minlength="8" required>
+          <button class="cp-bt" type="submit">Criar conta</button>
+        </form>
+        <button class="cp-link" type="button" data-ja-tenho>Já tenho conta</button>
+        <div class="cp-msg" role="status" hidden></div>
+      </div>${RODAPE}`;
+
+    const form = p.querySelector("form"), msg = p.querySelector(".cp-msg"), bt = p.querySelector(".cp-bt");
+    const dizer = (texto, tipo) => { msg.textContent = texto; msg.className = "cp-msg " + tipo; msg.hidden = false; };
+
+    p.querySelector("[data-ja-tenho]").addEventListener("click", () => telaEntrar(null, resolver));
+
+    form.addEventListener("submit", async ev => {
+      ev.preventDefault();
+      const email = p.querySelector("#cp-email").value.trim();
+      const a = p.querySelector("#cp-nova").value, b = p.querySelector("#cp-nova2").value;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { dizer("Confira o e-mail: parece que falta alguma parte.", "erro"); return; }
+      if (a.length < 8) { dizer("A senha precisa ter pelo menos 8 caracteres.", "erro"); return; }
+      if (a !== b) { dizer("As duas senhas estão diferentes.", "erro"); return; }
+      bt.disabled = true; bt.textContent = "Criando…";
+
+      // o link de confirmação leva ao Meu Controle, que sabe receber a pessoa
+      const destino = location.origin + location.pathname.replace(/[^\/]*$/, "") + "controle.html";
+      const r = await cliente().auth.signUp({ email, password: a, options: { emailRedirectTo: destino } });
+      bt.disabled = false; bt.textContent = "Criar conta";
+      if (r.error) { dizer(traduzir(r.error), "erro"); return; }
+
+      // Quando o e-mail já tem conta, o Supabase responde "deu certo" sem
+      // criar nada, para não revelar quem é cadastrado. Dá para perceber
+      // porque o usuário vem sem nenhuma identidade.
+      const u = r.data && r.data.user;
+      if (u && Array.isArray(u.identities) && u.identities.length === 0) {
+        dizer("Já existe uma conta com este e-mail. Use \"Já tenho conta\" e, se precisar, \"Esqueci a senha\".", "erro");
+        return;
+      }
+      if (r.data && r.data.session) { resolver(r.data.user); return; }   // confirmação por e-mail desligada
+
+      form.hidden = true;
+      dizer("Quase lá. Enviamos um e-mail para " + email + ". Clique no link dele para confirmar e entrar. Se não achar, olhe a caixa de spam.", "ok");
+    });
+  }
+
+  /* resolverDeFora: usado quando esta tela é aberta a partir da de criar
+     conta, para as duas terminarem na mesma promessa. */
+  function telaEntrar(avisoInicial, resolverDeFora) {
+    return new Promise(resolverDaqui => {
+      const resolver = resolverDeFora || resolverDaqui;
       const p = porta();
       p.innerHTML = `
         <div class="cp-cx">
-          <div class="cp-olho">Meu Controle</div>
+          <div class="cp-olho">Home Office Hub</div>
           <h1>Entrar na sua conta</h1>
-          <p>O acesso é por convite. Se você recebeu o convite por e-mail, abra o link dele primeiro para criar a sua senha.</p>
+          <p>Use o e-mail e a senha que você cadastrou.</p>
           <form novalidate>
             <label for="cp-email">E-mail</label>
             <input id="cp-email" type="email" autocomplete="username" required>
@@ -148,12 +212,16 @@ const Conta = (function () {
             <button class="cp-bt" type="submit">Entrar</button>
           </form>
           <button class="cp-link" type="button" data-esqueci>Esqueci a senha</button>
+          <span style="color:var(--ink-3,#8A94A1);margin:0 6px;">·</span>
+          <button class="cp-link" type="button" data-criar>Criar conta grátis</button>
           <div class="cp-msg" role="status" hidden></div>
         </div>${RODAPE}`;
 
       const form = p.querySelector("form"), msg = p.querySelector(".cp-msg"), bt = p.querySelector(".cp-bt");
       const dizer = (texto, tipo) => { msg.textContent = texto; msg.className = "cp-msg " + tipo; msg.hidden = false; };
       if (avisoInicial) dizer(avisoInicial.texto, avisoInicial.tipo || "erro");
+
+      p.querySelector("[data-criar]").addEventListener("click", () => telaCriarConta(resolver));
 
       form.addEventListener("submit", async ev => {
         ev.preventDefault();
@@ -221,6 +289,7 @@ const Conta = (function () {
 
   async function entrar(opcoes) {
     const forcar = !!(opcoes && opcoes.forcar);   // a página entrar.html sempre pede login
+    const criar = !!(opcoes && opcoes.criar);     // abre direto na tela de criar conta
     if (!disponivel()) {
       // A biblioteca não carregou (sem internet, bloqueador). Sem login
       // obrigatório a ferramenta segue só com o que está no navegador.
@@ -236,7 +305,9 @@ const Conta = (function () {
     if (!sessao) {
       if (!forcar && !loginObrigatorio() && !chegouPorLink && !pediuEntrar) return null;
       const aviso = erroDoLink ? { texto: traduzir({ message: erroDoLink }) } : null;
-      usuario = await telaEntrar(aviso);
+      usuario = criar && !aviso
+        ? await new Promise(resolver => telaCriarConta(resolver))
+        : await telaEntrar(aviso);
     } else {
       usuario = sessao.user;
       // Veio pelo convite ou pelo "esqueci a senha": a pessoa ainda não tem
