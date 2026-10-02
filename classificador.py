@@ -31,10 +31,63 @@ import unicodedata
 EXCECOES = {
     "FP&A Expert": "Financas e Contabilidade",
 
-    # ── micro1 (outubro de 2026) ──
-    # Passamos a ler a lista inteira da micro1. Estes titulos pedem
-    # experiencia profissional numa area, mas nao tem nenhuma palavra das
-    # listas abaixo, e por isso cairiam na aba Vagas por engano.
+    # ══ FICAM NA ABA VAGAS ("" = geral) ══
+    # Vagas que o anuncio diz, com todas as letras, que nao exigem formacao
+    # nem experiencia na area, mas cujo titulo ou descricao tem palavra de area.
+    "App Store And Music Search Evaluator": "",
+    "=Generalist Expert": "",
+    "Multilingual Image & Text AI Quality Expert": "",
+    "=Customer Service Expert": "",
+    "=Lifestyle Experts": "",
+    "Data Operations Specialist": "",
+    "Document Review Specialist": "",
+    "Creative Writing Evaluator": "",
+    "E-commerce Data Analyst": "",
+    "AI Policy, Ethics & Compliance Analyst": "",
+    "Image Description Specialist": "",
+    "Robotics Technician": "",
+    "Film Scene Description Specialist": "",
+    "AI Data Quality Analyst": "",
+    "Conversation Quality Analyst": "",
+    "Map & Location Data Analyst": "",
+    # ja estavam na aba Vagas; a descricao cita areas so como diferencial
+    "AI Chatbot Tester": "",
+    "Product Review Analyst": "",
+    "=Quality Analyst": "",
+    # suporte da propria Mercor, so para quem mora na America Latina
+    "Customer Success Engineer (LatAm)": "",
+
+    # ══ PROGRAMAS ESPECIFICOS (Mercor "Application Users") ══
+    # Pedem o programa instalado e uso profissional dele. A ordem importa:
+    # as linhas especificas vem antes da linha geral "Application Users".
+    "Application Users - Quartus": "Engenharia",
+    "Application Users - Vivado": "Engenharia",
+    "Application Users - AutoCAD": "Engenharia",
+    "Application Users - Inventor": "Engenharia",
+    "Application Users - SolidWorks": "Engenharia",
+    "Application Users - EViews": "Matematica e Estatistica",
+    "Application Users - Stata": "Matematica e Estatistica",
+    "Application Users - Excel": "Economia e Negocios",
+    "Application Users - PowerPoint": "Economia e Negocios",
+    "Application Users - Word": "Economia e Negocios",
+    "Application Users - FruitLoops": "Musica e Audio",
+    "Application Users - Blender": "Design e Criacao",
+    "Application Users - Adobe Illustrator": "Design e Criacao",
+    "Application Users - Photoshop": "Design e Criacao",
+    "Application Users - Premiere": "Design e Criacao",
+    "Application Users - Unreal Engine": "Design e Criacao",
+    "Application Users - DaVinci": "Design e Criacao",
+    "Application Users - Android Studio": "Programacao e Software",
+    "Application Users - PyCharm": "Programacao e Software",
+    "Application Users - VMware": "Programacao e Software",
+    "Application Users - Visual Studio Code": "Programacao e Software",
+    "Application Users - Linux": "Programacao e Software",
+    "Application Users - Windows 11": "Programacao e Software",
+    "Application Users - macOS Sonoma": "Programacao e Software",
+    "Application Users": "Outras areas",
+
+    # ══ TITULOS QUE ENGANAM AS LISTAS DE PALAVRAS ══
+    # Engenharia (CAD e afins)
     "Fusion 360": "Engenharia",
     "Fusion360": "Engenharia",
     "Autodesk": "Engenharia",
@@ -43,76 +96,89 @@ EXCECOES = {
     "CAD Expert": "Engenharia",
     "Hardware Expert": "Engenharia",
     "Field Service Technician": "Engenharia",
+    "Nuclear Security Engineer": "Engenharia",
+    # Programacao e TI
     "MCP Expert": "Programacao e Software",
     "GitHub": "Programacao e Software",
     "Security Onion": "Programacao e Software",
     "Information Systems Manager": "Programacao e Software",
     "Computer User Support": "Programacao e Software",
     "IT Manager": "Programacao e Software",
-    "Data Analyst": "Programacao e Software",
+    "=Data Analyst": "Programacao e Software",
+    "MLE Bench": "Programacao e Software",
     "Computer Vision Specialist": "Programacao e Software",
+    "Prompt & Verifier": "Programacao e Software",
+    # Financas, mesmo falando de Python ou de previsao
+    "Finance Experts: US Modeling": "Financas e Contabilidade",
+    "Sales Agent (Securities": "Financas e Contabilidade",
+    # Fisica, mesmo com "mathematical" ou "statistical" no titulo
+    "Mathematical Physicist": "Fisica e Astronomia",
+    "Statistical Physics": "Fisica e Astronomia",
+    # Psicologia e ciencias sociais
     "Suicide & Self-Harm Specialist": "Psicologia e Ciencias Sociais",
     "Trauma Specialist": "Psicologia e Ciencias Sociais",
     "Addiction Specialist": "Psicologia e Ciencias Sociais",
     "Mental Health Expert": "Psicologia e Ciencias Sociais",
     "Behavioral Analyst": "Psicologia e Ciencias Sociais",
+    "Safeguarding & Exploitation": "Psicologia e Ciencias Sociais",
+    "Eating Disorder": "Psicologia e Ciencias Sociais",
+    "Context Elicitation": "Psicologia e Ciencias Sociais",
+    # Saude
     "Hospitalist": "Medicina e Saude",
+    # Direito
     "Document Reviewer": "Direito",
     "Data Privacy Analyst": "Direito",
+    "Compliance & Risk Specialist": "Direito",
+    "Professional Writing Human Data Collection - Legal": "Direito",
+    # Contabilidade
     "UltraTax": "Financas e Contabilidade",
+    # Economia e negocios
     "Revenue Operations": "Economia e Negocios",
     "Revenue Systems": "Economia e Negocios",
     "Shopify Specialist": "Economia e Negocios",
     "Purchasing Agent": "Economia e Negocios",
     "Product Manager": "Economia e Negocios",
-    "Training & Development Specialist": "Economia e Negocios",
     "Buildium Specialist": "Economia e Negocios",
     "Procore Specialist": "Economia e Negocios",
     "Toast POS Specialist": "Economia e Negocios",
     "Business Document Expert": "Economia e Negocios",
+    "Legal Headhunter": "Economia e Negocios",
+    # Educacao
+    "Training & Development Specialist": "Educacao e Ensino",
+    "Professional Writing Human Data Collection - Academic": "Educacao e Ensino",
+    # Marketing e vendas
     "Brand & Creative Strategy": "Marketing e Vendas",
+    "Sales Representatives": "Marketing e Vendas",
+    "Professional Writing Human Data Collection": "Marketing e Vendas",
+    # Design, video e arte
     "Audiovisual Producer": "Design e Criacao",
     "Filmmaker": "Design e Criacao",
     "Avid Media Composer": "Design e Criacao",
     "DaVinci Resolve": "Design e Criacao",
     "Producer (Film": "Design e Criacao",
+    "Cinematography": "Design e Criacao",
+    "Arts & Design Expert": "Design e Criacao",
+    "Domain Expert - Art": "Design e Criacao",
+    "Senior Design Expert": "Design e Criacao",
+    # Humanidades
     "Book Editor": "Humanidades",
-    # o "=" na frente faz valer so para o titulo exato: sem ele, "Audio Expert"
-    # esconderia tambem a "Music and Audio experts", que e vaga geral
-    "=Audio Expert": "Outras areas",
-
-    # ── revisao de outubro de 2026: especialista nao fica na aba Vagas ──
-    # A regra: se a vaga exige diploma, pos-graduacao ou anos de profissao
-    # numa area tecnica, ela vai para a area, mesmo com titulo generico.
-    "Prompt & Verifier": "Programacao e Software",
-    "Professional Writing Human Data Collection - Academic": "Humanidades",
-    "Professional Writing Human Data Collection": "Marketing e Vendas",
-    "Board Game Reasoning Expert": "Outras areas",
-    "Context Elicitation": "Psicologia e Ciencias Sociais",
-    "Web Research Specialist": "Outras areas",
-    "Web Research Task Author": "Outras areas",
+    "Generalist Search Expert": "Humanidades",   # procura doutores de humanas
+    # Linguistica e traducao
     "Portuguese Language Specialist (Brazil)": "Linguistica",
     "AI Language Expert": "Linguistica",
+    "Linguist for Patent": "Linguistica",
+    # Musica e audio. O "=" faz valer so para o titulo exato: sem ele,
+    # "Audio Expert" esconderia tambem a "Music and Audio experts".
+    "=Audio Expert": "Musica e Audio",
+    "Sound Engineer": "Musica e Audio",
+    "Audio Engineer": "Musica e Audio",
+    # Sem area propria
+    "Board Game Reasoning Expert": "Outras areas",
+    "Web Research Specialist": "Outras areas",
+    "Web Research Task Author": "Outras areas",
     "Customer Support Task Author": "Outras areas",
     "Customer Support / Success Task Author": "Outras areas",
-    # pede formacao ou pratica profissional em cinema
-    "Cinematography Analysis": "Design e Criacao",
-    # "music" agora e palavra de area; esta aqui e avaliacao de busca, geral
-    "App Store And Music Search Evaluator": "",
-
-    # ── Mercor inteira (outubro de 2026) ──
-    # A Mercor e quase toda de especialista. "Expert" no titulo agora manda
-    # para as areas (lista TITULO_DE_ESPECIALISTA). Estas sao as excecoes:
-    # tem "Expert" no nome, mas nao pedem formacao em area nenhuma.
-    "=Generalist Expert": "",
-    "Multilingual Image & Text AI Quality Expert": "",
-    "=Customer Service Expert": "",
-    "=Lifestyle Experts": "",
-    # pedem o programa instalado e uso profissional dele
-    "Application Users": "Outras areas",
-    # generalista no nome, mas o anuncio procura pesquisadores, professores e
-    # doutores de humanas
-    "Generalist Search Expert": "Outras areas",
+    "Technical Problem Author": "Outras areas",
     "Dispatcher": "Outras areas",
 }
 
@@ -138,7 +204,9 @@ FALSOS_POSITIVOS = [
     "prompt engineer", "annotation engineer", "data engineer intern",
 ]
 
-# Ordem importa: a primeira area que casar e a escolhida.
+# Ordem importa: a primeira area que casar e a escolhida. Por isso
+# Programacao vem antes de Engenharia ("Software Engineer" e programacao) e
+# Meio Ambiente vem antes das duas ("Environmental Engineering").
 AREAS = [
     ("Direito", [
         "law", "laws", "legal", "lawyer", "attorney", "paralegal", "litigation",
@@ -152,10 +220,17 @@ AREAS = [
         "pharmacy", "pharmacist", "pharmaceutical", "dentist", "dental",
         "veterinary", "radiology", "oncology", "cardiology", "neurology",
         "psychiatry", "psychiatrist", "surgeon", "epidemiology", "nutrition",
+        "epidemiologist", "pharmacovigilance", "regulatory affairs",
         "medicare", "medicaid", "patient", "ehr", "emr", "population health",
-        "informaticist",
+        "informaticist", "health data", "health informatics", "health policy",
+        "digital health",
         "dietitian", "physical therapy", "medicina", "medico", "enfermagem",
         "saude", "farmaceutico",
+    ]),
+    ("Meio Ambiente e Ciencias da Terra", [
+        "environmental", "forestry", "soil", "climate",
+        "conservation", "wildlife", "earth science", "earth sciences",
+        "geology", "geologist", "hydrology", "oceanography", "meio ambiente",
     ]),
     ("Programacao e Software", [
         "software engineer", "software developer", "developer", "programmer",
@@ -170,58 +245,96 @@ AREAS = [
         "function call", "function calling", "machine learning",
         "security operations", "incident response", "threat intelligence",
         "data security", "penetration testing", "penetration tester",
+        # titulos com "engineer" que sao de software, nao de engenharia
+        "software engineering", "computer engineering", "infrastructure engineer",
+        "systems engineer", "agent engineer", "applied engineer",
+        "research engineer", "code quality", "dockerfile", "servicenow engineer",
+        "cloud security", "security analyst", "security architect",
+        "security expert", "iam", "vulnerability", "soc manager",
+        "exploitation lead", "governance risk compliance", "ai architect",
+        "computer vision", "llm research", "codebase", "data analysis",
+        "data platform", "data infrastructure", "systems programmer",
+        "code review", "software testing", "swe bench", "scientific coding",
+        "lua",
         "programacao", "desenvolvedor",
     ]),
     ("Matematica e Estatistica", [
         "math", "maths", "mathematics", "mathematician", "mathematical",
         "calculus", "algebra", "geometry", "topology", "number theory",
         "statistics", "statistician", "statistical", "probability",
+        "biostatistician", "lean 4", "lean", "mathlib", "formal verification",
+        "formal methods", "formal proof", "theorem proving",
         "matematica", "estatistica",
     ]),
     ("Fisica e Astronomia", [
         "physics", "physicist", "astrophysics", "quantum", "astronomy",
-        "astronomer", "thermodynamics", "mechanics phd", "fisica",
+        "astronomer", "thermodynamics", "mechanics phd", "physical scientist",
+        "physical sciences", "fisica",
     ]),
     ("Quimica", [
-        "chemistry", "chemist", "chemical", "biochemistry", "organic chemistry",
-        "inorganic chemistry", "chemical engineering", "quimica",
+        "chemistry", "chemist", "chemical", "biochemistry", "biochemist",
+        "organic chemistry", "inorganic chemistry", "chemical engineering",
+        "quimica",
     ]),
     ("Biologia e Ciencias da Vida", [
         "biology", "biologist", "biological", "molecular biology", "genetics",
         "genomics", "microbiology", "neuroscience", "ecology", "botany",
-        "zoology", "bioinformatics", "biotech", "biologia",
+        "zoology", "bioinformatics", "biotech", "biotechnology",
+        "drug discovery", "preclinical", "life science", "life sciences",
+        "biologia",
     ]),
     ("Engenharia", [
         "engineering", "engineer", "mechanical", "electrical", "civil",
         "aerospace", "aeronautical", "industrial engineering", "materials",
-        "robotics", "automation", "engenharia", "engenheiro",
+        "material science", "electronics", "circuit", "eda", "kicad", "aerodynamics",
+        "cfd", "robotics", "automation",
+        # seguranca nuclear, radiologica e de explosivos
+        "nuclear", "nonproliferation", "safeguards", "source security",
+        "radiation safety", "radiological", "radiologicals",
+        "energetic materials", "blasting", "propulsion", "hazardous device",
+        "process safety",
+        "engenharia", "engenheiro",
     ]),
     ("Financas e Contabilidade", [
         "finance", "financial", "accounting", "accountant", "cpa", "cfa",
         "audit", "auditor", "bookkeeping", "taxation", "tax analyst",
         "tax form", "tax expert", "tax preparer",
         "investment", "equity research", "banking", "actuarial", "actuary",
-        "trading", "hedge fund", "private equity", "financas", "contabilidade",
-        "contador",
+        "trading", "trader", "hedge fund", "private equity", "venture capital",
+        "wealth management", "prediction market", "credit risk",
+        "quantitative analyst", "bloomberg", "company analysis",
+        "financas", "contabilidade", "contador",
     ]),
     ("Economia e Negocios", [
-        "economics", "economist", "econometrics", "business analyst",
+        "economics", "economist", "econometrics", "economic", "business analyst",
         "business strategy", "mba", "management consulting", "consultant",
         "supply chain", "logistics", "operations research", "human resources",
         "product owner", "product manager", "servicenow", "entrepreneurship",
+        "business intelligence", "business operations", "business performance",
+        "business teacher", "central bank", "compensation", "project manager",
+        "project management", "program management", "product management",
+        "product mangement", "hr", "people ops", "erp",
+        "enterprise resource planning", "team management",
+        "management leadership",
         "economia", "negocios",
     ]),
     ("Psicologia e Ciencias Sociais", [
         "psychology", "psychologist", "sociology", "sociologist",
         "anthropology", "anthropologist", "political science", "social work",
         "public policy", "policy analyst", "political scientist",
-        "international relations", "criminology",
+        "international relations", "criminology", "political", "politics",
+        "elections",
         "psicologia", "sociologia",
+    ]),
+    ("Educacao e Ensino", [
+        "education", "pedagogy", "instructional design", "curriculum",
+        "educacao", "pedagogia",
     ]),
     ("Humanidades", [
         "history", "historian", "philosophy", "philosopher", "literature",
         "humanities", "religious studies", "theology", "archaeology",
-        "classics", "historia", "filosofia", "literatura",
+        "classics", "reporter", "correspondent", "journalist",
+        "religion", "historia", "filosofia", "literatura",
     ]),
     ("Linguistica", [
         "linguistics", "linguist", "phonetics", "phonology", "morphology",
@@ -235,13 +348,139 @@ AREAS = [
         "graphic design", "designer", "ux", "ui design", "product design",
         "illustrator", "illustration", "animation", "animator", "3d artist",
         "video editing", "video editor", "motion graphics", "architect",
-        "architecture", "photography", "creative writing", "screenwriting",
+        "architecture", "photography", "creative writing",
+        "screenwriting", "vfx",
     ]),
     ("Marketing e Vendas", [
         "marketing", "seo", "copywriting", "copywriter", "advertising",
         "brand strategy", "sales", "growth", "public relations",
+        "social media analyst", "social insights",
     ]),
 ]
+
+# ══════════════════════════════════════════════════════════════════
+#  ESPECIALIDADES DENTRO DAS AREAS GRANDES
+#
+#  Um engenheiro eletricista nao quer ver vaga de mecanica. Nas areas com
+#  muita vaga, o titulo tambem decide a especialidade. A primeira que casar
+#  vale. Vaga que nao casa com nenhuma fica sem especialidade: e a vaga
+#  generica da area ("Engineering Expert"), que o site mostra para todo
+#  mundo que marcou a area.
+#
+#  Os nomes daqui (sem acento) tem que ser iguais aos do layout.js.
+# ══════════════════════════════════════════════════════════════════
+SUBAREAS = {
+    "Programacao e Software": [
+        ("Seguranca da Informacao", [
+            "security", "cybersecurity", "cyber", "penetration", "soc", "iam",
+            "identity", "threat", "vulnerability", "appsec", "exploitation",
+            "incident response", "offensive", "dlp", "grc",
+            "governance risk compliance",
+        ]),
+        ("Dados e Machine Learning", [
+            "data scientist", "data science", "machine learning", "ml",
+            "data engineer", "big data", "data analyst", "data analysis",
+            "computer vision", "mle bench", "data platform", "llm research",
+            "data quality", "scientific coding",
+        ]),
+        ("DevOps, Infraestrutura e TI", [
+            "devops", "infrastructure", "insfrastructure", "platform engineer",
+            "cloud", "systems", "hpc", "dockerfile", "docker", "iac", "linux",
+            "it manager", "information systems", "user support",
+            "windows 11", "macos sonoma", "vmware",
+        ]),
+        ("Desenvolvimento de Software", [
+            "software", "developer", "backend", "back end", "frontend",
+            "front end", "full stack", "fullstack", "python", "rust",
+            "javascript", "typescript", "java", "golang", "go", "c++", "c#",
+            "ruby", "lua", "coding", "coder", "code", "programmer", "swe",
+            "github", "open source", "android studio", "pycharm",
+            "visual studio code",
+        ]),
+    ],
+    "Engenharia": [
+        ("Eletrica e Eletronica", [
+            "electrical", "electronics", "electronic", "circuit", "hardware",
+            "firmware", "radio frequency", "electromagnetic", "eda", "kicad",
+            "vivado", "quartus", "semiconductor",
+        ]),
+        ("Aeroespacial e Fluidos", [
+            "aerospace", "aerodynamics", "aviation", "cfd", "fluid",
+        ]),
+        ("Mecanica e CAD", [
+            "mechanical", "cad", "solidworks", "fusion", "fusion360",
+            "inventor", "freecad", "autocad", "manufacturing", "machinist",
+            "cnc", "mechatronics", "field service", "ndt", "source inspection",
+        ]),
+        ("Civil e Estruturas", [
+            "civil", "structural", "construction",
+        ]),
+        ("Quimica, Materiais e Nuclear", [
+            "chemical", "materials", "material science", "metallurgist",
+            "welding", "nuclear", "blasting", "energetic", "hazardous",
+            "process safety", "nonproliferation", "safeguards", "radiation",
+            "radiological", "radiologicals", "source security", "propulsion",
+        ]),
+        ("Robotica e Controle", [
+            "robotics", "robot", "control system", "automation",
+        ]),
+    ],
+    "Medicina e Saude": [
+        ("Dados e Informatica em Saude", [
+            "informatics", "informaticist", "ehr", "emr", "data",
+            "systems analyst", "business intelligence", "digital health",
+            "coder", "auditor", "labeling", "annotator", "annotation",
+        ]),
+        ("Pesquisa Clinica e Regulatorio", [
+            "clinical trial", "clinical study", "clinical researcher",
+            "research scientist", "clinical scientist", "epidemiologist",
+            "pharmacovigilance", "regulatory", "medical science liaison",
+            "medical writer", "publications", "medical communications",
+            "health policy",
+        ]),
+        ("Medicos, Enfermagem e Farmacia", [
+            "nursing", "nurse", "pharmacist", "pharmacy",
+            "physician", "m.d.", "md", "clinician", "hospitalist",
+            "dermatology", "oncology", "medical expert", "resident",
+            "medicine",
+        ]),
+    ],
+    "Financas e Contabilidade": [
+        ("Contabilidade e Impostos", [
+            "accounting", "accountant", "auditor", "audit", "tax", "cpa",
+            "bookkeeping", "ultratax", "cch", "fp a",
+        ]),
+        ("Mercado Financeiro e Investimentos", [
+            "trading", "trader", "investment", "equity", "portfolio",
+            "banking", "venture capital", "markets", "quant", "quantitative",
+            "bloomberg", "wealth", "securities", "prediction market",
+            "credit risk", "company analysis",
+        ]),
+    ],
+    "Design e Criacao": [
+        ("Video, Cinema e Animacao", [
+            "video", "film", "filmmaker", "cinematography", "editor",
+            "colorist", "animator", "animation", "vfx", "motion graphics",
+            "premiere", "davinci", "producer", "audiovisual", "unreal",
+            "blender", "3d",
+        ]),
+        ("Design Grafico, UX e Ilustracao", [
+            "graphic", "ux", "ui", "designer", "illustrator", "illustration",
+            "photoshop", "photographer", "art", "arts", "design",
+        ]),
+    ],
+}
+
+
+def classificar_subarea(area, titulo):
+    """Devolve a especialidade da vaga dentro da area, ou "" se a vaga for
+    a generica da area (ou se a area nao tiver especialidades)."""
+    texto = normalizar(titulo)
+    for nome, termos in SUBAREAS.get(area, []):
+        for termo in termos:
+            if _tem(texto, termo):
+                return nome
+    return ""
 
 # Sinais de exigencia academica alta sem area clara no titulo.
 ESPECIALISTA_GENERICO = [
@@ -250,8 +489,7 @@ ESPECIALISTA_GENERICO = [
     "domain expert", "domain experts", "technical expert", "sme", "expert in",
     "specialist in", "graduate degree", "masters degree", "m.d.", "science",
     "master s degree", "master degree", "masters", "degree", "researcher",
-    "research scientist", "nuclear", "radiological", "radiologicals",
-    "nonproliferation", "safeguards", "source security",
+    "research scientist",
 ]
 
 # Palavras que, no titulo, dizem que a vaga e para quem ja e profissional de
@@ -491,7 +729,7 @@ if __name__ == "__main__":
         ("Physics Expert (PhD / Postdoc)", "", "Fisica e Astronomia"),
         ("Litigation Associate Attorney (BigLaw Firms)", "", "Direito"),
         ("Software Engineer", "", "Programacao e Software"),
-        ("Domain Expert - Enterprise Resource Planning (ERP)", "", "Outras areas"),
+        ("Domain Expert - Enterprise Resource Planning (ERP)", "", "Economia e Negocios"),
         # ── os tres que escapavam antes ──
         ("Circuit Design Expert",
          "We are looking for experts. Requirements: degree in Electrical "
@@ -524,14 +762,14 @@ if __name__ == "__main__":
         ("Music & Sound Annotation Expert", "", "Musica e Audio"),
         ("Web Research Specialist", "", "Outras areas"),
         ("Portuguese Language Specialist (Brazil) - Freelance AI Trainer Project", "", "Linguistica"),
-        ("Professional Writing Human Data Collection - Academic and Education", "", "Humanidades"),
+        ("Professional Writing Human Data Collection - Academic and Education", "", "Educacao e Ensino"),
         ("Professional Writing Human Data Collection", "", "Marketing e Vendas"),
         ("Operations Lead", "", "Outras areas"),
         # ── generalista fica na aba Vagas ──
         ("Generalist", "Degree in any field is a plus.", "GERAL"),
         ("English Writing Generalist – Advanced", "", "GERAL"),
         ("Generalist (Must own MacBook)", "Bachelors from a prestigious institution.", "GERAL"),
-        ("Generalist Search Expert", "", "Outras areas"),
+        ("Generalist Search Expert", "", "Humanidades"),
         ("Security Operations Analyst", "", "Programacao e Software"),
         # ── Mercor inteira ──
         ("Audiobook QA Expert — Portuguese (Brazil)", "", "GERAL"),
@@ -540,13 +778,26 @@ if __name__ == "__main__":
         ("Multilingual Image & Text AI Quality Expert", "", "GERAL"),
         ("Generalist Expert", "", "GERAL"),
         ("Quality Analyst", "", "GERAL"),
-        ("Biotechnology Expert", "", "Outras areas"),
+        ("Biotechnology Expert", "", "Biologia e Ciencias da Vida"),
         ("Consumer & Lifestyle Expert", "", "Outras areas"),
-        ("HR & Administration Specialist Talent Network", "", "Outras areas"),
-        ("Radiation Safety Officer", "", "Outras areas"),
-        ("Nonproliferation Analyst", "", "Outras areas"),
-        ("Application Users - Photoshop on Windows - Generalist", "", "Outras areas"),
+        ("HR & Administration Specialist Talent Network", "", "Economia e Negocios"),
+        ("Radiation Safety Officer", "", "Engenharia"),
+        ("Nonproliferation Analyst", "", "Engenharia"),
+        ("Application Users - Photoshop on Windows - Generalist", "", "Design e Criacao"),
         ("Public Defenders — Paid Research Study", "", "Direito"),
+        # ── revisao geral das areas ──
+        ("Dockerfile Data Validation Engineer", "", "Programacao e Software"),
+        ("Audio Engineer - Pro Tools", "", "Musica e Audio"),
+        ("Environmental Engineering - AI Data Trainer", "", "Meio Ambiente e Ciencias da Terra"),
+        ("Mathematical Physicist (PhD)", "", "Fisica e Astronomia"),
+        ("Quantitative Analyst (Quant)", "", "Financas e Contabilidade"),
+        ("E-commerce Data Analyst", "", "GERAL"),
+        ("Map & Location Data Analyst", "", "GERAL"),
+        ("Data Analyst", "", "Programacao e Software"),
+        ("AI Data Quality Analyst", "", "GERAL"),
+        ("Application Users - Vivado on Windows - STEM", "", "Engenharia"),
+        ("Education & Training Expert", "", "Educacao e Ensino"),
+        ("Legal Headhunter - Referral Partner", "", "Economia e Negocios"),
     ]
 
     falhas = 0
@@ -558,6 +809,25 @@ if __name__ == "__main__":
         print(f"{'ok ' if ok else 'ERRO'} {obtido:28} | {titulo[:56]}")
         if not ok:
             print(f"     esperado: {esperado}")
+
+    SUBS = [
+        ("Engenharia", "Electrical Engineering Expert", "Eletrica e Eletronica"),
+        ("Engenharia", "Aerospace CAD Expert", "Aeroespacial e Fluidos"),
+        ("Engenharia", "Senior Mechanical Design Engineer", "Mecanica e CAD"),
+        ("Engenharia", "Engineering Expert", ""),
+        ("Programacao e Software", "Backend Security Engineer", "Seguranca da Informacao"),
+        ("Programacao e Software", "Machine Learning Engineer", "Dados e Machine Learning"),
+        ("Programacao e Software", "Rust Developer", "Desenvolvimento de Software"),
+        ("Medicina e Saude", "Nursing Informatics Specialist", "Dados e Informatica em Saude"),
+        ("Medicina e Saude", "Hospitalist Physician", "Medicos, Enfermagem e Farmacia"),
+        ("Financas e Contabilidade", "Accountant (CPA/CA)", "Contabilidade e Impostos"),
+        ("Direito", "Corporate Attorney", ""),
+    ]
+    for area, titulo, esperado in SUBS:
+        obtido = classificar_subarea(area, titulo)
+        if obtido != esperado:
+            falhas += 1
+            print(f"ERRO especialidade de {titulo}: {obtido!r}, esperado {esperado!r}")
 
     print()
     if falhas:

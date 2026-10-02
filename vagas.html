@@ -575,6 +575,8 @@
   <!-- troca entre os dois acervos sem voltar para a entrada -->
   <div class="abas" id="abas" hidden></div>
   <div class="chips" id="chips" hidden></div>
+  <!-- especialidades da área aberta (elétrica, mecânica...) -->
+  <div class="chips" id="subchips" hidden></div>
 
   <!-- tela de entrada: categorias e empresas -->
   <div id="telaInicio" hidden></div>
@@ -678,11 +680,17 @@ let MINHAS = [];
 try { MINHAS = Acesso.areas() || []; } catch (e) {}
 const nomeArea = a => { try { return Acesso.nomeArea(a); } catch (e) { return a; } };
 const LINK_AREAS = "entrar.html?areas=1&voltar=vagas.html";
-const daMinhaArea = v => MINHAS.indexOf(v.area) >= 0;
+let MINHAS_SUBS = [];
+try { MINHAS_SUBS = Acesso.subareas() || []; } catch (e) {}
+const nomeSub = (a, s) => { try { return Acesso.nomeSub(a, s); } catch (e) { return s; } };
+const daMinhaArea = v => { try { return Acesso.vagaDasMinhasAreas(v, MINHAS, MINHAS_SUBS); } catch (e) { return MINHAS.indexOf(v.area) >= 0; } };
+/* especialidade escolhida na tela de uma área; "-" = só as genéricas */
+let SUB = "";
 
 function compor() {
   if (ESCOPO === "voce")         TODAS = GERAIS.concat(ESPECIFICAS.filter(daMinhaArea));
-  else if (ESCOPO === "area" && AREA) TODAS = ESPECIFICAS.filter(v => v.area === AREA);
+  else if (ESCOPO === "area" && AREA) TODAS = ESPECIFICAS.filter(v => v.area === AREA &&
+    (!SUB || (SUB === "-" ? !v.sub : v.sub === SUB)));
   else if (ESCOPO === "tudo")    TODAS = GERAIS.concat(ESPECIFICAS);
   else                           TODAS = GERAIS.slice();
 }
@@ -752,7 +760,7 @@ function lerUrl() {
 
   fCats.clear(); fEmps.clear();
   fPeriodo = "all"; busca = ""; esconderAplicadas = false; semIngles = false;
-  ESCOPO = "gerais"; AREA = "";
+  ESCOPO = "gerais"; AREA = ""; SUB = p.get("sub") || "";
 
   if (p.get("inicio")) {
     TELA = "inicio";
@@ -1069,7 +1077,7 @@ function linha(v) {
         ${pg}
         ${idi ? `<span class="selo-idi ${idi.tipo}" title="Idioma do trabalho">${esc(idi.curto)}</span>` : ""}
         ${nova ? '<span class="selo-novo">nova</span>' : ""}
-        ${v.area ? `<span class="selo-area">${esc(nomeArea(v.area))}</span>` : ""}
+        ${v.area ? `<span class="selo-area">${esc(v.sub ? nomeSub(v.area, v.sub) : nomeArea(v.area))}</span>` : ""}
       </span>
     </span>
 
@@ -1228,7 +1236,9 @@ function montarAbas() {
   const chips = document.getElementById("chips");
 
   if (TELA === "inicio" || !GERAIS.length) {
-    abas.hidden = true; chips.hidden = true; return;
+    abas.hidden = true; chips.hidden = true;
+    document.getElementById("subchips").hidden = true;
+    return;
   }
 
   const naGeral = TELA === "lista" && ESCOPO === "gerais";
@@ -1246,11 +1256,28 @@ function montarAbas() {
 
   const daArea = a => ESPECIFICAS.filter(v => v.area === a).length;
 
+  // especialidades da área aberta: uma segunda linha de botões
+  const subchips = document.getElementById("subchips");
+  subchips.hidden = true;
+  if (ESCOPO === "area" && AREA) {
+    const dela = ESPECIFICAS.filter(v => v.area === AREA);
+    const subs = ((Acesso.SUBAREAS || {})[AREA] || []).filter(s => dela.some(v => v.sub === s[0]));
+    if (subs.length) {
+      const base = "vagas.html?area=" + encodeURIComponent(AREA);
+      const genericas = dela.filter(v => !v.sub).length;
+      subchips.hidden = false;
+      subchips.innerHTML =
+        `<a class="chip${!SUB ? " on" : ""}" href="${base}" data-ir>Todas <span>${dela.length}</span></a>` +
+        subs.map(s => `<a class="chip${SUB === s[0] ? " on" : ""}" href="${base}&sub=${encodeURIComponent(s[0])}" data-ir>${esc(s[1])} <span>${dela.filter(v => v.sub === s[0]).length}</span></a>`).join("") +
+        (genericas ? `<a class="chip${SUB === "-" ? " on" : ""}" href="${base}&sub=-" data-ir>Gerais da área <span>${genericas}</span></a>` : "");
+    }
+  }
+
   // na lista "Para você": de onde vêm as vagas, e o atalho para mudar as áreas
   if (ESCOPO === "voce") {
     chips.hidden = false;
     chips.innerHTML = `<span class="chip fixo">Abertas a todos <span>${GERAIS.length}</span></span>` +
-      MINHAS.map(a => `<a class="chip" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>${esc(nomeArea(a))} <span>${daArea(a)}</span></a>`).join("") +
+      MINHAS.map(a => `<a class="chip" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>${esc(Acesso.resumoDasAreas([a], MINHAS_SUBS))} <span>${ESPECIFICAS.filter(v => v.area === a && daMinhaArea(v)).length}</span></a>`).join("") +
       `<a class="chip mudar" href="${LINK_AREAS}">mudar minhas áreas</a>`;
     return;
   }

@@ -1,5 +1,5 @@
 {
-  "total": 185,
+  "total": 197,
   "vagas": [
     {
       "id": "65762fd387",
@@ -1972,6 +1972,162 @@
         "remuneracao": "US$ 20 a 40 por hora",
         "carga": "10 a 40 h por semana",
         "idioma": "pt"
+      }
+    },
+    {
+      "id": "5d3469d264",
+      "resumo": {
+        "o_que_faz": "Você cuida dos conjuntos de dados usados para treinar IA: organiza, limpa, estrutura e confere a qualidade. No dia a dia isso é achar padrões, erros e anomalias, aplicar as mesmas regras em muito volume e documentar os problemas encontrados.",
+        "requisitos": "Atenção a detalhe e método. Facilidade com planilhas, bancos de dados ou ferramentas de dados na web. Boa escrita em inglês para registrar problemas e processos. O anúncio diz que não exige experiência com operações de dados, engenharia ou IA.",
+        "dica_cv": "Destaque experiência com entrada de dados, limpeza de planilhas, controle de qualidade ou trabalho administrativo. Se usa Excel, Google Sheets ou SQL, diga em que nível. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Organizar, limpar e conferir os dados que treinam a IA.",
+        "idioma": "en",
+        "remuneracao": "US$ 20 a 50 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "67f442dcaf",
+      "resumo": {
+        "o_que_faz": "Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes estruturadas e pede o mesmo critério do primeiro ao último documento.",
+        "requisitos": "Boa compreensão de leitura em inglês e método para lidar com tipos variados de documento. O anúncio diz que não exige formação jurídica, acadêmica nem experiência com gestão de documentos.",
+        "dica_cv": "Mostre trabalhos de pesquisa, revisão, edição, entrada de dados ou rotina administrativa. Experiência com biblioteconomia ou jornalismo conta como diferencial. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Ler, anotar e classificar documentos para treinar IA.",
+        "idioma": "en",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "6c68607432",
+      "resumo": {
+        "o_que_faz": "Você lê ficção, ensaios, poesia e outros textos criativos gerados por IA e avalia o que funciona e o que não funciona, explicando o porquê. É leitura em volume, com o mesmo critério aplicado a muitos textos.",
+        "requisitos": "Gostar de ler e de escrever, e conseguir explicar por que um texto prende ou não. Domínio forte do inglês, incluindo gramática e nuance de estilo, porque os textos avaliados são em inglês. O anúncio diz que não exige experiência com IA nem obra publicada.",
+        "dica_cv": "Só vale se você lê literatura em inglês com conforto. Mostre formação ou prática em escrita criativa, letras, jornalismo ou edição, e participação em oficinas de texto. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Ler e avaliar contos, ensaios e poemas escritos por IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "3d82b44c66",
+      "resumo": {
+        "o_que_faz": "Você revisa, categoriza e melhora os dados de produtos que alimentam sistemas de IA de compras e recomendação: categoria certa, descrição coerente, informação que bate. É trabalho com dados estruturados em ferramentas na web.",
+        "requisitos": "Conhecer plataformas de compras online e como as categorias de produto funcionam. Atenção a detalhe e boa escrita em inglês. O anúncio diz que não exige experiência com comércio eletrônico, varejo ou IA.",
+        "dica_cv": "Mencione experiência com cadastro de produtos, marketplace, atendimento em loja virtual, entrada de dados ou moderação de conteúdo. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Revisar e categorizar dados de produtos de lojas online.",
+        "idioma": "en",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "b462172903",
+      "resumo": {
+        "o_que_faz": "Você avalia conteúdo gerado por IA diante de padrões de segurança, imparcialidade e ética. Analisa casos cheios de nuance com objetividade, aplica os critérios do projeto com constância e escreve um retorno claro e preciso.",
+        "requisitos": "Pensamento crítico, interesse por questões de justiça e impacto social, e escrita clara em inglês. O anúncio diz que não exige experiência com IA, políticas públicas ou compliance.",
+        "dica_cv": "Destaque formação ou prática em filosofia, direito, jornalismo, ciências sociais ou moderação de conteúdo. É parecida com a vaga AI Ethics Reviewer, da mesma empresa. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Avaliar respostas de IA quanto a segurança, justiça e ética.",
+        "idioma": "en",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "b85d28d5bc",
+      "resumo": {
+        "o_que_faz": "Você escreve descrições ricas e precisas de imagens, para ensinar sistemas de IA a interpretar conteúdo visual. É um trabalho de observação e de texto claro, repetido com método em muitas imagens.",
+        "requisitos": "Olhar atento para detalhes e escrita descritiva clara em inglês. O anúncio diz que não exige experiência com fotografia, arte ou IA. Experiência com texto alternativo e acessibilidade é diferencial.",
+        "dica_cv": "Se você já escreveu texto alternativo, legendas, audiodescrição ou catálogo de imagens, destaque. Inclua uma amostra curta em inglês descrevendo uma foto. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Escrever descrições detalhadas de imagens.",
+        "idioma": "en",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "963f23f487",
+      "resumo": {
+        "o_que_faz": "Apesar do nome, não é trabalho técnico. Você grava em vídeo ações comuns, como fazer café, arrumar uma prateleira ou abrir uma porta, seguindo instruções detalhadas. As gravações viram dados de treino para robôs aprenderem a lidar com o mundo real.",
+        "requisitos": "Ter celular ou câmera que grave vídeo, internet boa para enviar os arquivos e disposição para gravar em casa. Seguir as instruções com precisão. O anúncio diz que não exige experiência técnica, com robótica ou com IA.",
+        "dica_cv": "Informe o modelo do celular ou da câmera e descreva o espaço onde vai gravar: um lugar arrumado, bem iluminado e com objetos variados ajuda. Se já gravou vídeos para projetos parecidos, mencione. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Gravar em vídeo ações simples do dia a dia para treinar robôs.",
+        "idioma": "nenhum",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "33facbb56d",
+      "resumo": {
+        "o_que_faz": "Você assiste a clipes curtos e transforma o que vê em descrições estruturadas da cena: o que acontece, o clima, a emoção e como a imagem conta a história. O material ensina IA a entender a linguagem do cinema.",
+        "requisitos": "Interesse real por cinema, TV ou narrativa visual, e escrita clara e específica em inglês. O anúncio diz que não exige experiência profissional na indústria. Conhecer termos como tipos de plano e enquadramento é diferencial.",
+        "dica_cv": "Mostre textos seus sobre filmes, como críticas, análises ou roteiros, e qualquer estudo de audiovisual. Uma amostra curta em inglês descrevendo uma cena ajuda. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Assistir a cenas de filmes e descrevê-las de forma estruturada.",
+        "idioma": "en",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "4bdb89f9f0",
+      "resumo": {
+        "o_que_faz": "Você revisa e avalia o que a IA produz, em texto, imagem e dados estruturados, seguindo diretrizes e rubricas. Lê, critica e explica por escrito o que está errado. O anúncio resume o perfil assim: se você percebe quando algo está fora do lugar, você serve.",
+        "requisitos": "Atenção a detalhe, senso crítico e escrita clara e concisa em inglês. O anúncio diz que não exige formação em IA, dados ou tecnologia.",
+        "dica_cv": "Destaque trabalhos de revisão, pesquisa, controle de qualidade ou checagem de fatos. Conhecimento em qualquer área, como ciência, direito ou finanças, conta como diferencial. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Revisar e avaliar respostas de IA em texto, imagem e dados.",
+        "idioma": "en",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "de9ad63069",
+      "resumo": {
+        "o_que_faz": "Você avalia diálogos gerados por IA e diz se soam humanos: claros, úteis e naturais. Dá nota com critério constante em muito volume e explica por escrito o motivo de cada avaliação.",
+        "requisitos": "Boa leitura em inglês e noção de como uma conversa deve fluir. Método e constância. O anúncio diz que não exige experiência com IA, linguística ou moderação de conteúdo.",
+        "dica_cv": "Experiência com atendimento ao cliente, redação, edição ou comunicação é o que mais conta. Mencione o seu uso de assistentes de IA. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Avaliar se as conversas da IA soam naturais e úteis.",
+        "idioma": "en",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "e0f426ba23",
+      "resumo": {
+        "o_que_faz": "Você usa o que conhece da sua cidade, como ruas, pontos de referência, comércios e bairros, para conferir e corrigir dados de mapa e de localização gerados por IA. É trabalho de achar erro com método, usando mapas digitais.",
+        "requisitos": "Conhecer bem a sua região e ter facilidade com mapas digitais e ferramentas na web. Boa escrita em inglês para registrar as correções. O anúncio diz que não exige experiência com geoprocessamento, cartografia ou geografia.",
+        "dica_cv": "Diga quais cidades e regiões você conhece de verdade. Experiência com entregas, turismo, jornalismo local ou edição no Google Maps e no OpenStreetMap é um ótimo argumento. A Alignerr costuma pedir um teste de qualificação e uma entrevista curta com IA, em inglês.",
+        "frase": "Conferir dados de mapas e lugares da sua região.",
+        "idioma": "en",
+        "remuneracao": "US$ 40 a 120 por hora",
+        "carga": "10 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "031fe5a082",
+      "resumo": {
+        "o_que_faz": "É uma vaga de equipe da própria Mercor, e não um projeto de treino de IA. Você atende as pessoas que usam a plataforma, investiga os problemas que elas relatam, reproduz erros e repassa o caso para a engenharia quando preciso. O anúncio diz que só aceita quem mora na América Latina. A jornada é de 6 dias por semana, com boa parte do horário coincidindo com o da costa oeste dos Estados Unidos.",
+        "requisitos": "Escrever em inglês em nível de nativo, com tom leve e preciso. Facilidade para entender como sites e aplicativos funcionam e onde costumam falhar. Organização para investigar um problema do começo ao fim.",
+        "dica_cv": "Currículo em inglês, com destaque para suporte técnico, sucesso do cliente ou atendimento por escrito em empresas de software. Mostre casos em que você investigou e resolveu um problema técnico. Confirme no anúncio o horário de trabalho antes de se candidatar.",
+        "frase": "Atender por escrito, em inglês, quem usa a plataforma da Mercor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 35 a 50 mil por ano",
+        "carga": "6 dias por semana",
+        "contrato": "Tempo integral"
       }
     }
   ]

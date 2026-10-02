@@ -1496,6 +1496,14 @@ def main():
                     area = v["_area_dica"]
             if area:
                 v["area"] = area
+                # especialidade dentro da área (elétrica, mecânica...), quando
+                # o título diz. Vazia = vaga genérica da área.
+                try:
+                    sub = classificador.classificar_subarea(area, v.get("titulo", ""))
+                except AttributeError:
+                    sub = ""
+                if sub:
+                    v["sub"] = sub
                 marcadas += 1
         print(f"  → {marcadas} vaga(s) marcada(s) como específicas de área")
 

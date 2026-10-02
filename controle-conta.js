@@ -298,6 +298,15 @@ const Conta = (function () {
   .cp-cx label.cp-area input { width:17px !important; margin:0; height:17px; flex-shrink:0; padding:0 !important; accent-color:var(--signal,#1A4893); }
   .cp-cx label.cp-area:has(input:checked) { background:var(--signal-suave,#EAF1F8); border-color:var(--signal,#1A4893); }
   .cp-pular { display:block; width:100%; text-align:center; }
+  /* especialidades: aparecem embaixo da área, só quando ela está marcada */
+  .cp-bloco { display:contents; }
+  .cp-subs { grid-column:1 / -1; margin:-2px 0 6px; padding:11px 13px 12px; border:1px dashed var(--line,#DED7CA); border-radius:12px; }
+  .cp-subs-tit { font-size:12.5px; color:var(--ink-2,#54606F); margin:0 0 8px; line-height:1.45; }
+  .cp-subs-lista { display:flex; flex-wrap:wrap; gap:7px; }
+  .cp-cx label.cp-sub { display:inline-flex; align-items:center; gap:7px; margin:0; padding:7px 11px; border:1px solid var(--line,#DED7CA);
+             border-radius:99px; font-size:13px; font-weight:500; color:var(--ink,#10203A); cursor:pointer; background:var(--panel,#fff); }
+  .cp-cx label.cp-sub input { width:15px !important; height:15px; margin:0; padding:0 !important; accent-color:var(--signal,#1A4893); }
+  .cp-cx label.cp-sub:has(input:checked) { background:var(--signal-suave,#EAF1F8); border-color:var(--signal,#1A4893); }
   @media (max-width:520px){ .cp-areas { grid-template-columns:1fr; } }
   `;
 
@@ -311,6 +320,8 @@ const Conta = (function () {
       const lista = (typeof Acesso !== "undefined" && Acesso.AREAS) || [];
       if (!lista.length || !usuario) { resolver(); return; }
       const minhas = ((usuario.user_metadata || {}).areas) || [];
+      const minhasSubs = ((usuario.user_metadata || {}).subareas) || [];
+      const SUBS = (typeof Acesso !== "undefined" && Acesso.SUBAREAS) || {};
 
       const p = porta();
       p.classList.add("cp-larga");
@@ -327,7 +338,20 @@ const Conta = (function () {
              Marcando uma área, as vagas que pedem essa formação passam a aparecer junto, na aba Vagas.</p>
           <form novalidate>
             <div class="cp-areas">
-              ${lista.map(a => `<label class="cp-area"><input type="checkbox" value="${esc(a[0])}"${minhas.indexOf(a[0]) >= 0 ? " checked" : ""}> ${esc(a[1])}</label>`).join("")}
+              ${lista.map(a => {
+                const marcada = minhas.indexOf(a[0]) >= 0;
+                const subs = SUBS[a[0]] || [];
+                const caixa = `<label class="cp-area"><input type="checkbox" data-area value="${esc(a[0])}"${marcada ? " checked" : ""}> ${esc(a[1])}</label>`;
+                if (!subs.length) return caixa;
+                return `<div class="cp-bloco">${caixa}
+                  <div class="cp-subs" data-subs-de="${esc(a[0])}"${marcada ? "" : " hidden"}>
+                    <p class="cp-subs-tit">Qual é a sua especialidade em ${esc(a[1])}? Se não marcar nenhuma, você vê todas as vagas da área.</p>
+                    <div class="cp-subs-lista">${subs.map(s => {
+                      const id = a[0] + "/" + s[0];
+                      return `<label class="cp-sub"><input type="checkbox" data-sub value="${esc(id)}"${minhasSubs.indexOf(id) >= 0 ? " checked" : ""}> ${esc(s[1])}</label>`;
+                    }).join("")}</div>
+                  </div></div>`;
+              }).join("")}
             </div>
             <button class="cp-bt" type="submit">Salvar</button>
           </form>
@@ -339,10 +363,16 @@ const Conta = (function () {
       const form = p.querySelector("form"), msg = p.querySelector(".cp-msg"), bt = p.querySelector(".cp-bt");
       const fim = () => { p.classList.remove("cp-larga"); resolver(); };
 
-      async function gravar(areas) {
+      // marcar a área abre as especialidades dela; desmarcar fecha
+      p.querySelectorAll("input[data-area]").forEach(c => c.addEventListener("change", () => {
+        const cx = p.querySelector('[data-subs-de="' + c.value.replace(/"/g, "") + '"]');
+        if (cx) cx.hidden = !c.checked;
+      }));
+
+      async function gravar(areas, subs) {
         bt.disabled = true;
         try {
-          const r = await cliente().auth.updateUser({ data: { areas: areas, areas_respondido: true } });
+          const r = await cliente().auth.updateUser({ data: { areas: areas, subareas: subs || [], areas_respondido: true } });
           if (r.error) throw r.error;
           if (r.data && r.data.user) usuario = r.data.user;
           fim();
@@ -359,11 +389,15 @@ const Conta = (function () {
       form.addEventListener("submit", ev => {
         ev.preventDefault();
         bt.textContent = "Salvando…";
-        gravar([].slice.call(p.querySelectorAll(".cp-area input:checked")).map(c => c.value));
+        const areas = [].slice.call(p.querySelectorAll("input[data-area]:checked")).map(c => c.value);
+        // só valem as especialidades de área que continua marcada
+        const subs = [].slice.call(p.querySelectorAll("input[data-sub]:checked")).map(c => c.value)
+          .filter(s => areas.indexOf(s.split("/")[0]) >= 0);
+        gravar(areas, subs);
       });
       p.querySelector("[data-pular]").addEventListener("click", () => {
         if (areasRespondidas(usuario)) fim();
-        else gravar(minhas);
+        else gravar(minhas, minhasSubs);
       });
     });
   }

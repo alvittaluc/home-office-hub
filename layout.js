@@ -65,6 +65,7 @@ const Acesso = (function () {
   const AREAS = [
     ["Direito", "Direito"],
     ["Medicina e Saude", "Medicina e Saúde"],
+    ["Meio Ambiente e Ciencias da Terra", "Meio Ambiente e Ciências da Terra"],
     ["Programacao e Software", "Programação e Software"],
     ["Engenharia", "Engenharia"],
     ["Matematica e Estatistica", "Matemática e Estatística"],
@@ -74,6 +75,7 @@ const Acesso = (function () {
     ["Financas e Contabilidade", "Finanças e Contabilidade"],
     ["Economia e Negocios", "Economia e Negócios"],
     ["Psicologia e Ciencias Sociais", "Psicologia e Ciências Sociais"],
+    ["Educacao e Ensino", "Educação e Ensino"],
     ["Humanidades", "Humanidades"],
     ["Linguistica", "Linguística"],
     ["Musica e Audio", "Música e Áudio"],
@@ -81,6 +83,64 @@ const Acesso = (function () {
     ["Marketing e Vendas", "Marketing e Vendas"],
     ["Outras areas", "Outras áreas de especialista"],
   ];
+  /* Especialidades das áreas grandes. Mesmos nomes (sem acento) do
+     classificador.py, que é quem marca cada vaga. Vaga sem especialidade é
+     a genérica da área e aparece para todo mundo que marcou a área. */
+  const SUBAREAS = {
+    "Programacao e Software": [
+      ["Desenvolvimento de Software", "Desenvolvimento de software"],
+      ["Dados e Machine Learning", "Dados e machine learning"],
+      ["Seguranca da Informacao", "Segurança da informação"],
+      ["DevOps, Infraestrutura e TI", "DevOps, infraestrutura e TI"],
+    ],
+    "Engenharia": [
+      ["Eletrica e Eletronica", "Elétrica e eletrônica"],
+      ["Mecanica e CAD", "Mecânica e CAD"],
+      ["Civil e Estruturas", "Civil e estruturas"],
+      ["Aeroespacial e Fluidos", "Aeroespacial e fluidos"],
+      ["Quimica, Materiais e Nuclear", "Química, materiais e nuclear"],
+      ["Robotica e Controle", "Robótica e controle"],
+    ],
+    "Medicina e Saude": [
+      ["Medicos, Enfermagem e Farmacia", "Médicos, enfermagem e farmácia"],
+      ["Pesquisa Clinica e Regulatorio", "Pesquisa clínica e regulatório"],
+      ["Dados e Informatica em Saude", "Dados e informática em saúde"],
+    ],
+    "Financas e Contabilidade": [
+      ["Contabilidade e Impostos", "Contabilidade e impostos"],
+      ["Mercado Financeiro e Investimentos", "Mercado financeiro e investimentos"],
+    ],
+    "Design e Criacao": [
+      ["Video, Cinema e Animacao", "Vídeo, cinema e animação"],
+      ["Design Grafico, UX e Ilustracao", "Design gráfico, UX e ilustração"],
+    ],
+  };
+  function nomeSub(area, id) {
+    const s = (SUBAREAS[area] || []).find(x => x[0] === id);
+    return s ? s[1] : (id || "");
+  }
+  /* As especialidades marcadas, no formato "Area/Especialidade". */
+  function subareas() {
+    const s = sessao();
+    const m = s && s.user && s.user.user_metadata;
+    return (m && Array.isArray(m.subareas)) ? m.subareas : [];
+  }
+  /* A vaga serve para esta pessoa? Vale a área; dentro dela, se a pessoa
+     marcou especialidades, entram as dela e as genéricas da área. */
+  function vagaDasMinhasAreas(v, minhas, subs) {
+    if (!v || minhas.indexOf(v.area) < 0) return false;
+    const dela = subs.filter(x => x.indexOf(v.area + "/") === 0);
+    if (!dela.length || !v.sub) return true;
+    return dela.indexOf(v.area + "/" + v.sub) >= 0;
+  }
+  /* "Engenharia (elétrica e eletrônica)" */
+  function resumoDasAreas(minhas, subs) {
+    return minhas.map(a => {
+      const dela = subs.filter(x => x.indexOf(a + "/") === 0).map(x => nomeSub(a, x.slice(a.length + 1)).toLowerCase());
+      return nomeArea(a) + (dela.length ? " (" + dela.join(", ") + ")" : "");
+    }).join(", ");
+  }
+
   function nomeArea(id) {
     const a = AREAS.find(x => x[0] === id);
     return a ? a[1] : (id || "");
@@ -195,7 +255,7 @@ const Acesso = (function () {
          as áreas de formação e onde ficam os dados da conta. */
       const minhas = areas();
       const resumo = minhas === null ? "ainda não marcadas"
-        : minhas.length ? minhas.map(nomeArea).join(", ") : "nenhuma marcada";
+        : minhas.length ? resumoDasAreas(minhas, subareas()) : "nenhuma marcada";
       const volta = encodeURIComponent(paginaAtual() === "entrar.html" ? "vagas.html" : paginaAtual());
       const d = document.createElement("details");
       d.className = "hd-menu";
@@ -246,7 +306,7 @@ const Acesso = (function () {
 
   return {
     logado, email, trancado, linkEntrar, cortina, htmlAviso, botaoNoCabecalho, aplicarRegras,
-    AREAS, nomeArea, areas,
+    AREAS, nomeArea, areas, SUBAREAS, nomeSub, subareas, vagaDasMinhasAreas, resumoDasAreas,
     get portasLigadas() { return portasLigadas(); },
   };
 })();

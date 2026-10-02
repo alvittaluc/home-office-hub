@@ -306,7 +306,7 @@ body > header.site .hd { max-width:1460px; }
 <script src="layout.js"></script>
 <script src="controle-dados.js?v=2"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="controle-conta.js?v=5"></script>
+<script src="controle-conta.js?v=6"></script>
 <script src="pulso-site.js"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
@@ -1311,7 +1311,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           const a = (typeof Acesso !== "undefined" && Acesso.areas()) || [];
           return a.length
             ? `<p style="display:flex;flex-wrap:wrap;gap:7px;">${a.map(x =>
-                `<span style="font-size:13px;font-weight:500;color:var(--signal);background:var(--signal-suave);border-radius:99px;padding:5px 12px;">${esc(Acesso.nomeArea(x))}</span>`).join("")}</p>`
+                `<span style="font-size:13px;font-weight:500;color:var(--signal);background:var(--signal-suave);border-radius:99px;padding:5px 12px;">${esc(Acesso.resumoDasAreas([x], Acesso.subareas()))}</span>`).join("")}</p>`
             : `<p>Você ainda não marcou nenhuma área. Marcando, as vagas que pedem a sua formação aparecem junto com as abertas a todos.</p>`;
         })()}
         <div class="ct-dados-bts">
