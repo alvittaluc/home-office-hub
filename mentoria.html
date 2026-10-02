@@ -53,6 +53,16 @@
 .mo-pedido .ms { font-size:13.5px; color:var(--ink-2,#54606F); line-height:1.45; overflow-wrap:anywhere; }
 .mo-pedido .bts { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
 
+/* abas de quem está dentro da mentoria */
+.mo-abas { display:flex; gap:4px; box-shadow:inset 0 -1px 0 var(--line,#DED7CA); margin:22px 0 0; overflow-x:auto; overflow-y:hidden; }
+.mo-abas button { font:inherit; font-size:14.5px; font-weight:500; color:var(--ink-2,#54606F); background:none; border:0;
+  border-bottom:2px solid transparent; padding:11px 14px; cursor:pointer; white-space:nowrap; }
+.mo-abas button:hover { color:var(--ink,#10203A); }
+.mo-abas button[aria-selected="true"] { color:var(--ink,#10203A); font-weight:600; border-bottom-color:var(--signal,#1A4893); }
+.mo-conta { display:inline-block; min-width:20px; padding:1px 6px; margin-left:4px; border-radius:99px; font-size:12px; font-weight:600;
+  text-align:center; color:#fff; background:#D9731A; }
+.mo-quantos { font-size:13px; font-weight:400; color:var(--ink-3,#8A94A1); margin-left:4px; }
+
 /* mural */
 #mural { padding:26px 30px 28px; }
 #mural > h2 { font-size:20px; }
@@ -177,11 +187,13 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       <div><div class="nm">${e(p.quem.nome)}</div>${p.mensagem ? `<div class="ms">${e(p.mensagem)}</div>` : ""}</div>
       <div class="bts">${botoes}</div></div>`;
     return `<div class="mo-cx"><h2>Pedidos de entrada</h2>
+      ${pend.length && M.meu_papel === "mentor" ? `<p>Confira se a pessoa se candidatou pelo seu link antes de aceitar.</p>` : ""}
       ${pend.length ? pend.map(p => linha(p, M.meu_papel === "mentor"
             ? `<button class="md-bt pequeno" data-aprovar="${e(p.quem.id)}">Aceitar</button><button class="md-bt claro pequeno" data-recusar="${e(p.quem.id)}">Recusar</button>` : "")).join("")
         : `<p>Nenhum pedido esperando resposta.</p>`}
-      ${dentro.length ? `<h2 style="margin-top:20px">Participantes</h2>` + dentro.map(p => linha(p, M.meu_papel === "mentor"
-            ? `<button class="md-link" data-recusar="${e(p.quem.id)}">tirar do grupo</button>` : "")).join("") : ""}
+      <h2 style="margin-top:24px">Participantes${dentro.length ? ` <span class="mo-quantos">${dentro.length}</span>` : ""}</h2>
+      ${dentro.length ? dentro.map(p => linha(p, M.meu_papel === "mentor"
+            ? `<button class="md-link" data-recusar="${e(p.quem.id)}">tirar do grupo</button>` : "")).join("") : `<p>Ainda não há participantes.</p>`}
       <div class="md-msg" id="pedMsgMentor" role="status" hidden></div></div>`;
   }
 
@@ -227,18 +239,37 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       ${coment ? `<div style="margin-top:${pode ? 18 : 6}px">${coment}</div>` : ""}</div>`;
   }
 
+  /* ── Abas ──
+     Quem está dentro da mentoria (mentor, participante ou a equipe do Hub) vê
+     uma parte de cada vez: o mural, os participantes (só o mentor e a equipe)
+     e a apresentação. Quem ainda não entrou vê a página corrida, sem abas. */
+  let aba = "mural";
+  const vePedidos = () => M.meu_papel === "mentor" || M.sou_admin;
+  const temAbas = () => noMural() && (M.status === "aprovada" || M.status === "encerrada");
+  function htmlAbas() {
+    if (aba === "participantes" && !vePedidos()) aba = "mural";
+    const esperando = pedidos.filter(p => p.status === "pedido").length;
+    const bt = (id, nome, extra) => `<button type="button" role="tab" data-aba="${id}" aria-selected="${aba === id}">${nome}${extra || ""}</button>`;
+    return `<nav class="mo-abas" role="tablist" aria-label="Partes da mentoria">
+      ${bt("mural", "Mural")}
+      ${vePedidos() ? bt("participantes", "Participantes", esperando
+          ? ` <span class="mo-conta" title="${esperando === 1 ? "1 pedido de entrada esperando resposta" : esperando + " pedidos de entrada esperando resposta"}">${esperando}</span>` : "") : ""}
+      ${bt("sobre", "Sobre a mentoria")}
+    </nav>`;
+  }
+  function htmlSobre() {
+    return `<div class="mo-sec"><h2>Quem é o mentor</h2><p>${U.texto(M.apresentacao)}</p></div>
+      <div class="mo-sec"><h2>Como vai ajudar</h2><p>${U.texto(M.como_ajuda)}</p></div>`;
+  }
+
   function desenhar() {
     document.title = M.vaga_titulo + " — Mentoria — Home Office Hub";
     tela.innerHTML = `
       ${MD.demo ? `<div class="mo-aviso pendente" style="margin:0 0 18px">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : ""}
       ${htmlCabecalho()}
       ${htmlSituacao()}
-      <div class="mo-sec"><h2>Quem é o mentor</h2><p>${U.texto(M.apresentacao)}</p></div>
-      <div class="mo-sec"><h2>Como vai ajudar</h2><p>${U.texto(M.como_ajuda)}</p></div>
-      ${htmlPedidos()}
-      ${htmlEntrada()}
-      ${htmlMural()}
-      ${htmlAvaliacao()}
+      ${temAbas() ? htmlAbas() + (aba === "participantes" ? htmlPedidos() : aba === "sobre" ? htmlSobre() + htmlAvaliacao() : htmlMural())
+        : htmlSobre() + htmlPedidos() + htmlEntrada() + htmlMural() + htmlAvaliacao()}
       <div class="mo-rodape">
         ${M.meu_papel === "aprovado" ? `<button class="md-link" type="button" data-sair>sair desta mentoria</button>` : ""}
         ${M.meu_papel === "mentor" && aberta() ? `<button class="md-link" type="button" data-encerrar>encerrar esta mentoria</button>` : ""}
@@ -297,7 +328,12 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     const b = ev.target.closest("button"); if (!b) return;
     const d = b.dataset;
 
-    if (d.nota) {
+    if (d.aba) {
+      aba = d.aba;
+      try { history.replaceState(null, "", aba === "mural" ? location.pathname + location.search : "#" + aba); } catch (err) {}
+      desenhar();
+    }
+    else if (d.nota) {
       notaEscolhida = +d.nota;
       tela.querySelectorAll("#estrelas button").forEach(x => x.classList.toggle("on", +x.dataset.nota <= notaEscolhida));
     }
@@ -358,6 +394,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   try { await carregar(); }
   catch (err) { espera.textContent = err.message; return; }
   espera.hidden = true; tela.hidden = false;
+  if (["participantes", "sobre"].indexOf(location.hash.slice(1)) >= 0) aba = location.hash.slice(1);
   desenhar();
 })();
 </script>

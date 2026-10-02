@@ -115,7 +115,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
   function cartao(m, extra) {
     const nota = m.nota ? `<span>${U.estrelas(m.nota)} <span class="nota">${String(m.nota).replace(".", ",")}</span> (${m.avaliacoes})</span>` : `<span>ainda sem avaliação</span>`;
-    return `<a class="mt-card" href="mentoria.html?id=${encodeURIComponent(m.id)}">
+    return `<a class="mt-card" href="mentoria.html?id=${encodeURIComponent(m.id)}${m.pedidos ? "#participantes" : ""}">
       <div class="mt-quem">${U.foto(m.mentor, 44)}<div><div class="nm">${e(m.mentor.nome)}</div><div class="sb">mentor</div></div>
         ${extra ? `<span style="margin-left:auto">${extra}</span>` : ""}</div>
       <div class="mt-vaga">${e(m.vaga_titulo)}<small>${e(m.empresa)}</small></div>
