@@ -304,6 +304,16 @@ const Conta = (function () {
 
     if (!sessao) {
       if (!forcar && !loginObrigatorio() && !chegouPorLink && !pediuEntrar) return null;
+      // Quem chega sem conta vê o mesmo aviso das outras páginas fechadas
+      // (o da Transcrição), e o login acontece na página entrar.html. A tela
+      // de e-mail e senha só abre direto aqui para quem veio por um link de
+      // e-mail ou pela própria entrar.html.
+      if (!forcar && !chegouPorLink && !pediuEntrar && typeof Acesso !== "undefined" && Acesso.htmlAviso) {
+        const p = porta();
+        p.style.cssText = "max-width:none;margin:0;padding:0 18px;";
+        p.innerHTML = Acesso.htmlAviso("O Meu Controle é para quem tem conta", "Entre na sua conta para usar a ferramenta.");
+        return new Promise(() => {});   // a página fica no aviso; o login recarrega tudo
+      }
       const aviso = erroDoLink ? { texto: traduzir({ message: erroDoLink }) } : null;
       usuario = criar && !aviso
         ? await new Promise(resolver => telaCriarConta(resolver))
