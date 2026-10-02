@@ -5,7 +5,7 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Fri, 02 Oct 2026 13:59:58 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 14:12:06 +0000</lastBuildDate>
     <item>
       <title>Paid Photo Contributor Opportunity — micro1</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f4f33bc06</link>
@@ -54,13 +54,6 @@
       <guid isPermaLink="false">e148c207af</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
       <description>Coleta de fotos paga para irmãos. Cada irmão tira fotos de si mesmo, sozinho ou junto com o outro, seguindo instruções simples, e responde a um questionário curto. O material ajuda sistemas de IA a entender a semelhança entre pessoas da mesma família. O pagamento é de US$ 140 por tarefa aprovada, para cada participante.</description>
-    </item>
-    <item>
-      <title>Music &amp; Sound Annotation Expert — micro1</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=72838e8df6</link>
-      <guid isPermaLink="false">72838e8df6</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você ouve gravações de campo de 30 a 90 segundos e anota o que dá para escutar: quais instrumentos estão tocando, o andamento, o tom, os sons de fundo e as reações do público. Também compara duas gravações da mesma música feitas em lugares diferentes. Nas fases seguintes, avalia se as descrições feitas por IA batem com o que você ouviu. Há uma sessão de treinamento paga e uma reunião curta por semana.</description>
     </item>
     <item>
       <title>Car-Mounted 360° Video Recorder — micro1</title>
@@ -140,13 +133,6 @@
       <description>Projeto piloto de anotação de fala chamado Andromeda Delta. Você ouve trechos curtos de áudio em português e confere as transcrições e os cortes palavra por palavra que um sistema automático gerou, corrigindo o que estiver errado. É um trabalho pequeno: de 3 a 5 horas por semana, somando 15 a 20 horas no total. Pagamento de US$ 5,20 por hora, como freelancer.</description>
     </item>
     <item>
-      <title>Senior AI Engineer, Data Quality &amp; Pipeline Automation — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=ffeacd91fe</link>
-      <guid isPermaLink="false">ffeacd91fe</guid>
-      <pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você constrói e coloca em produção um agente de IA que vigia sozinho os fluxos de dados da empresa. Ele prevê atrasos de entrega antes que aconteçam, confere a qualidade dos dados com base no histórico, investiga gargalos e propõe correções de código para falhas rotineiras, que uma pessoa aprova. Você é responsável pelo agente do começo ao fim. Contrato de cerca de 2 meses, 40 horas por semana, com início previsto para 1º de novembro de 2026.</description>
-    </item>
-    <item>
       <title>Multilingual Image &amp; Text AI Quality Expert — TELUS Digital</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=cdf300f69a</link>
       <guid isPermaLink="false">cdf300f69a</guid>
@@ -168,20 +154,6 @@
       <description>Você ouve áudios em português brasileiro e corrige transcrições feitas por máquina: palavras erradas ou faltando, erros de escrita, pontuação e marcações de tempo. Também sinaliza trechos com áudio ruim ou falas sobrepostas. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.</description>
     </item>
     <item>
-      <title>Customer Support Task Author (AI Training) — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=dc2a3c4873</link>
-      <guid isPermaLink="false">dc2a3c4873</guid>
-      <pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você cria tarefas realistas de suporte ao cliente para treinar e avaliar agentes de IA. Cada tarefa simula um chamado: ler o problema, conferir a configuração da conta, consultar manuais internos e decidir entre resolver ou escalar. Você também escreve os critérios de correção, monta o ambiente da tarefa e resolve cada uma para garantir que a resposta certa é clara. Remoto, de 10 a 40 horas por semana, entre US$ 20 e US$ 50 por hora.</description>
-    </item>
-    <item>
-      <title>Context Elicitation &amp; Conversation Evaluation Specialists - Latam, Southeastern Europe, Asia, Africa — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=cf85b0c716</link>
-      <guid isPermaLink="false">cf85b0c716</guid>
-      <pubDate>Sat, 26 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você analisa conversas entre pessoas e assistentes de IA sobre situações do dia a dia e relacionamentos. Avalia se a IA reuniu contexto suficiente antes de dar uma recomendação, aponta perguntas que deveriam ter sido feitas e separa as informações essenciais das secundárias. Documenta tudo seguindo diretrizes de avaliação estruturadas. A vaga é aberta para a América Latina, entre outras regiões.</description>
-    </item>
-    <item>
       <title>AI Safety and Policy Evaluator — Turing</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f43f07400f</link>
       <guid isPermaLink="false">f43f07400f</guid>
@@ -189,32 +161,11 @@
       <description>Você testa a segurança de sistemas de IA que editam imagens. O trabalho é classificar pedidos de edição e os resultados gerados de acordo com um guia detalhado e categorias de risco, como imagens realistas de pessoas, rosto de pessoas reais, menores de idade, conteúdo sexual, violência, discurso de ódio e atividades ilegais. Você também cria testes para descobrir onde as proteções falham e escreve justificativas. É contrato por projeto, sem vínculo empregatício.</description>
     </item>
     <item>
-      <title>Professional Writing Human Data Collection - Academic and Education — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4c05c032ec</link>
-      <guid isPermaLink="false">4c05c032ec</guid>
-      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você escreve textos profissionais das áreas de educação e academia que servem de exemplo para treinar IA. Podem ser planos de aula, materiais de orientação acadêmica, avaliações, textos de pesquisa e outros documentos, sempre com tom profissional, bem estruturados e embasados. A vaga aceita especialistas de muitas áreas, de pedagogia e ciências humanas a ciências exatas e tecnologia.</description>
-    </item>
-    <item>
       <title>English-Chinese Bilingual Voice Recording - AI Trainer — Toloka AI</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=ec94ae3778</link>
       <guid isPermaLink="false">ec94ae3778</guid>
       <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
       <description>Você grava clipes curtos de voz, de 1 a 2 minutos, falando naturalmente e misturando inglês com chinês, como faria numa conversa com amigos. Não tem roteiro: você comenta um vídeo, fala do seu dia ou dá sua opinião sobre um assunto. É trabalho por projeto, sem horário fixo, pago por gravação aprovada. A Toloka anuncia até US$ 30 por hora, dependendo do seu ritmo e da taxa de aprovação.</description>
-    </item>
-    <item>
-      <title>Chemical Defense Researcher — Mercor</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=22d855d2a9</link>
-      <guid isPermaLink="false">22d855d2a9</guid>
-      <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Painel de especialistas em defesa química para testar a segurança de modelos de IA. Você escreve perguntas técnicas classificadas como inofensivas, de uso duplo ou adversariais, avalia se a IA respondeu o que devia e recusou o que era perigoso, e escreve a resposta de referência com a justificativa técnica. O pagamento é por tarefa, entre US$ 65 e US$ 75.</description>
-    </item>
-    <item>
-      <title>Python Engineering Manager – LLM Training &amp; Evaluation — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=6aa5e2d122</link>
-      <guid isPermaLink="false">6aa5e2d122</guid>
-      <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Cargo de liderança: você gerencia equipes grandes de engenheiros Python e cientistas de dados que produzem dados para treinar grandes modelos de linguagem, com técnicas como ajuste fino supervisionado e aprendizado por reforço com feedback humano. É responsável pela entrega do projeto do início ao fim, pela qualidade do código e dos dados, pelo contato com os clientes e pelos indicadores de desempenho. É freelancer e remoto, voltado para a América Latina.</description>
     </item>
     <item>
       <title>Search Engine Evaluator - Portuguese (Brazil) — RWS TrainAI</title>
@@ -231,32 +182,11 @@
       <description>Você cria desafios para testar agentes de IA que pesquisam na internet. Primeiro encontra fotos reais de lugares, produtos e mídia ligados ao Brasil, com licença livre ou de sua autoria. Depois corta, cobre ou degrada partes da imagem para esconder o que ela mostra, de um jeito que a IA precise pesquisar em vários passos, com Google Lens ou busca reversa, para descobrir. Para cada desafio você escreve o enunciado em inglês, os critérios de correção e a solução com as fontes.</description>
     </item>
     <item>
-      <title>Engineering Manager – LLM Evaluation — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3e3c96b1e1</link>
-      <guid isPermaLink="false">3e3c96b1e1</guid>
-      <pubDate>Wed, 16 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você lidera equipes que criam conversas para treinar e avaliar grandes modelos de linguagem. São diálogos realistas entre usuários e assistentes de IA que usam ferramentas como agenda, e-mail, mapas e armazenamento na nuvem. Você define fluxos de trabalho e padrões de qualidade, orienta a equipe sobre APIs, JSON e chamadas de função, acompanha prazos e riscos e conversa com as áreas de engenharia e produto.</description>
-    </item>
-    <item>
       <title>Audio/Voice/Annotation Trainer - English (US) Language — Turing</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=663de19d6d</link>
       <guid isPermaLink="false">663de19d6d</guid>
       <pubDate>Wed, 16 Sep 2026 00:00:00 +0000</pubDate>
       <description>Vaga de locução em inglês americano para projetos de IA. Você grava falas dando vida a personagens e histórias, com a emoção, a personalidade e o tom certos. Trabalha a partir de roteiros, recebe direção e refaz gravações conforme o retorno, entregando os arquivos no prazo e no formato pedido. É um contrato flexível, não um emprego fixo.</description>
-    </item>
-    <item>
-      <title>LLM Trainer - Agent Function call — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=6501a41ea4</link>
-      <guid isPermaLink="false">6501a41ea4</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você cria conversas simuladas entre uma pessoa e um assistente de IA que usa ferramentas como agenda, e-mail, mapas e armazenamento na nuvem. Você faz os dois papéis: escreve o que o usuário pede e como o assistente responde, decidindo quando ele deve chamar cada ferramenta. As conversas ensinam a IA a completar tarefas possíveis, reconhecer as impossíveis e conversar bem quando não precisa de ferramenta. O trabalho é para um grande laboratório de IA.</description>
-    </item>
-    <item>
-      <title>LLM Annotator - Master's Degree — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=ec971e76be</link>
-      <guid isPermaLink="false">ec971e76be</guid>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você cria perguntas difíceis que testam a capacidade de uma IA de buscar, analisar e raciocinar sobre dados estruturados, como tabelas. Depois avalia as respostas quanto à precisão, lógica e completude, identifica erros, contradições e informações inventadas, e documenta tudo com explicações baseadas em evidências.</description>
     </item>
     <item>
       <title>Hydrus - Session Director - Portuguese (BR) - V2 — Welocalize</title>
@@ -280,11 +210,81 @@
       <description>Vaga da micro1 para transcrever áudios em português que serão usados no treinamento de IA. Você ouve gravações e escreve exatamente o que foi dito, seguindo as regras de formatação do projeto. É remoto e paga entre US$ 10 e US$ 18 por hora.</description>
     </item>
     <item>
-      <title>Professional Writing Human Data Collection — Turing</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f6fe7cb0e0</link>
-      <guid isPermaLink="false">f6fe7cb0e0</guid>
+      <title>AI Quality Analyst - English — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=e9aed46285</link>
+      <guid isPermaLink="false">e9aed46285</guid>
       <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Você escreve textos profissionais de marketing que servem como exemplos para treinar IA. São casos reais de negócio, como campanhas, e-mails, estratégias de marca e análises de mercado, escritos com tom profissional, estrutura clara e objetivo definido. A Turing aceita especialistas em dezenas de áreas do marketing, de SEO e mídia paga a marketing de influência e comunicação corporativa.</description>
+      <description>Você avalia um recurso de personalização do Gemini, o assistente de IA do Google, em inglês. A ideia é testar se o Gemini usa bem as informações das suas conversas anteriores, do Gmail, das buscas no Google e do YouTube para dar respostas mais relevantes. Você cria perguntas a partir das suas experiências e analisa as respostas em critérios como embasamento, integração e utilidade.</description>
+    </item>
+    <item>
+      <title>Image/Video Annotator — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=d55747ba61</link>
+      <guid isPermaLink="false">d55747ba61</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Você analisa vídeos curtos e imagens e descreve em detalhe o que aparece: pessoas, objetos, ambientes, ações, emoções e a relação entre eles. Nos vídeos, também descreve a sequência dos acontecimentos, as mudanças de cena e as interações. Além disso, confere se descrições geradas por IA estão corretas. O trabalho treina modelos a entender o mundo visual como as pessoas entendem.</description>
+    </item>
+    <item>
+      <title>CUA Data Annotation Trainer — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=c9c88a02cc</link>
+      <guid isPermaLink="false">c9c88a02cc</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Você grava a tela do seu computador enquanto executa tarefas passo a passo, como configurar programas, usar ferramentas de produtividade, organizar dados ou explorar aplicativos. Cada tarefa pode ter mais de 100 interações, entre cliques e teclas. As gravações ensinam IAs a entender como as pessoas usam o computador. Às vezes você também precisa marcar ou conferir as ações registradas.</description>
+    </item>
+    <item>
+      <title>Lifestyle Experts — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=c7e4f42eba</link>
+      <guid isPermaLink="false">c7e4f42eba</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Você escreve &quot;receitas&quot; que ensinam um assistente de IA dentro do Google Sheets a transformar pedidos simples em aplicativos interativos, como controle de treinos, planejamento de eventos, roteiros de viagem ou cuidados com animais. Você cuida de cada receita do começo ao fim: escreve as orientações sobre o tema, as perguntas que o assistente deve fazer e monta planilhas de referência. O cliente avalia se o texto soa humano de verdade, então não pode parecer escrito por IA.</description>
+    </item>
+    <item>
+      <title>Brazilian Portuguese Audio Transcriptionist (AI Training) — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=2adad7cee3</link>
+      <guid isPermaLink="false">2adad7cee3</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Você transcreve áudios em português brasileiro para treinar sistemas de IA a entender como as pessoas falam de verdade. Os áudios são conversas reais, com várias pessoas falando, ruído de fundo, hesitações como &quot;é...&quot; e &quot;tipo...&quot; e linguagem informal, e você identifica quem está falando e segue regras de formatação. Contrato por hora, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.</description>
+    </item>
+    <item>
+      <title>Brazilian Portuguese - Audio Transcript Editor — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=0d4c678ebd</link>
+      <guid isPermaLink="false">0d4c678ebd</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Você compara áudios em português brasileiro com transcrições geradas por máquina e corrige tudo que estiver errado: palavras trocadas ou faltando, erros de escrita, pontuação e marcações de tempo. Também aponta trechos com áudio ruim ou falas sobrepostas. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.</description>
+    </item>
+    <item>
+      <title>Brazilian Portuguese - Audio Transcriptionist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=2dd3d94eeb</link>
+      <guid isPermaLink="false">2dd3d94eeb</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Você transforma áudios em português brasileiro em texto preciso, ajudando a IA a entender a fala real. Os áudios têm conversas com várias pessoas, ruído de fundo, hesitações e linguagem informal, e você precisa separar quem está falando e marcar sons e trechos inaudíveis conforme o guia. É remoto e flexível, de 10 a 40 horas por semana, pagando entre US$ 10 e US$ 35 por hora.</description>
+    </item>
+    <item>
+      <title>Audio Transcription Quality Reviewer — OneForma</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3225a6f2e1</link>
+      <guid isPermaLink="false">3225a6f2e1</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Você revisa transcrições de áudios longos já prontas, conferindo se o texto está fiel ao que foi dito. Também verifica se cada fala está atribuída à pessoa certa, se as marcações de tempo e a divisão dos trechos estão corretas, e sinaliza problemas no áudio conforme as regras do projeto. O trabalho é remoto e pago por hora, com valor fixo.</description>
+    </item>
+    <item>
+      <title>Portuguese Voice Actor - Freelance AI Trainer Project — Meridial</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=40bde685a9</link>
+      <guid isPermaLink="false">40bde685a9</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Você grava roteiros em português e avalia falas geradas por IA, dando feedback sobre pronúncia, tom, ritmo e emoção para melhorar vozes sintéticas. Também anota erros e ajuda a refinar os critérios de avaliação e as orientações de design de voz junto com a equipe. É um contrato remoto como freelancer, com pagamento entre US$ 6 e US$ 65 por hora, definido pela sua experiência e localização.</description>
+    </item>
+    <item>
+      <title>Portuguese Language Expert — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=94d3206e73</link>
+      <guid isPermaLink="false">94d3206e73</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Você avalia e melhora conteúdo em português gerado por IA, garantindo que soe natural, correto e culturalmente adequado. Isso inclui revisar traduções e textos originais, identificar erro de tradução, frase artificial, registro inadequado e escorregão cultural, e sugerir versões idiomáticas melhores, sempre com retorno estruturado. É contrato por hora, totalmente remoto e assíncrono, com compromisso de 10 a 40 horas por semana e faixa de US$ 40 a US$ 120 por hora, a mais alta desta leva.</description>
+    </item>
+    <item>
+      <title>AI Quality Analyst (Personalization) - Portuguese — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=36497ae306</link>
+      <guid isPermaLink="false">36497ae306</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Você avalia um recurso de personalização do Gemini, o assistente de IA do Google. A ideia é testar se o Gemini usa bem as informações das suas conversas anteriores, do Gmail, das buscas no Google e do YouTube para dar respostas mais úteis. Você cria perguntas a partir das suas próprias experiências e depois analisa as respostas em critérios como embasamento, integração e utilidade. Pagamento de US$ 15 por hora.</description>
     </item>
   </channel>
 </rss>

@@ -1,7 +1,7 @@
 {
-  "atualizado_em": "2026-10-02T13:59:58.752145+00:00",
-  "atualizado_br": "02/10/2026 às 10:59",
-  "total": 85,
+  "atualizado_em": "2026-10-02T14:12:06.800254+00:00",
+  "atualizado_br": "02/10/2026 às 11:12",
+  "total": 67,
   "vagas": [
     {
       "empresa": "welocalize",
@@ -750,29 +750,6 @@
     },
     {
       "empresa": "meridial",
-      "titulo": "Portuguese Language Specialist (Brazil) - Freelance AI Trainer Project",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://job-boards.eu.greenhouse.io/agency/jobs/4604023101",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2025-06-12",
-      "data_vista": "2026-08-05",
-      "data_ref": "2025-06-12",
-      "data_oficial": true,
-      "id": "df91131f02",
-      "resumo": {
-        "o_que_faz": "Você atua como especialista em língua portuguesa do Brasil desafiando modelos avançados de IA em fonética, morfologia, sintaxe, semântica, pragmática e sociolinguística. O dia a dia é conversar com o modelo sobre cenários linguísticos, verificar precisão e coerência, capturar os erros de forma reproduzível e sugerir melhorias nos prompts e nas métricas de avaliação. É a versão mais sênior das vagas de língua da Meridial. Faixa de US$ 6 a US$ 65 por hora, remoto.",
-        "requisitos": "Mestrado ou doutorado em letras, linguística ou área próxima é o perfil ideal deste anúncio, que está classificado como pleno a sênior. Publicações revisadas por pares, experiência docente e projetos de análise linguística são sinais valorizados. Inglês para as diretrizes e comunicação clara, com o hábito de mostrar o raciocínio por escrito. Computador seguro e internet rápida por sua conta.",
-        "dica_cv": "Se você tem pós-graduação na área, este é o anúncio da Meridial em que a titulação mais pesa, então coloque formação e publicações no topo. Se você não tem mestrado, prefira a versão multimodal, que é de nível de entrada, ou as de dialeto. Inclua uma amostra curta de análise linguística escrita, porque vale mais que qualquer descrição genérica.",
-        "frase": "Desafiar a IA em questões avançadas de língua portuguesa.",
-        "remuneracao": "US$ 6 a 65 por hora"
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "meridial",
       "titulo": "Portuguese Voice Actor - Freelance AI Trainer Project",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -982,30 +959,6 @@
         "frase": "Tirar fotos com um irmão ou irmã para um banco de imagens de IA.",
         "remuneracao": "US$ 140 por participante",
         "contrato": "Tarefa pontual"
-      },
-      "indicacao": true
-    },
-    {
-      "empresa": "micro1",
-      "titulo": "Music & Sound Annotation Expert",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://jobs.micro1.ai/post/43067af3-efeb-435d-aeb9-6d1de8c2af0a?referralCode=71758114-f00e-4969-8de1-6480c2f99ee8&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "2026-09-02",
-      "data_vista": "2026-10-02",
-      "data_ref": "2026-09-02",
-      "data_oficial": true,
-      "id": "72838e8df6",
-      "resumo": {
-        "o_que_faz": "Você ouve gravações de campo de 30 a 90 segundos e anota o que dá para escutar: quais instrumentos estão tocando, o andamento, o tom, os sons de fundo e as reações do público. Também compara duas gravações da mesma música feitas em lugares diferentes. Nas fases seguintes, avalia se as descrições feitas por IA batem com o que você ouviu. Há uma sessão de treinamento paga e uma reunião curta por semana.",
-        "requisitos": "Pelo menos 3 anos de prática com música ou áudio, como músico, produtor, professor de música, técnico de som ou editor de áudio. Conseguir separar instrumentos numa gravação cheia de ruído e identificar o andamento e o tom. Inglês escrito para notas curtas. Bons fones de ouvido, ambiente silencioso e disponibilidade de 20 a 25 horas por semana.",
-        "dica_cv": "Descreva a sua experiência musical de forma concreta: instrumentos que toca, tempo de estrada, formação, trabalhos de gravação ou mixagem. Mencione se tem treino de percepção musical. Um portfólio ou link de trabalhos ajuda.",
-        "frase": "Ouvir gravações e anotar instrumentos, andamento e tom.",
-        "remuneracao": "US$ 30 a 45 por hora",
-        "carga": "20 a 25 h por semana"
       },
       "indicacao": true
     },
@@ -1371,30 +1324,6 @@
     },
     {
       "empresa": "alignerr",
-      "titulo": "AI Language Expert - Portuguese",
-      "local": "Remoto · Brasil",
-      "categoria": "transl",
-      "badge": "Tradução",
-      "url": "https://www.alignerr.com/jobs/4bf35e1c-de3b-4874-8376-45ad9f304f35",
-      "commitment": "CONTRACT",
-      "fonte": "direto",
-      "data_post": "2026-09-29",
-      "data_vista": "2026-08-05",
-      "data_ref": "2026-09-29",
-      "data_oficial": true,
-      "id": "69b78f8163",
-      "resumo": {
-        "o_que_faz": "Voltada a quem tem experiência em ensino ou avaliação de português. Você avalia fala e texto em português gerados por IA quanto a precisão, naturalidade e qualidade pedagógica, e também analisa a produção de estudantes em diferentes níveis de proficiência, do Pré-A1 ao B2+ do quadro europeu. Identifica erros típicos de aprendiz e lacunas didáticas, sugere melhorias e dá retorno estruturado que aprimora modelos de tutoria e de ensino de idiomas. Remoto e assíncrono, com mínimo de 15 horas por semana e faixa de US$ 25 a US$ 30 por hora.",
-        "requisitos": "Português nativo, do Brasil ou de Portugal, e inglês em nível C1 ou C2. Experiência ensinando português ou avaliando a produção de alunos é exigência central. Familiaridade com o quadro CEFR e com os padrões de erro de quem está aprendendo. Estar cursando ou ter concluído pelo menos a graduação. Atenção a detalhe e julgamento linguístico consistente. Não exige experiência prévia com IA.",
-        "dica_cv": "Esta é a vaga certa se você dá ou já deu aula de português para estrangeiros, mesmo que particular ou em plataforma online. Diga há quanto tempo ensina, para quais níveis e se conhece o CEFR pelo nome. Se já corrigiu provas, elaborou material didático ou trabalhou com avaliação padronizada, destaque. Confirme que consegue as 15 horas semanais mínimas antes de se candidatar, porque é piso e não teto.",
-        "frase": "Avaliar fala e texto de IA com olhar de professor de português.",
-        "remuneracao": "US$ 25 a 30 por hora",
-        "carga": "15 h ou mais por semana"
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "alignerr",
       "titulo": "Brazilian Portuguese - Audio Transcript Editor",
       "local": "Remoto · Brasil",
       "categoria": "ai",
@@ -1437,30 +1366,6 @@
         "dica_cv": "Currículo em inglês, destacando transcrição, legendagem ou qualquer trabalho com áudio. Cite a sua familiaridade com sotaques de diferentes regiões do Brasil, porque isso é um diferencial real nesse tipo de projeto. Treine com áudios de conversas antes do teste da Alignerr.",
         "frase": "Transcrever áudios de conversas em português.",
         "remuneracao": "US$ 10 a 35 por hora",
-        "carga": "10 a 40 h por semana"
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "alignerr",
-      "titulo": "Customer Support Task Author (AI Training)",
-      "local": "Remoto · Brasil",
-      "categoria": "write",
-      "badge": "Escrita",
-      "url": "https://www.alignerr.com/jobs/6032566e-9090-4246-8d34-4cfe3e82f464",
-      "commitment": "CONTRACT",
-      "fonte": "direto",
-      "data_post": "2026-09-30",
-      "data_vista": "2026-09-30",
-      "data_ref": "2026-09-30",
-      "data_oficial": true,
-      "id": "dc2a3c4873",
-      "resumo": {
-        "o_que_faz": "Você cria tarefas realistas de suporte ao cliente para treinar e avaliar agentes de IA. Cada tarefa simula um chamado: ler o problema, conferir a configuração da conta, consultar manuais internos e decidir entre resolver ou escalar. Você também escreve os critérios de correção, monta o ambiente da tarefa e resolve cada uma para garantir que a resposta certa é clara. Remoto, de 10 a 40 horas por semana, entre US$ 20 e US$ 50 por hora.",
-        "requisitos": "Experiência prática como analista de suporte técnico, engenheiro de suporte ou customer success. Conhecimento de sistemas de chamados, bases de conhecimento e fluxos de escalonamento. Escrita precisa e inglês fluente. A vaga é voltada a profissionais em São Paulo e no resto do Brasil.",
-        "dica_cv": "Mostre casos reais: tipos de problema que você resolvia, ferramentas de chamados que usou (Zendesk, Jira, Freshdesk, ServiceNow) e como decidia quando escalar. Se já escreveu manuais, playbooks ou artigos de base de conhecimento, destaque isso, porque é o coração da vaga.",
-        "frase": "Criar tarefas de suporte ao cliente para treinar IA.",
-        "remuneracao": "US$ 20 a 50 por hora",
         "carga": "10 a 40 h por semana"
       },
       "indicacao": false
@@ -1512,50 +1417,6 @@
       "indicacao": false
     },
     {
-      "empresa": "turing",
-      "titulo": "LLM Trainer - Agent Function call",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/job/home?jobCode=j7FW8ZgDkLQa",
-      "commitment": "Other",
-      "fonte": "direto",
-      "data_post": "2026-09-14",
-      "data_vista": "2026-09-15",
-      "data_ref": "2026-09-14",
-      "data_oficial": true,
-      "id": "6501a41ea4",
-      "resumo": {
-        "o_que_faz": "Você cria conversas simuladas entre uma pessoa e um assistente de IA que usa ferramentas como agenda, e-mail, mapas e armazenamento na nuvem. Você faz os dois papéis: escreve o que o usuário pede e como o assistente responde, decidindo quando ele deve chamar cada ferramenta. As conversas ensinam a IA a completar tarefas possíveis, reconhecer as impossíveis e conversar bem quando não precisa de ferramenta. O trabalho é para um grande laboratório de IA.",
-        "requisitos": "Noções de programação em Python, Java ou JavaScript e entendimento de como funcionam chamadas de função e APIs. Excelente escrita, raciocínio lógico e atenção à coerência em conversas longas. Inglês fluente, já que esse tipo de projeto costuma ser conduzido nesse idioma.",
-        "dica_cv": "Destaque experiência com APIs, integrações ou automações, mesmo que simples, e mostre que você escreve bem. Se já trabalhou com treinamento de IA, criação de prompts ou roteiros de chatbot, coloque no topo. Um exemplo curto de conversa bem estruturada no portfólio pode fazer diferença.",
-        "frase": "Escrever conversas entre um usuário e um assistente de IA."
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Prompt & Verifier",
-      "local": "Remoto · Brasil",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/job/home?jobCode=hmBUpEW_rL7B",
-      "commitment": "Legal & Law Services",
-      "fonte": "direto",
-      "data_post": "2025-12-12",
-      "data_vista": "2026-08-28",
-      "data_ref": "2025-12-12",
-      "data_oficial": true,
-      "id": "7dedf39db7",
-      "resumo": {
-        "o_que_faz": "Você cria, revisa e melhora as instruções que orientam sistemas de IA a usar ferramentas como Slack, PayPal e outros serviços. Isso envolve ler esquemas de API em JSON, fazer consultas simples em SQL para checar dados, escrever políticas de uso e garantir que as respostas da IA sejam seguras e adequadas em vários idiomas e países. É uma mistura de engenharia de prompt, criação de regras e segurança.",
-        "requisitos": "Saber ler JSON e esquemas de API e ter noções básicas de SQL. Capacidade de escrever políticas e diretrizes claras e bom raciocínio crítico. Conhecimento sobre moderação de conteúdo e segurança é um diferencial. Inglês fluente e boa comunicação escrita.",
-        "dica_cv": "Destaque qualquer experiência com APIs, automação, moderação de conteúdo ou criação de regras e processos. Se você já escreveu prompts complexos ou documentação técnica, dê exemplos. Mencione os idiomas que domina, porque o projeto cobre várias regiões.",
-        "frase": "Criar e revisar instruções para IAs que usam ferramentas."
-      },
-      "indicacao": false
-    },
-    {
       "empresa": "mercor",
       "titulo": "Quality Analyst",
       "local": "Remoto · Mundial",
@@ -1576,30 +1437,6 @@
         "frase": "Revisar o trabalho entregue por outros colaboradores.",
         "remuneracao": "US$ 20 a 50 por hora",
         "carga": "Cerca de 40 h por semana"
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "mercor",
-      "titulo": "Chemical Defense Researcher",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.mercor.com/jobs/list_AAABoKHc30ZPmucsv_lExZ02/chemical-defense-researcher",
-      "commitment": "",
-      "fonte": "direto",
-      "data_post": "",
-      "data_vista": "2026-09-18",
-      "data_ref": "2026-09-18",
-      "data_oficial": false,
-      "id": "22d855d2a9",
-      "resumo": {
-        "o_que_faz": "Painel de especialistas em defesa química para testar a segurança de modelos de IA. Você escreve perguntas técnicas classificadas como inofensivas, de uso duplo ou adversariais, avalia se a IA respondeu o que devia e recusou o que era perigoso, e escreve a resposta de referência com a justificativa técnica. O pagamento é por tarefa, entre US$ 65 e US$ 75.",
-        "requisitos": "Experiência institucional com ameaças químicas pelo lado da defesa: contramedidas, proteção, detecção, descontaminação, toxicologia de agentes químicos ou trabalho ligado à Convenção sobre Armas Químicas. Escrita técnica clara para leigos. Experiência com testes adversariais em IA é um diferencial. Inglês fluente.",
-        "dica_cv": "Vaga muito específica, para quem trabalhou em institutos de pesquisa, forças armadas, defesa civil ou laboratórios da área. Envie amostra de escrita técnica, artigo publicado ou parecer. O trabalho envolve ler e escrever sobre cenários de uso indevido por longos períodos, então avalie se isso é confortável para você.",
-        "frase": "Testar a segurança da IA em temas de defesa química.",
-        "remuneracao": "US$ 65 a 75 por tarefa",
-        "contrato": "Por tarefa"
       },
       "indicacao": false
     },
@@ -1628,28 +1465,6 @@
     },
     {
       "empresa": "turing",
-      "titulo": "Professional Writing Human Data Collection",
-      "local": "Remoto · Mundial",
-      "categoria": "write",
-      "badge": "Escrita",
-      "url": "https://work.turing.com/job/home?jobCode=wYHQ3jrAa11S",
-      "commitment": "Design",
-      "fonte": "direto",
-      "data_post": "2026-09-11",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-11",
-      "data_oficial": true,
-      "id": "f6fe7cb0e0",
-      "resumo": {
-        "o_que_faz": "Você escreve textos profissionais de marketing que servem como exemplos para treinar IA. São casos reais de negócio, como campanhas, e-mails, estratégias de marca e análises de mercado, escritos com tom profissional, estrutura clara e objetivo definido. A Turing aceita especialistas em dezenas de áreas do marketing, de SEO e mídia paga a marketing de influência e comunicação corporativa.",
-        "requisitos": "Experiência prática em pelo menos uma área do marketing. Escrita excelente em inglês. Conhecimento das práticas de marketing dos Estados Unidos e das regras e leis que se aplicam por lá, como publicidade e privacidade de dados.",
-        "dica_cv": "Escolha as duas ou três áreas do marketing em que você é mais forte e dê exemplos concretos com resultados. Anexe amostras de textos em inglês, porque a escrita é o que será avaliado. Se já trabalhou com clientes ou marcas dos Estados Unidos, deixe isso em destaque.",
-        "frase": "Escrever textos de marketing em inglês para treinar IA."
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
       "titulo": "AI Quality Analyst - English",
       "local": "Remoto · Mundial",
       "categoria": "qa",
@@ -1673,28 +1488,6 @@
     },
     {
       "empresa": "turing",
-      "titulo": "LLM Annotator - Master's Degree",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/job/home?jobCode=S7aMtZq2KEs6",
-      "commitment": "Analyst",
-      "fonte": "direto",
-      "data_post": "2026-09-14",
-      "data_vista": "2026-09-15",
-      "data_ref": "2026-09-14",
-      "data_oficial": true,
-      "id": "ec971e76be",
-      "resumo": {
-        "o_que_faz": "Você cria perguntas difíceis que testam a capacidade de uma IA de buscar, analisar e raciocinar sobre dados estruturados, como tabelas. Depois avalia as respostas quanto à precisão, lógica e completude, identifica erros, contradições e informações inventadas, e documenta tudo com explicações baseadas em evidências.",
-        "requisitos": "Mestrado ou doutorado em qualquer área. Pelo menos 3 anos de experiência profissional, em pesquisa ou em docência. Forte capacidade analítica e pensamento crítico. Inglês escrito excelente.",
-        "dica_cv": "O mestrado é eliminatório, então coloque o título e a área logo no início. Destaque experiência com análise de dados, pesquisa ou ensino, mostrando que você sabe verificar informações com rigor. Se já usa IA no trabalho e percebe quando ela erra, dê exemplos.",
-        "frase": "Criar perguntas difíceis sobre tabelas e avaliar as respostas."
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
       "titulo": "Image/Video Annotator",
       "local": "Remoto · Mundial",
       "categoria": "ai",
@@ -1712,166 +1505,6 @@
         "requisitos": "Inglês avançado de leitura e escrita, já que as descrições são feitas nesse idioma. Muita atenção a detalhe e capacidade de seguir instruções precisas. Familiaridade com ferramentas básicas de computador. Experiência anterior com anotação de imagens ou vídeos é um diferencial.",
         "dica_cv": "Como tudo é escrito em inglês, capriche na escrita do próprio currículo. Destaque experiência com anotação de dados, audiodescrição, legendagem, fotografia, cinema ou crítica de arte, que mostram olhar treinado. Se já descreveu imagens para acessibilidade, mencione.",
         "frase": "Descrever em inglês o que aparece em imagens e vídeos."
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Board Game Reasoning Expert (AI Training & Evaluation)",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://work.turing.com/job/home?jobCode=sWT4aJAjSQ9O",
-      "commitment": "Software development",
-      "fonte": "direto",
-      "data_post": "2026-06-11",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-06-11",
-      "data_oficial": true,
-      "id": "6d18b807d8",
-      "resumo": {
-        "o_que_faz": "Você cria e revisa desafios baseados em jogos de tabuleiro para treinar e avaliar o raciocínio de IAs. O trabalho envolve analisar situações de jogo, árvores de decisão e sistemas de regras, avaliar se as respostas da IA estão corretas e bem justificadas, e identificar erros de lógica ou violações de regras. Também ajuda a montar critérios de avaliação e bancos de testes.",
-        "requisitos": "Graduação em computação, matemática, ciência cognitiva, design de jogos, filosofia, economia ou área analítica. Pelo menos 2 anos de experiência em design de jogos de tabuleiro, testes de jogos, comunidades de jogos de mesa ou ambientes de estratégia. Conhecimento de lógica, probabilidade, teoria dos jogos e regras complexas. Inglês fluente.",
-        "dica_cv": "Liste os jogos que você domina (xadrez, jogos modernos de tabuleiro, card games, RPG) e sua experiência concreta: torneios, rankings, criação ou teste de jogos, comunidades que organiza. Relacione isso com a sua formação analítica. Se criou algum jogo ou escreveu análises de estratégia, coloque o link.",
-        "frase": "Criar desafios de jogos de tabuleiro para testar a IA."
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Senior AI Engineer, Data Quality & Pipeline Automation",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://work.turing.com/job/home?jobCode=-ArDju8rftLZ",
-      "commitment": "ML/Data Engineering",
-      "fonte": "direto",
-      "data_post": "2026-10-01",
-      "data_vista": "2026-10-01",
-      "data_ref": "2026-10-01",
-      "data_oficial": true,
-      "id": "ffeacd91fe",
-      "resumo": {
-        "o_que_faz": "Você constrói e coloca em produção um agente de IA que vigia sozinho os fluxos de dados da empresa. Ele prevê atrasos de entrega antes que aconteçam, confere a qualidade dos dados com base no histórico, investiga gargalos e propõe correções de código para falhas rotineiras, que uma pessoa aprova. Você é responsável pelo agente do começo ao fim. Contrato de cerca de 2 meses, 40 horas por semana, com início previsto para 1º de novembro de 2026.",
-        "requisitos": "Python e SQL avançados em ambiente de produção. Experiência prática com orquestração de dados em Airflow, Dagster ou Prefect e com dbt. Conhecimento de qualidade e observabilidade de dados, detecção de anomalias e séries temporais. Experiência com agentes de IA e chamada de ferramentas, em frameworks como Claude Agent SDK ou LangGraph. Atenção: a vaga exige pelo menos 6 horas por dia no horário da Índia, o que no Brasil cai de madrugada e de manhã cedo.",
-        "dica_cv": "Vaga sênior de engenharia de dados com IA. Antes de se candidatar, veja se o horário da Índia cabe na sua rotina, porque são 6 horas diárias de sobreposição. O valor por hora é você quem propõe, então pesquise a faixa de mercado antes. No currículo em inglês, liste as ferramentas pelo nome (Airflow, dbt, Snowflake, BigQuery, Great Expectations) e projetos em que você automatizou a detecção ou a correção de falhas. A seleção tem entrevista com IA, exercício prático de revisão de código gerado por IA e conversa com o gestor.",
-        "frase": "Construir um agente de IA que vigia fluxos de dados.",
-        "carga": "40 h por semana",
-        "contrato": "Cerca de 2 meses"
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Professional Writing Human Data Collection - Academic and Education",
-      "local": "Remoto · Mundial",
-      "categoria": "write",
-      "badge": "Escrita",
-      "url": "https://work.turing.com/job/home?jobCode=0hYA4XnRqD3w",
-      "commitment": "Design",
-      "fonte": "direto",
-      "data_post": "2026-09-24",
-      "data_vista": "2026-09-24",
-      "data_ref": "2026-09-24",
-      "data_oficial": true,
-      "id": "4c05c032ec",
-      "resumo": {
-        "o_que_faz": "Você escreve textos profissionais das áreas de educação e academia que servem de exemplo para treinar IA. Podem ser planos de aula, materiais de orientação acadêmica, avaliações, textos de pesquisa e outros documentos, sempre com tom profissional, bem estruturados e embasados. A vaga aceita especialistas de muitas áreas, de pedagogia e ciências humanas a ciências exatas e tecnologia.",
-        "requisitos": "Experiência prática em ensino, orientação acadêmica, desenvolvimento de currículo, design instrucional ou pesquisa em alguma área do conhecimento. Escrita excelente em inglês. Familiaridade com as práticas educacionais e os padrões acadêmicos dos Estados Unidos.",
-        "dica_cv": "Destaque a sua área de formação e o tempo de docência ou pesquisa, com exemplos de materiais que você criou. Anexe amostras de escrita em inglês. Se já trabalhou com instituições ou programas dos Estados Unidos, ou conhece o sistema educacional de lá, deixe isso bem visível.",
-        "frase": "Escrever textos de educação em inglês para treinar IA."
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Python Engineering Manager – LLM Training & Evaluation",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://work.turing.com/job/home?jobCode=PUttu9JMF-bh",
-      "commitment": "Software development",
-      "fonte": "direto",
-      "data_post": "2026-09-17",
-      "data_vista": "2026-09-18",
-      "data_ref": "2026-09-17",
-      "data_oficial": true,
-      "id": "6aa5e2d122",
-      "resumo": {
-        "o_que_faz": "Cargo de liderança: você gerencia equipes grandes de engenheiros Python e cientistas de dados que produzem dados para treinar grandes modelos de linguagem, com técnicas como ajuste fino supervisionado e aprendizado por reforço com feedback humano. É responsável pela entrega do projeto do início ao fim, pela qualidade do código e dos dados, pelo contato com os clientes e pelos indicadores de desempenho. É freelancer e remoto, voltado para a América Latina.",
-        "requisitos": "Pelo menos 5 anos de engenharia de software com domínio prático de Python. Experiência comprovada gerenciando equipes técnicas grandes com foco em entrega. Conhecimento de como funciona o treinamento de modelos de linguagem. Inglês fluente para lidar com clientes.",
-        "dica_cv": "Mostre números: tamanho das equipes que você liderou, prazos e resultados de entrega. Destaque experiência com Python na prática, não só gestão. Se já trabalhou com treinamento de IA, RLHF ou produção de dados, coloque logo no início. Currículo em inglês.",
-        "frase": "Gerenciar equipes de engenheiros Python.",
-        "contrato": "Freelancer"
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Engineering Manager – LLM Evaluation",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://work.turing.com/job/home?jobCode=K4srrqfusSMB",
-      "commitment": "Legal & Law Services",
-      "fonte": "direto",
-      "data_post": "2026-09-14",
-      "data_vista": "2026-09-16",
-      "data_ref": "2026-09-14",
-      "data_oficial": true,
-      "id": "3e3c96b1e1",
-      "resumo": {
-        "o_que_faz": "Você lidera equipes que criam conversas para treinar e avaliar grandes modelos de linguagem. São diálogos realistas entre usuários e assistentes de IA que usam ferramentas como agenda, e-mail, mapas e armazenamento na nuvem. Você define fluxos de trabalho e padrões de qualidade, orienta a equipe sobre APIs, JSON e chamadas de função, acompanha prazos e riscos e conversa com as áreas de engenharia e produto.",
-        "requisitos": "Pelo menos 5 anos de experiência em engenharia de software, operações técnicas, dados, IA ou área parecida. Experiência liderando ou orientando equipes técnicas. Conhecimento de APIs, JSON e integrações. Inglês fluente.",
-        "dica_cv": "Destaque experiência de liderança com números: tamanho das equipes, projetos entregues e melhorias de processo que você implantou. Mostre que entende a parte técnica, citando APIs e integrações com que trabalhou. Experiência com treinamento de IA ou chatbots é um grande diferencial.",
-        "frase": "Liderar equipes que criam conversas para treinar IA."
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Music and Audio experts",
-      "local": "Remoto · Mundial",
-      "categoria": "sme",
-      "badge": "Especialista",
-      "url": "https://work.turing.com/job/home?jobCode=Rbg2qwFC6PGk",
-      "commitment": "Humanities & Interdisciplinary Studies",
-      "fonte": "direto",
-      "data_post": "2026-09-09",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-09",
-      "data_oficial": true,
-      "id": "cd1faf6315",
-      "resumo": {
-        "o_que_faz": "Projeto curto de dois dias em que você ouve trechos de áudio e identifica a família do instrumento (cordas, metais, madeiras, percussão, teclas) e o instrumento específico. Você usa áudios de referência para guiar as decisões e segue regras de anotação. O horário é flexível dentro dos dois dias e o ganho estimado é de cerca de US$ 150 a US$ 160 para quem trabalhar os dois dias inteiros, com chance de extensão.",
-        "requisitos": "Graduação em música ou área relacionada. Pelo menos 3 anos de experiência com apresentações musicais, produção musical, engenharia de áudio ou trabalho parecido. Ouvido treinado para reconhecer instrumentos pelo som. Bom inglês e disposição para tarefas repetitivas de escuta. Há um teste de qualificação de uns 15 minutos antes de começar.",
-        "dica_cv": "Coloque a formação em música logo no início e liste os instrumentos que você toca ou com que trabalha. Cite experiência com produção, mixagem, transcrição musical ou estúdio. Como o projeto dura só dois dias, faça o teste de qualificação assim que puder e use fones de boa qualidade.",
-        "frase": "Identificar instrumentos musicais em trechos de áudio.",
-        "remuneracao": "Cerca de US$ 150 a 160 no total",
-        "carga": "2 dias",
-        "contrato": "Projeto curto"
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "LLM ServiceNow Product Owner",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/job/home?jobCode=jphv06mmdHrR",
-      "commitment": "Legal & Law Services",
-      "fonte": "direto",
-      "data_post": "2026-09-07",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-09-07",
-      "data_oficial": true,
-      "id": "e307a9ddc5",
-      "resumo": {
-        "o_que_faz": "Você transforma processos reais de empresas que usam ServiceNow em tarefas estruturadas para treinar IA. Isso inclui criar cenários como atendimento de chamados, controle de prazos de SLA, pedidos de RH e resposta a incidentes de TI, escrever as instruções, representar as tarefas em JSON e checar os dados com SQL. Não é configuração da plataforma: é traduzir o conhecimento de negócio em material de treinamento.",
-        "requisitos": "Conhecimento funcional profundo em módulos do ServiceNow, como CSM, ITSM ou HRSD. Capacidade analítica, noções de engenharia de prompt, familiaridade com JSON e SQL básico. Inglês fluente e boa escrita.",
-        "dica_cv": "Destaque os módulos do ServiceNow com que você trabalhou e os processos de negócio que conhece a fundo, com exemplos. Certificações ServiceNow ajudam muito. Se já documentou fluxos de trabalho ou escreveu requisitos de negócio, mencione, porque é a habilidade central da vaga.",
-        "frase": "Transformar processos do ServiceNow em tarefas para IA."
       },
       "indicacao": false
     },
@@ -1921,28 +1554,6 @@
     },
     {
       "empresa": "turing",
-      "titulo": "Context Elicitation & Conversation Evaluation Specialists - Latam, Southeastern Europe, Asia, Africa",
-      "local": "Remoto · Mundial",
-      "categoria": "qa",
-      "badge": "QA",
-      "url": "https://work.turing.com/job/home?jobCode=zsfJrwAjDSDz",
-      "commitment": "Analyst",
-      "fonte": "direto",
-      "data_post": "2026-09-25",
-      "data_vista": "2026-09-26",
-      "data_ref": "2026-09-25",
-      "data_oficial": true,
-      "id": "cf85b0c716",
-      "resumo": {
-        "o_que_faz": "Você analisa conversas entre pessoas e assistentes de IA sobre situações do dia a dia e relacionamentos. Avalia se a IA reuniu contexto suficiente antes de dar uma recomendação, aponta perguntas que deveriam ter sido feitas e separa as informações essenciais das secundárias. Documenta tudo seguindo diretrizes de avaliação estruturadas. A vaga é aberta para a América Latina, entre outras regiões.",
-        "requisitos": "De 3 a 5 anos de prática profissional em áreas como serviço social, psicologia, aconselhamento, terapia, pesquisa qualitativa, comunicação, mediação de conflitos ou coaching. Muitas opções pedem pós-graduação ou registro profissional na área, como CRP ou CRESS no Brasil. Inglês fluente.",
-        "dica_cv": "Coloque formação, registro profissional e tempo de prática logo no início. Dê exemplos de como você conduz entrevistas ou avaliações de caso, porque essa é a habilidade central: saber o que perguntar antes de orientar alguém. Se já trabalhou com atendimento online ou pesquisa qualitativa, destaque.",
-        "frase": "Avaliar se a IA perguntou o suficiente antes de aconselhar."
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
       "titulo": "Lifestyle Experts",
       "local": "Remoto · Mundial",
       "categoria": "sme",
@@ -1961,28 +1572,6 @@
         "dica_cv": "Escolha temas que você vive de verdade e conte as situações práticas que já resolveu. Mostre uma planilha sua bem organizada, como link de exemplo. Escreva a candidatura com a sua própria voz: o cliente reprova texto com cara de IA. Confirme se você consegue cumprir a disponibilidade de fins de semana antes de se inscrever.",
         "frase": "Escrever roteiros para um assistente de IA no Google Sheets.",
         "carga": "35 a 50 h por ciclo"
-      },
-      "indicacao": false
-    },
-    {
-      "empresa": "turing",
-      "titulo": "Web Research Specialist",
-      "local": "Remoto · Mundial",
-      "categoria": "ai",
-      "badge": "IA & Dados",
-      "url": "https://work.turing.com/job/home?jobCode=3r40h7_e9E2a",
-      "commitment": "Science",
-      "fonte": "direto",
-      "data_post": "2026-08-25",
-      "data_vista": "2026-09-11",
-      "data_ref": "2026-08-25",
-      "data_oficial": true,
-      "id": "95e6e4284d",
-      "resumo": {
-        "o_que_faz": "Você cria perguntas de pesquisa tão difíceis que nem as IAs mais avançadas, com acesso completo à internet, conseguem responder. Você parte de um fato verificável e constrói a pergunta de trás para frente, com pistas que envolvem datas, pessoas, lugares, organizações e registros. Depois comprova tudo com um registro detalhado das fontes e das buscas óbvias que não levam à resposta. É trabalho de investigação, não de redação.",
-        "requisitos": "Mestrado ou mais de 3 anos de experiência. Habilidade comprovada de pesquisa na internet, incluindo registros oficiais, arquivos, bases de dados públicas e documentos em PDF. Precisão ao citar fontes, com página e seção exatas. Inglês escrito nativo ou quase nativo. Experiência com avaliação de IA, biblioteconomia, jornalismo investigativo, checagem de fatos ou OSINT é um diferencial.",
-        "dica_cv": "Mostre casos concretos de pesquisa difícil que você resolveu e como documentou as fontes. Destaque experiência com arquivos, cartórios, bases governamentais, jornalismo ou checagem de fatos. Tenha paciência com a papelada: a própria vaga avisa que documentar as evidências é a maior parte do trabalho.",
-        "frase": "Criar perguntas de pesquisa que a IA não consegue responder."
       },
       "indicacao": false
     }

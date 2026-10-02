@@ -80,7 +80,22 @@ EXCECOES = {
     # o "=" na frente faz valer so para o titulo exato: sem ele, "Audio Expert"
     # esconderia tambem a "Music and Audio experts", que e vaga geral
     "=Audio Expert": "Outras areas",
-    "=AI Engineer": "Programacao e Software",
+
+    # ── revisao de outubro de 2026: especialista nao fica na aba Vagas ──
+    # A regra: se a vaga exige diploma, pos-graduacao ou anos de profissao
+    # numa area tecnica, ela vai para a area, mesmo com titulo generico.
+    "Prompt & Verifier": "Programacao e Software",
+    "Professional Writing Human Data Collection - Academic": "Humanidades",
+    "Professional Writing Human Data Collection": "Marketing e Vendas",
+    "Board Game Reasoning Expert": "Outras areas",
+    "Context Elicitation": "Psicologia e Ciencias Sociais",
+    "Web Research Specialist": "Outras areas",
+    "Web Research Task Author": "Outras areas",
+    "Portuguese Language Specialist (Brazil)": "Linguistica",
+    "AI Language Expert": "Linguistica",
+    "Customer Support Task Author": "Outras areas",
+    # "music" agora e palavra de area; esta aqui e avaliacao de busca, geral
+    "App Store And Music Search Evaluator": "",
     "Dispatcher": "Outras areas",
 }
 
@@ -95,9 +110,10 @@ SEMPRE_GERAL = [
 ]
 
 # Termos que enganam a palavra "engineer" e nao indicam area.
+# ("ai engineer" e "engineering manager" sairam daqui em outubro de 2026:
+# eram justamente os cargos de programacao senior que apareciam na aba Vagas.)
 FALSOS_POSITIVOS = [
-    "prompt engineer", "ai engineer", "annotation engineer",
-    "data engineer intern", "engineering manager",
+    "prompt engineer", "annotation engineer", "data engineer intern",
 ]
 
 # Ordem importa: a primeira area que casar e a escolhida.
@@ -126,7 +142,8 @@ AREAS = [
         "data science", "data engineer", "cybersecurity", "security engineer",
         "cloud engineer", "qa engineer", "android", "ios developer",
         "competitive programming", "algorithms", "coder", "code expert",
-        "computer science",
+        "computer science", "ai engineer", "engineering manager",
+        "function call", "function calling",
         "programacao", "desenvolvedor",
     ]),
     ("Matematica e Estatistica", [
@@ -140,7 +157,7 @@ AREAS = [
         "astronomer", "thermodynamics", "mechanics phd", "fisica",
     ]),
     ("Quimica", [
-        "chemistry", "chemist", "biochemistry", "organic chemistry",
+        "chemistry", "chemist", "chemical", "biochemistry", "organic chemistry",
         "inorganic chemistry", "chemical engineering", "quimica",
     ]),
     ("Biologia e Ciencias da Vida", [
@@ -165,6 +182,7 @@ AREAS = [
         "economics", "economist", "econometrics", "business analyst",
         "business strategy", "mba", "management consulting", "consultant",
         "supply chain", "logistics", "operations research", "human resources",
+        "product owner", "product manager", "servicenow",
         "economia", "negocios",
     ]),
     ("Psicologia e Ciencias Sociais", [
@@ -182,6 +200,10 @@ AREAS = [
     ("Linguistica", [
         "linguistics", "linguist", "phonetics", "phonology", "morphology",
         "syntax", "lexicography", "computational linguistics", "linguistica",
+    ]),
+    ("Musica e Audio", [
+        "music", "musician", "musical", "composer", "sound designer",
+        "sound design", "audio engineer", "audio engineering", "music editor",
     ]),
     ("Design e Criacao", [
         "graphic design", "designer", "ux", "ui design", "product design",
@@ -201,6 +223,16 @@ ESPECIALISTA_GENERICO = [
     "stem", "subject matter expert", "subject matter experts",
     "domain expert", "domain experts", "technical expert", "sme", "expert in",
     "specialist in", "graduate degree", "masters degree", "m.d.", "science",
+    "master s degree", "master degree", "masters", "degree", "researcher",
+    "research scientist",
+]
+
+# Cargo de chefia ou senioridade no titulo. So vale quando o titulo nao fala
+# de portugues/Brasil e nao e de trabalho geral do ramo: "Senior AI Trainer"
+# continua na aba Vagas, "Senior Backend Lead" nao.
+SENIORIDADE = [
+    "senior", "sr", "lead", "principal", "staff", "manager", "head of",
+    "director", "architect", "vp", "chief",
 ]
 
 AREA_RESERVA = "Outras areas"
@@ -345,6 +377,12 @@ def classificar_area(titulo, descricao=""):
         if _tem(texto, termo):
             return None
 
+    # 4. cargo senior ou de chefia, fora do trabalho geral do ramo
+    if not any(_tem(texto, termo) for termo in TRABALHO_GERAL):
+        for termo in SENIORIDADE:
+            if _tem(texto, termo):
+                return AREA_RESERVA
+
     return _pela_descricao(texto, descricao)
 
 
@@ -377,15 +415,17 @@ if __name__ == "__main__":
     CASOS = [
         # ── tem que ficar na aba Vagas ──
         ("Portuguese (Brazil) Sports Localization Specialist (Football)", "", "GERAL"),
-        ("Portuguese Language Specialist (Brazil) - Freelance AI Trainer Project", "", "GERAL"),
         ("Carioca Dialect Specialist - Freelance AI Trainer Project", "", "GERAL"),
         ("AI Trainer - English-Chinese Bilingual Voice Recording", "", "GERAL"),
         ("Portuguese Transcription Expert", "", "GERAL"),
         ("Search Quality Rater", "", "GERAL"),
         ("Freelance Annotator (English) - AI Trainer", "", "GERAL"),
-        ("Web Research Specialist", "", "GERAL"),
         ("Quality Analyst", "", "GERAL"),
-        ("Music and Audio experts", "", "GERAL"),
+        ("App Store And Music Search Evaluator", "", "GERAL"),
+        ("Senior AI Trainer", "", "GERAL"),
+        ("Hydrus - Session Director - Portuguese (BR) - V2", "", "GERAL"),
+        ("Lifestyle Experts", "", "GERAL"),
+        ("AI Quality Analyst (Personalization) - Portuguese", "", "GERAL"),
         # descricao pede diploma, mas o titulo diz que o trabalho e do ramo
         ("Portuguese (Brazil) Translator",
          "Requirements: bachelor's degree in Translation or Linguistics.", "GERAL"),
@@ -413,6 +453,23 @@ if __name__ == "__main__":
         ("Science Specialist (Fluent in Portuguese - Brazil) - Freelance AI Trainer Project",
          "", "Outras areas"),
         ("Computer Science Expert (PhD)", "", "Programacao e Software"),
+        # ── revisao de outubro de 2026: especialista fora da aba Vagas ──
+        ("Chemical Defense Researcher", "", "Quimica"),
+        ("Senior AI Engineer, Data Quality & Pipeline Automation", "", "Programacao e Software"),
+        ("Python Engineering Manager – LLM Training & Evaluation", "", "Programacao e Software"),
+        ("Engineering Manager – LLM Evaluation", "", "Programacao e Software"),
+        ("LLM Trainer - Agent Function call", "", "Programacao e Software"),
+        ("Prompt & Verifier", "", "Programacao e Software"),
+        ("LLM Annotator - Master's Degree", "", "Outras areas"),
+        ("Board Game Reasoning Expert (AI Training & Evaluation)", "", "Outras areas"),
+        ("LLM ServiceNow Product Owner", "", "Economia e Negocios"),
+        ("Music and Audio experts", "", "Musica e Audio"),
+        ("Music & Sound Annotation Expert", "", "Musica e Audio"),
+        ("Web Research Specialist", "", "Outras areas"),
+        ("Portuguese Language Specialist (Brazil) - Freelance AI Trainer Project", "", "Linguistica"),
+        ("Professional Writing Human Data Collection - Academic and Education", "", "Humanidades"),
+        ("Professional Writing Human Data Collection", "", "Marketing e Vendas"),
+        ("Operations Lead", "", "Outras areas"),
     ]
 
     falhas = 0
