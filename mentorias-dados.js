@@ -97,6 +97,14 @@ const MD = (function () {
     adminTudo: () => rpc("admin_mentorias"),
     adminDecidir: (id, status, motivo) => rpc("admin_decidir", { p_id: id, p_status: status, p_motivo: motivo || "" }),
     adminResolver: id => rpc("admin_resolver_denuncia", { p_id: id }),
+    /* prints de comprovação: só o mentor (dono do pedido) e a administração leem */
+    anexarProva: (id, imagem) => rpc("mentoria_prova_anexar", { p_id: id, p_imagem: imagem }),
+    provas: id => rpc("mentoria_provas_lista", { p_id: id }),
+    provasTotal: id => rpc("mentoria_provas_total", { p_id: id }),
+    /* equipe da administração */
+    equipe: () => rpc("admin_equipe"),
+    equipeAdicionar: email => rpc("admin_equipe_adicionar", { p_email: email }),
+    equipeRemover: id => rpc("admin_equipe_remover", { p_user: id }),
   };
 
   /* ── dados de exemplo, só no localhost ── */
@@ -175,6 +183,9 @@ const MD = (function () {
     };
     const erro = t => { throw new Error(t); };
     const admin = papel === "admin";
+    const PROVAS = { m3: ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="] };
+    const EQUIPE = [{ id: "u-eu", dono: true, eu: true, nome: "Você (teste)", email: "teste@exemplo.com" },
+                    { id: "u-ana", dono: false, eu: false, nome: "Ana Souza", email: "ana@exemplo.com" }];
     return {
       async eu() { return { id: "u-eu", email: "teste@exemplo.com" }; },
       async meuPerfil() { return S.perfil; },
@@ -243,7 +254,7 @@ const MD = (function () {
         if (!admin) erro("Somente a administração.");
         return {
           mentorias: S.mentorias.map(m => Object.assign(resumo(m), {
-            link: m.link, comprovacao: m.comprovacao, motivo: m.motivo, mentor_email: pessoa(m.mentor_id).nome.split(" ")[0].toLowerCase() + "@exemplo.com" })),
+            link: m.link, comprovacao: m.comprovacao, motivo: m.motivo, provas: (PROVAS[m.id] || []).length, mentor_email: pessoa(m.mentor_id).nome.split(" ")[0].toLowerCase() + "@exemplo.com" })),
           denuncias: S.denuncias.map(d => {
             const p = d.tipo === "post" ? S.posts.find(x => x.id === d.alvo_id) : null;
             return { id: d.id, tipo: d.tipo, alvo_id: d.alvo_id, motivo: d.motivo, criado_em: d.criado_em, resolvida: d.resolvida,
@@ -254,6 +265,19 @@ const MD = (function () {
       },
       async adminDecidir(id, status, motivo) { const m = S.mentorias.find(x => x.id === id); m.status = status; m.motivo = motivo || ""; salvar(); },
       async adminResolver(id) { S.denuncias.find(d => d.id === id).resolvida = true; salvar(); },
+      /* no modo de demonstração os prints ficam só na memória da página */
+      async anexarProva(id, imagem) { (PROVAS[id] = PROVAS[id] || []).push(imagem); },
+      async provas(id) { return PROVAS[id] || []; },
+      async provasTotal(id) { return (PROVAS[id] || []).length; },
+      async equipe() {
+        if (!admin) erro("Somente a administração.");
+        return { sou_dono: true, pessoas: EQUIPE.slice() };
+      },
+      async equipeAdicionar(email) {
+        if (!/@/.test(email)) erro("Não existe conta com este e-mail. A pessoa precisa criar a conta no site primeiro.");
+        EQUIPE.push({ id: "u" + Date.now(), dono: false, eu: false, nome: "", email });
+      },
+      async equipeRemover(id) { const i = EQUIPE.findIndex(p => p.id === id); if (i >= 0) EQUIPE.splice(i, 1); },
     };
   }
 
@@ -284,6 +308,17 @@ const MD = (function () {
     background:var(--bg,#F7F4EF); border:1px solid var(--line,#DED7CA); border-radius:12px; padding:11px 13px; }
   .md-campo textarea { min-height:96px; resize:vertical; line-height:1.5; }
   .md-campo input:focus, .md-campo textarea:focus { outline:2px solid var(--signal,#1A4893); outline-offset:1px; background:#fff; }
+  .md-provas { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+  .md-prova { position:relative; width:104px; height:104px; border-radius:12px; overflow:hidden; border:1px solid var(--line,#DED7CA); background:var(--bg-soft,#F1ECE3); }
+  .md-prova img { width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
+  .md-prova button { position:absolute; top:4px; right:4px; width:24px; height:24px; border-radius:50%; border:0; cursor:pointer;
+    background:rgba(16,32,58,.78); color:#fff; font-size:15px; line-height:1; }
+  .md-luz { position:fixed; inset:0; z-index:200; background:rgba(10,18,32,.88); display:grid; place-items:center; padding:20px; cursor:zoom-out; overflow:auto; }
+  .md-luz img { max-width:100%; max-height:none; border-radius:8px; background:#fff; }
+  .md-anexar { position:relative; display:inline-block; font-size:13.5px; font-weight:600; color:var(--ink,#10203A); background:var(--panel,#fff);
+    border:1px dashed var(--ink-3,#8A94A1); border-radius:12px; padding:10px 16px; cursor:pointer; margin-top:10px; }
+  .md-anexar:hover { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
+  .md-anexar input { position:absolute; width:1px; height:1px; opacity:0; }
   .md-etq { display:inline-block; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; border-radius:99px; padding:3px 9px; }
   .md-etq.pendente { color:#A85D24; background:#FBF0E4; } .md-etq.aprovada, .md-etq.aprovado { color:#1F7A6E; background:#E4F3F0; }
   .md-etq.recusada, .md-etq.recusado, .md-etq.encerrada { color:#8E2233; background:#FBE9EB; } .md-etq.pedido { color:#1A4893; background:#EAF1F8; }
@@ -359,9 +394,64 @@ const MD = (function () {
     });
   }
 
+  /* Reduz um print de comprovação antes de mandar: mantém a proporção, lado
+     maior de até 1500 pontos, JPEG. Se ainda ficar pesado, aperta mais. */
+  const LIMITE_PROVA = 880000;
+  function reduzirProva(arquivo) {
+    return new Promise((ok, falha) => {
+      if (!arquivo || !/^image\//.test(arquivo.type)) { falha(new Error("Só dá para anexar imagem (print ou foto).")); return; }
+      const leitor = new FileReader();
+      leitor.onerror = () => falha(new Error("Não deu para ler a imagem."));
+      leitor.onload = () => {
+        const img = new Image();
+        img.onerror = () => falha(new Error("Não deu para abrir a imagem. Tente salvar como JPG ou PNG."));
+        img.onload = () => {
+          const tentativas = [[1500, 0.82], [1500, 0.65], [1100, 0.65], [800, 0.6]];
+          for (let i = 0; i < tentativas.length; i++) {
+            const lado = tentativas[i][0], f = Math.min(1, lado / Math.max(img.width, img.height));
+            const c = document.createElement("canvas");
+            c.width = Math.max(1, Math.round(img.width * f)); c.height = Math.max(1, Math.round(img.height * f));
+            const x = c.getContext("2d");
+            x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height);   // print com fundo transparente não fica preto
+            x.drawImage(img, 0, 0, c.width, c.height);
+            const uri = c.toDataURL("image/jpeg", tentativas[i][1]);
+            if (uri.length <= LIMITE_PROVA) { ok(uri); return; }
+          }
+          falha(new Error("Esta imagem é grande demais. Tente um print menor."));
+        };
+        img.src = leitor.result;
+      };
+      leitor.readAsDataURL(arquivo);
+    });
+  }
+  /* Qualquer <img data-ampliar> abre em tamanho grande ao clicar. (O navegador
+     não deixa abrir uma imagem guardada como texto em outra aba.) */
+  document.addEventListener("click", ev => {
+    const velho = document.querySelector(".md-luz");
+    if (velho) { velho.remove(); return; }
+    const img = ev.target.closest && ev.target.closest("img[data-ampliar]");
+    if (!img) return;
+    ev.preventDefault();
+    porCss();
+    const luz = document.createElement("div");
+    luz.className = "md-luz";
+    luz.setAttribute("role", "dialog");
+    luz.setAttribute("aria-label", "Imagem ampliada. Clique para fechar.");
+    const grande = document.createElement("img");
+    grande.src = img.src; grande.alt = img.alt || "";
+    luz.appendChild(grande);
+    document.body.appendChild(luz);
+  });
+  document.addEventListener("keydown", ev => {
+    if (ev.key !== "Escape") return;
+    const luz = document.querySelector(".md-luz"); if (luz) luz.remove();
+  });
+
+  const ehImagem = s => /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(s || "");
+
   return Object.assign({}, api, {
     demo: papelDemo,
     disponivel: !!papelDemo || (typeof supabase !== "undefined" && !!supabase.createClient),
-    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, e },
+    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, e },
   });
 })();

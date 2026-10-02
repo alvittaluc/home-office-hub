@@ -61,6 +61,32 @@ const Acesso = (function () {
   function logado() { return !!sessao(); }
   function email() { const s = sessao(); return (s && s.user && s.user.email) || ""; }
 
+  /* A pessoa é da equipe do Hub? Serve só para mostrar a entrada do painel no
+     menu da conta: quem tranca o painel de verdade é o banco, que recusa
+     quem não está na lista. A resposta fica guardada por uma hora, para não
+     perguntar ao servidor a cada página. */
+  const CHAVE_PUBLICA = "sb_publishable_4X7Cyykz9ZDMWOTvauxibA_Tpa4KtAh";
+  function daEquipe(aoSaber) {
+    const s = sessao();
+    const uid = s && s.user && s.user.id;
+    if (!uid) return;
+    let g = null;
+    try { g = JSON.parse(localStorage.getItem("hub-equipe") || "null"); } catch (e) {}
+    if (g && g.uid === uid) {
+      if (g.sim) aoSaber();
+      if (Date.now() - g.quando < 3600e3) return;
+    }
+    // com o acesso vencido o servidor recusaria; a próxima página logada renova
+    if (!s.access_token || (s.expires_at && s.expires_at * 1000 < Date.now())) return;
+    fetch("https://" + PROJETO + ".supabase.co/rest/v1/rpc/eh_admin", {
+      method: "POST", body: "{}",
+      headers: { "Content-Type": "application/json", apikey: CHAVE_PUBLICA, Authorization: "Bearer " + s.access_token },
+    }).then(r => r.ok ? r.json() : Promise.reject(r.status)).then(sim => {
+      try { localStorage.setItem("hub-equipe", JSON.stringify({ uid, sim: sim === true, quando: Date.now() })); } catch (e) {}
+      if (sim === true && !(g && g.uid === uid && g.sim)) aoSaber();
+    }).catch(() => {});
+  }
+
   /* As áreas de formação. O primeiro nome é o que vem nos arquivos de vagas
      (sem acento, do classificador.py); o segundo é o que a pessoa lê. */
   const AREAS = [
@@ -192,6 +218,7 @@ const Acesso = (function () {
   .hd-menu-cx a:hover { background:var(--bg-soft,#F1ECE3); }
   .hd-menu-cx a small { display:block; font-size:12px; font-weight:400; color:var(--ink-3,#8A94A1); margin-top:1px;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:250px; }
+  .hd-menu-cx a.hd-menu-equipe { border-top:1px solid var(--line-soft,#EAE4D9); border-radius:0 0 10px 10px; margin-top:6px; padding-top:12px; color:var(--signal,#1A4893); }
   @media (max-width:900px){ .hd-menu { order:2; margin-left:auto; } }
 
   .ac-aviso { max-width:520px; margin:44px auto; padding:30px 28px; text-align:center; background:var(--panel,#fff);
@@ -271,6 +298,11 @@ const Acesso = (function () {
           <a href="controle.html#dados">Dados da conta e sair</a>
         </div>`;
       hd.appendChild(d);
+      daEquipe(() => {
+        if (d.querySelector(".hd-menu-equipe")) return;
+        d.querySelector(".hd-menu-cx").insertAdjacentHTML("beforeend",
+          `<a class="hd-menu-equipe" href="painel.html">Painel da equipe<small>mentores para aprovar, denúncias e números</small></a>`);
+      });
       document.addEventListener("click", ev => { if (d.open && !d.contains(ev.target)) d.open = false; });
       document.addEventListener("keydown", ev => { if (ev.key === "Escape") d.open = false; });
       return;

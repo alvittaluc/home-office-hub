@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel de totais — Home Office Hub</title>
+<title>Painel da equipe — Home Office Hub</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -76,6 +76,11 @@ table.p-tab { width:100%; border-collapse:collapse; font-size:13.5px; }
 .p-pedido dd a { color:var(--signal,#1A4893); }
 .p-bts { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:12px; }
 .p-bts input { flex:1; min-width:200px; font:inherit; font-size:14px; padding:9px 12px; border:1px solid var(--line,#DED7CA); border-radius:10px; background:var(--bg,#F7F4EF); }
+.p-dica { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:8px; white-space:normal; }
+.p-pessoa { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 0; border-top:1px solid var(--line-soft,#EAE4D9); font-size:14.5px; color:var(--ink,#10203A); }
+.p-pessoa:first-of-type { border-top:0; }
+.p-pessoa span { display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); overflow-wrap:anywhere; }
+#equipe .p-bts { margin-top:14px; padding-top:14px; border-top:1px solid var(--line-soft,#EAE4D9); }
 @media (max-width:900px){ .p-nums { grid-template-columns:repeat(2,1fr); } .p-grade { grid-template-columns:1fr; } }
 @media (max-width:520px){ .p-num .val { font-size:32px; } .p-main { padding-top:30px; } }
 </style>
@@ -86,11 +91,12 @@ table.p-tab { width:100%; border-collapse:collapse; font-size:13.5px; }
   <div class="p-espera" id="espera">Abrindo…</div>
   <div id="mentoriasAdmin"></div>
   <div id="painel" hidden></div>
+  <div id="equipe"></div>
 </main>
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="mentorias-dados.js?v=1"></script>
+<script src="mentorias-dados.js?v=2"></script>
 <script>
 try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e); }
 
@@ -297,7 +303,9 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       <div class="quem">${esc(m.mentor.nome)} · ${esc(m.mentor_email || "")} · pedido ${esc(U.haQuanto(m.criado_em))}</div>
       <dl>
         <div><dt>Link de indicação</dt><dd><a href="${esc(m.link)}" target="_blank" rel="noopener nofollow">${esc(m.link)}</a></dd></div>
-        <div><dt>Comprovação (só você lê)</dt><dd>${U.texto(m.comprovacao)}</dd></div>
+        <div><dt>Comprovação (só a equipe lê)</dt><dd>${U.texto(m.comprovacao)}</dd>
+          ${m.provas ? `<div class="md-provas" data-provas-de="${esc(m.id)}"><span class="p-vazio">Abrindo ${m.provas === 1 ? "a imagem" : "as " + m.provas + " imagens"}…</span></div>
+            <div class="p-dica">Clique numa imagem para ver em tamanho grande.</div>` : `<div class="p-dica">Nenhuma imagem anexada.</div>`}</div>
         <div><dt>Apresentação</dt><dd>${esc(m.apresentacao)}</dd></div>
         <div><dt>Como vai ajudar</dt><dd>${esc(m.como_ajuda)}</dd></div>
       </dl>
@@ -338,6 +346,14 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       </div>
       <div class="md-msg" id="mentMsg" role="status" hidden></div></div>`;
 
+    // os prints vêm depois, um pedido de cada vez, para a página não demorar a abrir
+    alvo.querySelectorAll("[data-provas-de]").forEach(async cx => {
+      try {
+        const imgs = ((await MD.provas(cx.dataset.provasDe)) || []).filter(U.ehImagem);
+        cx.innerHTML = imgs.map((p, i) => `<div class="md-prova"><img data-ampliar src="${p}" alt="Comprovante ${i + 1}"></div>`).join("");
+      } catch (e) { cx.innerHTML = `<span class="p-vazio">Não deu para abrir as imagens: ${esc(e.message)}</span>`; }
+    });
+
     alvo.onclick = async ev => {
       const b = ev.target.closest("button"); if (!b) return;
       const d2 = b.dataset;
@@ -362,9 +378,53 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     };
   }
 
+  /* ══════════════════════════════════════════════════════════
+     EQUIPE: quem entra neste painel
+     Todos da equipe veem a lista; só o dono do site inclui ou tira
+     alguém. A regra está no banco (banco/mentorias-2.sql).
+     ══════════════════════════════════════════════════════════ */
+  async function equipe(aviso) {
+    const alvo = document.getElementById("equipe");
+    if (typeof MD === "undefined") return;
+    let d;
+    try { d = await MD.equipe(); } catch (e) { alvo.innerHTML = ""; return; }
+    MD.ui.porCss();
+    const pessoas = d.pessoas || [];
+    alvo.innerHTML = `<div class="p-grade"><section class="p-cx larga"><h2>Equipe</h2>
+      <p class="sub">Quem está nesta lista abre este painel, aprova mentores e cuida das denúncias. Ninguém mais consegue: o servidor recusa.
+        ${d.sou_dono ? "" : "Só o dono do site inclui ou tira pessoas."}</p>
+      ${pessoas.map(p => `<div class="p-pessoa"><div><b>${esc(p.nome || p.email)}</b>${p.eu ? " (você)" : ""}
+          <span>${p.nome ? esc(p.email) + " · " : ""}${p.dono ? "dono do site" : "equipe"}</span></div>
+        ${d.sou_dono && !p.dono && !p.eu ? `<button class="md-link" type="button" data-tirar="${esc(p.id)}">tirar da equipe</button>` : ""}</div>`).join("")}
+      ${d.sou_dono ? `<form class="p-bts" id="eqForm" novalidate>
+          <input type="email" id="eqEmail" maxlength="200" placeholder="E-mail da conta da pessoa no Hub" autocomplete="off">
+          <button class="md-bt pequeno" type="submit">Incluir na equipe</button></form>
+        <div class="p-dica">A pessoa precisa já ter criado a conta no site, com este mesmo e-mail.</div>` : ""}
+      <div class="md-msg${aviso ? " " + aviso[1] : ""}" id="eqMsg" role="status"${aviso ? "" : " hidden"}>${aviso ? esc(aviso[0]) : ""}</div>
+    </section></div>`;
+
+    const dizerEq = (t, tipo) => { const m = alvo.querySelector("#eqMsg"); m.textContent = t; m.className = "md-msg " + tipo; m.hidden = false; };
+    const form = alvo.querySelector("#eqForm");
+    if (form) form.addEventListener("submit", async ev => {
+      ev.preventDefault();
+      const campo = alvo.querySelector("#eqEmail"), em = campo.value.trim();
+      if (!/^\S+@\S+\.\S+$/.test(em)) { campo.focus(); dizerEq("Escreva o e-mail da conta da pessoa.", "erro"); return; }
+      const bt = form.querySelector("button"); bt.disabled = true;
+      try { await MD.equipeAdicionar(em); equipe([em + " agora faz parte da equipe.", "ok"]); }
+      catch (e) { dizerEq(e.message, "erro"); bt.disabled = false; }
+    });
+    alvo.onclick = async ev => {
+      const b = ev.target.closest("[data-tirar]"); if (!b) return;
+      if (!b.dataset.certeza) { b.dataset.certeza = "1"; b.textContent = "clique de novo para tirar"; return; }
+      b.disabled = true;
+      try { await MD.equipeRemover(b.dataset.tirar); equipe(["Pessoa tirada da equipe.", "ok"]); }
+      catch (e) { dizerEq(e.message, "erro"); b.disabled = false; }
+    };
+  }
+
   (async function () {
     // modo de demonstração (só no localhost): mostra a parte de mentorias com dados de exemplo
-    if (typeof MD !== "undefined" && MD.demo) { espera.hidden = true; mentoriasAdmin(); return; }
+    if (typeof MD !== "undefined" && MD.demo) { espera.hidden = true; mentoriasAdmin(); equipe(); return; }
     if (typeof supabase === "undefined" || !supabase.createClient) {
       dizer("Não deu para falar com o servidor de contas. Confira a internet e recarregue a página.");
       return;
@@ -382,6 +442,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     }
     mentoriasAdmin();
     carregar();
+    equipe();
   })();
 })();
 </script>
