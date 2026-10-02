@@ -315,6 +315,15 @@ const MD = (function () {
     background:rgba(16,32,58,.78); color:#fff; font-size:15px; line-height:1; }
   .md-luz { position:fixed; inset:0; z-index:200; background:rgba(10,18,32,.88); display:grid; place-items:center; padding:20px; cursor:zoom-out; overflow:auto; }
   .md-luz img { max-width:100%; max-height:none; border-radius:8px; background:#fff; }
+  .md-conf { position:fixed; inset:0; z-index:210; background:rgba(10,18,32,.55); display:grid; place-items:center; padding:20px; }
+  .md-conf-cx { width:100%; max-width:430px; background:var(--panel,#fff); border-radius:20px; padding:26px 26px 22px;
+    box-shadow:0 30px 70px -30px rgba(10,18,32,.6); }
+  .md-conf-cx h2 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400; font-size:23px; line-height:1.2; color:var(--ink,#10203A); margin:0 0 8px; }
+  .md-conf-cx p { font-size:14.5px; line-height:1.55; color:var(--ink-2,#54606F); margin:0; }
+  .md-conf-bts { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:10px; margin-top:22px; }
+  .md-bt.perigo { background:#A32A3C; border-color:#A32A3C; }
+  .md-bt:focus-visible { outline:2px solid var(--signal,#1A4893); outline-offset:2px; }
+  @media (max-width:480px){ .md-conf-bts { flex-direction:column-reverse; } .md-conf-bts .md-bt { width:100%; text-align:center; } }
   .md-anexar { position:relative; display:inline-block; font-size:13.5px; font-weight:600; color:var(--ink,#10203A); background:var(--panel,#fff);
     border:1px dashed var(--ink-3,#8A94A1); border-radius:12px; padding:10px 16px; cursor:pointer; margin-top:10px; }
   .md-anexar:hover { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
@@ -447,11 +456,53 @@ const MD = (function () {
     const luz = document.querySelector(".md-luz"); if (luz) luz.remove();
   });
 
+  /* Janela de confirmação no meio da tela, para o que não tem volta ou que
+     não deve acontecer por um clique sem querer. Devolve true ou false.
+     Abre com o foco em "Cancelar": Enter por engano não confirma. */
+  function confirmar(o) {
+    porCss();
+    return new Promise(ok => {
+      const antes = document.activeElement;
+      const fundo = document.createElement("div");
+      fundo.className = "md-conf";
+      fundo.innerHTML = `<div class="md-conf-cx" role="alertdialog" aria-modal="true" aria-labelledby="mdConfTit" aria-describedby="mdConfTxt">
+        <h2 id="mdConfTit">${e(o.titulo)}</h2>
+        <p id="mdConfTxt">${e(o.texto || "")}</p>
+        <div class="md-conf-bts">
+          <button type="button" class="md-bt claro" data-nao>${e(o.cancelar || "Cancelar")}</button>
+          <button type="button" class="md-bt${o.perigo === false ? "" : " perigo"}" data-sim>${e(o.botao || "Confirmar")}</button>
+        </div></div>`;
+      const fechar = v => {
+        document.removeEventListener("keydown", tecla, true);
+        fundo.remove();
+        document.documentElement.style.overflow = "";
+        if (antes && antes.focus && document.contains(antes)) antes.focus();
+        ok(v);
+      };
+      const tecla = ev => {
+        if (ev.key === "Escape") { ev.preventDefault(); fechar(false); return; }
+        if (ev.key !== "Tab") return;
+        const bts = fundo.querySelectorAll("button");   // o foco não sai da janela
+        ev.preventDefault();
+        bts[document.activeElement === bts[0] ? 1 : 0].focus();
+      };
+      fundo.addEventListener("click", ev => {
+        ev.stopPropagation();
+        if (ev.target === fundo || ev.target.closest("[data-nao]")) fechar(false);
+        else if (ev.target.closest("[data-sim]")) fechar(true);
+      });
+      document.addEventListener("keydown", tecla, true);
+      document.documentElement.style.overflow = "hidden";
+      document.body.appendChild(fundo);
+      fundo.querySelector("[data-nao]").focus();
+    });
+  }
+
   const ehImagem = s => /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(s || "");
 
   return Object.assign({}, api, {
     demo: papelDemo,
     disponivel: !!papelDemo || (typeof supabase !== "undefined" && !!supabase.createClient),
-    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, e },
+    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, confirmar, e },
   });
 })();

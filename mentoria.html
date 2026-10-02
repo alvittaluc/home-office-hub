@@ -83,7 +83,7 @@
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="mentorias-dados.js?v=2"></script>
+<script src="mentorias-dados.js?v=3"></script>
 <script>
 try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
@@ -297,8 +297,17 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       tela.querySelectorAll("#estrelas button").forEach(x => x.classList.toggle("on", +x.dataset.nota <= notaEscolhida));
     }
     else if ("pedir" in d) agir("entMsg", () => MD.pedirEntrada(ID, (tela.querySelector("#pedMsg") || {}).value || ""));
-    else if ("sair" in d) agir("geralMsg", () => MD.sair(ID));
+    else if ("sair" in d) {
+      const pedido = M.meu_papel === "pedido";
+      seConfirmar(pedido
+        ? { titulo: "Cancelar o seu pedido?", texto: "O mentor deixa de ver o seu pedido de entrada. Você pode pedir de novo depois.", botao: "Cancelar o pedido", cancelar: "Voltar" }
+        : { titulo: "Sair desta mentoria?", texto: "Você deixa de ver o mural. Para voltar, vai precisar pedir a entrada de novo e esperar o mentor aceitar.", botao: "Sair da mentoria" },
+        () => agir("geralMsg", () => MD.sair(ID)));
+    }
     else if (d.aprovar) agir("pedMsgMentor", () => MD.responderPedido(ID, d.aprovar, true));
+    else if (d.recusar && b.classList.contains("md-link")) seConfirmar(
+      { titulo: "Tirar esta pessoa do grupo?", texto: "Ela deixa de ver o mural e de poder escrever. Se quiser voltar, vai precisar pedir a entrada de novo.", botao: "Tirar do grupo" },
+      () => agir("pedMsgMentor", () => MD.responderPedido(ID, d.recusar, false)));
     else if (d.recusar) agir("pedMsgMentor", () => MD.responderPedido(ID, d.recusar, false));
     else if ("postar" in d) {
       const t = (tela.querySelector("#novoPost").value || "").trim();
@@ -321,7 +330,9 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       b.disabled = true;
       agir("muralMsg", () => MD.postar(ID, t, d.enviarResposta));
     }
-    else if (d.apagar) agir("muralMsg", () => MD.apagarPost(d.apagar));
+    else if (d.apagar) seConfirmar(
+      { titulo: "Apagar esta mensagem?", texto: "Ela some do mural para todo mundo e não dá para trazer de volta.", botao: "Apagar a mensagem" },
+      () => agir("muralMsg", () => MD.apagarPost(d.apagar)));
     else if (d.denunciarPost) pedirMotivo(b.parentElement, "O que há de errado nesta mensagem?", motivo =>
       agir("muralMsg", () => MD.denunciar("post", d.denunciarPost, motivo), () => dizer("muralMsg", "Denúncia enviada para a administração do Hub.", "ok")));
     else if ("denunciarMentoria" in d) pedirMotivo(b.parentElement, "O que há de errado nesta mentoria?", motivo =>
@@ -331,11 +342,13 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       const com = (tela.querySelector("#avCom").value || "").trim();
       agir("avMsg", () => MD.avaliar(ID, notaEscolhida, com), () => dizer("avMsg", "Avaliação salva. Obrigado.", "ok"));
     }
-    else if ("encerrar" in d) {
-      if (b.dataset.certeza) agir("geralMsg", () => MD.encerrar(ID));
-      else { b.dataset.certeza = "1"; b.textContent = "clique de novo para confirmar: encerrar não tem volta"; }
-    }
+    else if ("encerrar" in d) seConfirmar(
+      { titulo: "Encerrar esta mentoria?", texto: "Ela sai da lista, não entram novos participantes e o mural fica só para leitura. Encerrar não tem volta: para abrir de novo, você teria que mandar outro pedido.", botao: "Encerrar a mentoria" },
+      () => agir("geralMsg", () => MD.encerrar(ID)));
   });
+
+  /* pergunta numa janela no meio da tela e só age se a pessoa confirmar */
+  async function seConfirmar(pergunta, acao) { if (await U.confirmar(pergunta)) acao(); }
 
   try { await carregar(); }
   catch (err) { espera.textContent = err.message; return; }

@@ -96,7 +96,7 @@ table.p-tab { width:100%; border-collapse:collapse; font-size:13.5px; }
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="mentorias-dados.js?v=2"></script>
+<script src="mentorias-dados.js?v=3"></script>
 <script>
 try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e); }
 
@@ -363,10 +363,13 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
           const campo = alvo.querySelector('[data-motivo="' + d2.id + '"]');
           const motivo = campo ? campo.value.trim() : "";
           if (d2.decidir === "recusada" && motivo.length < 3) { campo.focus(); campo.placeholder = "Escreva o motivo da recusa"; return; }
-          if (d2.decidir === "encerrada" && !d2.certeza) { d2.certeza = "1"; b.textContent = "clique de novo para encerrar"; return; }
+          if (d2.decidir === "encerrada" && !(await U.confirmar({ titulo: "Encerrar esta mentoria?",
+            texto: "Ela sai da lista, não entram novos participantes e o mural fica só para leitura. O mentor é avisado na página dela.", botao: "Encerrar a mentoria" }))) return;
           b.disabled = true;
           await MD.adminDecidir(d2.id, d2.decidir, d2.decidir === "recusada" ? motivo : "");
         } else if (d2.apagarPost) {
+          if (!(await U.confirmar({ titulo: "Apagar esta mensagem?",
+            texto: "Ela some do mural para todo mundo e não dá para trazer de volta. A denúncia fica marcada como resolvida.", botao: "Apagar a mensagem" }))) return;
           b.disabled = true;
           await MD.apagarPost(d2.apagarPost); await MD.adminResolver(d2.den);
         } else if (d2.resolver) {
@@ -415,7 +418,8 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     });
     alvo.onclick = async ev => {
       const b = ev.target.closest("[data-tirar]"); if (!b) return;
-      if (!b.dataset.certeza) { b.dataset.certeza = "1"; b.textContent = "clique de novo para tirar"; return; }
+      if (!(await MD.ui.confirmar({ titulo: "Tirar esta pessoa da equipe?",
+        texto: "Ela deixa de abrir o painel, de aprovar mentores e de ver as denúncias. A conta dela no Hub continua normal.", botao: "Tirar da equipe" }))) return;
       b.disabled = true;
       try { await MD.equipeRemover(b.dataset.tirar); equipe(["Pessoa tirada da equipe.", "ok"]); }
       catch (e) { dizerEq(e.message, "erro"); b.disabled = false; }
