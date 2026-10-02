@@ -53,9 +53,13 @@
 .mt-form > p { font-size:14px; line-height:1.55; color:var(--ink-2,#54606F); margin:0; }
 .mt-form .regra { font-size:13px; line-height:1.55; color:var(--ink-2,#54606F); background:var(--bg-soft,#F1ECE3); border-radius:12px; padding:12px 14px; margin-top:18px; }
 .mt-acoes { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:18px; }
-.mt-recado { display:block; background:var(--signal-suave,#EAF1F8); color:var(--ink,#10203A); border-radius:14px; padding:13px 16px;
-  font-size:14.5px; text-decoration:none; margin:0 0 8px; max-width:860px; }
-.mt-recado b { font-weight:600; }
+.mt-abas { display:flex; gap:4px; box-shadow:inset 0 -1px 0 var(--line,#DED7CA); margin:-14px 0 30px; overflow-x:auto; overflow-y:hidden; }
+.mt-abas button { font:inherit; font-size:14.5px; font-weight:500; color:var(--ink-2,#54606F); background:none; border:0;
+  border-bottom:2px solid transparent; padding:11px 14px; cursor:pointer; white-space:nowrap; }
+.mt-abas button:hover { color:var(--ink,#10203A); }
+.mt-abas button[aria-selected="true"] { color:var(--ink,#10203A); font-weight:600; border-bottom-color:var(--signal,#1A4893); }
+.mt-conta { display:inline-block; min-width:20px; padding:1px 6px; margin-left:4px; border-radius:99px; font-size:12px; font-weight:600;
+  text-align:center; color:#fff; background:var(--signal,#1A4893); }
 .mt-den { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:18px 22px 20px; margin-bottom:12px; max-width:860px; }
 .mt-den-cab { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; font-size:15px; color:var(--ink,#10203A); }
 .mt-den-cab b { font-weight:600; }
@@ -134,8 +138,9 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
     tela.innerHTML = `
       ${MD.demo ? `<div class="mt-demo">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : ""}
+      ${htmlAbas()}
+      ${aba === "denuncias" ? htmlDenuncias() : `
       ${topo}
-      ${denuncias.some(esperaVoce) ? `<a class="mt-recado" href="#denuncias"><b>A equipe do Hub respondeu à sua denúncia.</b> Ver a resposta ↓</a>` : ""}
       ${meus.length ? `<div class="mt-tit"><h2>As suas</h2><span>as que você abriu e as de que participa</span></div>
         <div class="mt-grade">${meus.join("")}</div>` : ""}
       <div class="mt-tit"><h2>${meus.length ? "Outras mentorias abertas" : "Mentorias abertas"}</h2><span>${outras.length}</span></div>
@@ -143,18 +148,40 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         : `<div class="mt-vazio">${lista.length ? "Você já está em todas as mentorias abertas."
             : "Ainda não há mentoria no ar. As primeiras entram assim que os mentores forem aprovados.<br>Se você já trabalha em alguma vaga, pode ser o primeiro."}</div>`}
 
-      ${htmlDenuncias()}
-
       <section class="mt-serMentor" id="serMentor">
         <h2>Já trabalha numa dessas vagas? Seja mentor</h2>
         <p>Você divulga a vaga com o seu link de indicação e ganha a comissão que a empresa paga. Em troca, ajuda quem se candidatar
           por ele. Todo pedido passa por análise antes de ir ao ar.</p>
         <button class="md-bt claro" type="button" id="btAbrirForm">Quero ser mentor</button>
       </section>
-      <div id="formMentor" hidden></div>`;
+      <div id="formMentor" hidden></div>`}`;
 
-    tela.querySelector("#btAbrirForm").addEventListener("click", abrirForm);
+    const bt = tela.querySelector("#btAbrirForm");
+    if (bt) bt.addEventListener("click", abrirForm);
   }
+
+  /* ── Abas ──
+     Quem nunca denunciou nada não vê aba nenhuma: a página é só a lista.
+     Quem já denunciou ganha a aba "Suas denúncias", separada das mentorias. */
+  let aba = "mentorias";
+  function htmlAbas() {
+    if (!denuncias.length) return "";
+    const novas = denuncias.filter(esperaVoce).length;
+    return `<nav class="mt-abas" role="tablist" aria-label="Partes da página">
+      <button type="button" role="tab" data-aba="mentorias" aria-selected="${aba === "mentorias"}">Mentorias</button>
+      <button type="button" role="tab" data-aba="denuncias" aria-selected="${aba === "denuncias"}">Suas denúncias
+        ${novas ? `<span class="mt-conta" title="A equipe do Hub respondeu">${novas}</span>` : ""}</button>
+    </nav>`;
+  }
+  function abrirAba(nome) {
+    aba = (nome === "denuncias" && denuncias.length) ? "denuncias" : "mentorias";
+    try { history.replaceState(null, "", aba === "denuncias" ? "#denuncias" : location.pathname + location.search); } catch (err) {}
+    desenhar();
+    window.scrollTo(0, 0);
+  }
+  tela.addEventListener("click", ev => {
+    const b = ev.target.closest("[data-aba]"); if (b) abrirAba(b.dataset.aba);
+  });
 
   /* ── As denúncias que a pessoa fez e a conversa com a equipe ──
      Só aparece para quem já denunciou alguma coisa. Só ela e a equipe leem. */
@@ -162,7 +189,10 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   const rascunhos = {};
   function htmlDenuncias() {
     if (!denuncias.length) return "";
-    return `<div class="mt-tit" id="denuncias"><h2>Suas denúncias</h2><span>só você e a equipe do Hub leem esta conversa</span></div>
+    return `<div class="mt-hero" style="margin-bottom:22px">
+        <h1>Suas denúncias</h1>
+        <p class="mt-lead">O que você denunciou e a conversa com a equipe do Hub. Só você e a equipe leem o que está aqui.</p>
+      </div>
       ${denuncias.map(d => `<div class="mt-den">
         <div class="mt-den-cab"><b>${d.tipo === "post" ? "Mensagem no mural" : "Mentoria inteira"}${d.mentoria ? " · " + e(d.mentoria.vaga_titulo) : ""}</b>
           ${d.resolvida ? `<span class="md-etq aprovada">resolvida</span>` : esperaVoce(d) ? `<span class="md-etq pedido">a equipe respondeu</span>` : `<span class="md-etq pendente">em análise</span>`}</div>
@@ -188,7 +218,6 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       delete rascunhos[id];
       denuncias = (await MD.minhasDenuncias()) || [];
       desenhar();
-      const alvo = tela.querySelector("#denuncias"); if (alvo) alvo.scrollIntoView({ block: "start" });
     } catch (err) {
       const m = tela.querySelector("#denMsg"); m.textContent = err.message; m.className = "md-msg erro"; m.hidden = false; b.disabled = false;
     }
@@ -304,6 +333,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   // as denúncias são um extra: se a leitura falhar, a página abre sem elas
   try { denuncias = (await MD.minhasDenuncias()) || []; } catch (err) { console.warn(err); }
   espera.hidden = true; tela.hidden = false;
+  if (location.hash === "#denuncias" && denuncias.length) aba = "denuncias";
   desenhar();
   if (location.hash === "#serMentor") abrirForm();
 })();

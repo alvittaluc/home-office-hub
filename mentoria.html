@@ -339,9 +339,9 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       { titulo: "Apagar esta mensagem?", texto: "Ela some do mural para todo mundo e não dá para trazer de volta.", botao: "Apagar a mensagem" },
       () => agir("muralMsg", () => MD.apagarPost(d.apagar)));
     else if (d.denunciarPost) pedirMotivo(b.parentElement, "O que há de errado nesta mensagem?", motivo =>
-      agir("muralMsg", () => MD.denunciar("post", d.denunciarPost, motivo), () => dizer("muralMsg", "Denúncia enviada. A resposta da equipe do Hub aparece na página Mentorias, em Suas denúncias.", "ok")));
+      agir("muralMsg", () => MD.denunciar("post", d.denunciarPost, motivo), () => dizer("muralMsg", "Denúncia enviada. A resposta da equipe do Hub aparece na página Mentorias, na aba Suas denúncias.", "ok")));
     else if ("denunciarMentoria" in d) pedirMotivo(b.parentElement, "O que há de errado nesta mentoria?", motivo =>
-      agir("geralMsg", () => MD.denunciar("mentoria", ID, motivo), () => dizer("geralMsg", "Denúncia enviada. A resposta da equipe do Hub aparece na página Mentorias, em Suas denúncias.", "ok")));
+      agir("geralMsg", () => MD.denunciar("mentoria", ID, motivo), () => dizer("geralMsg", "Denúncia enviada. A resposta da equipe do Hub aparece na página Mentorias, na aba Suas denúncias.", "ok")));
     else if ("avaliar" in d) {
       if (!notaEscolhida) { dizer("avMsg", "Escolha de 1 a 5 estrelas.", "erro"); return; }
       const com = (tela.querySelector("#avCom").value || "").trim();
