@@ -6,7 +6,8 @@
    No dia em que isso virar nuvem, só este arquivo muda.
 
    Guarda em IndexedDB, dentro do navegador do próprio usuário.
-   Nada sai do computador. Se o IndexedDB não estiver disponível
+   Quando a pessoa tem conta, o controle-conta.js copia tudo para a
+   conta dela (ver "FILA DA NUVEM" abaixo). Se o IndexedDB não estiver disponível
    (janela anônima, arquivo aberto solto pelo Windows), cai sozinho
    para localStorage e avisa na tela.
    ══════════════════════════════════════════════════════════════ */
@@ -127,6 +128,41 @@ const Dados = (function () {
   let mot = motorLS;   // trocado por motorIDB quando o IndexedDB abrir
 
   /* ══════════════════════════════════════════════════════════
+     FILA DA NUVEM
+
+     Quando a pessoa tem conta (controle-conta.js), tudo o que muda aqui
+     precisa subir para a conta dela. Este arquivo não fala com a nuvem:
+     ele só ANOTA o que mudou, numa fila que sobrevive a fechar a página.
+     Quem envia é o controle-conta.js. Sem conta, a fila fica parada e não
+     atrapalha nada.
+
+     A fila guarda só "coleção + id + foi apagado?", nunca o conteúdo: na
+     hora de enviar, o conteúdo é lido de novo, sempre na versão mais nova.
+     ══════════════════════════════════════════════════════════ */
+
+  // cotacoes fica de fora: é cache de câmbio, igual para todo mundo
+  const NA_NUVEM = ["aplicacoes", "trabalhos", "registros", "pagamentos", "blocos", "config"];
+  const CHAVE_FILA = "hub-controle:fila-nuvem";
+
+  function lerFila() {
+    try { return JSON.parse(localStorage.getItem(CHAVE_FILA) || "{}"); }
+    catch (e) { return {}; }
+  }
+  function gravarFila(fila) {
+    try { localStorage.setItem(CHAVE_FILA, JSON.stringify(fila)); } catch (e) { /* sem espaço: tenta de novo na próxima */ }
+  }
+
+  let avisarNuvem = null;   // função posta pelo controle-conta.js
+
+  function anotar(colecao, id, apagado) {
+    if (NA_NUVEM.indexOf(colecao) < 0 || !id) return;
+    const fila = lerFila();
+    fila[colecao + "|" + id] = { colecao, id, apagado: !!apagado, em: new Date().toISOString() };
+    gravarFila(fila);
+    if (avisarNuvem) { try { avisarNuvem(); } catch (e) { console.warn(e); } }
+  }
+
+  /* ══════════════════════════════════════════════════════════
      ABERTURA
      ══════════════════════════════════════════════════════════ */
 
@@ -208,12 +244,15 @@ const Dados = (function () {
     if (!copia.criadoEm) copia.criadoEm = agora();
     copia.atualizadoEm = agora();   // é este campo que torna a nuvem possível depois
     copia.esquema = ESQUEMA;
-    return await mot.por(colecao, copia);
+    const salvo = await mot.por(colecao, copia);
+    anotar(colecao, copia.id, false);
+    return salvo;
   }
 
   async function remover(colecao, id) {
     await abrir();
     await mot.tira(colecao, id);
+    anotar(colecao, id, true);
   }
 
   /* Apagar um trabalho apaga junto tudo o que pendurava nele. */
@@ -221,9 +260,10 @@ const Dados = (function () {
     await abrir();
     for (const col of ["registros", "pagamentos", "blocos"]) {
       const filhos = await listar(col, { trabalhoId: id });
-      for (const f of filhos) await mot.tira(col, f.id);
+      for (const f of filhos) { await mot.tira(col, f.id); anotar(col, f.id, true); }
     }
     await mot.tira("trabalhos", id);
+    anotar("trabalhos", id, true);
   }
 
   /* ── configuração: uma linha só, com id fixo ── */
@@ -255,7 +295,15 @@ const Dados = (function () {
   }
 
   async function obterConfig() { await abrir(); return await lerConfig(); }
-  async function salvarConfig(cfg) { await abrir(); return await gravarConfig(cfg); }
+  // Só a gravação pedida por uma tela vai para a fila da nuvem. A da migração,
+  // que roda sozinha na abertura, não vai: num aparelho novo ela criaria uma
+  // configuração vazia "mais nova" e apagaria as metas guardadas na conta.
+  async function salvarConfig(cfg) {
+    await abrir();
+    const salvo = await gravarConfig(cfg);
+    anotar("config", "config", false);
+    return salvo;
+  }
 
   /* ══════════════════════════════════════════════════════════
      EXPORTAR E IMPORTAR
@@ -316,7 +364,11 @@ const Dados = (function () {
     if (modo !== "juntar" && modo !== "substituir") throw new Error("Modo de importação inválido.");
 
     if (modo === "substituir") {
-      for (const col of Object.keys(COLECOES)) await mot.limpa(col);
+      for (const col of Object.keys(COLECOES)) {
+        // o que some daqui precisa sumir da conta também
+        for (const velho of await mot.todos(col)) if (col !== "config") anotar(col, velho.id, true);
+        await mot.limpa(col);
+      }
     }
 
     let gravados = 0, pulados = 0;
@@ -331,6 +383,7 @@ const Dados = (function () {
           if (jaTem && (jaTem.atualizadoEm || "") >= (linha.atualizadoEm || "")) { pulados++; continue; }
         }
         await mot.por(col, linha);
+        anotar(col, linha.id, false);
         gravados++;
       }
     }
@@ -347,8 +400,47 @@ const Dados = (function () {
 
   async function apagarTudo() {
     await abrir();
-    for (const col of Object.keys(COLECOES)) await mot.limpa(col);
+    for (const col of Object.keys(COLECOES)) {
+      for (const velho of await mot.todos(col)) if (col !== "config") anotar(col, velho.id, true);
+      await mot.limpa(col);
+    }
   }
+
+  /* ══════════════════════════════════════════════════════════
+     PORTA PARA A NUVEM
+
+     O que o controle-conta.js usa. Estas funções mexem no que está
+     guardado aqui SEM anotar na fila: são elas que trazem para cá o que
+     veio da conta, e anotar de volta faria os dois lados ficarem se
+     mandando a mesma coisa para sempre.
+     ══════════════════════════════════════════════════════════ */
+
+  const nuvem = {
+    COLECOES: NA_NUVEM,
+    fila: lerFila,
+    tirarDaFila(chaves) {
+      const fila = lerFila();
+      chaves.forEach(c => {
+        // só tira se não mudou de novo enquanto o envio estava no ar
+        if (fila[c.chave] && fila[c.chave].em === c.em) delete fila[c.chave];
+      });
+      gravarFila(fila);
+    },
+    esvaziarFila() { gravarFila({}); },
+    anotar,
+    async todos(colecao) { await abrir(); return await mot.todos(colecao); },
+    async um(colecao, id) { await abrir(); return await mot.um(colecao, id); },
+    async por(colecao, objeto) { await abrir(); return await mot.por(colecao, objeto); },
+    async tira(colecao, id) { await abrir(); await mot.tira(colecao, id); },
+    /* Limpa o que é da pessoa (sai da conta, ou outra pessoa entra neste
+       navegador). O cache de câmbio fica. */
+    async limparLocal() {
+      await abrir();
+      for (const col of NA_NUVEM) await mot.limpa(col);
+      gravarFila({});
+    },
+    aoMudar(fn) { avisarNuvem = fn; },
+  };
 
   /* ══════════════════════════════════════════════════════════
      CÂMBIO
@@ -543,6 +635,8 @@ const Dados = (function () {
   }
 
   return {
+    // sincronização com a conta (usado só pelo controle-conta.js)
+    nuvem,
     // banco
     abrir, listar, obter, salvar, remover, removerTrabalho,
     obterConfig, salvarConfig, estadoDoBanco, apagarTudo, procurarAplicacao,

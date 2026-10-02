@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Meu Controle — Home Office Hub</title>
-<meta name="description" content="Controle das suas candidaturas a vagas e do seu trabalho: horas, ganhos e gráficos. Tudo fica no seu computador.">
+<meta name="description" content="Controle das suas candidaturas a vagas e do seu trabalho: horas, ganhos e gráficos, guardados na sua conta.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Meu Controle — Home Office Hub">
-<meta property="og:description" content="Onde você se candidatou, quanto trabalhou e quanto ganhou. Tudo no seu navegador.">
+<meta property="og:description" content="Onde você se candidatou, quanto trabalhou e quanto ganhou, em um lugar só.">
 <meta property="og:url" content="https://alvittaluc.github.io/controle.html">
 <meta property="og:image" content="https://alvittaluc.github.io/og.jpg">
 
@@ -304,7 +304,9 @@ body > header.site .hd { max-width:1460px; }
 </main>
 
 <script src="layout.js"></script>
-<script src="controle-dados.js"></script>
+<script src="controle-dados.js?v=2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="controle-conta.js?v=1"></script>
 <script src="pulso-site.js"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
@@ -1283,14 +1285,36 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     const total = APLICACOES.length + TRABALHOS.length + REGISTROS.length + PAGAMENTOS.length;
     const ultimo = CFG.ultimoBackup ? Dados.dataBonita(CFG.ultimoBackup.slice(0, 10)) : null;
 
+    const logado = typeof Conta !== "undefined" && Conta.usuario;
+    const temConta = typeof Conta !== "undefined" && Conta.disponivel;
+
     $("#dados").innerHTML = `
-      <div class="ct-cab-tela"><div><h1>Seus dados</h1><p>Onde eles ficam, e como levar para outro computador.</p></div></div>
-      <div class="ct-cartao ct-dados">
+      <div class="ct-cab-tela"><div><h1>Seus dados</h1><p>${logado
+        ? "A sua conta, o backup e como apagar tudo."
+        : "Onde eles ficam, e como levar para outro computador."}</p></div></div>
+
+      ${logado ? `<div class="ct-cartao ct-dados" style="margin-bottom:18px">
+        <div class="ct-cab-cartao"><h2>Sua conta</h2><p>${esc(Conta.usuario.email || "")}</p></div>
         <p>
-          Tudo o que você escreve aqui fica guardado dentro do seu navegador, neste computador,
-          e ninguém mais vê. Em troca: se você limpar os dados de navegação,
-          some. O backup é um arquivo que você guarda onde quiser, e serve também para levar tudo
-          para outro computador.
+          O que você registra aqui fica guardado na sua conta, protegido pela sua senha.
+          Entrando com o mesmo e-mail em outro computador ou no celular, está tudo lá.
+        </p>
+        <div class="ct-dados-bts">
+          <button class="ct-b" id="btSair">Sair da conta</button>
+          <button class="ct-b" id="btApagarConta">Apagar a minha conta</button>
+        </div>
+      </div>` : (temConta ? `<div class="ct-cartao ct-dados" style="margin-bottom:18px">
+        <div class="ct-cab-cartao"><h2>Conta</h2><p>acesso por convite</p></div>
+        <p>Com uma conta, os seus registros ficam guardados fora deste navegador e acompanham você em qualquer aparelho.</p>
+        <div class="ct-dados-bts"><a class="ct-b" href="controle.html?entrar=1">Entrar na conta</a></div>
+      </div>` : "")}
+
+      <div class="ct-cartao ct-dados">
+        <p>${logado
+          ? "O backup é uma cópia em arquivo, que você guarda onde quiser. Com a conta ele não é obrigatório, mas continua disponível."
+          : `Tudo o que você escreve aqui fica guardado dentro do seu navegador, neste computador.
+          Se você limpar os dados de navegação, some. O backup é um arquivo que você guarda onde quiser,
+          e serve também para levar tudo para outro computador.`}
         </p>
         <div class="ct-dados-bts">
           <button class="ct-b" id="btExportar">Exportar backup</button>
@@ -1298,7 +1322,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           <input type="file" id="arqBackup" accept=".json,application/json" hidden>
           <button class="ct-b" id="btApagar">Apagar tudo</button>
         </div>
-        <p class="ct-dados-nota">${total} ${total === 1 ? "registro guardado" : "registros guardados"} neste navegador.${
+        <p class="ct-dados-nota">${total} ${total === 1 ? "registro guardado" : "registros guardados"}${logado ? "" : " neste navegador"}.${
           ultimo ? " Último backup em " + esc(ultimo) + "." : " Você ainda não exportou nenhum backup."}
           Armazenamento: ${esc(Dados.motor === "indexeddb" ? "completo (IndexedDB)" : "reduzido (localStorage)")}.</p>
       </div>
@@ -1306,7 +1330,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       <div class="ct-cartao ct-dados" id="cartaoPulso" style="margin-top:18px">
         <div class="ct-cab-cartao"><h2>Pulso do Hub</h2><p id="pulsoEstado"></p></div>
         <p>
-          A única coisa que pode sair deste navegador. Quando está ligado, o Hub recebe o código
+          Um sinal anônimo e opcional. Quando está ligado, o Hub recebe o código
           da vaga e a data em que você se candidatou, e nada além disso. Serve para a página de vagas
           mostrar quais vagas estão movimentando e quais empresas costumam responder.
         </p>
@@ -1326,10 +1350,32 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       if (a) importar(a);
       ev.target.value = "";
     });
+    if ($("#btSair")) $("#btSair").addEventListener("click", async () => {
+      try {
+        await Conta.sair();
+        location.href = "controle.html?entrar=1";
+      } catch (e) { UI.aviso(e.message || "Não deu para sair agora.", "ruim"); }
+    });
+
+    if ($("#btApagarConta")) $("#btApagarConta").addEventListener("click", async () => {
+      const ok = await UI.confirmar({
+        titulo: "Apagar a sua conta?",
+        texto: "A conta e tudo o que está guardado nela são apagados de vez: candidaturas, trabalhos, dias registrados e pagamentos. Não dá para desfazer. Se quiser guardar uma cópia, exporte um backup antes.",
+        acaoTexto: "Apagar a conta", perigo: true,
+      });
+      if (!ok) return;
+      try {
+        await Conta.apagarConta();
+        location.href = "index.html";
+      } catch (e) { UI.aviso(Conta.traduzir(e), "ruim"); console.error(e); }
+    });
+
     $("#btApagar").addEventListener("click", async () => {
       const ok = await UI.confirmar({
         titulo: "Apagar tudo?",
-        texto: "Some toda a sua lista de candidaturas, os trabalhos, os dias registrados e os pagamentos, deste navegador. Não dá para desfazer. Exporte um backup antes se tiver qualquer dúvida.",
+        texto: logado
+          ? "Some toda a sua lista de candidaturas, os trabalhos, os dias registrados e os pagamentos, daqui e da sua conta. A conta continua existindo, vazia. Não dá para desfazer. Exporte um backup antes se tiver qualquer dúvida."
+          : "Some toda a sua lista de candidaturas, os trabalhos, os dias registrados e os pagamentos, deste navegador. Não dá para desfazer. Exporte um backup antes se tiver qualquer dúvida.",
         acaoTexto: "Apagar tudo", perigo: true,
       });
       if (!ok) return;
@@ -1367,7 +1413,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     if (off) off.addEventListener("click", async () => {
       await Pulso.desligar();
       await desenharPulso();
-      UI.aviso("Pulso desligado. Nada mais sai deste navegador.");
+      UI.aviso("Pulso desligado.");
     });
 
     const on = $("#btPulsoOn");
@@ -1427,7 +1473,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     const fita = $("#fitaBackup");
     const total = APLICACOES.length + TRABALHOS.length + REGISTROS.length + PAGAMENTOS.length;
     const dias = CFG.ultimoBackup ? Dados.diasEntre(CFG.ultimoBackup.slice(0, 10), Dados.hoje()) : 999;
-    if (total >= 5 && dias >= 30) {
+    // Com conta, os dados não dependem deste navegador: o lembrete de backup não faz sentido.
+    const logado = typeof Conta !== "undefined" && Conta.usuario;
+    if (!logado && total >= 5 && dias >= 30) {
       fita.hidden = false;
       fita.innerHTML = `<span>${CFG.ultimoBackup
         ? "Faz " + dias + " dias desde o seu último backup."
@@ -1521,6 +1569,25 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       const f = $("#fitaMotor");
       f.hidden = false;
       f.innerHTML = `<span>${esc(Dados.aviso)}</span>`;
+    }
+
+    // Conta: mostra a tela de entrar quando for o caso e, com a pessoa
+    // logada, traz o que está guardado na conta antes de desenhar qualquer
+    // coisa. Se o controle-conta.js não vier, a ferramenta abre como antes.
+    if (typeof Conta !== "undefined") {
+      try {
+        const quem = await Conta.entrar();
+        if (quem) {
+          $("#carregando").textContent = "Buscando os seus dados na conta…";
+          await Conta.sincronizar();
+        }
+      } catch (e) {
+        console.error(e);
+        if (Conta.obrigatorio) { $("#carregando").textContent = e.message || "Não deu para abrir a sua conta agora."; return; }
+        const f = $("#fitaMotor");
+        f.hidden = false;
+        f.innerHTML = `<span>Não deu para falar com a sua conta agora. Você pode continuar: o que fizer fica guardado aqui e sobe quando a conexão voltar.</span>`;
+      }
     }
 
     await recarregar();
