@@ -15,8 +15,8 @@
 <style>
 /* ══════════════════════════════════════════════════════════════
    MENTORIAS — a lista.
-   Quem já trabalha numa vaga divulga o link de indicação dela e, em
-   troca, ajuda quem se candidatar. As regras de quem pode o quê ficam
+   Quem já trabalha numa vaga abre um grupo e acompanha quem quer
+   entrar nela. As regras de quem pode o quê ficam
    no banco (banco/mentorias.sql); esta página só mostra.
    ══════════════════════════════════════════════════════════════ */
 .mt-main { max-width:var(--wrap,1180px); margin:0 auto; padding:48px 20px 96px; min-height:60vh; }
@@ -96,12 +96,12 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     <div class="mt-hero">
       <div class="eyebrow">Mentorias</div>
       <h1>Entre numa vaga com a ajuda de quem já trabalha nela</h1>
-      <p class="mt-lead">Cada mentoria é aberta por uma pessoa que já faz aquele trabalho. Você se candidata pelo link de indicação dela
-        e, em troca, ela ajuda você com o currículo, o teste de entrada e as dúvidas do começo.</p>
+      <p class="mt-lead">Quem já faz o trabalho abre um grupo e acompanha quem quer entrar: currículo, teste de entrada
+        e as dúvidas das primeiras semanas. Participar é gratuito.</p>
     </div>
     <div class="mt-regras">
-      <div class="mt-regra"><b>Mentor aprovado pelo Hub</b>Antes de aparecer aqui, cada mentor comprova que trabalha na vaga que divulga.</div>
-      <div class="mt-regra"><b>Conversa só entre participantes</b>O mural de cada mentoria é fechado: só o mentor e quem ele aceitou leem e escrevem.</div>
+      <div class="mt-regra"><b>Mentores verificados</b>Todo mentor comprova que trabalha na vaga antes de o grupo ir ao ar.</div>
+      <div class="mt-regra"><b>Grupos fechados</b>Só o mentor e as pessoas que ele aceitou leem e escrevem no mural.</div>
     </div>`;
 
   if (!MD.disponivel) { espera.textContent = "Não deu para falar com o servidor de contas. Confira a internet e recarregue a página."; return; }
@@ -142,8 +142,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       .concat(minhas.como_membro.filter(arquivada).map(m => cartao(m, etq(m.status))));
     return `<div class="mt-hero" style="margin-bottom:22px">
         <h1>Arquivadas</h1>
-        <p class="mt-lead">As mentorias suas que já foram encerradas e os pedidos que não foram aprovados. Nada é apagado:
-          dá para abrir cada uma e reler o mural.</p>
+        <p class="mt-lead">Mentorias encerradas e pedidos que não foram aprovados. Nada é apagado: abra qualquer uma para reler o mural.</p>
       </div>
       <div class="mt-grade">${cartoes.join("")}</div>`;
   }
@@ -160,17 +159,17 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       ${htmlAbas()}
       ${aba === "denuncias" ? htmlDenuncias() : aba === "arquivadas" ? htmlArquivadas() : `
       ${topo}
-      ${meus.length ? `<div class="mt-tit"><h2>As suas</h2><span>as que você abriu e as de que participa</span></div>
+      ${meus.length ? `<div class="mt-tit"><h2>Minhas mentorias</h2><span>${meus.length}</span></div>
         <div class="mt-grade">${meus.join("")}</div>` : ""}
-      <div class="mt-tit"><h2>${meus.length ? "Outras mentorias abertas" : "Mentorias abertas"}</h2><span>${outras.length}</span></div>
+      <div class="mt-tit"><h2>${meus.length ? "Outras mentorias" : "Mentorias abertas"}</h2><span>${outras.length}</span></div>
       ${outras.length ? `<div class="mt-grade">${outras.map(m => cartao(m)).join("")}</div>`
-        : `<div class="mt-vazio">${lista.length ? "Você já está em todas as mentorias abertas."
-            : "Ainda não há mentoria no ar. As primeiras entram assim que os mentores forem aprovados.<br>Se você já trabalha em alguma vaga, pode ser o primeiro."}</div>`}
+        : `<div class="mt-vazio">${lista.length ? "Você já participa de todas as mentorias abertas."
+            : "Nenhuma mentoria aberta por enquanto.<br>Se você já trabalha em alguma vaga, pode abrir a primeira."}</div>`}
 
       <section class="mt-serMentor" id="serMentor">
-        <h2>Já trabalha numa dessas vagas? Seja mentor</h2>
-        <p>Você divulga a vaga com o seu link de indicação e ganha a comissão que a empresa paga. Em troca, ajuda quem se candidatar
-          por ele. Todo pedido passa por análise antes de ir ao ar.</p>
+        <h2>Trabalha em alguma vaga? Abra a sua mentoria</h2>
+        <p>Você apresenta a vaga e acompanha quem quer entrar nela. Se a empresa tiver programa de indicação, pode usar o seu link.
+          Todo pedido passa por análise antes de ir ao ar.</p>
         <button class="md-bt claro" type="button" id="btAbrirForm">Quero ser mentor</button>
       </section>
       <div id="formMentor" hidden></div>`}`;
@@ -238,7 +237,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     if (!denuncias.length) return "";
     return `<div class="mt-hero" style="margin-bottom:22px">
         <h1>Suas denúncias</h1>
-        <p class="mt-lead">O que você denunciou e a conversa com a equipe do Hub. Só você e a equipe leem o que está aqui.</p>
+        <p class="mt-lead">As denúncias que você fez e as respostas da equipe do Hub. Só você e a equipe têm acesso.</p>
       </div>
       ${denuncias.map(d => `<div class="mt-den">
         <div class="mt-den-cab"><b>${d.tipo === "post" ? "Mensagem no mural" : "Mentoria inteira"}${d.mentoria ? " · " + e(d.mentoria.vaga_titulo) : ""}</b>
@@ -290,11 +289,11 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         <h3>Pedido para ser mentor</h3>
         <p>Você aparece como <b>${e(perfil.nome)}</b>. <a class="md-link" href="perfil.html?voltar=mentorias.html">mudar perfil</a></p>
         <label class="md-campo"><span>Empresa</span><input id="fEmpresa" type="text" maxlength="80" placeholder="Welocalize"></label>
-        <label class="md-campo"><span>Vaga que você vai divulgar</span>
+        <label class="md-campo"><span>Vaga</span>
           <small>O título como aparece no anúncio.</small>
           <input id="fVaga" type="text" maxlength="160" placeholder="Search Quality Rater, português (Brasil)"></label>
-        <label class="md-campo"><span>O seu link de indicação para essa vaga</span>
-          <small>É por este link que os participantes vão se candidatar. Precisa começar com https://</small>
+        <label class="md-campo"><span>Link da vaga</span>
+          <small>A página onde as pessoas se candidatam. Se você tiver link de indicação, pode usar o seu. Precisa começar com https://</small>
           <input id="fLink" type="url" maxlength="600" placeholder="https://"></label>
         <label class="md-campo"><span>Sua apresentação</span>
           <small>Há quanto tempo trabalha nessa vaga, como conseguiu entrar, o que faz no dia a dia.</small>
@@ -310,7 +309,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         <span class="mt-anexo-nota" id="fArqNota">até 6 imagens</span>
         <div class="md-provas" id="fProvas"></div>
         <div class="regra"><b>Ao enviar, você concorda com as regras:</b> a mentoria é gratuita e você não cobra nada dos participantes;
-          você responde a quem entrar; você segue as regras do programa de indicação da empresa e não se apresenta como recrutador dela.
+          você responde a quem entrar; você não se apresenta como recrutador da empresa e, se usar link de indicação, segue as regras do programa dela.
           O Hub pode encerrar a mentoria se isso não for cumprido.</div>
         <div class="mt-acoes"><button class="md-bt" type="submit">Enviar para análise</button>
           <button class="md-link" type="button" id="btFechar">cancelar</button></div>
@@ -348,7 +347,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       const m = { empresa: $("#fEmpresa").value.trim(), vaga_titulo: $("#fVaga").value.trim(), link: $("#fLink").value.trim(),
                   apresentacao: $("#fApres").value.trim(), como_ajuda: $("#fAjuda").value.trim(), comprovacao: $("#fProva").value.trim() };
       if (m.empresa.length < 2 || m.vaga_titulo.length < 2) { dizer("Preencha a empresa e a vaga.", "erro"); return; }
-      if (!/^https:\/\/\S+\.\S+/i.test(m.link)) { dizer("O link de indicação precisa começar com https://", "erro"); return; }
+      if (!/^https:\/\/\S+\.\S+/i.test(m.link)) { dizer("O link da vaga precisa começar com https://", "erro"); return; }
       if (m.apresentacao.length < 40) { dizer("Escreva um pouco mais na apresentação, pelo menos duas frases.", "erro"); return; }
       if (m.como_ajuda.length < 40) { dizer("Explique melhor como você vai ajudar, pelo menos duas frases.", "erro"); return; }
       if (m.comprovacao.length < 10 && !provas.length) { dizer("Anexe um print ou explique como você comprova que trabalha nessa vaga.", "erro"); return; }

@@ -172,13 +172,13 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       <div style="margin-top:12px"><button class="md-link" type="button" data-sair>cancelar o pedido</button></div></div>`;
     const recusado = M.meu_papel === "recusado";
     return `<div class="mo-cx"><h2>${recusado ? "O mentor não liberou a sua entrada" : "Como participar"}</h2>
-      <p>${recusado ? "Se você se candidatou pelo link dele e acha que foi engano, pode pedir de novo explicando." : "São dois passos. A mentoria é gratuita."}</p>
-      <div class="mo-passo"><span class="n">1</span><div><b>Candidate-se pelo link do mentor</b>
-        <p>É o link de indicação de ${e(M.mentor.nome)}. A candidatura acontece na página oficial da empresa.</p>
-        <a class="md-bt" href="${e(M.link)}" target="_blank" rel="noopener nofollow">Abrir a vaga pelo link do mentor →</a></div></div>
+      <p>${recusado ? "Se você já se candidatou e acha que foi engano, pode pedir de novo explicando." : "São dois passos. A mentoria é gratuita."}</p>
+      <div class="mo-passo"><span class="n">1</span><div><b>Candidate-se à vaga</b>
+        <p>Use o link que ${e(M.mentor.nome)} deixou. A candidatura acontece na página oficial da empresa.</p>
+        <a class="md-bt" href="${e(M.link)}" target="_blank" rel="noopener nofollow">Abrir a página da vaga →</a></div></div>
       <div class="mo-passo"><span class="n">2</span><div><b>Peça para entrar no grupo</b>
         <p>O mentor aprova a entrada de cada pessoa. Diga com que nome ou e-mail você se candidatou, para ele reconhecer você.</p>
-        ${perfil ? `<label class="md-campo" style="margin-top:0"><textarea id="pedMsg" maxlength="600" placeholder="Me candidatei hoje pelo seu link, com o e-mail que começa com…"></textarea></label>
+        ${perfil ? `<label class="md-campo" style="margin-top:0"><textarea id="pedMsg" maxlength="600" placeholder="Me candidatei hoje, com o e-mail que começa com…"></textarea></label>
           <div style="margin-top:10px"><button class="md-bt" type="button" data-pedir>Pedir para entrar</button></div>`
         : `<a class="md-bt claro" href="perfil.html?voltar=${encodeURIComponent(aqui)}">Antes, preencher meu perfil</a>`}
       </div></div>
@@ -192,7 +192,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       <div><div class="nm">${e(p.quem.nome)}</div>${p.mensagem ? `<div class="ms">${e(p.mensagem)}</div>` : ""}</div>
       <div class="bts">${botoes}</div></div>`;
     return `<div class="mo-cx"><h2>Pedidos de entrada</h2>
-      ${pend.length && M.meu_papel === "mentor" ? `<p>Confira se a pessoa se candidatou pelo seu link antes de aceitar.</p>` : ""}
+      ${pend.length && M.meu_papel === "mentor" ? `<p>Leia a mensagem de cada pessoa antes de aceitar.</p>` : ""}
       ${pend.length ? pend.map(p => linha(p, M.meu_papel === "mentor"
             ? `<button class="md-bt pequeno" data-aprovar="${e(p.quem.id)}">Aceitar</button><button class="md-bt claro pequeno" data-recusar="${e(p.quem.id)}">Recusar</button>` : "")).join("")
         : `<p>Nenhum pedido esperando resposta.</p>`}
