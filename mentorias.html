@@ -65,6 +65,8 @@
 .mt-den-cab b { font-weight:600; }
 .mt-den-nota { font-size:13.5px; color:var(--ink-3,#8A94A1); margin:12px 0 0; }
 .mt-den textarea { min-height:70px; }
+.mt-den-av { margin-top:12px; font-size:13.5px; color:var(--ink-3,#8A94A1); }
+.mt-den-av p { font-size:14.5px; line-height:1.55; color:var(--ink,#10203A); margin:6px 0 0; overflow-wrap:anywhere; }
 .mt-anexo-nota { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-left:10px; }
 .mt-demo {font-size:12.5px; background:#FBF0E4; color:#A85D24; border-radius:10px; padding:8px 12px; margin-bottom:18px; }
 
@@ -80,7 +82,7 @@
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="mentorias-dados.js?v=4"></script>
+<script src="mentorias-dados.js?v=5"></script>
 <script>
 try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
@@ -166,11 +168,11 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   let aba = "mentorias";
   function htmlAbas() {
     if (!denuncias.length) return "";
-    const novas = denuncias.filter(esperaVoce).length;
+    const novas = denuncias.filter(d => esperaVoce(d) || faltaNota(d)).length;
     return `<nav class="mt-abas" role="tablist" aria-label="Partes da página">
       <button type="button" role="tab" data-aba="mentorias" aria-selected="${aba === "mentorias"}">Mentorias</button>
       <button type="button" role="tab" data-aba="denuncias" aria-selected="${aba === "denuncias"}">Suas denúncias
-        ${novas ? `<span class="mt-conta" title="A equipe do Hub respondeu">${novas}</span>` : ""}</button>
+        ${novas ? `<span class="mt-conta" title="Há novidade da equipe do Hub">${novas}</span>` : ""}</button>
     </nav>`;
   }
   function abrirAba(nome) {
@@ -186,7 +188,31 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   /* ── As denúncias que a pessoa fez e a conversa com a equipe ──
      Só aparece para quem já denunciou alguma coisa. Só ela e a equipe leem. */
   const esperaVoce = d => !d.resolvida && d.mensagens.length && d.mensagens[d.mensagens.length - 1].da_equipe;
+  const faltaNota = d => d.resolvida && !d.nota;
   const rascunhos = {};
+
+  /* Abre a janela das estrelas. Depois que a equipe resolve, a pessoa diz se
+     o atendimento resolveu o problema; a nota só a equipe e ela veem. */
+  async function avaliarAtendimento(id) {
+    const d = denuncias.find(x => x.id === id); if (!d) return;
+    const r = await U.pedirNota({
+      titulo: "Como foi o atendimento?",
+      texto: "A equipe do Hub marcou a sua denúncia como resolvida. O problema foi resolvido? Dê uma nota de 1 a 5.",
+      pergunta: "Quer contar o que funcionou ou o que faltou? (opcional)",
+      nota: d.nota || 0, comentario: d.nota_comentario || "" });
+    if (!r) return;
+    try {
+      await MD.avaliarDenuncia(id, r.nota, r.comentario);
+      denuncias = (await MD.minhasDenuncias()) || [];
+      desenhar();
+    } catch (err) {
+      const m = tela.querySelector("#denMsg"); if (m) { m.textContent = err.message; m.className = "md-msg erro"; m.hidden = false; }
+    }
+  }
+  tela.addEventListener("click", ev => {
+    const b = ev.target.closest("[data-avaliar-den]"); if (b) avaliarAtendimento(b.dataset.avaliarDen);
+  });
+
   function htmlDenuncias() {
     if (!denuncias.length) return "";
     return `<div class="mt-hero" style="margin-bottom:22px">
@@ -197,7 +223,12 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         <div class="mt-den-cab"><b>${d.tipo === "post" ? "Mensagem no mural" : "Mentoria inteira"}${d.mentoria ? " · " + e(d.mentoria.vaga_titulo) : ""}</b>
           ${d.resolvida ? `<span class="md-etq aprovada">resolvida</span>` : esperaVoce(d) ? `<span class="md-etq pedido">a equipe respondeu</span>` : `<span class="md-etq pendente">em análise</span>`}</div>
         ${U.conversa(d, "Você")}
-        ${d.resolvida ? `<p class="mt-den-nota">A equipe marcou esta denúncia como resolvida. A conversa foi fechada.</p>`
+        ${d.resolvida ? `<p class="mt-den-nota">A equipe marcou esta denúncia como resolvida. A conversa foi fechada.</p>
+            ${d.nota ? `<div class="mt-den-av">${U.estrelas(d.nota)} <span>a nota que você deu ao atendimento</span>
+                <button class="md-link" type="button" data-avaliar-den="${e(d.id)}">mudar</button>
+                ${d.nota_comentario ? `<p>${e(d.nota_comentario)}</p>` : ""}</div>`
+              : `<div class="mt-acoes" style="margin-top:12px"><button class="md-bt pequeno" type="button" data-avaliar-den="${e(d.id)}">Avaliar o atendimento</button>
+                  <span class="mt-den-nota" style="margin:0">Resolveu o seu problema? Leva dez segundos.</span></div>`}`
           : d.mensagens.length ? `<label class="md-campo"><textarea maxlength="2000" data-resposta="${e(d.id)}" placeholder="Responder à equipe do Hub">${e(rascunhos[d.id] || "")}</textarea></label>
               <div class="mt-acoes" style="margin-top:10px"><button class="md-bt pequeno" type="button" data-responder="${e(d.id)}">Enviar</button></div>`
             : `<p class="mt-den-nota">A equipe do Hub vai ler e, se precisar de mais detalhes, responde por aqui.</p>`}

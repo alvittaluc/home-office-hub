@@ -74,6 +74,7 @@ table.p-tab { width:100%; border-collapse:collapse; font-size:13.5px; }
 .p-abas button[aria-selected="true"] { color:var(--ink,#10203A); font-weight:600; border-bottom-color:var(--signal,#1A4893); }
 .p-conta { display:inline-block; min-width:20px; padding:1px 6px; margin-left:4px; border-radius:99px; font-size:12px; font-weight:600;
   text-align:center; color:#fff; background:#A85D24; }
+.p-conta[hidden] { display:none; }
 .p-sec > .p-grade:first-child { margin-top:0; }
 .p-subtopo { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:18px; }
 .p-subtopo p { font-size:14.5px; color:var(--ink-2,#54606F); margin:0; max-width:620px; line-height:1.55; }
@@ -81,6 +82,13 @@ table.p-tab { width:100%; border-collapse:collapse; font-size:13.5px; }
 .p-den .md-campo textarea { min-height:70px; background:var(--bg,#F7F4EF); }
 .p-den .p-citado { margin-top:12px; padding:10px 14px; border-left:3px solid var(--line,#DED7CA); font-size:14px; line-height:1.55; color:var(--ink,#10203A); white-space:pre-wrap; overflow-wrap:anywhere; }
 .p-den .p-citado small { display:block; font-size:12px; color:var(--ink-3,#8A94A1); margin-bottom:2px; white-space:normal; }
+.p-nota-at { margin-top:14px; padding-top:12px; border-top:1px solid var(--line-soft,#EAE4D9); font-size:14px; color:var(--ink,#10203A); }
+.p-nota-at b { font-weight:600; }
+.p-nota-at span { color:var(--ink-3,#8A94A1); font-size:13.5px; }
+.p-nota-at p { margin:6px 0 0; line-height:1.55; overflow-wrap:anywhere; white-space:pre-wrap; }
+.p-media { font-size:14px; color:var(--ink,#10203A); text-align:right; }
+.p-media b { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400; font-size:26px; margin-right:4px; }
+.p-media span { display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); }
 details.p-resolvidas { margin-top:22px; }
 details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600; color:var(--ink-2,#54606F); padding:6px 0 14px; }
 
@@ -133,7 +141,7 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="mentorias-dados.js?v=4"></script>
+<script src="mentorias-dados.js?v=5"></script>
 <script>
 try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e); }
 
@@ -395,6 +403,9 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
         <p class="sub">denunciado por ${esc(x.quem.nome)} ${esc(U.haQuanto(x.criado_em))}${x.resolvida ? " · resolvida" : ""}</p>
         ${x.post ? `<div class="p-citado"><small>A mensagem denunciada, de ${esc(x.post.autor.nome)}${x.post.removido ? " (já apagada)" : ""}</small>${esc(x.post.texto)}</div>` : ""}
         ${U.conversa(x, x.quem.nome)}
+        ${x.resolvida ? `<div class="p-nota-at">${x.nota
+            ? `<b>Nota do atendimento:</b> ${U.estrelas(x.nota)} ${x.nota_comentario ? `<p>${esc(x.nota_comentario)}</p>` : `<span>sem comentário</span>`}`
+            : `<span>${esc(x.quem.nome)} ainda não avaliou o atendimento.</span>`}</div>` : ""}
         ${x.resolvida ? "" : `<label class="md-campo"><span>Responder a ${esc(x.quem.nome)}</span>
             <small>Só ${esc(x.quem.nome)} lê. A resposta aparece para a pessoa na página Mentorias, como "Equipe do Hub".</small>
             <textarea maxlength="2000" data-resposta="${esc(x.id)}" placeholder="Peça mais detalhes ou conte o que foi feito">${esc(rascunhos[x.id] || "")}</textarea></label>`}
@@ -405,10 +416,14 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
           ${x.resolvida ? "" : `<button class="md-bt claro pequeno" data-resolver="${esc(x.id)}">Marcar como resolvida</button>`}
         </div></section>`;
 
+    const comNota = resolvidas.filter(x => x.nota);
+    const media = comNota.length ? (comNota.reduce((s, x) => s + x.nota, 0) / comNota.length).toFixed(1).replace(".", ",") : "";
     const estavaAberto = !!(secDen.querySelector("details.p-resolvidas") || {}).open;
     secDen.innerHTML = `
       <div class="p-subtopo"><p>O que os participantes denunciaram. Você pode conversar com quem denunciou antes de decidir;
-        depois de marcar como resolvida, a conversa fecha.</p></div>
+        depois de marcar como resolvida, a conversa fecha e a pessoa pode dar uma nota ao atendimento.</p>
+        ${media ? `<div class="p-media"><b>${media}</b> ${U.estrelas(Math.round(comNota.reduce((s, x) => s + x.nota, 0) / comNota.length))}
+          <span>nota média do atendimento, em ${comNota.length} ${comNota.length === 1 ? "avaliação" : "avaliações"}</span></div>` : ""}</div>
       ${den.length ? den.map(denuncia).join("") : `<section class="p-cx"><div class="p-vazio">Nenhuma denúncia em aberto.</div></section>`}
       ${resolvidas.length ? `<details class="p-resolvidas"${estavaAberto ? " open" : ""}><summary>Resolvidas (${resolvidas.length})</summary>${resolvidas.map(denuncia).join("")}</details>` : ""}`;
 
@@ -455,7 +470,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
         await MD.apagarPost(d2.apagarPost);
       } else if (d2.resolver) {
         if (!(await U.confirmar({ titulo: "Marcar como resolvida?", perigo: false,
-          texto: "A denúncia sai da lista de abertas e a conversa fecha: a pessoa lê o que foi escrito, mas não consegue mais responder.", botao: "Marcar como resolvida" }))) return;
+          texto: "A denúncia sai da lista de abertas e a conversa fecha: a pessoa lê o que foi escrito, não consegue mais responder e é convidada a dar uma nota ao atendimento.", botao: "Marcar como resolvida" }))) return;
         b.disabled = true;
         await MD.adminResolver(d2.resolver);
       } else return;

@@ -66,6 +66,11 @@
 /* mural */
 #mural { padding:26px 30px 28px; }
 #mural > h2 { font-size:20px; }
+.mo-regra { display:flex; gap:10px; align-items:flex-start; background:var(--bg-soft,#F1ECE3); border-radius:12px; padding:12px 14px; margin:12px 0 4px; cursor:pointer; max-width:820px; }
+.mo-regra input { width:18px; height:18px; margin:2px 0 0; flex-shrink:0; accent-color:var(--signal,#1A4893); }
+.mo-regra span { font-size:13.5px; line-height:1.5; color:var(--ink-2,#54606F); }
+.mo-regra b { display:block; font-size:14.5px; font-weight:600; color:var(--ink,#10203A); }
+.mo-aviso-regra { background:var(--signal-suave,#EAF1F8); border-radius:12px; padding:12px 14px; margin:12px 0 4px; font-size:14px; line-height:1.5; color:var(--ink,#10203A); max-width:820px; }
 .mo-novo textarea { min-height:110px; font-size:15.5px; }
 .mo-post { display:grid; grid-template-columns:40px 1fr; gap:14px; padding:20px 0; border-top:1px solid var(--line-soft,#EAE4D9); }
 .mo-post-cab { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 9px; margin-bottom:4px; }
@@ -98,7 +103,7 @@
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="mentorias-dados.js?v=4"></script>
+<script src="mentorias-dados.js?v=5"></script>
 <script>
 try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
@@ -215,9 +220,15 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   function htmlMural() {
     if (!noMural()) return "";
     const raiz = posts.filter(p => !p.pai_id).slice().reverse();
-    const podeEscrever = aberta() && (M.meu_papel === "mentor" || M.meu_papel === "aprovado");
+    const dentro = aberta() && (M.meu_papel === "mentor" || M.meu_papel === "aprovado");
+    /* O mentor pode deixar só para ele abrir conversa. Aí o participante
+       não tem o campo de mensagem nova: só o "responder" de cada mensagem. */
+    const podeEscrever = dentro && (M.meu_papel === "mentor" || !M.so_mentor_abre);
     return `<div class="mo-cx" id="mural"><h2>Mural</h2>
       <p>Só o mentor e os participantes leem o que é escrito aqui.</p>
+      ${M.meu_papel === "mentor" && aberta() ? `<label class="mo-regra"><input type="checkbox" id="soMentor"${M.so_mentor_abre ? " checked" : ""}>
+          <span><b>Só eu abro conversas</b>Os participantes não publicam mensagem nova: só respondem às suas. Bom para manter o mural organizado.</span></label>` : ""}
+      ${dentro && !podeEscrever ? `<div class="mo-aviso-regra">Nesta mentoria só o mentor abre conversas. Para falar, use o <b>responder</b> embaixo de uma mensagem dele.</div>` : ""}
       ${podeEscrever ? `<div class="mo-novo"><label class="md-campo"><textarea id="novoPost" maxlength="4000" placeholder="${M.meu_papel === "mentor" ? "Escreva um aviso ou uma orientação para o grupo" : "Escreva a sua dúvida ou conte como está o seu processo"}"></textarea></label>
         <div style="margin-top:10px"><button class="md-bt" type="button" data-postar>Publicar</button></div></div>` : ""}
       <div class="md-msg" id="muralMsg" role="status" hidden></div>
@@ -310,6 +321,14 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
   /* o mentor anexa mais comprovantes enquanto o pedido está em análise */
   tela.addEventListener("change", async ev => {
+    if (ev.target.id === "soMentor") {
+      const marcado = ev.target.checked;
+      ev.target.disabled = true;
+      agir("muralMsg", () => MD.configurar(ID, marcado), () => dizer("muralMsg",
+        marcado ? "Pronto: agora só você abre conversas. Os participantes continuam podendo responder."
+                : "Pronto: os participantes voltaram a poder abrir conversas.", "ok"));
+      return;
+    }
     if (ev.target.id !== "maisProva") return;
     const arquivos = Array.from(ev.target.files || []).slice(0, Math.max(0, 6 - provas.length));
     ev.target.value = "";

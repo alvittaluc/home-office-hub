@@ -85,6 +85,8 @@ const MD = (function () {
       p_empresa: m.empresa, p_vaga_titulo: m.vaga_titulo, p_vaga_id: m.vaga_id || "", p_link: m.link,
       p_apresentacao: m.apresentacao, p_como_ajuda: m.como_ajuda, p_comprovacao: m.comprovacao }),
     encerrar: id => rpc("mentoria_encerrar", { p_id: id }),
+    /* regra do mural: true = só o mentor abre conversa, os participantes só respondem */
+    configurar: (id, soMentorAbre) => rpc("mentoria_configurar", { p_id: id, p_so_mentor_abre: !!soMentorAbre }),
     pedirEntrada: (id, msg) => rpc("mentoria_pedir", { p_id: id, p_mensagem: msg || "" }),
     sair: id => rpc("mentoria_sair", { p_id: id }),
     pedidos: id => rpc("mentoria_pedidos", { p_id: id }),
@@ -104,6 +106,7 @@ const MD = (function () {
     /* conversa de uma denúncia: a equipe escreve para quem denunciou, e a pessoa responde */
     responderDenuncia: (id, texto, comoEquipe) => rpc("denuncia_responder", { p_id: id, p_texto: texto, p_como_equipe: !!comoEquipe }),
     minhasDenuncias: () => rpc("denuncias_minhas"),
+    avaliarDenuncia: (id, nota, comentario) => rpc("denuncia_avaliar", { p_id: id, p_nota: nota, p_comentario: comentario || "" }),
     /* equipe da administração */
     equipe: () => rpc("admin_equipe"),
     equipeAdicionar: email => rpc("admin_equipe_adicionar", { p_email: email }),
@@ -207,7 +210,7 @@ const MD = (function () {
         const m = S.mentorias.find(x => x.id === id) || erro("Mentoria não encontrada.");
         const minha = S.avaliacoes.find(a => a.mentoria_id === id && a.user_id === "u-eu");
         return Object.assign(resumo(m), {
-          link: m.link, motivo: m.motivo, meu_papel: papelEm(id), sou_admin: admin, minha_nota: minha ? minha.nota : null,
+          link: m.link, motivo: m.motivo, meu_papel: papelEm(id), sou_admin: admin, so_mentor_abre: !!m.so_mentor_abre, minha_nota: minha ? minha.nota : null,
           comentarios: S.avaliacoes.filter(a => a.mentoria_id === id && a.comentario).map(a => ({
             nota: a.nota, comentario: a.comentario, quem: pessoa(a.user_id), criado_em: a.criado_em })),
         });
@@ -219,6 +222,7 @@ const MD = (function () {
         salvar(); return id;
       },
       async encerrar(id) { S.mentorias.find(m => m.id === id).status = "encerrada"; salvar(); },
+      async configurar(id, soMentorAbre) { S.mentorias.find(m => m.id === id).so_mentor_abre = !!soMentorAbre; salvar(); },
       async pedirEntrada(id, msg) {
         if (!S.perfil) erro("Preencha o seu perfil antes de pedir para entrar.");
         S.membros = S.membros.filter(x => !(x.mentoria_id === id && x.user_id === "u-eu"));
@@ -241,6 +245,8 @@ const MD = (function () {
           autor: pessoa(p.autor_id), do_mentor: p.autor_id === m.mentor_id, meu: p.autor_id === "u-eu" }));
       },
       async postar(id, texto, pai) {
+        if (!pai && papelEm(id) !== "mentor" && S.mentorias.find(m => m.id === id).so_mentor_abre)
+          erro("Nesta mentoria só o mentor abre conversas. Você pode responder às mensagens dele.");
         const pid = "p" + Date.now();
         S.posts.push({ id: pid, mentoria_id: id, autor_id: "u-eu", pai_id: pai || null, texto, criado_em: agora(), removido: false });
         salvar(); return pid;
@@ -263,6 +269,7 @@ const MD = (function () {
             const mid = p ? p.mentoria_id : d.alvo_id;
             return { id: d.id, tipo: d.tipo, alvo_id: d.alvo_id, motivo: d.motivo, criado_em: d.criado_em, resolvida: d.resolvida,
                      quem: pessoa(d.autor_id), mentoria_id: mid, mensagens: d.mensagens || [],
+                     nota: d.nota || null, nota_comentario: d.nota_comentario || "",
                      mentoria_titulo: (S.mentorias.find(m => m.id === mid) || {}).vaga_titulo || "",
                      post: p ? { texto: p.texto, removido: p.removido, autor: pessoa(p.autor_id) } : null };
           }),
@@ -276,12 +283,18 @@ const MD = (function () {
         if (!comoEquipe && d.resolvida) erro("Esta denúncia já foi encerrada pela equipe.");
         (d.mensagens = d.mensagens || []).push({ da_equipe: !!comoEquipe, texto, criado_em: agora() }); salvar();
       },
+      async avaliarDenuncia(id, nota, comentario) {
+        const d = S.denuncias.find(x => x.id === id) || erro("Denúncia não encontrada.");
+        if (!d.resolvida) erro("Só dá para avaliar uma denúncia sua que já foi resolvida.");
+        d.nota = nota; d.nota_comentario = comentario || ""; d.avaliada_em = agora(); salvar();
+      },
       async minhasDenuncias() {
         // no modo de demonstração todas as denúncias de exemplo contam como suas, para dar para ver a tela
         return S.denuncias.map(d => {
           const p = d.tipo === "post" ? S.posts.find(x => x.id === d.alvo_id) : null;
           const m = S.mentorias.find(x => x.id === (p ? p.mentoria_id : d.alvo_id));
           return { id: d.id, tipo: d.tipo, motivo: d.motivo, criado_em: d.criado_em, resolvida: d.resolvida,
+                   nota: d.nota || null, nota_comentario: d.nota_comentario || "",
                    mentoria: m ? { id: m.id, vaga_titulo: m.vaga_titulo, empresa: m.empresa } : null, mensagens: d.mensagens || [] };
         });
       },
@@ -347,6 +360,12 @@ const MD = (function () {
   .md-conf-cx h2 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400; font-size:23px; line-height:1.2; color:var(--ink,#10203A); margin:0 0 8px; }
   .md-conf-cx p { font-size:14.5px; line-height:1.55; color:var(--ink-2,#54606F); margin:0; }
   .md-conf-bts { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:10px; margin-top:22px; }
+  .md-nota { display:flex; align-items:center; gap:2px; margin:16px 0 4px; }
+  .md-nota button { font-size:34px; line-height:1; background:none; border:0; cursor:pointer; color:var(--line,#DED7CA); padding:0 3px; border-radius:8px; }
+  .md-nota button.on { color:#C98A1B; }
+  .md-nota button:focus-visible { outline:2px solid var(--signal,#1A4893); outline-offset:1px; }
+  .md-nota-nome { font-size:13.5px; color:var(--ink-2,#54606F); margin-left:10px; }
+  .md-conf-cx .md-campo textarea { min-height:76px; }
   .md-bt.perigo { background:#A32A3C; border-color:#A32A3C; }
   .md-bt:focus-visible { outline:2px solid var(--signal,#1A4893); outline-offset:2px; }
   @media (max-width:480px){ .md-conf-bts { flex-direction:column-reverse; } .md-conf-bts .md-bt { width:100%; text-align:center; } }
@@ -533,11 +552,75 @@ const MD = (function () {
     });
   }
 
+  /* Janela para dar nota de 1 a 5 estrelas, com um comentário opcional.
+     Devolve { nota, comentario } ou null se a pessoa fechar sem avaliar. */
+  function pedirNota(o) {
+    porCss();
+    return new Promise(ok => {
+      const antes = document.activeElement;
+      let nota = o.nota || 0;
+      const NOMES = ["", "Muito ruim", "Ruim", "Mais ou menos", "Bom", "Muito bom"];
+      const fundo = document.createElement("div");
+      fundo.className = "md-conf";
+      fundo.innerHTML = `<div class="md-conf-cx" role="dialog" aria-modal="true" aria-labelledby="mdNotaTit">
+        <h2 id="mdNotaTit">${e(o.titulo)}</h2>
+        <p>${e(o.texto || "")}</p>
+        <div class="md-nota" role="radiogroup" aria-label="Nota de 1 a 5">${[1, 2, 3, 4, 5].map(n =>
+          `<button type="button" role="radio" data-n="${n}" aria-label="${n} de 5: ${NOMES[n]}">★</button>`).join("")}
+          <span class="md-nota-nome" aria-live="polite"></span></div>
+        <label class="md-campo"><span>${e(o.pergunta || "Quer contar mais? (opcional)")}</span>
+          <textarea maxlength="600">${e(o.comentario || "")}</textarea></label>
+        <div class="md-msg erro" role="status" hidden></div>
+        <div class="md-conf-bts">
+          <button type="button" class="md-bt claro" data-nao>Agora não</button>
+          <button type="button" class="md-bt" data-sim>${e(o.botao || "Enviar avaliação")}</button>
+        </div></div>`;
+      const pintar = () => {
+        fundo.querySelectorAll("[data-n]").forEach(b => {
+          const n = +b.dataset.n;
+          b.classList.toggle("on", n <= nota);
+          b.setAttribute("aria-checked", n === nota ? "true" : "false");
+        });
+        fundo.querySelector(".md-nota-nome").textContent = NOMES[nota] || "";
+      };
+      const fechar = v => {
+        document.removeEventListener("keydown", tecla, true);
+        fundo.remove();
+        document.documentElement.style.overflow = "";
+        if (antes && antes.focus && document.contains(antes)) antes.focus();
+        ok(v);
+      };
+      const tecla = ev => {
+        if (ev.key === "Escape") { ev.preventDefault(); fechar(null); return; }
+        if (ev.key !== "Tab") return;
+        const f = Array.from(fundo.querySelectorAll("button, textarea"));   // o foco não sai da janela
+        const i = f.indexOf(document.activeElement);
+        ev.preventDefault();
+        f[(i + (ev.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+      };
+      fundo.addEventListener("click", ev => {
+        ev.stopPropagation();
+        const estrela = ev.target.closest("[data-n]");
+        if (estrela) { nota = +estrela.dataset.n; fundo.querySelector(".md-msg").hidden = true; pintar(); return; }
+        if (ev.target === fundo || ev.target.closest("[data-nao]")) { fechar(null); return; }
+        if (ev.target.closest("[data-sim]")) {
+          if (!nota) { const m = fundo.querySelector(".md-msg"); m.textContent = "Escolha de 1 a 5 estrelas."; m.hidden = false; return; }
+          fechar({ nota, comentario: fundo.querySelector("textarea").value.trim() });
+        }
+      });
+      document.addEventListener("keydown", tecla, true);
+      document.documentElement.style.overflow = "hidden";
+      document.body.appendChild(fundo);
+      pintar();
+      fundo.querySelector("[data-n]").focus();
+    });
+  }
+
   const ehImagem = s => /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(s || "");
 
   return Object.assign({}, api, {
     demo: papelDemo,
     disponivel: !!papelDemo || (typeof supabase !== "undefined" && !!supabase.createClient),
-    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, confirmar, conversa, e },
+    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, confirmar, pedirNota, conversa, e },
   });
 })();
