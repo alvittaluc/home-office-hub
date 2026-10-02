@@ -152,8 +152,8 @@ function erro(msg) {
 
   // Vaga vinda de fonte que não tem página de detalhe (o LinkedIn era assim).
   // Se alguém chegar aqui por link antigo, mandamos direto para o anúncio.
-  if (!v.resumo && v.url && v.fonte !== "direto") {
-    location.replace(v.url);
+  if (!v.resumo && urlSegura(v.url) && v.fonte !== "direto") {
+    location.replace(urlSegura(v.url));
     return;
   }
 
@@ -195,7 +195,7 @@ function erro(msg) {
     ${partes}
     <div class="aplic" id="jaApliquei" hidden></div>
     <div class="barra">
-      <a href="${esc(v.url)}" target="_blank" rel="noopener" class="candidatar">Candidatar-se a esta vaga →</a>
+      <a href="${esc(urlSegura(v.url) || "vagas.html")}" target="_blank" rel="noopener" class="candidatar">Candidatar-se a esta vaga →</a>
       <div class="nota">${v.indicacao
         ? "Você vai para a página oficial da vaga. Este é um link de indicação: se você for contratado, a empresa paga uma comissão ao Home Office Hub, sem nenhum custo ou desconto para você."
         : "Você vai para a página oficial da vaga, sem intermediário."}</div>

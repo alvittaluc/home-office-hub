@@ -903,8 +903,8 @@ function montarMenus() {
       const n = dias(v);
       return n !== null && n <= Number(p.id) && passa(v, "periodo");
     }).length;
-    return `<button class="opcao${fPeriodo === p.id ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-periodo="${p.id}">
-      <span class="pip"></span><span class="nm">${p.nome}</span><span class="qt">${q}</span></button>`;
+    return `<button class="opcao${fPeriodo === p.id ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-periodo="${esc(p.id)}">
+      <span class="pip"></span><span class="nm">${esc(p.nome)}</span><span class="qt">${q}</span></button>`;
   }).join("");
 
   /* áreas, várias ao mesmo tempo */
@@ -912,8 +912,8 @@ function montarMenus() {
     .filter(c => TODAS.some(v => v.categoria === c))
     .map(c => {
       const q = TODAS.filter(v => v.categoria === c && passa(v, "cat")).length;
-      return `<button class="opcao${fCats.has(c) ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-cat="${c}">
-        <span class="caixa">✓</span><span class="nm">${CAT_NOME[c] || c}</span><span class="qt">${q}</span></button>`;
+      return `<button class="opcao${fCats.has(c) ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-cat="${esc(c)}">
+        <span class="caixa">✓</span><span class="nm">${esc(CAT_NOME[c] || c)}</span><span class="qt">${q}</span></button>`;
     }).join("");
 
   /* empresas, as com mais vagas primeiro */
@@ -923,7 +923,7 @@ function montarMenus() {
   document.getElementById("menuEmpresas").innerHTML = ids.map(id => {
     const e = EMPRESAS[id];
     const q = TODAS.filter(v => v.empresa === id && passa(v, "emp")).length;
-    return `<button class="opcao${fEmps.has(id) ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-emp="${id}">
+    return `<button class="opcao${fEmps.has(id) ? " on" : ""}${q === 0 ? " vazia" : ""}" type="button" data-emp="${esc(id)}">
       <span class="caixa">✓</span>
       <span class="marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e,22)}</span>
       <span class="nm">${esc(e.nome)}</span><span class="qt">${q}</span></button>`;
@@ -998,7 +998,7 @@ function montarAtivos() {
 
   const alvo = document.getElementById("ativos");
   alvo.innerHTML = itens.map(i =>
-    `<button class="ativo" type="button" data-tipo="${i.tipo}" data-valor="${i.valor || ""}">${esc(i.rotulo)}<span class="x">×</span></button>`
+    `<button class="ativo" type="button" data-tipo="${esc(i.tipo)}" data-valor="${esc(i.valor || "")}">${esc(i.rotulo)}<span class="x">×</span></button>`
   ).join("") + (itens.length > 1 ? '<button class="ativo limpar" type="button" data-tipo="tudo">limpar tudo</button>' : "");
 
   alvo.querySelectorAll(".ativo").forEach(b => b.onclick = () => {

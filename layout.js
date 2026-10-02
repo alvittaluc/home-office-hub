@@ -493,8 +493,25 @@ function idiomaDaVaga(v) {
 function selo() {}
 
 function esc(s) {
-  return (s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  return String(s === null || s === undefined ? "" : s)
+    .replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
+
+/* Endereço que pode virar link: só http e https. Qualquer outra coisa
+   (javascript:, data:...) volta vazia, para nunca virar um link que roda código. */
+function urlSegura(u) {
+  const s = String(u === null || u === undefined ? "" : u).trim();
+  return /^https?:\/\//i.test(s) ? s : "";
+}
+
+/* O site não abre dentro de outro site (num quadro invisível, alguém poderia
+   fazer a pessoa clicar em botões daqui sem perceber). */
+try {
+  if (window.top !== window.self) {
+    document.documentElement.style.display = "none";
+    window.top.location = window.self.location.href;
+  }
+} catch (e) { document.documentElement.style.display = "none"; }
 
 /* Logo da empresa: tenta o favicon real, cai para a sigla se falhar.
 

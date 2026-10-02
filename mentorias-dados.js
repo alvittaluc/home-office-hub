@@ -384,15 +384,15 @@ const MD = (function () {
   }
 
   const e = s => String(s === null || s === undefined ? "" : s)
-    .replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    .replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   function foto(pessoa, tam) {
     porCss();
     const t = tam || 40;
     const nome = (pessoa && pessoa.nome) || "?";
     const est = `width:${t}px;height:${t}px;font-size:${Math.round(t * 0.4)}px;`;
-    if (pessoa && /^data:image\/(jpeg|png|webp);base64,/.test(pessoa.foto || "")) {
-      return `<img class="md-foto" style="${est}" src="${pessoa.foto}" alt="">`;
+    if (pessoa && ehImagem(pessoa.foto)) {   // o texto inteiro precisa ser uma imagem: nada de sobra depois dela
+      return `<img class="md-foto" style="${est}" src="${e(pessoa.foto)}" alt="">`;
     }
     return `<span class="md-foto" style="${est}" aria-hidden="true">${e(nome.trim().charAt(0).toUpperCase())}</span>`;
   }
@@ -616,7 +616,7 @@ const MD = (function () {
     });
   }
 
-  const ehImagem = s => /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(s || "");
+  function ehImagem(s) { return /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/]+=*$/.test(s || ""); }
 
   return Object.assign({}, api, {
     demo: papelDemo,
