@@ -280,6 +280,95 @@ const Conta = (function () {
   }
 
   /* ══════════════════════════════════════════════════════════
+     ÁREAS DE FORMAÇÃO
+
+     Uma pergunta só, opcional, feita uma vez depois do primeiro login:
+     em que áreas a pessoa tem formação ou experiência. A resposta fica na
+     própria conta (user_metadata do Supabase) e serve para a aba Vagas
+     montar a lista "Para você". Pular também conta como resposta: a
+     pergunta não volta sozinha, mas dá para mudar em Minha conta.
+     ══════════════════════════════════════════════════════════ */
+
+  const CSS_AREAS = `
+  #conta-porta.cp-larga { max-width:560px; }
+  .cp-areas { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:6px 0 4px; }
+  .cp-cx label.cp-area { display:flex; align-items:center; gap:10px; margin:0 !important; padding:11px 13px; border:1px solid var(--line,#DED7CA);
+             border-radius:12px; background:var(--bg,#F7F4EF); font-size:14px !important; font-weight:500 !important;
+             color:var(--ink,#10203A); cursor:pointer; line-height:1.3; }
+  .cp-cx label.cp-area input { width:17px !important; margin:0; height:17px; flex-shrink:0; padding:0 !important; accent-color:var(--signal,#1A4893); }
+  .cp-cx label.cp-area:has(input:checked) { background:var(--signal-suave,#EAF1F8); border-color:var(--signal,#1A4893); }
+  .cp-pular { display:block; width:100%; text-align:center; }
+  @media (max-width:520px){ .cp-areas { grid-template-columns:1fr; } }
+  `;
+
+  function areasRespondidas(u) {
+    const m = (u && u.user_metadata) || {};
+    return m.areas_respondido === true;
+  }
+
+  function telaAreas() {
+    return new Promise(resolver => {
+      const lista = (typeof Acesso !== "undefined" && Acesso.AREAS) || [];
+      if (!lista.length || !usuario) { resolver(); return; }
+      const minhas = ((usuario.user_metadata || {}).areas) || [];
+
+      const p = porta();
+      p.classList.add("cp-larga");
+      if (!document.getElementById("cp-css-areas")) {
+        const s = document.createElement("style");
+        s.id = "cp-css-areas"; s.textContent = CSS_AREAS;
+        document.head.appendChild(s);
+      }
+      p.innerHTML = `
+        <div class="cp-cx">
+          <div class="cp-olho">Para as vagas combinarem com você</div>
+          <h1>Você tem formação ou experiência em alguma destas áreas?</h1>
+          <p>É opcional, e você pode marcar quantas quiser. As vagas abertas a todos aparecem sempre.
+             Marcando uma área, as vagas que pedem essa formação passam a aparecer junto, na aba Vagas.</p>
+          <form novalidate>
+            <div class="cp-areas">
+              ${lista.map(a => `<label class="cp-area"><input type="checkbox" value="${esc(a[0])}"${minhas.indexOf(a[0]) >= 0 ? " checked" : ""}> ${esc(a[1])}</label>`).join("")}
+            </div>
+            <button class="cp-bt" type="submit">Salvar</button>
+          </form>
+          <button class="cp-link cp-pular" type="button" data-pular>${areasRespondidas(usuario) ? "Voltar sem mudar" : "Pular por enquanto"}</button>
+          <div class="cp-msg" role="status" hidden></div>
+        </div>
+        <p class="cp-rodape">Dá para mudar a qualquer momento em Minha conta. Só você vê as áreas que marcou.</p>`;
+
+      const form = p.querySelector("form"), msg = p.querySelector(".cp-msg"), bt = p.querySelector(".cp-bt");
+      const fim = () => { p.classList.remove("cp-larga"); resolver(); };
+
+      async function gravar(areas) {
+        bt.disabled = true;
+        try {
+          const r = await cliente().auth.updateUser({ data: { areas: areas, areas_respondido: true } });
+          if (r.error) throw r.error;
+          if (r.data && r.data.user) usuario = r.data.user;
+          fim();
+        } catch (e) {
+          // sem internet: não segura a pessoa; a pergunta volta na próxima vez
+          console.warn("Conta: não deu para salvar as áreas.", e);
+          msg.textContent = "Não deu para salvar agora. Você pode tentar de novo depois, em Minha conta.";
+          msg.className = "cp-msg erro"; msg.hidden = false;
+          bt.disabled = false;
+          setTimeout(fim, 2600);
+        }
+      }
+
+      form.addEventListener("submit", ev => {
+        ev.preventDefault();
+        bt.textContent = "Salvando…";
+        gravar([].slice.call(p.querySelectorAll(".cp-area input:checked")).map(c => c.value));
+      });
+      p.querySelector("[data-pular]").addEventListener("click", () => {
+        if (areasRespondidas(usuario)) fim();
+        else gravar(minhas);
+      });
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
      ENTRADA
 
      Chamado pelo controle.html antes de abrir a ferramenta.
@@ -325,6 +414,11 @@ const Conta = (function () {
       if (chegouPorLink && (tipoDoLink === "invite" || tipoDoLink === "recovery")) {
         await telaCriarSenha(usuario.email, tipoDoLink === "invite");
       }
+    }
+
+    // a pergunta das áreas: uma vez só, ou quando a pessoa pede para mudar
+    if (usuario && ((opcoes && opcoes.areas) || !areasRespondidas(usuario))) {
+      try { await telaAreas(); } catch (e) { console.warn(e); }
     }
 
     fecharPorta();
@@ -489,7 +583,7 @@ const Conta = (function () {
   }
 
   return {
-    entrar, sincronizar, empurrar, sair, apagarConta, traduzir,
+    entrar, sincronizar, empurrar, sair, apagarConta, traduzir, telaAreas,
     get usuario() { return usuario; },
     get obrigatorio() { return loginObrigatorio(); },
     get disponivel() { return disponivel(); },

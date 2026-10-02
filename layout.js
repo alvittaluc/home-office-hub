@@ -60,6 +60,40 @@ const Acesso = (function () {
   function logado() { return !!sessao(); }
   function email() { const s = sessao(); return (s && s.user && s.user.email) || ""; }
 
+  /* As áreas de formação. O primeiro nome é o que vem nos arquivos de vagas
+     (sem acento, do classificador.py); o segundo é o que a pessoa lê. */
+  const AREAS = [
+    ["Direito", "Direito"],
+    ["Medicina e Saude", "Medicina e Saúde"],
+    ["Programacao e Software", "Programação e Software"],
+    ["Engenharia", "Engenharia"],
+    ["Matematica e Estatistica", "Matemática e Estatística"],
+    ["Fisica e Astronomia", "Física e Astronomia"],
+    ["Quimica", "Química"],
+    ["Biologia e Ciencias da Vida", "Biologia e Ciências da Vida"],
+    ["Financas e Contabilidade", "Finanças e Contabilidade"],
+    ["Economia e Negocios", "Economia e Negócios"],
+    ["Psicologia e Ciencias Sociais", "Psicologia e Ciências Sociais"],
+    ["Humanidades", "Humanidades"],
+    ["Linguistica", "Linguística"],
+    ["Musica e Audio", "Música e Áudio"],
+    ["Design e Criacao", "Design e Criação"],
+    ["Marketing e Vendas", "Marketing e Vendas"],
+    ["Outras areas", "Outras áreas de especialista"],
+  ];
+  function nomeArea(id) {
+    const a = AREAS.find(x => x[0] === id);
+    return a ? a[1] : (id || "");
+  }
+  /* As áreas que a pessoa marcou na conta. null = ainda não respondeu (ou
+     não está logada); lista vazia = respondeu que não tem nenhuma. */
+  function areas() {
+    const s = sessao();
+    const m = s && s.user && s.user.user_metadata;
+    if (!m || m.areas_respondido !== true) return null;
+    return Array.isArray(m.areas) ? m.areas : [];
+  }
+
   function previa() {
     try {
       const q = new URLSearchParams(location.search);
@@ -179,6 +213,7 @@ const Acesso = (function () {
 
   return {
     logado, email, trancado, linkEntrar, cortina, htmlAviso, botaoNoCabecalho, aplicarRegras,
+    AREAS, nomeArea, areas,
     get portasLigadas() { return portasLigadas(); },
   };
 })();
@@ -303,6 +338,26 @@ async function lerEmpresas() {
   const resp = await fetch("empresas.json?v=" + Date.now());
   if (!resp.ok) throw new Error("HTTP " + resp.status);
   return await resp.json();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   IDIOMA DO TRABALHO
+   Cada vaga com resumo traz o campo "idioma", marcado à mão:
+     pt      o trabalho é em português (inglês só nas instruções)
+     nenhum  gravar vídeo, tirar foto: não depende de idioma
+     en      lê e escreve em inglês, com tempo e ferramenta do lado
+     en+     inglês avançado: falar ao vivo, escrever como nativo
+     outro   texto livre, por exemplo "alemão e inglês"
+   A etiqueta informa; quem decide se dá conta é a pessoa.
+   ══════════════════════════════════════════════════════════════ */
+function idiomaDaVaga(v) {
+  const i = v && v.resumo && v.resumo.idioma;
+  if (!i) return null;
+  if (i === "pt")     return { tipo: "pt",  curto: "em português",       longo: "Em português", semIngles: true };
+  if (i === "nenhum") return { tipo: "pt",  curto: "não depende de idioma", longo: "Não depende de idioma", semIngles: true };
+  if (i === "en")     return { tipo: "en",  curto: "em inglês",          longo: "Em inglês" };
+  if (i === "en+")    return { tipo: "av",  curto: "inglês avançado",    longo: "Exige inglês avançado" };
+  return { tipo: "en", curto: i, longo: i.charAt(0).toUpperCase() + i.slice(1) };
 }
 
 /* Mantida vazia de propósito: as páginas ainda chamam selo(), mas o site

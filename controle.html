@@ -306,7 +306,7 @@ body > header.site .hd { max-width:1460px; }
 <script src="layout.js"></script>
 <script src="controle-dados.js?v=2"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="controle-conta.js?v=4"></script>
+<script src="controle-conta.js?v=5"></script>
 <script src="pulso-site.js"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
@@ -1298,6 +1298,13 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         <p>
           O que você registra aqui fica guardado na sua conta, protegido pela sua senha.
           Entrando com o mesmo e-mail em outro computador ou no celular, está tudo lá.
+        </p>
+        <p>
+          <b>Áreas de formação:</b> ${(() => {
+            const a = (typeof Acesso !== "undefined" && Acesso.areas()) || [];
+            return a.length ? esc(a.map(Acesso.nomeArea).join(", ")) : "nenhuma marcada";
+          })()}.
+          <a href="entrar.html?areas=1&voltar=controle.html%23dados" style="color:var(--signal);text-decoration:underline;">Mudar</a>
         </p>
         <div class="ct-dados-bts">
           <button class="ct-b" id="btSair">Sair da conta</button>

@@ -441,6 +441,22 @@
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
   .v-emp { display:flex; flex-wrap:wrap; align-items:center; gap:5px 7px; font-size:12.5px; color:var(--ink-2); min-width:0; }
+  /* idioma do trabalho: informa, não esconde nada */
+  .v-emp .selo-idi {
+    font-size:11px; color:var(--ink-2); background:var(--bg-soft); border:1px solid var(--line-soft);
+    border-radius:20px; padding:1px 9px; flex-shrink:0; white-space:nowrap;
+  }
+  .v-emp .selo-idi.av { color:var(--amber); background:var(--amber-suave); border-color:#EBD2B4; }
+  /* convite para marcar as áreas, e a linha das áreas da pessoa */
+  .convite-area {
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:0 0 18px; padding:14px 18px;
+    background:var(--signal-suave); border:1px solid #D3E2F1; border-radius:14px; font-size:14px; color:var(--ink);
+  }
+  .convite-area span { flex:1; min-width:220px; line-height:1.5; }
+  .convite-area b { font-weight:600; }
+  .convite-area a { font-weight:600; color:var(--signal); white-space:nowrap; }
+  .chip.fixo { cursor:default; }
+  .chip.mudar { border-style:dashed; color:var(--signal); }
   /* pagamento anunciado pela empresa; só aparece quando ela informa */
   .v-emp .selo-pg {
     font-size:11.5px; font-weight:600; color:#1F7A6E; background:#E4F3F0; border:1px solid #C6E5DE;
@@ -656,14 +672,23 @@ let GERAIS = [], ESPECIFICAS = [], AREAS = [];
 let formacao = "";
 try { formacao = localStorage.getItem(CHAVE_FORM) || ""; } catch (e) {}
 
+/* As áreas que a pessoa marcou na conta (layout.js lê da sessão). Com elas
+   existe a lista "Para você": as vagas abertas a todos mais as das áreas dela. */
+let MINHAS = [];
+try { MINHAS = Acesso.areas() || []; } catch (e) {}
+const nomeArea = a => { try { return Acesso.nomeArea(a); } catch (e) { return a; } };
+const LINK_AREAS = "entrar.html?areas=1&voltar=vagas.html";
+const daMinhaArea = v => MINHAS.indexOf(v.area) >= 0;
+
 function compor() {
-  if (ESCOPO === "area" && AREA) TODAS = ESPECIFICAS.filter(v => v.area === AREA);
+  if (ESCOPO === "voce")         TODAS = GERAIS.concat(ESPECIFICAS.filter(daMinhaArea));
+  else if (ESCOPO === "area" && AREA) TODAS = ESPECIFICAS.filter(v => v.area === AREA);
   else if (ESCOPO === "tudo")    TODAS = GERAIS.concat(ESPECIFICAS);
   else                           TODAS = GERAIS.slice();
 }
 
 let fPeriodo = "all", fCats = new Set(), fEmps = new Set(), ordem = "relevancia";
-let busca = "", esconderAplicadas = false;
+let busca = "", esconderAplicadas = false, semIngles = false;
 
 /* Três telas no mesmo arquivo, decididas pela URL:
      inicio  as categorias e as empresas que mais contratam
@@ -696,6 +721,8 @@ async function iniciar() {
     try {
       const esp = await lerEspecificas();
       ESPECIFICAS = esp.vagas || [];
+      // só valem as áreas marcadas que têm vaga hoje
+      MINHAS = MINHAS.filter(a => ESPECIFICAS.some(v => v.area === a));
       AREAS = (esp.areas && esp.areas.length)
         ? esp.areas
         : [...new Set(ESPECIFICAS.map(v => v.area).filter(Boolean))].sort();
@@ -724,10 +751,14 @@ function lerUrl() {
   const p = new URLSearchParams(location.search);
 
   fCats.clear(); fEmps.clear();
-  fPeriodo = "all"; busca = ""; esconderAplicadas = false;
+  fPeriodo = "all"; busca = ""; esconderAplicadas = false; semIngles = false;
   ESCOPO = "gerais"; AREA = "";
 
-  if (p.get("areas")) {
+  if (p.get("inicio")) {
+    TELA = "inicio";
+  } else if (p.get("ver") === "voce" && MINHAS.length) {
+    TELA = "lista"; ESCOPO = "voce";
+  } else if (p.get("areas")) {
     TELA = "areas";
   } else if (p.get("area")) {
     TELA = "lista"; ESCOPO = "area"; AREA = p.get("area");
@@ -739,6 +770,9 @@ function lerUrl() {
     TELA = "lista"; fCats.add(p.get("cat"));
   } else if (p.get("ver") || p.get("q") || p.get("periodo")) {
     TELA = "lista";
+  } else if (MINHAS.length) {
+    // quem marcou áreas na conta entra direto na lista "Para você"
+    TELA = "lista"; ESCOPO = "voce";
   } else {
     TELA = "inicio";
   }
@@ -761,7 +795,7 @@ function render() {
     volta.href = "vagas.html?areas=1";
     volta.textContent = "← áreas de formação";
   } else {
-    volta.href = "vagas.html";
+    volta.href = MINHAS.length ? "vagas.html?inicio=1" : "vagas.html";
     volta.textContent = "← todas as categorias";
   }
   document.getElementById("lateral").classList.remove("aberta");
@@ -782,7 +816,8 @@ function render() {
     montarNumeros(ESPECIFICAS);
     montarAreas();
   } else {
-    if (ESCOPO === "area") { olho.textContent = "Exigem formação"; tit.textContent = AREA; }
+    if (ESCOPO === "area") { olho.textContent = "Exigem formação"; tit.textContent = nomeArea(AREA); }
+    else if (ESCOPO === "voce") { olho.textContent = "Para você"; tit.textContent = "As vagas abertas a todos e as das suas áreas"; }
     else if (ESCOPO === "tudo") {
       const id = [...fEmps][0];
       olho.textContent = "Empresa";
@@ -841,6 +876,7 @@ function passa(v, ignorar) {
   if (ignorar !== "cat" && fCats.size && !fCats.has(v.categoria)) return false;
   if (ignorar !== "emp" && fEmps.size && !fEmps.has(v.empresa)) return false;
   if (ignorar !== "aplic" && esconderAplicadas && jaApliquei(v)) return false;
+  if (ignorar !== "idi" && semIngles && !(idiomaDaVaga(v) || {}).semIngles) return false;
   if (ignorar !== "busca" && busca) {
     const alvo = sp([v.titulo, (EMPRESAS[v.empresa] || {}).nome || v.empresa,
                      v.empresa_real, v.local, v.badge].filter(Boolean).join(" "));
@@ -892,6 +928,11 @@ function montarMenus() {
     mostrar.push(`<button class="opcao${esconderAplicadas ? " on" : ""}" type="button" data-mostrar="aplic">
       <span class="caixa">✓</span><span class="nm">Esconder onde já me candidatei</span><span class="qt">${q}</span></button>`);
   }
+  if (TODAS.some(v => idiomaDaVaga(v))) {
+    const q = TODAS.filter(v => (idiomaDaVaga(v) || {}).semIngles && passa(v, "idi")).length;
+    mostrar.push(`<button class="opcao${semIngles ? " on" : ""}" type="button" data-mostrar="idi">
+      <span class="caixa">✓</span><span class="nm">Só trabalho que não é em inglês</span><span class="qt">${q}</span></button>`);
+  }
   document.getElementById("grupoMostrar").hidden = mostrar.length === 0;
   document.getElementById("menuMostrar").innerHTML = mostrar.join("");
 
@@ -899,13 +940,14 @@ function montarMenus() {
   document.querySelectorAll("[data-cat]").forEach(b => b.onclick = () => { alterna(fCats, b.dataset.cat); aplicar(); });
   document.querySelectorAll("[data-emp]").forEach(b => b.onclick = () => { alterna(fEmps, b.dataset.emp); aplicar(); });
   document.querySelectorAll("[data-mostrar]").forEach(b => b.onclick = () => {
-    esconderAplicadas = !esconderAplicadas;
+    if (b.dataset.mostrar === "idi") semIngles = !semIngles;
+    else esconderAplicadas = !esconderAplicadas;
     aplicar();
   });
 
   /* contador no botão que abre a coluna no celular */
   const n = fEmps.size + fCats.size + (fPeriodo !== "all" ? 1 : 0) +
-            (busca ? 1 : 0) + (esconderAplicadas ? 1 : 0);
+            (busca ? 1 : 0) + (esconderAplicadas ? 1 : 0) + (semIngles ? 1 : 0);
   const cnt = document.querySelector("#btFiltros .cnt");
   cnt.textContent = n; cnt.hidden = n === 0;
   document.getElementById("btLimpar").hidden = n === 0;
@@ -928,7 +970,7 @@ document.getElementById("busca").addEventListener("input", ev => {
 
 document.getElementById("btLimpar").addEventListener("click", () => {
   fPeriodo = "all"; fCats.clear(); fEmps.clear();
-  busca = ""; esconderAplicadas = false;
+  busca = ""; esconderAplicadas = false; semIngles = false;
   document.getElementById("busca").value = "";
   aplicar();
 });
@@ -944,6 +986,7 @@ function montarAtivos() {
   fEmps.forEach(id => itens.push({ rotulo: (EMPRESAS[id] || {}).nome || id, tipo: "emp", valor: id }));
   if (busca) itens.push({ rotulo: '"' + busca + '"', tipo: "busca" });
   if (esconderAplicadas) itens.push({ rotulo: "sem onde já me candidatei", tipo: "aplic" });
+  if (semIngles) itens.push({ rotulo: "trabalho que não é em inglês", tipo: "idi" });
 
   const alvo = document.getElementById("ativos");
   alvo.innerHTML = itens.map(i =>
@@ -954,7 +997,7 @@ function montarAtivos() {
     const { tipo, valor } = b.dataset;
     if (tipo === "tudo") {
       fPeriodo = "all"; fCats.clear(); fEmps.clear();
-      busca = ""; esconderAplicadas = false;
+      busca = ""; esconderAplicadas = false; semIngles = false;
       document.getElementById("busca").value = "";
     }
     if (tipo === "periodo") fPeriodo = "all";
@@ -962,6 +1005,7 @@ function montarAtivos() {
     if (tipo === "emp") fEmps.delete(valor);
     if (tipo === "busca") { busca = ""; document.getElementById("busca").value = ""; }
     if (tipo === "aplic") esconderAplicadas = false;
+    if (tipo === "idi") semIngles = false;
     aplicar();
   });
 }
@@ -1010,6 +1054,7 @@ function linha(v) {
   /* frase e pagamento vêm do resumo escrito à mão (resumos.json). Vaga sem
      esses campos fica exatamente como era. */
   const r = v.resumo || {};
+  const idi = idiomaDaVaga(v);
   const pg = r.remuneracao
     ? `<span class="selo-pg" title="Pagamento anunciado pela empresa">${esc(r.remuneracao.replace(/ por hora\b/, "/h"))}</span>` : "";
 
@@ -1022,8 +1067,9 @@ function linha(v) {
       <span class="v-emp">
         <span class="e">${esc(e.nome)}${real}</span>
         ${pg}
+        ${idi ? `<span class="selo-idi ${idi.tipo}" title="Idioma do trabalho">${esc(idi.curto)}</span>` : ""}
         ${nova ? '<span class="selo-novo">nova</span>' : ""}
-        ${v.area ? `<span class="selo-area">${esc(v.area)}</span>` : ""}
+        ${v.area ? `<span class="selo-area">${esc(nomeArea(v.area))}</span>` : ""}
       </span>
     </span>
 
@@ -1125,7 +1171,21 @@ function montarInicio() {
         <span class="acao">${SETA}</span></a>`;
     }).join("");
 
+  /* quem tem conta e ainda não disse as áreas recebe o convite; quem já
+     marcou ganha o atalho para a lista dela */
+  let convite = "";
+  try {
+    if (MINHAS.length) {
+      convite = `<div class="convite-area"><span><b>Para você:</b> as vagas abertas a todos e as de ${esc(MINHAS.map(nomeArea).join(", "))}.</span>
+        <a href="vagas.html?ver=voce" data-ir>Ver a minha lista ${SETA}</a></div>`;
+    } else if (Acesso.logado() && Acesso.areas() === null) {
+      convite = `<div class="convite-area"><span><b>Tem formação ou experiência em alguma área?</b> Marque na sua conta e veja essas vagas junto com as abertas a todos.</span>
+        <a href="${LINK_AREAS}">Marcar minhas áreas ${SETA}</a></div>`;
+    }
+  } catch (e) {}
+
   document.getElementById("telaInicio").innerHTML = `
+    ${convite}
     <div class="bloco"><div class="portas">${portas}</div></div>
     <div class="bloco">
       <div class="grupo-titulo"><h2>Por tipo de trabalho</h2><span>entre as vagas abertas a todos</span></div>
@@ -1146,8 +1206,8 @@ function montarAreas() {
   const linhas = lista.map(a => {
     const dela = daArea(a);
     return `<a class="lin" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>
-      ${ICO.form}<span class="nm">${esc(a)}</span>
-      ${formacao === a ? '<span class="sua">a sua</span>' : ""}
+      ${ICO.form}<span class="nm">${esc(nomeArea(a))}</span>
+      ${(MINHAS.length ? MINHAS.indexOf(a) >= 0 : formacao === a) ? '<span class="sua">a sua</span>' : ""}
       <span class="qt">${dela.length}${novas(dela)}</span>
       <span class="acao">${SETA}</span></a>`;
   }).join("");
@@ -1173,23 +1233,35 @@ function montarAbas() {
 
   const naGeral = TELA === "lista" && ESCOPO === "gerais";
   const naForm = TELA === "areas" || ESCOPO === "area";
+  const paraVoce = MINHAS.length
+    ? `<a class="aba${ESCOPO === "voce" ? " on" : ""}" href="vagas.html?ver=voce" data-ir>
+      Para você <span class="n">${GERAIS.length + ESPECIFICAS.filter(daMinhaArea).length}</span></a>` : "";
 
   abas.hidden = false;
-  abas.innerHTML = `
+  abas.innerHTML = `${paraVoce}
     <a class="aba${naGeral ? " on" : ""}" href="vagas.html?ver=todas" data-ir>
       Abertas a todos <span class="n">${GERAIS.length}</span></a>
     <a class="aba form${naForm ? " on" : ""}" href="vagas.html?areas=1" data-ir>
       Pedem formação <span class="n">${ESPECIFICAS.length}</span></a>`;
 
+  const daArea = a => ESPECIFICAS.filter(v => v.area === a).length;
+
+  // na lista "Para você": de onde vêm as vagas, e o atalho para mudar as áreas
+  if (ESCOPO === "voce") {
+    chips.hidden = false;
+    chips.innerHTML = `<span class="chip fixo">Abertas a todos <span>${GERAIS.length}</span></span>` +
+      MINHAS.map(a => `<a class="chip" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>${esc(nomeArea(a))} <span>${daArea(a)}</span></a>`).join("") +
+      `<a class="chip mudar" href="${LINK_AREAS}">mudar minhas áreas</a>`;
+    return;
+  }
   if (ESCOPO !== "area") { chips.hidden = true; return; }
 
-  const daArea = a => ESPECIFICAS.filter(v => v.area === a).length;
   const lista = (AREAS.length ? AREAS : [...new Set(ESPECIFICAS.map(v => v.area))])
     .filter(daArea).sort((a,b) => daArea(b) - daArea(a));
 
   chips.hidden = false;
   chips.innerHTML = lista.map(a =>
-    `<a class="chip${a === AREA ? " on" : ""}" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>${esc(a)} <span>${daArea(a)}</span></a>`
+    `<a class="chip${a === AREA ? " on" : ""}" href="vagas.html?area=${encodeURIComponent(a)}" data-ir>${esc(nomeArea(a))} <span>${daArea(a)}</span></a>`
   ).join("");
 
   const ativo = chips.querySelector(".chip.on");

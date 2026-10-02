@@ -22,7 +22,8 @@
         "requisitos": "Fluência total em português (Brasil) e bom domínio de inglês. Morar no Brasil. Conhecer bem a cultura pop brasileira. Dedicação exclusiva ao programa de Search Quality (não pode ter atuado em avaliação de anúncios/Ads).",
         "dica_cv": "Destaque: experiência com avaliação/qualidade de conteúdo, organização e coordenação de tarefas, e seu nível de inglês (mencione B2/C1). Deixe claro que mora no Brasil.",
         "frase": "Coordenar a qualidade de um projeto de avaliação de buscas.",
-        "contrato": "Freelancer"
+        "contrato": "Freelancer",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -45,7 +46,8 @@
         "requisitos": "Fluência em alemão e bom domínio de inglês (escrito e falado). Conhecimento de cultura pop moderna. Computador e internet confiáveis. Familiaridade com buscadores online.",
         "dica_cv": "Esta vaga exige ALEMÃO. Só vale a pena se você fala alemão. Destaque: fluência em alemão, nível de inglês, e familiaridade com internet/buscadores.",
         "frase": "Avaliar anúncios da internet em inglês e alemão.",
-        "contrato": "Freelancer"
+        "contrato": "Freelancer",
+        "idioma": "alemão e inglês"
       },
       "indicacao": false
     },
@@ -68,7 +70,8 @@
         "requisitos": "Fluência em italiano e bom domínio de inglês (escrito e falado). Conhecimento de cultura pop. Computador e internet confiáveis. Familiaridade com buscadores.",
         "dica_cv": "Esta vaga exige ITALIANO. Só vale a pena se você fala italiano. Destaque: fluência em italiano, nível de inglês, e familiaridade com internet/buscadores.",
         "frase": "Avaliar anúncios da internet em inglês e italiano.",
-        "contrato": "Freelancer"
+        "contrato": "Freelancer",
+        "idioma": "italiano e inglês"
       },
       "indicacao": false
     },
@@ -93,7 +96,8 @@
         "frase": "Conferir transcrições de áudios curtos em português.",
         "remuneracao": "US$ 5,20 por hora",
         "carga": "3 a 5 h por semana",
-        "contrato": "Freelancer, 15 a 20 h no total"
+        "contrato": "Freelancer, 15 a 20 h no total",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -116,7 +120,8 @@
         "requisitos": "Português (Brasil) nativo. Ler com clareza e naturalidade. Ter um notebook e um ambiente interno silencioso para gravar. Seguir as instruções e cumprir o prazo.",
         "dica_cv": "Vaga simples, ótima para começar. Destaque: boa dicção, português nativo, e que tem ambiente silencioso e equipamento para gravar. Não precisa de experiência prévia.",
         "frase": "Gravar 20 frases curtas em português.",
-        "contrato": "Tarefa pontual"
+        "contrato": "Tarefa pontual",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -140,7 +145,8 @@
         "dica_cv": "Currículo em inglês, de uma página. Logo no resumo do topo escreva que você é falante nativo de português do Brasil com inglês avançado, porque é o primeiro filtro do recrutador. Depois liste qualquer experiência de revisão, tradução, transcrição, moderação ou digitação com números concretos, no estilo \"revisei em média 80 textos por dia com 98% de aprovação\". Se já trabalhou em plataformas como Appen, Telus, Toloka ou Welocalize, cite o nome do projeto e o tipo de tarefa.",
         "frase": "Revisar e anotar conteúdo em português para treinar IA.",
         "remuneracao": "US$ 4 por hora",
-        "contrato": "Freelancer, 4 semanas"
+        "contrato": "Freelancer, 4 semanas",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -162,7 +168,8 @@
         "o_que_faz": "Você conduz sessões de gravação ao vivo com locutores do Projeto Hydrus, que coleta áudio para criar vozes sintéticas de assistentes de IA. O papel é de diretor de voz: explicar a cena para quem está gravando, orientar para a fala soar natural e não lida, improvisar quando o roteiro trava e adaptar frases para soarem como o português falado de verdade. Também cuida da qualidade técnica em tempo real, como distância do microfone, ritmo e ruído de fundo.",
         "requisitos": "Português brasileiro nativo, com ouvido apurado para a fala coloquial. Experiência comprovada dirigindo, orientando ou produzindo voz: direção de dublagem, casting, produção de podcast, teatro ou algo parecido. Conhecimento básico de técnica de gravação, facilidade para improvisar e boa habilidade para deixar pessoas sem experiência à vontade diante do microfone.",
         "dica_cv": "O currículo precisa mostrar direção, não só atuação. Liste projetos em que você orientou outras pessoas: peças, podcasts, dublagem, gravações corporativas. Cite o que você corrigia na prática, como dicção, respiração e ritmo. Se tiver um link com trabalhos que você dirigiu ou produziu, coloque logo no início.",
-        "frase": "Dirigir sessões de gravação de voz ao vivo."
+        "frase": "Dirigir sessões de gravação de voz ao vivo.",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -185,7 +192,8 @@
         "requisitos": "Português brasileiro nativo e fala natural e clara. Ambiente silencioso e equipamento que garanta um áudio limpo. Atenção: as gravações podem ser usadas para criar vozes geradas por IA. Antes de qualquer sessão paga você recebe e assina um termo de consentimento explicando como sua voz será usada, compartilhada e guardada.",
         "dica_cv": "Leia o termo de consentimento com calma antes de assinar, porque ele define o que pode ser feito com a sua voz. No cadastro, informe seu sotaque e sua região: projetos de voz costumam buscar variedade de sotaques. Experiência com locução, teatro ou podcast ajuda, mas o que conta mesmo é soar natural. Uma gravação de teste num cômodo silencioso mostra que você tem as condições técnicas.",
         "frase": "Gravar a sua voz em duas sessões guiadas.",
-        "carga": "2 sessões de cerca de 4 h"
+        "carga": "2 sessões de cerca de 4 h",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -210,7 +218,8 @@
         "frase": "Avaliar se os resultados de um buscador são úteis.",
         "remuneracao": "Até US$ 6 por hora",
         "carga": "5 a 20 h por semana",
-        "contrato": "Meio período"
+        "contrato": "Meio período",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -235,7 +244,8 @@
         "frase": "Participar de conversas de voz curtas com a IA.",
         "carga": "10 h ou mais por semana",
         "remuneracao": "US$ 6 por hora",
-        "contrato": "Meio período"
+        "contrato": "Meio período",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -259,7 +269,8 @@
         "dica_cv": "Apesar de aparecer para o Brasil, esta vaga só serve para quem fala chinês fluente. Se esse for o seu caso, capriche no áudio: ruído de fundo é o principal motivo de reprovação. Faça um teste gravando e ouvindo antes de enviar. Não precisa de currículo elaborado, o que importa é a qualidade das primeiras gravações.",
         "frase": "Gravar clipes de voz misturando inglês e chinês.",
         "remuneracao": "Até US$ 30 por hora",
-        "contrato": "Por gravação aprovada"
+        "contrato": "Por gravação aprovada",
+        "idioma": "inglês e chinês"
       },
       "indicacao": false
     },
@@ -283,7 +294,8 @@
         "dica_cv": "Não é vaga de currículo, e sim de cadastro e qualidade de gravação. Confira se o seu celular tem a lente 0,5x antes de se inscrever. Vale investir num suporte de cabeça barato para celular, porque segurar na mão não serve. Grave de dia ou com a casa bem iluminada e faça as tarefas de verdade, sem pausas longas.",
         "frase": "Gravar vídeos das tarefas de casa com o celular.",
         "remuneracao": "Até US$ 6 por hora",
-        "contrato": "Por projeto"
+        "contrato": "Por projeto",
+        "idioma": "nenhum"
       },
       "indicacao": false
     },
@@ -307,7 +319,8 @@
         "dica_cv": "Aqui o currículo pesa pouco, então dedique o esforço ao cadastro: informe o modelo exato do celular. Grave um teste curto e assista antes de enviar, conferindo foco, luz e se as suas mãos aparecem no quadro. Se você já se inscreveu em outros projetos de gravação da Toloka, use os mesmos dados para não parecer cadastro duplicado.",
         "frase": "Gravar vídeos em primeira pessoa das tarefas de casa.",
         "remuneracao": "US$ 6 por hora aprovada",
-        "contrato": "Por conteúdo aprovado"
+        "contrato": "Por conteúdo aprovado",
+        "idioma": "nenhum"
       },
       "indicacao": false
     },
@@ -331,7 +344,8 @@
         "dica_cv": "O filtro é o equipamento, não o currículo. Antes de se inscrever, confira se o seu celular tem a lente 0,5x. Um suporte de cabeça para celular faz toda a diferença na aprovação. Evite movimentos forçados ou pausas: a Toloka quer ver a tarefa sendo feita de forma natural.",
         "frase": "Gravar a rotina de casa com o celular preso na cabeça.",
         "remuneracao": "Até US$ 6 por hora",
-        "contrato": "Por projeto"
+        "contrato": "Por projeto",
+        "idioma": "nenhum"
       },
       "indicacao": false
     },
@@ -353,7 +367,8 @@
         "requisitos": "Português brasileiro nativo, porque o projeto contrata falantes nativos de 31 idiomas. Atenção a detalhe, boa escuta e disposição para seguir diretrizes detalhadas. Computador, internet estável e um bom fone de ouvido são essenciais para esse tipo de revisão.",
         "dica_cv": "Por ser uma vaga de revisão, a OneForma busca quem já tem prática com transcrição. Cite experiências com transcrição, legendagem ou revisão de texto, e se possível o volume de horas de áudio que você já trabalhou. Os testes de entrada costumam cobrar as regras do guia à risca, então leia tudo antes de começar.",
         "frase": "Revisar transcrições prontas de áudios longos.",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -375,7 +390,8 @@
         "requisitos": "Domínio nativo ou fluente do idioma escolhido e ouvido treinado para separar vozes, sotaques e falas sobrepostas. Digitação rápida e precisa, com cuidado em pontuação, nomes próprios e sincronia dos horários. Computador com internet estável e fone de ouvido de qualidade razoável. Como em todos os projetos da OneForma, é preciso criar conta na plataforma e passar por uma avaliação de entrada antes de começar.",
         "dica_cv": "Destaque experiência com transcrição, legendagem, digitação, secretariado ou atendimento por áudio, sempre com números, como palavras por minuto ou minutos de áudio transcritos por hora. Cite pelo nome as ferramentas que você já usou, por exemplo Express Scribe, oTranscribe, Audacity, Subtitle Edit ou plataformas de legenda. Se você conhece regras de transcrição verbatim e não verbatim, escreva isso, porque mostra que você entende o vocabulário da área.",
         "frase": "Transcrever podcasts e marcar quem está falando.",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -397,7 +413,8 @@
         "requisitos": "Fluência nativa no idioma do projeto e leitura confortável em inglês, já que as rubricas costumam vir nesse idioma. Raciocínio analítico para julgar com consistência e explicar por escrito o motivo de cada nota. Atenção a erro factual, alucinação, tom inadequado e instrução não cumprida. Disciplina para seguir critérios longos sem mudar o padrão ao longo do dia. Cadastro e teste de qualificação na OneForma.",
         "dica_cv": "Mostre experiência em avaliação, revisão, correção de provas, docência ou qualquer função em que você tenha aplicado critérios de nota. Escreva uma ou duas linhas explicando como você garante consistência, porque é exatamente isso que o projeto compra. Se já fez avaliação de resposta de IA, RLHF, red teaming ou search evaluation, coloque em destaque com o nome da plataforma.",
         "frase": "Avaliar respostas de IA e os critérios de correção.",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -419,7 +436,8 @@
         "requisitos": "Ser profissional nativo do idioma de destino, com experiência em tradução, edição ou localização. Conhecer as diferenças regionais do idioma, incluindo gírias, formalidade, formatos de data, moeda e unidades. Bom senso para decidir o que mudar e o que preservar, e capacidade de justificar as escolhas. Cadastro e qualificação na OneForma.",
         "dica_cv": "Escreva explicitamente a variante que você domina, por exemplo português do Brasil, e não apenas \"português\", porque a plataforma separa Brasil de Portugal. Dê um exemplo curto de adaptação que você já fez, do tipo trocar um termo de Portugal pelo equivalente brasileiro. Palavras que ajudam na triagem: localização, transcriação, guia de estilo, glossário e adaptação regional.",
         "frase": "Ajustar traduções para soarem naturais na região.",
-        "contrato": "Por item aprovado"
+        "contrato": "Por item aprovado",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -442,7 +460,8 @@
         "dica_cv": "Como a vaga é de longo prazo, deixe clara a sua disponibilidade semanal em números logo no início do perfil. Destaque experiência com anotação, categorização, triagem de tickets, moderação ou atendimento, tudo que envolva classificar mensagens em categorias. Uma frase sobre você seguir guias longos sem perder o padrão pesa bastante aqui.",
         "frase": "Classificar o que o usuário pediu e o que a IA respondeu.",
         "carga": "30 a 50 h por mês",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -464,7 +483,8 @@
         "requisitos": "Ser nativo ou fluente nos idiomas listados no projeto e ler bem em nível de parágrafo, percebendo perda de sentido, omissão e trecho inventado. Capacidade de aplicar uma escala de avaliação sem deixar o gosto pessoal interferir. Ritmo constante, já que o ganho depende do volume aprovado. Cadastro e teste de qualificação na OneForma.",
         "dica_cv": "Deixe os pares de idiomas visíveis no topo do perfil. Destaque revisão, avaliação de qualidade de tradução ou correção de textos, e cite se já trabalhou com critérios formais de avaliação. Como o pagamento é por item, vale mencionar sua produtividade, algo como quantos textos ou páginas você revisa por hora.",
         "frase": "Comparar parágrafos originais com a tradução.",
-        "contrato": "Por item aprovado"
+        "contrato": "Por item aprovado",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -486,7 +506,8 @@
         "requisitos": "Ser falante nativo do idioma de destino e ter proficiência sólida no idioma de origem. Consistência ao aplicar a escala de notas, porque a plataforma mede a sua concordância com outros avaliadores. Atenção a erro de sentido, termo trocado, número errado e omissão. Cadastro e aprovação no teste de qualificação da OneForma.",
         "dica_cv": "Informe o par de idiomas e o seu nível em cada um, de preferência com certificação se tiver. Destaque experiência em revisão, avaliação ou controle de qualidade de tradução. Se você já participou de projetos com escalas de nota, LQA ou MQM, cite pelo nome. Nos primeiros lotes, prefira acertar o critério a correr, porque a nota de consistência define se você continua no projeto.",
         "frase": "Dar nota a traduções, frase por frase.",
-        "contrato": "Por item aprovado"
+        "contrato": "Por item aprovado",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -508,7 +529,8 @@
         "requisitos": "Ter um Apple ID ativo e um dispositivo iOS, condição eliminatória do projeto, e morar em uma localidade elegível. Bom conhecimento de aplicativos, artistas e cultura pop local, porque muita avaliação depende de saber o que o usuário provavelmente queria. Atenção a detalhe e disciplina para seguir diretrizes longas. Cadastro e qualificação na OneForma.",
         "dica_cv": "Diga logo que você tem iPhone ou iPad e Apple ID ativo, porque é a primeira coisa checada. Cite familiaridade com App Store, Apple Music, Spotify e o cenário musical brasileiro. Se já fez search evaluation, moderação de conteúdo ou pesquisa de mercado, destaque. Reserve um tempo para estudar as diretrizes antes do teste, já que a aprovação depende quase toda dele.",
         "frase": "Avaliar buscas em loja de aplicativos e de música.",
-        "contrato": "Por item aprovado"
+        "contrato": "Por item aprovado",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -531,7 +553,8 @@
         "requisitos": "Português brasileiro nativo ou fluente, já que a vaga busca pessoas para vários idiomas, incluindo o português do Brasil. Inglês para ler as diretrizes, que são longas e detalhadas. Muita atenção a detalhe visual e ortográfico e consistência ao aplicar as mesmas regras em todas as tarefas.",
         "dica_cv": "Destaque experiência com revisão de texto, diagramação, design gráfico ou qualquer função que exija olho treinado para erros. Se você já trabalhou com anotação de imagens ou com ferramentas de marcação, cite isso. Na inscrição, deixe claro que o seu idioma é o português do Brasil, para ser encaminhado ao grupo certo.",
         "frase": "Avaliar o texto que aparece em imagens geradas por IA.",
-        "remuneracao": "US$ 7,21 por hora"
+        "remuneracao": "US$ 7,21 por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -554,7 +577,8 @@
         "requisitos": "Português brasileiro nativo. Não precisa de formação técnica nem de experiência anterior com IA. É preciso ter atenção a detalhe, seguir instruções com cuidado e ter computador com internet estável. Inglês ajuda para ler as orientações da plataforma.",
         "dica_cv": "É uma das vagas mais acessíveis do hub, ótima para quem está começando. No currículo, valorize qualquer trabalho que exigiu organização, conferência de dados ou atendimento. Faça os testes de entrada com calma: nessa área, acertar o critério vale mais que ser rápido.",
         "frase": "Marcar objetos em fotos, classificar frases e comparar respostas.",
-        "remuneracao": "US$ 10 por hora"
+        "remuneracao": "US$ 10 por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -577,7 +601,8 @@
         "requisitos": "Português brasileiro nativo. Experiência com produção de áudio, análise de fala, linguística ou tecnologia de voz. Familiaridade com editores de áudio e noções técnicas como volume, ruído de fundo, clipping e distorção. Bom ouvido e atenção a detalhe para perceber erros sutis de pronúncia e entonação.",
         "dica_cv": "Cite os programas de áudio que você usa, como Audacity, Adobe Audition, Reaper ou similares, e dê exemplos do que já editou. Se tiver experiência com transcrição, locução, podcast ou linguística, coloque em destaque. Quem já avaliou vozes de IA ou fez testes de TTS deve mencionar isso logo no início.",
         "frase": "Avaliar vozes sintéticas e corrigir transcrições.",
-        "remuneracao": "US$ 6 por hora"
+        "remuneracao": "US$ 6 por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -602,7 +627,8 @@
         "frase": "Participar de uma coleta de dados para pais de adolescentes.",
         "remuneracao": "US$ 20 por participação",
         "carga": "Cerca de 30 minutos",
-        "contrato": "Tarefa única"
+        "contrato": "Tarefa única",
+        "idioma": "nenhum"
       },
       "indicacao": false
     },
@@ -626,7 +652,8 @@
         "dica_cv": "Currículo em inglês, mas com exemplos concretos de português carioca, do tipo apontar uma expressão que um modelo usaria errado. Destaque ensino de português, revisão, tradução, redação ou pesquisa em linguística. Vale saber que o anúncio é um modelo genérico reaproveitado e cita coisas que não existem em português, como sistema de casos e declinações, então não se assuste: na prática o que conta é o seu domínio real do dialeto. Se você é do Rio ou morou lá por muitos anos, diga isso logo na primeira linha.",
         "frase": "Testar a IA no português falado no Rio de Janeiro.",
         "remuneracao": "US$ 6 a 65 por hora",
-        "contrato": "Freelancer"
+        "contrato": "Freelancer",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -650,7 +677,8 @@
         "dica_cv": "Deixe claro que é português do Brasil e informe o nível C1 ou C2, com certificação se tiver. Este perfil é mais alto que o de anotador comum, então destaque as vezes em que você treinou pessoas, escreveu guia de estilo, montou material de treinamento ou liderou revisão de equipe. Se já trabalhou em plataformas de dados para IA, cite o nome e o tipo de tarefa. Um exemplo curto de documento didático que você criou vale mais que uma lista de adjetivos.",
         "frase": "Ser o filtro final de qualidade do português em dados de IA.",
         "remuneracao": "US$ 6 a 65 por hora",
-        "contrato": "Prestador independente"
+        "contrato": "Prestador independente",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -674,7 +702,8 @@
         "dica_cv": "Como o anúncio fala de português sem separar Brasil de Portugal, escreva você mesmo qual variante domina e em que contextos, para não cair na fila errada. Vale se candidatar a esta e à versão específica do Brasil, já que são anúncios diferentes na mesma empresa. Destaque experiência em revisão, ensino de português, tradução e criação de material didático, e cite plataformas de dados para IA em que já trabalhou.",
         "frase": "Revisar e validar dados de IA em português.",
         "remuneracao": "US$ 6 a 65 por hora",
-        "contrato": "Prestador independente"
+        "contrato": "Prestador independente",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -698,7 +727,8 @@
         "dica_cv": "Diga logo que você é de São Paulo ou mora na região há anos, porque é o critério central. Dê um ou dois exemplos concretos de expressão paulistana e de como um modelo erraria ao usá-la. Assim como na versão carioca, o anúncio é um modelo genérico e menciona conceitos que não existem em português, como declinações, então ignore essa parte e foque no seu domínio real do falar local. Se você domina os dois dialetos, candidate-se aos dois anúncios.",
         "frase": "Testar a IA no português falado em São Paulo.",
         "remuneracao": "US$ 6 a 65 por hora",
-        "contrato": "Freelancer"
+        "contrato": "Freelancer",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -721,7 +751,8 @@
         "requisitos": "Proficiência nativa ou bilíngue no idioma do projeto, com boa fala, escuta, leitura e escrita, já que você vai conduzir simulações por voz. Experiência profissional comprovada em atendimento ao cliente complexo, suporte técnico ou avaliação de IA conversacional. Noção básica de programação, o suficiente para entender JSON, funções e métodos. Microfone de boa qualidade é exigência formal, além de computador seguro e internet estável.",
         "dica_cv": "Esta vaga cruza dois mundos, então mostre os dois: atendimento ou suporte técnico de um lado, e familiaridade com JSON e lógica do outro, mesmo que básica. Descreva os setores em que você atendeu, porque o projeto cita viagem, finanças e suporte técnico. Informe o modelo do microfone e diga que grava em ambiente silencioso. Se você tem desenvoltura para falar em voz alta e improvisar num roteiro, deixe isso explícito, já que boa parte do trabalho é dramatização.",
         "frase": "Simular atendimentos por voz para avaliar a IA.",
-        "remuneracao": "US$ 6 a 65 por hora"
+        "remuneracao": "US$ 6 a 65 por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -744,7 +775,8 @@
         "requisitos": "Ter 18 anos ou mais e aceitar os termos de consentimento, já que o projeto envolve fornecer voz e imagem. Formação em letras, linguística ou área próxima é o ideal, e experiência docente ou em análise linguística conta pontos. Inglês para as diretrizes e clareza para explicar o raciocínio por escrito. O material enviado deve conter apenas você, sem terceiros nem informações pessoais sensíveis. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Antes de aceitar, leia o termo de consentimento com atenção, porque aqui você cede gravações da sua voz e da sua imagem para treino de IA, o que é diferente de um trabalho só de texto. Se estiver confortável, é uma das portas de entrada mais acessíveis da Meridial, já que é nível de entrada. No currículo, destaque ensino de português, revisão, locução ou qualquer experiência diante de câmera e microfone, e informe o seu equipamento de gravação.",
         "frase": "Contribuir com texto, voz, imagem e vídeo em português.",
-        "remuneracao": "US$ 6 a 65 por hora"
+        "remuneracao": "US$ 6 a 65 por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -768,7 +800,8 @@
         "dica_cv": "A faixa salarial é enorme, e o que define onde você cai é a experiência comprovada. Inclua o link de um material de demonstração com estilos variados de voz e liste trabalhos com clientes, estúdios ou produções. Cite o seu equipamento de gravação, como modelo do microfone e tratamento acústico. Se já deu aulas de voz ou dicção, isso também conta.",
         "frase": "Gravar roteiros e avaliar vozes geradas por IA.",
         "remuneracao": "US$ 6 a 65 por hora",
-        "contrato": "Freelancer"
+        "contrato": "Freelancer",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -791,7 +824,8 @@
         "requisitos": "Português brasileiro nativo, prática com transcrição de áudio e muita atenção a detalhe. A micro1 costuma fazer uma entrevista em vídeo conduzida por IA na inscrição, geralmente em inglês. Computador, internet estável e um bom fone de ouvido são essenciais.",
         "dica_cv": "A micro1 seleciona pela entrevista com IA, então prepare-se para falar sobre sua experiência com exemplos concretos: tipos de áudio que já transcreveu, ferramentas que usou e como garante a precisão. Faça a entrevista num lugar silencioso e com boa conexão. No currículo, destaque transcrição, legendagem, revisão e qualquer trabalho anterior com dados de IA.",
         "frase": "Transcrever e revisar áudios em português.",
-        "remuneracao": "US$ 20 a 36 por hora"
+        "remuneracao": "US$ 20 a 36 por hora",
+        "idioma": "pt"
       },
       "indicacao": true
     },
@@ -815,7 +849,8 @@
         "dica_cv": "Não há currículo a montar. Preencha o cadastro com dados corretos e siga as instruções das fotos à risca, porque só a tarefa aprovada é paga.",
         "frase": "Tirar fotos de si mesmo para um banco de imagens de IA.",
         "remuneracao": "US$ 140 por tarefa aprovada",
-        "contrato": "Tarefa pontual"
+        "contrato": "Tarefa pontual",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -839,7 +874,8 @@
         "dica_cv": "Detalhe as rotinas pelas quais você respondia: agenda de executivos, viagens, prestação de contas, arquivo. Mostre processos que você documentou ou melhorou. Currículo em inglês.",
         "frase": "Criar tarefas de rotina de escritório para testar agentes de IA.",
         "remuneracao": "US$ 20 a 40 por hora",
-        "contrato": "Por tarefa aprovada"
+        "contrato": "Por tarefa aprovada",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -863,7 +899,8 @@
         "dica_cv": "Mostre números: volume de registros que você tratava, taxa de erro, auditorias pelas quais passou. Cite os tipos de arquivo e os sistemas com que trabalhou. Currículo em inglês.",
         "frase": "Criar testes de conferência de dados para avaliar agentes de IA.",
         "remuneracao": "US$ 20 a 35 por hora",
-        "contrato": "Por tarefa aprovada"
+        "contrato": "Por tarefa aprovada",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -887,7 +924,8 @@
         "dica_cv": "Não precisa de currículo. Os dois gêmeos precisam se inscrever e enviar as fotos, então combinem antes. Só a tarefa aprovada é paga.",
         "frase": "Tirar fotos com o seu irmão gêmeo para um banco de imagens de IA.",
         "remuneracao": "US$ 140 por participante",
-        "contrato": "Tarefa pontual"
+        "contrato": "Tarefa pontual",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -911,7 +949,8 @@
         "dica_cv": "Não precisa de currículo. Vale indicar a vaga para pais, tios e avós que tenham celular e topem participar. Siga as instruções das fotos com cuidado, porque só a tarefa aprovada é paga.",
         "frase": "Tirar fotos de si mesmo, para quem tem 50 anos ou mais.",
         "remuneracao": "US$ 140 por tarefa aprovada",
-        "contrato": "Tarefa pontual"
+        "contrato": "Tarefa pontual",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -934,7 +973,8 @@
         "requisitos": "Muita atenção a detalhe ao revisar e marcar vídeo. Boa comunicação escrita e falada em inglês. Organização para trabalhar sozinho e cumprir prazos. Experiência com anotação de vídeo, marcação quadro a quadro ou projetos de IA e robótica é preferida.",
         "dica_cv": "Destaque experiência com anotação de vídeo ou rotulagem de dados e as ferramentas que usou, principalmente as de linha do tempo. Se já trabalhou com projetos de IA ou robótica, coloque no início.",
         "frase": "Marcar ações e tempos em vídeos de braços robóticos.",
-        "remuneracao": "US$ 22 a 70 por hora"
+        "remuneracao": "US$ 22 a 70 por hora",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -958,7 +998,8 @@
         "dica_cv": "Não precisa de currículo. Combine antes com o seu irmão ou irmã, porque os dois precisam se inscrever e enviar as fotos. Só a tarefa aprovada é paga.",
         "frase": "Tirar fotos com um irmão ou irmã para um banco de imagens de IA.",
         "remuneracao": "US$ 140 por participante",
-        "contrato": "Tarefa pontual"
+        "contrato": "Tarefa pontual",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -982,7 +1023,8 @@
         "dica_cv": "Destaque experiência com câmera 360° em carro, viagem ou esporte, e diga que suporte você usa. Um exemplo de vídeo já reenquadrado mostra que você domina a parte técnica.",
         "frase": "Gravar o seu carro em movimento com câmera 360°.",
         "remuneracao": "US$ 15 a 20 por hora",
-        "contrato": "Por hora de vídeo aprovado"
+        "contrato": "Por hora de vídeo aprovado",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -1005,7 +1047,8 @@
         "requisitos": "Bom domínio de inglês escrito. Atenção a detalhe visual e sonoro e constância para manter a qualidade em muitas tarefas seguidas. Experiência com anotação de vídeo e áudio ou com moderação de conteúdo é preferida. Cuidado com dados confidenciais.",
         "dica_cv": "Se já trabalhou com moderação de conteúdo ou anotação de dados, coloque isso no topo, com a plataforma e o tempo de experiência. Cite o nível de inglês. Prepare-se para a entrevista com IA da micro1, geralmente em inglês.",
         "frase": "Rotular vídeos e áudios curtos e conferir descrições de IA.",
-        "remuneracao": "US$ 8 a 10 por hora"
+        "remuneracao": "US$ 8 a 10 por hora",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -1028,7 +1071,8 @@
         "requisitos": "Inglês bom para escrever os comentários e acompanhar as instruções. Atenção a detalhe e julgamento consistente em tarefas repetitivas. Experiência com anotação, rotulagem ou moderação de conteúdo ajuda, principalmente com vídeo ou áudio, mas aparece como preferência e não como exigência.",
         "dica_cv": "Mostre qualquer experiência com anotação de dados, moderação ou revisão de conteúdo, mesmo curta. Destaque o seu nível de inglês escrito. A micro1 costuma fazer uma entrevista em vídeo conduzida por IA, geralmente em inglês.",
         "frase": "Conferir descrições de vídeos e áudios feitas por IA.",
-        "remuneracao": "US$ 8 a 10 por hora"
+        "remuneracao": "US$ 8 a 10 por hora",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -1053,7 +1097,8 @@
         "frase": "Fazer ligações em inglês para resolver tarefas de clientes dos EUA.",
         "remuneracao": "US$ 18 a 28 por hora",
         "carga": "Até 20 h por semana, em turnos",
-        "contrato": "4 semanas iniciais"
+        "contrato": "4 semanas iniciais",
+        "idioma": "en+"
       },
       "indicacao": true
     },
@@ -1076,7 +1121,8 @@
         "requisitos": "Português brasileiro nativo, experiência com transcrição de áudio e muita atenção a detalhe. A seleção da micro1 costuma incluir uma entrevista em vídeo conduzida por IA, geralmente em inglês. Computador, internet estável e um bom fone de ouvido.",
         "dica_cv": "Prepare-se para a entrevista com IA contando exemplos reais: que tipo de áudio você transcreveu, quantas horas e com qual ferramenta. Se tiver um teste de transcrição ou certificado de curso, mencione. A micro1 também tem a vaga de Portuguese Language Expert, que paga mais; vale se inscrever nas duas.",
         "frase": "Transcrever áudios em português.",
-        "remuneracao": "US$ 10 a 18 por hora"
+        "remuneracao": "US$ 10 a 18 por hora",
+        "idioma": "pt"
       },
       "indicacao": true
     },
@@ -1100,7 +1146,8 @@
         "dica_cv": "Se você já grava vlogs, viagens ou esportes com câmera 360°, mande o link do canal ou de alguns vídeos. Informe o modelo da câmera e os suportes que possui.",
         "frase": "Gravar o dia a dia em vídeo com câmera 360°.",
         "remuneracao": "US$ 10 a 15 por hora",
-        "contrato": "Por vídeo aprovado"
+        "contrato": "Por vídeo aprovado",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -1124,7 +1171,8 @@
         "dica_cv": "Diga qual câmera e quais suportes você já tem e, se possível, mande um link com um vídeo seu gravado nesse estilo. Vale mencionar os tipos de ambiente que você consegue gravar: cidade, estrada, trilha, dentro de casa.",
         "frase": "Gravar vídeos em terceira pessoa com câmera 360°.",
         "remuneracao": "US$ 10 a 20 por hora",
-        "contrato": "Por hora de vídeo aprovado"
+        "contrato": "Por hora de vídeo aprovado",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -1148,7 +1196,8 @@
         "dica_cv": "Liste o equipamento que você tem, com modelo da câmera e tipo de suporte, e mostre um exemplo de gravação. Quem já tem o suporte pronto costuma começar antes.",
         "frase": "Gravar vídeos em terceira pessoa com câmera de ação.",
         "remuneracao": "US$ 10 a 15 por hora",
-        "contrato": "Por vídeo aprovado"
+        "contrato": "Por vídeo aprovado",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -1173,7 +1222,8 @@
         "frase": "Gravar vídeos em casa com o celular, em vaga anunciada em português.",
         "remuneracao": "US$ 6 por hora",
         "carga": "Mínimo de 10 h por semana",
-        "contrato": "Por vídeo aprovado"
+        "contrato": "Por vídeo aprovado",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -1196,7 +1246,8 @@
         "requisitos": "Atenção a diferenças sutis de movimento e de interação com objetos. Boa escrita em inglês para documentar as decisões. Experiência com anotação de vídeo e controle de qualidade ajuda, e conhecer um pouco de robótica é diferencial.",
         "dica_cv": "Mostre experiência com anotação de vídeo, avaliação por rubrica ou controle de qualidade. Se tiver contato com robótica, edição de vídeo ou análise de movimento, destaque: é o que justifica o topo da faixa de pagamento.",
         "frase": "Avaliar vídeos de robôs e pessoas executando tarefas.",
-        "remuneracao": "US$ 15 a 80 por hora"
+        "remuneracao": "US$ 15 a 80 por hora",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -1220,7 +1271,8 @@
         "dica_cv": "Aqui o currículo pesa pouco. Informe o modelo exato do seu celular, confirme que mora no Brasil e diga quantas horas por semana consegue gravar. Se já gravou vídeos para projetos de IA, como os da Toloka, mencione.",
         "frase": "Gravar as tarefas de casa com o celular preso na cabeça.",
         "remuneracao": "US$ 6 por hora",
-        "contrato": "Por hora de vídeo aprovado"
+        "contrato": "Por hora de vídeo aprovado",
+        "idioma": "nenhum"
       },
       "indicacao": true
     },
@@ -1244,7 +1296,8 @@
         "dica_cv": "Currículo em inglês, destacando transcrição, legendagem ou qualquer trabalho com áudio. Cite a sua familiaridade com sotaques de diferentes regiões do Brasil, porque isso é um diferencial real nesse tipo de projeto. Treine com áudios de conversas antes do teste da Alignerr.",
         "frase": "Transcrever áudios de conversas em português.",
         "remuneracao": "US$ 10 a 35 por hora",
-        "carga": "10 a 40 h por semana"
+        "carga": "10 a 40 h por semana",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -1268,7 +1321,8 @@
         "dica_cv": "A Alignerr cita transcrição, legendagem, closed caption, estenotipia e linguística como experiências valiosas. Se você tem alguma delas, coloque no topo do currículo, em inglês. Se não tem, destaque revisão de texto e atenção a detalhe com exemplos concretos.",
         "frase": "Corrigir transcrições automáticas de áudios em português.",
         "remuneracao": "US$ 10 a 35 por hora",
-        "carga": "10 a 40 h por semana"
+        "carga": "10 a 40 h por semana",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -1293,7 +1347,8 @@
         "frase": "Corrigir transcrições e alinhar o tempo de cada palavra ao áudio.",
         "remuneracao": "US$ 10 a 35 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1318,7 +1373,8 @@
         "frase": "Transcrever áudios em inglês, palavra por palavra.",
         "remuneracao": "US$ 10 a 35 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en+"
       },
       "indicacao": false
     },
@@ -1343,7 +1399,8 @@
         "frase": "Escrever perguntas e desafios originais para testar a IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1368,7 +1425,8 @@
         "frase": "Rotular, classificar e avaliar conteúdo para treinar IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1393,7 +1451,8 @@
         "frase": "Avaliar textos gerados por IA sobre assuntos variados.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1418,7 +1477,8 @@
         "frase": "Conversar com chatbots de IA e avaliar as respostas.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1443,7 +1503,8 @@
         "frase": "Avaliar avaliações e descrições de produtos feitas por IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1468,7 +1529,8 @@
         "frase": "Ler textos gerados por IA e avaliar a qualidade.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1493,7 +1555,8 @@
         "frase": "Avaliar posts e legendas de redes sociais feitos por IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1518,7 +1581,8 @@
         "frase": "Escrever, editar e avaliar textos em inglês para treinar IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en+"
       },
       "indicacao": false
     },
@@ -1543,7 +1607,8 @@
         "frase": "Assistir a vídeos e descrever a cena em texto detalhado.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en+"
       },
       "indicacao": false
     },
@@ -1568,7 +1633,8 @@
         "frase": "Avaliar se as respostas da IA têm viés ou conteúdo nocivo.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1593,7 +1659,8 @@
         "frase": "Transcrever áudios em texto para treinar IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en+"
       },
       "indicacao": false
     },
@@ -1618,7 +1685,8 @@
         "frase": "Ouvir gravações e avaliar a qualidade do áudio.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1643,7 +1711,8 @@
         "frase": "Avaliar resultados de busca e respostas de IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1668,7 +1737,8 @@
         "frase": "Dividir vídeos em cenas e marcar ângulo e movimento de câmera.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1693,7 +1763,8 @@
         "frase": "Revisar e melhorar textos em português gerados por IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -1718,7 +1789,8 @@
         "frase": "Fazer tarefas de avaliação e rotulagem para treinar IA.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1743,7 +1815,8 @@
         "frase": "Classificar e etiquetar textos, imagens e áudios.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1768,7 +1841,8 @@
         "frase": "Gravar a sua voz lendo roteiros e respondendo a perguntas.",
         "remuneracao": "US$ 40 a 120 por hora",
         "carga": "10 a 40 h por semana",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -1792,7 +1866,8 @@
         "dica_cv": "A diferença para a outra vaga da Alignerr é o peso do inglês e do conhecimento das duas variantes do português, então destaque exatamente isso. Cite pares de idiomas, tipos de material localizados e ferramentas como Trados, memoQ, Phrase ou Smartcat. Vale se candidatar às duas vagas da Alignerr, já que os projetos são diferentes e a faixa de pagamento também.",
         "frase": "Revisar traduções e textos em português feitos por IA.",
         "remuneracao": "US$ 20 a 40 por hora",
-        "carga": "10 a 40 h por semana"
+        "carga": "10 a 40 h por semana",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -1817,7 +1892,8 @@
         "frase": "Gravar vídeos das tarefas de casa com celular Android.",
         "remuneracao": "US$ 18 a 24 por hora",
         "carga": "Sessões recorrentes",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "nenhum"
       },
       "indicacao": false
     },
@@ -1842,7 +1918,8 @@
         "frase": "Gravar tarefas domésticas com Android e headset.",
         "remuneracao": "US$ 18 a 24 por hora",
         "carga": "Sessões recorrentes",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "nenhum"
       },
       "indicacao": false
     },
@@ -1867,7 +1944,8 @@
         "frase": "Descrever planos de vídeo: ângulo, movimento, luz e clima.",
         "remuneracao": "US$ 30 a 50 por hora",
         "carga": "Horário flexível",
-        "contrato": "Por hora"
+        "contrato": "Por hora",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1889,7 +1967,8 @@
         "o_que_faz": "Você cria desafios para testar agentes de IA que pesquisam na internet. Primeiro encontra fotos reais de lugares, produtos e mídia ligados ao Brasil, com licença livre ou de sua autoria. Depois corta, cobre ou degrada partes da imagem para esconder o que ela mostra, de um jeito que a IA precise pesquisar em vários passos, com Google Lens ou busca reversa, para descobrir. Para cada desafio você escreve o enunciado em inglês, os critérios de correção e a solução com as fontes.",
         "requisitos": "Português fluente e bom inglês escrito. Saber usar Photoshop ou editor parecido para recortar e mascarar imagens. Habilidade com pesquisa online e cuidado para verificar e documentar a licença de cada foto. Experiência com fotografia ajuda bastante.",
         "dica_cv": "Mostre que você sabe pesquisar e documentar fontes, não só fotografar. Cite experiência com fotografia, edição de imagem, jornalismo ou checagem de fatos. Se você entende de licenças como Creative Commons, mencione. Um portfólio com fotos próprias de lugares brasileiros é um ótimo diferencial.",
-        "frase": "Criar desafios de pesquisa com fotos para testar a IA."
+        "frase": "Criar desafios de pesquisa com fotos para testar a IA.",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -1913,7 +1992,8 @@
         "dica_cv": "Pense bem antes de se inscrever: o projeto exige usar a sua conta pessoal do Google com Gmail e histórico ativados. Se estiver tranquilo com isso, destaque experiência com avaliação de IA, testes de produto ou análise de qualidade. Dê exemplos de como você usa assistentes de IA no dia a dia, porque isso mostra que você sabe criar boas perguntas.",
         "frase": "Avaliar a personalização do Gemini em português.",
         "remuneracao": "US$ 15 por hora",
-        "carga": "Tempo integral"
+        "carga": "Tempo integral",
+        "idioma": "pt"
       },
       "indicacao": false
     },
@@ -1937,7 +2017,8 @@
         "dica_cv": "Currículo em inglês, mostrando trabalhos em que você precisou ler com atenção, revisar ou explicar por escrito por que algo estava errado. Se já fez avaliação de IA em outras plataformas, coloque no início. Entrar no banco não garante trabalho: o convite depende de aparecer um projeto.",
         "frase": "Entrar no banco de generalistas da Mercor para avaliar respostas de IA.",
         "remuneracao": "US$ 40 a 70 por hora",
-        "contrato": "Cadastro para projetos futuros"
+        "contrato": "Cadastro para projetos futuros",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -1961,7 +2042,8 @@
         "dica_cv": "Deixe claro no currículo que o português do Brasil é a sua língua nativa e liste os outros idiomas com o nível de cada um. Trabalhos de tradução, revisão, locução ou áudio contam bastante. Entrar no banco não garante trabalho: o convite depende de aparecer um projeto.",
         "frase": "Entrar no banco de idiomas e áudio da Mercor para avaliar IA em português.",
         "remuneracao": "US$ 35 a 50 por hora",
-        "contrato": "Cadastro para projetos futuros"
+        "contrato": "Cadastro para projetos futuros",
+        "idioma": "pt"
       },
       "indicacao": true
     },
@@ -1986,7 +2068,8 @@
         "frase": "Ouvir audiolivros narrados por IA e apontar os erros da narração.",
         "remuneracao": "US$ 15 a 20 por hora",
         "carga": "Cerca de 20 h por semana",
-        "contrato": "Meio período"
+        "contrato": "Meio período",
+        "idioma": "pt"
       },
       "indicacao": true
     },
@@ -2010,7 +2093,8 @@
         "dica_cv": "Currículo em inglês, com exemplos de revisão: o que você conferia, com que critérios e que melhorias trouxe. Experiência com anotação de dados ou avaliação de conteúdo é um diferencial. A Mercor seleciona com entrevista em vídeo por IA, então pratique contar essas experiências em inglês.",
         "frase": "Revisar o trabalho entregue por outros colaboradores.",
         "remuneracao": "US$ 20 a 50 por hora",
-        "carga": "Cerca de 40 h por semana"
+        "carga": "Cerca de 40 h por semana",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -2035,7 +2119,8 @@
         "frase": "Criar perguntas de pesquisa e respostas para treinar IA, usando MacBook.",
         "remuneracao": "US$ 50 a 60 por hora",
         "carga": "10 a 20 h por semana",
-        "contrato": "Meio período"
+        "contrato": "Meio período",
+        "idioma": "en"
       },
       "indicacao": true
     },
@@ -2058,7 +2143,8 @@
         "requisitos": "Capacidade analítica e bom julgamento para aplicar regras de segurança em casos ambíguos. Criatividade para pensar em formas de burlar as proteções da IA. Escrita clara para justificar cada decisão. Inglês fluente. É importante estar preparado para lidar com conteúdo sensível.",
         "dica_cv": "Destaque experiência com moderação de conteúdo, confiança e segurança (trust & safety), políticas ou avaliação de IA. Se já fez testes adversariais (red teaming) ou análise de riscos, coloque em primeiro lugar. Considere com cuidado o tipo de conteúdo antes de aceitar: o trabalho envolve temas pesados.",
         "frase": "Classificar pedidos de edição de imagem pelo risco.",
-        "contrato": "Por projeto"
+        "contrato": "Por projeto",
+        "idioma": "en"
       },
       "indicacao": false
     },
@@ -2081,7 +2167,8 @@
         "requisitos": "Inglês avançado de leitura e escrita, já que é o idioma do projeto. Aceitar usar a sua conta pessoal principal do Google, e não uma conta de teste, com essas fontes de dados ativadas. Disponibilidade em tempo integral no seu fuso, porque a operação funciona 24 horas. Pensamento analítico e criatividade para montar conversas.",
         "dica_cv": "Existe uma versão desta vaga em português, que pode ser mais fácil de conseguir para quem é brasileiro. Nas duas, o projeto usa a sua conta pessoal do Google, então pense se você está confortável com isso. No currículo, destaque avaliação de IA, testes de produto ou análise de qualidade, com exemplos em inglês.",
         "frase": "Avaliar a personalização do Gemini em inglês.",
-        "carga": "Tempo integral"
+        "carga": "Tempo integral",
+        "idioma": "en+"
       },
       "indicacao": false
     },
@@ -2103,7 +2190,8 @@
         "o_que_faz": "Você analisa vídeos curtos e imagens e descreve em detalhe o que aparece: pessoas, objetos, ambientes, ações, emoções e a relação entre eles. Nos vídeos, também descreve a sequência dos acontecimentos, as mudanças de cena e as interações. Além disso, confere se descrições geradas por IA estão corretas. O trabalho treina modelos a entender o mundo visual como as pessoas entendem.",
         "requisitos": "Inglês avançado de leitura e escrita, já que as descrições são feitas nesse idioma. Muita atenção a detalhe e capacidade de seguir instruções precisas. Familiaridade com ferramentas básicas de computador. Experiência anterior com anotação de imagens ou vídeos é um diferencial.",
         "dica_cv": "Como tudo é escrito em inglês, capriche na escrita do próprio currículo. Destaque experiência com anotação de dados, audiodescrição, legendagem, fotografia, cinema ou crítica de arte, que mostram olhar treinado. Se já descreveu imagens para acessibilidade, mencione.",
-        "frase": "Descrever em inglês o que aparece em imagens e vídeos."
+        "frase": "Descrever em inglês o que aparece em imagens e vídeos.",
+        "idioma": "en+"
       },
       "indicacao": false
     },
@@ -2125,7 +2213,8 @@
         "o_que_faz": "Você grava a tela do seu computador enquanto executa tarefas passo a passo, como configurar programas, usar ferramentas de produtividade, organizar dados ou explorar aplicativos. Cada tarefa pode ter mais de 100 interações, entre cliques e teclas. As gravações ensinam IAs a entender como as pessoas usam o computador. Às vezes você também precisa marcar ou conferir as ações registradas.",
         "requisitos": "Computador próprio e facilidade para usar programas variados. Capacidade de seguir instruções detalhadas sem pular etapas e de fazer gravações completas e sem interrupções. Organização com nomes de arquivos e documentação. Compromisso com privacidade e confidencialidade. Inglês para entender as instruções.",
         "dica_cv": "Mostre que você domina vários programas: planilhas, editores, ferramentas de gestão e de design. Se já trabalhou com suporte técnico, treinamentos em software ou gravação de tutoriais, destaque. Antes de gravar, feche notificações e qualquer janela com dados pessoais.",
-        "frase": "Gravar a tela enquanto executa tarefas no computador."
+        "frase": "Gravar a tela enquanto executa tarefas no computador.",
+        "idioma": "nenhum"
       },
       "indicacao": false
     },
@@ -2147,7 +2236,8 @@
         "o_que_faz": "Vaga de locução em inglês americano para projetos de IA. Você grava falas dando vida a personagens e histórias, com a emoção, a personalidade e o tom certos. Trabalha a partir de roteiros, recebe direção e refaz gravações conforme o retorno, entregando os arquivos no prazo e no formato pedido. É um contrato flexível, não um emprego fixo.",
         "requisitos": "Experiência anterior como ator ou atriz de voz, com controle vocal, versatilidade e boa dicção em inglês americano. Equipamento de gravação de qualidade para trabalhar de casa. Capacidade de seguir direção e cumprir prazos. Experiência com dublagem ou localização e um material de demonstração de voz são diferenciais.",
         "dica_cv": "Esta vaga é para quem fala inglês americano em nível de locução profissional, não para português. Se esse for o seu caso, envie um material de demonstração com vários estilos e cite o seu equipamento de estúdio. Experiência com dublagem e formação em artes cênicas também contam pontos.",
-        "frase": "Gravar locução em inglês americano."
+        "frase": "Gravar locução em inglês americano.",
+        "idioma": "en+"
       },
       "indicacao": false
     },
@@ -2170,7 +2260,8 @@
         "requisitos": "Experiência prática e real com o tema da receita, como quem já organizou casamentos ou controla os próprios treinos. Escrita excelente em inglês, 100% própria: a IA só pode ajustar a gramática. Domínio do Google Sheets com fórmulas e várias abas. Disponibilidade para plantão nos fins de semana, com 35 a 50 horas por ciclo e reuniões diárias.",
         "dica_cv": "Escolha temas que você vive de verdade e conte as situações práticas que já resolveu. Mostre uma planilha sua bem organizada, como link de exemplo. Escreva a candidatura com a sua própria voz: o cliente reprova texto com cara de IA. Confirme se você consegue cumprir a disponibilidade de fins de semana antes de se inscrever.",
         "frase": "Escrever roteiros para um assistente de IA no Google Sheets.",
-        "carga": "35 a 50 h por ciclo"
+        "carga": "35 a 50 h por ciclo",
+        "idioma": "en+"
       },
       "indicacao": false
     }

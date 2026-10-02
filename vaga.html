@@ -172,6 +172,7 @@ function erro(msg) {
     ["Pagamento", r.remuneracao, true],
     ["Carga", r.carga],
     ["Contrato", r.contrato],
+    ["Idioma do trabalho", (idiomaDaVaga(v) || {}).longo],
   ].filter(f => f[1]);
 
   cont.innerHTML = `
