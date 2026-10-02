@@ -412,11 +412,17 @@ _OUTRO_IDIOMA = re.compile(
     r"hausa|igbo|zulu|afrikaans|amharic|somali)\b", re.I)
 
 
+# Inglês com sotaque de um país: vaga de locução para nativos de lá.
+_SOTAQUE_INGLES = re.compile(
+    r"\b(irish|australian|south african|british|scottish|welsh|canadian|"
+    r"new zealand|indian|nigerian|singaporean)\s+english\b", re.I)
+
+
 def idioma_estrangeiro(titulo):
     """True se o título pede outro idioma que não português nem inglês."""
     if _BRASIL.search(titulo or ""):
         return False
-    return bool(_OUTRO_IDIOMA.search(titulo or ""))
+    return bool(_OUTRO_IDIOMA.search(titulo or "") or _SOTAQUE_INGLES.search(titulo or ""))
 
 
 # A página da vaga é feita em Next.js: o conteúdo vem em pedaços dentro de
@@ -632,10 +638,10 @@ def coletar_micro1(pausa=0.3, buscar_descricao=True, termos=None,
 #  ALIGNERR  (Labelbox)
 # ═══════════════════════════════════════════════════════════════════
 
-URL_ALIGNERR = "https://www.alignerr.com/api/jobs?limit=100&offset=0&search={termo}"
+URL_ALIGNERR = "https://www.alignerr.com/api/jobs?limit=100&offset={offset}&search="
+ARQUIVO_MESTRES_ALIGNERR = "alignerr-mestres.json"
 URL_ALIGNERR_VAGA = "https://www.alignerr.com/jobs/{id}"
 
-TERMOS_ALIGNERR = ["portuguese", "brazil"]
 
 
 def _detalhe_alignerr(url):
@@ -656,88 +662,136 @@ def _detalhe_alignerr(url):
     return ((dados.get("props") or {}).get("pageProps") or {}).get("job") or {}
 
 
-def coletar_alignerr(pausa=0.6):
-    """Busca na Alignerr, confere o país na página de cada vaga e deduplica.
+def coletar_alignerr(pausa=0.2):
+    """Lê a lista INTEIRA da Alignerr e fica com as vagas que servem ao Brasil.
 
-    A listagem diz "Remote" para tudo, então o país só aparece ao abrir a
-    vaga. Como a Alignerr repete muito o mesmo anúncio, no fim ficamos com
-    uma vaga por título, a de publicação mais recente.
+    Até outubro de 2026 a busca era por "portuguese" e "brazil", e ficavam de
+    fora as vagas abertas ao mundo com título em inglês ("Generalist",
+    "Content Reviewer"...).
+
+    A Alignerr publica milhares de anúncios, mas quase todos são cópias
+    regionais da mesma vaga (a de Tóquio, a de Berlim, a de São Paulo). Toda
+    cópia aponta para a vaga-mãe pelo campo masterJobId. A vaga-mãe não tem
+    cidade nem país: é a versão aberta, e é ela que entra no hub.
+
+    Passos:
+      1. baixa a lista inteira, de 100 em 100, e agrupa por título
+      2. descobre a vaga-mãe de cada título (guardado em alignerr-mestres.json,
+         para não perguntar de novo na rodada seguinte)
+      3. abre cada vaga-mãe e decide pelo país e pela linha "Location:"
     """
     print("  → Alignerr ...", end=" ")
-    brutas, ids_vistos = [], set()
-    houve_resposta = False
+    brutas, vistos = [], set()
     erros = []
-
-    for termo in TERMOS_ALIGNERR:
+    for offset in range(0, 20000, 100):
         try:
-            resposta = _baixar(URL_ALIGNERR.format(termo=termo),
+            resposta = _baixar(URL_ALIGNERR.format(offset=offset),
                                origem="https://www.alignerr.com")
-            houve_resposta = True
         except Exception as e:
-            erros.append(f"{termo}: {e}")
-            continue
-        for v in (resposta.get("jobs") or []):
-            jid = v.get("id")
-            if jid and jid not in ids_vistos:
-                ids_vistos.add(jid)
+            erros.append(f"offset {offset}: {e}")
+            break
+        lote = resposta.get("jobs") or []
+        for v in lote:
+            if v.get("id") and v["id"] not in vistos:
+                vistos.add(v["id"])
                 brutas.append(v)
-        time.sleep(0.4)
+        if len(lote) < 100:
+            break
+        time.sleep(0.2)
 
-    if not houve_resposta:
+    if not brutas:
         print("FALHOU")
         for msg in erros:
             print(f"      · {msg}")
         return []
 
-    candidatas = []
+    # 1. um representante por título
+    por_titulo = {}
     for v in brutas:
-        jid = v.get("id")
-        url = URL_ALIGNERR_VAGA.format(id=jid)
+        titulo = (v.get("title") or "").strip()
+        if titulo:
+            por_titulo.setdefault(titulo, v)
+
+    # 2. a vaga-mãe de cada título
+    try:
+        with open(ARQUIVO_MESTRES_ALIGNERR, "r", encoding="utf-8") as f:
+            mestres = json.load(f)
+    except Exception:
+        mestres = {}
+    conhecidos = mestres.get("titulos") or {}
+    titulos_de_hoje = {}
+    fora_titulo = 0
+    for titulo, v in por_titulo.items():
+        if (pais_estrangeiro(titulo) or idioma_estrangeiro(titulo)
+                or (_REGIAO_NO_TITULO.search(titulo) and not _BRASIL.search(titulo))):
+            fora_titulo += 1
+            continue
+        mid = conhecidos.get(titulo)
+        if not mid:
+            det = _detalhe_alignerr(URL_ALIGNERR_VAGA.format(id=v["id"]))
+            time.sleep(pausa)
+            if not det:
+                continue                  # página falhou: tenta de novo na próxima rodada
+            mid = det.get("masterJobId") or v["id"]
+        titulos_de_hoje[titulo] = mid
+    try:
+        with open(ARQUIVO_MESTRES_ALIGNERR, "w", encoding="utf-8") as f:
+            json.dump({"nota": "Alignerr: qual é a vaga-mãe de cada título. Gerado pelo coletor.",
+                       "titulos": dict(sorted(titulos_de_hoje.items()))},
+                      f, ensure_ascii=False, indent=1)
+    except Exception:
+        pass
+
+    # 3. abre cada vaga-mãe uma vez só
+    do_mestre = {}
+    for titulo, mid in titulos_de_hoje.items():
+        do_mestre.setdefault(mid, por_titulo[titulo])
+    candidatas = []
+    fora_local = 0
+    for mid, v in do_mestre.items():
+        url = URL_ALIGNERR_VAGA.format(id=mid)
         det = _detalhe_alignerr(url)
         time.sleep(pausa)
-
-        titulo = (det.get("name") or v.get("title") or "").strip()
-        local = (det.get("location") or "").strip()
-        if not titulo:
+        if not det or det.get("isActive") is False:
             continue
-
-        # Setembro de 2026: a Alignerr publica cópias regionais da mesma
-        # vaga, com cidade e país preenchidos (ex.: Berlin / DE, texto
-        # "brasileiros morando na Alemanha"). A vaga-mãe não tem país e
-        # aceita qualquer lugar. Cópia presa a outro país sai do hub.
+        titulo = (det.get("name") or v.get("title") or "").strip()
+        if not titulo or idioma_estrangeiro(titulo) or pais_estrangeiro(titulo):
+            continue
         pais_vaga = (det.get("countryCode") or "").strip().upper()
         if pais_vaga and pais_vaga != "BR":
+            fora_local += 1
             continue
-        # O campo "location" diz "United States" em quase tudo, até na cópia
-        # de São Paulo. É o padrão da Alignerr, não uma exigência: a própria
-        # página diz "Location: Remote". Quem manda é o countryCode.
-        if pais_vaga == "BR":
-            local = "Brazil"
-        elif local.lower() == "united states":
-            local = "Remote"
         desc = limpar_html(det.get("longDescription")
                            or det.get("htmlLongDescription")
                            or v.get("description", ""))
-        if not aceita_brasil(titulo, local, descricao=desc):
+        em_pt = bool(pais_vaga == "BR" or _BRASIL.search(titulo) or _PORTUGUES.search(titulo))
+        if not em_pt and local_micro1(desc) == "fora":
+            fora_local += 1
             continue
 
+        categoria = (det.get("category") or v.get("category") or "").upper()
         candidatas.append({
             "titulo": titulo,
             "url": url,
-            "local": local_em_portugues(local),
+            "local": "Remoto · Brasil" if em_pt else "Remoto · Mundial",
             "desc": desc,
             "requisitos": limpar_html(det.get("shortDescription") or ""),
-            # firstPostDate é a republicação mais recente; createdAt é antigo
             "data_post": (det.get("firstPostDate")
                           or det.get("createdAt") or "")[:10],
             "pagamento": v.get("pay") or "",
             "horario": det.get("jobType") or "",
+            # A própria Alignerr separa as vagas em General, Audio, Coding e
+            # Stem. As duas últimas são de especialista: se o classificador
+            # não achar a área pelo título, a vaga vai para a área de reserva
+            # em vez de cair na aba Vagas.
+            "area_dica": ("Programacao e Software" if categoria == "CODING"
+                          else "Outras areas" if categoria == "STEM" else ""),
         })
 
     vagas = deduplicar_por_nome(candidatas)
-    repetidas = len(candidatas) - len(vagas)
-    print(f"{len(vagas)} vaga(s) BR de {len(brutas)} encontradas "
-          f"({repetidas} repetida(s) descartada(s))")
+    print(f"{len(vagas)} vaga(s) de {len(brutas)} anúncios "
+          f"({len(por_titulo)} títulos, {len(do_mestre)} vagas-mãe; "
+          f"{fora_titulo} fora pelo título, {fora_local} fora pelo local)")
     return vagas
 
 

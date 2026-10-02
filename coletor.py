@@ -1002,6 +1002,9 @@ def _buscar_extra(nome_interno, nome_funcao, **kwargs) -> list:
             "_desc": v.get("desc", ""),
             "_req": v.get("requisitos", ""),
             "_comp": v.get("pagamento", ""),
+            # área sugerida pela própria empresa, usada só quando o
+            # classificador não decide pelo título (caso da Alignerr)
+            "_area_dica": v.get("area_dica", ""),
         })
 
     # Lista o que passou no filtro. São poucas vagas por fonte, e ver o título
@@ -1485,6 +1488,12 @@ def main():
                     v.get("titulo", ""), v.get("_desc", ""))
             except TypeError:
                 area = classificador.classificar_area(v.get("titulo", ""))
+            if not area and v.get("_area_dica"):
+                try:
+                    if not classificador.geral_por_regra(v.get("titulo", "")):
+                        area = v["_area_dica"]
+                except AttributeError:
+                    area = v["_area_dica"]
             if area:
                 v["area"] = area
                 marcadas += 1
@@ -1710,7 +1719,7 @@ def main():
 
     # remove os campos temporários de descrição (não vão pro arquivo final)
     for v in todas:
-        for campo in ("_desc", "_req", "_comp", "_url_id"):
+        for campo in ("_desc", "_req", "_comp", "_url_id", "_area_dica"):
             v.pop(campo, None)
 
     # ─── Separa o que aparece do que fica escondido ───

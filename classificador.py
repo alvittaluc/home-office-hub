@@ -94,6 +94,9 @@ EXCECOES = {
     "Portuguese Language Specialist (Brazil)": "Linguistica",
     "AI Language Expert": "Linguistica",
     "Customer Support Task Author": "Outras areas",
+    "Customer Support / Success Task Author": "Outras areas",
+    # pede formacao ou pratica profissional em cinema
+    "Cinematography Analysis": "Design e Criacao",
     # "music" agora e palavra de area; esta aqui e avaliacao de busca, geral
     "App Store And Music Search Evaluator": "",
 
@@ -107,7 +110,9 @@ EXCECOES = {
     "=Lifestyle Experts": "",
     # pedem o programa instalado e uso profissional dele
     "Application Users": "Outras areas",
-    "Generalist (Must own MacBook)": "Outras areas",
+    # generalista no nome, mas o anuncio procura pesquisadores, professores e
+    # doutores de humanas
+    "Generalist Search Expert": "Outras areas",
     "Dispatcher": "Outras areas",
 }
 
@@ -120,6 +125,11 @@ SEMPRE_GERAL = [
     "portuguese", "brazil", "brazilian", "pt-br", "ptbr", "pt br",
     "portugues", "brasil", "brasileiro", "brasileira",
 ]
+
+# "Generalista" no titulo: vaga que nao pede formacao em area nenhuma. Fica
+# na aba Vagas mesmo que o resto do titulo ou a descricao falem de alguma
+# area. So uma linha em EXCECOES passa por cima disto.
+GENERALISTA = ["generalist", "generalista"]
 
 # Termos que enganam a palavra "engineer" e nao indicam area.
 # ("ai engineer" e "engineering manager" sairam daqui em outubro de 2026:
@@ -142,7 +152,8 @@ AREAS = [
         "pharmacy", "pharmacist", "pharmaceutical", "dentist", "dental",
         "veterinary", "radiology", "oncology", "cardiology", "neurology",
         "psychiatry", "psychiatrist", "surgeon", "epidemiology", "nutrition",
-        "medicare", "medicaid", "patient",
+        "medicare", "medicaid", "patient", "ehr", "emr", "population health",
+        "informaticist",
         "dietitian", "physical therapy", "medicina", "medico", "enfermagem",
         "saude", "farmaceutico",
     ]),
@@ -156,7 +167,9 @@ AREAS = [
         "cloud engineer", "qa engineer", "android", "ios developer",
         "competitive programming", "algorithms", "coder", "code expert",
         "computer science", "ai engineer", "engineering manager",
-        "function call", "function calling",
+        "function call", "function calling", "machine learning",
+        "security operations", "incident response", "threat intelligence",
+        "data security", "penetration testing", "penetration tester",
         "programacao", "desenvolvedor",
     ]),
     ("Matematica e Estatistica", [
@@ -195,7 +208,7 @@ AREAS = [
         "economics", "economist", "econometrics", "business analyst",
         "business strategy", "mba", "management consulting", "consultant",
         "supply chain", "logistics", "operations research", "human resources",
-        "product owner", "product manager", "servicenow",
+        "product owner", "product manager", "servicenow", "entrepreneurship",
         "economia", "negocios",
     ]),
     ("Psicologia e Ciencias Sociais", [
@@ -376,6 +389,11 @@ def classificar_area(titulo, descricao=""):
         if alvo and (alvo == texto or (not exato and _tem(texto, alvo))):
             return area or None
 
+    # 0b. generalista fica na aba Vagas
+    for termo in GENERALISTA:
+        if _tem(texto, termo):
+            return None
+
     # 1. palavras que enganam, tipo "prompt engineer". Ficam de fora antes
     #    de qualquer outra coisa, senao "engineer" esconderia a vaga.
     for termo in FALSOS_POSITIVOS:
@@ -408,6 +426,21 @@ def classificar_area(titulo, descricao=""):
                 return _area_no_texto(_frases_de_exigencia(descricao)) or AREA_RESERVA
 
     return _pela_descricao(texto, descricao)
+
+
+def geral_por_regra(titulo):
+    """True quando o titulo e geral por decisao explicita: excecao escrita a
+    mao com "", palavra de generalista, portugues/Brasil ou trabalho geral do
+    ramo. O coletor usa isto para nao deixar a dica de area da empresa
+    esconder uma vaga que a gente decidiu mostrar."""
+    texto = normalizar(titulo)
+    for chave, area in EXCECOES.items():
+        exato = chave.startswith("=")
+        alvo = normalizar(chave[1:] if exato else chave)
+        if alvo and (alvo == texto or (not exato and _tem(texto, alvo))):
+            return not area
+    listas = GENERALISTA + SEMPRE_GERAL + TRABALHO_GERAL
+    return any(_tem(texto, termo) for termo in listas)
 
 
 def separar_vagas(vagas):
@@ -494,6 +527,12 @@ if __name__ == "__main__":
         ("Professional Writing Human Data Collection - Academic and Education", "", "Humanidades"),
         ("Professional Writing Human Data Collection", "", "Marketing e Vendas"),
         ("Operations Lead", "", "Outras areas"),
+        # ── generalista fica na aba Vagas ──
+        ("Generalist", "Degree in any field is a plus.", "GERAL"),
+        ("English Writing Generalist – Advanced", "", "GERAL"),
+        ("Generalist (Must own MacBook)", "Bachelors from a prestigious institution.", "GERAL"),
+        ("Generalist Search Expert", "", "Outras areas"),
+        ("Security Operations Analyst", "", "Programacao e Software"),
         # ── Mercor inteira ──
         ("Audiobook QA Expert — Portuguese (Brazil)", "", "GERAL"),
         ("Video Annotation Expert", "", "GERAL"),
