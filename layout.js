@@ -117,6 +117,22 @@ const Acesso = (function () {
   @media (max-width:900px){ .hd-conta { order:2; margin-left:auto; padding:8px 13px; }
     .hd-toggle { order:3; margin-left:8px !important; } .hd-spacer { display:none; } }
 
+  /* menu da conta: abre ao clicar em "Minha conta" */
+  .hd-menu { position:relative; margin-left:10px; }
+  .hd-menu > summary { list-style:none; cursor:pointer; margin-left:0; display:inline-block; }
+  .hd-menu > summary::-webkit-details-marker { display:none; }
+  .hd-menu > summary::after { content:"▾"; margin-left:6px; font-size:11px; opacity:.6; }
+  .hd-menu-cx { position:absolute; right:0; top:calc(100% + 10px); z-index:60; min-width:250px; padding:8px;
+    background:var(--panel,#fff); border:1px solid var(--line,#DED7CA); border-radius:16px;
+    box-shadow:0 18px 40px -22px rgba(16,32,58,.45); }
+  .hd-menu-quem { padding:8px 12px 10px; font-size:12.5px; color:var(--ink-3,#8A94A1); border-bottom:1px solid var(--line-soft,#EAE4D9);
+    margin-bottom:6px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .hd-menu-cx a { display:block; padding:10px 12px; border-radius:10px; font-size:14px; font-weight:500; color:var(--ink,#10203A); text-decoration:none; }
+  .hd-menu-cx a:hover { background:var(--bg-soft,#F1ECE3); }
+  .hd-menu-cx a small { display:block; font-size:12px; font-weight:400; color:var(--ink-3,#8A94A1); margin-top:1px;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:250px; }
+  @media (max-width:900px){ .hd-menu { order:2; margin-left:auto; } }
+
   .ac-aviso { max-width:520px; margin:44px auto; padding:30px 28px; text-align:center; background:var(--panel,#fff);
     border:1px solid var(--line-soft,#EAE4D9); border-radius:var(--raio,18px); box-shadow:var(--sombra,none); }
   .ac-aviso .ac-cadeado { width:44px; height:44px; margin:0 auto 14px; border-radius:13px; display:grid; place-items:center;
@@ -174,13 +190,30 @@ const Acesso = (function () {
   function botaoNoCabecalho(hd) {
     if (!hd) return;
     porCss();
-    const a = document.createElement("a");
     if (logado()) {
-      a.className = "hd-conta dentro";
-      a.href = "controle.html#dados";
-      a.textContent = "Minha conta";
-      a.title = email();
-    } else {
+      /* Quem está logado ganha um menu, para achar sem procurar onde mudar
+         as áreas de formação e onde ficam os dados da conta. */
+      const minhas = areas();
+      const resumo = minhas === null ? "ainda não marcadas"
+        : minhas.length ? minhas.map(nomeArea).join(", ") : "nenhuma marcada";
+      const volta = encodeURIComponent(paginaAtual() === "entrar.html" ? "vagas.html" : paginaAtual());
+      const d = document.createElement("details");
+      d.className = "hd-menu";
+      d.innerHTML = `<summary class="hd-conta dentro">Minha conta</summary>
+        <div class="hd-menu-cx">
+          <div class="hd-menu-quem">${esc(email())}</div>
+          <a href="entrar.html?areas=1&voltar=${volta}">Minhas áreas de formação<small>${esc(resumo)}</small></a>
+          <a href="vagas.html${minhas && minhas.length ? "?ver=voce" : ""}">Vagas para mim</a>
+          <a href="controle.html">Meu Controle</a>
+          <a href="controle.html#dados">Dados da conta e sair</a>
+        </div>`;
+      hd.appendChild(d);
+      document.addEventListener("click", ev => { if (d.open && !d.contains(ev.target)) d.open = false; });
+      document.addEventListener("keydown", ev => { if (ev.key === "Escape") d.open = false; });
+      return;
+    }
+    const a = document.createElement("a");
+    {
       a.className = "hd-conta";
       a.href = paginaAtual() === "entrar.html" ? "entrar.html" : linkEntrar();
       a.textContent = "Entrar";

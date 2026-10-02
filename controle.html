@@ -1299,16 +1299,24 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           O que você registra aqui fica guardado na sua conta, protegido pela sua senha.
           Entrando com o mesmo e-mail em outro computador ou no celular, está tudo lá.
         </p>
-        <p>
-          <b>Áreas de formação:</b> ${(() => {
-            const a = (typeof Acesso !== "undefined" && Acesso.areas()) || [];
-            return a.length ? esc(a.map(Acesso.nomeArea).join(", ")) : "nenhuma marcada";
-          })()}.
-          <a href="entrar.html?areas=1&voltar=controle.html%23dados" style="color:var(--signal);text-decoration:underline;">Mudar</a>
-        </p>
         <div class="ct-dados-bts">
           <button class="ct-b" id="btSair">Sair da conta</button>
           <button class="ct-b" id="btApagarConta">Apagar a minha conta</button>
+        </div>
+      </div>
+
+      <div class="ct-cartao ct-dados" style="margin-bottom:18px">
+        <div class="ct-cab-cartao"><h2>Suas áreas de formação</h2><p>decidem o que aparece em "Para você", na aba Vagas</p></div>
+        ${(() => {
+          const a = (typeof Acesso !== "undefined" && Acesso.areas()) || [];
+          return a.length
+            ? `<p style="display:flex;flex-wrap:wrap;gap:7px;">${a.map(x =>
+                `<span style="font-size:13px;font-weight:500;color:var(--signal);background:var(--signal-suave);border-radius:99px;padding:5px 12px;">${esc(Acesso.nomeArea(x))}</span>`).join("")}</p>`
+            : `<p>Você ainda não marcou nenhuma área. Marcando, as vagas que pedem a sua formação aparecem junto com as abertas a todos.</p>`;
+        })()}
+        <div class="ct-dados-bts">
+          <a class="ct-b" href="entrar.html?areas=1&voltar=controle.html%23dados">${
+            ((typeof Acesso !== "undefined" && Acesso.areas()) || []).length ? "Mudar minhas áreas" : "Marcar minhas áreas"}</a>
         </div>
       </div>` : (temConta ? `<div class="ct-cartao ct-dados" style="margin-bottom:18px">
         <div class="ct-cab-cartao"><h2>Conta</h2><p>grátis</p></div>
