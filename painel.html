@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de totais — Home Office Hub</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   PAINEL DE TOTAIS — página da administração.
+   Mostra só contagens. Quem decide quem pode ver é o banco
+   (banco/painel.sql); esta página só desenha o que ele entrega.
+   ══════════════════════════════════════════════════════════════ */
+.p-main { max-width:var(--wrap,1180px); margin:0 auto; padding:44px 20px 90px; min-height:60vh; }
+.p-topo { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:26px; }
+.p-topo h1 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400;
+  font-size:clamp(28px,3.6vw,40px); line-height:1.1; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:0 0 6px; }
+.p-topo p { font-size:14.5px; color:var(--ink-2,#54606F); margin:0; max-width:620px; line-height:1.55; }
+.p-atualizar { font:inherit; font-size:13.5px; font-weight:600; color:var(--ink,#10203A); background:var(--panel,#fff);
+  border:1px solid var(--line,#DED7CA); border-radius:999px; padding:9px 16px; cursor:pointer; white-space:nowrap; }
+.p-atualizar:hover { border-color:var(--ink-3,#8A94A1); }
+.p-quando { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:6px; text-align:right; }
+
+.p-espera { text-align:center; padding:80px 20px; color:var(--ink-3,#8A94A1); font-size:14px; }
+
+.p-nums { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:14px; }
+.p-num { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:18px 20px 16px; }
+.p-num .rot { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3,#8A94A1); }
+.p-num .val { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-size:38px; line-height:1.1; color:var(--ink,#10203A); margin:6px 0 4px; }
+.p-num .det { font-size:13px; color:var(--ink-2,#54606F); line-height:1.45; }
+
+.p-grade { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+.p-cx { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:20px 22px 18px; min-width:0; }
+.p-cx.larga { grid-column:1 / -1; }
+.p-cx h2 { font-size:16px; font-weight:600; letter-spacing:-0.01em; color:var(--ink,#10203A); margin:0 0 3px; }
+.p-cx .sub { font-size:13px; color:var(--ink-3,#8A94A1); margin:0 0 14px; line-height:1.5; }
+.p-vazio { font-size:13.5px; color:var(--ink-3,#8A94A1); padding:6px 0 4px; }
+
+.p-rolagem { overflow-x:auto; }
+table.p-tab { width:100%; border-collapse:collapse; font-size:13.5px; }
+.p-tab th { text-align:left; font-size:11.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--ink-3,#8A94A1); padding:0 10px 8px 0; border-bottom:1px solid var(--line-soft,#EAE4D9); white-space:nowrap; }
+.p-tab td { padding:9px 10px 9px 0; border-bottom:1px solid var(--line-soft,#EAE4D9); color:var(--ink-2,#54606F); vertical-align:top; }
+.p-tab tr:last-child td { border-bottom:0; }
+.p-tab .n { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--ink,#10203A); }
+.p-tab th.n { text-align:right; }
+.p-tab .tit { color:var(--ink,#10203A); font-weight:500; }
+.p-tab .tit a { color:inherit; text-decoration:underline; text-decoration-color:var(--line,#DED7CA); text-underline-offset:3px; }
+.p-tab .emp { display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); font-weight:400; }
+.p-fora { font-size:11px; color:var(--ink-3,#8A94A1); border:1px solid var(--line,#DED7CA); border-radius:99px; padding:1px 7px; margin-left:6px; white-space:nowrap; }
+
+.p-barras { display:grid; gap:9px; }
+.p-barra { display:grid; grid-template-columns:minmax(90px,150px) 1fr 34px; align-items:center; gap:10px; font-size:13.5px; color:var(--ink-2,#54606F); }
+.p-barra .trilho { height:9px; border-radius:99px; background:var(--bg-soft,#F1ECE3); overflow:hidden; }
+.p-barra .trilho i { display:block; height:100%; border-radius:99px; background:var(--signal,#1A4893); }
+.p-barra .q { text-align:right; font-variant-numeric:tabular-nums; color:var(--ink,#10203A); }
+
+.p-nota { font-size:12px; line-height:1.55; color:var(--ink-3,#8A94A1); margin:22px 4px 0; max-width:760px; }
+
+@media (max-width:900px){ .p-nums { grid-template-columns:repeat(2,1fr); } .p-grade { grid-template-columns:1fr; } }
+@media (max-width:520px){ .p-num .val { font-size:32px; } .p-main { padding-top:30px; } }
+</style>
+</head>
+<body>
+
+<main class="p-main">
+  <div class="p-espera" id="espera">Abrindo…</div>
+  <div id="painel" hidden></div>
+</main>
+
+<script src="layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e); }
+
+(function () {
+  "use strict";
+
+  // os mesmos do controle-conta.js; a chave é a publicável
+  const ENDERECO = "https://zrqucjktympnwilbvisw.supabase.co";
+  const CHAVE_PUBLICA = "sb_publishable_4X7Cyykz9ZDMWOTvauxibA_Tpa4KtAh";
+
+  const espera = document.getElementById("espera");
+  const painel = document.getElementById("painel");
+
+  const ESTADOS = [
+    ["aplicado", "Currículo enviado"], ["teste", "Teste"], ["entrevista", "Entrevista"],
+    ["aprovado", "Aprovado"], ["recusado", "Recusado"], ["banco", "Banco de talentos"],
+    ["semresposta", "Sem resposta"], ["desisti", "Desisti"],
+  ];
+  const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+
+  const num = n => (Number(n) || 0).toLocaleString("pt-BR");
+  const pct = (parte, todo) => todo ? Math.round(100 * parte / todo) + "%" : "–";
+
+  function dizer(texto) { painel.hidden = true; espera.hidden = false; espera.textContent = texto; }
+
+  function cartao(rotulo, valor, detalhe) {
+    return `<div class="p-num"><div class="rot">${esc(rotulo)}</div><div class="val">${valor}</div><div class="det">${detalhe}</div></div>`;
+  }
+
+  function barras(linhas) {
+    if (!linhas.length) return `<div class="p-vazio">Ainda sem dados.</div>`;
+    const maior = Math.max.apply(null, linhas.map(l => l[1])) || 1;
+    return `<div class="p-barras">${linhas.map(l => `
+      <div class="p-barra"><span>${esc(l[0])}</span>
+        <span class="trilho"><i style="width:${Math.max(2, Math.round(100 * l[1] / maior))}%"></i></span>
+        <span class="q">${num(l[1])}</span></div>`).join("")}</div>`;
+  }
+
+  function desenhar(t) {
+    const c = t.contas || {}, u = t.uso || {}, ca = t.candidaturas || {}, tr = t.trabalhos || {};
+
+    const nums = `<div class="p-nums">
+      ${cartao("Contas", num(c.total), `${num(c.novas_7d)} nos últimos 7 dias · ${num(c.novas_30d)} em 30 dias`)}
+      ${cartao("Entraram em 30 dias", num(c.ativas_30d), `${num(c.ativas_7d)} nos últimos 7 dias · ${num(c.confirmadas)} com e-mail confirmado`)}
+      ${cartao("Candidaturas", num(ca.total), `${num(ca.do_hub)} em vagas do Hub · ${num(u.com_candidaturas)} ${u.com_candidaturas === 1 ? "pessoa registra" : "pessoas registram"}`)}
+      ${cartao("Avançaram", pct(ca.positivas, ca.total), `${num(ca.positivas)} chegaram a teste, entrevista ou aprovação · ${num(ca.aprovadas)} aprovadas`)}
+    </div>`;
+
+    const vagas = (t.vagas || []);
+    const tabVagas = vagas.length ? `<div class="p-rolagem"><table class="p-tab">
+        <thead><tr><th>Vaga</th><th class="n">Pessoas</th><th class="n">Avançaram</th><th class="n">Aprovadas</th></tr></thead>
+        <tbody>${vagas.map(v => `<tr>
+          <td class="tit">${v.vaga_id
+              ? `<a href="vaga.html?id=${encodeURIComponent(v.vaga_id)}">${esc(v.titulo)}</a>`
+              : `${esc(v.titulo)}<span class="p-fora" title="A pessoa cadastrou à mão; não veio da lista do Hub">de fora</span>`}
+            <span class="emp">${esc(v.empresa)}</span></td>
+          <td class="n">${num(v.pessoas)}</td>
+          <td class="n">${num(v.positivas)} <span style="color:var(--ink-3,#8A94A1)">(${pct(v.positivas, v.candidaturas)})</span></td>
+          <td class="n">${num(v.aprovadas)}</td></tr>`).join("")}</tbody></table></div>`
+      : `<div class="p-vazio">Ninguém registrou candidatura ainda.</div>`;
+
+    const empresas = (t.empresas || []);
+    const tabEmpresas = empresas.length ? `<div class="p-rolagem"><table class="p-tab">
+        <thead><tr><th>Empresa</th><th class="n">Candidaturas</th><th class="n">Avançaram</th><th class="n">Recusadas</th></tr></thead>
+        <tbody>${empresas.map(e => `<tr>
+          <td class="tit">${esc(e.empresa)}</td>
+          <td class="n">${num(e.candidaturas)}</td>
+          <td class="n">${num(e.positivas)} <span style="color:var(--ink-3,#8A94A1)">(${pct(e.positivas, e.candidaturas)})</span></td>
+          <td class="n">${num(e.recusadas)}</td></tr>`).join("")}</tbody></table></div>`
+      : `<div class="p-vazio">Ainda sem dados.</div>`;
+
+    const porEstado = t.por_estado || {};
+    const conhecidos = ESTADOS.map(e => e[0]);
+    const linhasEstado = ESTADOS.filter(e => porEstado[e[0]]).map(e => [e[1], porEstado[e[0]]])
+      .concat(Object.keys(porEstado).filter(k => conhecidos.indexOf(k) < 0).map(k => [k, porEstado[k]]));
+
+    const linhasOrigem = (t.por_origem || []).map(o => [o.origem, o.n]);
+    const linhasMes = (t.por_mes || []).map(m => {
+      const p = String(m.mes).split("-");
+      return [(MESES[+p[1] - 1] || p[1]) + " de " + p[0], m.n];
+    });
+    const linhasSemana = (t.contas_por_semana || []).map(s => {
+      const p = String(s.semana).split("-");
+      return ["semana de " + p[2] + "/" + p[1], s.n];
+    });
+    const linhasTrab = (t.trabalhos_por_empresa || []).map(x => [x.empresa, x.pessoas]);
+
+    const quando = t.gerado_em ? new Date(t.gerado_em).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }) : "";
+
+    painel.innerHTML = `
+      <div class="p-topo">
+        <div>
+          <div class="eyebrow">Administração</div>
+          <h1>Painel de totais</h1>
+          <p>Os números do Hub somados. Aqui não aparece nome, e-mail nem ganho de ninguém.</p>
+        </div>
+        <div>
+          <button class="p-atualizar" type="button" id="atualizar">Atualizar números</button>
+          <div class="p-quando">${quando ? "Lido em " + esc(quando) : ""}</div>
+        </div>
+      </div>
+
+      ${nums}
+
+      <div class="p-grade">
+        <section class="p-cx larga">
+          <h2>Vagas com mais candidaturas</h2>
+          <p class="sub">Quantas pessoas registraram candidatura em cada vaga e quantas passaram da primeira etapa.</p>
+          ${tabVagas}
+        </section>
+
+        <section class="p-cx larga">
+          <h2>Empresas</h2>
+          <p class="sub">Somando todas as vagas de cada empresa. "Avançaram" conta teste, entrevista e aprovação.</p>
+          ${tabEmpresas}
+        </section>
+
+        <section class="p-cx">
+          <h2>Em que pé estão as candidaturas</h2>
+          <p class="sub">A situação que cada pessoa marcou por último.</p>
+          ${barras(linhasEstado)}
+        </section>
+
+        <section class="p-cx">
+          <h2>Onde as pessoas viram a vaga</h2>
+          <p class="sub">O campo "Onde você viu" da candidatura.</p>
+          ${barras(linhasOrigem)}
+        </section>
+
+        <section class="p-cx">
+          <h2>Candidaturas por mês</h2>
+          <p class="sub">Pela data de envio que a pessoa informou.</p>
+          ${barras(linhasMes)}
+        </section>
+
+        <section class="p-cx">
+          <h2>Contas novas por semana</h2>
+          <p class="sub">Últimas 12 semanas.</p>
+          ${barras(linhasSemana)}
+        </section>
+
+        <section class="p-cx">
+          <h2>Uso do Meu Controle</h2>
+          <p class="sub">Quantas contas usam cada parte da ferramenta.</p>
+          ${barras([
+            ["Registram candidaturas", u.com_candidaturas || 0],
+            ["Têm trabalho cadastrado", u.com_trabalhos || 0],
+            ["Lançam horas ou tarefas", u.com_registros || 0],
+          ])}
+          <p class="sub" style="margin:14px 0 0">${num(tr.total)} ${tr.total === 1 ? "trabalho cadastrado" : "trabalhos cadastrados"}, ${num(tr.ativos)} em andamento.</p>
+        </section>
+
+        <section class="p-cx">
+          <h2>Onde as pessoas estão trabalhando</h2>
+          <p class="sub">Quantas pessoas têm trabalho cadastrado em cada empresa.</p>
+          ${barras(linhasTrab)}
+        </section>
+      </div>
+
+      <p class="p-nota">Com poucas contas, um total pode ser de uma pessoa só: trate estes números como retrato geral, não como informação sobre alguém.
+        As vagas marcadas "de fora" foram cadastradas à mão por alguém e não vieram da lista do Hub.</p>`;
+
+    espera.hidden = true;
+    painel.hidden = false;
+    document.getElementById("atualizar").addEventListener("click", carregar);
+  }
+
+  let cli = null;
+
+  async function carregar() {
+    dizer("Buscando os números…");
+    const r = await cli.rpc("painel_totais");
+    if (r.error) {
+      console.warn(r.error);
+      if (r.error.code === "42501" || /administra/i.test(r.error.message || "")) {
+        dizer("Esta página é só para a administração do site.");
+      } else {
+        dizer("Não deu para buscar os números agora. Confira a internet e recarregue a página.");
+      }
+      return;
+    }
+    desenhar(r.data || {});
+  }
+
+  (async function () {
+    if (typeof supabase === "undefined" || !supabase.createClient) {
+      dizer("Não deu para falar com o servidor de contas. Confira a internet e recarregue a página.");
+      return;
+    }
+    cli = supabase.createClient(ENDERECO, CHAVE_PUBLICA, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false },
+    });
+    let sessao = null;
+    try { sessao = (await cli.auth.getSession()).data.session; } catch (e) { console.warn(e); }
+    if (!sessao) {
+      espera.hidden = true;
+      painel.hidden = false;
+      painel.innerHTML = Acesso.htmlAviso("O painel é só para a administração", "Entre na sua conta para continuar.");
+      return;
+    }
+    carregar();
+  })();
+})();
+</script>
+
+</body>
+</html>
