@@ -28,12 +28,13 @@
   porque não depende de adivinhar pelo texto.
 
   ── MICRO1 ──
-      POST https://prod-api.micro1.ai/api/v1/job/portal?page=1&limit=100&keyword=X
+      POST https://prod-api.micro1.ai/api/v1/job/portal?page=1&limit=100&keyword=
       corpo: {"action": "get_all_jobs", "filters": {"type": ["EXPERT"]}}
 
   Atenção: é POST mesmo tendo parâmetros na URL. Com GET devolve 404.
-  A listagem não traz descrição, então abrimos a página de cada vaga
-  em jobs.micro1.ai para pegar o texto.
+  Com keyword vazio vem a lista inteira, de 100 em 100. A listagem não
+  traz descrição nem país, então abrimos a página de cada vaga em
+  jobs.micro1.ai: a linha "Location:" do texto é que diz quem pode.
 
   ── ALIGNERR (Labelbox) ──
       GET https://www.alignerr.com/api/jobs?limit=100&offset=0&search=portuguese
@@ -360,12 +361,13 @@ def coletar_telus(max_paginas=6):
 # ═══════════════════════════════════════════════════════════════════
 
 URL_MICRO1 = ("https://prod-api.micro1.ai/api/v1/job/portal"
-              "?page=1&limit=100&keyword={termo}")
+              "?page={pagina}&limit=100&keyword=")
 CORPO_MICRO1 = {"action": "get_all_jobs", "filters": {"type": ["EXPERT"]}}
 URL_MICRO1_VAGA = "https://jobs.micro1.ai/post/{id}"
 
-# A micro1 só devolve resultado por palavra buscada, então buscamos por três
-TERMOS_MICRO1 = ["brazil", "brasil", "portuguese"]
+# Com a palavra de busca vazia a micro1 devolve a lista inteira, paginada.
+# (Até outubro de 2026 a busca era por "brazil", "brasil" e "portuguese", e
+# perdia as vagas abertas ao Brasil que não diziam isso no título.)
 
 # ─── Vagas por área (escondidas no site até a pessoa se cadastrar) ───
 # Estas buscas NÃO falam de português nem de Brasil: são as vagas que pedem
@@ -416,65 +418,143 @@ def idioma_estrangeiro(titulo):
     return bool(_OUTRO_IDIOMA.search(titulo or ""))
 
 
+# A página da vaga é feita em Next.js: o conteúdo vem em pedaços dentro de
+# chamadas self.__next_f.push([1,"..."]). Juntando os pedaços aparece um
+# bloco JobPosting (schema.org) com a descrição completa em HTML.
+_PEDACO_MICRO1 = re.compile(r'self\.__next_f\.push\(\[1,("(?:[^"\\]|\\.)*")\]\)')
+_INICIO_VAGA_MICRO1 = '{"@context":"https://schema.org/","@type":"JobPosting"'
+
+
 def _descricao_micro1(url):
-    """Abre a página da vaga e tenta extrair a descrição."""
+    """Abre a página da vaga e devolve a descrição em texto corrido."""
     try:
         pagina = _baixar(url, tipo_json=False,
                          origem="https://jobs.micro1.ai", tentativas=2)
     except Exception:
         return ""
-    # o texto costuma vir dentro de um JSON embutido na página
-    for chave in ("job_description", "description", "jobDescription"):
-        m = re.search(r'"%s"\s*:\s*"((?:[^"\\]|\\.)*)"' % chave, pagina)
-        if m:
-            try:
-                texto = json.loads('"' + m.group(1) + '"')
-            except Exception:
-                texto = m.group(1)
-            texto = limpar_html(texto)
-            if len(texto) > 80:
-                return texto
-    # se não achou o JSON, cai para o corpo da página
-    corpo = limpar_html(pagina)
-    return corpo if len(corpo) > 200 else ""
+    partes = []
+    for m in _PEDACO_MICRO1.finditer(pagina):
+        try:
+            partes.append(json.loads(m.group(1)))
+        except Exception:
+            pass
+    fluxo = "".join(partes)
+    i = fluxo.find(_INICIO_VAGA_MICRO1)
+    if i < 0:
+        return ""
+    try:
+        vaga, _ = json.JSONDecoder().raw_decode(fluxo[i:])
+    except Exception:
+        return ""
+    # ATENÇÃO: o campo applicantLocationRequirements desse bloco é uma lista
+    # fixa de dezenas de países, igual em todas as vagas. Não serve de filtro.
+    # Quem diz onde a pessoa precisa morar é a linha "Location:" do texto.
+    return limpar_html(vaga.get("description") or "")
 
 
-def coletar_micro1(pausa=1.0, buscar_descricao=True, termos=None,
-                   modo_area=False):
-    """Busca na micro1 e junta os resultados sem repetir.
+# ─── Onde a pessoa precisa morar, segundo a linha "Location:" da descrição ───
+_LOCAL_LINHA = re.compile(r"(?im)^\s*(?:(?:job\s+)?location|localiza[çc][ãa]o)\s*:?[ \t]*(.*)$")
+_LATAM = re.compile(r"\b(latin\s+america|latam|south\s+america|am[ée]rica\s+latina)\b", re.I)
+_PAISES_LATAM = re.compile(r"\b(argentina|chile|colombia|mexico|peru|uruguay|panama|costa rica)\b", re.I)
+_PRESENCIAL = re.compile(r"\b(on[\s-]?site|hybrid|in[\s-]person|presencial)\b", re.I)
+_GLOBAL = re.compile(r"\b(global|globally|world\s*wide|worlwide|anywhere|any country)\b", re.I)
+# palavras que sobram numa linha que diz só "remoto", sem citar lugar nenhum
+_SO_REMOTO = re.compile(r"\b(fully|100%|remote|remoto|work from home|open|to|candidates|position|role|"
+                        r"contract|part[\s-]time|full[\s-]time|flexible|hours?|and|the)\b", re.I)
+# exigência de morar nos EUA escrita no corpo do anúncio
+_SO_EUA = re.compile(
+    r"(?:based|located|resid\w+|authorized to work|eligible to work|eligibility to work)"
+    r"\s+in\s+(?:the\s+|a\s+)?(?:mainland\s+)?(?:u\.?s\.?(?![a-z])|united states)"
+    r"|\bu\.?s\.?\s+(?:citizens?|citizenship|work authorization|residents?\s+only)\b"
+    # diploma de faculdade de país de língua inglesa: na prática exclui quem
+    # estudou no Brasil, mesmo sem falar de moradia
+    r"|institution\s+in\s+the\s+united states", re.I)
+# região entre parênteses no título: (US), (U.S), (AUS), "US-based", Austrália
+_REGIAO_NO_TITULO = re.compile(
+    r"\((?:US|U\.S\.?|USA|AUS|UK|EU)\)|\bU\.?S\.?[\s-]based\b|\baustralia\b|\bnew zealand\b", re.I)
 
-    modo_area=True troca o filtro de Brasil pelo filtro de país estrangeiro:
-    a vaga entra por exigir uma formação, não por ser em português.
+
+def local_micro1(descricao):
+    """Lê a descrição e devolve "brasil", "mundo" ou "fora".
+
+    brasil = cita o Brasil ou a América Latina
+    mundo  = remoto sem citar lugar, ou aberto ao mundo por extenso
+    fora   = presencial, ou preso a um lugar que não inclui o Brasil
     """
-    rotulo = "micro1 (áreas)" if modo_area else "micro1"
-    print(f"  → {rotulo} ...", end=" ")
+    d = descricao or ""
+    m = _LOCAL_LINHA.search(d)
+    linha = m.group(1).strip() if m else ""
+    # linha que termina em ":" continua na de baixo (a lista de países)
+    if m and linha.endswith(":"):
+        resto = d[m.end():].lstrip("\n ").split("\n", 1)[0]
+        linha = linha + " " + resto
+
+    if _PRESENCIAL.search(linha):
+        return "fora"
+    if _BRASIL.search(linha):
+        return "brasil"
+    if _LATAM.search(linha):
+        # "América Latina" seguida de uma lista de países sem o Brasil = fora
+        return "fora" if _PAISES_LATAM.search(linha) else "brasil"
+    if _GLOBAL.search(linha):
+        return "mundo"
+    sobra = re.sub(r"[^a-zà-ú]+", "", _SO_REMOTO.sub(" ", linha.lower()))
+    if sobra:
+        return "fora"           # a linha cita algum lugar, e não é o Brasil
+    if _SO_EUA.search(d):
+        return "fora"
+    return "mundo"
+
+
+def coletar_micro1(pausa=0.3, buscar_descricao=True, termos=None,
+                   modo_area=False):
+    """Lê TODAS as vagas da micro1 e fica com as que servem ao Brasil.
+
+    Antes a busca era por palavra ("brazil", "portuguese"), e ficava de fora
+    toda vaga aberta ao Brasil que não dizia isso no título, como a
+    "At-Home Video Recorder (LATAM)". Agora a lista inteira é lida (com a
+    palavra de busca vazia a API devolve tudo, de 100 em 100) e a decisão
+    é tomada pela linha "Location:" da descrição de cada vaga.
+
+    A separação entre vaga geral e vaga de área é feita depois, no coletor.
+    Por isso a segunda chamada, a de áreas (modo_area=True), não tem mais o
+    que buscar: tudo já veio na primeira.
+    """
+    if modo_area:
+        print("  → micro1 (áreas) ... já incluídas na leitura completa")
+        return []
+
+    print("  → micro1 ...", end=" ")
     brutas, ids_vistos = [], set()
     houve_resposta = False
     erros = []
 
-    for termo in (termos or TERMOS_MICRO1):
+    for pagina in range(1, 21):          # trava de segurança: 2.000 vagas
         try:
-            resposta = _baixar(URL_MICRO1.format(termo=termo),
+            resposta = _baixar(URL_MICRO1.format(pagina=pagina),
                                corpo=CORPO_MICRO1,
                                origem="https://www.micro1.ai")
             houve_resposta = True
         except Exception as e:
-            erros.append(f"{termo}: {e}")
-            continue
-        for v in (resposta.get("data") or []):
+            erros.append(f"página {pagina}: {e}")
+            break
+        lote = resposta.get("data") or []
+        for v in lote:
             jid = v.get("job_id")
             if jid and jid not in ids_vistos:
                 ids_vistos.add(jid)
                 brutas.append(v)
+        if len(lote) < 100:
+            break
         time.sleep(0.4)
 
     if not houve_resposta:
         bloqueio = any("HTTP 403" in m for m in erros)
         if bloqueio:
-            # 403 do nginx em TODAS as buscas = bloqueio por endereço de IP.
-            # A micro1 checa a localização de quem acessa (a página dela chama
-            # ipinfo.io e ipify) e recusa servidor de nuvem. Do PC de casa
-            # funciona normalmente. É o mesmo caso que a TELUS já foi.
+            # 403 do nginx = bloqueio por endereço de IP. A micro1 checa a
+            # localização de quem acessa (a página dela chama ipinfo.io e
+            # ipify) e recusa servidor de nuvem. Do PC de casa funciona
+            # normalmente. É o mesmo caso que a TELUS já foi.
             print("BLOQUEADA (403)")
             print("      · A micro1 recusa acesso de servidor de nuvem.")
             print("      · Rode o coletor no seu PC para atualizar esta fonte.")
@@ -486,23 +566,16 @@ def coletar_micro1(pausa=1.0, buscar_descricao=True, termos=None,
         return []
 
     vagas = []
+    fora_titulo = fora_local = sem_texto = 0
     for v in brutas:
         titulo = (v.get("job_name") or "").strip()
         if not titulo:
             continue
-        # a micro1 não tem campo de país; o país vem escrito no título
-        if modo_area:
-            if pais_estrangeiro(titulo) or idioma_estrangeiro(titulo):
-                continue
-        elif not aceita_brasil(titulo, v.get("location_type") or "remote"):
+        # país, região ou idioma estrangeiro já no título: nem abre a página
+        if (pais_estrangeiro(titulo) or idioma_estrangeiro(titulo)
+                or (_REGIAO_NO_TITULO.search(titulo) and not _BRASIL.search(titulo))):
+            fora_titulo += 1
             continue
-
-        pay = v.get("ideal_hourly_rate") or {}
-        pagamento = ""
-        if pay.get("min") and pay.get("max"):
-            pagamento = f"USD {pay['min']}-{pay['max']} / hora"
-        elif pay.get("min"):
-            pagamento = f"USD {pay['min']} / hora"
 
         url = URL_MICRO1_VAGA.format(id=v.get("job_id"))
         habilidades = ", ".join(v.get("skills") or [])
@@ -511,13 +584,36 @@ def coletar_micro1(pausa=1.0, buscar_descricao=True, termos=None,
         if buscar_descricao:
             desc = _descricao_micro1(url)
             time.sleep(pausa)
+
+        em_pt = bool(_BRASIL.search(titulo) or _PORTUGUES.search(titulo) or _LATAM.search(titulo))
+        if desc:
+            onde = local_micro1(desc)
+            if onde == "fora" and not _BRASIL.search(titulo):
+                fora_local += 1
+                continue
+        else:
+            # Sem descrição não dá para saber onde a pessoa precisa morar.
+            # Só entra a vaga que fala de Brasil ou português no título.
+            sem_texto += 1
+            if not em_pt:
+                continue
+            onde = "brasil"
+        if em_pt:
+            onde = "brasil"
         if not desc and habilidades:
             desc = f"Habilidades pedidas: {habilidades}."
+
+        pay = v.get("ideal_hourly_rate") or {}
+        pagamento = ""
+        if pay.get("min") and pay.get("max") and pay["min"] != pay["max"]:
+            pagamento = f"USD {pay['min']}-{pay['max']} / hora"
+        elif pay.get("min") or pay.get("max"):
+            pagamento = f"USD {pay.get('min') or pay.get('max')} / hora"
 
         vagas.append({
             "titulo": titulo,
             "url": url,
-            "local": "Remoto · Mundial" if modo_area else "Remoto · Brasil",
+            "local": "Remoto · Brasil" if onde == "brasil" else "Remoto · Mundial",
             "desc": desc,
             "requisitos": habilidades,
             "data_post": (v.get("date_posted") or "")[:10],
@@ -525,7 +621,9 @@ def coletar_micro1(pausa=1.0, buscar_descricao=True, termos=None,
             "horario": (v.get("engagement_type") or "") or "",
         })
 
-    print(f"{len(vagas)} vaga(s) BR de {len(brutas)} encontradas")
+    print(f"{len(vagas)} vaga(s) de {len(brutas)} "
+          f"({fora_titulo} fora pelo título, {fora_local} fora pelo local"
+          + (f", {sem_texto} sem descrição" if sem_texto else "") + ")")
     return vagas
 
 

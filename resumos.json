@@ -1,5 +1,5 @@
 {
-  "total": 139,
+  "total": 157,
   "vagas": [
     {
       "id": "65762fd387",
@@ -1352,6 +1352,202 @@
         "frase": "Construir um agente de IA que vigia fluxos de dados.",
         "carga": "40 h por semana",
         "contrato": "Cerca de 2 meses"
+      }
+    },
+    {
+      "id": "049320a653",
+      "resumo": {
+        "o_que_faz": "Você grava vídeos em primeira pessoa fazendo as tarefas comuns de casa, com o celular preso na cabeça por uma faixa. Os vídeos ajudam a treinar sistemas de IA e robôs a entender como as pessoas usam as mãos e os objetos. A vaga é aberta a quem mora na América Latina e no Caribe, e o Brasil está na lista de países. O pagamento é por hora de vídeo aprovado, e a micro1 paga US$ 20 de bônus, que também cobre a compra da faixa, depois de 20 horas de trabalho.",
+        "requisitos": "Ter um celular compatível: iPhone 12 ou mais novo, Google Pixel 6 a 9, ou Samsung Galaxy S21 ou mais novo. Aceitar usar a faixa de cabeça durante as gravações e ter condição física para tarefas repetitivas. Na entrada há um teste de compatibilidade do aparelho, uma entrevista conduzida por IA e, depois, uma verificação de identidade que precisa ser feita em até 48 horas.",
+        "dica_cv": "Aqui o currículo pesa pouco. Informe o modelo exato do seu celular, confirme que mora no Brasil e diga quantas horas por semana consegue gravar. Se já gravou vídeos para projetos de IA, como os da Toloka, mencione.",
+        "frase": "Gravar as tarefas de casa com o celular preso na cabeça.",
+        "remuneracao": "US$ 6 por hora",
+        "contrato": "Por hora de vídeo aprovado"
+      }
+    },
+    {
+      "id": "ac162cdd13",
+      "resumo": {
+        "o_que_faz": "É a versão em português da vaga de gravação em casa da micro1. Você grava vídeos em primeira pessoa fazendo atividades do dia a dia, com o celular preso na cabeça, e o aparelho registra junto os dados de movimento. O material treina sistemas de IA e de robótica. A vaga vale para a América Latina e o Caribe, com o Brasil na lista, e pede no mínimo 10 horas semanais de vídeo aprovado.",
+        "requisitos": "Celular compatível: iPhone 12 ou superior, Google Pixel 6 ou superior, ou Samsung Galaxy S21 ou superior. Ter uma faixa de cabeça que mostre as duas mãos em até 48 horas depois do início. Atenção a detalhe para seguir o protocolo de gravação, entregas no prazo e condição física para movimentos repetitivos. A empresa diz que se inscrever com um e-mail do Gmail facilita a integração com as ferramentas do projeto.",
+        "dica_cv": "O anúncio está em português, então pode se candidatar em português. Informe o modelo do celular, confirme a disponibilidade de 10 horas por semana e use um e-mail do Gmail. Experiência com coleta de dados, robótica ou gravação de vídeo conta como diferencial, mas não é exigida.",
+        "frase": "Gravar vídeos em casa com o celular, em vaga anunciada em português.",
+        "remuneracao": "US$ 6 por hora",
+        "carga": "Mínimo de 10 h por semana",
+        "contrato": "Por vídeo aprovado"
+      }
+    },
+    {
+      "id": "3d2bc67c67",
+      "resumo": {
+        "o_que_faz": "Você grava vídeos em terceira pessoa com uma câmera 360° ou de ação presa atrás de você, de forma que o seu corpo inteiro e o ambiente apareçam. As gravações mostram atividades do dia a dia, caminhadas, trajetos de carro e até passeios com a câmera presa em animais. Cada clipe precisa ter pelo menos 60 segundos. O anúncio fala em US$ 20 por hora de vídeo aprovado, enquanto a listagem da micro1 mostra de US$ 10 a US$ 15.",
+        "requisitos": "Ter ou conseguir uma câmera com campo de visão de 170° ou mais e resolução mínima de 720p, como Insta360 X3 a X6, DJI Osmo 360 ou GoPro MAX. O suporte de mochila ou de carro não precisa ser seu no início, e a empresa pode reembolsar o custo. Pau de selfie na mão, suporte de peito e tripé parado não servem.",
+        "dica_cv": "Diga qual câmera e quais suportes você já tem e, se possível, mande um link com um vídeo seu gravado nesse estilo. Vale mencionar os tipos de ambiente que você consegue gravar: cidade, estrada, trilha, dentro de casa.",
+        "frase": "Gravar vídeos em terceira pessoa com câmera 360°.",
+        "remuneracao": "US$ 10 a 20 por hora",
+        "contrato": "Por hora de vídeo aprovado"
+      }
+    },
+    {
+      "id": "aab631f1da",
+      "resumo": {
+        "o_que_faz": "Vaga irmã da de gravação 360° da micro1. Você grava vídeos em terceira pessoa, com a câmera atrás e acima de você, mostrando movimento contínuo por ambientes diferentes: atividades do dia a dia, caminhadas e trajetos de carro. Os vídeos treinam sistemas de IA a entender como as pessoas se deslocam e agem no mundo real.",
+        "requisitos": "Já ter ou ter acesso a uma câmera de ação que produza essa visão em terceira pessoa com pelo menos 720p, como Insta360 X3 a X6, DJI Osmo 360 ou GoPro MAX, e um suporte que consiga esse ângulo, como mochila com haste ou suporte de carro. O corpo inteiro precisa ficar visível o tempo todo e cada clipe deve ter pelo menos 60 segundos.",
+        "dica_cv": "Liste o equipamento que você tem, com modelo da câmera e tipo de suporte, e mostre um exemplo de gravação. Quem já tem o suporte pronto costuma começar antes.",
+        "frase": "Gravar vídeos em terceira pessoa com câmera de ação.",
+        "remuneracao": "US$ 10 a 15 por hora",
+        "contrato": "Por vídeo aprovado"
+      }
+    },
+    {
+      "id": "af3319b4b0",
+      "resumo": {
+        "o_que_faz": "Você grava clipes contínuos, de pelo menos 60 segundos, de atividades do dia a dia em ambientes variados, dentro de casa, na rua e dentro do carro. A câmera fica presa atrás de você, em mochila ou no veículo, para que o seu corpo inteiro e o entorno apareçam. Depois você organiza e envia os arquivos no formato pedido. É o mesmo projeto das outras vagas de gravação 360° da micro1, com outro nome.",
+        "requisitos": "Câmera 360° ou grande angular com pelo menos 170° de campo de visão e 720p, como Insta360, DJI Osmo ou GoPro MAX. Suporte de mochila ou de veículo que mantenha a visão em terceira pessoa. Comunicação clara em inglês para tirar dúvidas e relatar problemas técnicos.",
+        "dica_cv": "Se você já grava vlogs, viagens ou esportes com câmera 360°, mande o link do canal ou de alguns vídeos. Informe o modelo da câmera e os suportes que possui.",
+        "frase": "Gravar o dia a dia em vídeo com câmera 360°.",
+        "remuneracao": "US$ 10 a 15 por hora",
+        "contrato": "Por vídeo aprovado"
+      }
+    },
+    {
+      "id": "b642d69946",
+      "resumo": {
+        "o_que_faz": "Você grava o seu carro circulando, visto de fora e por trás, com uma câmera 360° presa ao veículo. As tarefas incluem dirigir em ruas locais, fazer curvas e paradas, passar por cruzamentos e estacionar. Você escolhe os trajetos numa lista e pode encaixar as gravações em percursos que já faria. O pagamento é de US$ 15 a US$ 20 por hora de vídeo aprovado.",
+        "requisitos": "Ter ou ter acesso a uma câmera 360°, como Insta360 ou GoPro MAX, e a um programa que reenquadre e exporte o vídeo na visão em terceira pessoa. Um suporte próprio para veículo é fortemente preferido, e a empresa pode ajudar com equipamento em alguns casos. Dirigir com frequência e conferir a qualidade do vídeo antes de enviar.",
+        "dica_cv": "Destaque experiência com câmera 360° em carro, viagem ou esporte, e diga que suporte você usa. Um exemplo de vídeo já reenquadrado mostra que você domina a parte técnica.",
+        "frase": "Gravar o seu carro em movimento com câmera 360°.",
+        "remuneracao": "US$ 15 a 20 por hora",
+        "contrato": "Por hora de vídeo aprovado"
+      }
+    },
+    {
+      "id": "4727706229",
+      "resumo": {
+        "o_que_faz": "Você assiste a clipes curtos de vídeo e áudio e confere se as descrições geradas por IA estão corretas. Quando encontra erro, ambiguidade ou algo fora das regras do projeto, registra isso em um comentário curto e claro. É trabalho de anotação repetitivo, guiado por diretrizes, e serve como porta de entrada na área.",
+        "requisitos": "Inglês bom para escrever os comentários e acompanhar as instruções. Atenção a detalhe e julgamento consistente em tarefas repetitivas. Experiência com anotação, rotulagem ou moderação de conteúdo ajuda, principalmente com vídeo ou áudio, mas aparece como preferência e não como exigência.",
+        "dica_cv": "Mostre qualquer experiência com anotação de dados, moderação ou revisão de conteúdo, mesmo curta. Destaque o seu nível de inglês escrito. A micro1 costuma fazer uma entrevista em vídeo conduzida por IA, geralmente em inglês.",
+        "frase": "Conferir descrições de vídeos e áudios feitas por IA.",
+        "remuneracao": "US$ 8 a 10 por hora"
+      }
+    },
+    {
+      "id": "e108256c3e",
+      "resumo": {
+        "o_que_faz": "Você revisa e rotula clipes curtos de vídeo e áudio seguindo as diretrizes do projeto. Também avalia se as descrições feitas por IA estão corretas e se o conteúdo respeita as regras de moderação, sinalizando o que for duvidoso ou inadequado com uma justificativa. O trabalho pede volume e constância.",
+        "requisitos": "Bom domínio de inglês escrito. Atenção a detalhe visual e sonoro e constância para manter a qualidade em muitas tarefas seguidas. Experiência com anotação de vídeo e áudio ou com moderação de conteúdo é preferida. Cuidado com dados confidenciais.",
+        "dica_cv": "Se já trabalhou com moderação de conteúdo ou anotação de dados, coloque isso no topo, com a plataforma e o tempo de experiência. Cite o nível de inglês. Prepare-se para a entrevista com IA da micro1, geralmente em inglês.",
+        "frase": "Rotular vídeos e áudios curtos e conferir descrições de IA.",
+        "remuneracao": "US$ 8 a 10 por hora"
+      }
+    },
+    {
+      "id": "07e8c6e0bc",
+      "resumo": {
+        "o_que_faz": "Você analisa clipes curtos de robôs ou de pessoas executando ações e avalia se o que aparece no vídeo cumpre a instrução escrita. Também compara dois vídeos para dizer qual atende melhor ao pedido e corrige anotações feitas por IA, como o início e o fim de cada ação. Tudo é registrado seguindo rubricas detalhadas. A faixa de pagamento é larga, de US$ 15 a US$ 80 por hora.",
+        "requisitos": "Atenção a diferenças sutis de movimento e de interação com objetos. Boa escrita em inglês para documentar as decisões. Experiência com anotação de vídeo e controle de qualidade ajuda, e conhecer um pouco de robótica é diferencial.",
+        "dica_cv": "Mostre experiência com anotação de vídeo, avaliação por rubrica ou controle de qualidade. Se tiver contato com robótica, edição de vídeo ou análise de movimento, destaque: é o que justifica o topo da faixa de pagamento.",
+        "frase": "Avaliar vídeos de robôs e pessoas executando tarefas.",
+        "remuneracao": "US$ 15 a 80 por hora"
+      }
+    },
+    {
+      "id": "eef2660904",
+      "resumo": {
+        "o_que_faz": "Você assiste a vídeos de braços robóticos executando tarefas e marca o que aconteceu: as ações principais, os resultados e o momento exato em que cada uma começa e termina. Segue um guia de avaliação detalhado e confere se as marcações de tempo estão alinhadas com a imagem. A vaga lista a América Latina entre as regiões aceitas.",
+        "requisitos": "Muita atenção a detalhe ao revisar e marcar vídeo. Boa comunicação escrita e falada em inglês. Organização para trabalhar sozinho e cumprir prazos. Experiência com anotação de vídeo, marcação quadro a quadro ou projetos de IA e robótica é preferida.",
+        "dica_cv": "Destaque experiência com anotação de vídeo ou rotulagem de dados e as ferramentas que usou, principalmente as de linha do tempo. Se já trabalhou com projetos de IA ou robótica, coloque no início.",
+        "frase": "Marcar ações e tempos em vídeos de braços robóticos.",
+        "remuneracao": "US$ 22 a 70 por hora"
+      }
+    },
+    {
+      "id": "559f3ad39a",
+      "resumo": {
+        "o_que_faz": "Você faz e recebe ligações em inglês em nome de clientes nos Estados Unidos, para resolver tarefas do dia a dia: reservas, agendamentos e confirmações com empresas e prestadores de serviço. São muitas chamadas curtas em sequência, e o resultado de cada uma é registrado. A vaga é voltada a profissionais da América Latina, com o Brasil na lista. O contrato inicial é de 4 semanas, com quatro turnos de 5 horas por semana, e parte da equipe trabalha no fim de semana.",
+        "requisitos": "Inglês falado fluente, claro e com sotaque neutro, com jogo de cintura para conversas ao vivo. Experiência com atendimento por telefone, assistência executiva ou virtual. Segurança para fazer ligações, inclusive a frio, e para navegar por menus de atendimento automático. Internet rápida, ambiente silencioso e um bom headset com fio ou USB.",
+        "dica_cv": "Currículo em inglês, com destaque para atendimento por telefone e para qualquer experiência em hotelaria, restaurantes ou viagens. Deixe claro o seu nível de inglês falado e a disponibilidade de turnos, incluindo fim de semana.",
+        "frase": "Fazer ligações em inglês para resolver tarefas de clientes dos EUA.",
+        "remuneracao": "US$ 18 a 28 por hora",
+        "carga": "Até 20 h por semana, em turnos",
+        "contrato": "4 semanas iniciais"
+      }
+    },
+    {
+      "id": "72838e8df6",
+      "resumo": {
+        "o_que_faz": "Você ouve gravações de campo de 30 a 90 segundos e anota o que dá para escutar: quais instrumentos estão tocando, o andamento, o tom, os sons de fundo e as reações do público. Também compara duas gravações da mesma música feitas em lugares diferentes. Nas fases seguintes, avalia se as descrições feitas por IA batem com o que você ouviu. Há uma sessão de treinamento paga e uma reunião curta por semana.",
+        "requisitos": "Pelo menos 3 anos de prática com música ou áudio, como músico, produtor, professor de música, técnico de som ou editor de áudio. Conseguir separar instrumentos numa gravação cheia de ruído e identificar o andamento e o tom. Inglês escrito para notas curtas. Bons fones de ouvido, ambiente silencioso e disponibilidade de 20 a 25 horas por semana.",
+        "dica_cv": "Descreva a sua experiência musical de forma concreta: instrumentos que toca, tempo de estrada, formação, trabalhos de gravação ou mixagem. Mencione se tem treino de percepção musical. Um portfólio ou link de trabalhos ajuda.",
+        "frase": "Ouvir gravações e anotar instrumentos, andamento e tom.",
+        "remuneracao": "US$ 30 a 45 por hora",
+        "carga": "20 a 25 h por semana"
+      }
+    },
+    {
+      "id": "68af9de8db",
+      "resumo": {
+        "o_que_faz": "Apesar do nome, não é digitação. Você cria tarefas de avaliação que simulam desafios reais de entrada e conferência de dados, para testar agentes de IA. Isso inclui montar arquivos com erros realistas (registros malformados, dados faltando, formatos inconsistentes), definir qual é o resultado correto e escrever rubricas de correção com 35 critérios ou mais. O pagamento é por tarefa aprovada, e há um mínimo de entregas por semana.",
+        "requisitos": "Experiência sólida com entrada de dados, controle de qualidade ou validação de dados, de preferência em áreas que passam por auditoria, como saúde, financeiro ou jurídico. Facilidade para achar inconsistências em CSV, PDF e planilhas. Inglês escrito bom o bastante para redigir tarefas e rubricas complexas.",
+        "dica_cv": "Mostre números: volume de registros que você tratava, taxa de erro, auditorias pelas quais passou. Cite os tipos de arquivo e os sistemas com que trabalhou. Currículo em inglês.",
+        "frase": "Criar testes de conferência de dados para avaliar agentes de IA.",
+        "remuneracao": "US$ 20 a 35 por hora",
+        "contrato": "Por tarefa aprovada"
+      }
+    },
+    {
+      "id": "5dde85b8d3",
+      "resumo": {
+        "o_que_faz": "Você usa a sua experiência administrativa para criar tarefas que testam agentes de IA em situações reais de escritório: conciliar agendas, organizar viagens e despesas, cuidar de registros e escrever correspondência profissional. Para cada cenário você monta os materiais de apoio, como e-mails, compromissos, recibos e atas, define a solução correta e escreve uma rubrica de correção com 35 critérios ou mais. O pagamento é por tarefa aprovada.",
+        "requisitos": "O perfil preferido tem 5 anos ou mais de experiência como secretária, secretário ou assistente administrativo em empresas de médio ou grande porte, cuidando de rotinas recorrentes. Boa escrita em inglês, atenção a detalhe e facilidade com ferramentas digitais, planilhas e documentos.",
+        "dica_cv": "Detalhe as rotinas pelas quais você respondia: agenda de executivos, viagens, prestação de contas, arquivo. Mostre processos que você documentou ou melhorou. Currículo em inglês.",
+        "frase": "Criar tarefas de rotina de escritório para testar agentes de IA.",
+        "remuneracao": "US$ 20 a 40 por hora",
+        "contrato": "Por tarefa aprovada"
+      }
+    },
+    {
+      "id": "3f4f33bc06",
+      "resumo": {
+        "o_que_faz": "É uma participação paga em uma coleta de fotos, e não um trabalho contínuo. Você tira fotos de si mesmo com o celular seguindo instruções simples e responde a um questionário curto sobre você e sobre as imagens. O projeto monta um conjunto de fotos de pessoas de origens e aparências variadas para desenvolver e avaliar sistemas de IA. O pagamento é de US$ 140 por tarefa aprovada.",
+        "requisitos": "Ter 18 anos ou mais e um smartphone. O anúncio aceita participantes da América do Norte, da América Latina e da região que reúne Europa, Oriente Médio e África. Pessoas de todas as origens étnicas podem se inscrever. Como as fotos mostram o seu rosto, leia com atenção o termo de uso das imagens antes de aceitar.",
+        "dica_cv": "Não há currículo a montar. Preencha o cadastro com dados corretos e siga as instruções das fotos à risca, porque só a tarefa aprovada é paga.",
+        "frase": "Tirar fotos de si mesmo para um banco de imagens de IA.",
+        "remuneracao": "US$ 140 por tarefa aprovada",
+        "contrato": "Tarefa pontual"
+      }
+    },
+    {
+      "id": "e24e3ad8a8",
+      "resumo": {
+        "o_que_faz": "Mesma coleta de fotos da micro1, aqui só para pessoas com 50 anos ou mais, faixa que costuma faltar nos dados usados para treinar IA. Você tira fotos de si mesmo com o celular seguindo instruções simples e responde a um questionário curto. O pagamento é de US$ 140 por tarefa aprovada.",
+        "requisitos": "Ter 50 anos ou mais e um smartphone. Aceita participantes da América do Norte, da América Latina, da Europa, do Oriente Médio e da África. Pessoas de todas as origens étnicas podem se inscrever. Leia o termo de uso das imagens antes de aceitar, já que as fotos mostram o seu rosto.",
+        "dica_cv": "Não precisa de currículo. Vale indicar a vaga para pais, tios e avós que tenham celular e topem participar. Siga as instruções das fotos com cuidado, porque só a tarefa aprovada é paga.",
+        "frase": "Tirar fotos de si mesmo, para quem tem 50 anos ou mais.",
+        "remuneracao": "US$ 140 por tarefa aprovada",
+        "contrato": "Tarefa pontual"
+      }
+    },
+    {
+      "id": "e148c207af",
+      "resumo": {
+        "o_que_faz": "Coleta de fotos paga para irmãos. Cada irmão tira fotos de si mesmo, sozinho ou junto com o outro, seguindo instruções simples, e responde a um questionário curto. O material ajuda sistemas de IA a entender a semelhança entre pessoas da mesma família. O pagamento é de US$ 140 por tarefa aprovada, para cada participante.",
+        "requisitos": "Ter 18 anos ou mais, um smartphone e pelo menos um irmão ou irmã que também queira participar. Aceita participantes da América do Norte, da América Latina, da Europa, do Oriente Médio e da África. Leia o termo de uso das imagens antes de aceitar.",
+        "dica_cv": "Não precisa de currículo. Combine antes com o seu irmão ou irmã, porque os dois precisam se inscrever e enviar as fotos. Só a tarefa aprovada é paga.",
+        "frase": "Tirar fotos com um irmão ou irmã para um banco de imagens de IA.",
+        "remuneracao": "US$ 140 por participante",
+        "contrato": "Tarefa pontual"
+      }
+    },
+    {
+      "id": "2ee7066c89",
+      "resumo": {
+        "o_que_faz": "Coleta de fotos paga para gêmeos, idênticos ou não. Os dois tiram fotos de si mesmos, separados ou juntos, seguindo instruções simples, e cada um responde a um questionário curto. O material ajuda sistemas de IA a lidar com a semelhança entre pessoas aparentadas. O pagamento é de US$ 140 por tarefa aprovada para cada participante, o que pode chegar a US$ 280 pelo par.",
+        "requisitos": "Ter 18 anos ou mais, um smartphone e um irmão gêmeo ou irmã gêmea que também queira participar. Aceita participantes da América do Norte, da América Latina, da Europa, do Oriente Médio e da África. Leia o termo de uso das imagens antes de aceitar.",
+        "dica_cv": "Não precisa de currículo. Os dois gêmeos precisam se inscrever e enviar as fotos, então combinem antes. Só a tarefa aprovada é paga.",
+        "frase": "Tirar fotos com o seu irmão gêmeo para um banco de imagens de IA.",
+        "remuneracao": "US$ 140 por participante",
+        "contrato": "Tarefa pontual"
       }
     }
   ]

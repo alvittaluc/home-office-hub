@@ -30,6 +30,58 @@ import unicodedata
 # ══════════════════════════════════════════════════════════════════
 EXCECOES = {
     "FP&A Expert": "Financas e Contabilidade",
+
+    # ── micro1 (outubro de 2026) ──
+    # Passamos a ler a lista inteira da micro1. Estes titulos pedem
+    # experiencia profissional numa area, mas nao tem nenhuma palavra das
+    # listas abaixo, e por isso cairiam na aba Vagas por engano.
+    "Fusion 360": "Engenharia",
+    "Fusion360": "Engenharia",
+    "Autodesk": "Engenharia",
+    "SolidWorks": "Engenharia",
+    "FreeCAD": "Engenharia",
+    "CAD Expert": "Engenharia",
+    "Hardware Expert": "Engenharia",
+    "Field Service Technician": "Engenharia",
+    "MCP Expert": "Programacao e Software",
+    "GitHub": "Programacao e Software",
+    "Security Onion": "Programacao e Software",
+    "Information Systems Manager": "Programacao e Software",
+    "Computer User Support": "Programacao e Software",
+    "IT Manager": "Programacao e Software",
+    "Data Analyst": "Programacao e Software",
+    "Computer Vision Specialist": "Programacao e Software",
+    "Suicide & Self-Harm Specialist": "Psicologia e Ciencias Sociais",
+    "Trauma Specialist": "Psicologia e Ciencias Sociais",
+    "Addiction Specialist": "Psicologia e Ciencias Sociais",
+    "Mental Health Expert": "Psicologia e Ciencias Sociais",
+    "Behavioral Analyst": "Psicologia e Ciencias Sociais",
+    "Hospitalist": "Medicina e Saude",
+    "Document Reviewer": "Direito",
+    "Data Privacy Analyst": "Direito",
+    "UltraTax": "Financas e Contabilidade",
+    "Revenue Operations": "Economia e Negocios",
+    "Revenue Systems": "Economia e Negocios",
+    "Shopify Specialist": "Economia e Negocios",
+    "Purchasing Agent": "Economia e Negocios",
+    "Product Manager": "Economia e Negocios",
+    "Training & Development Specialist": "Economia e Negocios",
+    "Buildium Specialist": "Economia e Negocios",
+    "Procore Specialist": "Economia e Negocios",
+    "Toast POS Specialist": "Economia e Negocios",
+    "Business Document Expert": "Economia e Negocios",
+    "Brand & Creative Strategy": "Marketing e Vendas",
+    "Audiovisual Producer": "Design e Criacao",
+    "Filmmaker": "Design e Criacao",
+    "Avid Media Composer": "Design e Criacao",
+    "DaVinci Resolve": "Design e Criacao",
+    "Producer (Film": "Design e Criacao",
+    "Book Editor": "Humanidades",
+    # o "=" na frente faz valer so para o titulo exato: sem ele, "Audio Expert"
+    # esconderia tambem a "Music and Audio experts", que e vaga geral
+    "=Audio Expert": "Outras areas",
+    "=AI Engineer": "Programacao e Software",
+    "Dispatcher": "Outras areas",
 }
 
 # Falar de portugues ou Brasil manda a vaga para a aba Vagas, MAS so
@@ -262,9 +314,11 @@ def classificar_area(titulo, descricao=""):
         return None
 
     # 0. o que estiver escrito a mao em EXCECOES vence tudo
+    #    chave comecando com "=" so vale para o titulo inteiro, igualzinho
     for chave, area in EXCECOES.items():
-        alvo = normalizar(chave)
-        if alvo and (alvo == texto or _tem(texto, alvo)):
+        exato = chave.startswith("=")
+        alvo = normalizar(chave[1:] if exato else chave)
+        if alvo and (alvo == texto or (not exato and _tem(texto, alvo))):
             return area or None
 
     # 1. palavras que enganam, tipo "prompt engineer". Ficam de fora antes
