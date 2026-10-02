@@ -1202,7 +1202,11 @@ function aplicar() {
   const emAlta = (porData && typeof Pulso !== "undefined")
     ? Pulso.destaques().map(id => resultado.find(v => v.id === id)).filter(Boolean)
     : [];
-  const sobra = emAlta.length >= 2 ? resultado.filter(v => !emAlta.includes(v)) : resultado;
+  /* Quem não tem conta vê o grupo "Em movimento" borrado. Para essas pessoas
+     as vagas do grupo NÃO saem da lista de baixo: a vaga em si é aberta, o que
+     pede conta é saber quais estão em movimento. A regra mora no layout.js. */
+  const fechado = typeof Acesso !== "undefined" && Acesso.trancado();
+  const sobra = (emAlta.length >= 2 && !fechado) ? resultado.filter(v => !emAlta.includes(v)) : resultado;
   const destacadas = emAlta.length >= 2 ? emAlta : [];
 
   const novas = porData ? sobra.filter(ehNova) : [];
@@ -1210,9 +1214,13 @@ function aplicar() {
 
   let html = "";
   if (destacadas.length) {
+    const lista = `<div class="lista">${destacadas.map(linha).join("")}</div>`;
     html += `<div class="grupo-titulo"><h2>Em movimento</h2>
              <span>onde os alunos do Hub estão se candidatando e recebendo resposta</span></div>
-             <div class="lista">${destacadas.map(linha).join("")}</div>`;
+             ${fechado
+               ? Acesso.cortina(lista, "As vagas em movimento são para quem tem conta",
+                   "Veja quais vagas estão recebendo mais candidaturas e quais empresas estão respondendo.")
+               : lista}`;
   }
   if (novas.length) {
     html += `<div class="grupo-titulo"><h2>Publicadas nesta semana</h2><span>${novas.length}</span></div>
@@ -1228,7 +1236,8 @@ function aplicar() {
   }
   alvo.innerHTML = html;
   marcarAplicadas();
-  if (typeof Pulso !== "undefined") Pulso.marcar(alvo);
+  // os selos "em alta" e "costuma responder" também são só para quem tem conta
+  if (typeof Pulso !== "undefined" && !fechado) Pulso.marcar(alvo);
 }
 
 /* ══════════════════════════════════════════════════════════

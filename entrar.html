@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar — Home Office Hub</title>
+<meta name="description" content="Entre na sua conta do Home Office Hub para usar as ferramentas e continuar os cursos.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<style>
+  .e-main { min-height:60vh; padding:8px 0 40px; }
+  .e-espera { text-align:center; padding:80px 20px; color:var(--ink-3,#8A94A1); font-size:14px; }
+</style>
+</head>
+<body>
+
+<main class="e-main">
+  <div class="e-espera" id="espera">Abrindo…</div>
+</main>
+
+<script src="layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="controle-conta.js?v=2"></script>
+<script>
+try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e); }
+
+/* Página de entrada do site. As telas (entrar, criar senha) são as mesmas do
+   Meu Controle, que moram no controle-conta.js. Depois de entrar, a pessoa
+   volta para a página de onde veio (?voltar=...). */
+(async function () {
+  // Só aceita voltar para uma página do próprio site. Sem isto, alguém
+  // poderia montar um link que manda a pessoa para outro endereço depois do login.
+  const pedido = new URLSearchParams(location.search).get("voltar") || "";
+  const voltar = /^[a-z0-9-]+\.html(#[\w\/.-]*)?$/i.test(pedido) && !/^entrar\.html/i.test(pedido)
+    ? pedido : "controle.html";
+
+  const espera = document.getElementById("espera");
+  try {
+    if (typeof Conta === "undefined" || !Conta.disponivel) {
+      espera.textContent = "Não deu para falar com o servidor de contas. Confira a internet e recarregue a página.";
+      return;
+    }
+    espera.hidden = true;
+    await Conta.entrar({ forcar: true });
+    espera.hidden = false;
+    espera.textContent = "Pronto, entrando…";
+    location.replace(voltar);
+  } catch (e) {
+    console.error(e);
+    espera.hidden = false;
+    espera.textContent = e.message || "Não deu para entrar agora. Tente de novo em instantes.";
+  }
+})();
+</script>
+
+</body>
+</html>

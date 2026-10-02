@@ -23,10 +23,11 @@ const Conta = (function () {
   const ENDERECO = "https://zrqucjktympnwilbvisw.supabase.co";
   const CHAVE_PUBLICA = "sb_publishable_4X7Cyykz9ZDMWOTvauxibA_Tpa4KtAh";
 
-  /* false: a ferramenta abre sem login, como antes, e a conta é opcional
-            (entra por convite ou por controle.html?entrar=1).
-     true:  só usa o Meu Controle quem está logado. */
-  const LOGIN_OBRIGATORIO = false;
+  /* O login é obrigatório no Meu Controle quando as portas do site estão
+     ligadas (Acesso, no layout.js). Com elas desligadas, a ferramenta abre
+     sem login, como antes, e a conta é opcional. Um interruptor só manda
+     em tudo, para o site não ficar meio fechado e meio aberto. */
+  const loginObrigatorio = () => typeof Acesso !== "undefined" && Acesso.portasLigadas;
 
   const CHAVE_DONO = "hub-controle:dono";
   const PAGINA = location.origin + location.pathname;
@@ -218,11 +219,12 @@ const Conta = (function () {
      obrigatório e a pessoa está sem conta.
      ══════════════════════════════════════════════════════════ */
 
-  async function entrar() {
+  async function entrar(opcoes) {
+    const forcar = !!(opcoes && opcoes.forcar);   // a página entrar.html sempre pede login
     if (!disponivel()) {
       // A biblioteca não carregou (sem internet, bloqueador). Sem login
       // obrigatório a ferramenta segue só com o que está no navegador.
-      if (LOGIN_OBRIGATORIO) throw new Error("Não deu para falar com o servidor de contas. Confira a internet e recarregue a página.");
+      if (forcar || loginObrigatorio()) throw new Error("Não deu para falar com o servidor de contas. Confira a internet e recarregue a página.");
       return null;
     }
 
@@ -232,7 +234,7 @@ const Conta = (function () {
     limparEndereco();
 
     if (!sessao) {
-      if (!LOGIN_OBRIGATORIO && !chegouPorLink && !pediuEntrar) return null;
+      if (!forcar && !loginObrigatorio() && !chegouPorLink && !pediuEntrar) return null;
       const aviso = erroDoLink ? { texto: traduzir({ message: erroDoLink }) } : null;
       usuario = await telaEntrar(aviso);
     } else {
@@ -408,7 +410,7 @@ const Conta = (function () {
   return {
     entrar, sincronizar, empurrar, sair, apagarConta, traduzir,
     get usuario() { return usuario; },
-    get obrigatorio() { return LOGIN_OBRIGATORIO; },
+    get obrigatorio() { return loginObrigatorio(); },
     get disponivel() { return disponivel(); },
   };
 })();
