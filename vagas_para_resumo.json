@@ -1,4 +1,38 @@
 {
-  "total": 0,
-  "vagas": []
+  "total": 3,
+  "vagas": [
+    {
+      "id": "6ee9a7c7d7",
+      "empresa": "toloka",
+      "titulo": "English-Chinese Bilingual Voice Recording - AI Trainer",
+      "url": "https://apply.workable.com/j/78FB365E82",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "IA & Dados",
+      "descricao": "<p>This is a project-based opportunity on an AI training platform. No fixed hours, no commitment beyond what fits your schedule. You talk, you get paid.</p><p></p><p><strong>About the Role</strong></p><p>We're looking for bilingual speakers to record short, casual voice clips where they naturally mix English with Chinese - the way they'd actually talk in real life. No script, no scenarios, just you talking about your day, your opinions, whatever comes naturally.</p><p>Do you switch between English and Chinese mid-sentence without even thinking about it? Rant about your day, discuss your favorite show, think out loud with different languages - say it exactly how you'd say it to a friend. What if you could get paid just for recording it?</p><p></p><p><strong>Responsibilities:</strong> </p><ul><li>Record 1-2 minute voice clips responding to a prompt or reacting to a short video</li><li>Speak naturally, switching between English and Chinese the way you normally would in everyday conversation</li><li>Complete a few clips per recording session</li></ul><p></p><p><strong>Requirements</strong></p><ul><li>Language: Fully bilingual - fluent or native in both English and Chinese, and someone who naturally mixes the two when speaking</li><li>Equipment: Any device works, including your phone - no studio or special equipment needed</li><li>Recording environment: A quiet room with no background music, TV, traffic, or other people talking</li><li>Audio quality: Clear voice, close to the mic, one speaker only, no echo. A headset or earbuds with a mic helps but isn't required</li><li>Note: Quiet, clean audio matters most - background noise or unclear speech can affect approval</li></ul><p></p><p><strong>Why is this freelance opportunity a great fit for you?</strong></p><ul><li>Get paid to talk - no perfect grammar, no formality: <strong>earn up to $30/hour</strong> depending on your pace and approval rate</li><li>Do it from your couch, your phone, wherever's comfortable</li><li>Flexible, from home, paid per approved recording</li><li>If you naturally mix Chinese and English when you speak, you're exactly who we're looking for</li></ul>",
+      "requisitos": "",
+      "remuneracao": ""
+    },
+    {
+      "id": "4cef88647f",
+      "empresa": "mercor",
+      "titulo": "Task Writer: Project Agentic-MME",
+      "url": "https://work.mercor.com/jobs/list_AAABoP45Rv7xHNa1xtpEZ7nZ/task-writer-project-agentic-mme",
+      "local": "Remoto · Mundial",
+      "categoria_badge": "Escrita",
+      "descricao": "About the project\nAgentic-MME tests whether AI models can investigate an image rather than just look at it. To solve a task, the model has to crop, rotate or enhance the image so a small detail becomes readable, then search the web for a fact, and then check each against the other before answering.\n\nWhat you'll do\n\n- Use high-resolution images where the key detail is small or degraded to test frontier AI models on the raw image and find what they miss, then build tasks around those gaps\n \n- Write realistic prompts that need image work and at least one web search\n \n- Record the shortest solution path step by step, with the image operations used and a credible source for each search\n \n- Give one exact golden answer, a clear answer format and any accepted variants\n\nWhat we're looking for\n\n- Strong attention to detail\n \n- Excellent writing skills\n \n- Skill at web research, with a habit of using primary, authoritative sources\n \n- Advanced degree holders\n \n- Experience working on rubrics is a plus but not a must-have",
+      "requisitos": "",
+      "remuneracao": "USD 60 / hora"
+    },
+    {
+      "id": "1626ebbbfd",
+      "empresa": "mercor",
+      "titulo": "Generalist",
+      "url": "https://work.mercor.com/jobs/list_AAABnDc53yqj2XaoeQtKIpJU/generalist",
+      "local": "Remoto · Mundial",
+      "categoria_badge": "IA & Dados",
+      "descricao": "We're hiring remote Generalists to support a variety of projects across research, data, and operations. This is a flexible hourly role well-suited to people who can pick up new tools quickly, work independently, and produce high-quality output on ambiguous tasks.",
+      "requisitos": "",
+      "remuneracao": "USD 22-27 / hora"
+    }
+  ]
 }
