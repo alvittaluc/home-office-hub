@@ -210,6 +210,14 @@
   .moldura.a2 { background:#EDF2F7; }
   .moldura.a3 { background:#F2EFE7; }
   .moldura.a4 { background:#EFF1EC; }
+  /* A maquete de cada área entra vindo da direita, desfocada, e fica nítida
+     no lugar quando a pessoa chega nela. Quem liga é o script lá embaixo;
+     sem ele, ou com menos movimento pedido no sistema, ela fica parada. */
+  .moldura.vem { opacity:0; transform:translateX(var(--vem-de, 84px)); filter:blur(14px);
+    transition:opacity .8s cubic-bezier(.22,.61,.36,1) .12s, transform 1.1s cubic-bezier(.22,.61,.36,1) .12s,
+               filter .95s cubic-bezier(.22,.61,.36,1) .12s; }
+  .moldura.vem.chegou { opacity:1; transform:none; filter:blur(0); }
+  @media (max-width:860px){ .moldura.vem { --vem-de:20px; filter:blur(10px); } }
 
   .seg-trad { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line-soft);
     border:1px solid var(--line-soft); border-radius:11px; overflow:hidden; }
@@ -776,7 +784,7 @@
 <script src="layout.js"></script>
 <script>
 montarLayout("inicio");
-revelarAoRolar(".abertura, .areas .area, .passos-sec .passo, .ini-trilha, .ini-ferramenta, .fim .escuro");
+revelarAoRolar(".abertura, .areas .lado-texto, .passos-sec .passo, .ini-trilha, .ini-ferramenta, .fim .escuro");
 
 // onda de áudio da seção de coleta
 (function(){
@@ -785,6 +793,40 @@ revelarAoRolar(".abertura, .areas .area, .passos-sec .passo, .ini-trilha, .ini-f
   const alturas = [22,48,31,68,84,55,39,72,90,61,44,78,52,35,66,88,47,29,58,74,41,63,86,50,33,70,45,80];
   onda.innerHTML = alturas.map((h,i) =>
     `<i style="height:${h}%;opacity:${i < 13 ? 0.9 : 0.28};"></i>`).join("");
+})();
+
+/* ── as maquetes das áreas entram da direita, desfocadas ──
+   Cada uma toca uma vez, quando a pessoa chega nela. Depois a classe sai,
+   para a maquete não ficar com filtro nenhum. Quem pediu menos movimento,
+   ou usa navegador sem o recurso, vê as maquetes paradas. */
+(function(){
+  const molduras = document.querySelectorAll(".areas .area > .moldura");
+  if (!molduras.length || !("IntersectionObserver" in window)) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const limpar = el => el.classList.remove("vem", "chegou");
+  function soltar(el) {
+    requestAnimationFrame(() => el.classList.add("chegou"));
+    const fim = ev => {
+      if (ev.target !== el || ev.propertyName !== "transform") return;
+      el.removeEventListener("transitionend", fim);
+      limpar(el);
+    };
+    el.addEventListener("transitionend", fim);
+    setTimeout(() => limpar(el), 2000);   // se o fim da transição não avisar
+  }
+
+  const obs = new IntersectionObserver(entradas => {
+    entradas.forEach(e => {
+      if (!e.isIntersecting) return;
+      obs.unobserve(e.target);
+      soltar(e.target);
+    });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.15 });
+
+  molduras.forEach(el => { el.classList.add("vem"); obs.observe(el); });
+  // na impressão (ou salvar em PDF) tudo aparece, mesmo o que não foi visto
+  window.addEventListener("beforeprint", () => molduras.forEach(limpar));
 })();
 
 /* ── carrossel do topo ──
