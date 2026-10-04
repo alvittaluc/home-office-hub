@@ -4,6 +4,11 @@
    A inscrição vai direto para o formulário do Brevo, que manda o e-mail de
    confirmação. O Hub não guarda o endereço de ninguém: ele fica só no Brevo.
    Para trocar de formulário, mude o FORMULARIO abaixo.
+
+   Quem tem conta no Hub com áreas marcadas recebe também as vagas da sua
+   área, desde que se inscreva com o mesmo e-mail da conta: é por ele que o
+   envio (enviar_alerta.py) acha as áreas. Por isso, com a pessoa logada, o
+   campo já vem com o e-mail da conta.
    ═══════════════════════════════════════════════════════════════════ */
 (function () {
   "use strict";
@@ -27,6 +32,9 @@
   .ae button[disabled] { opacity:.6; cursor:default; }
   .ae-armadilha { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
   .ae-nota { font-size:12.5px !important; color:var(--ink-3,#8A94A1) !important; margin-top:10px !important; }
+  .ae-area { font-size:14px !important; margin-top:10px !important; }
+  .ae-area a { color:var(--signal,#1A4893); font-weight:600; text-decoration:none; white-space:nowrap; }
+  .ae-area a:hover { text-decoration:underline; }
   .ae-msg { font-size:14px !important; font-weight:600; margin-top:12px !important; }
   .ae-msg.ok { color:#1F7A6E !important; }
   .ae-msg.erro { color:var(--amber,#A85D24) !important; }
@@ -36,7 +44,35 @@
     .ae form { flex-direction:column; }
   }`;
 
+  const escapar = s => String(s).replace(/[&<>"']/g, c =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  /* O recado sobre as vagas de área, e o e-mail da conta para já vir no campo. */
+  function sobreAreas() {
+    try {
+      if (typeof Acesso === "undefined") return { email: "", texto: "" };
+      if (!Acesso.logado()) {
+        return { email: "", texto: "Tem conta no Hub com áreas marcadas? Inscreva o mesmo e-mail da conta e receba também as vagas da sua área." };
+      }
+      const minhas = Acesso.areas();
+      if (minhas && minhas.length) {
+        return { email: Acesso.email(), texto: "Com o e-mail da sua conta, o alerta traz também as vagas de " +
+          escapar(Acesso.resumoDasAreas(minhas, Acesso.subareas())) + "." };
+      }
+      if (minhas === null) {
+        const aqui = (location.pathname.split("/").pop() || "index.html");
+        const volta = /^[a-z0-9-]+\.html$/i.test(aqui) ? aqui : "index.html";
+        return { email: Acesso.email(), texto: "Marque suas áreas na conta e o alerta passa a trazer também as vagas da sua formação. " +
+          `<a href="entrar.html?areas=1&amp;voltar=${volta}">Marcar minhas áreas</a>` };
+      }
+      return { email: Acesso.email(), texto: "" };
+    } catch (e) {
+      return { email: "", texto: "" };
+    }
+  }
+
   function montar(alvo) {
+    const conta = sobreAreas();
     alvo.classList.add("ae");
     alvo.innerHTML = `
       <div class="ae-cx">
@@ -44,6 +80,7 @@
           <div class="ae-olho">Alerta de vagas</div>
           <h2>Receba as vagas novas por e-mail</h2>
           <p>Um e-mail só nos dias em que entra vaga nova, já filtrada para quem mora no Brasil. Sem propaganda.</p>
+          ${conta.texto ? `<p class="ae-area">${conta.texto}</p>` : ""}
         </div>
         <div>
           <form novalidate>
@@ -64,6 +101,7 @@
     const campo = form.querySelector("input[type=email]");
     const botao = form.querySelector("button");
     const msg = alvo.querySelector(".ae-msg");
+    if (conta.email) campo.value = conta.email;
 
     function avisar(texto, tipo) {
       msg.textContent = texto;

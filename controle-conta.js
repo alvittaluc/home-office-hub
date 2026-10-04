@@ -340,7 +340,7 @@ const Conta = (function () {
           <div class="cp-olho">Para as vagas combinarem com você</div>
           <h1>Você tem formação ou experiência em alguma destas áreas?</h1>
           <p>É opcional, e você pode marcar quantas quiser. As vagas abertas a todos aparecem sempre.
-             Marcando uma área, as vagas que pedem essa formação passam a aparecer junto, na aba Vagas.</p>
+             Marcando uma área, as vagas que pedem essa formação passam a aparecer junto, na aba Vagas e no alerta por e-mail.</p>
           <form novalidate>
             <div class="cp-areas">
               ${lista.map(a => {

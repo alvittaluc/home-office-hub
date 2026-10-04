@@ -30,10 +30,13 @@ jobs:
 
       # Falha aqui não pode impedir a atualização das vagas, por isso o
       # continue-on-error. Sem o secret BREVO_API_KEY o script não faz nada.
+      # Sem o ALERTA_CHAVE, todo mundo recebe só as vagas abertas a todos
+      # (ver banco/alerta-areas.sql).
       - name: Avisar as vagas novas por e-mail
         continue-on-error: true
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          ALERTA_CHAVE: ${{ secrets.ALERTA_CHAVE }}
         run: |
           if [ "${{ inputs.teste_email }}" = "true" ]; then
             python3 enviar_alerta.py --teste
