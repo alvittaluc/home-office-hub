@@ -210,14 +210,18 @@
   .moldura.a2 { background:#EDF2F7; }
   .moldura.a3 { background:#F2EFE7; }
   .moldura.a4 { background:#EFF1EC; }
-  /* A maquete de cada área entra vindo da direita, desfocada, e fica nítida
-     no lugar quando a pessoa chega nela. Quem liga é o script lá embaixo;
-     sem ele, ou com menos movimento pedido no sistema, ela fica parada. */
+  /* A maquete de cada área entra pelo lado em que fica, desfocada, e fica
+     nítida no lugar quando a pessoa chega nela: a da direita vem da direita,
+     a da esquerda vem da esquerda. Quem liga é o script lá embaixo; sem ele,
+     ou com menos movimento pedido no sistema, ela fica parada. */
   .moldura.vem { opacity:0; transform:translateX(var(--vem-de, 84px)); filter:blur(14px);
     transition:opacity .8s cubic-bezier(.22,.61,.36,1) .12s, transform 1.1s cubic-bezier(.22,.61,.36,1) .12s,
                filter .95s cubic-bezier(.22,.61,.36,1) .12s; }
+  .area:nth-child(even) > .moldura.vem { --vem-de:-84px; }
   .moldura.vem.chegou { opacity:1; transform:none; filter:blur(0); }
-  @media (max-width:860px){ .moldura.vem { --vem-de:20px; filter:blur(10px); } }
+  /* no celular a maquete fica embaixo do texto, na largura toda: todas vêm
+     da direita, num deslize curto, para não passar da borda da tela */
+  @media (max-width:860px){ .moldura.vem, .area:nth-child(even) > .moldura.vem { --vem-de:20px; filter:blur(10px); } }
 
   .seg-trad { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line-soft);
     border:1px solid var(--line-soft); border-radius:11px; overflow:hidden; }
@@ -795,7 +799,7 @@ revelarAoRolar(".abertura, .areas .lado-texto, .passos-sec .passo, .ini-trilha, 
     `<i style="height:${h}%;opacity:${i < 13 ? 0.9 : 0.28};"></i>`).join("");
 })();
 
-/* ── as maquetes das áreas entram da direita, desfocadas ──
+/* ── as maquetes das áreas entram pelo lado em que ficam, desfocadas ──
    Cada uma toca uma vez, quando a pessoa chega nela. Depois a classe sai,
    para a maquete não ficar com filtro nenhum. Quem pediu menos movimento,
    ou usa navegador sem o recurso, vê as maquetes paradas. */
