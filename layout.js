@@ -424,9 +424,6 @@ function montarLayout(ativa) {
       <span>Home Office Hub</span>
     </div>`;
   document.body.appendChild(footer);
-
-  // destaque nos títulos que já vêm escritos no HTML da página
-  try { realcar(); } catch (e) { console.warn(e); }
 }
 
 /* Lê o vagas.json uma vez e devolve os dados. */
@@ -515,45 +512,6 @@ try {
     window.top.location = window.self.location.href;
   }
 } catch (e) { document.documentElement.style.display = "none"; }
-
-/* ══════════════════════════════════════════════════════════════
-   DESTAQUE NUMA PALAVRA
-   Monta a faixa azul em todo <span data-realce> dentro de "raiz" (ou da
-   página inteira). Toca uma vez, quando o título aparece na tela. Se a
-   página redesenhar o mesmo título depois, ele volta já destacado, sem
-   recomeçar. Quem pediu menos movimento vê o destaque pronto.
-   O montarLayout chama sozinho para os títulos fixos; páginas que
-   desenham o título por script chamam realcar(container) depois.
-   ══════════════════════════════════════════════════════════════ */
-const _realcesTocados = new Set();
-function realcar(raiz) {
-  const alvos = (raiz || document).querySelectorAll("[data-realce]:not(.realce)");
-  if (!alvos.length) return;
-  const quieto = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  alvos.forEach(el => {
-    const texto = el.textContent.trim();
-    const cor = document.createElement("span");
-    cor.className = "realce-cor";
-    cor.setAttribute("aria-hidden", "true");
-    cor.setAttribute("data-texto", texto);
-    el.appendChild(cor);
-    el.classList.add("realce");
-    if (quieto || _realcesTocados.has(texto) || !("IntersectionObserver" in window)) return;
-    _realcesTocados.add(texto);
-    el.classList.add("realce-espera");
-    let feito = false, ob = null;
-    const soltar = () => {
-      if (feito) return;
-      feito = true;
-      if (ob) ob.disconnect();
-      setTimeout(() => el.classList.remove("realce-espera"), 250);
-    };
-    ob = new IntersectionObserver(ents => { if (ents.some(x => x.isIntersecting)) soltar(); }, { threshold: 0.5 });
-    ob.observe(el);
-    // garantia: se o título nunca for observado (aba em segundo plano, impressão), o destaque aparece mesmo assim
-    setTimeout(soltar, 5000);
-  });
-}
 
 /* Logo da empresa: tenta o favicon real, cai para a sigla se falhar.
 

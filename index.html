@@ -32,32 +32,6 @@
   .hero p.lead { margin:0 auto 32px; max-width:52ch; }
   .hero-cta { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
-  /* ═══════════ LETREIRO DAS EMPRESAS ═══════════
-     As empresas com vaga aberta hoje, correndo devagar entre o topo e o
-     carrossel. A lista vem do vagas.json: empresa sem vaga sai sozinha e
-     volta quando reabrir. Para quando o mouse passa ou o teclado entra. */
-  .letreiro-sec { max-width:var(--wrap); margin:0 auto; padding:0 22px 46px; }
-  .letreiro-rot { text-align:center; font-size:12px; font-weight:500; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin-bottom:16px; }
-  .letreiro { overflow:hidden; min-height:48px;
-    -webkit-mask-image:linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%);
-            mask-image:linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%); }
-  .letreiro-trilho { display:flex; width:max-content; animation:letreiro var(--duracao, 50s) linear infinite; }
-  .letreiro:hover .letreiro-trilho, .letreiro:focus-within .letreiro-trilho { animation-play-state:paused; }
-  @keyframes letreiro { to { transform:translateX(-50%); } }
-  .letreiro-lista { display:flex; }
-  .letreiro-emp { display:flex; align-items:center; gap:11px; padding:7px 28px; white-space:nowrap; border-left:1px solid var(--line-soft);
-    color:var(--ink); font-size:15px; font-weight:500; letter-spacing:-0.005em; transition:color .15s; }
-  .letreiro-emp:hover { color:var(--signal); }
-  .letreiro-emp .marca { width:34px; height:34px; border-radius:10px; display:grid; place-items:center; flex-shrink:0; overflow:hidden;
-    font-size:11.5px; font-weight:600; }
-  @media (max-width:700px){ .letreiro-sec { padding-bottom:30px; } .letreiro-emp { padding:7px 18px; font-size:14px; } }
-  @media (prefers-reduced-motion:reduce){
-    .letreiro { -webkit-mask-image:none; mask-image:none; }
-    .letreiro-trilho { animation:none; width:auto; justify-content:center; }
-    .letreiro-lista { flex-wrap:wrap; justify-content:center; row-gap:10px; }
-    .letreiro-lista[aria-hidden="true"] { display:none; }
-  }
-
   /* ═══════════ CARROSSEL DO QUE TEM NO SITE ═══════════ */
   .vitrine { max-width:var(--wrap); margin:0 auto; padding:0 22px; }
   .palco { padding:34px 38px 26px; }
@@ -373,18 +347,12 @@
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
   <div class="eyebrow">Trabalho remoto com dados e inteligência artificial</div>
-  <h1 class="big">O trabalho que ensina as máquinas começa com <span data-realce>você</span>.</h1>
+  <h1 class="big">O trabalho que ensina as máquinas começa com você.</h1>
   <p class="lead">Empresas do mundo inteiro pagam pessoas comuns para ensinar e avaliar sistemas de inteligência artificial. Aqui você encontra quem contrata e as vagas abertas para quem mora no Brasil.</p>
   <div class="hero-cta">
     <a href="vagas.html" class="btn primary">Ver vagas abertas <span class="arr">→</span></a>
     <a href="como-funciona.html" class="btn">Como funciona</a>
   </div>
-</section>
-
-<!-- ══════════ EMPRESAS COM VAGA ABERTA ══════════ -->
-<section class="letreiro-sec" id="letreiroSec" aria-labelledby="letreiroRot">
-  <p class="letreiro-rot" id="letreiroRot">Empresas com vagas abertas no Hub</p>
-  <div class="letreiro"><div class="letreiro-trilho" id="letreiroTrilho"></div></div>
 </section>
 
 <!-- ══════════ CARROSSEL ══════════ -->
@@ -809,32 +777,6 @@
 <script>
 montarLayout("inicio");
 revelarAoRolar(".abertura, .areas .area, .passos-sec .passo, .ini-trilha, .ini-ferramenta, .fim .escuro");
-
-/* ── letreiro das empresas com vaga aberta ──
-   A lista sai do vagas.json e do empresas.json. Vai duas vezes no trilho,
-   para a volta ficar sem emenda; a segunda cópia é escondida de leitores
-   de tela e do teclado. Se algo falhar, a faixa some sem deixar buraco. */
-(async function(){
-  const sec = document.getElementById("letreiroSec"), trilho = document.getElementById("letreiroTrilho");
-  if (!sec || !trilho) return;
-  try {
-    const ler = u => fetch(u).then(r => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)));
-    const [ve, em] = await Promise.all([ler("vagas.json"), ler("empresas.json")]);
-    const conta = {};
-    (ve.vagas || []).forEach(v => { conta[v.empresa] = (conta[v.empresa] || 0) + 1; });
-    const lista = (em.empresas || []).filter(e => conta[e.id]).sort((a, b) => conta[b.id] - conta[a.id]);
-    if (lista.length < 4) { sec.hidden = true; return; }
-    const cor = c => /^#[0-9a-f]{3,8}$/i.test(c || "") ? c : "";
-    const item = (e, copia) => `<a class="letreiro-emp" href="vagas.html?empresa=${encodeURIComponent(e.id)}"${copia ? ' tabindex="-1"' : ""}
-        title="Ver as vagas da ${esc(e.nome)}"><span class="marca" style="background:${cor(e.bg)};color:${cor(e.cor)};">${logoHtml(e, 34)}</span>${esc(e.nome)}</a>`;
-    trilho.innerHTML = `<div class="letreiro-lista">${lista.map(e => item(e, false)).join("")}</div>
-      <div class="letreiro-lista" aria-hidden="true">${lista.map(e => item(e, true)).join("")}</div>`;
-    trilho.style.setProperty("--duracao", Math.max(32, lista.length * 5) + "s");
-  } catch (err) {
-    console.warn("letreiro", err);
-    sec.hidden = true;
-  }
-})();
 
 // onda de áudio da seção de coleta
 (function(){
