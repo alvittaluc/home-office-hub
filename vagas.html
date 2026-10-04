@@ -565,7 +565,7 @@
 <section class="topo">
   <a class="volta" id="volta" href="vagas.html" data-ir hidden>← todas as categorias</a>
   <div class="eyebrow" id="eyebrow">Lista completa</div>
-  <h1 id="titulo">Vagas abertas para quem mora no Brasil</h1>
+  <h1 id="titulo">Vagas abertas para quem mora no <span data-realce>Brasil</span></h1>
   <div class="numeros" id="numeros"></div>
 </section>
 
@@ -812,10 +812,17 @@ function render() {
   montarAbas();
   const olho = document.getElementById("eyebrow");
   const tit = document.getElementById("titulo");
+  /* O título de sempre, com "Brasil" em destaque. Se ele já está na tela,
+     fica como está, para o destaque não recomeçar a cada filtro. */
+  function tituloPadrao(el) {
+    if (el.querySelector("[data-realce]")) return;
+    el.innerHTML = 'Vagas abertas para quem mora no <span data-realce>Brasil</span>';
+    if (typeof realcar === "function") realcar(el);
+  }
 
   if (TELA === "inicio") {
     olho.textContent = "Lista completa";
-    tit.textContent = "Vagas abertas para quem mora no Brasil";
+    tituloPadrao(tit);
     montarNumeros(GERAIS.concat(ESPECIFICAS));
     montarInicio();
   } else if (TELA === "areas") {
@@ -835,7 +842,7 @@ function render() {
       tit.textContent = CAT_NOME[[...fCats][0]] || "Vagas abertas";
     } else {
       olho.textContent = "Lista completa";
-      tit.textContent = "Vagas abertas para quem mora no Brasil";
+      tituloPadrao(tit);
     }
     aplicar();
   }

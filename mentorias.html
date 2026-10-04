@@ -371,7 +371,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     return `<section class="mt-hero">
       <div>
         <div class="eyebrow">Mentorias</div>
-        <h1 class="mt-h1">Entre numa vaga com a ajuda de quem já trabalha nela</h1>
+        <h1 class="mt-h1">Entre numa vaga com a ajuda de quem <span data-realce>já trabalha nela</span></h1>
         <p class="lead">Profissionais que já fazem o trabalho abrem grupos para acompanhar quem está se candidatando:
           currículo, teste de entrada e as primeiras semanas. Sem custo para quem participa.</p>
         <div class="mt-hero-cta">${cta}</div>
@@ -814,6 +814,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     const conteudo = aba === "minhas" ? htmlMinhas() : aba === "arquivadas" ? htmlArquivadas()
                    : aba === "denuncias" ? htmlDenuncias() : htmlExplorar() + htmlInfo();
     tela.innerHTML = demo + htmlHero() + (logado ? htmlAbas() : "") + conteudo;
+    if (typeof realcar === "function") realcar(tela);
   }
 
   function abrirAba(nome, rolar) {
