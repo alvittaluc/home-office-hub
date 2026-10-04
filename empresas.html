@@ -105,34 +105,30 @@
   @media (max-width:520px) { .link-in { margin-left:0; } }
   .areas-linha { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:18px; }
 
-  /* ── faixa giratória de empresas ── */
-  .faixa { max-width:var(--wrap); margin:0 auto; padding:0 22px 34px; }
-  .fila-wrap {
-    border:1px solid var(--line-soft); border-radius:var(--raio); overflow:hidden;
-    position:relative; background:var(--panel); box-shadow:var(--sombra);
+  /* ── letreiro das empresas ──
+     Corre devagar e sem parar, com as bordas apagando. Para quando o mouse
+     passa por cima ou o teclado entra. Cada empresa leva para a ficha dela,
+     mais abaixo na página. Quem pediu menos movimento vê a lista parada. */
+  .faixa { max-width:var(--wrap); margin:0 auto; padding:0 22px 40px; }
+  .letreiro { overflow:hidden; min-height:48px;
+    -webkit-mask-image:linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%);
+            mask-image:linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%); }
+  .letreiro-trilho { display:flex; width:max-content; animation:letreiro var(--duracao, 60s) linear infinite; }
+  .letreiro:hover .letreiro-trilho, .letreiro:focus-within .letreiro-trilho { animation-play-state:paused; }
+  @keyframes letreiro { to { transform:translateX(-50%); } }
+  .letreiro-lista { display:flex; }
+  .letreiro-emp { display:flex; align-items:center; gap:11px; padding:7px 28px; white-space:nowrap; border-left:1px solid var(--line-soft);
+    color:var(--ink); font-size:15px; font-weight:500; letter-spacing:-0.005em; transition:color .15s; }
+  .letreiro-emp:hover { color:var(--signal); }
+  .letreiro-emp .marca { width:34px; height:34px; border-radius:10px; display:grid; place-items:center; flex-shrink:0; overflow:hidden;
+    font-size:11.5px; font-weight:600; }
+  @media (max-width:700px){ .faixa { padding-bottom:26px; } .letreiro-emp { padding:7px 18px; font-size:14px; } }
+  @media (prefers-reduced-motion:reduce){
+    .letreiro { -webkit-mask-image:none; mask-image:none; }
+    .letreiro-trilho { animation:none; width:auto; justify-content:center; }
+    .letreiro-lista { flex-wrap:wrap; justify-content:center; row-gap:10px; }
+    .letreiro-lista[aria-hidden="true"] { display:none; }
   }
-  .fila-wrap::before, .fila-wrap::after {
-    content:''; position:absolute; top:0; bottom:0; width:56px; pointer-events:none; z-index:2;
-  }
-  .fila-wrap::before { left:0;  background:linear-gradient(90deg,#fff,transparent); }
-  .fila-wrap::after  { right:0; background:linear-gradient(270deg,#fff,transparent); }
-  .logo-fila { display:flex; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
-  .logo-fila::-webkit-scrollbar { display:none; }
-  .logo-item {
-    flex:0 0 calc(100% / 7); background:#fff; padding:22px 12px;
-    display:flex; flex-direction:column; align-items:center; gap:10px;
-    text-align:center; transition:background .16s; border-right:1px solid var(--line-soft);
-  }
-  @media (max-width:900px){ .logo-item{ flex-basis:calc(100% / 4); } }
-  @media (max-width:600px){ .logo-item{ flex-basis:calc(100% / 2.6); padding:18px 8px; } }
-  .logo-item:hover { background:var(--bg-soft); }
-  .logo-item .lg {
-    width:38px; height:38px; display:grid; place-items:center; border-radius:10px;
-    border:1px solid var(--line-soft); background:#fff;
-    font-weight:600; font-size:11px; overflow:hidden;
-  }
-  .logo-item .lg img { width:24px; height:24px; object-fit:contain; }
-  .logo-item .nm { font-size:12.5px; color:var(--ink-2); line-height:1.35; }
 </style>
 </head>
 <body>
@@ -143,11 +139,9 @@
   <p class="lead">O que cada empresa faz, que tipo de projeto oferece, como é o processo de entrada e como o pagamento chega até você.</p>
 </section>
 
-<!-- faixa giratória com todas as empresas -->
-<section class="faixa">
-  <div class="fila-wrap">
-    <div class="logo-fila" id="logoFila"></div>
-  </div>
+<!-- letreiro com todas as empresas; cada uma leva para a sua ficha -->
+<section class="faixa" aria-label="Ir para a ficha de uma empresa">
+  <div class="letreiro"><div class="letreiro-trilho" id="letreiroTrilho"></div></div>
 </section>
 
 <div class="corpo">
@@ -171,39 +165,19 @@ montarLayout("empresas");
 
   const lista = base.empresas || [];
 
-  /* ── faixa giratória, contínua e sem fim ──
-     A lista é repetida algumas vezes. Quando o giro passa do comprimento de
-     uma volta, a posição volta ao começo sem que se perceba. */
-  const fila = document.getElementById("logoFila");
-  if (fila && lista.length) {
-    const voltas = Math.max(2, Math.ceil(7 / lista.length) + 1);
-    let html = "";
-    for (let i = 0; i < voltas; i++) {
-      html += lista.map(e => `<a class="logo-item" href="#${e.id}"${i ? ' aria-hidden="true" tabindex="-1"' : ""}>
-        <span class="lg">${logoHtml(e,38)}</span><span class="nm">${esc(e.nome)}</span></a>`).join("");
-    }
-    fila.innerHTML = html;
-
-    const VELOCIDADE = 0.3;
-    const parado = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let posicao = 0, umaVolta = 0, sobre = false, arrastando = false;
-    const medir = () => umaVolta = fila.scrollWidth / voltas;
-    medir();
-    window.addEventListener("resize", () => { medir(); posicao = fila.scrollLeft; });
-    fila.addEventListener("pointerenter", () => sobre = true);
-    fila.addEventListener("pointerleave", () => sobre = false);
-    fila.addEventListener("pointerdown", () => arrastando = true);
-    const soltar = () => { if (arrastando) { arrastando = false; posicao = fila.scrollLeft; } };
-    window.addEventListener("pointerup", soltar);
-    window.addEventListener("pointercancel", soltar);
-    (function girar(){
-      if (umaVolta > 0 && !arrastando && !sobre && !parado) {
-        posicao += VELOCIDADE;
-        if (posicao >= umaVolta) posicao -= umaVolta;
-        fila.scrollLeft = posicao;
-      }
-      requestAnimationFrame(girar);
-    })();
+  /* ── letreiro ──
+     A lista vai duas vezes no trilho, para a volta ficar sem emenda; a
+     segunda cópia fica escondida de leitores de tela e do teclado. */
+  const trilhoLetreiro = document.getElementById("letreiroTrilho");
+  if (trilhoLetreiro && lista.length) {
+    const cor = c => /^#[0-9a-f]{3,8}$/i.test(c || "") ? c : "";
+    const item = (e, copia) => `<a class="letreiro-emp" href="#${encodeURIComponent(e.id)}"${copia ? ' tabindex="-1"' : ""}>
+        <span class="marca" style="background:${cor(e.bg)};color:${cor(e.cor)};">${logoHtml(e, 34)}</span>${esc(e.nome)}</a>`;
+    trilhoLetreiro.innerHTML = `<div class="letreiro-lista">${lista.map(e => item(e, false)).join("")}</div>
+      <div class="letreiro-lista" aria-hidden="true">${lista.map(e => item(e, true)).join("")}</div>`;
+    trilhoLetreiro.style.setProperty("--duracao", Math.max(32, lista.length * 5) + "s");
+  } else if (trilhoLetreiro) {
+    trilhoLetreiro.closest(".faixa").hidden = true;
   }
 
   // trilho lateral
