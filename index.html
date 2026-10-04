@@ -255,6 +255,13 @@
   }
   .passo h3 { font-weight:600; font-size:16px; color:var(--ink); margin-bottom:8px; letter-spacing:-0.01em; }
   .passo p { font-size:14px; color:var(--ink-2); line-height:1.6; }
+  /* Os passos aparecem um depois do outro quando a pessoa chega neles: o 01
+     primeiro, depois o 02 vai clareando, e assim até o 04. Quem liga é o
+     script lá embaixo; sem ele, ou com menos movimento pedido, ficam parados. */
+  .passo.na-fila { opacity:0; transform:translateY(18px); filter:blur(8px);
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1),
+               filter .7s cubic-bezier(.22,.61,.36,1); }
+  .passo.na-fila.chegou { opacity:1; transform:none; filter:blur(0); }
 
   /* ═══════════ CURSOS ═══════════
      Faixa levemente mais escura, para quebrar a sequência de seções
@@ -788,7 +795,7 @@
 <script src="layout.js"></script>
 <script>
 montarLayout("inicio");
-revelarAoRolar(".abertura, .areas .lado-texto, .passos-sec .passo, .ini-trilha, .ini-ferramenta, .fim .escuro");
+revelarAoRolar(".abertura, .areas .lado-texto, .ini-trilha, .ini-ferramenta, .fim .escuro");
 
 // onda de áudio da seção de coleta
 (function(){
@@ -831,6 +838,37 @@ revelarAoRolar(".abertura, .areas .lado-texto, .passos-sec .passo, .ini-trilha, 
   molduras.forEach(el => { el.classList.add("vem"); obs.observe(el); });
   // na impressão (ou salvar em PDF) tudo aparece, mesmo o que não foi visto
   window.addEventListener("beforeprint", () => molduras.forEach(limpar));
+})();
+
+/* ── os passos aparecem um depois do outro ──
+   No computador os quatro chegam juntos na tela e entram em fila, com um
+   intervalo entre eles. No celular, um embaixo do outro, cada um entra
+   quando aparece, sem passar na frente do anterior. */
+(function(){
+  const passos = [...document.querySelectorAll(".passos-sec .passo")];
+  if (!passos.length || !("IntersectionObserver" in window)) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const INTERVALO = 420;   // de um passo para o próximo, em milissegundos
+  let livreEm = 0;         // quando o próximo pode começar, para manter a ordem
+  const limpar = el => { el.classList.remove("na-fila", "chegou"); el.style.transitionDelay = ""; };
+
+  const obs = new IntersectionObserver(entradas => {
+    entradas.filter(e => e.isIntersecting).map(e => e.target)
+      .sort((a, b) => passos.indexOf(a) - passos.indexOf(b))
+      .forEach(el => {
+        obs.unobserve(el);
+        const agora = performance.now();
+        const atraso = Math.max(0, livreEm - agora);
+        livreEm = agora + atraso + INTERVALO;
+        el.style.transitionDelay = Math.round(atraso) + "ms";
+        requestAnimationFrame(() => el.classList.add("chegou"));
+        setTimeout(() => limpar(el), atraso + 1300);
+      });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.35 });
+
+  passos.forEach(el => { el.classList.add("na-fila"); obs.observe(el); });
+  window.addEventListener("beforeprint", () => passos.forEach(limpar));
 })();
 
 /* ── carrossel do topo ──
