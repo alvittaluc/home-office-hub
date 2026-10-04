@@ -225,15 +225,16 @@
   /* empresas: logos em grupos que se revezam (ideia do "Logos Carousel" da
      Spell UI). A cada três segundos o grupo sobe desfocando e o próximo entra
      por baixo. Para quando o mouse passa ou o teclado entra; os pontos trocam
-     o grupo à mão. Quem pediu menos movimento vê todas as empresas, paradas. */
-  .marcas-cx { background:var(--panel); border:1px solid var(--line-soft); border-radius:16px; padding:22px 18px 12px; }
+     o grupo à mão. Quem pediu menos movimento vê todas as empresas, paradas.
+     Ficam direto no fundo da página, sem caixa em volta. */
+  .marcas-cx { padding:8px 0 0; }
   .marcas { display:grid; place-items:center; min-height:146px; }
   .mgrupo { grid-area:1 / 1; display:flex; justify-content:center; gap:12px; width:100%; visibility:hidden; }
   .mgrupo.vez, .mgrupo.sai { visibility:visible; }
   .mgrupo.sai { pointer-events:none; }
   .mrc { flex:0 1 190px; min-width:0; display:flex; flex-direction:column; align-items:center; gap:9px; text-align:center;
     padding:12px 8px 10px; border-radius:14px; text-decoration:none; color:inherit; transition:background .16s; }
-  .mrc:hover { background:var(--panel-2); }
+  .mrc:hover { background:var(--panel); }
   .mrc:hover .nm { color:var(--signal); }
   .mrc .sel { width:56px; height:56px; border-radius:15px; display:grid; place-items:center; overflow:hidden;
     font-weight:700; font-size:13px; box-shadow:inset 0 0 0 1px var(--line); }
