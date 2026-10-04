@@ -119,9 +119,12 @@ const MD = (function () {
     const agora = () => new Date().toISOString();
     const dias = n => new Date(Date.now() - n * 864e5).toISOString();
     const P = {
-      ana: { id: "u-ana", nome: "Ana Souza", foto: "" },
-      rui: { id: "u-rui", nome: "Rui Tavares", foto: "" },
-      bia: { id: "u-bia", nome: "Bia Lima", foto: "" },
+      ana: { id: "u-ana", nome: "Ana Souza", foto: "", bio: "Avaliadora de busca desde 2024, em português e espanhol." },
+      rui: { id: "u-rui", nome: "Rui Tavares", foto: "", bio: "Transcritor e legendador há seis anos." },
+      bia: { id: "u-bia", nome: "Bia Lima", foto: "", bio: "Generalista em projetos de texto e áudio." },
+      leo: { id: "u-leo", nome: "Léo Martins", foto: "", bio: "Locutor e revisor de áudio. Trabalho com audiolivros desde 2023." },
+      cla: { id: "u-cla", nome: "Carla Nunes", foto: "", bio: "Tradutora, hoje avalio imagens e textos gerados por IA." },
+      dav: { id: "u-dav", nome: "Davi Rocha", foto: "", bio: "Transcrição em português do Brasil, projetos longos." },
       eu: { id: "u-eu", nome: papel === "novo" ? "" : "Você (teste)", foto: "" },
     };
     let S;
@@ -133,14 +136,29 @@ const MD = (function () {
         perfil: papel === "novo" ? null : { nome: "Você (teste)", bio: "Trabalho com avaliação de busca desde 2024.", foto: "" },
         mentorias: [
           { id: "m1", mentor_id: mentorDaPrimeira, empresa: "Welocalize", vaga_titulo: "Search Quality Rater, português (Brasil)", vaga_id: "",
-            link: "https://exemplo.com/indicacao", status: "aprovada", criado_em: dias(20), motivo: "",
+            link: "https://exemplo.com/indicacao", status: "aprovada", criado_em: dias(20), decidido_em: dias(19), motivo: "",
             apresentacao: "Trabalho como avaliadora de busca há um ano e meio. Entrei sem experiência, reprovei na primeira prova e passei na segunda, então sei onde a maioria trava.",
             como_ajuda: "Respondo dúvidas no mural todo dia útil. Ajudo a montar o currículo em inglês, explico como estudar o guia de diretrizes e faço um simulado comentado antes da prova.",
             comprovacao: "Print do portal de trabalho e contrato." },
           { id: "m2", mentor_id: "u-rui", empresa: "micro1", vaga_titulo: "Portuguese Transcription Expert", vaga_id: "",
-            link: "https://exemplo.com/indicacao2", status: "aprovada", criado_em: dias(8), motivo: "",
+            link: "https://exemplo.com/indicacao2", status: "aprovada", criado_em: dias(8), decidido_em: dias(7), motivo: "",
             apresentacao: "Faço transcrição de áudio em português para a micro1 desde março. Antes disso trabalhei com legendagem.",
             como_ajuda: "Explico como é a entrevista com IA da micro1, mando um modelo de currículo e reviso a sua primeira transcrição de teste.",
+            comprovacao: "Print." },
+          { id: "m4", mentor_id: "u-leo", empresa: "Mercor", vaga_titulo: "Audiobook QA Expert, português (Brasil)", vaga_id: "",
+            link: "https://exemplo.com/vaga4", status: "aprovada", criado_em: dias(40), decidido_em: dias(38), motivo: "",
+            apresentacao: "Revisei mais de quarenta audiolivros narrados por IA. Antes disso, fui locutor de estúdio por cinco anos.",
+            como_ajuda: "Mostro como é a prova de escuta, que erros de pronúncia e de ritmo eles mais cobram e como montar o currículo destacando experiência com áudio.",
+            comprovacao: "Print." },
+          { id: "m5", mentor_id: "u-cla", empresa: "TELUS Digital", vaga_titulo: "Multilingual Image & Text AI Quality Expert", vaga_id: "",
+            link: "https://exemplo.com/vaga5", status: "aprovada", criado_em: dias(15), decidido_em: dias(14), motivo: "",
+            apresentacao: "Entrei na TELUS como avaliadora de imagens há oito meses. Venho da tradução, então ajudo bastante quem está migrando de área.",
+            como_ajuda: "Explico o teste de qualificação passo a passo, comento os exemplos de imagem que mais confundem e respondo dúvidas no mural às terças e quintas.",
+            comprovacao: "Print." },
+          { id: "m6", mentor_id: "u-dav", empresa: "Alignerr", vaga_titulo: "Brazilian Portuguese Audio Transcriptionist", vaga_id: "",
+            link: "https://exemplo.com/vaga6", status: "aprovada", criado_em: dias(5), decidido_em: dias(4), motivo: "",
+            apresentacao: "Faço transcrição para a Alignerr há quatro meses, em projetos de conversa espontânea.",
+            como_ajuda: "Ajudo com as convenções de transcrição, com a avaliação inicial e com a organização da rotina para bater as metas de qualidade.",
             comprovacao: "Print." },
           { id: "m3", mentor_id: "u-bia", empresa: "Alignerr", vaga_titulo: "Generalist", vaga_id: "",
             link: "https://exemplo.com/indicacao3", status: "pendente", criado_em: dias(1), motivo: "",
@@ -151,13 +169,28 @@ const MD = (function () {
         membros: [
           { mentoria_id: "m1", user_id: "u-bia", status: "aprovado", mensagem: "Me candidatei ontem pelo seu link.", criado_em: dias(10) },
           { mentoria_id: "m1", user_id: "u-rui", status: "pedido", mensagem: "Usei o link, meu e-mail começa com rui.t", criado_em: dias(1) },
+          { mentoria_id: "m4", user_id: "u-ana", status: "aprovado", mensagem: "", criado_em: dias(30) },
+          { mentoria_id: "m4", user_id: "u-bia", status: "aprovado", mensagem: "", criado_em: dias(25) },
+          { mentoria_id: "m4", user_id: "u-cla", status: "aprovado", mensagem: "", criado_em: dias(20) },
+          { mentoria_id: "m4", user_id: "u-dav", status: "aprovado", mensagem: "", criado_em: dias(12) },
+          { mentoria_id: "m5", user_id: "u-rui", status: "aprovado", mensagem: "", criado_em: dias(9) },
+          { mentoria_id: "m5", user_id: "u-leo", status: "aprovado", mensagem: "", criado_em: dias(6) },
+          { mentoria_id: "m2", user_id: "u-cla", status: "aprovado", mensagem: "", criado_em: dias(4) },
         ],
         posts: [
           { id: "p1", mentoria_id: "m1", autor_id: mentorDaPrimeira, pai_id: null, texto: "Bem-vindos! Comecem lendo a primeira parte do guia de diretrizes. Qualquer dúvida, escrevam aqui.", criado_em: dias(9), removido: false },
           { id: "p2", mentoria_id: "m1", autor_id: "u-bia", pai_id: "p1", texto: "Li a parte 1. A prova cobra a parte de Needs Met também?", criado_em: dias(8), removido: false },
           { id: "p3", mentoria_id: "m1", autor_id: mentorDaPrimeira, pai_id: "p1", texto: "Cobra, e é a que mais derruba. Amanhã posto um resumo.", criado_em: dias(2), removido: false },
+          { id: "p4", mentoria_id: "m4", autor_id: "u-leo", pai_id: null, texto: "Turma nova: a prova de escuta abriu de novo esta semana.", criado_em: dias(1), removido: false },
+          { id: "p5", mentoria_id: "m5", autor_id: "u-cla", pai_id: null, texto: "Subi um resumo dos exemplos de imagem mais difíceis.", criado_em: dias(3), removido: false },
         ],
-        avaliacoes: [{ mentoria_id: "m1", user_id: "u-bia", nota: 5, comentario: "Respondeu tudo e o simulado ajudou muito.", criado_em: dias(3) }],
+        avaliacoes: [
+          { mentoria_id: "m1", user_id: "u-bia", nota: 5, comentario: "Respondeu tudo e o simulado ajudou muito.", criado_em: dias(3) },
+          { mentoria_id: "m4", user_id: "u-ana", nota: 5, comentario: "Passei na prova de escuta na primeira tentativa.", criado_em: dias(20) },
+          { mentoria_id: "m4", user_id: "u-bia", nota: 5, comentario: "", criado_em: dias(18) },
+          { mentoria_id: "m4", user_id: "u-cla", nota: 4, comentario: "Muito didático. Só demorou um pouco para responder no feriado.", criado_em: dias(10) },
+          { mentoria_id: "m5", user_id: "u-rui", nota: 5, comentario: "O resumo dos exemplos difíceis vale ouro.", criado_em: dias(5) },
+        ],
         denuncias: [{ id: "d1", autor_id: "u-bia", tipo: "post", alvo_id: "p2", motivo: "Exemplo de denúncia, só para ver a tela.", resolvida: false, criado_em: dias(1) }],
       };
       if (papel === "membro") S.membros.push({ mentoria_id: "m1", user_id: "u-eu", status: "aprovado", mensagem: "", criado_em: dias(5) });
@@ -166,7 +199,8 @@ const MD = (function () {
     salvar();
     const pessoa = id => {
       if (id === "u-eu") return { id, nome: (S.perfil && S.perfil.nome) || "Sem nome", foto: (S.perfil && S.perfil.foto) || "" };
-      return Object.values(P).find(p => p.id === id) || { id, nome: "Sem nome", foto: "" };
+      const p = Object.values(P).find(x => x.id === id);
+      return p ? { id: p.id, nome: p.nome, foto: p.foto } : { id, nome: "Sem nome", foto: "" };
     };
     const papelEm = id => {
       const m = S.mentorias.find(x => x.id === id);
@@ -180,7 +214,8 @@ const MD = (function () {
       return {
         id: m.id, empresa: m.empresa, vaga_titulo: m.vaga_titulo, vaga_id: m.vaga_id, apresentacao: m.apresentacao,
         como_ajuda: m.como_ajuda, status: m.status, criado_em: m.criado_em, mentor: pessoa(m.mentor_id),
-        mentor_bio: m.mentor_id === "u-eu" ? ((S.perfil || {}).bio || "") : "",
+        aprovada_em: m.status === "aprovada" ? (m.decidido_em || m.criado_em) : null,
+        mentor_bio: m.mentor_id === "u-eu" ? ((S.perfil || {}).bio || "") : ((Object.values(P).find(p => p.id === m.mentor_id) || {}).bio || ""),
         nota: av.length ? Math.round(10 * av.reduce((s, a) => s + a.nota, 0) / av.length) / 10 : null,
         avaliacoes: av.length,
         membros: S.membros.filter(x => x.mentoria_id === m.id && x.status === "aprovado").length,
@@ -327,11 +362,23 @@ const MD = (function () {
   .md-estrelas .vazia { color:var(--line,#DED7CA); }
   .md-msg { font-size:13.5px; line-height:1.5; padding:10px 13px; border-radius:10px; margin:12px 0 0; }
   .md-msg.erro { background:#FBE9EB; color:#8E2233; } .md-msg.ok { background:#E4F3F0; color:#1F7A6E; }
-  .md-bt { display:inline-block; font:inherit; font-size:14px; font-weight:600; color:#fff !important; background:var(--signal,#1A4893);
-    border:1px solid var(--signal,#1A4893); border-radius:12px; padding:11px 18px; cursor:pointer; text-decoration:none !important; }
-  .md-bt:hover { filter:brightness(1.08); } .md-bt[disabled] { opacity:.6; cursor:default; }
+  /* botões no mesmo desenho do resto do site: pílula, peso médio */
+  .md-bt { display:inline-flex; align-items:center; justify-content:center; gap:8px; font:inherit; font-size:14.5px; font-weight:500;
+    color:#fff !important; background:var(--signal,#1A4893); border:1px solid var(--signal,#1A4893); border-radius:999px; padding:11px 20px;
+    cursor:pointer; text-decoration:none !important; transition:background .16s, border-color .16s, box-shadow .16s, transform .16s; }
+  .md-bt:hover { background:#173E7E; border-color:#173E7E; } .md-bt[disabled] { opacity:.6; cursor:default; }
   .md-bt.claro { color:var(--ink,#10203A) !important; background:var(--panel,#fff); border-color:var(--line,#DED7CA); }
-  .md-bt.pequeno { font-size:13px; padding:7px 13px; border-radius:99px; }
+  .md-bt.claro:hover { border-color:var(--ink-3,#8A94A1); background:var(--panel,#fff); }
+  .md-bt.pequeno { font-size:13.5px; padding:7px 14px; }
+  .md-bt.largo { width:100%; }
+  .md-ic { flex-shrink:0; display:inline-block; vertical-align:-0.18em; }
+  /* selo de mentor verificado pela equipe */
+  .md-verif { display:inline-flex; align-items:center; gap:4px; font-size:12px; font-weight:600; color:var(--signal,#1A4893);
+    background:var(--signal-suave,#EAF1F8); border:1px solid #D3E2F1; border-radius:99px; padding:2px 9px 2px 6px; white-space:nowrap; }
+  .md-verif.so-icone { padding:0; width:22px; height:22px; justify-content:center; border-radius:50%; background:#fff; }
+  /* logo da empresa da mentoria */
+  .md-logo { border-radius:9px; font-weight:600; letter-spacing:-0.02em; }
+  .md-logo-sig { background:var(--bg-soft,#F1ECE3); color:var(--ink-2,#54606F); }
   .md-link { background:none; border:0; padding:0; font:inherit; font-size:12.5px; color:var(--ink-3,#8A94A1); cursor:pointer; text-decoration:underline; }
   .md-link:hover { color:var(--signal,#1A4893); }
   .md-campo { display:block; margin:14px 0 0; }
@@ -616,11 +663,146 @@ const MD = (function () {
     });
   }
 
+  /* Janela com um campo de texto, para pedir o motivo de uma denúncia e
+     coisas assim. Devolve o texto ou null se a pessoa desistir. */
+  function pedirTexto(o) {
+    porCss();
+    return new Promise(ok => {
+      const antes = document.activeElement, minimo = o.minimo || 3;
+      const fundo = document.createElement("div");
+      fundo.className = "md-conf";
+      fundo.innerHTML = `<div class="md-conf-cx" role="dialog" aria-modal="true" aria-labelledby="mdTxtTit">
+        <h2 id="mdTxtTit">${e(o.titulo)}</h2>
+        ${o.texto ? `<p>${e(o.texto)}</p>` : ""}
+        <label class="md-campo"><span>${e(o.rotulo || "Escreva aqui")}</span>
+          <textarea maxlength="${o.maximo || 600}" placeholder="${e(o.dica || "")}"></textarea></label>
+        <div class="md-msg erro" role="status" hidden></div>
+        <div class="md-conf-bts">
+          <button type="button" class="md-bt claro" data-nao>Cancelar</button>
+          <button type="button" class="md-bt" data-sim>${e(o.botao || "Enviar")}</button>
+        </div></div>`;
+      const campo = fundo.querySelector("textarea");
+      const fechar = v => {
+        document.removeEventListener("keydown", tecla, true);
+        fundo.remove();
+        document.documentElement.style.overflow = "";
+        if (antes && antes.focus && document.contains(antes)) antes.focus();
+        ok(v);
+      };
+      const tecla = ev => {
+        if (ev.key === "Escape") { ev.preventDefault(); fechar(null); return; }
+        if (ev.key !== "Tab") return;
+        const f = Array.from(fundo.querySelectorAll("button, textarea"));   // o foco não sai da janela
+        const i = f.indexOf(document.activeElement);
+        ev.preventDefault();
+        f[(i + (ev.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+      };
+      fundo.addEventListener("click", ev => {
+        ev.stopPropagation();
+        if (ev.target === fundo || ev.target.closest("[data-nao]")) { fechar(null); return; }
+        if (ev.target.closest("[data-sim]")) {
+          const v = campo.value.trim();
+          if (v.length < minimo) { const m = fundo.querySelector(".md-msg"); m.textContent = o.erro || "Escreva um pouco mais."; m.hidden = false; campo.focus(); return; }
+          fechar(v);
+        }
+      });
+      document.addEventListener("keydown", tecla, true);
+      document.documentElement.style.overflow = "hidden";
+      document.body.appendChild(fundo);
+      campo.focus();
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     ÍCONES
+     Traço fino, na cor do texto ao redor. Um desenho só para o
+     site inteiro de mentorias, no lugar de emojis e símbolos soltos.
+     ══════════════════════════════════════════════════════════ */
+  const ICONES = {
+    verificado: '<path d="M12 3.2l7 2.9v5.1c0 4.5-2.9 8.2-7 9.6-4.1-1.4-7-5.1-7-9.6V6.1l7-2.9z"/><path d="M9.2 12.1l2 2 3.8-3.9"/>',
+    gratis: '<rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M12 8.5v12M18.8 12.5v8H5.2v-8M12 8.5S11 4 8 4a2.25 2.25 0 000 4.5M12 8.5S13 4 16 4a2.25 2.25 0 010 4.5"/>',
+    cadeado: '<rect x="5" y="10.5" width="14" height="10" rx="2.2"/><path d="M8.2 10.5V7.6a3.8 3.8 0 017.6 0v2.9"/>',
+    estrela: '<path d="M12 3.6l2.55 5.2 5.7.83-4.13 4.02.98 5.69L12 16.65l-5.1 2.69.98-5.69L3.75 9.63l5.7-.83z"/>',
+    pessoas: '<circle cx="9" cy="8.3" r="3.1"/><path d="M3.6 19.6c.3-3.2 2.6-5.3 5.4-5.3s5.1 2.1 5.4 5.3"/><path d="M15.6 5.4a3 3 0 010 5.8M17.3 14.6c1.8.6 2.9 2.3 3.1 5"/>',
+    conversa: '<path d="M20 11.6c0 4.2-3.6 7.6-8 7.6-1.2 0-2.3-.2-3.3-.6L4 19.8l1.2-3.6A7.3 7.3 0 014 11.6C4 7.4 7.6 4 12 4s8 3.4 8 7.6z"/>',
+    relogio: '<circle cx="12" cy="12" r="8.4"/><path d="M12 7.6V12l2.9 1.9"/>',
+    calendario: '<rect x="3.8" y="5.2" width="16.4" height="15" rx="2.2"/><path d="M3.8 9.8h16.4M8.2 3.3v3.6M15.8 3.3v3.6"/>',
+    alerta: '<path d="M10.3 4.3L2.9 17.5a2 2 0 001.7 3h14.8a2 2 0 001.7-3L13.7 4.3a2 2 0 00-3.4 0z"/><path d="M12 9.6v4.2M12 17v.1"/>',
+    proibido: '<circle cx="12" cy="12" r="8.4"/><path d="M6.1 6.1l11.8 11.8"/>',
+    check: '<path d="M5 12.6l4.4 4.4L19 7.4"/>',
+    seta: '<path d="M5 12h14M13.2 6.2L19 12l-5.8 5.8"/>',
+    voltar: '<path d="M19 12H5M10.8 6.2L5 12l5.8 5.8"/>',
+    bandeira: '<path d="M5.5 20.5V4M5.5 4.6h10.6l-1.8 3.7 1.8 3.7H5.5"/>',
+    busca: '<circle cx="10.8" cy="10.8" r="6.3"/><path d="M15.6 15.6l4.6 4.6"/>',
+    maleta: '<rect x="3.4" y="7.2" width="17.2" height="12.6" rx="2.2"/><path d="M9 7.2V5.6c0-.9.7-1.6 1.6-1.6h2.8c.9 0 1.6.7 1.6 1.6v1.6M3.4 12.6h17.2"/>',
+    documento: '<path d="M14 3.5H7.2a2 2 0 00-2 2v13a2 2 0 002 2h9.6a2 2 0 002-2V8.3L14 3.5z"/><path d="M13.8 3.6v4.8h4.8M8.8 13h6.4M8.8 16.4h4.2"/>',
+    escudo: '<path d="M12 3.2l7 2.9v5.1c0 4.5-2.9 8.2-7 9.6-4.1-1.4-7-5.1-7-9.6V6.1l7-2.9z"/>',
+    mais: '<path d="M12 5v14M5 12h14"/>',
+    sair: '<path d="M14.5 7.5V5.6a1.6 1.6 0 00-1.6-1.6H6.1a1.6 1.6 0 00-1.6 1.6v12.8c0 .9.7 1.6 1.6 1.6h6.8c.9 0 1.6-.7 1.6-1.6v-1.9M10.2 12H20M16.8 8.6L20.2 12l-3.4 3.4"/>',
+    olho: '<path d="M2.8 12S6.2 5.6 12 5.6 21.2 12 21.2 12 17.8 18.4 12 18.4 2.8 12 2.8 12z"/><circle cx="12" cy="12" r="2.7"/>',
+    enviar: '<path d="M20.4 3.6L10.6 13.4M20.4 3.6l-6.1 16.8-3.7-7-7-3.7 16.8-6.1z"/>',
+  };
+  /* ic("verificado", 16) devolve o desenho pronto. "cheio" pinta por dentro (a estrela). */
+  function ic(nome, tam, cheio) {
+    const t = tam || 18;
+    return `<svg class="md-ic" width="${t}" height="${t}" viewBox="0 0 24 24" fill="${cheio ? "currentColor" : "none"}" stroke="currentColor"
+      stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICONES[nome] || ""}</svg>`;
+  }
+
+  /* O selo de mentor verificado. Toda mentoria no ar passou pela equipe. */
+  function seloVerificado(soIcone, tam) {
+    porCss();
+    const dica = "Mentor verificado: enviou comprovante de que trabalha na empresa, e a equipe do Hub conferiu.";
+    return soIcone
+      ? `<span class="md-verif so-icone" title="${dica}" aria-label="${dica}">${ic("verificado", tam || 14)}</span>`
+      : `<span class="md-verif" title="${dica}">${ic("verificado", 14)}Verificado</span>`;
+  }
+
+  /* ── Logo da empresa ──
+     A empresa da mentoria é texto livre. Se ela bater com uma empresa que o
+     Hub já conhece (empresas.json), aparece o logo; senão, as iniciais. O
+     texto digitado pelo mentor nunca vai para dentro do logoHtml. */
+  let EMPRESAS = null;
+  async function carregarEmpresas() {
+    if (EMPRESAS) return EMPRESAS;
+    try { const d = await lerEmpresas(); EMPRESAS = (d && d.empresas) || []; } catch (err) { EMPRESAS = []; }
+    return EMPRESAS;
+  }
+  const normal = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const APELIDOS = { crowdgen: ["appen"], micro1: ["micro one", "micro 1"], rws: ["trainai"], telus: ["telus international", "telus ai"] };
+  function empresaDe(texto) {
+    if (!EMPRESAS || !EMPRESAS.length) return null;
+    const t = " " + normal(texto) + " ";
+    return EMPRESAS.find(emp => [emp.id, normal(emp.nome).split(" ")[0]].concat(APELIDOS[emp.id] || [])
+      .some(k => k && t.indexOf(" " + k + " ") >= 0)) || null;
+  }
+  const corOk = c => /^#[0-9a-f]{3,8}$/i.test(c || "");
+  function logoEmpresa(texto, tam) {
+    porCss();
+    const t = tam || 28, emp = empresaDe(texto);
+    const est = `width:${t}px;height:${t}px;font-size:${Math.round(t * 0.36)}px;`;
+    if (emp && emp.dom && typeof logoHtml === "function") {
+      const cores = (corOk(emp.bg) ? `background:${emp.bg};` : "") + (corOk(emp.cor) ? `color:${emp.cor};` : "");
+      return `<span class="logo-box md-logo" style="${est}${cores}" aria-hidden="true">${logoHtml(emp, t)}</span>`;
+    }
+    const sig = normal(texto).split(" ").filter(Boolean).slice(0, 2).map(p => p.charAt(0)).join("").toUpperCase() || "?";
+    return `<span class="logo-box md-logo md-logo-sig" style="${est}" aria-hidden="true">${e(sig)}</span>`;
+  }
+
+  /* "mar. de 2026" */
+  function dataMes(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    return isNaN(d) ? "" : d.toLocaleDateString("pt-BR", { month: "short", year: "numeric" });
+  }
+
   function ehImagem(s) { return /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/]+=*$/.test(s || ""); }
 
   return Object.assign({}, api, {
     demo: papelDemo,
     disponivel: !!papelDemo || (typeof supabase !== "undefined" && !!supabase.createClient),
-    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, confirmar, pedirNota, conversa, e },
+    ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, confirmar, pedirNota, pedirTexto, conversa, e,
+          ic, seloVerificado, logoEmpresa, empresaDe, dataMes },
+    carregarEmpresas,
   });
 })();

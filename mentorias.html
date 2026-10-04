@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mentorias — Home Office Hub</title>
-<meta name="description" content="Entre numa vaga com a ajuda de quem já trabalha nela. Mentorias gratuitas, com mentores aprovados pelo Hub.">
+<meta name="description" content="Grupos de acompanhamento conduzidos por quem já trabalha na vaga: currículo, teste de entrada e primeiras semanas. Mentores verificados pela equipe do Hub, sem custo para participar.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -14,205 +14,592 @@
 <link rel="stylesheet" href="estilo.css">
 <style>
 /* ══════════════════════════════════════════════════════════════
-   MENTORIAS — a lista.
+   MENTORIAS — a página principal.
    Quem já trabalha numa vaga abre um grupo e acompanha quem quer
-   entrar nela. As regras de quem pode o quê ficam
-   no banco (banco/mentorias.sql); esta página só mostra.
+   entrar nela. As regras de quem pode o quê ficam no banco
+   (banco/mentorias*.sql); esta página só mostra e explica.
+
+   Ordem da página: apresentação e garantias, as abas (mentorias
+   abertas, as minhas, arquivadas, denúncias), e depois a parte que
+   explica o programa: como funciona, o que esperar, ser mentor e
+   perguntas frequentes. Quem não tem conta vê a página inteira,
+   menos a lista.
    ══════════════════════════════════════════════════════════════ */
-.mt-main { max-width:var(--wrap,1180px); margin:0 auto; padding:48px 20px 96px; min-height:60vh; }
-.mt-hero { max-width:700px; margin-bottom:30px; }
-.mt-hero h1 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400;
-  font-size:clamp(30px,4.2vw,48px); line-height:1.08; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:0 0 14px; }
-.mt-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); margin:0; }
-.mt-regras { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:0 0 34px; max-width:860px; }
-.mt-regra { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:16px; padding:16px 18px; font-size:14px; line-height:1.5; color:var(--ink-2,#54606F); }
-.mt-regra b { display:block; color:var(--ink,#10203A); font-weight:600; font-size:14.5px; margin-bottom:3px; }
-.mt-tit { display:flex; align-items:baseline; gap:10px; margin:30px 0 12px; }
-.mt-tit h2 { font-size:17px; font-weight:600; letter-spacing:-0.01em; color:var(--ink,#10203A); margin:0; }
-.mt-tit span { font-size:13px; color:var(--ink-3,#8A94A1); }
-.mt-grade { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-.mt-card { display:flex; flex-direction:column; gap:12px; background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9);
-  border-radius:18px; padding:20px 22px; text-decoration:none; transition:border-color .18s, transform .18s, box-shadow .18s; min-width:0; }
-.mt-card:hover { border-color:var(--line,#DED7CA); transform:translateY(-2px); box-shadow:0 14px 30px -22px rgba(16,32,58,.25); }
-.mt-quem { display:flex; align-items:center; gap:12px; min-width:0; }
-.mt-quem .nm { font-weight:600; font-size:15px; color:var(--ink,#10203A); }
-.mt-quem .sb { font-size:12.5px; color:var(--ink-3,#8A94A1); }
-.mt-vaga { font-size:16.5px; font-weight:600; line-height:1.3; letter-spacing:-0.01em; color:var(--ink,#10203A); }
-.mt-vaga small { display:block; font-size:13px; font-weight:400; color:var(--ink-2,#54606F); margin-top:2px; }
-.mt-txt { font-size:14px; line-height:1.55; color:var(--ink-2,#54606F); display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
-.mt-pe { display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center; font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:auto; }
-.mt-pe .nota { color:var(--ink,#10203A); font-weight:600; }
-.mt-vazio { border:1px dashed var(--line,#DED7CA); border-radius:18px; padding:30px 24px; text-align:center; color:var(--ink-2,#54606F); font-size:14.5px; line-height:1.6; }
-.mt-espera { text-align:center; padding:70px 20px; color:var(--ink-3,#8A94A1); font-size:14px; }
+.mt { max-width:var(--wrap); margin:0 auto; padding:30px 22px 10px; min-height:60vh; }
 
-.mt-serMentor { margin-top:44px; background:var(--escuro,#0F1D33); color:var(--ink-claro,#F2EFE9); border-radius:22px; padding:28px 28px 26px; }
-.mt-serMentor h2 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400; font-size:26px; line-height:1.15; margin:0 0 8px; }
-.mt-serMentor p { font-size:15px; line-height:1.6; color:var(--ink-claro-2,#A9B6C6); margin:0 0 16px; max-width:640px; }
-.mt-form { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:24px 26px 26px; margin-top:16px; max-width:720px; }
-.mt-form h3 { font-size:17px; font-weight:600; color:var(--ink,#10203A); margin:0 0 4px; }
-.mt-form > p { font-size:14px; line-height:1.55; color:var(--ink-2,#54606F); margin:0; }
-.mt-form .regra { font-size:13px; line-height:1.55; color:var(--ink-2,#54606F); background:var(--bg-soft,#F1ECE3); border-radius:12px; padding:12px 14px; margin-top:18px; }
-.mt-acoes { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:18px; }
-.mt-abas { display:flex; gap:4px; box-shadow:inset 0 -1px 0 var(--line,#DED7CA); margin:-14px 0 30px; overflow-x:auto; overflow-y:hidden; }
-.mt-abas button { font:inherit; font-size:14.5px; font-weight:500; color:var(--ink-2,#54606F); background:none; border:0;
-  border-bottom:2px solid transparent; padding:11px 14px; cursor:pointer; white-space:nowrap; }
-.mt-abas button:hover { color:var(--ink,#10203A); }
-.mt-abas button[aria-selected="true"] { color:var(--ink,#10203A); font-weight:600; border-bottom-color:var(--signal,#1A4893); }
-.mt-quantas { font-size:12.5px; font-weight:400; color:var(--ink-3,#8A94A1); margin-left:3px; }
-.mt-conta { display:inline-block; min-width:20px; padding:1px 6px; margin-left:4px; border-radius:99px; font-size:12px; font-weight:600;
-  text-align:center; color:#fff; background:var(--signal,#1A4893); }
-.mt-den { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:18px 22px 20px; margin-bottom:12px; max-width:860px; }
-.mt-den-cab { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; font-size:15px; color:var(--ink,#10203A); }
+/* ── carregando: o desenho da página, sem conteúdo ── */
+@keyframes mt-brilho { from { background-position:-480px 0; } to { background-position:480px 0; } }
+.mt-esq { display:grid; grid-template-columns:1.12fr .88fr; gap:44px; padding:40px 0; }
+.mt-esq i { display:block; border-radius:12px; margin-bottom:14px;
+  background:linear-gradient(90deg, var(--bg-soft) 0%, #F8F4EE 45%, var(--bg-soft) 90%); background-size:960px 100%;
+  animation:mt-brilho 1.3s linear infinite; }
+.mt-esq-cards { grid-column:1 / -1; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px; }
+.mt-falha { text-align:center; padding:80px 20px; color:var(--ink-2); font-size:15px; }
+
+/* ── apresentação ── */
+.mt-hero { display:grid; grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); gap:46px; align-items:center; padding:26px 0 40px; }
+.mt-h1 { font-family:var(--display); font-weight:400; font-size:clamp(34px,4.6vw,56px); line-height:1.04;
+  letter-spacing:-0.02em; color:var(--ink); margin:0 0 20px; text-wrap:balance; }
+.mt-hero .lead { margin-bottom:28px; }
+.mt-hero-cta { display:flex; gap:12px; flex-wrap:wrap; }
+.mt-numeros { display:flex; gap:12px 34px; flex-wrap:wrap; margin-top:34px; padding-top:22px; border-top:1px solid var(--line-soft); }
+.mt-numeros b { display:block; font-family:var(--display); font-weight:400; font-size:30px; line-height:1; color:var(--ink); margin-bottom:6px; }
+.mt-numeros span { font-size:13px; color:var(--ink-3); }
+
+.mt-painel { background:var(--panel); border:1px solid var(--line-soft); border-radius:var(--raio); box-shadow:var(--sombra); }
+.mt-garantias { padding:24px 26px 8px; }
+.mt-garantias > h2 { font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4px; }
+.mt-gar { display:grid; grid-template-columns:40px 1fr; gap:14px; padding:15px 0; border-top:1px solid var(--line-soft); }
+.mt-gar:first-of-type { border-top:0; }
+.mt-ico { width:40px; height:40px; border-radius:12px; display:grid; place-items:center; background:var(--signal-suave); color:var(--signal); }
+.mt-gar b { display:block; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:2px; letter-spacing:-0.01em; }
+.mt-gar p { font-size:13.8px; line-height:1.55; color:var(--ink-2); }
+
+/* ── abas ── */
+.mt-abas { display:flex; gap:4px; box-shadow:inset 0 -1px 0 var(--line); margin:6px 0 0; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; }
+.mt-abas::-webkit-scrollbar { display:none; }
+.mt-abas button { font:inherit; font-size:14.5px; font-weight:500; color:var(--ink-2); background:none; border:0;
+  border-bottom:2px solid transparent; padding:12px 14px; cursor:pointer; white-space:nowrap; display:inline-flex; align-items:center; gap:7px; }
+.mt-abas button:hover { color:var(--ink); }
+.mt-abas button[aria-selected="true"] { color:var(--ink); font-weight:600; border-bottom-color:var(--signal); }
+.mt-quantas { font-size:12.5px; font-weight:400; color:var(--ink-3); }
+.mt-conta { display:inline-block; min-width:20px; padding:1px 6px; border-radius:99px; font-size:12px; font-weight:600; text-align:center; color:#fff; background:#D9731A; }
+.mt-conta.azul { background:var(--signal); }
+
+/* ── seções ── */
+.mt-sec { padding-top:40px; }
+.mt-sec + .mt-sec, .mt-info { padding-top:72px; }
+.mt-sec-cab { display:flex; align-items:flex-end; justify-content:space-between; gap:16px 24px; flex-wrap:wrap; margin-bottom:24px; }
+.mt-h2 { font-family:var(--display); font-weight:400; font-size:clamp(26px,3.3vw,38px); line-height:1.1; letter-spacing:-0.016em; color:var(--ink); text-wrap:balance; }
+.mt-sec-cab p { font-size:15px; color:var(--ink-2); margin-top:8px; max-width:62ch; line-height:1.6; }
+.mt-sub { font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; margin:30px 0 14px; display:flex; align-items:baseline; gap:8px; }
+.mt-sub:first-child { margin-top:0; }
+.mt-sub span { font-size:13px; font-weight:400; color:var(--ink-3); }
+
+/* busca e filtro por empresa */
+.mt-busca { position:relative; width:min(340px,100%); }
+.mt-busca input { width:100%; font:inherit; font-size:14.5px; color:var(--ink); background:var(--panel);
+  border:1px solid var(--line); border-radius:999px; padding:11px 16px 11px 42px; }
+.mt-busca input:focus { outline:2px solid var(--signal); outline-offset:1px; }
+.mt-busca .md-ic { position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--ink-3); }
+.mt-chips { display:flex; gap:8px; flex-wrap:wrap; margin:-8px 0 22px; }
+.mt-chip { font:inherit; font-size:13.5px; padding:7px 14px; border-radius:999px; border:1px solid var(--line); background:var(--panel);
+  color:var(--ink-2); cursor:pointer; transition:border-color .15s, color .15s, background .15s; }
+.mt-chip:hover { border-color:var(--ink-3); color:var(--ink); }
+.mt-chip[aria-pressed="true"] { background:var(--ink); border-color:var(--ink); color:#fff; }
+
+.mt-atalho { display:flex; align-items:center; gap:12px; flex-wrap:wrap; background:var(--signal-suave); border:1px solid #D3E2F1;
+  border-radius:14px; padding:12px 16px; margin-bottom:22px; font-size:14.5px; color:var(--ink); }
+.mt-atalho button { margin-left:auto; }
+
+/* ── cartão de mentoria ── */
+.mt-grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+.mt-card { display:flex; flex-direction:column; min-width:0; background:var(--panel); border:1px solid var(--line-soft);
+  border-radius:var(--raio); box-shadow:var(--sombra); padding:22px 22px 16px; color:inherit;
+  transition:border-color .18s, transform .18s, box-shadow .18s; }
+.mt-card:hover { border-color:var(--line); transform:translateY(-2px); box-shadow:var(--sombra-alta); }
+.mt-card:focus-visible { outline:2px solid var(--signal); outline-offset:3px; }
+.mt-card-topo { display:flex; align-items:center; gap:13px; min-width:0; }
+.mt-av { position:relative; flex-shrink:0; line-height:0; }
+.mt-av .md-verif { position:absolute; right:-5px; bottom:-5px; border:2px solid var(--panel); }
+.mt-card-quem { min-width:0; flex:1; }
+.mt-card-quem .nm { font-weight:600; font-size:15.5px; color:var(--ink); letter-spacing:-0.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mt-card-quem .sb { font-size:12.8px; color:var(--ink-3); margin-top:1px; }
+.mt-card-etq { flex-shrink:0; display:flex; gap:5px; flex-wrap:wrap; justify-content:flex-end; }
+.mt-card-vaga { display:flex; gap:12px; align-items:flex-start; margin:18px 0 10px; min-width:0; }
+.mt-card-vaga div { min-width:0; }
+.mt-card-vaga b { display:block; font-size:16px; font-weight:600; line-height:1.32; color:var(--ink); letter-spacing:-0.01em; overflow-wrap:anywhere; }
+.mt-card-vaga span { display:block; font-size:13.5px; color:var(--ink-2); margin-top:2px; }
+.mt-card-txt { font-size:14px; line-height:1.6; color:var(--ink-2); margin-bottom:18px;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.mt-card-pe { margin-top:auto; padding-top:13px; border-top:1px solid var(--line-soft);
+  display:flex; flex-wrap:wrap; align-items:center; gap:7px 15px; font-size:13px; color:var(--ink-3); }
+.mt-card-pe > span { display:inline-flex; align-items:center; gap:5px; }
+.mt-card-pe .nota { color:var(--ink); font-weight:600; }
+.mt-card-pe .nota .md-ic { color:#C98A1B; }
+.mt-card-pe .nota small { font-weight:400; color:var(--ink-3); font-size:12.5px; }
+.mt-nova { font-size:12px; font-weight:600; color:var(--signal); background:var(--signal-suave); border-radius:99px; padding:2px 9px; }
+.mt-card-pe .ver { margin-left:auto; color:var(--signal); font-weight:500; gap:6px; }
+.mt-card:hover .ver .md-ic { transform:translateX(2px); }
+.mt-card .ver .md-ic { transition:transform .18s; }
+
+/* listas vazias */
+.mt-vazio { background:var(--panel); border:1px dashed var(--line); border-radius:var(--raio); padding:42px 26px; text-align:center; }
+.mt-vazio .mt-ico { margin:0 auto 14px; width:48px; height:48px; border-radius:14px; }
+.mt-vazio h3 { font-family:var(--display); font-weight:400; font-size:23px; color:var(--ink); margin-bottom:8px; }
+.mt-vazio p { font-size:14.5px; color:var(--ink-2); max-width:52ch; margin:0 auto; line-height:1.6; }
+.mt-vazio .mt-hero-cta { justify-content:center; margin-top:20px; }
+
+/* quem ainda não tem conta */
+.mt-trava { display:grid; grid-template-columns:auto 1fr auto; gap:18px 22px; align-items:center; padding:24px 26px; }
+.mt-trava .mt-ico { width:48px; height:48px; border-radius:14px; }
+.mt-trava h3 { font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; margin-bottom:3px; }
+.mt-trava p { font-size:14px; color:var(--ink-2); line-height:1.55; }
+.mt-trava .mt-hero-cta { flex-wrap:nowrap; }
+
+/* ── como funciona ── */
+.mt-passos { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.mt-passo { padding:24px 22px 22px; }
+.mt-passo .n { font-family:var(--display); font-size:30px; line-height:1; color:var(--signal-dim); margin-bottom:16px; }
+.mt-passo h3 { font-size:16px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; margin-bottom:8px; }
+.mt-passo p { font-size:14px; color:var(--ink-2); line-height:1.6; }
+
+/* ── o que esperar ── */
+.mt-esperar { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.mt-esperar .mt-painel { padding:24px 26px 14px; }
+.mt-esperar h3 { font-size:16px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; margin-bottom:6px; display:flex; align-items:center; gap:9px; }
+.mt-itens { list-style:none; }
+.mt-itens li { display:grid; grid-template-columns:22px 1fr; gap:10px; padding:12px 0; border-top:1px solid var(--line-soft);
+  font-size:14.5px; line-height:1.55; color:var(--ink-2); }
+.mt-itens li:first-child { border-top:0; }
+.mt-itens li b { color:var(--ink); font-weight:600; }
+.mt-itens .md-ic { margin-top:2px; }
+.mt-ok .md-ic { color:#1F7A6E; }
+.mt-nao .md-ic { color:#A32A3C; }
+.mt-nota-den { margin-top:16px; display:flex; gap:12px; align-items:flex-start; font-size:14px; line-height:1.55; color:var(--ink-2);
+  background:var(--bg-soft); border-radius:14px; padding:14px 16px; }
+.mt-nota-den .md-ic { color:var(--ink); margin-top:2px; }
+
+/* ── ser mentor ── */
+.mt-mentor { padding:56px 52px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:44px; align-items:center; }
+.mt-mentor::before { content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(70% 100% at 0% 0%, rgba(78,154,200,0.22), transparent 62%),
+             radial-gradient(60% 80% at 100% 110%, rgba(26,72,147,0.42), transparent 68%); }
+.mt-mentor > * { position:relative; z-index:1; }
+.mt-mentor .mt-h2 { color:var(--ink-claro); margin-bottom:14px; }
+.mt-mentor p.lead { color:var(--ink-claro-2); margin-bottom:26px; font-size:16.5px; }
+.mt-etapas { list-style:none; display:grid; gap:12px; }
+.mt-etapas li { display:grid; grid-template-columns:38px 1fr; gap:14px; align-items:start; background:rgba(255,255,255,.05);
+  border:1px solid var(--escuro-linha); border-radius:16px; padding:16px 18px; }
+.mt-etapas .n { width:38px; height:38px; border-radius:50%; display:grid; place-items:center; font-weight:600; font-size:15px;
+  color:#fff; background:rgba(127,178,218,.18); border:1px solid rgba(127,178,218,.35); }
+.mt-etapas b { display:block; color:var(--ink-claro); font-size:15px; font-weight:600; margin-bottom:2px; }
+.mt-etapas span { font-size:13.8px; color:var(--ink-claro-2); line-height:1.5; }
+
+/* ── perguntas ── */
+.mt-faq { border:1px solid var(--line-soft); border-radius:16px; overflow:hidden; background:var(--panel); max-width:880px; }
+.mt-faq details { border-bottom:1px solid var(--line-soft); }
+.mt-faq details:last-child { border-bottom:0; }
+.mt-faq summary { list-style:none; cursor:pointer; display:flex; gap:14px; align-items:baseline; padding:18px 22px;
+  font-size:15.5px; font-weight:500; color:var(--ink); }
+.mt-faq summary::-webkit-details-marker { display:none; }
+.mt-faq summary::before { content:'+'; color:var(--signal); font-size:18px; line-height:1; width:12px; flex-shrink:0; }
+.mt-faq details[open] summary::before { content:'−'; }
+.mt-faq summary:hover { background:var(--panel-2); }
+.mt-faq .resp { padding:0 22px 20px 48px; font-size:14.5px; color:var(--ink-2); line-height:1.7; max-width:72ch; }
+.mt-info-duplo { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:46px; align-items:start; }
+.mt-info-duplo .mt-sec-cab { position:sticky; top:96px; }
+
+/* ── pedido para ser mentor ── */
+.mt-voltar { display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:14px; color:var(--ink-2); background:none; border:0;
+  cursor:pointer; padding:6px 0; margin:6px 0 10px; }
+.mt-voltar:hover { color:var(--signal); }
+.mt-app { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,.9fr); gap:28px; align-items:start; padding-top:8px; }
+.mt-app-form { padding:32px 34px 30px; }
+.mt-app-form h1 { font-family:var(--display); font-weight:400; font-size:clamp(28px,3.4vw,38px); line-height:1.1; letter-spacing:-0.016em; color:var(--ink); margin-bottom:10px; }
+.mt-app-form > p { font-size:15px; color:var(--ink-2); line-height:1.6; max-width:60ch; }
+.mt-bloco { border:0; border-top:1px solid var(--line-soft); margin:26px 0 0; padding:24px 0 0; }
+.mt-bloco legend { display:flex; align-items:center; gap:10px; font-size:16px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; padding:0; margin-bottom:4px; }
+.mt-bloco legend .n { width:26px; height:26px; border-radius:50%; display:grid; place-items:center; font-size:13px; font-weight:600;
+  background:var(--signal-suave); color:var(--signal); }
+.mt-bloco > p { font-size:13.8px; color:var(--ink-3); line-height:1.5; margin:2px 0 0 36px; }
+.mt-dupla { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+.md-campo > .mt-conta-car { display:block; text-align:right; font-size:12px; font-weight:400; color:var(--ink-3); margin:5px 0 0; }
+.md-campo > .mt-conta-car.ok { color:#1F7A6E; }
+.mt-regras { list-style:none; margin:12px 0 0; }
+.mt-regras li { display:grid; grid-template-columns:20px 1fr; gap:10px; padding:7px 0; font-size:14px; color:var(--ink-2); line-height:1.5; }
+.mt-regras .md-ic { color:var(--signal); margin-top:2px; }
+.mt-aceite { display:flex; gap:11px; align-items:flex-start; margin-top:14px; padding:14px 16px; border-radius:14px; background:var(--bg-soft);
+  cursor:pointer; font-size:14.5px; color:var(--ink); line-height:1.5; }
+.mt-aceite input { width:18px; height:18px; margin-top:2px; flex-shrink:0; accent-color:var(--signal); }
+.mt-enviar { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:24px; }
+.mt-enviar small { font-size:13px; color:var(--ink-3); }
+.mt-anexo-nota { font-size:12.5px; color:var(--ink-3); margin-left:10px; }
+.mt-lado { display:grid; gap:16px; position:sticky; top:96px; }
+.mt-lado .mt-painel { padding:22px 22px 20px; }
+.mt-lado h2 { font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
+.mt-eu { display:flex; gap:12px; align-items:center; }
+.mt-eu b { display:block; font-size:15px; color:var(--ink); }
+.mt-eu span { font-size:13px; color:var(--ink-3); }
+.mt-linha { list-style:none; display:grid; gap:0; }
+.mt-linha li { position:relative; padding:0 0 16px 28px; font-size:14px; color:var(--ink-2); line-height:1.5; }
+.mt-linha li:last-child { padding-bottom:0; }
+.mt-linha li::before { content:''; position:absolute; left:6px; top:5px; width:10px; height:10px; border-radius:50%; background:var(--panel);
+  border:2px solid var(--signal); }
+.mt-linha li::after { content:''; position:absolute; left:11px; top:19px; bottom:2px; width:2px; background:var(--line-soft); }
+.mt-linha li:last-child::after { display:none; }
+.mt-linha b { display:block; color:var(--ink); font-weight:600; font-size:14.5px; }
+
+/* ── denúncias ── */
+.mt-den { background:var(--panel); border:1px solid var(--line-soft); border-radius:var(--raio); box-shadow:var(--sombra); padding:20px 24px 22px; margin-bottom:14px; max-width:880px; }
+.mt-den-cab { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; font-size:15px; color:var(--ink); }
 .mt-den-cab b { font-weight:600; }
-.mt-den-nota { font-size:13.5px; color:var(--ink-3,#8A94A1); margin:12px 0 0; }
+.mt-den-nota { font-size:13.5px; color:var(--ink-3); margin:12px 0 0; }
 .mt-den textarea { min-height:70px; }
-.mt-den-av { margin-top:12px; font-size:13.5px; color:var(--ink-3,#8A94A1); }
-.mt-den-av p { font-size:14.5px; line-height:1.55; color:var(--ink,#10203A); margin:6px 0 0; overflow-wrap:anywhere; }
-.mt-anexo-nota { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-left:10px; }
-.mt-demo {font-size:12.5px; background:#FBF0E4; color:#A85D24; border-radius:10px; padding:8px 12px; margin-bottom:18px; }
+.mt-den-av { margin-top:12px; font-size:13.5px; color:var(--ink-3); }
+.mt-den-av p { font-size:14.5px; line-height:1.55; color:var(--ink); margin:6px 0 0; overflow-wrap:anywhere; }
+.mt-acoes { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:18px; }
 
-@media (max-width:860px){ .mt-regras { grid-template-columns:1fr; } .mt-grade { grid-template-columns:1fr; } .mt-main { padding-top:34px; } }
+.mt-demo { font-size:12.5px; background:#FBF0E4; color:#A85D24; border-radius:10px; padding:8px 12px; margin-bottom:6px; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+@media (max-width:1000px){
+  .mt-passos { grid-template-columns:1fr 1fr; }
+  .mt-mentor { grid-template-columns:1fr; padding:42px 30px; gap:30px; }
+  .mt-info-duplo { grid-template-columns:1fr; gap:6px; }
+  .mt-info-duplo .mt-sec-cab { position:static; }
+  .mt-app { grid-template-columns:1fr; }
+  .mt-lado { position:static; }
+}
+@media (max-width:860px){
+  .mt-hero { grid-template-columns:1fr; gap:30px; padding-top:14px; }
+  .mt-esq { grid-template-columns:1fr; }
+  .mt-esq-cards { grid-template-columns:1fr; }
+  .mt-esperar { grid-template-columns:1fr; }
+  .mt-trava { grid-template-columns:auto 1fr; }
+  .mt-trava .mt-hero-cta { grid-column:1 / -1; flex-wrap:wrap; }
+}
+@media (max-width:560px){
+  .mt { padding-top:18px; }
+  .mt-passos { grid-template-columns:1fr; }
+  .mt-app-form { padding:24px 20px 22px; }
+  .mt-dupla { grid-template-columns:1fr; }
+  .mt-garantias { padding:20px 20px 6px; }
+  .mt-mentor { padding:34px 22px; }
+  .mt-faq summary { padding:16px 18px; }
+  .mt-faq .resp { padding:0 18px 18px 44px; }
+  .mt-atalho button { margin-left:0; }
+}
 </style>
 </head>
 <body>
 
-<main class="mt-main">
-  <div class="mt-espera" id="espera">Abrindo…</div>
+<main class="mt">
+  <div id="espera" aria-busy="true" aria-label="Carregando as mentorias">
+    <div class="mt-esq" aria-hidden="true">
+      <div><i style="height:14px;width:110px"></i><i style="height:54px;width:92%"></i><i style="height:54px;width:70%"></i>
+        <i style="height:18px;width:85%;margin-top:22px"></i><i style="height:18px;width:60%"></i></div>
+      <div><i style="height:300px"></i></div>
+      <div class="mt-esq-cards"><i style="height:230px"></i><i style="height:230px"></i><i style="height:230px"></i></div>
+    </div>
+  </div>
   <div id="tela" hidden></div>
 </main>
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js" integrity="sha384-WgXwGL6fUsYJWNaKJgVbrJKGRQwc1vieh2oy4kw9nXqpNDz3tdSsqEYUgeHD/NuF" crossorigin="anonymous"></script>
-<script src="mentorias-dados.js?v=6"></script>
+<script src="mentorias-dados.js?v=7"></script>
 <script>
 try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
 (async function () {
   "use strict";
-  const U = MD.ui, e = U.e;
+  const U = MD.ui, e = U.e, ic = U.ic;
   const espera = document.getElementById("espera"), tela = document.getElementById("tela");
+  const VOLTA = encodeURIComponent("mentorias.html");
+  const falhar = t => { espera.innerHTML = `<div class="mt-falha">${e(t)}</div>`; espera.removeAttribute("aria-busy"); };
 
-  const topo = `
-    <div class="mt-hero">
-      <div class="eyebrow">Mentorias</div>
-      <h1>Entre numa vaga com a ajuda de quem já trabalha nela</h1>
-      <p class="mt-lead">Quem já faz o trabalho abre um grupo e acompanha quem quer entrar: currículo, teste de entrada
-        e as dúvidas das primeiras semanas. Participar é gratuito.</p>
-    </div>
-    <div class="mt-regras">
-      <div class="mt-regra"><b>Mentores verificados</b>Todo mentor comprova que trabalha na vaga antes de o grupo ir ao ar.</div>
-      <div class="mt-regra"><b>Grupos fechados</b>Só o mentor e as pessoas que ele aceitou leem e escrevem no mural.</div>
-    </div>`;
+  if (!MD.disponivel) { falhar("Não deu para falar com o servidor de contas. Confira a internet e recarregue a página."); return; }
+  U.porCss();
 
-  if (!MD.disponivel) { espera.textContent = "Não deu para falar com o servidor de contas. Confira a internet e recarregue a página."; return; }
   let eu = null;
   try { eu = await MD.eu(); } catch (err) { console.warn(err); }
-  if (!eu) {
-    espera.hidden = true; tela.hidden = false;
-    tela.innerHTML = topo + Acesso.htmlAviso("As mentorias são para quem tem conta", "Entre na sua conta para ver as mentorias abertas e participar.");
-    return;
-  }
+  const logado = !!eu;
 
-  U.porCss();
   let perfil = null, lista = [], minhas = { como_mentor: [], como_membro: [] }, denuncias = [];
+  let aba = "explorar", busca = "", filtroEmpresa = "", empresasHub = [];
 
+  /* ══════════════════════════════════════════════════════════
+     PEDAÇOS DA PÁGINA
+     ══════════════════════════════════════════════════════════ */
+
+  const NOME_STATUS = { pendente: "em análise", aprovada: "no ar", recusada: "não aprovada", encerrada: "encerrada",
+                        pedido: "pedido enviado", aprovado: "participando", recusado: "não aceito" };
+  const etq = s => `<span class="md-etq ${e(s)}">${e(NOME_STATUS[s] || s)}</span>`;
+  const plural = (n, um, varios) => n + " " + (n === 1 ? um : varios);
+  const numero = n => String(n).replace(".", ",");
+
+  /* Mentoria encerrada ou recusada não some: vai sozinha para a aba Arquivadas. */
+  const arquivada = m => m.status === "encerrada" || m.status === "recusada";
+  const arquivadas = () => minhas.como_mentor.concat(minhas.como_membro).filter(arquivada);
+  const ativasMentor = () => minhas.como_mentor.filter(m => !arquivada(m));
+  const ativasMembro = () => minhas.como_membro.filter(m => !arquivada(m));
+  const pedidosEsperando = () => ativasMentor().reduce((s, m) => s + (m.pedidos || 0), 0);
+
+  /* ── cartão de mentoria ── */
   function cartao(m, extra) {
-    const nota = m.nota ? `<span>${U.estrelas(m.nota)} <span class="nota">${String(m.nota).replace(".", ",")}</span> (${m.avaliacoes})</span>` : `<span>ainda sem avaliação</span>`;
+    const no_ar = m.status === "aprovada";
+    const nota = m.avaliacoes
+      ? `<span class="nota" title="${e(numero(Number(m.nota).toFixed(1)))} de 5, em ${e(plural(m.avaliacoes, "avaliação", "avaliações"))}">${ic("estrela", 15, true)}${e(numero(Number(m.nota).toFixed(1)))}
+          <small>(${m.avaliacoes})</small></span>`
+      : (no_ar ? `<span class="mt-nova">Nova</span>` : "");
     return `<a class="mt-card" href="mentoria.html?id=${encodeURIComponent(m.id)}${m.pedidos ? "#participantes" : ""}">
-      <div class="mt-quem">${U.foto(m.mentor, 44)}<div><div class="nm">${e(m.mentor.nome)}</div><div class="sb">mentor</div></div>
-        ${extra ? `<span style="margin-left:auto">${extra}</span>` : ""}</div>
-      <div class="mt-vaga">${e(m.vaga_titulo)}<small>${e(m.empresa)}</small></div>
-      <div class="mt-txt">${e(m.como_ajuda)}</div>
-      <div class="mt-pe">${nota}<span>${m.membros} ${m.membros === 1 ? "participante" : "participantes"}</span>
-        ${m.status === "aprovada" ? `<span>${e(U.ultimaResposta(m))}</span>` : ""}</div>
+      <div class="mt-card-topo">
+        <span class="mt-av">${U.foto(m.mentor, 50)}${no_ar ? U.seloVerificado(true) : ""}</span>
+        <div class="mt-card-quem"><div class="nm">${e(m.mentor.nome)}</div>
+          <div class="sb">${no_ar ? "Verificado pelo Hub" : "Mentoria"}</div></div>
+        ${extra ? `<span class="mt-card-etq">${extra}</span>` : ""}
+      </div>
+      <div class="mt-card-vaga">${U.logoEmpresa(m.empresa, 30)}<div><b>${e(m.vaga_titulo)}</b><span>${e(m.empresa)}</span></div></div>
+      <p class="mt-card-txt">${e(m.como_ajuda)}</p>
+      <div class="mt-card-pe">
+        ${nota}
+        ${m.membros ? `<span>${ic("pessoas", 15)}${e(plural(m.membros, "participante", "participantes"))}</span>` : ""}
+        <span class="ver">Ver ${ic("seta", 15)}</span>
+      </div>
     </a>`;
   }
 
-  const NOME_STATUS = { pendente: "em análise", aprovada: "no ar", recusada: "recusada", encerrada: "encerrada",
-                        pedido: "pedido enviado", aprovado: "participando", recusado: "não aceito" };
-  const etq = s => `<span class="md-etq ${e(s)}">${e(NOME_STATUS[s] || s)}</span>`;
-
-  /* Mentoria encerrada ou recusada não some: vai sozinha para a aba
-     "Arquivadas", para a lista principal ficar só com o que está em andamento. */
-  const arquivada = m => m.status === "encerrada" || m.status === "recusada";
-  const arquivadas = () => minhas.como_mentor.concat(minhas.como_membro).filter(arquivada);
-
-  function htmlArquivadas() {
-    const cartoes = minhas.como_mentor.filter(arquivada).map(m => cartao(m, etq(m.status)))
-      .concat(minhas.como_membro.filter(arquivada).map(m => cartao(m, etq(m.status))));
-    return `<div class="mt-hero" style="margin-bottom:22px">
-        <h1>Arquivadas</h1>
-        <p class="mt-lead">Mentorias encerradas e pedidos que não foram aprovados. Nada é apagado: abra qualquer uma para reler o mural.</p>
+  /* ── apresentação e garantias ── */
+  function htmlHero() {
+    const n = lista.length, gente = lista.reduce((s, m) => s + (m.membros || 0), 0);
+    const comNota = lista.filter(m => m.avaliacoes);
+    const media = comNota.length
+      ? comNota.reduce((s, m) => s + m.nota * m.avaliacoes, 0) / comNota.reduce((s, m) => s + m.avaliacoes, 0) : 0;
+    // números pequenos demais passam a impressão contrária: só aparecem com algum volume
+    const numeros = logado && n >= 3 ? `<div class="mt-numeros">
+        <div><b>${n}</b><span>mentorias abertas</span></div>
+        ${gente ? `<div><b>${gente}</b><span>${gente === 1 ? "pessoa participando" : "pessoas participando"}</span></div>` : ""}
+        ${media ? `<div><b>${numero(media.toFixed(1))}</b><span>nota média dada pelos participantes</span></div>` : ""}
+      </div>` : "";
+    const cta = logado
+      ? `<button class="btn primary" type="button" data-rolar="explorar">Ver mentorias abertas <span class="arr">→</span></button>
+         <button class="btn" type="button" data-aba="ser-mentor">Quero ser mentor</button>`
+      : `<a class="btn primary" href="entrar.html?criar=1&voltar=${VOLTA}">Criar conta grátis <span class="arr">→</span></a>
+         <a class="btn" href="entrar.html?voltar=${VOLTA}">Já tenho conta</a>`;
+    const gar = (icone, titulo, txt) => `<div class="mt-gar"><span class="mt-ico">${ic(icone, 20)}</span><div><b>${titulo}</b><p>${txt}</p></div></div>`;
+    return `<section class="mt-hero">
+      <div>
+        <div class="eyebrow">Mentorias</div>
+        <h1 class="mt-h1">Entre numa vaga com a ajuda de quem já trabalha nela</h1>
+        <p class="lead">Profissionais que já fazem o trabalho abrem grupos para acompanhar quem está se candidatando:
+          currículo, teste de entrada e as primeiras semanas. Sem custo para quem participa.</p>
+        <div class="mt-hero-cta">${cta}</div>
+        ${numeros}
       </div>
-      <div class="mt-grade">${cartoes.join("")}</div>`;
+      <aside class="mt-painel mt-garantias" aria-label="Como o Hub cuida das mentorias">
+        <h2>Como o Hub cuida das mentorias</h2>
+        ${gar("verificado", "Mentores verificados", "Cada mentor comprova que trabalha na empresa, e a equipe do Hub confere antes de publicar.")}
+        ${gar("cadeado", "Grupos fechados", "Só entra quem o mentor aceitou. O que se escreve no mural fica dentro do grupo.")}
+        ${gar("gratis", "Sem custo para participar", "Nenhum mentor pode cobrar. Quem descumprir essa regra é removido.")}
+        ${gar("bandeira", "Denúncia com resposta", "Qualquer mensagem pode ser denunciada, e a equipe acompanha com você até resolver.")}
+      </aside>
+    </section>`;
   }
 
-  function desenhar() {
-    const meus = minhas.como_mentor.filter(m => !arquivada(m)).map(m => cartao(m, etq(m.status) +
-        (m.pedidos ? ` <span class="md-etq pedido">${m.pedidos} ${m.pedidos === 1 ? "pedido" : "pedidos"}</span>` : "")))
-      .concat(minhas.como_membro.filter(m => !arquivada(m)).map(m => cartao(m, etq(m.meu_status))));
-    const idsMeus = new Set(minhas.como_mentor.concat(minhas.como_membro).map(m => m.id));
-    const outras = lista.filter(m => !idsMeus.has(m.id));
-
-    tela.innerHTML = `
-      ${MD.demo ? `<div class="mt-demo">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : ""}
-      ${htmlAbas()}
-      ${aba === "denuncias" ? htmlDenuncias() : aba === "arquivadas" ? htmlArquivadas() : `
-      ${topo}
-      ${meus.length ? `<div class="mt-tit"><h2>Minhas mentorias</h2><span>${meus.length}</span></div>
-        <div class="mt-grade">${meus.join("")}</div>` : ""}
-      <div class="mt-tit"><h2>${meus.length ? "Outras mentorias" : "Mentorias abertas"}</h2><span>${outras.length}</span></div>
-      ${outras.length ? `<div class="mt-grade">${outras.map(m => cartao(m)).join("")}</div>`
-        : `<div class="mt-vazio">${lista.length ? "Você já participa de todas as mentorias abertas."
-            : "Nenhuma mentoria aberta por enquanto.<br>Se você já trabalha em alguma vaga, pode abrir a primeira."}</div>`}
-
-      <section class="mt-serMentor" id="serMentor">
-        <h2>Trabalha em alguma vaga? Abra a sua mentoria</h2>
-        <p>Você apresenta a vaga e acompanha quem quer entrar nela. Se a empresa tiver programa de indicação, pode usar o seu link.
-          Todo pedido passa por análise antes de ir ao ar.</p>
-        <button class="md-bt claro" type="button" id="btAbrirForm">Quero ser mentor</button>
-      </section>
-      <div id="formMentor" hidden></div>`}`;
-
-    const bt = tela.querySelector("#btAbrirForm");
-    if (bt) bt.addEventListener("click", abrirForm);
-  }
-
-  /* ── Abas ──
-     Quem não tem mentoria arquivada nem denúncia não vê aba nenhuma: a página
-     é só a lista. As abas "Arquivadas" e "Suas denúncias" só aparecem para
-     quem tem alguma coisa nelas. */
-  let aba = "mentorias";
-  const temAba = nome => nome === "denuncias" ? denuncias.length > 0 : nome === "arquivadas" ? arquivadas().length > 0 : nome === "mentorias";
+  /* ── abas: só aparecem as que têm conteúdo ── */
+  const temAba = nome => ({
+    explorar: true,
+    minhas: ativasMentor().length + ativasMembro().length > 0,
+    arquivadas: arquivadas().length > 0,
+    denuncias: denuncias.length > 0,
+    "ser-mentor": true,
+  })[nome] || false;
   function htmlAbas() {
-    if (!temAba("denuncias") && !temAba("arquivadas")) return "";
-    const novas = denuncias.filter(d => esperaVoce(d) || faltaNota(d)).length;
+    const novasDen = denuncias.filter(d => esperaVoce(d) || faltaNota(d)).length;
+    const esperando = pedidosEsperando();
+    const bt = (id, nome, extra) => `<button type="button" role="tab" data-aba="${id}" aria-selected="${aba === id}">${nome}${extra || ""}</button>`;
     return `<nav class="mt-abas" role="tablist" aria-label="Partes da página">
-      <button type="button" role="tab" data-aba="mentorias" aria-selected="${aba === "mentorias"}">Mentorias</button>
-      ${temAba("arquivadas") ? `<button type="button" role="tab" data-aba="arquivadas" aria-selected="${aba === "arquivadas"}">Arquivadas
-        <span class="mt-quantas">${arquivadas().length}</span></button>` : ""}
-      ${temAba("denuncias") ? `<button type="button" role="tab" data-aba="denuncias" aria-selected="${aba === "denuncias"}">Suas denúncias
-        ${novas ? `<span class="mt-conta" title="Há novidade da equipe do Hub">${novas}</span>` : ""}</button>` : ""}
+      ${bt("explorar", "Mentorias abertas")}
+      ${temAba("minhas") ? bt("minhas", "Minhas mentorias", esperando
+          ? `<span class="mt-conta" title="${e(plural(esperando, "pedido de entrada esperando você", "pedidos de entrada esperando você"))}">${esperando}</span>`
+          : `<span class="mt-quantas">${ativasMentor().length + ativasMembro().length}</span>`) : ""}
+      ${temAba("arquivadas") ? bt("arquivadas", "Arquivadas", `<span class="mt-quantas">${arquivadas().length}</span>`) : ""}
+      ${temAba("denuncias") ? bt("denuncias", "Suas denúncias", novasDen
+          ? `<span class="mt-conta azul" title="Há novidade da equipe do Hub">${novasDen}</span>` : "") : ""}
     </nav>`;
   }
-  function abrirAba(nome) {
-    aba = temAba(nome) ? nome : "mentorias";
-    try { history.replaceState(null, "", aba === "mentorias" ? location.pathname + location.search : "#" + aba); } catch (err) {}
-    desenhar();
-    window.scrollTo(0, 0);
-  }
-  tela.addEventListener("click", ev => {
-    const b = ev.target.closest("[data-aba]"); if (b) abrirAba(b.dataset.aba);
-  });
 
-  /* ── As denúncias que a pessoa fez e a conversa com a equipe ──
-     Só aparece para quem já denunciou alguma coisa. Só ela e a equipe leem. */
+  /* ── mentorias abertas ── */
+  const normal = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  /* Ordem: nota ajustada pelo número de avaliações (um 5 com uma avaliação só
+     não passa na frente de um 4,7 com várias), depois quantidade de gente,
+     depois as mais novas. */
+  const pontos = m => m.avaliacoes ? (m.nota * m.avaliacoes + 4 * 2) / (m.avaliacoes + 2) : 0;
+  function ordenadas() {
+    return lista.slice().sort((a, b) => (pontos(b) - pontos(a)) || ((b.membros || 0) - (a.membros || 0)) ||
+      String(b.aprovada_em || b.criado_em).localeCompare(String(a.aprovada_em || a.criado_em)));
+  }
+  function filtradas() {
+    const q = normal(busca).trim();
+    return ordenadas().filter(m => (!filtroEmpresa || normal(m.empresa) === filtroEmpresa) &&
+      (!q || normal([m.vaga_titulo, m.empresa, m.mentor.nome, m.como_ajuda].join(" ")).indexOf(q) >= 0));
+  }
+  function htmlGrade() {
+    const itens = filtradas();
+    if (itens.length) return itens.map(m => cartao(m)).join("");
+    return `<div class="mt-vazio" style="grid-column:1 / -1"><h3>Nenhuma mentoria com esse filtro</h3>
+      <p>Tente outra palavra ou limpe o filtro de empresa.</p></div>`;
+  }
+  function htmlExplorar() {
+    if (!logado) {
+      return `<section class="mt-sec" id="explorar">
+        <div class="mt-painel mt-trava">
+          <span class="mt-ico">${ic("cadeado", 22)}</span>
+          <div><h3>As mentorias abertas aparecem para quem tem conta</h3>
+            <p>Os grupos são fechados e cada participante é aceito pelo mentor. Por isso, a lista e os pedidos de entrada ficam dentro da conta, que é gratuita.</p></div>
+          <div class="mt-hero-cta">
+            <a class="btn primary" href="entrar.html?criar=1&voltar=${VOLTA}">Criar conta grátis</a>
+            <a class="btn" href="entrar.html?voltar=${VOLTA}">Entrar</a>
+          </div>
+        </div>
+      </section>`;
+    }
+    const minhasAtivas = ativasMentor().length + ativasMembro().length;
+    const atalho = minhasAtivas ? `<div class="mt-atalho">${ic("pessoas", 18)}
+        <span>${pedidosEsperando()
+          ? `Você tem <b>${e(plural(pedidosEsperando(), "pedido de entrada", "pedidos de entrada"))}</b> esperando resposta.`
+          : `Você está em <b>${e(plural(minhasAtivas, "mentoria", "mentorias"))}</b>.`}</span>
+        <button class="md-bt claro pequeno" type="button" data-aba="minhas">Ver minhas mentorias</button></div>` : "";
+
+    if (!lista.length) {
+      return `<section class="mt-sec" id="explorar">${atalho}
+        <div class="mt-vazio"><span class="mt-ico">${ic("conversa", 24)}</span>
+          <h3>As primeiras mentorias estão a caminho</h3>
+          <p>Cada mentor passa pela verificação da equipe antes de aparecer aqui. Se você já trabalha numa das empresas do Hub, pode abrir a primeira.</p>
+          <div class="mt-hero-cta"><button class="btn primary" type="button" data-aba="ser-mentor">Quero ser mentor</button></div>
+        </div>
+      </section>`;
+    }
+    // filtro por empresa só faz sentido com lista grande e mais de uma empresa
+    const empresas = [];
+    lista.forEach(m => { const k = normal(m.empresa); if (!empresas.some(x => x.k === k)) empresas.push({ k, nome: m.empresa }); });
+    const comFiltros = lista.length >= 4;
+    return `<section class="mt-sec" id="explorar">
+      ${atalho}
+      <div class="mt-sec-cab">
+        <div><h2 class="mt-h2">Mentorias abertas</h2>
+          <p>${e(plural(lista.length, "mentoria", "mentorias"))} com mentor verificado. As mais bem avaliadas aparecem primeiro.</p></div>
+        ${comFiltros ? `<label class="mt-busca"><span class="sr">Procurar mentoria</span>${ic("busca", 17)}
+          <input type="search" id="busca" placeholder="Procurar por vaga, empresa ou mentor" value="${e(busca)}" autocomplete="off"></label>` : ""}
+      </div>
+      ${comFiltros && empresas.length > 1 ? `<div class="mt-chips" role="group" aria-label="Filtrar por empresa">
+          <button class="mt-chip" type="button" data-empresa="" aria-pressed="${!filtroEmpresa}">Todas</button>
+          ${empresas.map(x => `<button class="mt-chip" type="button" data-empresa="${e(x.k)}" aria-pressed="${filtroEmpresa === x.k}">${e(x.nome)}</button>`).join("")}
+        </div>` : ""}
+      <div class="mt-grade" id="grade">${htmlGrade()}</div>
+    </section>`;
+  }
+
+  /* ── minhas mentorias ── */
+  function htmlMinhas() {
+    const conduzo = ativasMentor(), participo = ativasMembro();
+    return `<section class="mt-sec">
+      <div class="mt-sec-cab"><div><h2 class="mt-h2">Minhas mentorias</h2>
+        <p>As que você conduz e as de que participa. Encerradas e pedidos não aprovados ficam em Arquivadas.</p></div></div>
+      ${conduzo.length ? `<h3 class="mt-sub">Que você conduz <span>${conduzo.length}</span></h3>
+        <div class="mt-grade">${conduzo.map(m => cartao(m, etq(m.status) +
+          (m.pedidos ? ` <span class="md-etq pedido">${e(plural(m.pedidos, "pedido", "pedidos"))}</span>` : ""))).join("")}</div>` : ""}
+      ${participo.length ? `<h3 class="mt-sub">De que você participa <span>${participo.length}</span></h3>
+        <div class="mt-grade">${participo.map(m => cartao(m, etq(m.meu_status))).join("")}</div>` : ""}
+    </section>`;
+  }
+
+  /* ── arquivadas ── */
+  function htmlArquivadas() {
+    const cartoes = minhas.como_mentor.filter(arquivada).concat(minhas.como_membro.filter(arquivada)).map(m => cartao(m, etq(m.status)));
+    return `<section class="mt-sec">
+      <div class="mt-sec-cab"><div><h2 class="mt-h2">Arquivadas</h2>
+        <p>Mentorias encerradas e pedidos que não foram aprovados. Nada é apagado: abra qualquer uma para reler o mural.</p></div></div>
+      <div class="mt-grade">${cartoes.join("")}</div>
+    </section>`;
+  }
+
+  /* ── a parte que explica o programa ── */
+  function htmlComoFunciona() {
+    const passo = (n, t, p) => `<div class="mt-painel mt-passo"><div class="n">${n}</div><h3>${t}</h3><p>${p}</p></div>`;
+    return `<section class="mt-info" id="como-funciona">
+      <div class="mt-sec-cab"><div><div class="eyebrow">Como funciona</div>
+        <h2 class="mt-h2">Da escolha do mentor ao primeiro dia de trabalho</h2></div></div>
+      <div class="mt-passos">
+        ${passo("01", "Escolha uma mentoria", "Veja quem é o mentor, como ele trabalha com o grupo e a nota de quem já participou.")}
+        ${passo("02", "Candidate-se à vaga", "A candidatura acontece na página oficial da empresa, pelo link indicado na mentoria.")}
+        ${passo("03", "Peça para entrar no grupo", "Conte com que nome ou e-mail você se candidatou. O mentor confere e libera a sua entrada.")}
+        ${passo("04", "Prepare-se com o grupo", "No mural, o mentor orienta sobre currículo, teste de entrada e as primeiras semanas de trabalho.")}
+      </div>
+    </section>`;
+  }
+
+  function htmlEsperar() {
+    const ok = t => `<li>${ic("check", 18)}<span>${t}</span></li>`;
+    const nao = t => `<li>${ic("proibido", 18)}<span>${t}</span></li>`;
+    return `<section class="mt-info" id="o-que-esperar">
+      <div class="mt-sec-cab"><div><div class="eyebrow">O que esperar</div>
+        <h2 class="mt-h2">O papel do mentor, com regras claras</h2>
+        <p>O mentor ajuda você a chegar mais preparado. A decisão de contratar é sempre da empresa, pelo processo dela.</p></div></div>
+      <div class="mt-esperar">
+        <div class="mt-painel mt-ok"><h3>O mentor faz</h3><ul class="mt-itens">
+          ${ok("<b>Explica o processo seletivo</b> da vaga, etapa por etapa, a partir da experiência dele.")}
+          ${ok("<b>Orienta o currículo</b> para o que a empresa procura nessa função.")}
+          ${ok("<b>Ajuda a estudar para o teste de entrada</b>, com as dúvidas mais comuns e os erros que mais reprovam.")}
+          ${ok("<b>Responde no mural</b> do grupo com regularidade, nos dias que ele informa na apresentação.")}
+        </ul></div>
+        <div class="mt-painel mt-nao"><h3>Um mentor do Hub nunca</h3><ul class="mt-itens">
+          ${nao("<b>Cobra qualquer valor</b>, seja por material, aula extra ou &ldquo;garantia de vaga&rdquo;.")}
+          ${nao("<b>Pede senha, código de verificação ou acesso</b> à sua conta em qualquer plataforma.")}
+          ${nao("<b>Vende, aluga ou empresta conta</b>, nem sugere esconder o país ou usar VPN para entrar em projeto.")}
+          ${nao("<b>Promete aprovação</b> ou diz que fala em nome da empresa.")}
+        </ul></div>
+      </div>
+      <div class="mt-nota-den">${ic("bandeira", 18)}<span>Viu algum desses sinais? Use <b>Denunciar</b> na página da mentoria ou na mensagem.
+        A equipe do Hub responde pela aba Suas denúncias, e o mentor que descumprir as regras é removido.</span></div>
+    </section>`;
+  }
+
+  function htmlSejaMentor() {
+    const etapa = (n, t, s) => `<li><span class="n">${n}</span><div><b>${t}</b><span>${s}</span></div></li>`;
+    return `<section class="mt-info" id="seja-mentor">
+      <div class="escuro mt-mentor">
+        <div>
+          <div class="eyebrow">Para quem já trabalha na área</div>
+          <h2 class="mt-h2">Ajude quem está tentando entrar onde você já está</h2>
+          <p class="lead">Você apresenta a vaga, aceita quem se candidatou e orienta o grupo no seu ritmo. O seu perfil aparece com o selo de mentor verificado.
+            Se a empresa tiver programa de indicação, você pode usar o seu link.</p>
+          ${logado
+            ? `<button class="btn branco" type="button" data-aba="ser-mentor">Quero ser mentor <span class="arr">→</span></button>`
+            : `<a class="btn branco" href="entrar.html?criar=1&voltar=${encodeURIComponent("mentorias.html#serMentor")}">Criar conta para ser mentor <span class="arr">→</span></a>`}
+        </div>
+        <ol class="mt-etapas">
+          ${etapa(1, "Envie o pedido", "Empresa, vaga, a sua apresentação e um comprovante de que você trabalha lá.")}
+          ${etapa(2, "A equipe analisa", "Conferimos o comprovante e, se precisar, falamos com você pelo e-mail da conta.")}
+          ${etapa(3, "A mentoria vai ao ar", "Você aceita os participantes e conduz o mural do grupo.")}
+        </ol>
+      </div>
+    </section>`;
+  }
+
+  function htmlPerguntas() {
+    const q = (p, r) => `<details><summary>${p}</summary><div class="resp">${r}</div></details>`;
+    return `<section class="mt-info" id="perguntas">
+      <div class="mt-info-duplo">
+        <div class="mt-sec-cab"><div><div class="eyebrow">Perguntas frequentes</div>
+          <h2 class="mt-h2">Antes de participar</h2>
+          <p>Não achou a sua dúvida? Ela também vale para o mural: o mentor responde por lá.</p></div></div>
+        <div class="mt-faq">
+          ${q("Quanto custa participar?", "Nada. A mentoria é gratuita para quem participa, e nenhum mentor pode cobrar valor algum, nem por material extra, nem por aula particular, nem por garantia de vaga. Se alguém pedir, denuncie.")}
+          ${q("Como o Hub verifica os mentores?", "Antes de a mentoria ir ao ar, o mentor envia comprovantes de que trabalha na empresa, como o painel de trabalho, um comprovante de pagamento ou o contrato. A equipe do Hub confere cada pedido e pode pedir mais informações. Os comprovantes ficam só com a equipe e não aparecem para ninguém.")}
+          ${q("O mentor garante a minha aprovação?", "Não. Quem decide é a empresa, pelo processo dela. O mentor ajuda você a se preparar melhor: entender o teste de entrada, ajustar o currículo e evitar os erros que mais reprovam.")}
+          ${q("O mentor ganha alguma coisa com isso?", "Algumas empresas têm programa de indicação e pagam um bônus a quem indicou quando a pessoa indicada é contratada. Se a mentoria usar um link de indicação, nada muda para você: o processo seletivo e o seu pagamento são os mesmos.")}
+          ${q("Posso compartilhar no grupo o material do projeto?", "Não. Diretrizes, tarefas e telas dos projetos costumam ser confidenciais, e compartilhar pode custar a sua vaga. No mural, falem do processo seletivo, da rotina e das dúvidas gerais, sem expor conteúdo do projeto.")}
+          ${q("Me ofereceram uma conta pronta em uma plataforma. É seguro?", "Não. Existe um mercado de contas de plataformas de treinamento de IA vendidas e alugadas em grupos de redes sociais. Usar conta de outra pessoa ou esconder o país viola as regras das plataformas e costuma terminar em bloqueio, sem pagamento. Um mentor do Hub nunca oferece isso.")}
+          ${q("Posso participar de mais de uma mentoria?", "Pode. Cada mentoria é sobre uma vaga. Participe das que fazem sentido para você e, quando quiser sair de um grupo, use a opção Sair desta mentoria, na página dela.")}
+          ${q("Como faço uma denúncia?", "Na página de cada mentoria e em cada mensagem do mural há a opção Denunciar. A equipe do Hub recebe, conversa com você pela aba Suas denúncias e avisa quando resolver.")}
+          ${q("Quem pode ser mentor?", "Quem já trabalha na vaga que vai apresentar e consegue comprovar isso. É preciso ter um perfil com nome e aceitar as regras: não cobrar, responder ao grupo e não compartilhar material confidencial.")}
+        </div>
+      </div>
+    </section>`;
+  }
+
+  function htmlInfo() { return htmlComoFunciona() + htmlEsperar() + htmlSejaMentor() + htmlPerguntas(); }
+
+  /* ══════════════════════════════════════════════════════════
+     DENÚNCIAS que a pessoa fez e a conversa com a equipe
+     ══════════════════════════════════════════════════════════ */
   const esperaVoce = d => !d.resolvida && d.mensagens.length && d.mensagens[d.mensagens.length - 1].da_equipe;
   const faltaNota = d => d.resolvida && !d.nota;
   const rascunhos = {};
 
-  /* Abre a janela das estrelas. Depois que a equipe resolve, a pessoa diz se
-     o atendimento resolveu o problema; a nota só a equipe e ela veem. */
+  /* Depois que a equipe resolve, a pessoa diz se o atendimento resolveu o problema. */
   async function avaliarAtendimento(id) {
     const d = denuncias.find(x => x.id === id); if (!d) return;
     const r = await U.pedirNota({
@@ -229,16 +616,11 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       const m = tela.querySelector("#denMsg"); if (m) { m.textContent = err.message; m.className = "md-msg erro"; m.hidden = false; }
     }
   }
-  tela.addEventListener("click", ev => {
-    const b = ev.target.closest("[data-avaliar-den]"); if (b) avaliarAtendimento(b.dataset.avaliarDen);
-  });
 
   function htmlDenuncias() {
-    if (!denuncias.length) return "";
-    return `<div class="mt-hero" style="margin-bottom:22px">
-        <h1>Suas denúncias</h1>
-        <p class="mt-lead">As denúncias que você fez e as respostas da equipe do Hub. Só você e a equipe têm acesso.</p>
-      </div>
+    return `<section class="mt-sec">
+      <div class="mt-sec-cab"><div><h2 class="mt-h2">Suas denúncias</h2>
+        <p>As denúncias que você fez e as respostas da equipe do Hub. Só você e a equipe têm acesso.</p></div></div>
       ${denuncias.map(d => `<div class="mt-den">
         <div class="mt-den-cab"><b>${d.tipo === "post" ? "Mensagem no mural" : "Mentoria inteira"}${d.mentoria ? " · " + e(d.mentoria.vaga_titulo) : ""}</b>
           ${d.resolvida ? `<span class="md-etq aprovada">resolvida</span>` : esperaVoce(d) ? `<span class="md-etq pedido">a equipe respondeu</span>` : `<span class="md-etq pendente">em análise</span>`}</div>
@@ -253,78 +635,120 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
               <div class="mt-acoes" style="margin-top:10px"><button class="md-bt pequeno" type="button" data-responder="${e(d.id)}">Enviar</button></div>`
             : `<p class="mt-den-nota">A equipe do Hub vai ler e, se precisar de mais detalhes, responde por aqui.</p>`}
       </div>`).join("")}
-      <div class="md-msg" id="denMsg" role="status" hidden></div>`;
+      <div class="md-msg" id="denMsg" role="status" hidden></div>
+    </section>`;
   }
-  tela.addEventListener("input", ev => {
-    const c = ev.target.closest("[data-resposta]"); if (c) rascunhos[c.dataset.resposta] = c.value;
-  });
-  tela.addEventListener("click", async ev => {
-    const b = ev.target.closest("[data-responder]"); if (!b) return;
-    const id = b.dataset.responder, campo = tela.querySelector('[data-resposta="' + id + '"]');
-    const texto = campo.value.trim();
-    if (!texto) { campo.focus(); return; }
-    b.disabled = true;
-    try {
-      await MD.responderDenuncia(id, texto, false);
-      delete rascunhos[id];
-      denuncias = (await MD.minhasDenuncias()) || [];
-      desenhar();
-    } catch (err) {
-      const m = tela.querySelector("#denMsg"); m.textContent = err.message; m.className = "md-msg erro"; m.hidden = false; b.disabled = false;
-    }
-  });
 
-  function abrirForm() {
-    const alvo = tela.querySelector("#formMentor");
-    alvo.hidden = false;
+  /* ══════════════════════════════════════════════════════════
+     PEDIDO PARA SER MENTOR
+     ══════════════════════════════════════════════════════════ */
+  function htmlSerMentor() {
+    const voltar = `<button class="mt-voltar" type="button" data-aba="explorar">${ic("voltar", 16)}Mentorias</button>`;
     if (!perfil) {
-      alvo.innerHTML = `<div class="mt-form"><h3>Primeiro, o seu perfil</h3>
-        <p>Antes de pedir para ser mentor, diga como você quer aparecer: nome, uma apresentação curta e, se quiser, uma foto.</p>
-        <div class="mt-acoes"><a class="md-bt" href="perfil.html?voltar=${encodeURIComponent("mentorias.html#serMentor")}">Preencher meu perfil</a></div></div>`;
-      alvo.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
+      return `${voltar}<div class="mt-vazio" style="margin-top:10px"><span class="mt-ico">${ic("pessoas", 24)}</span>
+        <h3>Primeiro, o seu perfil</h3>
+        <p>Antes de pedir para ser mentor, diga como você quer aparecer para o grupo: nome, uma apresentação curta e, se quiser, uma foto.</p>
+        <div class="mt-hero-cta"><a class="btn primary" href="perfil.html?voltar=${encodeURIComponent("mentorias.html#serMentor")}">Preencher meu perfil</a></div></div>`;
     }
-    alvo.innerHTML = `
-      <form class="mt-form" novalidate>
-        <h3>Pedido para ser mentor</h3>
-        <p>Você aparece como <b>${e(perfil.nome)}</b>. <a class="md-link" href="perfil.html?voltar=mentorias.html">mudar perfil</a></p>
-        <label class="md-campo"><span>Empresa</span><input id="fEmpresa" type="text" maxlength="80" placeholder="Welocalize"></label>
-        <label class="md-campo"><span>Vaga</span>
-          <small>O título como aparece no anúncio.</small>
-          <input id="fVaga" type="text" maxlength="160" placeholder="Search Quality Rater, português (Brasil)"></label>
-        <label class="md-campo"><span>Link da vaga</span>
-          <small>A página onde as pessoas se candidatam. Se você tiver link de indicação, pode usar o seu. Precisa começar com https://</small>
-          <input id="fLink" type="url" maxlength="600" placeholder="https://"></label>
-        <label class="md-campo"><span>Sua apresentação</span>
-          <small>Há quanto tempo trabalha nessa vaga, como conseguiu entrar, o que faz no dia a dia.</small>
-          <textarea id="fApres" maxlength="3000"></textarea></label>
-        <label class="md-campo"><span>Como você vai ajudar</span>
-          <small>O que você oferece (currículo, preparo para o teste, tirar dúvidas) e com que frequência responde no mural.</small>
-          <textarea id="fAjuda" maxlength="3000"></textarea></label>
-        <label class="md-campo"><span>Como você comprova que trabalha lá</span>
-          <small>Só a administração do Hub vê o que você escrever e anexar aqui. Anexe prints ou fotos (painel de trabalho,
-            comprovante de pagamento, contrato) e, se quiser, explique o que cada um mostra. Podemos pedir mais detalhes pelo e-mail da sua conta.</small>
-          <textarea id="fProva" maxlength="3000" placeholder="Opcional se você anexar imagens"></textarea></label>
-        <label class="md-anexar"><input id="fArq" type="file" accept="image/*" multiple>+ Anexar prints ou fotos</label>
-        <span class="mt-anexo-nota" id="fArqNota">até 6 imagens</span>
-        <div class="md-provas" id="fProvas"></div>
-        <div class="regra"><b>Ao enviar, você concorda com as regras:</b> a mentoria é gratuita e você não cobra nada dos participantes;
-          você responde a quem entrar; você não se apresenta como recrutador da empresa e, se usar link de indicação, segue as regras do programa dela.
-          O Hub pode encerrar a mentoria se isso não for cumprido.</div>
-        <div class="mt-acoes"><button class="md-bt" type="submit">Enviar para análise</button>
-          <button class="md-link" type="button" id="btFechar">cancelar</button></div>
+    const regra = t => `<li>${ic("check", 17)}<span>${t}</span></li>`;
+    const nomesEmpresas = empresasHub.map(x => `<option value="${e(x.nome)}">`).join("");
+    return `${voltar}
+    <div class="mt-app">
+      <form class="mt-painel mt-app-form" id="formMentor" novalidate>
+        <div class="eyebrow">Pedido para ser mentor</div>
+        <h1>Apresente a vaga em que você trabalha</h1>
+        <p>Leva uns dez minutos. A equipe do Hub analisa cada pedido antes de publicar, e você acompanha a análise pela página do pedido.</p>
+
+        <fieldset class="mt-bloco"><legend><span class="n">1</span>A vaga</legend>
+          <div class="mt-dupla">
+            <label class="md-campo"><span>Empresa</span><input id="fEmpresa" type="text" maxlength="80" list="listaEmpresas" placeholder="Welocalize" autocomplete="off"></label>
+            <label class="md-campo"><span>Título da vaga</span><input id="fVaga" type="text" maxlength="160" placeholder="Search Quality Rater, português (Brasil)"></label>
+          </div>
+          <datalist id="listaEmpresas">${nomesEmpresas}</datalist>
+          <label class="md-campo"><span>Link da vaga</span>
+            <small>A página onde as pessoas se candidatam. Se você tiver link de indicação, pode usar o seu. Precisa começar com https://</small>
+            <input id="fLink" type="url" maxlength="600" placeholder="https://"></label>
+        </fieldset>
+
+        <fieldset class="mt-bloco"><legend><span class="n">2</span>Você e a mentoria</legend>
+          <p>É o que as pessoas leem antes de pedir para entrar. Escreva como você falaria com alguém que está começando.</p>
+          <label class="md-campo"><span>Sua apresentação</span>
+            <small>Há quanto tempo trabalha nessa vaga, como conseguiu entrar e o que faz no dia a dia.</small>
+            <textarea id="fApres" maxlength="3000" data-minimo="40"></textarea><span class="mt-conta-car" data-conta="fApres"></span></label>
+          <label class="md-campo"><span>Como você vai ajudar</span>
+            <small>O que você oferece (currículo, preparo para o teste, dúvidas) e em que dias costuma responder no mural.</small>
+            <textarea id="fAjuda" maxlength="3000" data-minimo="40"></textarea><span class="mt-conta-car" data-conta="fAjuda"></span></label>
+        </fieldset>
+
+        <fieldset class="mt-bloco"><legend><span class="n">3</span>Comprovação</legend>
+          <p>Só a equipe do Hub vê o que você escrever e anexar aqui. Os comprovantes não aparecem na mentoria.</p>
+          <label class="md-anexar"><input id="fArq" type="file" accept="image/*" multiple>+ Anexar prints ou fotos</label>
+          <span class="mt-anexo-nota" id="fArqNota">até 6 imagens</span>
+          <div class="md-provas" id="fProvas"></div>
+          <label class="md-campo"><span>Explicação (opcional se você anexar imagens)</span>
+            <textarea id="fProva" maxlength="3000" placeholder="O que cada imagem mostra, ou como mais você pode comprovar"></textarea></label>
+        </fieldset>
+
+        <fieldset class="mt-bloco"><legend><span class="n">4</span>Regras para mentores</legend>
+          <ul class="mt-regras">
+            ${regra("A mentoria é gratuita: você não cobra nenhum valor dos participantes.")}
+            ${regra("Você responde ao grupo com regularidade, nos dias que informou.")}
+            ${regra("Você não pede senha, código ou acesso à conta de ninguém, e não oferece conta.")}
+            ${regra("Você não compartilha material confidencial dos projetos.")}
+            ${regra("Você não se apresenta como recrutador da empresa e, se usar link de indicação, segue as regras do programa dela.")}
+          </ul>
+          <label class="mt-aceite"><input type="checkbox" id="fAceite"><span>Li e concordo com as regras. Sei que o Hub pode encerrar a mentoria se elas não forem cumpridas.</span></label>
+        </fieldset>
+
+        <div class="mt-enviar"><button class="md-bt" type="submit">Enviar para análise</button><small>Você pode acompanhar e completar o pedido depois de enviar.</small></div>
         <div class="md-msg" id="fMsg" role="status" hidden></div>
-      </form>`;
-    alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+      </form>
+
+      <aside class="mt-lado">
+        <div class="mt-painel"><h2>Como você vai aparecer</h2>
+          <div class="mt-eu">${U.foto({ nome: perfil.nome, foto: perfil.foto }, 52)}
+            <div><b>${e(perfil.nome)}</b><span>${perfil.bio ? e(perfil.bio) : "Sem apresentação curta no perfil"}</span></div></div>
+          <div style="margin-top:14px"><a class="md-link" href="perfil.html?voltar=${encodeURIComponent("mentorias.html#serMentor")}">mudar nome, foto ou apresentação</a></div>
+        </div>
+        <div class="mt-painel"><h2>O que acontece depois</h2>
+          <ol class="mt-linha">
+            <li><b>Pedido em análise</b>Só você e a equipe veem a página do pedido. Dá para anexar mais comprovantes por lá.</li>
+            <li><b>Resposta da equipe</b>Aprovado ou não, a resposta aparece na página do pedido. Se faltar algo, escrevemos para o e-mail da conta.</li>
+            <li><b>No ar</b>A mentoria entra na lista com o selo de verificado, e você começa a aceitar participantes.</li>
+          </ol>
+        </div>
+        <div class="mt-painel"><h2>Comprovantes que ajudam</h2>
+          <ul class="mt-itens mt-ok">
+            <li>${ic("documento", 18)}<span>Print do painel de trabalho, com o seu nome visível</span></li>
+            <li>${ic("documento", 18)}<span>Comprovante de pagamento da empresa</span></li>
+            <li>${ic("documento", 18)}<span>Contrato ou e-mail de aprovação no projeto</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>`;
+  }
+
+  function ligarFormulario() {
+    const alvo = tela.querySelector("#formMentor"); if (!alvo) return;
     const $ = s => alvo.querySelector(s);
     const dizer = (t, tipo) => { const m = $("#fMsg"); m.textContent = t; m.className = "md-msg " + tipo; m.hidden = false; };
-    $("#btFechar").addEventListener("click", () => { alvo.hidden = true; alvo.innerHTML = ""; });
+
+    // contador de caracteres que muda de cor quando o mínimo é atingido
+    alvo.querySelectorAll("textarea[data-minimo]").forEach(cx => {
+      const conta = alvo.querySelector(`[data-conta="${cx.id}"]`), min = +cx.dataset.minimo;
+      const pintar = () => {
+        const n = cx.value.trim().length;
+        conta.textContent = n >= min ? `${n} caracteres` : `${n} de pelo menos ${min} caracteres`;
+        conta.classList.toggle("ok", n >= min);
+      };
+      cx.addEventListener("input", pintar); pintar();
+    });
 
     /* prints de comprovação: reduzidos aqui no navegador, enviados depois do pedido */
     const MAX_PROVAS = 6;
     let provas = [];
     function desenharProvas() {
-      $("#fProvas").innerHTML = provas.map((p, i) => `<div class="md-prova"><img data-ampliar src="${p}" alt="Comprovante ${i + 1}">
+      $("#fProvas").innerHTML = provas.map((p, i) => `<div class="md-prova"><img data-ampliar src="${e(p)}" alt="Comprovante ${i + 1}">
         <button type="button" data-tirar="${i}" aria-label="Tirar esta imagem">×</button></div>`).join("");
       $("#fArqNota").textContent = provas.length ? `${provas.length} de ${MAX_PROVAS} imagens` : `até ${MAX_PROVAS} imagens`;
     }
@@ -342,15 +766,19 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       const b = ev.target.closest("[data-tirar]"); if (!b) return;
       provas.splice(+b.dataset.tirar, 1); desenharProvas();
     });
-    alvo.querySelector("form").addEventListener("submit", async ev => {
+
+    alvo.addEventListener("submit", async ev => {
       ev.preventDefault();
       const m = { empresa: $("#fEmpresa").value.trim(), vaga_titulo: $("#fVaga").value.trim(), link: $("#fLink").value.trim(),
                   apresentacao: $("#fApres").value.trim(), como_ajuda: $("#fAjuda").value.trim(), comprovacao: $("#fProva").value.trim() };
-      if (m.empresa.length < 2 || m.vaga_titulo.length < 2) { dizer("Preencha a empresa e a vaga.", "erro"); return; }
-      if (!/^https:\/\/\S+\.\S+/i.test(m.link)) { dizer("O link da vaga precisa começar com https://", "erro"); return; }
-      if (m.apresentacao.length < 40) { dizer("Escreva um pouco mais na apresentação, pelo menos duas frases.", "erro"); return; }
-      if (m.como_ajuda.length < 40) { dizer("Explique melhor como você vai ajudar, pelo menos duas frases.", "erro"); return; }
-      if (m.comprovacao.length < 10 && !provas.length) { dizer("Anexe um print ou explique como você comprova que trabalha nessa vaga.", "erro"); return; }
+      const foco = s => { const c = $(s); if (c) c.focus(); };
+      if (m.empresa.length < 2) { dizer("Diga em que empresa você trabalha.", "erro"); foco("#fEmpresa"); return; }
+      if (m.vaga_titulo.length < 2) { dizer("Escreva o título da vaga, como aparece no anúncio.", "erro"); foco("#fVaga"); return; }
+      if (!/^https:\/\/\S+\.\S+/i.test(m.link)) { dizer("O link da vaga precisa começar com https://", "erro"); foco("#fLink"); return; }
+      if (m.apresentacao.length < 40) { dizer("Escreva um pouco mais na apresentação, pelo menos duas frases.", "erro"); foco("#fApres"); return; }
+      if (m.como_ajuda.length < 40) { dizer("Explique melhor como você vai ajudar, pelo menos duas frases.", "erro"); foco("#fAjuda"); return; }
+      if (m.comprovacao.length < 10 && !provas.length) { dizer("Anexe um print ou explique como você comprova que trabalha nessa vaga.", "erro"); foco("#fProva"); return; }
+      if (!$("#fAceite").checked) { dizer("Para enviar, marque que você concorda com as regras para mentores.", "erro"); foco("#fAceite"); return; }
       if (m.comprovacao.length < 10) {
         m.comprovacao = (m.comprovacao ? m.comprovacao + "\n" : "") + (provas.length === 1 ? "Comprovante em anexo (1 imagem)." : `Comprovantes em anexo (${provas.length} imagens).`);
       }
@@ -366,10 +794,9 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         location.href = "mentoria.html?id=" + encodeURIComponent(id);
       } catch (err) {
         if (id) {   // o pedido entrou; só alguma imagem ficou para trás
-          alvo.querySelector("form").innerHTML = `<h3>Pedido enviado, mas faltou imagem</h3>
-            <p>O seu pedido foi para análise, só que nem todas as imagens subiram (${e(err.message)}).
-              Abra o pedido para anexar de novo.</p>
-            <div class="mt-acoes"><a class="md-bt" href="mentoria.html?id=${encodeURIComponent(id)}">Abrir o meu pedido</a></div>`;
+          alvo.innerHTML = `<div class="eyebrow">Pedido enviado</div><h1>Faltou uma imagem</h1>
+            <p>O seu pedido foi para análise, só que nem todas as imagens subiram (${e(err.message)}). Abra o pedido para anexar de novo.</p>
+            <div class="mt-enviar"><a class="md-bt" href="mentoria.html?id=${encodeURIComponent(id)}">Abrir o meu pedido</a></div>`;
           return;
         }
         dizer(err.message, "erro"); bt.disabled = false; bt.textContent = "Enviar para análise";
@@ -377,16 +804,88 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     });
   }
 
-  try {
-    const r = await Promise.all([MD.meuPerfil(), MD.listar(), MD.minhas()]);
-    perfil = r[0]; lista = r[1] || []; minhas = r[2] || minhas;
-  } catch (err) { espera.textContent = err.message; return; }
-  // as denúncias são um extra: se a leitura falhar, a página abre sem elas
-  try { denuncias = (await MD.minhasDenuncias()) || []; } catch (err) { console.warn(err); }
+  /* ══════════════════════════════════════════════════════════
+     DESENHO DA PÁGINA
+     ══════════════════════════════════════════════════════════ */
+  function desenhar() {
+    if (!temAba(aba)) aba = "explorar";
+    const demo = MD.demo ? `<div class="mt-demo">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : "";
+    if (aba === "ser-mentor") {
+      tela.innerHTML = demo + htmlSerMentor();
+      ligarFormulario();
+      return;
+    }
+    const conteudo = aba === "minhas" ? htmlMinhas() : aba === "arquivadas" ? htmlArquivadas()
+                   : aba === "denuncias" ? htmlDenuncias() : htmlExplorar() + htmlInfo();
+    tela.innerHTML = demo + htmlHero() + (logado ? htmlAbas() : "") + conteudo;
+  }
+
+  function abrirAba(nome, rolar) {
+    aba = temAba(nome) ? nome : "explorar";
+    const hash = { minhas: "#minhas", arquivadas: "#arquivadas", denuncias: "#denuncias", "ser-mentor": "#serMentor" }[aba] || "";
+    try { history.replaceState(null, "", location.pathname + location.search + hash); } catch (err) {}
+    desenhar();
+    if (aba === "ser-mentor") window.scrollTo(0, 0);
+    else if (rolar !== false) { const n = tela.querySelector(".mt-abas"); if (n) n.scrollIntoView({ block: "start", behavior: "smooth" }); }
+  }
+
+  /* ── cliques e digitação ── */
+  tela.addEventListener("click", ev => {
+    const b = ev.target.closest("button, [data-rolar]");
+    if (!b) return;
+    const d = b.dataset;
+    if (d.aba) { abrirAba(d.aba); return; }
+    if (d.rolar) {
+      const alvo = tela.querySelector("#" + d.rolar);
+      if (alvo) alvo.scrollIntoView({ block: "start", behavior: "smooth" }); else abrirAba(d.rolar);
+      return;
+    }
+    if (d.empresa !== undefined) {
+      filtroEmpresa = d.empresa;
+      tela.querySelectorAll(".mt-chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.empresa === filtroEmpresa ? "true" : "false"));
+      tela.querySelector("#grade").innerHTML = htmlGrade();
+      return;
+    }
+    if (d.avaliarDen) { avaliarAtendimento(d.avaliarDen); return; }
+    if (d.responder) { responderDenuncia(b); return; }
+  });
+  tela.addEventListener("input", ev => {
+    if (ev.target.id === "busca") { busca = ev.target.value; const g = tela.querySelector("#grade"); if (g) g.innerHTML = htmlGrade(); return; }
+    const c = ev.target.closest("[data-resposta]"); if (c) rascunhos[c.dataset.resposta] = c.value;
+  });
+  async function responderDenuncia(b) {
+    const id = b.dataset.responder, campo = tela.querySelector('[data-resposta="' + id + '"]');
+    const texto = campo.value.trim();
+    if (!texto) { campo.focus(); return; }
+    b.disabled = true;
+    try {
+      await MD.responderDenuncia(id, texto, false);
+      delete rascunhos[id];
+      denuncias = (await MD.minhasDenuncias()) || [];
+      desenhar();
+    } catch (err) {
+      const m = tela.querySelector("#denMsg"); m.textContent = err.message; m.className = "md-msg erro"; m.hidden = false; b.disabled = false;
+    }
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     ABERTURA
+     ══════════════════════════════════════════════════════════ */
+  if (logado) {
+    try {
+      const r = await Promise.all([MD.meuPerfil(), MD.listar(), MD.minhas(), MD.carregarEmpresas()]);
+      perfil = r[0]; lista = r[1] || []; minhas = r[2] || minhas; empresasHub = r[3] || [];
+    } catch (err) { falhar(err.message); return; }
+    // as denúncias são um extra: se a leitura falhar, a página abre sem elas
+    try { denuncias = (await MD.minhasDenuncias()) || []; } catch (err) { console.warn(err); }
+  }
+  const pedida = { "#minhas": "minhas", "#arquivadas": "arquivadas", "#denuncias": "denuncias", "#serMentor": "ser-mentor" }[location.hash];
+  aba = pedida && logado && temAba(pedida) ? pedida : "explorar";
   espera.hidden = true; tela.hidden = false;
-  if (["denuncias", "arquivadas"].indexOf(location.hash.slice(1)) >= 0 && temAba(location.hash.slice(1))) aba = location.hash.slice(1);
   desenhar();
-  if (location.hash === "#serMentor") abrirForm();
+  if (location.hash === "#serMentor" && !logado) {
+    const s = tela.querySelector("#seja-mentor"); if (s) s.scrollIntoView({ block: "start" });
+  }
 })();
 </script>
 
