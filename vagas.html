@@ -1190,11 +1190,11 @@ function montarInicio() {
     ${convite}
     <div class="bloco"><div class="portas">${portas}</div></div>
     <div class="bloco">
-      <div class="grupo-titulo"><h2>Por tipo de trabalho</h2><span>entre as vagas abertas a todos</span></div>
+      <div class="grupo-titulo"><h2>Vagas por tipo de trabalho</h2></div>
       <div class="quadros">${cats}</div>
     </div>
     <div class="bloco">
-      <div class="grupo-titulo"><h2>Quem mais contrata</h2><span>somando as gerais e as de formação</span></div>
+      <div class="grupo-titulo"><h2>Empresas que mais estão contratando no momento</h2></div>
       <div class="marcas-cx" id="marcasCx">
         <div class="marcas" id="marcas" aria-live="off"></div>
         <div class="mpontos" id="mpontos"></div>
@@ -1203,7 +1203,7 @@ function montarInicio() {
   montarMarcas(ordemEmp, porEmp);
 }
 
-/* ── Quem mais contrata: as empresas em grupos que se revezam ──
+/* ── Empresas que mais estão contratando: grupos que se revezam ──
    O tamanho do grupo acompanha a largura da tela: 5 no computador, 4 no
    tablet, 2 no celular. Os grupos escondidos ficam fora do teclado e dos
    leitores de tela; o que está na vez é sempre o único clicável. */
