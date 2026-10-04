@@ -249,7 +249,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   try { eu = await MD.eu(); } catch (err) { console.warn(err); }
   if (!eu) {
     espera.hidden = true; tela.hidden = false;
-    tela.innerHTML = Acesso.htmlAviso("As mentorias são para quem tem conta", "Entre na sua conta para ver esta mentoria. A conta é gratuita.");
+    tela.innerHTML = Acesso.htmlAviso("As mentorias são para quem tem conta", "Entre na sua conta para ver esta mentoria.");
     return;
   }
   if (!ID) { falhar("Mentoria não informada."); return; }
@@ -361,7 +361,6 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     const recusado = M.meu_papel === "recusado";
     const linkVaga = urlSegura(M.link);
     return `<div class="mo-painel mo-cartao">
-        <div class="mo-selo-gratis">${ic("gratis", 15)}Participação gratuita</div>
         <h2>${recusado ? "Pedir de novo para entrar" : "Participar desta mentoria"}</h2>
         <p>${recusado ? `${nome} não liberou a sua entrada. Se você já se candidatou e acha que foi engano, peça de novo explicando.` : "São dois passos, e o mentor aceita cada pessoa."}</p>
         <ol class="mo-passos">
@@ -384,7 +383,6 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     return `<div class="mo-painel mo-saber"><h3>Bom saber</h3><ul>
         ${item("verificado", "Mentor verificado: a equipe do Hub conferiu que ele trabalha na empresa.")}
         ${item("cadeado", "Grupo fechado: só o mentor e quem ele aceitou leem o mural.")}
-        ${item("gratis", "Ninguém pode cobrar por esta mentoria.")}
         ${item("alerta", "Nunca passe senha ou código de verificação a ninguém, nem ao mentor.")}
       </ul>
       <div class="rodape"><button class="mo-acao perigo" type="button" data-denunciar-mentoria>${ic("bandeira", 15)}Denunciar esta mentoria</button></div>
@@ -521,7 +519,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     const motivo = await U.pedirTexto({
       titulo: tipo === "post" ? "Denunciar esta mensagem" : "Denunciar esta mentoria",
       texto: "A equipe do Hub lê cada denúncia e responde pela aba Suas denúncias, na página Mentorias. Quem foi denunciado não sabe quem denunciou.",
-      rotulo: "O que aconteceu?", dica: tipo === "post" ? "Ex.: a mensagem cobra dinheiro, pede senha ou compartilha material do projeto" : "Ex.: o mentor cobrou para ajudar ou pediu acesso à minha conta",
+      rotulo: "O que aconteceu?", dica: tipo === "post" ? "Ex.: a mensagem pede senha, oferece conta pronta ou compartilha material do projeto" : "Ex.: o mentor pediu acesso à minha conta ou prometeu aprovação",
       botao: "Enviar denúncia", erro: "Conte em poucas palavras o que aconteceu." });
     if (!motivo) return;
     agir(onde, () => MD.denunciar(tipo, alvo, motivo),

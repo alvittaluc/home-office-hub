@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mentorias — Home Office Hub</title>
-<meta name="description" content="Grupos de acompanhamento conduzidos por quem já trabalha na vaga: currículo, teste de entrada e primeiras semanas. Mentores verificados pela equipe do Hub, sem custo para participar.">
+<meta name="description" content="Grupos de acompanhamento conduzidos por quem já trabalha na vaga: currículo, teste de entrada e primeiras semanas. Mentores verificados pela equipe do Hub.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -365,7 +365,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     const cta = logado
       ? `<button class="btn primary" type="button" data-rolar="explorar">Ver mentorias abertas <span class="arr">→</span></button>
          <button class="btn" type="button" data-aba="ser-mentor">Quero ser mentor</button>`
-      : `<a class="btn primary" href="entrar.html?criar=1&voltar=${VOLTA}">Criar conta grátis <span class="arr">→</span></a>
+      : `<a class="btn primary" href="entrar.html?criar=1&voltar=${VOLTA}">Criar conta <span class="arr">→</span></a>
          <a class="btn" href="entrar.html?voltar=${VOLTA}">Já tenho conta</a>`;
     const gar = (icone, titulo, txt) => `<div class="mt-gar"><span class="mt-ico">${ic(icone, 20)}</span><div><b>${titulo}</b><p>${txt}</p></div></div>`;
     return `<section class="mt-hero">
@@ -373,7 +373,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         <div class="eyebrow">Mentorias</div>
         <h1 class="mt-h1">Entre numa vaga com a ajuda de quem já trabalha nela</h1>
         <p class="lead">Profissionais que já fazem o trabalho abrem grupos para acompanhar quem está se candidatando:
-          currículo, teste de entrada e as primeiras semanas. Sem custo para quem participa.</p>
+          currículo, teste de entrada e as primeiras semanas.</p>
         <div class="mt-hero-cta">${cta}</div>
         ${numeros}
       </div>
@@ -381,7 +381,6 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         <h2>Como o Hub cuida das mentorias</h2>
         ${gar("verificado", "Mentores verificados", "Cada mentor comprova que trabalha na empresa, e a equipe do Hub confere antes de publicar.")}
         ${gar("cadeado", "Grupos fechados", "Só entra quem o mentor aceitou. O que se escreve no mural fica dentro do grupo.")}
-        ${gar("gratis", "Sem custo para participar", "Nenhum mentor pode cobrar. Quem descumprir essa regra é removido.")}
         ${gar("bandeira", "Denúncia com resposta", "Qualquer mensagem pode ser denunciada, e a equipe acompanha com você até resolver.")}
       </aside>
     </section>`;
@@ -437,9 +436,9 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         <div class="mt-painel mt-trava">
           <span class="mt-ico">${ic("cadeado", 22)}</span>
           <div><h3>As mentorias abertas aparecem para quem tem conta</h3>
-            <p>Os grupos são fechados e cada participante é aceito pelo mentor. Por isso, a lista e os pedidos de entrada ficam dentro da conta, que é gratuita.</p></div>
+            <p>Os grupos são fechados e cada participante é aceito pelo mentor. Por isso, a lista e os pedidos de entrada ficam dentro da conta.</p></div>
           <div class="mt-hero-cta">
-            <a class="btn primary" href="entrar.html?criar=1&voltar=${VOLTA}">Criar conta grátis</a>
+            <a class="btn primary" href="entrar.html?criar=1&voltar=${VOLTA}">Criar conta</a>
             <a class="btn" href="entrar.html?voltar=${VOLTA}">Entrar</a>
           </div>
         </div>
@@ -535,7 +534,6 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
           ${ok("<b>Responde no mural</b> do grupo com regularidade, nos dias que ele informa na apresentação.")}
         </ul></div>
         <div class="mt-painel mt-nao"><h3>Um mentor do Hub nunca</h3><ul class="mt-itens">
-          ${nao("<b>Cobra qualquer valor</b>, seja por material, aula extra ou &ldquo;garantia de vaga&rdquo;.")}
           ${nao("<b>Pede senha, código de verificação ou acesso</b> à sua conta em qualquer plataforma.")}
           ${nao("<b>Vende, aluga ou empresta conta</b>, nem sugere esconder o país ou usar VPN para entrar em projeto.")}
           ${nao("<b>Promete aprovação</b> ou diz que fala em nome da empresa.")}
@@ -580,7 +578,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
           ${q("O mentor garante a minha aprovação?", "Não. Quem decide é a empresa, pelo processo dela. O mentor ajuda você a se preparar melhor: entender o teste de entrada, ajustar o currículo e evitar os erros que mais reprovam.")}
           ${q("Posso participar de mais de uma mentoria?", "Pode. Cada mentoria é sobre uma vaga. Participe das que fazem sentido para você e, quando quiser sair de um grupo, use a opção Sair desta mentoria, na página dela.")}
           ${q("Como faço uma denúncia?", "Na página de cada mentoria e em cada mensagem do mural há a opção Denunciar. A equipe do Hub recebe, conversa com você pela aba Suas denúncias e avisa quando resolver.")}
-          ${q("Quem pode ser mentor?", "Quem já trabalha na vaga que vai apresentar e consegue comprovar isso. É preciso ter um perfil com nome e aceitar as regras: não cobrar, responder ao grupo e não compartilhar material confidencial.")}
+          ${q("Quem pode ser mentor?", "Quem já trabalha na vaga que vai apresentar e consegue comprovar isso. É preciso ter um perfil com nome e aceitar as regras: responder ao grupo e não compartilhar material confidencial.")}
         </div>
       </div>
     </section>`;
@@ -687,7 +685,6 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
         <fieldset class="mt-bloco"><legend><span class="n">4</span>Regras para mentores</legend>
           <ul class="mt-regras">
-            ${regra("A mentoria é gratuita: você não cobra nenhum valor dos participantes.")}
             ${regra("Você responde ao grupo com regularidade, nos dias que informou.")}
             ${regra("Você não pede senha, código ou acesso à conta de ninguém, e não oferece conta.")}
             ${regra("Você não compartilha material confidencial dos projetos.")}
