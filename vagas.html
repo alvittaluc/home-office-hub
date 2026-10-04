@@ -222,32 +222,38 @@
   .lin .acao { padding-left:12px; }
   .lin:hover { border-color:var(--signal-dim); }
 
-  /* empresas: aqui a marca é o assunto, então o logo manda */
-  .marcas { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
-  @media (max-width:980px){ .marcas { grid-template-columns:repeat(2,1fr); } }
-
-  .mrc {
-    display:flex; align-items:center; gap:12px; min-width:0;
-    background:var(--panel); border:1px solid var(--line-soft); border-radius:13px;
-    padding:14px 15px; text-decoration:none; color:inherit;
-    transition:border-color .16s, background .16s, transform .16s;
-  }
-  .mrc:hover { border-color:var(--line); background:var(--panel-2); transform:translateY(-2px); }
-  .mrc .sel {
-    width:44px; height:44px; border-radius:11px; flex-shrink:0; overflow:hidden;
-    border:1px solid var(--line); display:grid; place-items:center;
-    font-weight:700; font-size:12px;
-  }
-  .mrc .sel img { width:26px; height:26px; object-fit:contain; border-radius:5px; }
-  .mrc .txt { min-width:0; }
-  .mrc .nm {
-    font-size:13.5px; font-weight:600; color:var(--ink);
-    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-  }
-  .mrc .qt { font-size:12px; color:var(--ink-3); font-variant-numeric:tabular-nums; }
+  /* empresas: logos em grupos que se revezam (ideia do "Logos Carousel" da
+     Spell UI). A cada três segundos o grupo sobe desfocando e o próximo entra
+     por baixo. Para quando o mouse passa ou o teclado entra; os pontos trocam
+     o grupo à mão. Quem pediu menos movimento vê todas as empresas, paradas. */
+  .marcas-cx { background:var(--panel); border:1px solid var(--line-soft); border-radius:16px; padding:22px 18px 12px; }
+  .marcas { display:grid; place-items:center; min-height:146px; }
+  .mgrupo { grid-area:1 / 1; display:flex; justify-content:center; gap:12px; width:100%; visibility:hidden; }
+  .mgrupo.vez, .mgrupo.sai { visibility:visible; }
+  .mgrupo.sai { pointer-events:none; }
+  .mrc { flex:0 1 190px; min-width:0; display:flex; flex-direction:column; align-items:center; gap:9px; text-align:center;
+    padding:12px 8px 10px; border-radius:14px; text-decoration:none; color:inherit; transition:background .16s; }
+  .mrc:hover { background:var(--panel-2); }
+  .mrc:hover .nm { color:var(--signal); }
+  .mrc .sel { width:56px; height:56px; border-radius:15px; display:grid; place-items:center; overflow:hidden;
+    font-weight:700; font-size:13px; box-shadow:inset 0 0 0 1px var(--line); }
+  .mrc .nm { font-size:14.5px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; max-width:100%;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:color .16s; }
+  .mrc .qt { font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; margin-top:-5px; }
   .mrc .qt .nv { color:var(--amber); }
-  .mrc .acao { margin-left:auto; }
-  .mrc:hover { border-color:var(--signal-dim); }
+  .mgrupo.entra > .mrc { animation:mrc-entra .6s ease both; animation-delay:calc(var(--i) * 110ms); }
+  .mgrupo.sai > .mrc { animation:mrc-sai .6s ease both; animation-delay:calc(var(--i) * 110ms); }
+  @keyframes mrc-entra { from { transform:translateY(36px); filter:blur(4px); opacity:0; } to { transform:none; filter:blur(0); opacity:1; } }
+  @keyframes mrc-sai { from { transform:none; filter:blur(0); opacity:1; } to { transform:translateY(-36px); filter:blur(4px); opacity:0; } }
+  .mpontos { display:flex; justify-content:center; gap:4px; margin-top:8px; min-height:22px; }
+  .mpontos button { width:22px; height:22px; border:0; background:none; padding:0; cursor:pointer; display:grid; place-items:center; }
+  .mpontos button::before { content:''; width:7px; height:7px; border-radius:99px; background:var(--line); transition:background .2s, width .2s; }
+  .mpontos button[aria-current="true"]::before { background:var(--signal); width:18px; }
+  .mpontos button:focus-visible { outline:2px solid var(--signal); outline-offset:1px; border-radius:6px; }
+  /* sem movimento (ou poucas empresas): todas juntas, paradas */
+  .marcas.parado { display:flex; flex-wrap:wrap; justify-content:center; gap:4px; min-height:0; }
+  .marcas.parado .mgrupo { display:contents; }
+  .marcas.parado .mrc { flex-basis:170px; }
 
   /* ── cada filtro suspenso ── */
   .fbtn {
@@ -1164,20 +1170,7 @@ function montarInicio() {
 
   const porEmp = {};
   acervo.forEach(v => (porEmp[v.empresa] = porEmp[v.empresa] || []).push(v));
-  const marcas = Object.keys(porEmp)
-    .sort((a,b) => porEmp[b].length - porEmp[a].length)
-    .slice(0, 8)
-    .map(id => {
-      const e = EMPRESAS[id] || { nome:id, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
-      const dela = porEmp[id];
-      return `<a class="mrc" href="vagas.html?empresa=${encodeURIComponent(id)}" data-ir>
-        <span class="sel" style="background:${e.bg};color:${e.cor};">${logoHtml(e,42)}</span>
-        <span class="txt">
-          <span class="nm">${esc(e.nome)}</span>
-          <span class="qt">${dela.length} ${dela.length === 1 ? "vaga" : "vagas"}${novas(dela)}</span>
-        </span>
-        <span class="acao">${SETA}</span></a>`;
-    }).join("");
+  const ordemEmp = Object.keys(porEmp).sort((a,b) => porEmp[b].length - porEmp[a].length);
 
   /* quem tem conta e ainda não disse as áreas recebe o convite; quem já
      marcou ganha o atalho para a lista dela */
@@ -1201,8 +1194,74 @@ function montarInicio() {
     </div>
     <div class="bloco">
       <div class="grupo-titulo"><h2>Quem mais contrata</h2><span>somando as gerais e as de formação</span></div>
-      <div class="marcas">${marcas}</div>
+      <div class="marcas-cx" id="marcasCx">
+        <div class="marcas" id="marcas" aria-live="off"></div>
+        <div class="mpontos" id="mpontos"></div>
+      </div>
     </div>`;
+  montarMarcas(ordemEmp, porEmp);
+}
+
+/* ── Quem mais contrata: as empresas em grupos que se revezam ──
+   O tamanho do grupo acompanha a largura da tela: 5 no computador, 4 no
+   tablet, 2 no celular. Os grupos escondidos ficam fora do teclado e dos
+   leitores de tela; o que está na vez é sempre o único clicável. */
+let relogioMarcas = null, ajusteMarcas = null;
+function montarMarcas(ordem, porEmp) {
+  const cx = document.getElementById("marcas"), pontos = document.getElementById("mpontos");
+  if (!cx || !pontos) return;
+  clearInterval(relogioMarcas);
+  if (ajusteMarcas) window.removeEventListener("resize", ajusteMarcas);
+  const parado = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const porGrupo = () => window.innerWidth < 560 ? 2 : window.innerWidth < 980 ? 4 : 5;
+  const item = (id, i) => {
+    const e = EMPRESAS[id] || { nome:id, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
+    const dela = porEmp[id];
+    return `<a class="mrc" href="vagas.html?empresa=${encodeURIComponent(id)}" data-ir style="--i:${i}">
+      <span class="sel marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e, 56)}</span>
+      <span class="nm">${esc(e.nome)}</span>
+      <span class="qt">${dela.length} ${dela.length === 1 ? "vaga" : "vagas"}${novas(dela)}</span></a>`;
+  };
+  let N = porGrupo(), atual = 0, grupos = [];
+
+  function desenhar() {
+    grupos = [];
+    for (let k = 0; k < ordem.length; k += N) grupos.push(ordem.slice(k, k + N));
+    const estatico = parado || grupos.length < 2;
+    cx.classList.toggle("parado", estatico);
+    atual = Math.min(atual, Math.max(0, grupos.length - 1));
+    cx.innerHTML = grupos.map((g, n) => `<div class="mgrupo${n === atual ? " vez" : ""}"${n === atual || estatico ? "" : ' aria-hidden="true"'}>${g.map(item).join("")}</div>`).join("");
+    pontos.innerHTML = estatico ? "" : grupos.map((g, n) =>
+      `<button type="button" data-grupo="${n}" aria-label="Mostrar o grupo ${n + 1} de ${grupos.length}" aria-current="${n === atual}"></button>`).join("");
+  }
+  function ir(n) {
+    if (n === atual || grupos.length < 2) return;
+    const els = [...cx.querySelectorAll(".mgrupo")];
+    const velho = els[atual], novo = els[n];
+    if (!velho || !novo) return;
+    velho.classList.remove("vez", "entra"); velho.classList.add("sai"); velho.setAttribute("aria-hidden", "true");
+    novo.classList.remove("sai"); novo.classList.add("vez", "entra"); novo.removeAttribute("aria-hidden");
+    setTimeout(() => velho.classList.remove("sai"), 1200);
+    atual = n;
+    [...pontos.children].forEach((b, k) => b.setAttribute("aria-current", String(k === atual)));
+  }
+
+  desenhar();
+  if (parado) return;
+  const caixa = document.getElementById("marcasCx");
+  let sobre = false;
+  caixa.onmouseenter = () => sobre = true;
+  caixa.onmouseleave = () => sobre = false;
+  caixa.onfocusin = () => sobre = true;
+  caixa.onfocusout = () => sobre = false;
+  pontos.onclick = ev => { const b = ev.target.closest("[data-grupo]"); if (b) ir(+b.dataset.grupo); };
+  // só gira com a tela de início visível e a aba na frente
+  relogioMarcas = setInterval(() => {
+    if (sobre || document.hidden || !cx.isConnected || cx.offsetParent === null) return;
+    ir((atual + 1) % grupos.length);
+  }, 3200);
+  ajusteMarcas = () => { const n = porGrupo(); if (n !== N) { N = n; atual = 0; desenhar(); } };
+  window.addEventListener("resize", ajusteMarcas);
 }
 
 function montarAreas() {
