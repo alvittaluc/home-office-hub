@@ -65,6 +65,24 @@ img { max-width:100%; }
 
 .wrap { max-width:var(--wrap); margin:0 auto; padding:0 22px; }
 
+/* ─────────────── LUZ AZUL NO TOPO ───────────────
+   Uma mancha de azul no alto de cada página, atrás do cabeçalho, que vai
+   clareando até virar o papel do fundo. A ideia veio do topo das páginas
+   da Alignerr; aqui com os dois azuis da logo. Não é desfoque de verdade:
+   são três manchas de cor (dois cantos de cima e uma mais fraca embaixo)
+   com uma máscara que as apaga de cima para baixo. Fica atrás de tudo,
+   não pega clique e rola junto com a página. */
+body::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:570px; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(145% 122% at 4% -13%, rgba(52,113,173,0.66) 0%, rgba(52,113,173,0) 67%),
+    radial-gradient(145% 122% at 96% -13%, rgba(102,166,209,0.68) 0%, rgba(102,166,209,0) 67%),
+    radial-gradient(70% 60% at 66% 109%, rgba(143,189,225,0.29) 0%, rgba(143,189,225,0) 62%);
+  -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 23%, rgba(0,0,0,.76) 43%, rgba(0,0,0,.40) 61%, rgba(0,0,0,.145) 79%, rgba(0,0,0,.035) 91.5%, transparent 100%);
+          mask-image:linear-gradient(to bottom, #000 0%, #000 23%, rgba(0,0,0,.76) 43%, rgba(0,0,0,.40) 61%, rgba(0,0,0,.145) 79%, rgba(0,0,0,.035) 91.5%, transparent 100%);
+}
+@media (max-width:700px){ body::before { height:480px; } }
+
 /* ─────────────── CABEÇALHO FLUTUANTE ─────────────── */
 header.site { position:sticky; top:0; z-index:200; padding:14px 22px 0; }
 @media (max-width:900px){ header.site{ padding:10px 14px 0; } }
