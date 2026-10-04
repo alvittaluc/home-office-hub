@@ -14,123 +14,255 @@
 <link rel="stylesheet" href="estilo.css">
 <style>
 /* ══════════════════════════════════════════════════════════════
-   UMA MENTORIA — apresentação do mentor, entrada e mural.
+   UMA MENTORIA — o perfil do mentor, a entrada e o grupo.
    O que cada pessoa enxerga depende do papel dela, e quem decide o
    papel é o banco: visitante, pedido enviado, participante ou mentor.
+
+   Quem ainda não entrou vê duas colunas: a apresentação do mentor à
+   esquerda e o cartão de participação à direita, que acompanha a
+   rolagem. Quem já está dentro vê o grupo em abas: mural,
+   participantes (só o mentor e a equipe) e a apresentação.
    ══════════════════════════════════════════════════════════════ */
-/* A página usa a largura do resto do site. Os textos corridos ficam mais
-   estreitos, para a linha não ficar longa demais de ler. */
-.mo-main { max-width:1100px; margin:0 auto; padding:34px 20px 96px; min-height:60vh; }
-.mo-sec p, .mo-cx > p, .mo-aviso, .mo-passo, .mo-post .tx, .mo-coment { max-width:820px; }
-.mo-volta { display:inline-block; font-size:13px; color:var(--ink-3,#8A94A1); margin-bottom:18px; text-decoration:none; }
-.mo-volta:hover { color:var(--signal,#1A4893); }
-.mo-espera { text-align:center; padding:70px 20px; color:var(--ink-3,#8A94A1); font-size:14px; }
-.mo-cab { display:flex; gap:16px; align-items:flex-start; }
-.mo-cab h1 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400; font-size:clamp(25px,3.6vw,34px);
-  line-height:1.14; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:2px 0 6px; }
-.mo-cab .emp { font-size:15px; color:var(--ink-2,#54606F); }
-.mo-quem { font-size:14px; color:var(--ink-2,#54606F); margin-top:10px; }
-.mo-quem b { color:var(--ink,#10203A); font-weight:600; }
-.mo-nums { display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; color:var(--ink-3,#8A94A1); margin:14px 0 0; padding-top:14px; border-top:1px solid var(--line-soft,#EAE4D9); }
-.mo-nums b { color:var(--ink,#10203A); font-weight:600; }
-.mo-aviso { border-radius:14px; padding:14px 16px; font-size:14px; line-height:1.55; margin:20px 0 0; }
-.mo-aviso.pendente { background:#FBF0E4; color:#7A4318; } .mo-aviso.ruim { background:#FBE9EB; color:#8E2233; }
-.mo-aviso b { font-weight:600; }
-.mo-sec { margin-top:28px; }
-.mo-sec h2 { font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-2,#54606F); margin:0 0 10px; }
-.mo-sec p { font-size:15.5px; line-height:1.7; color:var(--ink,#10203A); margin:0 0 10px; overflow-wrap:anywhere; }
-.mo-cx { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:18px; padding:22px 24px; margin-top:28px; }
-.mo-cx h2 { font-size:17px; font-weight:600; color:var(--ink,#10203A); margin:0 0 6px; letter-spacing:-0.01em; }
-.mo-cx > p { font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F); margin:0 0 6px; }
-.mo-passo { display:grid; grid-template-columns:30px 1fr; gap:12px; margin-top:16px; }
-.mo-passo .n { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-weight:600; font-size:14px;
-  background:var(--signal-suave,#EAF1F8); color:var(--signal,#1A4893); }
-.mo-passo b { display:block; font-size:15px; color:var(--ink,#10203A); margin-bottom:3px; }
-.mo-passo p { font-size:14px; line-height:1.55; color:var(--ink-2,#54606F); margin:0 0 10px; }
-.mo-pedido { display:grid; grid-template-columns:40px 1fr auto; gap:12px; align-items:center; padding:12px 0; border-top:1px solid var(--line-soft,#EAE4D9); }
-.mo-pedido:first-of-type { border-top:0; }
-.mo-pedido .nm { font-weight:600; font-size:14.5px; color:var(--ink,#10203A); }
-.mo-pedido .ms { font-size:13.5px; color:var(--ink-2,#54606F); line-height:1.45; overflow-wrap:anywhere; }
-.mo-pedido .bts { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+.mo { max-width:var(--wrap); margin:0 auto; padding:26px 22px 10px; min-height:60vh; }
+.mo-volta { display:inline-flex; align-items:center; gap:7px; font-size:14px; color:var(--ink-2); margin-bottom:18px; }
+.mo-volta:hover { color:var(--signal); }
 
-/* abas de quem está dentro da mentoria */
-.mo-abas { display:flex; gap:4px; box-shadow:inset 0 -1px 0 var(--line,#DED7CA); margin:22px 0 0; overflow-x:auto; overflow-y:hidden; }
-.mo-abas button { font:inherit; font-size:14.5px; font-weight:500; color:var(--ink-2,#54606F); background:none; border:0;
-  border-bottom:2px solid transparent; padding:11px 14px; cursor:pointer; white-space:nowrap; }
-.mo-abas button:hover { color:var(--ink,#10203A); }
-.mo-abas button[aria-selected="true"] { color:var(--ink,#10203A); font-weight:600; border-bottom-color:var(--signal,#1A4893); }
-.mo-conta { display:inline-block; min-width:20px; padding:1px 6px; margin-left:4px; border-radius:99px; font-size:12px; font-weight:600;
-  text-align:center; color:#fff; background:#D9731A; }
-.mo-quantos { font-size:13px; font-weight:400; color:var(--ink-3,#8A94A1); margin-left:4px; }
+/* carregando */
+@keyframes mo-brilho { from { background-position:-480px 0; } to { background-position:480px 0; } }
+.mo-esq i { display:block; border-radius:12px; margin-bottom:14px;
+  background:linear-gradient(90deg, var(--bg-soft) 0%, #F8F4EE 45%, var(--bg-soft) 90%); background-size:960px 100%;
+  animation:mo-brilho 1.3s linear infinite; }
+.mo-falha { text-align:center; padding:80px 20px; color:var(--ink-2); font-size:15px; }
 
-/* mural */
-#mural { padding:26px 30px 28px; }
-#mural > h2 { font-size:20px; }
-.mo-regra { display:flex; gap:10px; align-items:flex-start; background:var(--bg-soft,#F1ECE3); border-radius:12px; padding:12px 14px; margin:12px 0 4px; cursor:pointer; max-width:820px; }
-.mo-regra input { width:18px; height:18px; margin:2px 0 0; flex-shrink:0; accent-color:var(--signal,#1A4893); }
-.mo-regra span { font-size:13.5px; line-height:1.5; color:var(--ink-2,#54606F); }
-.mo-regra b { display:block; font-size:14.5px; font-weight:600; color:var(--ink,#10203A); }
-.mo-aviso-regra { background:var(--signal-suave,#EAF1F8); border-radius:12px; padding:12px 14px; margin:12px 0 4px; font-size:14px; line-height:1.5; color:var(--ink,#10203A); max-width:820px; }
-.mo-novo textarea { min-height:110px; font-size:15.5px; }
-.mo-post { display:grid; grid-template-columns:40px 1fr; gap:14px; padding:20px 0; border-top:1px solid var(--line-soft,#EAE4D9); }
-.mo-post-cab { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 9px; margin-bottom:4px; }
-.mo-post-cab .nm { font-weight:600; font-size:14.5px; color:var(--ink,#10203A); }
-.mo-post-cab .qd { font-size:12.5px; color:var(--ink-3,#8A94A1); }
-.mo-post .tx p { font-size:15px; line-height:1.6; color:var(--ink,#10203A); margin:0 0 8px; overflow-wrap:anywhere; }
-.mo-post .tx a { color:var(--signal,#1A4893); }
-.mo-post .apagado { font-size:14px; color:var(--ink-3,#8A94A1); font-style:italic; }
-.mo-post-acoes { display:flex; gap:14px; }
-.mo-respostas { margin-top:6px; padding-left:14px; border-left:2px solid var(--line-soft,#EAE4D9); }
-.mo-respostas .mo-post { grid-template-columns:30px 1fr; padding:11px 0; border-top:0; }
-.mo-responder { margin-top:8px; }
-.mo-responder textarea { min-height:56px; }
+.mo-painel { background:var(--panel); border:1px solid var(--line-soft); border-radius:var(--raio); box-shadow:var(--sombra); }
+
+/* ── topo: quem é o mentor e de que vaga ── */
+.mo-topo { padding:30px 32px 0; }
+.mo-id { display:grid; grid-template-columns:auto minmax(0,1fr); gap:24px; align-items:start; }
+.mo-av { position:relative; line-height:0; width:max-content; }
+.mo-av .md-verif.so-icone { position:absolute; right:-1px; bottom:-1px; border:3px solid var(--panel); width:32px; height:32px; }
+.mo-emp { display:inline-flex; align-items:center; gap:9px; font-size:14px; font-weight:500; color:var(--ink-2); margin-bottom:8px; }
+.mo-id h1 { font-family:var(--display); font-weight:400; font-size:clamp(28px,3.6vw,42px); line-height:1.08;
+  letter-spacing:-0.018em; color:var(--ink); margin-bottom:12px; text-wrap:balance; overflow-wrap:anywhere; }
+.mo-por { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; font-size:15px; color:var(--ink-2); }
+.mo-por b { color:var(--ink); font-weight:600; }
+.mo-bio { font-size:14.5px; color:var(--ink-2); line-height:1.6; margin-top:8px; max-width:70ch; overflow-wrap:anywhere; }
+.mo-fatos { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:26px -32px 0; border-top:1px solid var(--line-soft); }
+.mo-fatos > div { padding:16px 32px 18px; border-left:1px solid var(--line-soft); min-width:0; }
+.mo-fatos > div:first-child { border-left:0; }
+.mo-fatos dt { font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-bottom:5px; }
+.mo-fatos dd { display:flex; align-items:center; gap:6px; font-size:15.5px; font-weight:600; color:var(--ink); }
+.mo-fatos dd small { font-size:13px; font-weight:400; color:var(--ink-3); }
+.mo-fatos dd .md-ic { color:#C98A1B; }
+.mo-fatos dd.fraco { font-weight:400; font-size:14px; color:var(--ink-2); }
+
+/* avisos de situação */
+.mo-aviso { display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; border-radius:16px; padding:16px 18px; margin-top:18px;
+  font-size:14.5px; line-height:1.55; }
+.mo-aviso b { display:block; font-weight:600; font-size:15px; margin-bottom:2px; }
+.mo-aviso.pendente { background:#FBF0E4; color:#7A4318; }
+.mo-aviso.ruim { background:#FBE9EB; color:#8E2233; }
+.mo-aviso.info { background:var(--signal-suave); color:var(--ink); }
+.mo-aviso .md-ic { margin-top:2px; }
+
+/* ── corpo em duas colunas (quem ainda não entrou) ── */
+.mo-corpo { display:grid; grid-template-columns:minmax(0,1fr) 370px; gap:28px; align-items:start; margin-top:28px; }
+.mo-corpo.sem-lado { grid-template-columns:minmax(0,1fr); }
+.mo-lado { display:grid; gap:16px; position:sticky; top:96px; }
+
+/* blocos de texto do mentor */
+.mo-sec { padding:26px 30px 28px; margin-bottom:18px; }
+.mo-sec:last-child { margin-bottom:0; }
+.mo-sec h2 { display:flex; align-items:center; gap:10px; font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; margin-bottom:12px; }
+.mo-sec h2 .mo-ico { width:34px; height:34px; border-radius:10px; }
+.mo-ico { display:grid; place-items:center; flex-shrink:0; background:var(--signal-suave); color:var(--signal); }
+.mo-sec .tx p { font-size:15.5px; line-height:1.75; color:var(--ink); margin:0 0 12px; max-width:72ch; overflow-wrap:anywhere; }
+.mo-sec .tx p:last-child { margin-bottom:0; }
+.mo-sec .tx a { color:var(--signal); text-decoration:underline; }
+.mo-sec > p.apoio { font-size:14.5px; line-height:1.6; color:var(--ink-2); max-width:72ch; }
+
+/* avaliações */
+.mo-resumo-av { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+.mo-resumo-av b { font-family:var(--display); font-weight:400; font-size:40px; line-height:1; color:var(--ink); }
+.mo-resumo-av .rotulo { font-size:13.5px; color:var(--ink-3); display:block; margin-top:3px; }
+.mo-resumo-av .md-estrelas { font-size:17px; }
+.mo-coment { padding:16px 0; border-top:1px solid var(--line-soft); }
+.mo-coment:first-of-type { margin-top:14px; }
+.mo-coment p { font-size:15px; line-height:1.6; color:var(--ink); margin:6px 0 0; overflow-wrap:anywhere; }
+.mo-coment-cab { display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--ink-3); }
+.mo-coment-cab b { color:var(--ink); font-weight:600; font-size:14px; }
+.mo-avaliar { margin-top:18px; padding-top:18px; border-top:1px solid var(--line-soft); }
 .mo-estrelas { display:flex; gap:4px; margin:10px 0 2px; }
-.mo-estrelas button { font-size:28px; line-height:1; background:none; border:0; cursor:pointer; color:var(--line,#DED7CA); padding:0 2px; }
+.mo-estrelas button { font-size:30px; line-height:1; background:none; border:0; cursor:pointer; color:var(--line); padding:0 2px; border-radius:6px; }
 .mo-estrelas button.on { color:#C98A1B; }
-.mo-coment { padding:12px 0; border-top:1px solid var(--line-soft,#EAE4D9); font-size:14.5px; line-height:1.55; color:var(--ink,#10203A); }
-.mo-coment small { display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:3px; }
-.mo-rodape { margin-top:30px; display:flex; flex-wrap:wrap; gap:8px 18px; }
-@media (max-width:560px){ #mural { padding:20px 18px 22px; } .mo-pedido { grid-template-columns:40px 1fr; } .mo-pedido .bts { grid-column:1 / -1; justify-content:flex-start; } }
+
+/* cartão de participação */
+.mo-cartao { padding:24px 24px 22px; }
+.mo-selo-gratis { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:#1F7A6E;
+  background:#E4F3F0; border-radius:99px; padding:4px 11px 4px 8px; margin-bottom:12px; }
+.mo-cartao h2 { font-family:var(--display); font-weight:400; font-size:25px; line-height:1.15; color:var(--ink); margin-bottom:6px; }
+.mo-cartao > p { font-size:14.5px; color:var(--ink-2); line-height:1.6; }
+.mo-passos { list-style:none; margin-top:18px; display:grid; gap:18px; }
+.mo-passos li { display:grid; grid-template-columns:30px minmax(0,1fr); gap:12px; }
+.mo-passos .n { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-weight:600; font-size:14px;
+  background:var(--signal-suave); color:var(--signal); }
+.mo-passos b { display:block; font-size:15px; color:var(--ink); margin:4px 0 3px; }
+.mo-passos p { font-size:13.8px; color:var(--ink-2); line-height:1.55; margin-bottom:10px; }
+.mo-passos .md-campo { margin-top:0; }
+.mo-passos textarea { min-height:84px; font-size:14.5px; }
+.mo-passos .md-bt { margin-top:10px; }
+.mo-saber { padding:20px 22px 18px; }
+.mo-saber h3 { font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+.mo-saber ul { list-style:none; display:grid; gap:11px; }
+.mo-saber li { display:grid; grid-template-columns:20px 1fr; gap:10px; font-size:14px; color:var(--ink-2); line-height:1.5; }
+.mo-saber li .md-ic { color:var(--signal); margin-top:1px; }
+.mo-saber .rodape { margin-top:16px; padding-top:14px; border-top:1px solid var(--line-soft); }
+
+/* botões de texto com ícone (responder, apagar, denunciar, sair) */
+.mo-acao { display:inline-flex; align-items:center; gap:6px; background:none; border:0; padding:4px 0; font:inherit; font-size:13.5px;
+  color:var(--ink-3); cursor:pointer; }
+.mo-acao:hover { color:var(--signal); }
+.mo-acao.perigo:hover { color:#A32A3C; }
+
+/* ── abas de quem está dentro ── */
+.mo-abas { display:flex; gap:4px; box-shadow:inset 0 -1px 0 var(--line); margin:30px 0 22px; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; }
+.mo-abas::-webkit-scrollbar { display:none; }
+.mo-abas button { font:inherit; font-size:14.5px; font-weight:500; color:var(--ink-2); background:none; border:0;
+  border-bottom:2px solid transparent; padding:12px 14px; cursor:pointer; white-space:nowrap; display:inline-flex; align-items:center; gap:7px; }
+.mo-abas button:hover { color:var(--ink); }
+.mo-abas button[aria-selected="true"] { color:var(--ink); font-weight:600; border-bottom-color:var(--signal); }
+.mo-conta { display:inline-block; min-width:20px; padding:1px 6px; border-radius:99px; font-size:12px; font-weight:600; text-align:center; color:#fff; background:#D9731A; }
+.mo-quantos { font-size:12.5px; font-weight:400; color:var(--ink-3); }
+
+/* ── mural ── */
+.mo-mural { padding:26px 30px 10px; }
+.mo-mural-cab { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:6px; }
+.mo-mural-cab h2 { font-size:19px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; }
+.mo-mural-cab p { font-size:13.8px; color:var(--ink-3); margin-top:2px; display:flex; align-items:center; gap:6px; }
+.mo-regra { display:flex; gap:11px; align-items:flex-start; background:var(--bg-soft); border-radius:12px; padding:12px 14px; margin:14px 0 4px;
+  cursor:pointer; max-width:760px; }
+.mo-regra input { width:18px; height:18px; margin:2px 0 0; flex-shrink:0; accent-color:var(--signal); }
+.mo-regra span { font-size:13.5px; line-height:1.5; color:var(--ink-2); }
+.mo-regra b { display:block; font-size:14.5px; font-weight:600; color:var(--ink); }
+.mo-aviso-regra { display:flex; gap:10px; align-items:flex-start; background:var(--signal-suave); border-radius:12px; padding:12px 14px;
+  margin:14px 0 4px; font-size:14px; line-height:1.5; color:var(--ink); max-width:760px; }
+.mo-compor { display:grid; grid-template-columns:42px minmax(0,1fr); gap:14px; margin:18px 0 6px; }
+.mo-compor-cx { border:1px solid var(--line); border-radius:16px; background:var(--panel); overflow:hidden; transition:border-color .15s, box-shadow .15s; }
+.mo-compor-cx:focus-within { border-color:var(--signal); box-shadow:0 0 0 3px rgba(26,72,147,.12); }
+.mo-compor textarea { display:block; width:100%; min-height:96px; border:0; resize:vertical; font:inherit; font-size:15.5px; line-height:1.55;
+  color:var(--ink); padding:14px 16px 6px; background:transparent; }
+.mo-compor textarea:focus { outline:none; }
+.mo-compor-pe { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 10px 10px 16px; }
+.mo-compor-pe small { display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink-3); }
+.mo-posts { margin-top:12px; }
+.mo-post { display:grid; grid-template-columns:42px minmax(0,1fr); gap:14px; padding:20px 0; border-top:1px solid var(--line-soft); }
+.mo-post-cab { display:flex; flex-wrap:wrap; align-items:center; gap:4px 9px; margin-bottom:5px; }
+.mo-post-cab .nm { font-weight:600; font-size:14.5px; color:var(--ink); }
+.mo-post-cab .qd { font-size:12.5px; color:var(--ink-3); }
+.mo-selo-mentor { display:inline-flex; align-items:center; gap:4px; font-size:11.5px; font-weight:600; color:var(--signal); background:var(--signal-suave);
+  border-radius:99px; padding:1px 8px 1px 6px; }
+.mo-post .tx p { font-size:15px; line-height:1.65; color:var(--ink); margin:0 0 8px; overflow-wrap:anywhere; max-width:76ch; }
+.mo-post .tx a { color:var(--signal); text-decoration:underline; }
+.mo-post .apagado { font-size:14px; color:var(--ink-3); font-style:italic; }
+.mo-post-acoes { display:flex; gap:16px; flex-wrap:wrap; }
+.mo-respostas { margin-top:8px; padding-left:16px; border-left:2px solid var(--line-soft); }
+.mo-respostas .mo-post { grid-template-columns:32px minmax(0,1fr); gap:12px; padding:12px 0; border-top:0; }
+.mo-responder { margin-top:10px; }
+.mo-responder textarea { min-height:64px; }
+.mo-responder-bts { margin-top:8px; display:flex; gap:12px; align-items:center; }
+.mo-vazio-mural { padding:34px 10px 30px; text-align:center; color:var(--ink-3); font-size:14.5px; border-top:1px solid var(--line-soft); margin-top:12px; }
+.mo-vazio-mural .md-ic { display:block; margin:0 auto 10px; color:var(--line); }
+
+/* ── participantes ── */
+.mo-gente { padding:26px 30px 24px; }
+.mo-gente h2 { display:flex; align-items:baseline; gap:8px; font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; margin-bottom:4px; }
+.mo-gente h2 + p { font-size:14px; color:var(--ink-2); margin-bottom:6px; }
+.mo-gente h2.seg { margin-top:30px; }
+.mo-pessoa { display:grid; grid-template-columns:44px minmax(0,1fr) auto; gap:14px; align-items:center; padding:14px 0; border-top:1px solid var(--line-soft); }
+.mo-lista > .mo-pessoa:first-child { border-top:0; }
+.mo-pessoa .nm { font-weight:600; font-size:15px; color:var(--ink); }
+.mo-pessoa .ms { font-size:14px; color:var(--ink-2); line-height:1.5; overflow-wrap:anywhere; margin-top:2px; }
+.mo-pessoa .qd { font-size:12.5px; color:var(--ink-3); }
+.mo-pessoa .bts { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+.mo-nada { font-size:14px; color:var(--ink-3); padding:12px 0 4px; }
+
+/* comprovantes do pedido em análise */
+.mo-provas-cx { padding:22px 24px; }
+.mo-provas-cx h2 { font-size:16px; font-weight:600; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; gap:9px; }
+.mo-provas-cx p { font-size:14px; color:var(--ink-2); line-height:1.55; }
+
+.mo-rodape { margin-top:26px; display:flex; flex-wrap:wrap; gap:6px 22px; }
+.mo-demo { font-size:12.5px; background:#FBF0E4; color:#A85D24; border-radius:10px; padding:8px 12px; margin-bottom:14px; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+@media (max-width:980px){
+  .mo-corpo { grid-template-columns:minmax(0,1fr); }
+  .mo-lado { position:static; order:-1; }
+  .mo-fatos { grid-template-columns:1fr 1fr; }
+  .mo-fatos > div:nth-child(3) { border-left:0; }
+  .mo-fatos > div:nth-child(n+3) { border-top:1px solid var(--line-soft); }
+}
+@media (max-width:620px){
+  .mo { padding-top:16px; }
+  .mo-topo { padding:22px 20px 0; }
+  .mo-id { grid-template-columns:1fr; gap:14px; }
+  .mo-fatos { margin:22px -20px 0; }
+  .mo-fatos > div { padding:14px 20px 16px; }
+  .mo-sec, .mo-mural, .mo-gente { padding-left:20px; padding-right:20px; }
+  .mo-pessoa { grid-template-columns:44px minmax(0,1fr); }
+  .mo-pessoa .bts { grid-column:1 / -1; justify-content:flex-start; }
+  .mo-compor { grid-template-columns:minmax(0,1fr); }
+  .mo-compor > .md-foto { display:none; }
+}
 </style>
 </head>
 <body>
 
-<main class="mo-main">
-  <a class="mo-volta" href="mentorias.html">← todas as mentorias</a>
-  <div class="mo-espera" id="espera">Abrindo…</div>
+<main class="mo">
+  <a class="mo-volta" href="mentorias.html" id="volta">← Mentorias</a>
+  <div id="espera" aria-busy="true" aria-label="Carregando a mentoria">
+    <div class="mo-esq" aria-hidden="true">
+      <i style="height:230px"></i>
+      <div style="display:grid;grid-template-columns:1fr 370px;gap:28px;margin-top:28px"><i style="height:320px"></i><i style="height:320px"></i></div>
+    </div>
+  </div>
   <div id="tela" hidden></div>
 </main>
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js" integrity="sha384-WgXwGL6fUsYJWNaKJgVbrJKGRQwc1vieh2oy4kw9nXqpNDz3tdSsqEYUgeHD/NuF" crossorigin="anonymous"></script>
-<script src="mentorias-dados.js?v=6"></script>
+<script src="mentorias-dados.js?v=7"></script>
 <script>
 try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
 (async function () {
   "use strict";
-  const U = MD.ui, e = U.e;
+  const U = MD.ui, e = U.e, ic = U.ic;
   const espera = document.getElementById("espera"), tela = document.getElementById("tela");
   const ID = new URLSearchParams(location.search).get("id") || "";
   const aqui = "mentoria.html?id=" + encodeURIComponent(ID);
+  const falhar = t => { espera.innerHTML = `<div class="mo-falha">${e(t)}</div>`; espera.removeAttribute("aria-busy"); };
+  document.getElementById("volta").innerHTML = ic("voltar", 16) + "Mentorias";
 
-  if (!MD.disponivel) { espera.textContent = "Não deu para falar com o servidor de contas. Confira a internet e recarregue a página."; return; }
+  if (!MD.disponivel) { falhar("Não deu para falar com o servidor de contas. Confira a internet e recarregue a página."); return; }
   let eu = null;
   try { eu = await MD.eu(); } catch (err) { console.warn(err); }
   if (!eu) {
     espera.hidden = true; tela.hidden = false;
-    tela.innerHTML = Acesso.htmlAviso("As mentorias são para quem tem conta", "Entre na sua conta para ver esta mentoria.");
+    tela.innerHTML = Acesso.htmlAviso("As mentorias são para quem tem conta", "Entre na sua conta para ver esta mentoria. A conta é gratuita.");
     return;
   }
-  if (!ID) { espera.textContent = "Mentoria não informada."; return; }
+  if (!ID) { falhar("Mentoria não informada."); return; }
 
   U.porCss();
   let M = null, perfil = null, posts = [], pedidos = [], provas = [];
   const noMural = () => M.meu_papel === "mentor" || M.meu_papel === "aprovado" || M.sou_admin;
   const aberta = () => M.status === "aprovada";
+  const plural = (n, um, varios) => n + " " + (n === 1 ? um : varios);
+  const numero = n => String(n).replace(".", ",");
 
   async function carregar() {
-    const r = await Promise.all([MD.abrir(ID), MD.meuPerfil()]);
+    const r = await Promise.all([MD.abrir(ID), MD.meuPerfil(), MD.carregarEmpresas()]);
     M = r[0]; perfil = r[1];
     posts = noMural() ? await MD.posts(ID) : [];
     pedidos = (M.meu_papel === "mentor" || M.sou_admin) ? await MD.pedidos(ID) : [];
@@ -141,76 +273,156 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     }
   }
 
-  /* ── pedaços da tela ── */
-  function htmlCabecalho() {
-    const nota = M.nota ? `${U.estrelas(M.nota)} <b>${String(M.nota).replace(".", ",")}</b> em ${M.avaliacoes} ${M.avaliacoes === 1 ? "avaliação" : "avaliações"}` : "ainda sem avaliação";
-    return `
-      <div class="mo-cab">${U.foto(M.mentor, 64)}
-        <div><h1>${e(M.vaga_titulo)}</h1><div class="emp">${e(M.empresa)}</div>
-          <div class="mo-quem">Mentoria de <b>${e(M.mentor.nome)}</b>${M.mentor_bio ? ". " + e(M.mentor_bio) : ""}</div></div></div>
-      <div class="mo-nums"><span>${nota}</span><span><b>${M.membros}</b> ${M.membros === 1 ? "participante" : "participantes"}</span>
-        <span>${e(U.ultimaResposta(M))}</span></div>`;
+  /* ══════════════════════════════════════════════════════════
+     PEDAÇOS DA TELA
+     ══════════════════════════════════════════════════════════ */
+
+  function htmlTopo() {
+    const avaliacao = M.avaliacoes
+      ? `<dd>${ic("estrela", 17, true)}${e(numero(Number(M.nota).toFixed(1)))} <small>${e(plural(M.avaliacoes, "avaliação", "avaliações"))}</small></dd>`
+      : `<dd class="fraco">Ainda sem avaliações</dd>`;
+    const mural = M.ultima_resposta
+      ? `<dd class="fraco">Mentor respondeu ${e(U.haQuanto(M.ultima_resposta))}</dd>`
+      : `<dd class="fraco">Ainda sem mensagens do mentor</dd>`;
+    const desde = M.aprovada_em
+      ? `<div><dt>No ar desde</dt><dd>${e(U.dataMes(M.aprovada_em))}</dd></div>`
+      : `<div><dt>Situação</dt><dd class="fraco">${e({ pendente: "Em análise", recusada: "Não aprovada", encerrada: "Encerrada", aprovada: "No ar" }[M.status] || M.status)}</dd></div>`;
+    return `<header class="mo-painel mo-topo">
+      <div class="mo-id">
+        <span class="mo-av">${U.foto(M.mentor, 92)}${aberta() ? U.seloVerificado(true, 17) : ""}</span>
+        <div>
+          <div class="mo-emp">${U.logoEmpresa(M.empresa, 24)}${e(M.empresa)}</div>
+          <h1>${e(M.vaga_titulo)}</h1>
+          <div class="mo-por"><span>Mentoria de <b>${e(M.mentor.nome)}</b></span>${aberta() ? U.seloVerificado() : ""}</div>
+          ${M.mentor_bio ? `<p class="mo-bio">${e(M.mentor_bio)}</p>` : ""}
+        </div>
+      </div>
+      <dl class="mo-fatos">
+        <div><dt>Avaliação</dt>${avaliacao}</div>
+        <div><dt>Participantes</dt><dd>${M.membros}</dd></div>
+        <div><dt>Mural</dt>${mural}</div>
+        ${desde}
+      </dl>
+    </header>`;
   }
 
   function htmlSituacao() {
-    if (M.status === "pendente") return `<div class="mo-aviso pendente"><b>Em análise.</b> O seu pedido para ser mentor foi enviado.
-      A administração do Hub vai conferir a comprovação e pode escrever para o e-mail da sua conta. Enquanto isso, só você vê esta página.</div>
-      <div class="mo-cx"><h2>Comprovantes</h2>
-        <p>${provas.length ? "Só a administração do Hub e você veem estas imagens." : "Nenhuma imagem anexada. Um print do painel de trabalho ou de um pagamento ajuda a aprovar mais rápido."}</p>
-        <div class="md-provas">${provas.filter(U.ehImagem).map((p, i) => `<div class="md-prova"><img data-ampliar src="${p}" alt="Comprovante ${i + 1}"></div>`).join("")}</div>
-        ${M.meu_papel === "mentor" && provas.length < 6 ? `<label class="md-anexar"><input id="maisProva" type="file" accept="image/*" multiple>+ Anexar prints ou fotos</label>` : ""}
-        <div class="md-msg" id="provaMsg" role="status" hidden></div></div>`;
-    if (M.status === "recusada") return `<div class="mo-aviso ruim"><b>Pedido não aprovado.</b> ${M.motivo ? e(M.motivo) : "A administração não aprovou este pedido."}</div>`;
-    if (M.status === "encerrada") return `<div class="mo-aviso ruim"><b>Mentoria encerrada.</b> ${M.motivo ? e(M.motivo) + " " : ""}O mural ficou só para leitura e não entram novos participantes.${M.meu_papel ? " Ela fica guardada na aba Arquivadas da página Mentorias." : ""}</div>`;
+    if (M.status === "pendente") return `<div class="mo-aviso pendente">${ic("relogio", 20)}<div><b>Pedido em análise</b>
+      A equipe do Hub vai conferir a comprovação e pode escrever para o e-mail da sua conta. Enquanto isso, só você e a equipe veem esta página.</div></div>`;
+    if (M.status === "recusada") return `<div class="mo-aviso ruim">${ic("alerta", 20)}<div><b>Pedido não aprovado</b>${M.motivo ? e(M.motivo) : "A equipe do Hub não aprovou este pedido."}</div></div>`;
+    if (M.status === "encerrada") return `<div class="mo-aviso ruim">${ic("cadeado", 20)}<div><b>Mentoria encerrada</b>${M.motivo ? e(M.motivo) + " " : ""}O mural ficou só para leitura e não entram novos participantes.${M.meu_papel ? " Ela fica guardada na aba Arquivadas da página Mentorias." : ""}</div></div>`;
     return "";
   }
 
-  function htmlEntrada() {
-    if (!aberta() || M.meu_papel === "mentor" || M.meu_papel === "aprovado") return "";
-    if (M.meu_papel === "pedido") return `<div class="mo-cx"><h2>Pedido enviado</h2>
-      <p>${e(M.mentor.nome)} vai conferir e liberar a sua entrada. Assim que isso acontecer, o mural aparece aqui.</p>
-      <div style="margin-top:12px"><button class="md-link" type="button" data-sair>cancelar o pedido</button></div></div>`;
-    const recusado = M.meu_papel === "recusado";
-    return `<div class="mo-cx"><h2>${recusado ? "O mentor não liberou a sua entrada" : "Como participar"}</h2>
-      <p>${recusado ? "Se você já se candidatou e acha que foi engano, pode pedir de novo explicando." : "São dois passos. A mentoria é gratuita."}</p>
-      <div class="mo-passo"><span class="n">1</span><div><b>Candidate-se à vaga</b>
-        <p>Use o link que ${e(M.mentor.nome)} deixou. A candidatura acontece na página oficial da empresa.</p>
-        <a class="md-bt" href="${e(M.link)}" target="_blank" rel="noopener nofollow">Abrir a página da vaga →</a></div></div>
-      <div class="mo-passo"><span class="n">2</span><div><b>Peça para entrar no grupo</b>
-        <p>O mentor aprova a entrada de cada pessoa. Diga com que nome ou e-mail você se candidatou, para ele reconhecer você.</p>
-        ${perfil ? `<label class="md-campo" style="margin-top:0"><textarea id="pedMsg" maxlength="600" placeholder="Me candidatei hoje, com o e-mail que começa com…"></textarea></label>
-          <div style="margin-top:10px"><button class="md-bt" type="button" data-pedir>Pedir para entrar</button></div>`
-        : `<a class="md-bt claro" href="perfil.html?voltar=${encodeURIComponent(aqui)}">Antes, preencher meu perfil</a>`}
-      </div></div>
-      <div class="md-msg" id="entMsg" role="status" hidden></div></div>`;
+  function htmlComprovantes() {
+    if (M.status !== "pendente" || (M.meu_papel !== "mentor" && !M.sou_admin)) return "";
+    return `<div class="mo-painel mo-provas-cx"><h2>${ic("documento", 19)}Comprovantes</h2>
+      <p>${provas.length ? "Só a equipe do Hub e você veem estas imagens." : "Nenhuma imagem anexada. Um print do painel de trabalho ou de um pagamento ajuda a aprovar mais rápido."}</p>
+      <div class="md-provas">${provas.filter(U.ehImagem).map((p, i) => `<div class="md-prova"><img data-ampliar src="${e(p)}" alt="Comprovante ${i + 1}"></div>`).join("")}</div>
+      ${M.meu_papel === "mentor" && provas.length < 6 ? `<label class="md-anexar"><input id="maisProva" type="file" accept="image/*" multiple>+ Anexar prints ou fotos</label>` : ""}
+      <div class="md-msg" id="provaMsg" role="status" hidden></div></div>`;
   }
 
+  function htmlSobre() {
+    return `<section class="mo-painel mo-sec"><h2><span class="mo-ico">${ic("pessoas", 18)}</span>Quem é o mentor</h2><div class="tx"><p>${U.texto(M.apresentacao)}</p></div></section>
+      <section class="mo-painel mo-sec"><h2><span class="mo-ico">${ic("conversa", 18)}</span>Como vai ajudar</h2><div class="tx"><p>${U.texto(M.como_ajuda)}</p></div></section>`;
+  }
+
+  function htmlAvaliacoes() {
+    const pode = M.meu_papel === "aprovado";
+    const coment = (M.comentarios || []).map(c => `<div class="mo-coment">
+        <div class="mo-coment-cab">${U.foto(c.quem, 28)}<b>${e(c.quem.nome)}</b>${U.estrelas(c.nota)}<span>${e(U.haQuanto(c.criado_em))}</span></div>
+        <p>${e(c.comentario)}</p></div>`).join("");
+    if (!pode && !coment && !M.avaliacoes) return "";
+    return `<section class="mo-painel mo-sec" id="avaliacoes"><h2><span class="mo-ico">${ic("estrela", 18)}</span>Avaliações</h2>
+      ${M.avaliacoes ? `<div class="mo-resumo-av"><b>${e(numero(Number(M.nota).toFixed(1)))}</b><div>${U.estrelas(M.nota)}
+          <span class="rotulo">${e(plural(M.avaliacoes, "avaliação", "avaliações"))} de quem participa do grupo</span></div></div>`
+        : `<p class="apoio">Só quem participa do grupo pode avaliar. As notas aparecem aqui assim que chegarem.</p>`}
+      ${coment}
+      ${pode ? `<div class="mo-avaliar"><b style="color:var(--ink);font-size:15px">${M.minha_nota ? "A sua avaliação" : "Avalie esta mentoria"}</b>
+          <p class="apoio" style="margin-top:2px">${M.minha_nota ? "Você pode mudar a nota quando quiser." : "A sua nota ajuda quem ainda vai escolher."}</p>
+          <div class="mo-estrelas" id="estrelas" role="radiogroup" aria-label="Nota de 1 a 5">${[1, 2, 3, 4, 5].map(n => `<button type="button" role="radio" data-nota="${n}" class="${(M.minha_nota || 0) >= n ? "on" : ""}" aria-label="${n} de 5">★</button>`).join("")}</div>
+          <label class="md-campo"><span class="sr">Comentário</span><textarea id="avCom" maxlength="600" placeholder="Opcional: conte em uma ou duas frases como o mentor ajudou"></textarea></label>
+          <div style="margin-top:12px"><button class="md-bt claro" type="button" data-avaliar>Salvar avaliação</button></div>
+          <div class="md-msg" id="avMsg" role="status" hidden></div></div>` : ""}
+    </section>`;
+  }
+
+  /* cartão de participação, para quem ainda não está no grupo */
+  function htmlParticipar() {
+    if (!aberta() || M.meu_papel === "mentor" || M.meu_papel === "aprovado") return "";
+    const nome = e(M.mentor.nome);
+    if (M.meu_papel === "pedido") return `<div class="mo-painel mo-cartao">
+        <div class="mo-selo-gratis">${ic("relogio", 15)}Pedido enviado</div>
+        <h2>Aguardando o mentor</h2>
+        <p>${nome} vai conferir e liberar a sua entrada. Assim que isso acontecer, o mural do grupo aparece nesta página.</p>
+        <div style="margin-top:16px"><button class="mo-acao" type="button" data-sair>${ic("sair", 15)}Cancelar o pedido</button></div>
+        <div class="md-msg" id="geralMsg" role="status" hidden></div></div>`;
+    const recusado = M.meu_papel === "recusado";
+    const linkVaga = urlSegura(M.link);
+    return `<div class="mo-painel mo-cartao">
+        <div class="mo-selo-gratis">${ic("gratis", 15)}Participação gratuita</div>
+        <h2>${recusado ? "Pedir de novo para entrar" : "Participar desta mentoria"}</h2>
+        <p>${recusado ? `${nome} não liberou a sua entrada. Se você já se candidatou e acha que foi engano, peça de novo explicando.` : "São dois passos, e o mentor aceita cada pessoa."}</p>
+        <ol class="mo-passos">
+          <li><span class="n">1</span><div><b>Candidate-se à vaga</b>
+            <p>A candidatura acontece na página oficial da empresa, pelo link que ${nome} deixou.</p>
+            ${linkVaga ? `<a class="md-bt claro largo" href="${e(linkVaga)}" target="_blank" rel="noopener nofollow">Abrir a página da vaga ${ic("seta", 16)}</a>` : ""}</div></li>
+          <li><span class="n">2</span><div><b>Peça para entrar no grupo</b>
+            <p>Diga com que nome ou e-mail você se candidatou, para ${nome} reconhecer você.</p>
+            ${perfil ? `<label class="md-campo"><span class="sr">Mensagem para o mentor</span><textarea id="pedMsg" maxlength="600" placeholder="Me candidatei hoje, com o e-mail que começa com…"></textarea></label>
+              <button class="md-bt largo" type="button" data-pedir>Pedir para entrar</button>`
+            : `<a class="md-bt largo" href="perfil.html?voltar=${encodeURIComponent(aqui)}">Antes, preencher meu perfil</a>`}</div></li>
+        </ol>
+        <div class="md-msg" id="entMsg" role="status" hidden></div>
+      </div>`;
+  }
+
+  function htmlBomSaber() {
+    if (!aberta() || M.meu_papel === "mentor") return "";
+    const item = (i, t) => `<li>${ic(i, 18)}<span>${t}</span></li>`;
+    return `<div class="mo-painel mo-saber"><h3>Bom saber</h3><ul>
+        ${item("verificado", "Mentor verificado: a equipe do Hub conferiu que ele trabalha na empresa.")}
+        ${item("cadeado", "Grupo fechado: só o mentor e quem ele aceitou leem o mural.")}
+        ${item("gratis", "Ninguém pode cobrar por esta mentoria.")}
+        ${item("alerta", "Nunca passe senha ou código de verificação a ninguém, nem ao mentor.")}
+      </ul>
+      <div class="rodape"><button class="mo-acao perigo" type="button" data-denunciar-mentoria>${ic("bandeira", 15)}Denunciar esta mentoria</button></div>
+      <div class="md-msg" id="saberMsg" role="status" hidden></div></div>`;
+  }
+
+  /* ── participantes, para o mentor e a equipe ── */
   function htmlPedidos() {
     if (M.meu_papel !== "mentor" && !M.sou_admin) return "";
     const pend = pedidos.filter(p => p.status === "pedido"), dentro = pedidos.filter(p => p.status === "aprovado");
-    const linha = (p, botoes) => `<div class="mo-pedido">${U.foto(p.quem, 40)}
-      <div><div class="nm">${e(p.quem.nome)}</div>${p.mensagem ? `<div class="ms">${e(p.mensagem)}</div>` : ""}</div>
+    const linha = (p, botoes) => `<div class="mo-pessoa">${U.foto(p.quem, 44)}
+      <div><div class="nm">${e(p.quem.nome)}</div>${p.mensagem ? `<div class="ms">${e(p.mensagem)}</div>` : ""}
+        ${p.criado_em ? `<div class="qd">${e(U.haQuanto(p.criado_em))}</div>` : ""}</div>
       <div class="bts">${botoes}</div></div>`;
-    return `<div class="mo-cx"><h2>Pedidos de entrada</h2>
+    return `<section class="mo-painel mo-gente">
+      <h2>Pedidos de entrada <span class="mo-quantos">${pend.length}</span></h2>
       ${pend.length && M.meu_papel === "mentor" ? `<p>Leia a mensagem de cada pessoa antes de aceitar.</p>` : ""}
-      ${pend.length ? pend.map(p => linha(p, M.meu_papel === "mentor"
-            ? `<button class="md-bt pequeno" data-aprovar="${e(p.quem.id)}">Aceitar</button><button class="md-bt claro pequeno" data-recusar="${e(p.quem.id)}">Recusar</button>` : "")).join("")
-        : `<p>Nenhum pedido esperando resposta.</p>`}
-      <h2 style="margin-top:24px">Participantes${dentro.length ? ` <span class="mo-quantos">${dentro.length}</span>` : ""}</h2>
-      ${dentro.length ? dentro.map(p => linha(p, M.meu_papel === "mentor"
-            ? `<button class="md-link" data-recusar="${e(p.quem.id)}">tirar do grupo</button>` : "")).join("") : `<p>Ainda não há participantes.</p>`}
-      <div class="md-msg" id="pedMsgMentor" role="status" hidden></div></div>`;
+      ${pend.length ? `<div class="mo-lista">${pend.map(p => linha(p, M.meu_papel === "mentor"
+            ? `<button class="md-bt pequeno" data-aprovar="${e(p.quem.id)}">Aceitar</button><button class="md-bt claro pequeno" data-recusar="${e(p.quem.id)}">Recusar</button>` : "")).join("")}</div>`
+        : `<p class="mo-nada">Nenhum pedido esperando resposta.</p>`}
+      <h2 class="seg">Participantes <span class="mo-quantos">${dentro.length}</span></h2>
+      ${dentro.length ? `<div class="mo-lista">${dentro.map(p => linha(p, M.meu_papel === "mentor"
+            ? `<button class="mo-acao perigo" data-tirar="${e(p.quem.id)}">${ic("sair", 15)}Tirar do grupo</button>` : "")).join("")}</div>`
+        : `<p class="mo-nada">Ainda não há participantes.</p>`}
+      <div class="md-msg" id="pedMsgMentor" role="status" hidden></div>
+    </section>`;
   }
 
+  /* ── mural ── */
   function htmlPost(p, resposta) {
-    return `<div class="mo-post" id="post-${e(p.id)}">${U.foto(p.autor, resposta ? 30 : 40)}<div>
-      <div class="mo-post-cab"><span class="nm">${e(p.autor.nome)}</span>${p.do_mentor ? '<span class="md-etq aprovada">mentor</span>' : ""}
+    return `<div class="mo-post" id="post-${e(p.id)}">${U.foto(p.autor, resposta ? 32 : 42)}<div>
+      <div class="mo-post-cab"><span class="nm">${e(p.autor.nome)}</span>${p.do_mentor ? `<span class="mo-selo-mentor">${ic("verificado", 12)}Mentor</span>` : ""}
         <span class="qd">${e(U.haQuanto(p.criado_em))}</span></div>
       ${p.removido ? `<div class="apagado">mensagem apagada</div>` : `<div class="tx"><p>${U.texto(p.texto)}</p></div>
         <div class="mo-post-acoes">
-          ${!resposta && aberta() && M.meu_papel ? `<button class="md-link" data-responder="${e(p.id)}">responder</button>` : ""}
-          ${p.meu || M.sou_admin ? `<button class="md-link" data-apagar="${e(p.id)}">apagar</button>` : ""}
-          ${!p.meu ? `<button class="md-link" data-denunciar-post="${e(p.id)}">denunciar</button>` : ""}
+          ${!resposta && aberta() && M.meu_papel ? `<button class="mo-acao" data-responder="${e(p.id)}">${ic("conversa", 15)}Responder</button>` : ""}
+          ${p.meu || M.sou_admin ? `<button class="mo-acao perigo" data-apagar="${e(p.id)}">${ic("proibido", 15)}Apagar</button>` : ""}
+          ${!p.meu ? `<button class="mo-acao perigo" data-denunciar-post="${e(p.id)}">${ic("bandeira", 15)}Denunciar</button>` : ""}
         </div>`}
       ${resposta ? "" : `<div class="mo-respostas">${posts.filter(r => r.pai_id === p.id).map(r => htmlPost(r, true)).join("")}</div>
         <div class="mo-responder" id="resp-${e(p.id)}" hidden></div>`}
@@ -224,36 +436,23 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     /* O mentor pode deixar só para ele abrir conversa. Aí o participante
        não tem o campo de mensagem nova: só o "responder" de cada mensagem. */
     const podeEscrever = dentro && (M.meu_papel === "mentor" || !M.so_mentor_abre);
-    return `<div class="mo-cx" id="mural"><h2>Mural</h2>
-      <p>Só o mentor e os participantes leem o que é escrito aqui.</p>
+    return `<section class="mo-painel mo-mural" id="mural">
+      <div class="mo-mural-cab"><div><h2>Mural do grupo</h2><p>${ic("cadeado", 14)}Só o mentor e os participantes leem o que é escrito aqui.</p></div></div>
       ${M.meu_papel === "mentor" && aberta() ? `<label class="mo-regra"><input type="checkbox" id="soMentor"${M.so_mentor_abre ? " checked" : ""}>
           <span><b>Só eu abro conversas</b>Os participantes não publicam mensagem nova: só respondem às suas. Bom para manter o mural organizado.</span></label>` : ""}
-      ${dentro && !podeEscrever ? `<div class="mo-aviso-regra">Nesta mentoria só o mentor abre conversas. Para falar, use o <b>responder</b> embaixo de uma mensagem dele.</div>` : ""}
-      ${podeEscrever ? `<div class="mo-novo"><label class="md-campo"><textarea id="novoPost" maxlength="4000" placeholder="${M.meu_papel === "mentor" ? "Escreva um aviso ou uma orientação para o grupo" : "Escreva a sua dúvida ou conte como está o seu processo"}"></textarea></label>
-        <div style="margin-top:10px"><button class="md-bt" type="button" data-postar>Publicar</button></div></div>` : ""}
+      ${dentro && !podeEscrever ? `<div class="mo-aviso-regra">${ic("conversa", 18)}<span>Nesta mentoria só o mentor abre conversas. Para falar, use <b>Responder</b> embaixo de uma mensagem dele.</span></div>` : ""}
+      ${podeEscrever ? `<div class="mo-compor">${U.foto(perfil || { nome: "?" }, 42)}
+          <div class="mo-compor-cx"><label class="sr" for="novoPost">Nova mensagem</label>
+            <textarea id="novoPost" maxlength="4000" placeholder="${M.meu_papel === "mentor" ? "Escreva um aviso ou uma orientação para o grupo" : "Escreva a sua dúvida ou conte como está o seu processo"}"></textarea>
+            <div class="mo-compor-pe"><small>${ic("cadeado", 13)}Visível só para o grupo</small>
+              <button class="md-bt pequeno" type="button" data-postar>${ic("enviar", 15)}Publicar</button></div></div></div>` : ""}
       <div class="md-msg" id="muralMsg" role="status" hidden></div>
-      <div style="margin-top:14px">${raiz.length ? raiz.map(p => htmlPost(p, false)).join("")
-        : `<p style="padding:14px 0 0;color:var(--ink-3,#8A94A1)">Ninguém escreveu ainda.</p>`}</div></div>`;
+      <div class="mo-posts">${raiz.length ? raiz.map(p => htmlPost(p, false)).join("")
+        : `<div class="mo-vazio-mural">${ic("conversa", 34)}${M.meu_papel === "mentor" ? "O mural está vazio. Que tal uma mensagem de boas-vindas para o grupo?" : "Ninguém escreveu ainda."}</div>`}</div>
+    </section>`;
   }
 
-  function htmlAvaliacao() {
-    const pode = M.meu_papel === "aprovado";
-    const coment = (M.comentarios || []).map(c => `<div class="mo-coment">${U.estrelas(c.nota)} ${e(c.comentario)}
-      <small>${e(c.quem.nome)} · ${e(U.haQuanto(c.criado_em))}</small></div>`).join("");
-    if (!pode && !coment) return "";
-    return `<div class="mo-cx"><h2>Avaliações</h2>
-      ${pode ? `<p>${M.minha_nota ? "Você já avaliou. Pode mudar a nota quando quiser." : "Como está sendo a mentoria? A sua nota ajuda quem ainda vai escolher."}</p>
-        <div class="mo-estrelas" id="estrelas">${[1, 2, 3, 4, 5].map(n => `<button type="button" data-nota="${n}" class="${(M.minha_nota || 0) >= n ? "on" : ""}" aria-label="${n} de 5">★</button>`).join("")}</div>
-        <label class="md-campo"><textarea id="avCom" maxlength="600" placeholder="Opcional: conte em uma ou duas frases como o mentor ajudou"></textarea></label>
-        <div style="margin-top:10px"><button class="md-bt claro" type="button" data-avaliar>Salvar avaliação</button></div>
-        <div class="md-msg" id="avMsg" role="status" hidden></div>` : ""}
-      ${coment ? `<div style="margin-top:${pode ? 18 : 6}px">${coment}</div>` : ""}</div>`;
-  }
-
-  /* ── Abas ──
-     Quem está dentro da mentoria (mentor, participante ou a equipe do Hub) vê
-     uma parte de cada vez: o mural, os participantes (só o mentor e a equipe)
-     e a apresentação. Quem ainda não entrou vê a página corrida, sem abas. */
+  /* ── abas de quem está dentro ── */
   let aba = "mural";
   const vePedidos = () => M.meu_papel === "mentor" || M.sou_admin;
   const temAbas = () => noMural() && (M.status === "aprovada" || M.status === "encerrada");
@@ -264,35 +463,50 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     return `<nav class="mo-abas" role="tablist" aria-label="Partes da mentoria">
       ${bt("mural", "Mural")}
       ${vePedidos() ? bt("participantes", "Participantes", esperando
-          ? ` <span class="mo-conta" title="${esperando === 1 ? "1 pedido de entrada esperando resposta" : esperando + " pedidos de entrada esperando resposta"}">${esperando}</span>` : "") : ""}
+          ? `<span class="mo-conta" title="${e(plural(esperando, "pedido de entrada esperando resposta", "pedidos de entrada esperando resposta"))}">${esperando}</span>`
+          : `<span class="mo-quantos">${M.membros}</span>`) : ""}
       ${bt("sobre", "Sobre a mentoria")}
     </nav>`;
   }
-  function htmlSobre() {
-    return `<div class="mo-sec"><h2>Quem é o mentor</h2><p>${U.texto(M.apresentacao)}</p></div>
-      <div class="mo-sec"><h2>Como vai ajudar</h2><p>${U.texto(M.como_ajuda)}</p></div>`;
+
+  function htmlRodape() {
+    const b = [];
+    if (M.meu_papel === "aprovado") b.push(`<button class="mo-acao" type="button" data-sair>${ic("sair", 15)}Sair desta mentoria</button>`);
+    if (M.meu_papel === "mentor" && aberta()) b.push(`<button class="mo-acao perigo" type="button" data-encerrar>${ic("cadeado", 15)}Encerrar esta mentoria</button>`);
+    if (M.meu_papel === "aprovado" && aberta()) b.push(`<button class="mo-acao perigo" type="button" data-denunciar-mentoria>${ic("bandeira", 15)}Denunciar esta mentoria</button>`);
+    return b.length ? `<div class="mo-rodape">${b.join("")}</div><div class="md-msg" id="geralMsg" role="status" hidden></div>` : "";
   }
 
   function desenhar() {
     document.title = M.vaga_titulo + " — Mentoria — Home Office Hub";
+    let corpo;
+    if (temAbas()) {
+      corpo = htmlAbas() + (aba === "participantes" ? htmlPedidos() : aba === "sobre" ? htmlSobre() + htmlAvaliacoes() : htmlMural()) + htmlRodape();
+    } else {
+      const lado = htmlParticipar() + htmlBomSaber() + htmlComprovantes();
+      // sem abas: quem ainda não entrou, ou o mentor com o pedido em análise (aí ainda não há grupo nem mural)
+      corpo = `<div class="mo-corpo${lado ? "" : " sem-lado"}">
+          <div>${htmlSobre()}${htmlAvaliacoes()}</div>
+          ${lado ? `<aside class="mo-lado">${lado}</aside>` : ""}
+        </div>${htmlRodape()}`;
+    }
     tela.innerHTML = `
-      ${MD.demo ? `<div class="mo-aviso pendente" style="margin:0 0 18px">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : ""}
-      ${htmlCabecalho()}
+      ${MD.demo ? `<div class="mo-demo">Modo de demonstração (${e(MD.demo)}): dados de exemplo, nada é gravado no banco.</div>` : ""}
+      ${htmlTopo()}
       ${htmlSituacao()}
-      ${temAbas() ? htmlAbas() + (aba === "participantes" ? htmlPedidos() : aba === "sobre" ? htmlSobre() + htmlAvaliacao() : htmlMural())
-        : htmlSobre() + htmlPedidos() + htmlEntrada() + htmlMural() + htmlAvaliacao()}
-      <div class="mo-rodape">
-        ${M.meu_papel === "aprovado" ? `<button class="md-link" type="button" data-sair>sair desta mentoria</button>` : ""}
-        ${M.meu_papel === "mentor" && aberta() ? `<button class="md-link" type="button" data-encerrar>encerrar esta mentoria</button>` : ""}
-        ${M.meu_papel !== "mentor" && aberta() ? `<button class="md-link" type="button" data-denunciar-mentoria>denunciar esta mentoria</button>` : ""}
-      </div>
-      <div class="md-msg" id="geralMsg" role="status" hidden></div>`;
+      ${corpo}`;
     notaEscolhida = M.minha_nota || 0;
   }
 
+  /* ══════════════════════════════════════════════════════════
+     AÇÕES
+     ══════════════════════════════════════════════════════════ */
   let notaEscolhida = 0;
-  const dizer = (id, t, tipo) => { const m = tela.querySelector("#" + id) || tela.querySelector("#geralMsg"); if (!m) return;
-    m.textContent = t; m.className = "md-msg " + (tipo || "erro"); m.hidden = false; };
+  const dizer = (id, t, tipo) => {
+    const m = tela.querySelector("#" + id) || tela.querySelector("#geralMsg") || tela.querySelector("#muralMsg");
+    if (!m) return;
+    m.textContent = t; m.className = "md-msg " + (tipo || "erro"); m.hidden = false;
+  };
 
   /* refaz a tela depois de uma ação, mostrando o erro se houver */
   async function agir(onde, acao, depois) {
@@ -300,26 +514,21 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     catch (err) { dizer(onde, err.message, "erro"); }
   }
 
-  /* pergunta sem usar as caixas do navegador: abre um campo logo abaixo */
-  function pedirMotivo(ancora, titulo, feito) {
-    const velho = tela.querySelector(".mo-motivo"); if (velho) velho.remove();
-    const cx = document.createElement("div");
-    cx.className = "mo-motivo mo-responder";
-    cx.innerHTML = `<label class="md-campo"><span>${e(titulo)}</span><textarea maxlength="600"></textarea></label>
-      <div style="margin-top:8px;display:flex;gap:10px;align-items:center"><button class="md-bt pequeno" type="button">Enviar</button>
-      <button class="md-link" type="button">cancelar</button></div>`;
-    ancora.insertAdjacentElement("afterend", cx);
-    const bts = cx.querySelectorAll("button");
-    bts[1].addEventListener("click", () => cx.remove());
-    bts[0].addEventListener("click", () => {
-      const v = cx.querySelector("textarea").value.trim();
-      if (v.length < 3) { cx.querySelector("textarea").focus(); return; }
-      cx.remove(); feito(v);
-    });
-    cx.querySelector("textarea").focus();
+  /* pergunta numa janela no meio da tela e só age se a pessoa confirmar */
+  async function seConfirmar(pergunta, acao) { if (await U.confirmar(pergunta)) acao(); }
+
+  async function denunciar(tipo, alvo, onde) {
+    const motivo = await U.pedirTexto({
+      titulo: tipo === "post" ? "Denunciar esta mensagem" : "Denunciar esta mentoria",
+      texto: "A equipe do Hub lê cada denúncia e responde pela aba Suas denúncias, na página Mentorias. Quem foi denunciado não sabe quem denunciou.",
+      rotulo: "O que aconteceu?", dica: tipo === "post" ? "Ex.: a mensagem cobra dinheiro, pede senha ou compartilha material do projeto" : "Ex.: o mentor cobrou para ajudar ou pediu acesso à minha conta",
+      botao: "Enviar denúncia", erro: "Conte em poucas palavras o que aconteceu." });
+    if (!motivo) return;
+    agir(onde, () => MD.denunciar(tipo, alvo, motivo),
+      () => dizer(onde, "Denúncia enviada. A resposta da equipe do Hub aparece na página Mentorias, na aba Suas denúncias.", "ok"));
   }
 
-  /* o mentor anexa mais comprovantes enquanto o pedido está em análise */
+  /* o mentor muda a regra do mural, ou anexa mais comprovantes enquanto o pedido está em análise */
   tela.addEventListener("change", async ev => {
     if (ev.target.id === "soMentor") {
       const marcado = ev.target.checked;
@@ -356,7 +565,10 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       notaEscolhida = +d.nota;
       tela.querySelectorAll("#estrelas button").forEach(x => x.classList.toggle("on", +x.dataset.nota <= notaEscolhida));
     }
-    else if ("pedir" in d) agir("entMsg", () => MD.pedirEntrada(ID, (tela.querySelector("#pedMsg") || {}).value || ""));
+    else if ("pedir" in d) {
+      b.disabled = true;
+      agir("entMsg", () => MD.pedirEntrada(ID, (tela.querySelector("#pedMsg") || {}).value || ""));
+    }
     else if ("sair" in d) {
       const pedido = M.meu_papel === "pedido";
       seConfirmar(pedido
@@ -365,22 +577,22 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
         () => agir("geralMsg", () => MD.sair(ID)));
     }
     else if (d.aprovar) agir("pedMsgMentor", () => MD.responderPedido(ID, d.aprovar, true));
-    else if (d.recusar && b.classList.contains("md-link")) seConfirmar(
+    else if (d.tirar) seConfirmar(
       { titulo: "Tirar esta pessoa do grupo?", texto: "Ela deixa de ver o mural e de poder escrever. Se quiser voltar, vai precisar pedir a entrada de novo.", botao: "Tirar do grupo" },
-      () => agir("pedMsgMentor", () => MD.responderPedido(ID, d.recusar, false)));
+      () => agir("pedMsgMentor", () => MD.responderPedido(ID, d.tirar, false)));
     else if (d.recusar) agir("pedMsgMentor", () => MD.responderPedido(ID, d.recusar, false));
     else if ("postar" in d) {
       const t = (tela.querySelector("#novoPost").value || "").trim();
-      if (!t) { dizer("muralMsg", "Escreva alguma coisa antes de publicar.", "erro"); return; }
+      if (!t) { dizer("muralMsg", "Escreva alguma coisa antes de publicar.", "erro"); tela.querySelector("#novoPost").focus(); return; }
       b.disabled = true;
       agir("muralMsg", () => MD.postar(ID, t, null));
     }
     else if (d.responder) {
       const cx = tela.querySelector("#resp-" + CSS.escape(d.responder));
       cx.hidden = false;
-      cx.innerHTML = `<label class="md-campo" style="margin-top:0"><textarea maxlength="4000" placeholder="Sua resposta"></textarea></label>
-        <div style="margin-top:8px;display:flex;gap:10px;align-items:center"><button class="md-bt pequeno" type="button" data-enviar-resposta="${e(d.responder)}">Responder</button>
-        <button class="md-link" type="button" data-fechar-resposta="${e(d.responder)}">cancelar</button></div>`;
+      cx.innerHTML = `<label class="md-campo" style="margin-top:0"><span class="sr">Sua resposta</span><textarea maxlength="4000" placeholder="Sua resposta"></textarea></label>
+        <div class="mo-responder-bts"><button class="md-bt pequeno" type="button" data-enviar-resposta="${e(d.responder)}">Responder</button>
+        <button class="mo-acao" type="button" data-fechar-resposta="${e(d.responder)}">Cancelar</button></div>`;
       cx.querySelector("textarea").focus();
     }
     else if (d.fecharResposta) { const cx = tela.querySelector("#resp-" + CSS.escape(d.fecharResposta)); cx.hidden = true; cx.innerHTML = ""; }
@@ -393,10 +605,8 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     else if (d.apagar) seConfirmar(
       { titulo: "Apagar esta mensagem?", texto: "Ela some do mural para todo mundo e não dá para trazer de volta.", botao: "Apagar a mensagem" },
       () => agir("muralMsg", () => MD.apagarPost(d.apagar)));
-    else if (d.denunciarPost) pedirMotivo(b.parentElement, "O que há de errado nesta mensagem?", motivo =>
-      agir("muralMsg", () => MD.denunciar("post", d.denunciarPost, motivo), () => dizer("muralMsg", "Denúncia enviada. A resposta da equipe do Hub aparece na página Mentorias, na aba Suas denúncias.", "ok")));
-    else if ("denunciarMentoria" in d) pedirMotivo(b.parentElement, "O que há de errado nesta mentoria?", motivo =>
-      agir("geralMsg", () => MD.denunciar("mentoria", ID, motivo), () => dizer("geralMsg", "Denúncia enviada. A resposta da equipe do Hub aparece na página Mentorias, na aba Suas denúncias.", "ok")));
+    else if (d.denunciarPost) denunciar("post", d.denunciarPost, "muralMsg");
+    else if ("denunciarMentoria" in d) denunciar("mentoria", ID, tela.querySelector("#saberMsg") ? "saberMsg" : "geralMsg");
     else if ("avaliar" in d) {
       if (!notaEscolhida) { dizer("avMsg", "Escolha de 1 a 5 estrelas.", "erro"); return; }
       const com = (tela.querySelector("#avCom").value || "").trim();
@@ -407,11 +617,8 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       () => agir("geralMsg", () => MD.encerrar(ID)));
   });
 
-  /* pergunta numa janela no meio da tela e só age se a pessoa confirmar */
-  async function seConfirmar(pergunta, acao) { if (await U.confirmar(pergunta)) acao(); }
-
   try { await carregar(); }
-  catch (err) { espera.textContent = err.message; return; }
+  catch (err) { falhar(err.message); return; }
   espera.hidden = true; tela.hidden = false;
   if (["participantes", "sobre"].indexOf(location.hash.slice(1)) >= 0) aba = location.hash.slice(1);
   desenhar();
