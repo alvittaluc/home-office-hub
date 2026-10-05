@@ -1,0 +1,46 @@
+name: Avisos das mentorias
+
+# De 15 em 15 minutos, manda por e-mail os avisos das mentorias que estão na
+# fila do Supabase (pedido de entrada, pedido aceito, resposta de denúncia...).
+# Usa as mesmas chaves do alerta de vagas. Fila vazia: termina em segundos.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      teste:
+        description: "Só testar: confere o Brevo e manda um e-mail de exemplo para o dono da conta Brevo"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: avisos
+  cancel-in-progress: false
+
+jobs:
+  avisar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Baixar só os arquivos do robô
+        uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            enviar_alerta.py
+            enviar_avisos.py
+            layout.js
+          sparse-checkout-cone-mode: false
+
+      - name: Mandar os avisos
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          ALERTA_CHAVE: ${{ secrets.ALERTA_CHAVE }}
+        run: |
+          if [ "${{ inputs.teste }}" = "true" ]; then
+            python3 enviar_avisos.py --teste
+          else
+            python3 enviar_avisos.py
+          fi

@@ -77,6 +77,17 @@ const MD = (function () {
       return null;
     },
     salvarPerfil: p => rpc("perfil_salvar", { p_nome: p.nome, p_bio: p.bio || "", p_foto: p.foto || "" }),
+    /* Avisos das mentorias por e-mail: ligados, a não ser que a pessoa tenha
+       desligado. A escolha fica na conta, e a fila de avisos do banco
+       (banco/avisos.sql) respeita. */
+    async avisosEmail() {
+      const s = (await cliente().auth.getSession()).data.session;
+      return ((s && s.user && s.user.user_metadata) || {}).avisos_email !== false;
+    },
+    async definirAvisosEmail(ligado) {
+      const r = await cliente().auth.updateUser({ data: { avisos_email: !!ligado } });
+      if (r.error) throw new Error(traduzir(r.error));
+    },
     souAdmin: () => rpc("eh_admin"),
     listar: () => rpc("mentorias_lista"),
     minhas: () => rpc("mentorias_minhas"),
@@ -231,6 +242,8 @@ const MD = (function () {
       async eu() { return { id: "u-eu", email: "teste@exemplo.com" }; },
       async meuPerfil() { return S.perfil; },
       async salvarPerfil(p) { S.perfil = { nome: p.nome, bio: p.bio || "", foto: p.foto || "" }; salvar(); },
+      async avisosEmail() { return S.avisosEmail !== false; },
+      async definirAvisosEmail(ligado) { S.avisosEmail = !!ligado; salvar(); },
       async souAdmin() { return admin; },
       async listar() { return S.mentorias.filter(m => m.status === "aprovada").map(resumo); },
       async minhas() {

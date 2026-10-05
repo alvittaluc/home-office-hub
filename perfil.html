@@ -24,6 +24,10 @@
 .pf-foto-bts { display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
 .pf-espera { text-align:center; padding:80px 20px; color:var(--ink-3,#66717F); font-size:14px; }
 .pf-acoes { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:20px; }
+.pf-aviso { display:flex; gap:11px; align-items:flex-start; margin-top:18px; padding-top:18px; border-top:1px solid var(--line-soft,#EAE4D9); cursor:pointer; }
+.pf-aviso input { width:18px; height:18px; margin:2px 0 0; flex-shrink:0; accent-color:var(--signal,#1A4893); }
+.pf-aviso b { display:block; font-size:14.5px; font-weight:600; color:var(--ink,#10203A); }
+.pf-aviso small { display:block; font-size:13px; line-height:1.5; color:var(--ink-2,#54606F); margin-top:2px; }
 </style>
 </head>
 <body>
@@ -35,7 +39,7 @@
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js" integrity="sha384-WgXwGL6fUsYJWNaKJgVbrJKGRQwc1vieh2oy4kw9nXqpNDz3tdSsqEYUgeHD/NuF" crossorigin="anonymous"></script>
-<script src="mentorias-dados.js?v=7"></script>
+<script src="mentorias-dados.js?v=8"></script>
 <script>
 try { montarLayout(""); } catch (e) { console.warn(e); }
 
@@ -59,6 +63,8 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
   try { perfil = await MD.meuPerfil(); }
   catch (e) { espera.textContent = e.message; return; }
   let fotoAtual = (perfil && perfil.foto) || "";
+  let avisosAntes = true;
+  try { avisosAntes = await MD.avisosEmail(); } catch (e) { console.warn(e); }
 
   U.porCss();
   tela.innerHTML = `
@@ -80,6 +86,9 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
       <label class="md-campo"><span>Sobre você</span>
         <small>Opcional. Duas ou três linhas: onde trabalha, há quanto tempo, o que faz.</small>
         <textarea id="bio" maxlength="600"></textarea></label>
+      <label class="pf-aviso"><input type="checkbox" id="avisos">
+        <span><b>Receber os avisos das mentorias por e-mail</b>
+          <small>Pedido de entrada no seu grupo, pedido aceito e resposta da equipe. Só isso, sem propaganda.</small></span></label>
       <div class="pf-acoes">
         <button class="md-bt" type="submit">Salvar perfil</button>
         <a class="md-link" href="${U.e(voltar)}">voltar sem salvar</a>
@@ -91,6 +100,7 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
   const $ = s => tela.querySelector(s);
   $("#nome").value = (perfil && perfil.nome) || "";
   $("#bio").value = (perfil && perfil.bio) || "";
+  $("#avisos").checked = avisosAntes;
   const pintarFoto = () => {
     $("#fotoVer").innerHTML = U.foto({ nome: $("#nome").value || "?", foto: fotoAtual }, 76);
     $("#fotoTirar").hidden = !fotoAtual;
@@ -114,6 +124,7 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
     bt.disabled = true; bt.textContent = "Salvando…";
     try {
       await MD.salvarPerfil({ nome, bio: $("#bio").value.trim(), foto: fotoAtual });
+      if ($("#avisos").checked !== avisosAntes) await MD.definirAvisosEmail($("#avisos").checked);
       location.href = voltar;
     } catch (e) {
       dizer(e.message, "erro"); bt.disabled = false; bt.textContent = "Salvar perfil";

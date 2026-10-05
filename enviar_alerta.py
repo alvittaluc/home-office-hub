@@ -97,8 +97,9 @@ _IDENTIFICACOES = [
 
 def brevo(metodo, caminho, corpo=None, discreto=False):
     """Chama a API do Brevo e devolve o JSON da resposta (ou {} se vazia).
-    discreto: se der erro, não repete a resposta do Brevo, que nesses
-    pedidos pode trazer e-mails de inscritos (o registro do GitHub é público)."""
+    discreto: se der erro, a resposta do Brevo aparece com os e-mails
+    tapados, porque nesses pedidos ela pode trazer endereços de pessoas e o
+    registro do GitHub é público."""
     dados = json.dumps(corpo).encode("utf-8") if corpo is not None else None
     ultimo = None
     for identificacao in _IDENTIFICACOES:
@@ -116,7 +117,7 @@ def brevo(metodo, caminho, corpo=None, discreto=False):
             detalhe = e.read().decode("utf-8", errors="replace")[:300]
             barrado_na_porta = e.code == 403 and "1010" in detalhe
             if discreto:
-                detalhe = "(resposta omitida)"
+                detalhe = re.sub(r"[\w.+-]+@[\w-]+(\.[\w-]+)+", "[e-mail]", detalhe)
             ultimo = RuntimeError(f"Brevo recusou {metodo} {caminho.split('?')[0]}: HTTP {e.code} — {detalhe}")
             if not barrado_na_porta:
                 break
