@@ -422,6 +422,7 @@ function montarLayout(ativa) {
     </div>
     <div class="ft-bottom">
       <span>Home Office Hub</span>
+      <a href="privacidade.html">Privacidade e regras de uso</a>
     </div>`;
   document.body.appendChild(footer);
 }

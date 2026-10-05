@@ -233,6 +233,8 @@ footer.site { border-top:1px solid var(--line-soft); background:var(--bg-soft); 
 .ft ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
 .ft ul a { font-size:14px; color:var(--ink-2); transition:color .15s; }
 .ft ul a:hover { color:var(--signal); }
+.ft-bottom a { color:var(--ink-3); text-decoration:underline; text-underline-offset:3px; }
+.ft-bottom a:hover { color:var(--ink-2); }
 .ft-bottom {
   max-width:var(--wrap); margin:0 auto; padding:18px 22px 30px;
   border-top:1px solid var(--line-soft); font-size:13px; color:var(--ink-3);

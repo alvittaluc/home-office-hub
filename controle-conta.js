@@ -92,6 +92,8 @@ const Conta = (function () {
   .cp-msg { font-size:13.5px; line-height:1.5; margin-top:14px; padding:10px 13px; border-radius:10px; }
   .cp-msg.erro { background:#FBE9EB; color:#8E2233; } .cp-msg.ok { background:#E4F3F0; color:#1F7A6E; }
   .cp-rodape { font-size:11.5px; line-height:1.55; color:var(--ink-3,#66717F); margin:16px 6px 0; text-align:center; }
+  .cp-cx p.cp-termos { font-size:12px; line-height:1.5; color:var(--ink-3,#66717F); margin:12px 0 0; }
+  .cp-cx p.cp-termos a { color:var(--signal,#1A4893); }
   `;
 
   function porta() {
@@ -155,6 +157,7 @@ const Conta = (function () {
           <label for="cp-nova2">Repita a senha</label>
           <input id="cp-nova2" type="password" autocomplete="new-password" minlength="8" required>
           <button class="cp-bt" type="submit">Criar conta</button>
+          <p class="cp-termos">Ao criar a conta, você concorda com as <a href="privacidade.html" target="_blank" rel="noopener">regras de uso e a política de privacidade</a>.</p>
         </form>
         <button class="cp-link" type="button" data-ja-tenho>Já tenho conta</button>
         <div class="cp-msg" role="status" hidden></div>

@@ -97,4 +97,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://alvittaluc.github.io/home-office-hub/privacidade.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

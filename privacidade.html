@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacidade e regras de uso — Home Office Hub</title>
+<meta name="description" content="O que o Home Office Hub guarda sobre você, para quê, com quem isso passa, por quanto tempo, os seus direitos e as regras para usar o site.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacidade e regras de uso — Home Office Hub">
+<meta property="og:description" content="O que o Home Office Hub guarda sobre você, para quê, com quem isso passa e as regras para usar o site.">
+<meta property="og:url" content="https://alvittaluc.github.io/home-office-hub/privacidade.html">
+<meta property="og:image" content="https://alvittaluc.github.io/home-office-hub/og.jpg">
+<link rel="canonical" href="https://alvittaluc.github.io/home-office-hub/privacidade.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<style>
+  /* ══════════════════════════════════════════════════════════════
+     PRIVACIDADE E REGRAS DE USO
+     Mesma estrutura do Como funciona: índice fixo à esquerda e um
+     bloco por assunto. Ao mudar alguma regra, troque a data do topo.
+     ══════════════════════════════════════════════════════════════ */
+  .topo { max-width:var(--wrap); margin:0 auto; padding:52px 20px 34px; }
+  .topo h1 { font-family:var(--display); color:var(--ink); font-weight:400; letter-spacing:-0.02em; font-size:clamp(28px,4.4vw,44px); line-height:1.06; margin-bottom:14px; max-width:17ch; }
+  .topo .data { font-size:13px; color:var(--ink-3); margin-top:12px; }
+
+  .corpo { max-width:var(--wrap); margin:0 auto; padding:0 20px 70px; display:grid; grid-template-columns:206px 1fr; gap:44px; align-items:start; }
+  @media (max-width:960px){ .corpo{ grid-template-columns:1fr; gap:0; } }
+  .corpo > * { min-width:0; }
+
+  .trilho { position:sticky; top:86px; padding-top:4px; }
+  @media (max-width:960px){ .trilho{ display:none; } }
+  .trilho h4 { font-size:10.5px; letter-spacing:0.11em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px; font-weight:500; }
+  .trilho a { display:block; font-size:13px; color:var(--ink-3); padding:7px 0 7px 15px; border-left:1px solid var(--line-soft); transition:all .16s; }
+  .trilho a:hover { color:var(--ink-2); }
+  .trilho a.on { color:var(--signal); border-left-color:var(--signal); }
+
+  section.bloco { padding:0 0 52px; scroll-margin-top:84px; max-width:74ch; }
+  section.bloco > h2 { font-family:var(--display); font-weight:400; font-size:clamp(23px,3.2vw,31px); line-height:1.14; letter-spacing:-0.018em; margin-bottom:16px; color:var(--ink); }
+  section.bloco p { font-size:14.8px; color:var(--ink-2); line-height:1.72; margin-bottom:14px; }
+  section.bloco b { color:var(--ink); font-weight:600; }
+  section.bloco a { color:var(--signal); }
+
+  ul.pontos { list-style:none; display:flex; flex-direction:column; gap:10px; margin:6px 0 16px; }
+  ul.pontos li { position:relative; padding-left:24px; font-size:14.8px; color:var(--ink-2); line-height:1.65; }
+  ul.pontos li::before { content:''; position:absolute; left:2px; top:.62em; width:8px; height:8px; border-radius:2px; background:var(--signal-dim); }
+
+  .resumo { background:var(--panel); border:1px solid var(--line-soft); border-radius:16px; padding:22px 24px 10px; box-shadow:var(--sombra); }
+
+  .tab-wrap { overflow-x:auto; border:1px solid var(--line-soft); border-radius:12px; background:var(--panel); margin:6px 0 14px; }
+  table.tab { width:100%; border-collapse:collapse; font-size:13.8px; min-width:560px; }
+  table.tab th, table.tab td { text-align:left; padding:13px 15px; border-bottom:1px solid var(--line-soft); vertical-align:top; line-height:1.55; }
+  table.tab tr:last-child td { border-bottom:0; }
+  table.tab th { font-size:10.5px; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-3); font-weight:500; }
+  table.tab td { color:var(--ink-2); }
+  table.tab td:first-child { color:var(--ink); font-weight:600; }
+
+</style>
+</head>
+<body>
+
+<section class="topo">
+  <div class="eyebrow">Privacidade</div>
+  <h1>Privacidade e regras de uso</h1>
+  <p class="lead">O que o Home Office Hub guarda sobre você, para quê, com quem isso passa e as regras para usar o site.</p>
+  <p class="data">Atualizada em 5 de outubro de 2026.</p>
+</section>
+
+<div class="corpo">
+  <aside class="trilho">
+    <h4>Nesta página</h4>
+    <div id="trilhoLista">
+      <a href="#resumo" data-alvo="resumo">O resumo</a>
+      <a href="#dados" data-alvo="dados">O que guardamos</a>
+      <a href="#navegador" data-alvo="navegador">No seu navegador</a>
+      <a href="#servicos" data-alvo="servicos">Serviços usados</a>
+      <a href="#tempo" data-alvo="tempo">Por quanto tempo</a>
+      <a href="#direitos" data-alvo="direitos">Seus direitos</a>
+      <a href="#seguranca" data-alvo="seguranca">Segurança</a>
+      <a href="#regras" data-alvo="regras">Regras de uso</a>
+      <a href="#contato" data-alvo="contato">Contato</a>
+    </div>
+  </aside>
+
+  <div>
+    <section class="bloco" id="resumo">
+      <h2>O resumo</h2>
+      <div class="resumo">
+        <ul class="pontos">
+          <li>Navegar e ver as vagas não exige conta.</li>
+          <li>Não usamos cookies de propaganda e não acompanhamos você em outros sites.</li>
+          <li>Não vendemos nem alugamos os dados de ninguém.</li>
+          <li>Os dados das contas ficam guardados no Brasil, em São Paulo.</li>
+          <li>Você pode apagar a sua conta, e tudo o que há nela, quando quiser.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bloco" id="dados">
+      <h2>O que guardamos, para quê e quem vê</h2>
+      <p>Guardamos só o que o site precisa para funcionar. O que você não preencher, não existe para nós.</p>
+      <div class="tab-wrap">
+        <table class="tab">
+          <thead><tr><th>O quê</th><th>Para quê</th><th>Quem vê</th></tr></thead>
+          <tbody>
+            <tr><td>Conta: e-mail, senha e nome</td><td>Entrar, recuperar a senha e receber avisos sobre a conta</td><td>Só você. A senha é guardada cifrada, e nem a equipe a vê</td></tr>
+            <tr><td>Áreas de formação</td><td>Mostrar as vagas da sua formação no site e no alerta por e-mail</td><td>Só você</td></tr>
+            <tr><td>Perfil: nome, foto e apresentação</td><td>Apresentar você nas mentorias</td><td>Quem participa das mesmas mentorias que você</td></tr>
+            <tr><td>Meu Controle: candidaturas, trabalhos, horas e ganhos</td><td>Organizar a sua busca e o seu trabalho</td><td>Só você. A equipe vê apenas totais, sem nomes, como quantas candidaturas uma vaga recebeu</td></tr>
+            <tr><td>Mentorias: pedidos, mensagens do mural e avaliações</td><td>Fazer as mentorias funcionarem</td><td>O mentor e os participantes do grupo</td></tr>
+            <tr><td>Comprovantes de quem pede para ser mentor</td><td>Confirmar que a pessoa trabalha na empresa</td><td>Só a equipe do Hub e o próprio mentor</td></tr>
+            <tr><td>Denúncias e conversas com a equipe</td><td>Apurar o que aconteceu e responder</td><td>Só você e a equipe</td></tr>
+            <tr><td>E-mail do alerta de vagas</td><td>Mandar as vagas novas</td><td>Fica no serviço de e-mail e é usado só para isso</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Se você tem conta e se inscreveu no alerta com o mesmo e-mail, usamos as áreas marcadas na conta para incluir no alerta as vagas da sua formação.</p>
+    </section>
+
+    <section class="bloco" id="navegador">
+      <h2>O que fica no seu navegador</h2>
+      <p>Para você não precisar entrar de novo a cada página, o navegador guarda o acesso à conta. Ele também guarda algumas escolhas, como filtros e preferências, e os registros do Meu Controle de quem usa sem conta.</p>
+      <p>Nada disso é cookie de propaganda. Para apagar, basta limpar os dados deste site nas configurações do navegador.</p>
+    </section>
+
+    <section class="bloco" id="servicos">
+      <h2>Serviços que ajudam o site a funcionar</h2>
+      <p>Alguns serviços de fora fazem partes do trabalho. Cada um recebe só o necessário para a sua parte:</p>
+      <ul class="pontos">
+        <li><b>Supabase</b>: banco de dados e login. Os servidores ficam em São Paulo.</li>
+        <li><b>Brevo</b>: envio dos e-mails de confirmação de conta, de nova senha e do alerta de vagas. É uma empresa francesa, com servidores na União Europeia.</li>
+        <li><b>GitHub</b>: hospeda as páginas do site.</li>
+        <li><b>Google</b>: entrega as fontes (as letras) do site, e por isso recebe o endereço de internet (IP) de quem abre as páginas.</li>
+        <li><b>Transcrição ao vivo</b>: o reconhecimento de voz é feito pelo próprio navegador (no Chrome, com o Google; no Edge, com a Microsoft). O Hub não grava o áudio nem o texto.</li>
+      </ul>
+      <p>Ao clicar numa vaga, você vai para o site da empresa, que tem as próprias regras de privacidade.</p>
+    </section>
+
+    <section class="bloco" id="tempo">
+      <h2>Por quanto tempo</h2>
+      <p>Os dados da conta ficam enquanto a conta existir. Ao apagar a conta, sai tudo de uma vez: perfil, Meu Controle, mentorias, mensagens, avaliações, denúncias e comprovantes.</p>
+      <p>O e-mail do alerta fica até você sair pelo link que vem no fim de cada mensagem.</p>
+    </section>
+
+    <section class="bloco" id="direitos">
+      <h2>Seus direitos</h2>
+      <p>Pela Lei Geral de Proteção de Dados (LGPD), você pode:</p>
+      <ul class="pontos">
+        <li>saber se temos dados seus e quais são;</li>
+        <li>corrigir o que estiver errado;</li>
+        <li>apagar a conta e tudo o que há nela;</li>
+        <li>levar os seus dados com você (no Meu Controle, use <b>Exportar backup</b>);</li>
+        <li>saber com quem os dados passam, como explicado acima;</li>
+        <li>retirar uma permissão que tenha dado.</li>
+      </ul>
+      <p>Quase tudo dá para fazer no próprio site, em <b>Minha conta</b> e no <b>Meu Controle</b>. Para o resto, o contato fica no fim desta página.</p>
+    </section>
+
+    <section class="bloco" id="seguranca">
+      <h2>Como protegemos</h2>
+      <ul class="pontos">
+        <li>Todo o site funciona com conexão cifrada (https).</li>
+        <li>As regras do banco de dados deixam cada conta alcançar só o que é dela.</li>
+        <li>Comprovantes e denúncias só abrem para quem precisa vê-los.</li>
+        <li>As senhas são guardadas cifradas.</li>
+      </ul>
+      <p>Se acontecer algum problema de segurança que afete os seus dados, avisamos você.</p>
+    </section>
+
+    <section class="bloco" id="regras">
+      <h2>Regras de uso</h2>
+      <ul class="pontos">
+        <li>O Hub reúne vagas publicadas por outras empresas. Quem conduz o processo seletivo, decide a contratação e paga é sempre a empresa. O Hub não garante aprovação nem trabalho.</li>
+        <li>Confira sempre as informações na página oficial da vaga antes de se candidatar.</li>
+        <li>Alguns links de vaga são de indicação: se você for contratado por eles, a empresa paga uma comissão ao Hub.</li>
+        <li>Nas mentorias, ninguém pode pedir ou oferecer senha, código de verificação ou acesso a conta; vender, alugar ou emprestar conta; compartilhar material confidencial de projetos; prometer aprovação ou falar em nome da empresa.</li>
+        <li>Cada pessoa responde pelo que publica no perfil, no mural, nas avaliações e nas denúncias. A equipe pode apagar mensagens e encerrar mentorias ou contas que descumprirem estas regras.</li>
+        <li>O Hub é para maiores de 18 anos.</li>
+      </ul>
+    </section>
+
+    <section class="bloco" id="contato">
+      <h2>Mudanças e contato</h2>
+      <p>Quando alguma regra mudar, esta página é atualizada e a data no topo muda junto.</p>
+      <p>O Home Office Hub é mantido pela equipe do Hub. O e-mail de contato para assuntos sobre os seus dados entra aqui assim que o endereço próprio do site estiver no ar. Até lá, apagar a conta e exportar os seus registros já dá para fazer direto no site.</p>
+    </section>
+  </div>
+</div>
+
+<script src="layout.js"></script>
+<script>
+montarLayout("");
+
+// o índice acompanha a rolagem
+(function(){
+  const links = [...document.querySelectorAll("#trilhoLista a")];
+  const obs = new IntersectionObserver(ent => {
+    ent.forEach(e => { if (e.isIntersecting) links.forEach(l => l.classList.toggle("on", l.dataset.alvo === e.target.id)); });
+  }, { rootMargin: "-25% 0px -65% 0px" });
+  document.querySelectorAll("section.bloco").forEach(s => obs.observe(s));
+  if (links[0]) links[0].classList.add("on");
+})();
+</script>
+</body>
+</html>
