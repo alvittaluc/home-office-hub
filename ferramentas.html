@@ -109,26 +109,16 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 .f-card:hover .f-abrir svg { transform:translateX(3px); }
 .f-abrir svg { transition:transform .18s; }
 
-/* cartão vazio, para a grade não ficar torta com uma ferramenta só */
-.f-vazio {
-  border:1px dashed var(--line,#DED7CA); border-radius:20px;
-  display:grid; place-items:center; text-align:center; padding:30px;
-  color:var(--ink-3,#8A94A1); font-size:14px; line-height:1.6; min-height:250px;
-}
-.f-vazio.f-larga2 { grid-column:span 1; }
-
 .f-rodape { margin-top:54px; padding-top:32px; border-top:1px solid var(--line,#DED7CA); max-width:660px; }
 .f-rodape h3 { font-size:16px; font-weight:600; color:var(--ink,#10203A); margin:0 0 8px; }
 .f-rodape p { font-size:14.5px; line-height:1.65; color:var(--ink-2,#54606F); margin:0; }
 
 @media (max-width:1000px){
   .f-grade { grid-template-columns:repeat(2,1fr); }
-  .f-vazio.f-larga2 { grid-column:auto; }
 }
 @media (max-width:680px){
   .f-grade { grid-template-columns:1fr; }
   .f-main { padding-top:36px; }
-  .f-vazio { min-height:0; padding:24px; }
 }
 </style>
 </head>
@@ -189,10 +179,6 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
         </svg>
       </span>
     </a>
-
-    <!-- Este bloco só existe para a grade não ficar torta com uma ferramenta só.
-         Quando entrar a terceira ferramenta, apague este bloco inteiro. -->
-    <div class="f-vazio">Novas ferramentas entram aqui conforme forem ficando prontas.</div>
 
   </div>
 
