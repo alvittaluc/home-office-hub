@@ -513,7 +513,9 @@ try {
   }
 } catch (e) { document.documentElement.style.display = "none"; }
 
-/* Logo da empresa: tenta o favicon real, cai para a sigla se falhar.
+/* Logo da empresa: usa o arquivo guardado no site (pasta logos/, campo
+   "logo" do empresas.json) e cai para a sigla se ele faltar. Empresa nova
+   que ainda não tem arquivo usa o ícone do serviço do Google, como antes.
 
    O logo ocupa o quadrado inteiro, com uma folga proporcional. Antes ele
    ficava pequeno no meio de um quadrado colorido e sobrava um contorno
@@ -523,8 +525,10 @@ try {
 function logoHtml(e, tam) {
   const px = tam >= 40 ? 64 : 32;
   const folga = Math.max(2, Math.round(tam * 0.12));
-  if (e.dom) {
-    return `<img src="https://www.google.com/s2/favicons?domain=${e.dom}&sz=${px}" alt="${esc(e.nome)}" loading="lazy"
+  const guardado = /^logos\/[a-z0-9-]+\.(png|svg|webp)$/.test(e.logo || "") ? e.logo : "";
+  if (guardado || e.dom) {
+    const origem = guardado || `https://www.google.com/s2/favicons?domain=${e.dom}&sz=${px}`;
+    return `<img src="${origem}" alt="${esc(e.nome)}" loading="lazy"
       style="width:100%;height:100%;object-fit:contain;padding:${folga}px;box-sizing:border-box;"
       onerror="var p=this.parentNode; if(p){ p.textContent='${e.sigla || "?"}'; p.style.color='${e.cor || "#9BA3B4"}'; }">`;
   }
