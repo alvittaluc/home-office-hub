@@ -29,6 +29,68 @@ const Conta = (function () {
      em tudo, para o site não ficar meio fechado e meio aberto. */
   const loginObrigatorio = () => typeof Acesso !== "undefined" && Acesso.portasLigadas;
 
+  /* ══════════════════════════════════════════════════════════
+     PROTEÇÃO CONTRA ROBÔS (Cloudflare Turnstile)
+
+     Com a chave abaixo preenchida, as telas de criar conta, entrar e
+     "esqueci a senha" passam pela verificação da Cloudflare e mandam o
+     resultado junto para o Supabase, que confere do lado dele. Quase
+     sempre a pessoa nem percebe; só aparece um quadrinho para clicar
+     quando a Cloudflare desconfia.
+
+     A chave daqui é a PÚBLICA do site, feita para ficar no código. A
+     secreta fica só no painel do Supabase. Vazia: proteção desligada,
+     tudo funciona como antes.
+
+     ORDEM PARA LIGAR: 1) colar aqui a chave pública e publicar o site;
+     2) só então ligar a proteção no Supabase (Authentication > Attack
+     Protection). Na ordem inversa ninguém consegue entrar.
+     ══════════════════════════════════════════════════════════ */
+  const CHAVE_ROBO = "";
+
+  let roboCarregando = null;
+  function carregarRobo() {
+    if (!roboCarregando) roboCarregando = new Promise((ok, falha) => {
+      if (window.turnstile) { ok(); return; }
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      s.async = true;
+      s.onload = () => ok();
+      s.onerror = () => { roboCarregando = null; falha(new Error("sem a verificação")); };
+      document.head.appendChild(s);
+    });
+    return roboCarregando;
+  }
+
+  /* Põe a verificação dentro de um formulário, logo acima do botão, e
+     devolve duas funções: token() espera a verificação e entrega o código
+     de uso único; renovar() pede um código novo depois de cada tentativa. */
+  function verificacao(form) {
+    if (!CHAVE_ROBO) return { token: async () => undefined, renovar() {} };
+    const cx = document.createElement("div");
+    cx.className = "cp-robo";
+    form.insertBefore(cx, form.querySelector(".cp-bt"));
+    let id = null, atual = null;
+    const esperando = [];
+    const entregar = codigo => { atual = codigo; esperando.splice(0).forEach(f => f(codigo)); };
+    carregarRobo().then(() => {
+      id = window.turnstile.render(cx, {
+        sitekey: CHAVE_ROBO, language: "pt-br", theme: "light", size: "flexible", appearance: "interaction-only",
+        callback: entregar,
+        "expired-callback": () => { atual = null; },
+        "error-callback": () => { atual = null; },
+      });
+    }).catch(() => {});
+    return {
+      token: () => new Promise((ok, falha) => {
+        if (atual) { ok(atual); return; }
+        esperando.push(ok);
+        setTimeout(() => falha(new Error("A verificação contra robôs não terminou. Recarregue a página e tente de novo.")), 20000);
+      }),
+      renovar() { atual = null; try { if (id !== null) window.turnstile.reset(id); } catch (e) {} },
+    };
+  }
+
   const CHAVE_DONO = "hub-controle:dono";
   const PAGINA = location.origin + location.pathname;
 
@@ -92,6 +154,8 @@ const Conta = (function () {
   .cp-msg { font-size:13.5px; line-height:1.5; margin-top:14px; padding:10px 13px; border-radius:10px; }
   .cp-msg.erro { background:#FBE9EB; color:#8E2233; } .cp-msg.ok { background:#E4F3F0; color:#1F7A6E; }
   .cp-rodape { font-size:11.5px; line-height:1.55; color:var(--ink-3,#66717F); margin:16px 6px 0; text-align:center; }
+  .cp-robo { margin-top:14px; }
+  .cp-robo:empty { margin-top:0; }
   .cp-cx p.cp-termos { font-size:12px; line-height:1.5; color:var(--ink-3,#66717F); margin:12px 0 0; }
   .cp-cx p.cp-termos a { color:var(--signal,#1A4893); }
   `;
@@ -128,6 +192,7 @@ const Conta = (function () {
     if (/expired|invalid.*(token|link)|otp/i.test(m)) return "Este link já foi usado ou expirou. Use \"Esqueci a senha\" para receber um novo.";
     if (/should be different/i.test(m)) return "A senha nova precisa ser diferente da anterior.";
     if (/at least|weak|should contain|characters/i.test(m)) return "Senha fraca. Use pelo menos 8 caracteres, misturando letras e números.";
+    if (/captcha/i.test(m)) return "A verificação contra robôs não passou. Recarregue a página e tente de novo.";
     if (/rate limit|too many|security purposes/i.test(m)) return "Muitas tentativas seguidas. Espere um minuto e tente de novo.";
     if (/already registered|already exists/i.test(m)) return "Já existe uma conta com este e-mail. Use \"Já tenho conta\" e, se precisar, \"Esqueci a senha\".";
     if (/signups? not allowed|not allowed/i.test(m)) return "O cadastro está fechado no momento. Tente de novo mais tarde.";
@@ -165,6 +230,7 @@ const Conta = (function () {
 
     const form = p.querySelector("form"), msg = p.querySelector(".cp-msg"), bt = p.querySelector(".cp-bt");
     const dizer = (texto, tipo) => { msg.textContent = texto; msg.className = "cp-msg " + tipo; msg.hidden = false; };
+    const robo = verificacao(form);
 
     p.querySelector("[data-ja-tenho]").addEventListener("click", () => telaEntrar(null, resolver));
 
@@ -182,7 +248,12 @@ const Conta = (function () {
       // o link de confirmação leva ao Meu Controle, que sabe receber a pessoa
       const destino = location.origin + location.pathname.replace(/[^\/]*$/, "") + "controle.html";
       // o nome vai junto com a conta e vira o perfil das mentorias (mentorias-dados.js)
-      const r = await cliente().auth.signUp({ email, password: a, options: { emailRedirectTo: destino, data: { nome: nome } } });
+      let codigoRobo;
+      try { codigoRobo = await robo.token(); }
+      catch (e) { dizer(e.message, "erro"); bt.disabled = false; bt.textContent = "Criar conta"; return; }
+      const r = await cliente().auth.signUp({ email, password: a,
+        options: { emailRedirectTo: destino, data: { nome: nome }, captchaToken: codigoRobo } });
+      robo.renovar();
       bt.disabled = false; bt.textContent = "Criar conta";
       if (r.error) { dizer(traduzir(r.error), "erro"); return; }
 
@@ -228,6 +299,7 @@ const Conta = (function () {
       const form = p.querySelector("form"), msg = p.querySelector(".cp-msg"), bt = p.querySelector(".cp-bt");
       const dizer = (texto, tipo) => { msg.textContent = texto; msg.className = "cp-msg " + tipo; msg.hidden = false; };
       if (avisoInicial) dizer(avisoInicial.texto, avisoInicial.tipo || "erro");
+      const robo = verificacao(form);
 
       p.querySelector("[data-criar]").addEventListener("click", () => telaCriarConta(resolver));
 
@@ -237,7 +309,11 @@ const Conta = (function () {
         const senha = p.querySelector("#cp-senha").value;
         if (!email || !senha) { dizer("Preencha o e-mail e a senha.", "erro"); return; }
         bt.disabled = true; bt.textContent = "Entrando…";
-        const r = await cliente().auth.signInWithPassword({ email, password: senha });
+        let codigoRobo;
+        try { codigoRobo = await robo.token(); }
+        catch (e) { dizer(e.message, "erro"); bt.disabled = false; bt.textContent = "Entrar"; return; }
+        const r = await cliente().auth.signInWithPassword({ email, password: senha, options: { captchaToken: codigoRobo } });
+        robo.renovar();
         if (r.error) { dizer(traduzir(r.error), "erro"); bt.disabled = false; bt.textContent = "Entrar"; return; }
         resolver(r.data.user);
       });
@@ -245,7 +321,10 @@ const Conta = (function () {
       p.querySelector("[data-esqueci]").addEventListener("click", async () => {
         const email = p.querySelector("#cp-email").value.trim();
         if (!email) { dizer("Escreva o seu e-mail no campo acima e clique de novo em \"Esqueci a senha\".", "erro"); return; }
-        const r = await cliente().auth.resetPasswordForEmail(email, { redirectTo: PAGINA });
+        let codigoRobo;
+        try { codigoRobo = await robo.token(); } catch (e) { dizer(e.message, "erro"); return; }
+        const r = await cliente().auth.resetPasswordForEmail(email, { redirectTo: PAGINA, captchaToken: codigoRobo });
+        robo.renovar();
         if (r.error) { dizer(traduzir(r.error), "erro"); return; }
         dizer("Se este e-mail tiver conta, chegou nele um link para criar uma senha nova. Olhe também o spam.", "ok");
       });
