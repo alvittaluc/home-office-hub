@@ -311,9 +311,9 @@ body > header.site .hd { max-width:1460px; }
 <script src="pulso-site.js"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
-<script src="controle-ui.js?v=3"></script>
-<script src="controle-trabalho.js?v=3"></script>
-<script src="controle-hoje.js"></script>
+<script src="controle-ui.js?v=4"></script>
+<script src="controle-trabalho.js?v=4"></script>
+<script src="controle-hoje.js?v=2"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
    junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
@@ -387,7 +387,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   function acharEmpresa(nome) {
     if (!nome) return null;
     const alvo = Dados.normalizar(nome);
-    return EMPRESAS.find(e => Dados.normalizar(e.nome) === alvo || Dados.normalizar(e.id) === alvo) || null;
+    // apelidos: outras formas de escrever o nome que devem cair na mesma empresa
+    return EMPRESAS.find(e => Dados.normalizar(e.nome) === alvo || Dados.normalizar(e.id) === alvo ||
+      (e.apelidos || []).some(a => Dados.normalizar(a) === alvo)) || null;
   }
 
   function marcaHtml(nome, tam) {
@@ -601,7 +603,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
             <div class="ct-tile-sub">${r.dias} ${r.dias === 1 ? "dia registrado" : "dias registrados"}</div></div>
           <div class="ct-tile"><div class="ct-tile-rot">Por hora, na prática</div>
             <div class="ct-tile-val">${esc(Dados.escreverDinheiro(r.porHoraBRL, "BRL"))}</div>
-            <div class="ct-tile-sub">tudo somado, dividido pelas horas</div></div>
+            <div class="ct-tile-sub">ganho dos dias com horas, dividido pelas horas</div></div>
           <div class="ct-tile"><div class="ct-tile-rot">Recebido</div>
             <div class="ct-tile-val">${esc(Dados.escreverDinheiro(r.recebidoBRL, "BRL"))}</div>
             <div class="ct-tile-sub">o que caiu na conta</div></div>
@@ -1095,10 +1097,14 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       const rotPer = UI.diaDoPeriodo(t) === 1 ? "no mês" : "no período";
       const regs = REGISTROS.filter(r => r.trabalhoId === t.id && r.data >= per.de && r.data <= per.ate);
       const horas = regs.reduce((s, r) => s + (+r.horas || 0), 0);
+      const tarefas = regs.reduce((s, r) => s + UI.qtdTarefas(r), 0);
+      const porTarefa = t.pagamento === "tarefa";
       let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
       if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
-      const hoje = regs.some(r => r.data === Dados.hoje() && r.horas);
-      const ultimo = REGISTROS.filter(r => r.trabalhoId === t.id && r.horas).sort((a, b) => (a.data < b.data ? 1 : -1))[0];
+      // em trabalho por tarefa, o dia vale como registrado com tarefas, mesmo sem horas
+      const feito = r => !!(r.horas || (porTarefa && UI.diaFeito(r)));
+      const hoje = regs.some(r => r.data === Dados.hoje() && feito(r));
+      const ultimo = REGISTROS.filter(r => r.trabalhoId === t.id && feito(r)).sort((a, b) => (a.data < b.data ? 1 : -1))[0];
 
       return `<div class="ct-trab${t.estado !== "ativo" ? " pausado" : ""}" style="--cor:${esc(t.cor || Graficos.corDe(0))}">
         <div class="ct-trab-cab">
@@ -1109,7 +1115,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           </div>
         </div>
         <div class="ct-trab-nums">
-          <div><div class="ct-trab-num">${esc(Dados.escreverHoras(horas) || "0h")}</div><div class="ct-trab-rot">${rotPer}</div></div>
+          ${porTarefa
+            ? `<div><div class="ct-trab-num">${esc(UI.escreverQtd(tarefas))}</div><div class="ct-trab-rot">${tarefas === 1 ? "tarefa" : "tarefas"} ${rotPer}</div></div>`
+            : `<div><div class="ct-trab-num">${esc(Dados.escreverHoras(horas) || "0h")}</div><div class="ct-trab-rot">${rotPer}</div></div>`}
           <div><div class="ct-trab-num">${esc(Dados.escreverDinheiro(bruto, t.moeda || "BRL"))}</div><div class="ct-trab-rot">bruto ${rotPer}</div></div>
         </div>
         <div class="ct-trab-pe">
@@ -1167,6 +1175,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           ${UI.campo({ nome: "moeda", rotulo: "Moeda", tipo: "escolha", valor: t.moeda,
                        opcoes: Object.keys(Dados.MOEDAS).map(m => ({ valor: m, nome: m })) })}
         </div>
+        ${UI.campoTipos(t)}
         ${UI.campo({ nome: "ciclo", rotulo: "Quando paga", tipo: "escolha", valor: t.ciclo,
                      opcoes: Object.keys(UI.CICLOS).map(k => ({ valor: k, nome: UI.CICLOS[k] })) })}
         ${UI.campo({ nome: "diaPeriodo", rotulo: "Dia em que o período começa", tipo: "number",
@@ -1180,11 +1189,19 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       acao: async (d) => {
         const empresa = UI.ler(d, "empresa");
         if (!empresa) { UI.erroNoPainel(d, "Escreva o nome da empresa."); return false; }
+        const pagamento = UI.ler(d, "pagamento");
+        let tipos = [];
+        if (pagamento === "tarefa") {
+          const lido = UI.lerTipos(d);
+          if (lido.erro) { UI.erroNoPainel(d, lido.erro); return false; }
+          tipos = lido.tipos;
+        }
         const salvo = await Dados.salvar("trabalhos", Object.assign({}, t, {
           empresa,
           projeto: UI.ler(d, "projeto") || empresa,
           plataforma: UI.ler(d, "plataforma"),
-          pagamento: UI.ler(d, "pagamento"),
+          pagamento,
+          tipos,
           valor: UI.ler(d, "valor") === "" ? 0 : +UI.ler(d, "valor"),
           moeda: UI.ler(d, "moeda"),
           ciclo: UI.ler(d, "ciclo"),
@@ -1210,16 +1227,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       b.style.borderColor = "var(--ink,#10203A)";
     }));
 
-    const selPag = dlg.querySelector('[name="pagamento"]');
-    const ajuda = dlg.querySelector("#ajudaPag");
-    const rotValor = dlg.querySelector('label[for="c-valor"]');
-    function atualizarPag() {
-      const k = selPag.value;
-      ajuda.textContent = UI.PAGAMENTOS[k].ajuda;
-      rotValor.textContent = k === "hora" ? "Valor por hora" : k === "mes" ? "Valor por mês" : "Valor de referência (opcional)";
-    }
-    selPag.addEventListener("change", atualizarPag);
-    atualizarPag();
+    // texto de ajuda, nome do campo de valor e lista de tipos de tarefa
+    UI.ligarFormaDePagamento(dlg);
   }
 
   /* Registrar um dia sem entrar no trabalho. */

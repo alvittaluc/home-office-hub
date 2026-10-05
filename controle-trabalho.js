@@ -95,8 +95,7 @@ const Trabalho = (function () {
             T.plataforma && Dados.normalizar(T.plataforma) !== Dados.normalizar(T.empresa)
               ? " · " + esc(T.plataforma) : ""}</div>
           <div class="t-etiqs">
-            <span class="t-etiq viva">${esc((UI.PAGAMENTOS[T.pagamento] || {}).nome || "")}${
-              T.pagamento !== "dia" && T.valor ? " · " + esc(Dados.escreverDinheiro(T.valor, moeda)) + (T.pagamento === "hora" ? " por hora" : " por mês") : ""}</span>
+            <span class="t-etiq viva">${esc(UI.rotuloPagamento(T))}</span>
             <span class="t-etiq">${esc(UI.CICLOS[T.ciclo] || "")}</span>
             ${diaPer !== 1 ? `<span class="t-etiq">Período começa no dia ${diaPer}</span>` : ""}
             ${T.inicio ? `<span class="t-etiq">Desde ${esc(Dados.dataBonita(T.inicio))}</span>` : ""}
@@ -140,16 +139,33 @@ const Trabalho = (function () {
     const per = periodoNaTela(), dia = UI.diaDoPeriodo(T), atual = ehOAtual(per);
     const brutoMoeda = resumo.previstoPorMoeda[moeda] || 0;
     const hoje = REGISTROS.find(r => r.data === Dados.hoje());
+
+    // O cartão de hoje fala em tarefas quando o trabalho é pago por tarefa.
+    const porTarefa = T.pagamento === "tarefa";
+    const qtdHoje = hoje ? UI.qtdTarefas(hoje) : 0;
+    const feitoHoje = !!(hoje && (hoje.horas || (porTarefa && UI.diaFeito(hoje))));
+    let marcaHoje = porTarefa ? "Ainda sem tarefas hoje" : "Ainda sem horas hoje";
+    if (feitoHoje && porTarefa) {
+      marcaHoje = "✓ " + [
+        qtdHoje ? UI.escreverTarefas(qtdHoje) : "",
+        hoje.horas ? Dados.escreverHoras(hoje.horas) : "",
+      ].filter(Boolean).join(" em ");
+      if (!qtdHoje && !hoje.horas) marcaHoje = "✓ Dia registrado";
+    } else if (feitoHoje) {
+      marcaHoje = "✓ " + Dados.escreverHoras(hoje.horas) + " registradas";
+    }
+    const ganhoHoje = porTarefa && hoje ? UI.ganhoBruto(hoje, T) : 0;
+
     return `
       <div class="t-cartao">
         <h2>Hoje</h2>
         <div class="t-corpo t-hoje">
-          <span class="t-hoje-marca${hoje && hoje.horas ? " feito" : ""}">
-            ${hoje && hoje.horas ? `✓ ${esc(Dados.escreverHoras(hoje.horas))} registradas` : "Ainda sem horas hoje"}
-          </span>
+          <span class="t-hoje-marca${feitoHoje ? " feito" : ""}">${esc(marcaHoje)}</span>
+          ${ganhoHoje ? `<p class="t-menor">Ganho de hoje: <b style="color:var(--ink,#10203A);font-weight:600;">${esc(Dados.escreverDinheiro(ganhoHoje, moeda))}</b></p>` : ""}
           ${hoje && hoje.observacoes ? `<p class="t-menor" style="line-height:1.55;">${esc(hoje.observacoes)}</p>` : ""}
-          <button class="t-b pequeno${hoje && hoje.horas ? "" : " forte"}" data-dia style="align-self:flex-start;">
-            ${hoje && hoje.horas ? "Editar as horas" : "Lançar as horas"}</button>
+          <button class="t-b pequeno${feitoHoje ? "" : " forte"}" data-dia style="align-self:flex-start;">
+            ${porTarefa ? (feitoHoje ? "Editar o dia" : "Lançar as tarefas")
+                        : (feitoHoje ? "Editar as horas" : "Lançar as horas")}</button>
           ${buracos()}
         </div>
       </div>
@@ -165,15 +181,20 @@ const Trabalho = (function () {
           ${atual ? "" : `<button class="t-b pequeno" data-per-atual>Voltar ao atual</button>`}
         </div>
         <div class="t-corpo t-nums">
-          <div><div class="t-num">${esc(Dados.escreverHoras(resumo.horas) || "0h")}</div>
-            <div class="t-rot">horas em ${resumo.dias} ${resumo.dias === 1 ? "dia" : "dias"}</div></div>
+          ${porTarefa || resumo.tarefas
+            ? `<div><div class="t-num">${esc(UI.escreverQtd(resumo.tarefas))}</div>
+                <div class="t-rot">${resumo.tarefas === 1 ? "tarefa" : "tarefas"} em ${resumo.dias} ${resumo.dias === 1 ? "dia" : "dias"}</div>
+                ${resumo.horas ? `<div class="t-menor">${esc(Dados.escreverHoras(resumo.horas))} de trabalho</div>` : ""}</div>`
+            : `<div><div class="t-num">${esc(Dados.escreverHoras(resumo.horas) || "0h")}</div>
+                <div class="t-rot">horas em ${resumo.dias} ${resumo.dias === 1 ? "dia" : "dias"}</div></div>`}
           <div><div class="t-num">${esc(Dados.escreverDinheiro(brutoMoeda, moeda))}</div>
             <div class="t-rot">bruto no período</div>
             ${moeda !== "BRL" ? `<div class="t-menor">${esc(Dados.escreverDinheiro(resumo.previstoBRL, "BRL"))}${resumo.estimado ? " (câmbio estimado)" : ""}</div>` : ""}</div>
           <div><div class="t-num">${esc(Dados.escreverDinheiro(resumo.recebidoBRL, "BRL"))}</div>
             <div class="t-rot">recebido no período</div></div>
-          <div><div class="t-num">${esc(Dados.escreverDinheiro(resumo.porHoraBRL, "BRL"))}</div>
-            <div class="t-rot">por hora, na prática</div></div>
+          <div><div class="t-num">${resumo.horas || !porTarefa ? esc(Dados.escreverDinheiro(resumo.porHoraBRL, "BRL")) : "—"}</div>
+            <div class="t-rot">por hora, na prática</div>
+            ${porTarefa && !resumo.horas ? `<div class="t-menor">aparece quando você lança as horas</div>` : ""}</div>
         </div>
       </div>
 
@@ -201,14 +222,15 @@ const Trabalho = (function () {
     const mapa = {};
     const linhaDe = data => {
       const p = UI.periodoDe(data, dia);
-      return mapa[p.de] || (mapa[p.de] = { per: p, horas: 0, dias: new Set(), bruto: 0, recebido: {}, temRegistro: false });
+      return mapa[p.de] || (mapa[p.de] = { per: p, horas: 0, tarefas: 0, dias: new Set(), bruto: 0, recebido: {}, temRegistro: false });
     };
     REGISTROS.forEach(r => {
-      if (!(r.horas || r.valor || r.observacoes)) return;
+      if (!UI.temAlgo(r)) return;
       const l = linhaDe(r.data);
       l.temRegistro = true;
       l.horas += +r.horas || 0;
-      if (r.horas) l.dias.add(r.data);
+      l.tarefas += UI.qtdTarefas(r);
+      if (UI.diaFeito(r)) l.dias.add(r.data);
       l.bruto += UI.ganhoBruto(r, T);
     });
     PAGAMENTOS.forEach(p => {
@@ -219,11 +241,13 @@ const Trabalho = (function () {
 
     const linhas = Object.keys(mapa).sort().reverse().map(k => mapa[k]);
     linhas.forEach(l => { if (T.pagamento === "mes" && l.temRegistro) l.bruto += +T.valor || 0; });
+    const comTarefas = T.pagamento === "tarefa" || linhas.some(l => l.tarefas);
 
     return `<table class="t-hist t-pers">
-      <thead><tr><th>Período</th><th>Horas</th><th>Dias</th><th>Bruto</th><th>Recebido</th></tr></thead>
+      <thead><tr><th>Período</th>${comTarefas ? "<th>Tarefas</th>" : ""}<th>Horas</th><th>Dias</th><th>Bruto</th><th>Recebido</th></tr></thead>
       <tbody>${linhas.map(l => `<tr data-abrir-per="${esc(l.per.de)}"${l.per.de === naTela.de ? ' class="t-sel"' : ""}>
         <td class="t-dia">${esc(UI.nomeDoPeriodo(l.per, dia))}${ehOAtual(l.per) ? ' <span class="t-agora">atual</span>' : ""}</td>
+        ${comTarefas ? `<td class="t-h">${l.tarefas ? esc(UI.escreverQtd(l.tarefas)) : "—"}</td>` : ""}
         <td class="t-h">${esc(Dados.escreverHoras(l.horas) || "—")}</td>
         <td class="t-h">${l.dias.size || "—"}</td>
         <td class="t-h">${l.bruto ? esc(Dados.escreverDinheiro(l.bruto, moeda)) : "—"}</td>
@@ -234,31 +258,46 @@ const Trabalho = (function () {
 
   /* Dias sem registro na semana, dito sem cobrar nada de ninguém. */
   function buracos() {
+    const porTarefa = T.pagamento === "tarefa";
     const de = Dados.segundaDa(Dados.hoje());
     const passados = Dados.diasEntre(de, Dados.hoje()) + 1;
-    const comHoras = new Set(REGISTROS.filter(r => r.data >= de && r.data <= Dados.hoje() && r.horas).map(r => r.data)).size;
-    const faltam = passados - comHoras;
+    const feitos = new Set(REGISTROS.filter(r => r.data >= de && r.data <= Dados.hoje() &&
+      (r.horas || (porTarefa && UI.diaFeito(r)))).map(r => r.data)).size;
+    const faltam = passados - feitos;
     if (faltam <= 0) return `<p class="t-menor">Semana toda registrada até aqui.</p>`;
-    return `<p class="t-menor">${faltam} ${faltam === 1 ? "dia desta semana ainda não tem" : "dias desta semana ainda não têm"} horas.
+    return `<p class="t-menor">${faltam} ${faltam === 1 ? "dia desta semana ainda não tem" : "dias desta semana ainda não têm"} ${porTarefa ? "tarefas" : "horas"}.
       Dá para lançar depois, é só escolher a data.</p>`;
   }
 
   function htmlHistorico(per) {
-    const comAlgo = REGISTROS.filter(r => r.data >= per.de && r.data <= per.ate &&
-                                          (r.horas || r.valor || r.observacoes));
+    const comAlgo = REGISTROS.filter(r => r.data >= per.de && r.data <= per.ate && UI.temAlgo(r));
     if (!comAlgo.length) {
       return `<p class="t-vazio">${REGISTROS.length ? "Nenhum dia registrado neste período." : "Nenhum dia registrado ainda."}</p>`;
     }
     const lista = comAlgo;
-    const porTarefa = T.pagamento === "dia";
+    const moeda = T.moeda || "BRL";
+    // As colunas de tarefa aparecem pelo que os dias têm, e não só pela forma
+    // de pagamento de hoje: o trabalho pode ter mudado de forma no caminho.
+    const comTarefas = T.pagamento === "tarefa" || lista.some(r => UI.qtdTarefas(r));
+    const comGanho = T.pagamento === "dia" || comTarefas;
+    const celulaTarefas = r => {
+      const qtd = UI.qtdTarefas(r);
+      if (!qtd) return "—";
+      const linhas = (r.tarefas || []).filter(l => l && +l.qtd > 0).length;
+      return esc(UI.escreverQtd(qtd)) +
+        (linhas > 1 ? `<span class="t-det">${esc(UI.detalheTarefas(r, T))}</span>` : "");
+    };
     return `<table class="t-hist">
-      <thead><tr><th>Dia</th><th>Horas</th>${porTarefa ? "<th>Ganho</th>" : ""}<th>Observações</th></tr></thead>
-      <tbody>${lista.map(r => `<tr data-reg="${esc(r.data)}">
+      <thead><tr><th>Dia</th>${comTarefas ? "<th>Tarefas</th>" : ""}<th>Horas</th>${comGanho ? "<th>Ganho</th>" : ""}<th>Observações</th></tr></thead>
+      <tbody>${lista.map(r => {
+        const ganho = comGanho ? UI.ganhoBruto(r, T) : 0;
+        return `<tr data-reg="${esc(r.data)}">
         <td class="t-dia">${esc(Dados.dataBonita(r.data))}</td>
-        <td class="t-h">${esc(Dados.escreverHoras(r.horas) || "—")}</td>
-        ${porTarefa ? `<td class="t-h">${esc(r.valor ? Dados.escreverDinheiro(r.valor, T.moeda || "BRL") : "—")}</td>` : ""}
+        ${comTarefas ? `<td class="t-h t-tar">${celulaTarefas(r)}</td>` : ""}
+        <td class="t-h">${+r.horas ? esc(Dados.escreverHoras(r.horas)) : "—"}</td>
+        ${comGanho ? `<td class="t-h">${esc(ganho ? Dados.escreverDinheiro(ganho, moeda) : "—")}</td>` : ""}
         <td class="t-obs">${esc(r.observacoes || "")}</td>
-      </tr>`).join("")}</tbody></table>`;
+      </tr>`; }).join("")}</tbody></table>`;
   }
 
   function htmlPagamentos() {
@@ -617,6 +656,45 @@ const Trabalho = (function () {
      EDITAR O TRABALHO
      ══════════════════════════════════════════════════════════ */
 
+  /* O valor de um tipo de tarefa mudou e já existem dias lançados com o
+     valor antigo. A ferramenta pergunta, porque os dois casos existem: o
+     projeto passou a pagar outro valor (os dias antigos ficam como estão),
+     ou o valor estava errado desde o começo (os dias antigos mudam junto).
+     Devolve quantos dias foram corrigidos. */
+  async function valorNovoNosDias(antes, depois, moeda) {
+    const mudou = [];
+    depois.forEach(n => {
+      const a = antes.find(x => x.id === n.id);
+      if (a && +a.valor !== +n.valor) mudou.push({ id: n.id, nome: n.nome, de: +a.valor || 0, para: +n.valor || 0 });
+    });
+    if (!mudou.length) return 0;
+
+    const trocaDe = l => l && mudou.find(m => m.id === l.tipoId && (+l.valor || 0) === m.de);
+    const afetados = (await Dados.listar("registros", { trabalhoId: ID }))
+      .filter(r => (r.tarefas || []).some(l => +((l || {}).qtd) > 0 && trocaDe(l)));
+    if (!afetados.length) return 0;
+
+    const ok = await UI.confirmar({
+      titulo: "Mudar também os dias já lançados?",
+      texto: mudou.map(m => `<b>${esc(m.nome)}</b> passou de ${esc(UI.escreverUnitario(m.de, moeda))} para ${esc(UI.escreverUnitario(m.para, moeda))}.`).join("<br>") +
+        `<br><br>${afetados.length === 1 ? "Há 1 dia lançado" : "Há " + afetados.length + " dias lançados"} com o valor antigo.
+         Se o projeto mudou o valor agora, deixe os dias como estão.
+         Se o valor estava errado desde o começo, corrija os dias também.`,
+      acaoTexto: "Corrigir os dias também",
+      cancelarTexto: "Deixar como estão",
+    });
+    if (!ok) return 0;
+
+    for (const r of afetados) {
+      const tarefas = r.tarefas.map(l => {
+        const m = trocaDe(l);
+        return m ? Object.assign({}, l, { valor: m.para }) : l;
+      });
+      await Dados.salvar("registros", Object.assign({}, r, { tarefas }));
+    }
+    return afetados.length;
+  }
+
   function editarTrabalho() {
     UI.painel({
       titulo: "Editar trabalho",
@@ -634,11 +712,13 @@ const Trabalho = (function () {
         </div>
         ${UI.campo({ nome: "pagamento", rotulo: "Como paga", tipo: "escolha", valor: T.pagamento,
                      opcoes: Object.keys(UI.PAGAMENTOS).map(k => ({ valor: k, nome: UI.PAGAMENTOS[k].nome })) })}
+        <div class="u-ajuda" id="ajudaPag"></div>
         <div class="u-dupla">
           ${UI.campo({ nome: "valor", rotulo: "Valor", tipo: "number", valor: T.valor })}
           ${UI.campo({ nome: "moeda", rotulo: "Moeda", tipo: "escolha", valor: T.moeda,
                        opcoes: Object.keys(Dados.MOEDAS).map(m => ({ valor: m, nome: m })) })}
         </div>
+        ${UI.campoTipos(T)}
         <div class="u-tripla">
           ${UI.campo({ nome: "ciclo", rotulo: "Quando paga", tipo: "escolha", valor: T.ciclo,
                        opcoes: Object.keys(UI.CICLOS).map(k => ({ valor: k, nome: UI.CICLOS[k] })) })}
@@ -656,23 +736,39 @@ const Trabalho = (function () {
       acao: async (d) => {
         const empresa = UI.ler(d, "empresa");
         if (!empresa) { UI.erroNoPainel(d, "Escreva o nome da empresa."); return false; }
+        const pagamento = UI.ler(d, "pagamento");
+        const moeda = UI.ler(d, "moeda");
+        const antes = UI.tiposDe(T);
+        // Os tipos só são lidos quando a forma é "por tarefa". Em outra forma
+        // a lista fica guardada como estava, para voltar inteira se a pessoa
+        // trocar de novo.
+        let tipos = antes;
+        if (pagamento === "tarefa") {
+          const lido = UI.lerTipos(d);
+          if (lido.erro) { UI.erroNoPainel(d, lido.erro); return false; }
+          tipos = lido.tipos;
+        }
         await Dados.salvar("trabalhos", Object.assign({}, T, {
           empresa, projeto: UI.ler(d, "projeto") || empresa,
           plataforma: UI.ler(d, "plataforma"),
-          pagamento: UI.ler(d, "pagamento"),
+          pagamento,
           valor: UI.ler(d, "valor") === "" ? 0 : +UI.ler(d, "valor"),
-          moeda: UI.ler(d, "moeda"), ciclo: UI.ler(d, "ciclo"),
+          moeda, ciclo: UI.ler(d, "ciclo"),
           estado: UI.ler(d, "estado"), inicio: UI.ler(d, "inicio"),
           diaPeriodo: UI.diaDoPeriodo({ diaPeriodo: UI.ler(d, "diaPeriodo") }),
           cor: d.querySelector('[name="cor"]').value,
+          tipos,
         }));
+        const corrigidos = await valorNovoNosDias(antes, tipos, moeda);
         REF = null;   // o dia do período pode ter mudado: volta para o atual
         await recarregar();
-        UI.aviso("Trabalho salvo.");
+        UI.aviso(corrigidos ? "Trabalho salvo. " + corrigidos + (corrigidos === 1 ? " dia corrigido." : " dias corrigidos.")
+                            : "Trabalho salvo.");
       },
     });
 
     const dlg = document.getElementById("ui-painel");
+    UI.ligarFormaDePagamento(dlg);
     const caixaCores = dlg.querySelector("#cores");
     const campoCor = dlg.querySelector('[name="cor"]');
     caixaCores.innerHTML = Graficos.CORES.map(c =>
@@ -781,6 +877,8 @@ const Trabalho = (function () {
   .t-hist .t-dia { color:var(--ink,#10203A); font-weight:500; white-space:nowrap; font-variant-numeric:tabular-nums; }
   .t-hist .t-h { font-variant-numeric:tabular-nums; white-space:nowrap; }
   .t-hist .t-obs { color:var(--ink-3,#66717F); max-width:340px; }
+  .t-hist .t-tar { white-space:normal; }
+  .t-hist .t-det { display:block; font-size:11.5px; line-height:1.4; color:var(--ink-3,#66717F); margin-top:1px; max-width:340px; }
   /* ── navegação entre períodos ── */
   .t-per { display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
   .t-per-meio { flex:1; min-width:150px; }

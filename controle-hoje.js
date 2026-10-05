@@ -148,21 +148,27 @@ const Hoje = (function () {
       const cartoes = ativos.map(t => {
         const r = doDia.find(x => x.trabalhoId === t.id);
         const h = r ? +r.horas || 0 : 0;
+        // trabalho pago por tarefa mostra as tarefas do dia; as horas vêm junto se houver
+        const q = r ? UI.qtdTarefas(r) : 0;
+        const feito = [q ? UI.escreverTarefas(q) : "", h ? Dados.escreverHoras(h) : ""].filter(Boolean).join(" · ");
         return `<button class="h-dia-cartao" data-dia="${esc(t.id)}">
           <span class="h-dia-nome">
             <i class="h-ponto" style="background:${esc(t.cor || "#2C6BB5")}"></i>
             ${esc(t.projeto || t.empresa)}
           </span>
-          <span class="h-dia-val${h ? "" : " vazio"}">${h ? esc(Dados.escreverHoras(h)) : "lançar"}</span>
+          <span class="h-dia-val${feito ? "" : " vazio"}">${feito ? esc(feito) : "lançar"}</span>
         </button>`;
       }).join("");
 
       const total = doDia.reduce((s, r) => s + (+r.horas || 0), 0);
+      const totalTarefas = doDia.reduce((s, r) => s + UI.qtdTarefas(r), 0);
+      const lancado = [total ? Dados.escreverHoras(total) : "", totalTarefas ? UI.escreverTarefas(totalTarefas) : ""]
+        .filter(Boolean).join(" e ");
       blocos.push({
         peso: 1,
         largo: true,
         html: cartao("O dia",
-          total ? Dados.escreverHoras(total) + " lançadas até agora" : "nada lançado ainda",
+          lancado ? lancado + (total || totalTarefas > 1 ? " lançadas até agora" : " lançada até agora") : "nada lançado ainda",
           `<div class="h-dia">${cartoes}</div>`, true),
       });
     }

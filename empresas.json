@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-08-23",
+  "atualizado": "2026-10-05",
   "nota": "Arquivo dos perfis de empresa, mantido a mao. Editar aqui muda a pagina inicial, a de empresas e a de vagas de uma vez so.",
   "empresas": [
     {
@@ -419,6 +419,43 @@
       "como_entrar": "Candidatura direta na página de carreiras da empresa.",
       "pagamento": "Informado em cada vaga.",
       "clientes": "Empresas de IA, tecnologia, saúde, agricultura e mobilidade"
+    },
+    {
+      "id": "peroptyx",
+      "nome": "Peroptyx",
+      "sigla": "PX",
+      "cor": "#FF595A",
+      "bg": "#032F3C",
+      "dom": "peroptyx.com",
+      "logo": "logos/peroptyx.png",
+      "apelidos": [
+        "Peroptics",
+        "Peroptix",
+        "Peroptyx AI"
+      ],
+      "desc": "Mapas · Busca local · Meio período",
+      "link": "https://www.peroptyx.com/community/",
+      "site": "https://www.peroptyx.com/",
+      "linkedin": "https://www.linkedin.com/company/peroptyx/",
+      "tipo": "Empresa de dados de localização para IA",
+      "fundada": "2018",
+      "sede": "Castlebar, Irlanda",
+      "porte": "Informa ter avaliadores em mais de 2.100 cidades de 30 países",
+      "coleta": "monitorando",
+      "destaque": false,
+      "areas": [
+        "Avaliação de mapas",
+        "Relevância de busca",
+        "Avaliação de IA"
+      ],
+      "resumo": "Empresa irlandesa que fornece dados de localização e avaliação de modelos para marcas globais de tecnologia. O trabalho mais comum é conferir se o que um aplicativo de mapas mostra está certo, e por isso ela contrata quem mora no próprio país e conhece a região.",
+      "curto": "Avaliação de mapas e de busca local para a sua região, em meio período e no horário que você escolher.",
+      "o_que_voce_faz": "Revisar dados de aplicativos de mapas: conferir se o nome e o horário de um estabelecimento estão certos, se o resultado de uma busca atende ao que a pessoa procurou e se a distância entre a partida e o destino faz sentido.",
+      "bom_para": "Quem conhece bem a própria cidade, pesquisa com facilidade na internet e procura um trabalho de 10 a 20 horas por semana, conforme a oferta de tarefas.",
+      "como_entrar": "Na página da comunidade você escolhe o país no mapa e vê as funções abertas. Depois da inscrição vêm provas online de qualificação, e só começa a trabalhar quem passa. A empresa pede que você more no país há pelo menos cinco anos e tenha fluência em inglês e no idioma local. Aceita uma pessoa por residência.",
+      "pagamento": "Por tarefa concluída, em calendário combinado com a empresa.",
+      "clientes": "Marcas globais de tecnologia de consumo",
+      "atencao": "A empresa informa que não está contratando no Brasil no momento. Na página da comunidade dá para deixar nome e e-mail e ser avisado quando abrir."
     }
   ]
 }
