@@ -5,10 +5,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Página não encontrada — Home Office Hub</title>
 <meta name="robots" content="noindex">
+<script>
+/* O site mora em  no endereço do GitHub e na raiz no domínio
+   próprio. Esta linha descobre qual é o caso, para os links daqui funcionarem
+   nos dois, de qualquer endereço que tenha dado erro. */
+(function () {
+  var b = document.createElement("base");
+  b.href = location.pathname.indexOf("/home-office-hub/") === 0 ? "/home-office-hub/" : "/";
+  document.head.appendChild(b);
+})();
+</script>
 
-<link rel="icon" href="/home-office-hub/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/home-office-hub/favicon-32.png">
-<link rel="apple-touch-icon" href="/home-office-hub/apple-touch-icon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +32,8 @@
 
      Ela é independente de propósito: não usa o estilo.css nem o
      layout.js, porque o erro pode acontecer em qualquer endereço e
-     os caminhos relativos quebrariam. Por isso todos os links aqui
-     começam com /home-office-hub/.
+     os caminhos relativos quebrariam. Por isso o script do topo marca a
+     base certa (/home-office-hub/ ou a raiz do domínio) antes dos links.
      ══════════════════════════════════════════════════════════════ -->
 
 <style>
@@ -89,8 +99,8 @@
 <body>
 
 <div class="topo">
-  <a class="marca" href="/home-office-hub/">
-    <img src="/home-office-hub/logo.png" alt="" onerror="this.style.display='none'">
+  <a class="marca" href="./">
+    <img src="logo.png" alt="" onerror="this.style.display='none'">
     Home Office Hub
   </a>
 </div>
@@ -104,25 +114,25 @@
   </p>
 
   <div class="saidas">
-    <a class="saida" href="/home-office-hub/vagas.html">
+    <a class="saida" href="vagas.html">
       <b>Ver as vagas abertas</b>
       <span>A lista de hoje, com filtro por área e empresa.</span>
     </a>
-    <a class="saida" href="/home-office-hub/cursos.html">
+    <a class="saida" href="cursos.html">
       <b>Cursos</b>
       <span>Aprender o trabalho antes da primeira candidatura.</span>
     </a>
-    <a class="saida" href="/home-office-hub/empresas.html">
+    <a class="saida" href="empresas.html">
       <b>Empresas</b>
       <span>Quem contrata brasileiro, e como cada uma funciona.</span>
     </a>
-    <a class="saida" href="/home-office-hub/como-funciona.html">
+    <a class="saida" href="como-funciona.html">
       <b>Como funciona</b>
       <span>Do primeiro cadastro ao dinheiro na conta.</span>
     </a>
   </div>
 
-  <a class="voltar" href="/home-office-hub/">
+  <a class="voltar" href="./">
     Voltar para o início
   </a>
 </main>

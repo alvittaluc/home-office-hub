@@ -443,7 +443,7 @@ const Blocos = (function () {
     const itens = Array.isArray(bloco.valor) ? bloco.valor : [];
     caixa.innerHTML =
       `<ul class="b-links">${itens.map((it, i) =>
-        `<li><a href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(it.nome || it.url)}
+        `<li><a href="${esc((typeof urlSegura === "function" ? urlSegura(it.url) : it.url) || "#")}" target="_blank" rel="noopener noreferrer">${esc(it.nome || it.url)}
           <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
          <button class="b-x" data-tira="${i}" aria-label="Remover link">×</button></li>`).join("")}</ul>
        <form class="b-add b-add2">

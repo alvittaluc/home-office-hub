@@ -219,8 +219,8 @@ montarLayout("empresas");
 
         <div class="ficha-acoes">
           <a href="vagas.html?empresa=${e.id}" class="btn primary">Ver vagas desta empresa <span class="arr">→</span></a>
-          <a href="${esc(e.site)}" target="_blank" rel="noopener" class="btn ghost">Site oficial ↗</a>
-          ${e.linkedin ? `<a href="${esc(e.linkedin)}" target="_blank" rel="noopener" class="link-in" aria-label="${esc(e.nome)} no LinkedIn">${IC_LINKEDIN}LinkedIn ↗</a>` : ""}
+          <a href="${esc(urlSegura(e.site) || "#")}" target="_blank" rel="noopener" class="btn ghost">Site oficial ↗</a>
+          ${urlSegura(e.linkedin) ? `<a href="${esc(urlSegura(e.linkedin))}" target="_blank" rel="noopener" class="link-in" aria-label="${esc(e.nome)} no LinkedIn">${IC_LINKEDIN}LinkedIn ↗</a>` : ""}
         </div>
       </div>
     </article>`;

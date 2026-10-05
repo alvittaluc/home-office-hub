@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   publicar:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.publicacao.outputs.page_url }}
@@ -27,10 +27,25 @@ jobs:
       - name: Preparar o Pages
         uses: actions/configure-pages@v5
 
+      # Só vai para o ar o que as páginas usam. Os programas do robô, os
+      # arquivos do banco, as anotações e os dados internos do coletor
+      # continuam no repositório, mas não ficam no endereço do site.
+      - name: Separar os arquivos do site
+        run: |
+          mkdir -p _site
+          rsync -a ./ _site/ \
+            --exclude '.git*' --exclude '.github/' --exclude '_site/' --exclude 'banco/' \
+            --exclude '*.py' --exclude '*.bat' --exclude '*.md' --exclude '*.yml' \
+            --exclude 'pulso-worker.js' --exclude 'previa-alerta*.html' \
+            --exclude 'datas.json' --exclude 'resumos.json' --exclude 'resumos_novos.json' \
+            --exclude 'vagas_para_resumo.json' --exclude 'vagas_revisao.json' \
+            --exclude 'alertas-enviados.json' --exclude 'vagas-curadoria.json' --exclude 'alignerr-mestres.json'
+          echo "Arquivos que vão para o ar: $(find _site -type f | wc -l)"
+
       - name: Empacotar o site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: "_site"
 
       - name: Publicar
         id: publicacao

@@ -368,7 +368,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       <h3>${esc(m.vaga_titulo)} · ${esc(m.empresa)}</h3>
       <div class="quem">${esc(m.mentor.nome)} · ${esc(m.mentor_email || "")} · pedido ${esc(U.haQuanto(m.criado_em))}</div>
       <dl>
-        <div><dt>Link de indicação</dt><dd><a href="${esc(m.link)}" target="_blank" rel="noopener nofollow">${esc(m.link)}</a></dd></div>
+        <div><dt>Link de indicação</dt><dd><a href="${esc(urlSegura(m.link) || "#")}" target="_blank" rel="noopener nofollow">${esc(m.link)}</a></dd></div>
         <div><dt>Comprovação (só a equipe lê)</dt><dd>${U.texto(m.comprovacao)}</dd>
           ${m.provas ? `<div class="md-provas" data-provas-de="${esc(m.id)}"><span class="p-vazio">Abrindo ${m.provas === 1 ? "a imagem" : "as " + m.provas + " imagens"}…</span></div>
             <div class="p-dica">Clique numa imagem para ver em tamanho grande.</div>` : `<div class="p-dica">Nenhuma imagem anexada.</div>`}</div>

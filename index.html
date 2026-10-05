@@ -179,6 +179,8 @@
   .area:nth-child(even) > .moldura { margin-right:0; margin-left:calc(-1 * min(5vw, 64px)); }
   @media (max-width:980px){
     .area > .moldura, .area:nth-child(even) > .moldura { margin-left:0; margin-right:0; }
+    /* a imagem que entra de lado não pode passar da borda da tela */
+    .areas { overflow-x:clip; }
   }
   @media (max-width:860px){ .area{ grid-template-columns:1fr; gap:28px; padding:52px 0; } }
   .area:nth-child(even) .lado-texto { order:2; }
