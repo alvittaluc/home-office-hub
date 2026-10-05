@@ -368,7 +368,7 @@ const MD = (function () {
     cursor:pointer; text-decoration:none !important; transition:background .16s, border-color .16s, box-shadow .16s, transform .16s; }
   .md-bt:hover { background:#173E7E; border-color:#173E7E; } .md-bt[disabled] { opacity:.6; cursor:default; }
   .md-bt.claro { color:var(--ink,#10203A) !important; background:var(--panel,#fff); border-color:var(--line,#DED7CA); }
-  .md-bt.claro:hover { border-color:var(--ink-3,#8A94A1); background:var(--panel,#fff); }
+  .md-bt.claro:hover { border-color:var(--ink-3,#66717F); background:var(--panel,#fff); }
   .md-bt.pequeno { font-size:13.5px; padding:7px 14px; }
   .md-bt.largo { width:100%; }
   .md-ic { flex-shrink:0; display:inline-block; vertical-align:-0.18em; }
@@ -379,11 +379,11 @@ const MD = (function () {
   /* logo da empresa da mentoria */
   .md-logo { border-radius:9px; font-weight:600; letter-spacing:-0.02em; }
   .md-logo-sig { background:var(--bg-soft,#F1ECE3); color:var(--ink-2,#54606F); }
-  .md-link { background:none; border:0; padding:0; font:inherit; font-size:12.5px; color:var(--ink-3,#8A94A1); cursor:pointer; text-decoration:underline; }
+  .md-link { background:none; border:0; padding:0; font:inherit; font-size:12.5px; color:var(--ink-3,#66717F); cursor:pointer; text-decoration:underline; }
   .md-link:hover { color:var(--signal,#1A4893); }
   .md-campo { display:block; margin:14px 0 0; }
   .md-campo > span { display:block; font-size:13px; font-weight:600; color:var(--ink,#10203A); margin-bottom:5px; }
-  .md-campo > small { display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); margin:-2px 0 6px; line-height:1.45; }
+  .md-campo > small { display:block; font-size:12.5px; color:var(--ink-3,#66717F); margin:-2px 0 6px; line-height:1.45; }
   .md-campo input, .md-campo textarea { width:100%; box-sizing:border-box; font:inherit; font-size:15px; color:var(--ink,#10203A);
     background:var(--bg,#F7F4EF); border:1px solid var(--line,#DED7CA); border-radius:12px; padding:11px 13px; }
   .md-campo textarea { min-height:96px; resize:vertical; line-height:1.5; }
@@ -400,7 +400,7 @@ const MD = (function () {
   .md-fala { max-width:min(640px,88%); padding:10px 14px; border-radius:14px; font-size:14.5px; line-height:1.55; color:var(--ink,#10203A);
     background:var(--bg-soft,#F1ECE3); justify-self:start; overflow-wrap:anywhere; white-space:pre-wrap; }
   .md-fala.equipe { background:var(--signal-suave,#EAF1F8); justify-self:end; }
-  .md-fala small { display:block; font-size:12px; color:var(--ink-3,#8A94A1); margin-bottom:2px; white-space:normal; }
+  .md-fala small { display:block; font-size:12px; color:var(--ink-3,#66717F); margin-bottom:2px; white-space:normal; }
   .md-conf { position:fixed; inset:0; z-index:210; background:rgba(10,18,32,.55); display:grid; place-items:center; padding:20px; }
   .md-conf-cx { width:100%; max-width:430px; background:var(--panel,#fff); border-radius:20px; padding:26px 26px 22px;
     box-shadow:0 30px 70px -30px rgba(10,18,32,.6); }
@@ -417,7 +417,7 @@ const MD = (function () {
   .md-bt:focus-visible { outline:2px solid var(--signal,#1A4893); outline-offset:2px; }
   @media (max-width:480px){ .md-conf-bts { flex-direction:column-reverse; } .md-conf-bts .md-bt { width:100%; text-align:center; } }
   .md-anexar { position:relative; display:inline-block; font-size:13.5px; font-weight:600; color:var(--ink,#10203A); background:var(--panel,#fff);
-    border:1px dashed var(--ink-3,#8A94A1); border-radius:12px; padding:10px 16px; cursor:pointer; margin-top:10px; }
+    border:1px dashed var(--ink-3,#66717F); border-radius:12px; padding:10px 16px; cursor:pointer; margin-top:10px; }
   .md-anexar:hover { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
   .md-anexar input { position:absolute; width:1px; height:1px; opacity:0; }
   .md-etq { display:inline-block; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; border-radius:99px; padding:3px 9px; }

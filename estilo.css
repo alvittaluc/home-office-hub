@@ -27,7 +27,7 @@
   /* ── texto ── */
   --ink:#10203A;         /* títulos e texto forte */
   --ink-2:#54606F;       /* texto corrido */
-  --ink-3:#8A94A1;       /* apoio, rótulos */
+  --ink-3:#66717F;       /* apoio, rótulos (contraste 4,5 no papel) */
   --ink-claro:#F2EFE9;   /* texto sobre painel escuro */
   --ink-claro-2:#A9B6C6;
 
@@ -60,6 +60,14 @@ body {
 a { color:inherit; text-decoration:none; }
 img { max-width:100%; }
 ::selection { background:var(--signal); color:#fff; }
+/* Troca de página suave: ao ir de uma página do site para outra, a tela
+   esmaece em vez de piscar. Vale nos navegadores que já sabem fazer isso
+   (Chrome, Edge e Safari novos); nos outros, nada muda. Quem pediu menos
+   movimento no sistema fica sem. */
+@view-transition { navigation:auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration:.22s; }
+@media (prefers-reduced-motion:reduce){ @view-transition { navigation:none; } }
+
 :focus-visible { outline:2px solid var(--signal); outline-offset:3px; border-radius:8px; }
 @media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important; } html{ scroll-behavior:auto; } }
 

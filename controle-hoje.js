@@ -22,7 +22,7 @@ const Hoje = (function () {
   const CSS = `
 .h-cab { margin-bottom:18px; }
 .h-cab h1 { margin:0; }
-.h-cab p { margin:4px 0 0; font-size:13px; color:var(--ink-3,#8A94A1); }
+.h-cab p { margin:4px 0 0; font-size:13px; color:var(--ink-3,#66717F); }
 
 .h-grade { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
 .h-larga { grid-column:1 / -1; }
@@ -42,10 +42,10 @@ const Hoje = (function () {
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 .h-item-sub {
-  display:block; font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:2px;
+  display:block; font-size:12.5px; color:var(--ink-3,#66717F); margin-top:2px;
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
-.h-quando { font-size:12.5px; color:var(--ink-3,#8A94A1); white-space:nowrap; }
+.h-quando { font-size:12.5px; color:var(--ink-3,#66717F); white-space:nowrap; }
 .h-quando.atrasado { color:#8E2233; font-weight:600; }
 .h-ponto { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
 
@@ -58,16 +58,16 @@ const Hoje = (function () {
 .h-dia-cartao:hover { border-color:var(--signal,#1A4893); background:#fff; }
 .h-dia-nome {
   display:flex; align-items:center; gap:7px; font-size:12.5px;
-  color:var(--ink-3,#8A94A1); margin-bottom:6px;
+  color:var(--ink-3,#66717F); margin-bottom:6px;
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 .h-dia-val { font-size:22px; font-weight:600; letter-spacing:-.01em; }
-.h-dia-val.vazio { color:var(--ink-3,#8A94A1); font-weight:500; }
+.h-dia-val.vazio { color:var(--ink-3,#66717F); font-weight:500; }
 
 .h-linha-num { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
 .h-num { font-size:26px; font-weight:600; letter-spacing:-.015em; }
-.h-num-sub { font-size:13px; color:var(--ink-3,#8A94A1); }
-.h-nota { font-size:12.5px; color:var(--ink-3,#8A94A1); margin-top:9px; }
+.h-num-sub { font-size:13px; color:var(--ink-3,#66717F); }
+.h-nota { font-size:12.5px; color:var(--ink-3,#66717F); margin-top:9px; }
 
 .h-buracos { display:flex; flex-wrap:wrap; gap:8px; }
 .h-buraco {

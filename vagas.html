@@ -1061,7 +1061,7 @@ function ordenar(lista) {
 
 /* ── uma linha de vaga ── */
 function linha(v) {
-  const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
+  const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#66717F", bg:"#EAE4D9" };
   const nova = ehNova(v);
   const destino = `href="vaga.html?id=${encodeURIComponent(v.id || "")}"`;
   const rotulo = 'ver detalhes <span class="arr">→</span>';
@@ -1216,7 +1216,7 @@ function montarMarcas(ordem, porEmp) {
   const parado = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const porGrupo = () => window.innerWidth < 560 ? 2 : window.innerWidth < 980 ? 4 : 5;
   const item = (id, i) => {
-    const e = EMPRESAS[id] || { nome:id, sigla:"?", cor:"#8A94A1", bg:"#EAE4D9" };
+    const e = EMPRESAS[id] || { nome:id, sigla:"?", cor:"#66717F", bg:"#EAE4D9" };
     const dela = porEmp[id];
     return `<a class="mrc" href="vagas.html?empresa=${encodeURIComponent(id)}" data-ir style="--i:${i}">
       <span class="sel marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e, 56)}</span>

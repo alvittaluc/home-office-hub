@@ -31,7 +31,7 @@
   .ae button:hover { filter:brightness(1.08); }
   .ae button[disabled] { opacity:.6; cursor:default; }
   .ae-armadilha { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-  .ae-nota { font-size:12.5px !important; color:var(--ink-3,#8A94A1) !important; margin-top:10px !important; }
+  .ae-nota { font-size:12.5px !important; color:var(--ink-3,#66717F) !important; margin-top:10px !important; }
   .ae-area { font-size:14px !important; margin-top:10px !important; }
   .ae-area a { color:var(--signal,#1A4893); font-weight:600; text-decoration:none; white-space:nowrap; }
   .ae-area a:hover { text-decoration:underline; }

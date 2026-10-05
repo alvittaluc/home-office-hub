@@ -91,7 +91,7 @@ const Conta = (function () {
   .cp-link { background:none; border:0; padding:0; margin-top:16px; font:inherit; font-size:13.5px; color:var(--signal,#1A4893); cursor:pointer; text-decoration:underline; }
   .cp-msg { font-size:13.5px; line-height:1.5; margin-top:14px; padding:10px 13px; border-radius:10px; }
   .cp-msg.erro { background:#FBE9EB; color:#8E2233; } .cp-msg.ok { background:#E4F3F0; color:#1F7A6E; }
-  .cp-rodape { font-size:11.5px; line-height:1.55; color:var(--ink-3,#8A94A1); margin:16px 6px 0; text-align:center; }
+  .cp-rodape { font-size:11.5px; line-height:1.55; color:var(--ink-3,#66717F); margin:16px 6px 0; text-align:center; }
   `;
 
   function porta() {
@@ -217,7 +217,7 @@ const Conta = (function () {
             <button class="cp-bt" type="submit">Entrar</button>
           </form>
           <button class="cp-link" type="button" data-esqueci>Esqueci a senha</button>
-          <span style="color:var(--ink-3,#8A94A1);margin:0 6px;">·</span>
+          <span style="color:var(--ink-3,#66717F);margin:0 6px;">·</span>
           <button class="cp-link" type="button" data-criar>Criar conta</button>
           <div class="cp-msg" role="status" hidden></div>
         </div>${RODAPE}`;

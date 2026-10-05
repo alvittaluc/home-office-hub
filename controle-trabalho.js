@@ -73,7 +73,7 @@ const Trabalho = (function () {
 
   function marcaHtml(nome) {
     if (OPC.marcaHtml) return OPC.marcaHtml(nome, 52);
-    return `<span class="t-marca" style="background:var(--bg-soft,#F1ECE3);color:var(--ink-3,#8A94A1);">${esc((nome || "?").trim().slice(0, 2).toUpperCase())}</span>`;
+    return `<span class="t-marca" style="background:var(--bg-soft,#F1ECE3);color:var(--ink-3,#66717F);">${esc((nome || "?").trim().slice(0, 2).toUpperCase())}</span>`;
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -717,7 +717,7 @@ const Trabalho = (function () {
     font-family:var(--display,Georgia,serif); font-weight:400; font-size:clamp(24px,3vw,34px);
     line-height:1.1; letter-spacing:-0.018em; color:var(--ink,#10203A); margin:0 0 6px;
   }
-  .t-sub { font-size:14px; color:var(--ink-3,#8A94A1); }
+  .t-sub { font-size:14px; color:var(--ink-3,#66717F); }
   .t-etiqs { display:flex; gap:7px; flex-wrap:wrap; margin-top:12px; }
   .t-etiq {
     font-size:12px; padding:4px 11px; border-radius:999px; background:var(--bg-soft,#F1ECE3);
@@ -731,7 +731,7 @@ const Trabalho = (function () {
     cursor:pointer; padding:11px 19px; border-radius:999px; border:1px solid var(--line,#DED7CA);
     background:var(--panel,#fff); color:var(--ink,#10203A); transition:all .16s; white-space:nowrap;
   }
-  .t-b:hover { border-color:var(--ink-3,#8A94A1); }
+  .t-b:hover { border-color:var(--ink-3,#66717F); }
   .t-b.forte { background:var(--signal,#1A4893); border-color:var(--signal,#1A4893); color:#fff; }
   .t-b.forte:hover { background:#173E7E; border-color:#173E7E; }
   .t-b.pequeno { padding:8px 14px; font-size:13px; }
@@ -760,8 +760,8 @@ const Trabalho = (function () {
 
   .t-nums { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:18px; }
   .t-num { font-size:24px; font-weight:600; color:var(--ink,#10203A); letter-spacing:-0.02em; font-variant-numeric:tabular-nums; line-height:1.15; }
-  .t-rot { font-size:12px; color:var(--ink-3,#8A94A1); margin-top:3px; }
-  .t-menor { font-size:12px; color:var(--ink-3,#8A94A1); margin-top:2px; }
+  .t-rot { font-size:12px; color:var(--ink-3,#66717F); margin-top:3px; }
+  .t-menor { font-size:12px; color:var(--ink-3,#66717F); margin-top:2px; }
 
   .t-hoje { display:flex; flex-direction:column; gap:12px; }
   .t-hoje-marca {
@@ -773,19 +773,19 @@ const Trabalho = (function () {
   .t-hist { width:100%; border-collapse:collapse; font-size:13.5px; }
   .t-hist th {
     text-align:left; font-weight:500; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em;
-    color:var(--ink-3,#8A94A1); padding:0 10px 8px; white-space:nowrap;
+    color:var(--ink-3,#66717F); padding:0 10px 8px; white-space:nowrap;
   }
   .t-hist td { padding:9px 10px; border-top:1px solid var(--line-soft,#EAE4D9); color:var(--ink-2,#54606F); vertical-align:top; }
   .t-hist tbody tr { cursor:pointer; }
   .t-hist tbody tr:hover td { background:var(--panel-2,#FBF9F5); }
   .t-hist .t-dia { color:var(--ink,#10203A); font-weight:500; white-space:nowrap; font-variant-numeric:tabular-nums; }
   .t-hist .t-h { font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .t-hist .t-obs { color:var(--ink-3,#8A94A1); max-width:340px; }
+  .t-hist .t-obs { color:var(--ink-3,#66717F); max-width:340px; }
   /* ── navegação entre períodos ── */
   .t-per { display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
   .t-per-meio { flex:1; min-width:150px; }
   .t-per-meio h2 { font-family:var(--body,'Geist',sans-serif); font-weight:600; font-size:16px; color:var(--ink,#10203A); margin:0 0 2px; }
-  .t-per-meio span { font-size:12px; color:var(--ink-3,#8A94A1); }
+  .t-per-meio span { font-size:12px; color:var(--ink-3,#66717F); }
   .t-per-seta {
     width:34px; height:34px; border-radius:10px; border:1px solid var(--line,#DED7CA); background:var(--panel,#fff);
     color:var(--ink,#10203A); font-size:20px; line-height:1; cursor:pointer; flex-shrink:0;
@@ -797,17 +797,17 @@ const Trabalho = (function () {
     font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;
     padding:2px 7px; border-radius:999px; background:#E4F3F0; color:#1F7A6E;
   }
-  .t-vazio { padding:30px 10px; text-align:center; font-size:13.5px; color:var(--ink-3,#8A94A1); }
+  .t-vazio { padding:30px 10px; text-align:center; font-size:13.5px; color:var(--ink-3,#66717F); }
   .t-vaziao { text-align:center; padding:60px 24px; }
   .t-vaziao h3 { font-size:17px; font-weight:600; color:var(--ink,#10203A); margin-bottom:7px; }
-  .t-vaziao p { font-size:14px; color:var(--ink-3,#8A94A1); }
+  .t-vaziao p { font-size:14px; color:var(--ink-3,#66717F); }
 
   .t-pgs { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px; }
   .t-pgs li { display:flex; align-items:center; gap:11px; padding:9px 0; border-top:1px solid var(--line-soft,#EAE4D9); font-size:13.5px; }
   .t-pgs li:first-child { border-top:0; }
   .t-pgs button { background:none; border:0; padding:0; font:inherit; cursor:pointer; text-align:left; flex:1; min-width:0; color:inherit; }
   .t-pgs .t-val { font-weight:600; color:var(--ink,#10203A); font-variant-numeric:tabular-nums; }
-  .t-pgs .t-data { font-size:12px; color:var(--ink-3,#8A94A1); }
+  .t-pgs .t-data { font-size:12px; color:var(--ink-3,#66717F); }
 
   /* ── modo edição ──
      A página começa em modo de uso. Nada se mexe sem clicar em
@@ -818,7 +818,7 @@ const Trabalho = (function () {
     font-family:var(--display,Georgia,serif); font-weight:400; font-size:22px;
     letter-spacing:-0.012em; color:var(--ink,#10203A); margin:0;
   }
-  .t-sec-cab p { font-size:13px; color:var(--ink-3,#8A94A1); margin:0; }
+  .t-sec-cab p { font-size:13px; color:var(--ink-3,#66717F); margin:0; }
   .t-sec-bts { margin-left:auto; display:flex; gap:8px; }
 
   .t-alca, .t-editar-b, .t-tirar-b, .t-larguras { display:none; }
@@ -830,19 +830,19 @@ const Trabalho = (function () {
 
   .t-alca {
     place-items:center; width:26px; height:26px; border-radius:8px; cursor:grab;
-    color:var(--ink-3,#8A94A1); background:var(--bg-soft,#F1ECE3); flex-shrink:0; touch-action:none;
+    color:var(--ink-3,#66717F); background:var(--bg-soft,#F1ECE3); flex-shrink:0; touch-action:none;
   }
   .t-alca:active { cursor:grabbing; }
   .t-editar-b, .t-tirar-b {
     align-items:center; justify-content:center; width:26px; height:26px; border-radius:8px;
-    border:0; background:var(--bg-soft,#F1ECE3); color:var(--ink-3,#8A94A1); cursor:pointer; flex-shrink:0;
+    border:0; background:var(--bg-soft,#F1ECE3); color:var(--ink-3,#66717F); cursor:pointer; flex-shrink:0;
   }
   .t-editar-b:hover { background:var(--signal-suave,#EAF1F8); color:var(--signal,#1A4893); }
   .t-tirar-b:hover { background:#FBE9EB; color:#C4384A; }
   .t-larguras { gap:2px; margin-top:12px; padding-top:11px; border-top:1px dashed var(--line,#DED7CA); }
   .t-larguras button {
     font:inherit; font-size:11.5px; cursor:pointer; padding:4px 10px; border-radius:7px;
-    border:1px solid var(--line-soft,#EAE4D9); background:var(--bg,#F7F4EF); color:var(--ink-3,#8A94A1);
+    border:1px solid var(--line-soft,#EAE4D9); background:var(--bg,#F7F4EF); color:var(--ink-3,#66717F);
   }
   .t-larguras button[aria-pressed="true"] { background:var(--signal,#1A4893); border-color:var(--signal,#1A4893); color:#fff; }
 
@@ -855,7 +855,7 @@ const Trabalho = (function () {
   /* ── catálogo ── */
   .t-cat-grupo + .t-cat-grupo { margin-top:6px; padding-top:18px; border-top:1px solid var(--line-soft,#EAE4D9); }
   .t-cat-grupo h3 { font-size:14px; font-weight:600; color:var(--ink,#10203A); margin:0 0 3px; }
-  .t-cat-grupo > p { font-size:12.5px; color:var(--ink-3,#8A94A1); margin:0 0 13px; }
+  .t-cat-grupo > p { font-size:12.5px; color:var(--ink-3,#66717F); margin:0 0 13px; }
   .t-cat { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:11px; }
   .t-cat button {
     display:flex; flex-direction:column; gap:5px; text-align:left; font:inherit; cursor:pointer;
@@ -866,14 +866,14 @@ const Trabalho = (function () {
   .t-cat .t-cat-cab { display:flex; align-items:center; gap:9px; color:var(--signal,#1A4893); }
   .t-cat b { font-size:14px; color:var(--ink,#10203A); font-weight:600; }
   .t-cat span { font-size:12.5px; line-height:1.5; }
-  .t-cat em { font-style:normal; font-size:11.5px; color:var(--ink-3,#8A94A1); line-height:1.45; }
+  .t-cat em { font-style:normal; font-size:11.5px; color:var(--ink-3,#66717F); line-height:1.45; }
 
   .t-vazio-blocos {
     grid-column:1 / -1; padding:44px 24px; text-align:center; border-radius:var(--raio,18px);
     border:1px dashed var(--line,#DED7CA); background:var(--bg-soft,#F1ECE3);
   }
   .t-vazio-blocos h3 { font-size:16px; font-weight:600; color:var(--ink,#10203A); margin-bottom:7px; }
-  .t-vazio-blocos p { font-size:13.5px; color:var(--ink-3,#8A94A1); max-width:52ch; margin:0 auto 16px; line-height:1.6; }
+  .t-vazio-blocos p { font-size:13.5px; color:var(--ink-3,#66717F); max-width:52ch; margin:0 auto 16px; line-height:1.6; }
   `;
 
   function injetarCss() {

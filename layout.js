@@ -212,11 +212,11 @@ const Acesso = (function () {
   .hd-menu-cx { position:absolute; right:0; top:calc(100% + 10px); z-index:60; min-width:250px; padding:8px;
     background:var(--panel,#fff); border:1px solid var(--line,#DED7CA); border-radius:16px;
     box-shadow:0 18px 40px -22px rgba(16,32,58,.45); }
-  .hd-menu-quem { padding:8px 12px 10px; font-size:12.5px; color:var(--ink-3,#8A94A1); border-bottom:1px solid var(--line-soft,#EAE4D9);
+  .hd-menu-quem { padding:8px 12px 10px; font-size:12.5px; color:var(--ink-3,#66717F); border-bottom:1px solid var(--line-soft,#EAE4D9);
     margin-bottom:6px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .hd-menu-cx a { display:block; padding:10px 12px; border-radius:10px; font-size:14px; font-weight:500; color:var(--ink,#10203A); text-decoration:none; }
   .hd-menu-cx a:hover { background:var(--bg-soft,#F1ECE3); }
-  .hd-menu-cx a small { display:block; font-size:12px; font-weight:400; color:var(--ink-3,#8A94A1); margin-top:1px;
+  .hd-menu-cx a small { display:block; font-size:12px; font-weight:400; color:var(--ink-3,#66717F); margin-top:1px;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:250px; }
   .hd-menu-cx a.hd-menu-equipe { border-top:1px solid var(--line-soft,#EAE4D9); border-radius:0 0 10px 10px; margin-top:6px; padding-top:12px; color:var(--signal,#1A4893); }
   @media (max-width:900px){ .hd-menu { order:2; margin-left:auto; } }
@@ -231,7 +231,7 @@ const Acesso = (function () {
      botão ficaria azul sobre azul */
   .ac-aviso a.ac-bt { display:inline-block; font-weight:600; font-size:14.5px; text-decoration:none !important; color:#fff !important;
     background:var(--signal,#1A4893); padding:12px 22px; border-radius:12px; }
-  .ac-aviso .ac-nota { font-size:12.5px; color:var(--ink-3,#8A94A1); margin:14px 0 0; }
+  .ac-aviso .ac-nota { font-size:12.5px; color:var(--ink-3,#66717F); margin:14px 0 0; }
   .ac-aviso .ac-nota a { color:var(--signal,#1A4893) !important; text-decoration:underline; }
 
   .ac-trancada > *:not(.ac-aviso) { display:none !important; }

@@ -42,7 +42,7 @@ const Graficos = (function () {
   const RAMPA = ["#EFEAE1", "#D3E2F1", "#A9C6E5", "#7AA5D4", "#4A7BBE", "#1A4893"];
 
   const TINTA    = "#54606F";   // texto de apoio
-  const TINTA_3  = "#8A94A1";   // rótulos de eixo
+  const TINTA_3  = "#66717F";   // rótulos de eixo
   const GRADE    = "#EAE4D9";   // linha de grade, um passo fora do fundo
   const SUPERF   = "#FFFFFF";   // fundo do cartão, usado nos vãos e anéis
 
@@ -541,16 +541,16 @@ const Graficos = (function () {
   .g-lista li { display:flex; align-items:center; gap:9px; font-size:13px; color:var(--ink-2,#54606F); }
   .g-lista .g-nome { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .g-lista .g-num { font-weight:600; color:var(--ink,#10203A); font-variant-numeric:tabular-nums; }
-  .g-lista .g-pct { color:var(--ink-3,#8A94A1); font-variant-numeric:tabular-nums; width:36px; text-align:right; }
+  .g-lista .g-pct { color:var(--ink-3,#66717F); font-variant-numeric:tabular-nums; width:36px; text-align:right; }
 
-  .g-escala { display:flex; align-items:center; gap:4px; margin-top:11px; font-size:11.5px; color:var(--ink-3,#8A94A1); }
+  .g-escala { display:flex; align-items:center; gap:4px; margin-top:11px; font-size:11.5px; color:var(--ink-3,#66717F); }
   .g-passo { width:11px; height:11px; border-radius:2.5px; display:inline-block; }
 
-  .g-vazio { padding:34px 14px; text-align:center; font-size:13.5px; color:var(--ink-3,#8A94A1); }
+  .g-vazio { padding:34px 14px; text-align:center; font-size:13.5px; color:var(--ink-3,#66717F); }
 
   .g-tabela { margin-top:12px; }
   .g-tabela summary {
-    cursor:pointer; font-size:12.5px; color:var(--ink-3,#8A94A1);
+    cursor:pointer; font-size:12.5px; color:var(--ink-3,#66717F);
     list-style:none; display:inline-flex; align-items:center; gap:6px; padding:3px 0;
   }
   .g-tabela summary::-webkit-details-marker { display:none; }
@@ -563,7 +563,7 @@ const Graficos = (function () {
     font-variant-numeric:tabular-nums; color:var(--ink-2,#54606F); white-space:nowrap;
   }
   .g-tabela th[scope=row] { text-align:left; font-weight:500; color:var(--ink,#10203A); }
-  .g-tabela thead th { color:var(--ink-3,#8A94A1); font-weight:500; }
+  .g-tabela thead th { color:var(--ink-3,#66717F); font-weight:500; }
   .g-rolagem { overflow-x:auto; }
 
   .g-dica {

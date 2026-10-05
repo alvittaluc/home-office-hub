@@ -67,7 +67,7 @@ html.t-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 .t-campo { display:flex; flex-direction:column; gap:6px; }
 /* .t-campo e .t-check declaram display, o que anula o atributo hidden do HTML */
 .t-campo[hidden], .t-check[hidden] { display:none !important; }
-.t-rot { font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3,#8A94A1); font-weight:600; }
+.t-rot { font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3,#66717F); font-weight:600; }
 .t-sel {
   font:inherit; font-size:15px; color:var(--ink,#10203A); background:var(--bg-soft,#F1ECE3);
   border:1px solid var(--line,#DED7CA); border-radius:11px; padding:10px 34px 10px 13px;
@@ -102,7 +102,7 @@ html.t-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 
 /* status + medidor de nível */
 .t-status { display:flex; align-items:center; gap:10px; }
-.t-ponto { width:8px; height:8px; border-radius:50%; background:var(--ink-3,#8A94A1); flex-shrink:0; }
+.t-ponto { width:8px; height:8px; border-radius:50%; background:var(--ink-3,#66717F); flex-shrink:0; }
 .t-status[data-vivo="1"] .t-ponto { background:#2E9E5B; animation:t-pulso 1.6s ease-in-out infinite; }
 @keyframes t-pulso { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.45; transform:scale(.82); } }
 .t-status-txt { font-size:13.5px; color:var(--ink-2,#54606F); white-space:nowrap; }
@@ -132,11 +132,11 @@ html.t-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
   background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
   border-radius:99px; padding:7px 14px; cursor:pointer; transition:color .15s, border-color .15s;
 }
-.t-mini:hover { color:var(--ink,#10203A); border-color:var(--ink-3,#8A94A1); }
+.t-mini:hover { color:var(--ink,#10203A); border-color:var(--ink-3,#66717F); }
 .t-mini:disabled { opacity:.4; cursor:not-allowed; }
 .t-check { display:flex; align-items:center; gap:7px; font-size:13px; color:var(--ink-2,#54606F); cursor:pointer; user-select:none; }
 .t-check input { width:15px; height:15px; accent-color:var(--signal,#1A4893); cursor:pointer; }
-.t-conta { font-size:12.5px; color:var(--ink-3,#8A94A1); white-space:nowrap; }
+.t-conta { font-size:12.5px; color:var(--ink-3,#66717F); white-space:nowrap; }
 
 .t-texto {
   padding:26px 28px; min-height:330px; max-height:54vh; overflow-y:auto;
@@ -144,11 +144,11 @@ html.t-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
   white-space:pre-wrap; overflow-wrap:break-word;
 }
 .t-texto:focus-visible { outline:none; }
-.t-parcial { color:var(--ink-3,#8A94A1); }
+.t-parcial { color:var(--ink-3,#66717F); }
 /* trecho que ainda está no original porque a tradução não voltou */
-.t-pendente { color:var(--ink-3,#8A94A1); }
-.t-hora { color:var(--ink-3,#8A94A1); font-size:13.5px; }
-.t-vazio { color:var(--ink-3,#8A94A1); font-size:16px; line-height:1.7; }
+.t-pendente { color:var(--ink-3,#66717F); }
+.t-hora { color:var(--ink-3,#66717F); font-size:13.5px; }
+.t-vazio { color:var(--ink-3,#66717F); font-size:16px; line-height:1.7; }
 
 /* ── tamanho do texto, para ler de longe enquanto assiste ── */
 .t-caixa.t-tam2 .t-texto { font-size:21px; line-height:1.68; }
