@@ -840,7 +840,7 @@ function novoReconhecimento() {
         if (location.protocol === "file:") {
           recado("erro", "<b>O serviço de reconhecimento recusou a conexão.</b> Costuma ser porque a página foi aberta direto da pasta, e assim ela não tem um endereço de verdade para se identificar. Suba o arquivo no site e teste por lá.");
         } else {
-          recado("dica", "O serviço de reconhecimento recusou a conexão. Normalmente não é a sua internet: o serviço gratuito do Google segura o ritmo quando recebe muitos pedidos seguidos. Vou espaçando as tentativas, e se não voltar em algumas vezes eu paro de insistir em vez de piorar.");
+          recado("dica", "O serviço de reconhecimento recusou a conexão. Normalmente não é a sua internet: o serviço do Google segura o ritmo quando recebe muitos pedidos seguidos. Vou espaçando as tentativas, e se não voltar em algumas vezes eu paro de insistir em vez de piorar.");
         }
       }
     } else if (ev.error === "language-not-supported") {
@@ -991,7 +991,7 @@ function pausar() {
 
   const podeLocal = !cLocal.disabled && !usarLocal;
   recado("erro",
-    "<b>Parei de tentar.</b> O serviço gratuito de reconhecimento do Google recusou os pedidos seguidamente, o que costuma ser limite de uso, não defeito da ferramenta. Continuar tentando só aumenta o bloqueio, então preferi parar." +
+    "<b>Parei de tentar.</b> O serviço de reconhecimento do Google recusou os pedidos seguidamente, o que costuma ser limite de uso, não defeito da ferramenta. Continuar tentando só aumenta o bloqueio, então preferi parar." +
     (podeLocal ? " O caminho que não depende dele é o <b>modo local</b>, que reconhece dentro do seu computador." : "") +
     "<br><br><button type=\"button\" class=\"t-mini\" id=\"bRetomar\">Tentar de novo agora</button>" +
     (podeLocal ? " <button type=\"button\" class=\"t-mini\" id=\"bLocalAgora\">Tentar no modo local</button>" : ""));

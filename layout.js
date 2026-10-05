@@ -262,7 +262,7 @@ const Acesso = (function () {
       <h2>${titulo}</h2>
       <p>${texto}</p>
       <a class="ac-bt" href="${linkEntrar()}">Entrar na conta</a>
-      <p class="ac-nota">Ainda não tem conta? <a href="${linkEntrar().replace("entrar.html?", "entrar.html?criar=1&")}">Crie a sua, é grátis</a>.</p>
+      <p class="ac-nota">Ainda não tem conta? <a href="${linkEntrar().replace("entrar.html?", "entrar.html?criar=1&")}">Crie a sua</a>.</p>
     </div>`;
   }
 

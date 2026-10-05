@@ -474,7 +474,7 @@ def montar_html(gerais, da_area=None):
       <tr><td style="padding:26px 4px 0 4px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#8A94A1;">
         {nota_area}Você recebe este e-mail porque se inscreveu nos alertas de vagas do Home Office Hub.
         Alguns links de vaga são de indicação: se você for contratado, a empresa paga uma comissão
-        ao Hub, sem nenhum custo para você.<br>
+        ao Hub.<br>
         <a href="{{{{ unsubscribe }}}}" style="color:#8A94A1;">Parar de receber</a>
       </td></tr>
     </table>

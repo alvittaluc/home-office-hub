@@ -144,7 +144,7 @@ const Conta = (function () {
       <div class="cp-cx">
         <div class="cp-olho">Home Office Hub</div>
         <h1>Criar a sua conta</h1>
-        <p>É grátis. Com a conta você usa as ferramentas, continua os cursos e vê as vagas em movimento.</p>
+        <p>Com a conta você usa as ferramentas, continua os cursos e vê as vagas em movimento.</p>
         <form novalidate>
           <label for="cp-nome">Seu nome</label>
           <input id="cp-nome" type="text" autocomplete="name" maxlength="60" required>
@@ -218,7 +218,7 @@ const Conta = (function () {
           </form>
           <button class="cp-link" type="button" data-esqueci>Esqueci a senha</button>
           <span style="color:var(--ink-3,#8A94A1);margin:0 6px;">·</span>
-          <button class="cp-link" type="button" data-criar>Criar conta grátis</button>
+          <button class="cp-link" type="button" data-criar>Criar conta</button>
           <div class="cp-msg" role="status" hidden></div>
         </div>${RODAPE}`;
 
