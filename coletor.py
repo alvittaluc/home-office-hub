@@ -15,6 +15,8 @@
 
   Como rodar:
       python3 coletor.py
+      python3 coletor.py --reaproveitar   (segunda passada no PC, sem ir às
+                                           fontes de novo; ver ARQUIVO_COLETA)
 
   Não precisa instalar nada — usa só o que já vem no Python.
 ═══════════════════════════════════════════════════════════════════
@@ -26,6 +28,7 @@ import urllib.parse
 import json
 import os
 import re
+import sys
 import time
 import ssl
 from datetime import datetime, timezone
@@ -238,6 +241,58 @@ def sem_indicacao(empresa, url):
 # vagas_revisao.json é gerado só no PC, com as vagas que faltam revisar.
 ARQUIVO_CURADORIA = "vagas-curadoria.json"
 ARQUIVO_REVISAO = "vagas_revisao.json"
+
+
+# ─── SEGUNDA PASSADA SEM IR ÀS FONTES DE NOVO ───
+# No PC a rotina tem duas passadas. A primeira coleta e mostra o que falta
+# revisar e resumir. A segunda aplica a curadoria e os resumos novos, e não
+# precisa baixar nada outra vez: a primeira guarda o que coletou em
+# coleta-bruta.json (arquivo só do PC, fora do GitHub), e
+#     py coletor.py --reaproveitar
+# refaz todo o resto a partir dele, em segundos. Se o arquivo não existir,
+# estiver quebrado ou tiver mais de HORAS_DA_COLETA horas, a coleta é feita
+# normalmente, como se a opção não tivesse sido passada.
+ARQUIVO_COLETA = "coleta-bruta.json"
+HORAS_DA_COLETA = 12
+REAPROVEITAR = "--reaproveitar" in sys.argv
+
+
+def gravar_coleta(vagas):
+    """Guarda a lista bruta da coleta para a segunda passada. Só no PC."""
+    if RODANDO_NO_GITHUB:
+        return
+    try:
+        with open(ARQUIVO_COLETA, "w", encoding="utf-8") as f:
+            json.dump({"coletado_em": datetime.now(timezone.utc).isoformat(),
+                       "vagas": vagas}, f, ensure_ascii=False)
+    except Exception as e:
+        print(f"  ⚠ Não deu para guardar a coleta ({str(e)[:80]}). "
+              f"A segunda passada vai coletar de novo.")
+        try:
+            os.remove(ARQUIVO_COLETA)
+        except OSError:
+            pass
+
+
+def carregar_coleta():
+    """Devolve a lista bruta guardada pela última coleta, ou None se ela não
+    existir, estiver quebrada ou for velha demais."""
+    try:
+        with open(ARQUIVO_COLETA, "r", encoding="utf-8") as f:
+            dados = json.load(f)
+        quando = datetime.fromisoformat(dados["coletado_em"])
+        vagas = dados["vagas"]
+    except Exception:
+        print("  → --reaproveitar: não há coleta guardada, coletando de novo\n")
+        return None
+    horas = (datetime.now(timezone.utc) - quando).total_seconds() / 3600
+    if not isinstance(vagas, list) or not vagas or horas > HORAS_DA_COLETA or horas < 0:
+        print(f"  → --reaproveitar: a coleta guardada é de {horas:.0f}h atrás, "
+              f"coletando de novo\n")
+        return None
+    print(f"  → Reaproveitando a coleta de {horas * 60:.0f} min atrás "
+          f"({len(vagas)} vagas brutas), sem ir às fontes de novo")
+    return vagas
 
 
 def carregar_curadoria():
@@ -1368,6 +1423,17 @@ def main():
     sincronizar_com_o_site()
     print()
 
+    # --reaproveitar: segunda passada, usa o que a primeira coletou
+    todas = carregar_coleta() if REAPROVEITAR else None
+    if todas is None:
+        todas = coletar_tudo()
+        gravar_coleta(todas)
+
+    processar(todas)
+
+
+def coletar_tudo():
+    """Vai a todas as fontes e devolve a lista bruta de vagas."""
     todas = []
 
     print("[1/3] Buscando em empresas Lever...")
@@ -1469,6 +1535,13 @@ def main():
                     "turing", "coletar_turing",
                     termos=termos_area, modo_area=True)
 
+    return todas
+
+
+def processar(todas):
+    """Tudo o que vem depois da coleta: tirar repetidas, classificar por
+    área, datar, aplicar a curadoria e os resumos, e gravar os arquivos que
+    o site lê."""
     print(f"\n  Total bruto: {len(todas)} vagas")
     todas = remover_duplicadas(todas)
     print(f"  Após remover duplicadas: {len(todas)} vagas")
