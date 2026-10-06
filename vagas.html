@@ -525,6 +525,17 @@
   .v-emp .selo-pulso.alta     { color:var(--signal); background:var(--signal-suave); border:1px solid #D3E2F1; }
   .v-emp .selo-pulso.responde { color:var(--violet); background:#F1EEF7; border:1px solid #DFD8EE; }
 
+  /* cartões de demonstração do bloco "Em alta", para quem não tem conta:
+     só o formato de um cartão, com barras no lugar do texto */
+  .vaga.demo { pointer-events:none; }
+  .vaga.demo .v-marca { border-color:transparent; }
+  .vaga.demo .v-nome { gap:7px; }
+  .demo-l { display:block; flex-shrink:0; max-width:100%; height:11px; border-radius:6px; background:#C4CCD8; }
+  .demo-l.forte { height:14px; background:#7C8898; }
+  .demo-l.fina { height:9px; background:#D8DDE5; }
+  .demo-l.selo { height:17px; border-radius:20px; background:#C6E5DE; }
+  @media (max-width:720px) { .ac-borrado .vaga.demo:nth-child(n+4) { display:none; } }
+
   /* colunas de dados, com rótulo em cima */
   .v-col { display:flex; flex-direction:column; gap:4px; min-width:0; }
   .v-col .r {
@@ -708,7 +719,7 @@
 <script src="alerta-email.js"></script>
 <script src="layout.js"></script>
 <script src="controle-dados.js"></script>
-<script src="pulso-site.js?v=2"></script>
+<script src="pulso-site.js?v=3"></script>
 <script>
 montarLayout("vagas");
 
@@ -1169,6 +1180,32 @@ function linha(v) {
   </a>`;
 }
 
+/* Cartão de demonstração do bloco "Em alta" para quem não tem conta.
+   Não é vaga nenhuma: tem só o formato de um cartão, com barras no lugar do
+   texto. Fica borrado, com o convite para entrar por cima. Quem tirar o
+   borrão pelas ferramentas do navegador encontra as barras, e nada mais. */
+function linhaDeMentira(i) {
+  const m = [
+    { cor:"#1A2040", tit:64, frase:82, emp:24, selo:70 },
+    { cor:"#12302E", tit:46, frase:74, emp:18, selo:0 },
+    { cor:"#1E1A38", tit:72, frase:60, emp:28, selo:84 },
+    { cor:"#2A2118", tit:54, frase:88, emp:20, selo:0 },
+  ][i % 4];
+  return `<div class="vaga demo">
+    <span class="v-marca" style="background:${m.cor};"></span>
+    <span class="v-nome">
+      <i class="demo-l forte" style="width:${m.tit}%"></i>
+      <i class="demo-l" style="width:${m.frase}%"></i>
+      <span class="v-emp"><i class="demo-l fina" style="width:${m.emp}%"></i>${
+        m.selo ? `<i class="demo-l selo" style="width:${m.selo}px"></i>` : ""}</span>
+    </span>
+    <span class="v-col"><i class="demo-l fina" style="width:44px"></i><i class="demo-l" style="width:88px"></i></span>
+    <span class="v-col col-area"><i class="demo-l fina" style="width:38px"></i><i class="demo-l" style="width:72px"></i></span>
+    <span class="v-col"><i class="demo-l fina" style="width:62px"></i><i class="demo-l" style="width:70px"></i></span>
+    <span class="v-acao"><i class="demo-l fina" style="width:82px"></i></span>
+  </div>`;
+}
+
 /* ══════════════════════════════════════════════════════════
    TELA DE ENTRADA
 
@@ -1478,35 +1515,44 @@ function aplicar() {
      grupos de baixo para não aparecerem duas vezes. Só quando a ordem é a
      padrão, e só entre as vagas que sobraram dos filtros: quem chegou
      filtrando por uma empresa não deve ver destaque de outra. */
-  const emAlta = (porData && typeof Pulso !== "undefined")
+  /* Quem não tem conta NÃO recebe as vagas em alta: nem na tela, nem por
+     trás do borrão. Antes o bloco borrado era montado com as vagas de
+     verdade, e bastava tirar o borrão pelas ferramentas do navegador para
+     ler tudo. Agora, para essas pessoas, a lista nem é carregada (ver
+     Pulso.carregar) e o bloco é de demonstração, feito de cartões de mentira
+     (ver linhaDeMentira). As vagas em si continuam todas na lista de baixo,
+     sem marca nenhuma: a vaga é aberta, o que pede conta é saber quais
+     estão em alta. */
+  const fechado = typeof Acesso !== "undefined" && Acesso.trancado();
+  const emAlta = (porData && !fechado && typeof Pulso !== "undefined")
     ? Pulso.destaques().map(id => resultado.find(v => v.id === id)).filter(Boolean)
     : [];
-  /* Quem não tem conta vê o grupo "Em movimento" borrado. Para essas pessoas
-     as vagas do grupo NÃO saem da lista de baixo: a vaga em si é aberta, o que
-     pede conta é saber quais estão em movimento. A regra mora no layout.js. */
-  const fechado = typeof Acesso !== "undefined" && Acesso.trancado();
-  const sobra = (emAlta.length >= 2 && !fechado) ? resultado.filter(v => !emAlta.includes(v)) : resultado;
   const destacadas = emAlta.length >= 2 ? emAlta : [];
+  const sobra = destacadas.length ? resultado.filter(v => !destacadas.includes(v)) : resultado;
+  /* O convite para criar conta aparece só na lista geral sem filtro nenhum.
+     Sem a lista de verdade não dá para saber se sobrou vaga em alta dentro
+     de um filtro, e prometer o que talvez não exista seria pior. */
+  const semFiltro = ESCOPO === "gerais" && !fCats.size && !fEmps.size &&
+                    fPeriodo === "all" && !busca && !semIngles;
+  const convite = fechado && porData && semFiltro && resultado.length >= 6;
 
   const novas = porData ? sobra.filter(ehNova) : [];
   const resto = porData ? sobra.filter(v => !ehNova(v)) : sobra;
 
   let html = "";
-  if (destacadas.length) {
-    const lista = `<div class="lista">${destacadas.map(linha).join("")}</div>`;
+  if (destacadas.length || convite) {
     /* Enquanto o Pulso não mede as candidaturas, a lista é escolhida à mão
-       pela equipe ("manual" no pulso.json), e o texto diz isso. */
-    const aMao = typeof Pulso.manual === "function" && Pulso.manual();
+       pela equipe ("manual" no pulso.json), e o texto diz isso. O convite de
+       quem não tem conta usa o mesmo texto, porque hoje a lista é essa. */
+    const aMao = convite || (typeof Pulso.manual === "function" && Pulso.manual());
     html += `<div class="grupo-titulo"><h2>${aMao ? "Em alta" : "Em movimento"}</h2>
              <span>${aMao ? "as vagas que a equipe do Hub destaca agora"
                           : "onde os alunos do Hub estão se candidatando e recebendo resposta"}</span></div>
-             ${fechado
-               ? (aMao
-                 ? Acesso.cortina(lista, "As vagas em alta são para quem tem conta",
-                     "Veja quais vagas a equipe do Hub está destacando agora.")
-                 : Acesso.cortina(lista, "As vagas em movimento são para quem tem conta",
-                     "Veja quais vagas estão recebendo mais candidaturas e quais empresas estão respondendo."))
-               : lista}`;
+             ${convite
+               ? Acesso.cortina(`<div class="lista">${[0, 1, 2, 3].map(linhaDeMentira).join("")}</div>`,
+                   "As vagas em alta são para quem tem conta",
+                   "Veja quais vagas a equipe do Hub está destacando agora.")
+               : `<div class="lista">${destacadas.map(linha).join("")}</div>`}`;
   }
   if (novas.length) {
     html += `<div class="grupo-titulo"><h2>Publicadas nesta semana</h2><span>${novas.length}</span></div>
@@ -1515,7 +1561,7 @@ function aplicar() {
   if (resto.length) {
     /* o título só era desnecessário quando o resto era o único grupo da tela.
        Com "Em movimento" em cima, sem ele os dois grupos viram um borrão. */
-    html += (destacadas.length || novas.length)
+    html += (destacadas.length || convite || novas.length)
       ? `<div class="grupo-titulo"><h2>Demais vagas abertas</h2><span>${resto.length}</span></div>`
       : "";
     html += `<div class="lista">${resto.map(linha).join("")}</div>`;

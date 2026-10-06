@@ -41,6 +41,16 @@
 
   function carregar() {
     if (carregando) return carregando;
+    /* Quem não tem conta não recebe a lista. A página de vagas mostra para
+       essas pessoas um bloco de demonstração, com cartões de mentira, e sem a
+       lista carregada não há o que descobrir pelas ferramentas do navegador.
+       (O pulso.json continua sendo um arquivo público do site: isto fecha o
+       caminho fácil, não é um cofre. Cofre de verdade é a lista morar no
+       banco e só ser entregue a quem está logado.) */
+    if (typeof Acesso !== "undefined" && Acesso.trancado()) {
+      carregando = Promise.resolve(null);
+      return carregando;
+    }
     carregando = fetch(ARQUIVO, { cache: "no-cache" })
       .then(r => (r.ok ? r.json() : null))
       .then(j => { dados = (j && j.versao === 1) ? j : null; return dados; })
