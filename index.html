@@ -157,6 +157,240 @@
   /* a caixa da placa é pequena demais para telas estreitas */
   @container (max-width:420px){ .cx-anot .bx.mini { display:none; } }
 
+  /* ═══════════ AS MAQUETES DO CARROSSEL SE MEXEM ═══════════
+     Cada maquete mostra, em uns seis segundos, o que aquela aba do site faz:
+     abrir uma vaga, trocar de empresa, cumprir as etapas, anotar uma foto.
+
+     A animação começa quando o slide entra em cena (classe .anima, posta
+     pelo script do carrossel) e para no último quadro. Sem a classe, a
+     maquete fica parada no desenho de sempre: é o que vê quem pediu menos
+     movimento ao sistema, e é o que aparece antes de o carrossel entrar na
+     tela.
+
+     --t0 existe para os testes: adianta o relógio de todas as peças juntas. */
+  .mq .jn-corpo { position:relative; }
+  .mq-cursor {
+    position:absolute; left:84%; top:88%; z-index:3; width:18px; height:18px; opacity:0;
+    pointer-events:none; transform-origin:2px 2px; filter:drop-shadow(0 2px 3px rgba(16,32,58,.35));
+  }
+  .mq-cursor svg { display:block; }
+  @keyframes mq-sobe { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+  /* 1. vagas: clica numa vaga e abre a página dela */
+  .mq-ficha {
+    position:absolute; inset:0; padding:14px; background:#fff; display:flex; flex-direction:column; gap:9px;
+    opacity:0; visibility:hidden; overflow:hidden;
+  }
+  .mq-ficha-topo { display:flex; align-items:center; gap:11px; min-width:0; }
+  .mq-ficha-topo .mk {
+    width:34px; height:34px; border-radius:9px; flex-shrink:0; display:grid; place-items:center;
+    font-size:11px; font-weight:600; color:#fff; overflow:hidden;
+  }
+  .mq-ficha-topo .tx { min-width:0; }
+  .mq-ficha-topo .tx b { display:block; font-size:13.5px; font-weight:600; color:var(--ink); line-height:1.3; }
+  .mq-ficha-topo .tx span { font-size:11px; color:var(--ink-3); }
+  .mq-bloco { background:var(--bg-soft); border-radius:10px; padding:9px 12px; }
+  .mq-bloco i { display:block; font-style:normal; font-size:9.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); margin-bottom:3px; }
+  .janela .mq-bloco p { font-size:12px; line-height:1.45; color:var(--ink); margin:0; max-width:none; }
+  .mq-botao {
+    margin-top:auto; align-self:flex-start; font-size:12px; font-weight:600; color:#fff;
+    background:var(--signal); border-radius:999px; padding:9px 16px; white-space:nowrap;
+  }
+
+  .slide.anima .mq-v .mq-cursor { animation:mq1-cursor 6s ease-in-out both; animation-delay:var(--t0,0s); }
+  .slide.anima .mq-v .linha-vaga.alvo { animation:mq1-alvo .7s ease both; animation-delay:calc(var(--t0,0s) + 1.25s); }
+  .slide.anima .mq-v .mq-lista { animation:mq1-lista-sai .4s ease forwards; animation-delay:calc(var(--t0,0s) + 2.05s); }
+  .slide.anima .mq-v .mq-ficha { animation:mq1-ficha-entra .45s ease forwards; animation-delay:calc(var(--t0,0s) + 2.2s); }
+  .slide.anima .mq-v .mq-ficha-topo { animation:mq-sobe .45s ease both; animation-delay:calc(var(--t0,0s) + 2.35s); }
+  .slide.anima .mq-v .mq-bloco.b1 { animation:mq-sobe .45s ease both; animation-delay:calc(var(--t0,0s) + 2.85s); }
+  .slide.anima .mq-v .mq-bloco.b2 { animation:mq-sobe .45s ease both; animation-delay:calc(var(--t0,0s) + 3.45s); }
+  .slide.anima .mq-v .mq-botao {
+    animation:mq-sobe .45s ease both, mq1-aperta .75s ease both;
+    animation-delay:calc(var(--t0,0s) + 4.05s), calc(var(--t0,0s) + 5.45s);
+  }
+  @keyframes mq1-cursor {
+    0%   { left:84%; top:88%; opacity:0; transform:scale(1); }
+    5%   { left:84%; top:88%; opacity:1; }
+    21%  { left:44%; top:14%; }
+    29%  { left:44%; top:14%; transform:scale(1); }
+    31%  { left:44%; top:14%; transform:scale(.78); }
+    34%  { left:44%; top:14%; transform:scale(1); }
+    46%  { left:70%; top:50%; }
+    76%  { left:70%; top:50%; }
+    88%  { left:22%; top:89%; }
+    90%  { left:22%; top:89%; transform:scale(1); }
+    92%  { left:22%; top:89%; transform:scale(.78); }
+    95%, 100% { left:22%; top:89%; transform:scale(1); opacity:1; }
+  }
+  @keyframes mq1-alvo {
+    0%   { border-color:var(--line-soft); background:#fff; transform:none; }
+    35%  { border-color:#9DBEE0; background:var(--signal-suave); transform:none; }
+    80%  { border-color:var(--signal); background:var(--signal-suave); transform:scale(.985); }
+    100% { border-color:var(--signal); background:var(--signal-suave); transform:none; }
+  }
+  @keyframes mq1-lista-sai { to { opacity:0; transform:translateX(-16px); } }
+  @keyframes mq1-ficha-entra {
+    from { opacity:0; visibility:visible; transform:translateX(18px); }
+    to   { opacity:1; visibility:visible; transform:none; }
+  }
+  @keyframes mq1-aperta {
+    0%   { background:var(--signal); box-shadow:0 0 0 0 rgba(26,72,147,.5); }
+    22%  { background:#123572; box-shadow:0 0 0 0 rgba(26,72,147,.5); }
+    100% { background:var(--signal); box-shadow:0 0 0 11px rgba(26,72,147,0); }
+  }
+
+  /* 2. empresas: troca de empresa e a ficha muda junto */
+  .mq-abas { display:flex; gap:7px; margin-bottom:12px; }
+  .mq-aba {
+    width:30px; height:30px; border-radius:9px; overflow:hidden; flex-shrink:0; background:#fff;
+    border:1px solid var(--line-soft); opacity:.5;
+  }
+  .mq-aba img { display:block; width:100%; height:100%; object-fit:contain; padding:3px; box-sizing:border-box; }
+  .mq-aba.sel { opacity:1; border-color:var(--signal); box-shadow:0 0 0 2.5px var(--signal-suave); }
+  .mq-fichas { display:grid; }
+  .mq-emp { grid-area:1/1; min-width:0; }
+  .mq-emp.e2 { opacity:0; visibility:hidden; }
+
+  .slide.anima .mq-e .mq-emp .perfil-emp,
+  .slide.anima .mq-e .mq-emp .campo,
+  .slide.anima .mq-e .mq-emp .kv { animation:mq-sobe .4s ease both; }
+  .slide.anima .mq-e .e1 .perfil-emp { animation-delay:calc(var(--t0,0s) + .3s); }
+  .slide.anima .mq-e .e1 .campo:nth-child(1) { animation-delay:calc(var(--t0,0s) + .55s); }
+  .slide.anima .mq-e .e1 .campo:nth-child(2) { animation-delay:calc(var(--t0,0s) + .68s); }
+  .slide.anima .mq-e .e1 .campo:nth-child(3) { animation-delay:calc(var(--t0,0s) + .81s); }
+  .slide.anima .mq-e .e1 .campo:nth-child(4) { animation-delay:calc(var(--t0,0s) + .94s); }
+  .slide.anima .mq-e .e1 .kv { animation-delay:calc(var(--t0,0s) + 1.12s); }
+  .slide.anima .mq-e .e1 { animation:mq2-sai .3s ease forwards; animation-delay:calc(var(--t0,0s) + 3.25s); }
+  .slide.anima .mq-e .e2 { animation:mq2-entra .01s linear forwards; animation-delay:calc(var(--t0,0s) + 3.5s); }
+  .slide.anima .mq-e .e2 .perfil-emp { animation-delay:calc(var(--t0,0s) + 3.5s); }
+  .slide.anima .mq-e .e2 .campo:nth-child(1) { animation-delay:calc(var(--t0,0s) + 3.75s); }
+  .slide.anima .mq-e .e2 .campo:nth-child(2) { animation-delay:calc(var(--t0,0s) + 3.88s); }
+  .slide.anima .mq-e .e2 .campo:nth-child(3) { animation-delay:calc(var(--t0,0s) + 4.01s); }
+  .slide.anima .mq-e .e2 .campo:nth-child(4) { animation-delay:calc(var(--t0,0s) + 4.14s); }
+  .slide.anima .mq-e .e2 .kv { animation-delay:calc(var(--t0,0s) + 4.32s); }
+  .slide.anima .mq-e .mq-aba.a1 { animation:mq2-desmarca .25s ease forwards; animation-delay:calc(var(--t0,0s) + 3.15s); }
+  .slide.anima .mq-e .mq-aba.a2 { animation:mq2-marca .25s ease forwards; animation-delay:calc(var(--t0,0s) + 3.15s); }
+  .slide.anima .mq-e .mq-cursor { animation:mq2-cursor 6s ease-in-out both; animation-delay:var(--t0,0s); }
+  @keyframes mq2-sai { to { opacity:0; visibility:hidden; } }
+  @keyframes mq2-entra { to { opacity:1; visibility:visible; } }
+  @keyframes mq2-desmarca { to { opacity:.5; border-color:var(--line-soft); box-shadow:0 0 0 0 transparent; } }
+  @keyframes mq2-marca { to { opacity:1; border-color:var(--signal); box-shadow:0 0 0 2.5px var(--signal-suave); } }
+  @keyframes mq2-cursor {
+    0%, 30% { left:78%; top:84%; opacity:0; transform:scale(1); }
+    35%  { left:78%; top:84%; opacity:1; }
+    49%  { left:16.5%; top:9%; }
+    51%  { left:16.5%; top:9%; transform:scale(1); }
+    53%  { left:16.5%; top:9%; transform:scale(.78); }
+    56%  { left:16.5%; top:9%; transform:scale(1); }
+    74%  { left:58%; top:60%; opacity:1; }
+    86%, 100% { left:58%; top:60%; opacity:0; }
+  }
+
+  /* 3. como funciona: as etapas vão sendo cumpridas, uma por vez */
+  .passo-mq { position:relative; }
+  .passo-mq .bola { position:relative; }
+  .passo-mq .bola i { font-style:normal; }
+  .passo-mq .bola .ok { display:none; }
+  .passo-mq.feito .bola .n { display:none; }
+  .passo-mq.feito .bola .ok { display:block; }
+  /* o fio que liga uma etapa à seguinte */
+  .passo-mq:not(.ultimo)::before {
+    content:''; position:absolute; left:10.5px; top:34px; bottom:-6px; width:1px; background:var(--line);
+  }
+  .mq-pg { border-radius:8px; margin:0 -8px; padding-left:8px !important; padding-right:8px !important; }
+
+  .slide.anima .mq-c .bola { animation:mq3-bola .5s cubic-bezier(.3,1.5,.5,1) both; }
+  .slide.anima .mq-c .bola .n { display:block; animation:mq3-n .2s ease both; }
+  .slide.anima .mq-c .bola .ok { display:grid; place-items:center; position:absolute; inset:0; animation:mq3-ok .35s ease both; }
+  .slide.anima .mq-c .passo-mq:not(.ultimo)::after {
+    content:''; position:absolute; left:10px; top:34px; bottom:-6px; width:2px; border-radius:2px;
+    background:var(--signal); transform-origin:top; animation:mq3-fio .65s ease both;
+  }
+  .slide.anima .mq-c .p1 .bola, .slide.anima .mq-c .p1 .bola i { animation-delay:calc(var(--t0,0s) + .6s); }
+  .slide.anima .mq-c .p1::after { animation-delay:calc(var(--t0,0s) + 1.05s); }
+  .slide.anima .mq-c .p2 .bola, .slide.anima .mq-c .p2 .bola i { animation-delay:calc(var(--t0,0s) + 1.8s); }
+  .slide.anima .mq-c .p2::after { animation-delay:calc(var(--t0,0s) + 2.25s); }
+  .slide.anima .mq-c .p3 .bola, .slide.anima .mq-c .p3 .bola i { animation-delay:calc(var(--t0,0s) + 3s); }
+  .slide.anima .mq-c .p3::after { animation-delay:calc(var(--t0,0s) + 3.45s); }
+  .slide.anima .mq-c .p4 .bola, .slide.anima .mq-c .p4 .bola i { animation-delay:calc(var(--t0,0s) + 4.2s); }
+  .slide.anima .mq-c .mq-pg { animation:mq3-pg .9s ease both; animation-delay:calc(var(--t0,0s) + 5.2s); }
+  .slide.anima .mq-c .mq-pg span:last-child { animation:mq3-pg-valor .9s ease both; animation-delay:calc(var(--t0,0s) + 5.2s); }
+  @keyframes mq3-bola {
+    from { background:var(--signal-suave); color:var(--signal); transform:scale(1); }
+    55%  { transform:scale(1.2); }
+    to   { background:var(--signal); color:#fff; transform:scale(1); }
+  }
+  @keyframes mq3-n { from { opacity:1; } to { opacity:0; } }
+  @keyframes mq3-ok { from { opacity:0; transform:scale(.4); } to { opacity:1; transform:none; } }
+  @keyframes mq3-fio { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+  @keyframes mq3-pg { 0% { background:transparent; } 40% { background:#CDEBE3; } 100% { background:#E4F3F0; } }
+  @keyframes mq3-pg-valor { from { color:var(--ink); } to { color:#1F7A6E; } }
+
+  /* 4. áreas: as caixas são desenhadas na foto, uma por vez */
+  .mq-mira { position:absolute; left:30%; top:84%; z-index:2; width:0; height:0; opacity:0; pointer-events:none; }
+  .mq-mira::before, .mq-mira::after {
+    content:''; position:absolute; background:#fff; box-shadow:0 0 0 1px rgba(16,32,58,.6); border-radius:1px;
+  }
+  .mq-mira::before { left:-1px; top:-8px; width:2px; height:16px; }
+  .mq-mira::after  { left:-8px; top:-1px; width:16px; height:2px; }
+  .mq-rolo { display:inline-block; height:1.35em; line-height:1.35em; overflow:hidden; vertical-align:bottom; }
+  .mq-rolo span { display:block; }
+  .mq-rolo i { display:block; height:1.35em; font-style:normal; }
+
+  .slide.anima .mq-a .bx { animation:mq4-caixa .6s ease-in-out both; }
+  .slide.anima .mq-a .bx b { overflow:hidden; animation:mq4-rotulo .4s steps(7,end) both; }
+  .slide.anima .mq-a .bx.c1 { animation-delay:calc(var(--t0,0s) + .7s); }
+  .slide.anima .mq-a .bx.c1 b { animation-delay:calc(var(--t0,0s) + 1.3s); }
+  .slide.anima .mq-a .bx.c2 { animation-delay:calc(var(--t0,0s) + 2s); }
+  .slide.anima .mq-a .bx.c2 b { animation-delay:calc(var(--t0,0s) + 2.6s); }
+  .slide.anima .mq-a .bx.c3 { animation-duration:.4s; animation-delay:calc(var(--t0,0s) + 3.3s); }
+  .slide.anima .mq-a .bx.c3 b { animation-delay:calc(var(--t0,0s) + 3.7s); }
+  .slide.anima .mq-a .bx.c4 { animation-delay:calc(var(--t0,0s) + 4.3s); }
+  .slide.anima .mq-a .bx.c4 b { animation-delay:calc(var(--t0,0s) + 4.9s); }
+  .slide.anima .mq-a .mq-mira { animation:mq4-mira 6s ease-in-out both; animation-delay:var(--t0,0s); }
+  .slide.anima .mq-a .mq-rolo span { animation:mq4-rolo 6s ease both; animation-delay:var(--t0,0s); }
+  /* em tela estreita a caixa da placa não existe, e a mira pula esse trecho */
+  @container (max-width:420px){ .slide.anima .mq-a .mq-mira { animation-name:mq4-mira-curta; } }
+  @keyframes mq4-caixa { from { width:0; height:0; opacity:0; } 12% { opacity:1; } }
+  @keyframes mq4-rotulo {
+    from { max-width:0; padding-left:0; padding-right:0; opacity:0; }
+    2%   { opacity:1; }
+    to   { max-width:80px; opacity:1; }
+  }
+  @keyframes mq4-mira {
+    0%    { left:30%; top:84%; opacity:0; }
+    6%    { left:30%; top:84%; opacity:1; }
+    11.7% { left:13%; top:39%; }
+    21.7% { left:19%; top:79%; }
+    33.3% { left:54.5%; top:46%; }
+    43.3% { left:69%; top:78%; }
+    55%   { left:59.3%; top:65.5%; }
+    61.7% { left:64.3%; top:70.5%; }
+    71.7% { left:80.5%; top:6%; }
+    81.7% { left:88.5%; top:26%; }
+    90%   { left:95%; top:62%; opacity:1; }
+    96%, 100% { left:95%; top:62%; opacity:0; }
+  }
+  @keyframes mq4-mira-curta {
+    0%    { left:30%; top:84%; opacity:0; }
+    6%    { left:30%; top:84%; opacity:1; }
+    11.7% { left:13%; top:39%; }
+    21.7% { left:19%; top:79%; }
+    33.3% { left:54.5%; top:46%; }
+    43.3% { left:69%; top:78%; }
+    71.7% { left:80.5%; top:6%; }
+    81.7% { left:88.5%; top:26%; }
+    90%   { left:95%; top:62%; opacity:1; }
+    96%, 100% { left:95%; top:62%; opacity:0; }
+  }
+  @keyframes mq4-rolo {
+    0%, 21%   { transform:translateY(0); }
+    23%, 42.5% { transform:translateY(-1.35em); }
+    44.5%, 61% { transform:translateY(-2.7em); }
+    63%, 81%  { transform:translateY(-4.05em); }
+    83%, 100% { transform:translateY(-5.4em); }
+  }
+
   /* ═══════════ BLOCO DE ABERTURA ═══════════ */
   .abertura {
     max-width:var(--wrap); margin:0 auto; padding:88px 22px 20px;
@@ -391,10 +625,11 @@
             <a href="vagas.html" class="btn claro">Ver as vagas <span class="arr">→</span></a>
           </div>
           <div class="arte">
-            <div class="janela">
+            <div class="janela mq mq-v">
               <div class="jn-topo"><i></i><i></i><i></i><b>Vagas abertas</b></div>
               <div class="jn-corpo">
-                <div class="linha-vaga">
+                <div class="mq-lista">
+                <div class="linha-vaga alvo">
                   <span class="mk" style="background:#1A4893;"><img src="logos/welocalize.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:3px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
                   <span class="tx"><b>Search Quality Rater, português (Brasil)</b><span>Welocalize · remoto</span></span>
                   <span class="et">nova</span>
@@ -414,6 +649,18 @@
                   <span class="tx"><b>Grave vídeos para treinar IA</b><span>Toloka AI · remoto</span></span>
                   <span class="et">nova</span>
                 </div>
+                </div>
+                <!-- a página da vaga, que a animação abre por cima da lista -->
+                <div class="mq-ficha" aria-hidden="true">
+                  <div class="mq-ficha-topo">
+                    <span class="mk" style="background:#1A4893;"><img src="logos/welocalize.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
+                    <span class="tx"><b>Search Quality Rater, português (Brasil)</b><span>Welocalize · remoto</span></span>
+                  </div>
+                  <div class="mq-bloco b1"><i>O que você vai fazer</i><p>Avaliar se os resultados de uma busca respondem ao que a pessoa procurou.</p></div>
+                  <div class="mq-bloco b2"><i>Requisitos</i><p>Português nativo, inglês para ler as instruções e atenção a detalhes.</p></div>
+                  <span class="mq-botao">Candidatar-se a esta vaga →</span>
+                </div>
+                <span class="mq-cursor" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 1.8l11.4 6.5-4.9 1.2-2.6 4.7z" fill="#fff" stroke="#10203A" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
               </div>
             </div>
           </div>
@@ -428,20 +675,46 @@
             <a href="empresas.html" class="btn claro">Conhecer as empresas <span class="arr">→</span></a>
           </div>
           <div class="arte">
-            <div class="janela">
+            <div class="janela mq mq-e">
               <div class="jn-topo"><i></i><i></i><i></i><b>Perfil da empresa</b></div>
               <div class="jn-corpo">
-                <div class="perfil-emp">
-                  <span class="mk" style="background:#1A4893;"><img src="logos/welocalize.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
-                  <span><b>Welocalize</b><span>Serviços linguísticos · Nova York</span></span>
+                <div class="mq-abas" aria-hidden="true">
+                  <span class="mq-aba a1 sel"><img src="logos/welocalize.png" alt="" loading="lazy"></span>
+                  <span class="mq-aba a2"><img src="logos/oneforma.png" alt="" loading="lazy"></span>
+                  <span class="mq-aba"><img src="logos/toloka.png" alt="" loading="lazy"></span>
+                  <span class="mq-aba"><img src="logos/rws.png" alt="" loading="lazy"></span>
+                  <span class="mq-aba"><img src="logos/telus.png" alt="" loading="lazy"></span>
                 </div>
-                <div class="campos">
-                  <div class="campo"><i>Fundação</i><b>1997</b></div>
-                  <div class="campo"><i>Porte</i><b>2.000+ clientes</b></div>
-                  <div class="campo"><i>Como paga</i><b>Por hora, freelancer</b></div>
-                  <div class="campo"><i>Clientes</i><b>Meta, Amazon, Spotify</b></div>
+                <div class="mq-fichas">
+                  <div class="mq-emp e1">
+                    <div class="perfil-emp">
+                      <span class="mk" style="background:#1A4893;"><img src="logos/welocalize.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='WL';}"></span>
+                      <span><b>Welocalize</b><span>Serviços linguísticos · Nova York</span></span>
+                    </div>
+                    <div class="campos">
+                      <div class="campo"><i>Fundação</i><b>1997</b></div>
+                      <div class="campo"><i>Porte</i><b>2.000+ clientes</b></div>
+                      <div class="campo"><i>Como paga</i><b>Por hora, freelancer</b></div>
+                      <div class="campo"><i>Clientes</i><b>Meta, Amazon, Spotify</b></div>
+                    </div>
+                    <div class="kv" style="margin-top:12px;"><span>Áreas</span><span>Avaliação · Tradução · QA</span></div>
+                  </div>
+                  <!-- a segunda ficha, que a animação mostra ao trocar de empresa -->
+                  <div class="mq-emp e2" aria-hidden="true">
+                    <div class="perfil-emp">
+                      <span class="mk" style="background:#4E9AC8;"><img src="logos/oneforma.png" alt="" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box;" onerror="var p=this.parentNode; if(p){p.textContent='1F';}"></span>
+                      <span><b>OneForma</b><span>Plataforma de projetos · Estados Unidos</span></span>
+                    </div>
+                    <div class="campos">
+                      <div class="campo"><i>Grupo</i><b>Centific</b></div>
+                      <div class="campo"><i>Porte</i><b>Paga em 100+ países</b></div>
+                      <div class="campo"><i>Como paga</i><b>Duas vezes por mês</b></div>
+                      <div class="campo"><i>Clientes</i><b>Empresas de tecnologia</b></div>
+                    </div>
+                    <div class="kv" style="margin-top:12px;"><span>Áreas</span><span>Anotação · Coleta · Transcrição</span></div>
+                  </div>
                 </div>
-                <div class="kv" style="margin-top:12px;"><span>Áreas</span><span>Avaliação · Tradução · QA</span></div>
+                <span class="mq-cursor" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 1.8l11.4 6.5-4.9 1.2-2.6 4.7z" fill="#fff" stroke="#10203A" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
               </div>
             </div>
           </div>
@@ -456,14 +729,14 @@
             <a href="como-funciona.html" class="btn claro">Ler o guia <span class="arr">→</span></a>
           </div>
           <div class="arte">
-            <div class="janela">
+            <div class="janela mq mq-c">
               <div class="jn-topo"><i></i><i></i><i></i><b>Etapas até a primeira vaga</b></div>
               <div class="jn-corpo">
-                <div class="passo-mq feito"><span class="bola">✓</span><span><b>Cadastro e perfil</b><span>de cinco a vinte minutos</span></span></div>
-                <div class="passo-mq feito"><span class="bola">✓</span><span><b>Candidatura à vaga</b><span>currículo em inglês</span></span></div>
-                <div class="passo-mq"><span class="bola">3</span><span><b>Material de estudo e teste</b><span>a etapa que mais elimina gente</span></span></div>
-                <div class="passo-mq"><span class="bola">4</span><span><b>Período de calibragem</b><span>qualidade acima de volume</span></span></div>
-                <div class="kv" style="margin-top:10px;"><span>Primeiro pagamento</span><span>de 3 a 8 semanas</span></div>
+                <div class="passo-mq feito p1"><span class="bola"><i class="n">1</i><i class="ok">✓</i></span><span><b>Cadastro e perfil</b><span>de cinco a vinte minutos</span></span></div>
+                <div class="passo-mq feito p2"><span class="bola"><i class="n">2</i><i class="ok">✓</i></span><span><b>Candidatura à vaga</b><span>currículo em inglês</span></span></div>
+                <div class="passo-mq p3"><span class="bola"><i class="n">3</i><i class="ok">✓</i></span><span><b>Material de estudo e teste</b><span>a etapa que mais elimina gente</span></span></div>
+                <div class="passo-mq p4 ultimo"><span class="bola"><i class="n">4</i><i class="ok">✓</i></span><span><b>Período de calibragem</b><span>qualidade acima de volume</span></span></div>
+                <div class="kv mq-pg" style="margin-top:10px;"><span>Primeiro pagamento</span><span>de 3 a 8 semanas</span></div>
               </div>
             </div>
           </div>
@@ -478,16 +751,17 @@
             <a href="#anotacao" class="btn claro">Ver as áreas <span class="arr">↓</span></a>
           </div>
           <div class="arte">
-            <div class="janela">
+            <div class="janela mq mq-a">
               <div class="jn-topo"><i></i><i></i><i></i><b>Anotação de imagem</b></div>
               <div class="jn-corpo">
                 <div class="cx-anot" role="img" aria-label="Foto de uma esquina com caixas marcando pessoa, veículo, placa e sinal de trânsito">
-                  <div class="bx" style="left:13%;top:39%;width:6%;height:40%;border-color:#1A4893;"><b style="background:#1A4893;">pessoa</b></div>
-                  <div class="bx" style="left:54.5%;top:46%;width:14.5%;height:32%;border-color:#2C6BB5;"><b style="background:#2C6BB5;">veículo</b></div>
-                  <div class="bx abaixo mini" style="left:59.3%;top:65.5%;width:5%;height:5%;border-color:#A85D24;"><b style="background:#A85D24;">placa</b></div>
-                  <div class="bx abaixo" style="left:80.5%;top:6%;width:8%;height:20%;border-color:#5B4B9E;"><b style="background:#5B4B9E;">sinal</b></div>
+                  <div class="bx c1" style="left:13%;top:39%;width:6%;height:40%;border-color:#1A4893;"><b style="background:#1A4893;">pessoa</b></div>
+                  <div class="bx c2" style="left:54.5%;top:46%;width:14.5%;height:32%;border-color:#2C6BB5;"><b style="background:#2C6BB5;">veículo</b></div>
+                  <div class="bx abaixo mini c3" style="left:59.3%;top:65.5%;width:5%;height:5%;border-color:#A85D24;"><b style="background:#A85D24;">placa</b></div>
+                  <div class="bx abaixo c4" style="left:80.5%;top:6%;width:8%;height:20%;border-color:#5B4B9E;"><b style="background:#5B4B9E;">sinal</b></div>
+                  <span class="mq-mira" aria-hidden="true"></span>
                 </div>
-                <div class="kv" style="margin-top:12px;"><span>Itens marcados hoje</span><span>412 de 500</span></div>
+                <div class="kv" style="margin-top:12px;"><span>Itens marcados hoje</span><span><span class="mq-rolo"><span><i>412</i><i>413</i><i>414</i><i>415</i><i>416</i></span></span> de 500</span></div>
                 <div class="kv"><span>Pagamento</span><span>por item aprovado</span></div>
               </div>
             </div>
@@ -881,8 +1155,11 @@ revelarAoRolar(".abertura, .areas .lado-texto, .ini-trilha, .ini-ferramenta, .fi
   const slides = [...trilho.children];
   const pontos = document.getElementById("pontos");
   const parado = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const TEMPO = 7000;
+  const TEMPO = 8000;
   let atual = 0, relogio = null, sobre = false;
+  /* As maquetes só se mexem depois que o carrossel aparece na tela: quem
+     está lendo o topo da página não perde a animação do primeiro slide. */
+  let visto = false;
 
   pontos.innerHTML = slides.map((s,i) => {
     const nome = (s.querySelector(".eyebrow") || {}).textContent || ("Slide " + (i+1));
@@ -894,9 +1171,20 @@ revelarAoRolar(".abertura, .areas .lado-texto, .ini-trilha, .ini-ferramenta, .fi
     trilho.style.transform = `translateX(-${atual * 100}%)`;
     slides.forEach((s,k) => s.classList.toggle("ativo", k === atual));
     [...pontos.children].forEach((p,k) => p.classList.toggle("on", k === atual));
+    animar(slides[atual]);
+  }
+  /* Recomeça a animação da maquete do slide que entrou. Tirar a classe,
+     ler uma medida e pôr de novo é o que faz o navegador tocar do início.
+     Os outros slides ficam como estão: o que está saindo não dá um pulo
+     para o desenho parado no meio da troca. */
+  function animar(slide){
+    if (parado || !visto || !slide) return;
+    slide.classList.remove("anima");
+    void slide.offsetWidth;
+    slide.classList.add("anima");
   }
   function tocar(){
-    if (parado) return;
+    if (parado || !visto) return;
     clearInterval(relogio);
     relogio = setInterval(() => { if (!sobre) ir(atual + 1); }, TEMPO);
   }
@@ -920,7 +1208,15 @@ revelarAoRolar(".abertura, .areas .lado-texto, .ini-trilha, .ini-ferramenta, .fi
     if (Math.abs(d) > 45) { ir(atual + (d < 0 ? 1 : -1)); tocar(); }
   });
 
-  ir(0); tocar();
+  ir(0);
+  /* Tudo começa quando pelo menos um terço do carrossel está na tela. */
+  function comecar(){ if (visto) return; visto = true; ir(atual); tocar(); }
+  if ("IntersectionObserver" in window) {
+    const olho = new IntersectionObserver(ent => {
+      if (ent.some(e => e.isIntersecting)) { olho.disconnect(); comecar(); }
+    }, { threshold: 0.35 });
+    olho.observe(palco);
+  } else comecar();
 })();
 </script>
 </body>
