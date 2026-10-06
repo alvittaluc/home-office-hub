@@ -53,16 +53,36 @@ jobs:
           if [ -f alertas-enviados.json ]; then git add alertas-enviados.json; fi
           if git diff --staged --quiet; then
             echo "Nenhuma mudança nas vagas hoje."
-          else
-            git commit -m "Atualização automática de vagas"
-            # Se alguém publicou outra mudança enquanto o robô rodava, o envio
-            # é recusado. Então ele traz o que chegou, põe as vagas por cima e
-            # tenta de novo, até três vezes.
-            for tentativa in 1 2 3; do
-              if git push; then exit 0; fi
-              echo "Envio recusado; trazendo o que mudou e tentando de novo ($tentativa de 3)."
-              git fetch --depth=50 origin main && git rebase -X theirs origin/main || git rebase --abort
-              sleep 5
-            done
-            exit 1
+            exit 0
           fi
+          BASE=$(git rev-parse HEAD)
+          git commit -m "Atualização automática de vagas"
+          # Se alguém publicou outra mudança enquanto o robô rodava, o envio é
+          # recusado. Há dois casos:
+          #  1. Mudança no site, sem mexer nas vagas: as vagas do robô entram por
+          #     cima do que chegou.
+          #  2. A rotina do PC publicou vagas. A coleta do PC é a mais completa (só
+          #     ela lê micro1 e TELUS, e traz os resumos novos), então vale a do PC
+          #     inteira. Do robô segue só o registro dos e-mails de alerta que ele
+          #     já enviou. Misturar as duas coletas linha a linha poderia deixar o
+          #     vagas.json quebrado.
+          for tentativa in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "Envio recusado; conferindo o que mudou ($tentativa de 3)."
+            git fetch --depth=50 origin main
+            if git diff --quiet "$BASE" origin/main -- vagas.json vagas-especificas.json; then
+              git rebase origin/main || { git rebase --abort; exit 1; }
+            else
+              echo "O PC publicou vagas mais novas; fica valendo a coleta do PC."
+              cp alertas-enviados.json /tmp/alertas-enviados.json 2>/dev/null || true
+              git reset --hard origin/main
+              if [ -f /tmp/alertas-enviados.json ]; then
+                cp /tmp/alertas-enviados.json alertas-enviados.json
+                git add alertas-enviados.json
+              fi
+              git diff --staged --quiet || git commit -m "Registro dos alertas de vagas enviados"
+            fi
+            BASE=$(git rev-parse origin/main)
+            sleep 5
+          done
+          exit 1
