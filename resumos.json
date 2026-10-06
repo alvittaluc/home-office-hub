@@ -1,5 +1,5 @@
 {
-  "total": 197,
+  "total": 200,
   "vagas": [
     {
       "id": "65762fd387",
@@ -2128,6 +2128,42 @@
         "remuneracao": "US$ 35 a 50 mil por ano",
         "carga": "6 dias por semana",
         "contrato": "Tempo integral"
+      }
+    },
+    {
+      "id": "6ee9a7c7d7",
+      "resumo": {
+        "o_que_faz": "Você grava clipes curtos de voz, de 1 a 2 minutos, falando naturalmente e misturando inglês com chinês, como faria numa conversa com amigos. Não tem roteiro: você comenta um vídeo, fala do seu dia ou dá sua opinião sobre um assunto. É trabalho por projeto, sem horário fixo, pago por gravação aprovada. A Toloka anuncia até US$ 30 por hora, dependendo do seu ritmo e da taxa de aprovação.",
+        "requisitos": "Ser bilíngue de verdade em inglês e chinês, com o hábito de alternar entre as duas línguas ao falar. Qualquer aparelho serve, inclusive o celular. O essencial é um cômodo silencioso, sem TV, música ou outras vozes, e falar perto do microfone. Um fone com microfone ajuda, mas não é obrigatório.",
+        "dica_cv": "Apesar de aparecer para o Brasil, esta vaga só serve para quem fala chinês fluente. Se esse for o seu caso, capriche no áudio: ruído de fundo é o principal motivo de reprovação. Faça um teste gravando e ouvindo antes de enviar. Não precisa de currículo elaborado, o que importa é a qualidade das primeiras gravações.",
+        "frase": "Gravar clipes de voz misturando inglês e chinês.",
+        "remuneracao": "Até US$ 30 por hora",
+        "contrato": "Por gravação aprovada",
+        "idioma": "inglês e chinês"
+      }
+    },
+    {
+      "id": "8b5d66b531",
+      "resumo": {
+        "o_que_faz": "Você ouve gravações curtas de fala e escreve uma avaliação estruturada de cada uma, com o vocabulário profissional de voz. Entram na análise as características vocais, como idade e gênero aparentes, sotaque, ressonância, altura, entonação, respiração e ritmo, além do tom emocional e da clareza da articulação. Você também avalia a gravação em si: o som da sala, o tipo de microfone e se o ambiente é de estúdio ou de casa. É trabalho remoto, feito no seu horário.",
+        "requisitos": "O anúncio prefere quem tem experiência profissional com atuação de voz, preparação vocal, treino de sotaque ou pedagogia vocal, e diz que não é preciso ter trabalhado com IA. Conta bastante conhecer análise de fala, prosódia, fonética e variação de sotaques, e ter noção de áudio para julgar a qualidade de uma gravação. Inglês a partir do nível B2, porque as avaliações são escritas em inglês. Internet estável e um bom fone de ouvido.",
+        "dica_cv": "Liste os trabalhos de voz que você já fez: locução, dublagem, aulas de canto ou de dicção, preparação de elenco. Use os termos técnicos da área, já que o trabalho é justamente descrever a voz com precisão. Se você grava ou edita áudio, cite o equipamento e os programas que usa. Currículo em inglês.",
+        "frase": "Ouvir gravações de fala e descrever a voz por escrito, com termos técnicos.",
+        "remuneracao": "US$ 30 a 70 por hora",
+        "contrato": "Freelancer",
+        "idioma": "en"
+      }
+    },
+    {
+      "id": "88a47d5e8b",
+      "resumo": {
+        "o_que_faz": "Você usa no seu próprio Mac uma versão especial de um assistente de IA e cumpre tarefas do dia a dia falando em português: ditar mensagens, e-mails e anotações, pedir uma imagem, formatar um texto, aplicar fórmula em planilha ou resumir um documento. Depois transcreve o que falou, entrega uma versão limpa da transcrição e dá nota às respostas da IA. Tudo fica registrado numa planilha de controle, com as gravações enviadas para uma pasta compartilhada. O projeto dura 4 semanas e começa de imediato.",
+        "requisitos": "Português do Brasil nativo ou quase nativo. O anúncio prefere quem nasceu ou cresceu no Brasil. Inglês suficiente para entender e seguir as instruções. É obrigatório ter um Mac com chip Apple Silicon (M1, M2 ou M3) e macOS Sequoia 15.0 ou mais novo. Também pedem uso diário de e-mail, mensagens, documentos, planilhas e navegador, e cuidado com preenchimento de dados.",
+        "dica_cv": "Confira o modelo e o sistema do seu Mac antes de se candidatar, porque sem eles a candidatura não segue. No currículo, destaque trabalhos com transcrição, revisão, anotação de dados ou rotinas de planilha bem organizadas. A seleção tem envio de currículo e formulário, e uma entrevista de conversa de 25 minutos sobre a sua experiência.",
+        "frase": "Usar um assistente de IA por voz no seu Mac e avaliar as respostas.",
+        "remuneracao": "US$ 12,60 por tarefa",
+        "contrato": "Freelancer, 4 semanas",
+        "idioma": "pt"
       }
     }
   ]
