@@ -18,7 +18,10 @@
 --    · apagar: o mentor (os da mentoria dele) e a administração.
 --
 --  Limites: PDF, PNG, JPG, WebP ou GIF; 10 MB por arquivo; 5
---  arquivos por mensagem; 300 arquivos por mentoria.
+--  arquivos por mensagem; 300 arquivos e 200 MB por mentoria; e
+--  700 MB somando todas as mentorias. Esse último existe porque o
+--  plano do Supabase dá 1 GB de arquivos, e estourar o plano pode
+--  travar o projeto inteiro, não só o mural.
 --
 --  Rodar depois do banco/mentorias-5.sql. Pode rodar mais de uma
 --  vez sem estragar nada.
@@ -81,16 +84,26 @@ returns uuid language sql immutable set search_path = '' as $$
   end;
 $$;
 
--- enviar: o mentor daquela mentoria, com ela no ar, até o teto de arquivos
+-- o tamanho que o armazenamento anotou para um arquivo; 0 se não anotou
+create or replace function public._mural_tamanho(p_metadata jsonb)
+returns bigint language sql immutable set search_path = '' as $$
+  select case when p_metadata->>'size' ~ '^[0-9]{1,15}$' then (p_metadata->>'size')::bigint else 0 end;
+$$;
+
+-- enviar: o mentor daquela mentoria, com ela no ar, enquanto houver espaço:
+-- até 300 arquivos e 200 MB na mentoria, e 700 MB somando todas
 create or replace function public._mural_pode_enviar(p_caminho text)
 returns boolean language sql stable security definer set search_path = '' as $$
   select auth.uid() is not null
      and exists (select 1 from public.mentorias m
                  where m.id = public._mural_mentoria(p_caminho)
                    and m.mentor_id = auth.uid() and m.status = 'aprovada')
-     and (select count(*) from storage.objects o
+     and (select count(*) < 300 and coalesce(sum(public._mural_tamanho(o.metadata)), 0) < 209715200
+          from storage.objects o
           where o.bucket_id = 'mural'
-            and o.name like public._mural_mentoria(p_caminho)::text || '/%') < 300;
+            and o.name like public._mural_mentoria(p_caminho)::text || '/%')
+     and (select coalesce(sum(public._mural_tamanho(o.metadata)), 0) < 734003200
+          from storage.objects o where o.bucket_id = 'mural');
 $$;
 
 -- ler: a administração; o mentor daquela mentoria; e quem está no mural,
@@ -125,6 +138,8 @@ revoke all on function public._mural_mentoria(text), public._mural_pode_enviar(t
 grant execute on function public._mural_mentoria(text), public._mural_pode_enviar(text),
                           public._mural_pode_ler(text), public._mural_pode_apagar(text)
   to authenticated;
+-- esta só é usada por dentro das funções acima
+revoke all on function public._mural_tamanho(jsonb) from public, anon, authenticated;
 
 -- ── As regras em si ──
 -- Não existe regra de alterar: arquivo publicado não é trocado por outro.
@@ -215,7 +230,7 @@ begin
     -- O arquivo precisa estar no armazenamento, na pasta desta mentoria, e
     -- ter sido enviado por quem está publicando. Tipo e tamanho saem do que
     -- o armazenamento registrou, não do que o navegador diz.
-    select o.metadata->>'mimetype' as tipo, (o.metadata->>'size')::bigint as tamanho
+    select o.metadata->>'mimetype' as tipo, public._mural_tamanho(o.metadata) as tamanho
       into obj
       from storage.objects o
      where o.bucket_id = 'mural' and o.name = a->>'caminho'
@@ -223,11 +238,18 @@ begin
     if not found or public._mural_mentoria(a->>'caminho') is distinct from p_id then
       raise exception 'Um dos arquivos não chegou ao servidor. Anexe de novo.';
     end if;
+    if exists (select 1 from public.mentoria_anexos x where x.caminho = a->>'caminho') then
+      raise exception 'Um dos arquivos já está em outra mensagem. Anexe de novo.';
+    end if;
+    if obj.tipo is null
+       or obj.tipo not in ('application/pdf', 'image/png', 'image/jpeg', 'image/webp', 'image/gif')
+       or obj.tamanho not between 1 and 10485760 then
+      raise exception 'Um dos arquivos não pode ser publicado. O mural aceita PDF ou imagem, de até 10 MB.';
+    end if;
     insert into public.mentoria_anexos (post_id, mentoria_id, caminho, nome, tipo, tamanho)
     values (novo, p_id, a->>'caminho',
             left(coalesce(nullif(btrim(a->>'nome'), ''), 'arquivo'), 120),
-            coalesce(obj.tipo, a->>'tipo'),
-            coalesce(obj.tamanho, (a->>'tamanho')::bigint)::int);
+            obj.tipo, obj.tamanho::int);
   end loop;
   return novo;
 end;
