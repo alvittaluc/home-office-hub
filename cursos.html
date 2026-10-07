@@ -37,14 +37,17 @@ html.f-solto .eyebrow {
 html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#1A4893; }
 
 /* ══════════════════════════════════════════════════════════════
-   CURSOS — uma trilha por bloco, com os cursos listados dentro.
-   Para acrescentar um curso, copie um bloco <li> e troque o
-   número, o título, a descrição, a linha de apoio e o link.
+   CURSOS — em cima, a apresentação e o progresso da pessoa.
+   Embaixo, o livro dos cursos (ver "O LIVRO" mais abaixo).
    ══════════════════════════════════════════════════════════════ */
 
 .c-main { max-width:var(--wrap,1180px); margin:0 auto; padding:52px 20px 100px; }
 
-.c-hero { max-width:680px; margin-bottom:46px; }
+.c-topo {
+  display:grid; grid-template-columns:minmax(0,680px) minmax(0,340px);
+  justify-content:space-between; align-items:end; gap:36px; margin-bottom:46px;
+}
+.c-hero { min-width:0; }
 .c-hero h1 {
   font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
   font-size:clamp(31px,4.2vw,50px); line-height:1.08; letter-spacing:-0.015em;
@@ -52,14 +55,10 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 }
 .c-lead { font-size:17px; line-height:1.62; color:var(--ink-2,#54606F); margin:0; }
 
-/* trilhas à esquerda e, no computador, o progresso da pessoa à direita */
-.c-corpo { display:grid; grid-template-columns:minmax(0,820px) minmax(0,1fr); gap:26px; align-items:start; }
-.c-trilhas { display:flex; flex-direction:column; gap:22px; min-width:0; }
-
+/* o progresso da pessoa */
 .c-lado {
-  position:sticky; top:96px; min-width:0;
-  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
-  border-radius:22px; padding:24px 24px 22px;
+  min-width:0; background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
+  border-radius:22px; padding:22px 24px 20px;
 }
 .c-lado h2 { font-size:16px; font-weight:600; letter-spacing:-0.012em; color:var(--ink,#10203A); margin:0 0 4px; }
 .c-lado-txt { font-size:13.5px; line-height:1.55; color:var(--ink-2,#54606F); margin:0 0 14px; }
@@ -71,78 +70,246 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 }
 .c-continuar:hover { filter:brightness(1.08); }
 .c-continuar small { display:block; font-size:12px; font-weight:400; opacity:.85; margin-top:2px; }
-.c-andamento { list-style:none; margin:18px 0 0; padding:14px 0 0; border-top:1px solid var(--line-soft,#EAE4D9); display:grid; gap:9px; }
-.c-andamento li { display:grid; grid-template-columns:1fr auto; gap:10px; align-items:baseline; font-size:13px; color:var(--ink-2,#54606F); }
-.c-andamento a { color:inherit; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.c-andamento a:hover { color:var(--signal,#1A4893); }
-.c-andamento span { font-size:12px; color:var(--ink-3,#66717F); font-variant-numeric:tabular-nums; white-space:nowrap; }
-.c-andamento li.feito span { color:#1F7A6E; font-weight:600; }
 .c-lado-nota { font-size:12.5px; line-height:1.5; color:var(--ink-3,#66717F); margin:14px 0 0; }
 .c-lado-nota a { color:var(--signal,#1A4893); }
 /* marca de andamento ao lado de cada curso da lista */
 .c-apoio b { font-weight:600; color:var(--signal,#1A4893); }
 .c-apoio b.feito { color:#1F7A6E; }
 
-@media (max-width:1040px){
-  .c-corpo { grid-template-columns:1fr; }
-  .c-trilhas { max-width:820px; }
-  .c-lado { position:static; order:-1; max-width:820px; border-radius:18px; padding:20px 22px; }
-  .c-andamento { display:none; }
+/* ══════════════════════════════════════════════════════════════
+   O LIVRO
+   As trilhas ficam dentro de um livro aberto: a Trilha 1 na página
+   da esquerda, a Trilha 2 na da direita. Sem script, ou para quem
+   pediu menos movimento no aparelho, a página já vem assim, aberta.
+
+   Com script, na primeira vez de cada visita o livro chega fechado,
+   mostrando a capa (.lv-capa), e abre uma vez: quando o mouse passa
+   em cima, com o toque, quando o teclado entra nele, ou sozinho, um
+   instante depois de aparecer na tela. Quem cuida disso são os dois
+   scripts do livro (um dentro dele, outro logo depois), com as classes
+     .vivo      o livro está montado para o movimento, fechado
+     .abrindo   a abertura está rodando
+   No fim da abertura as duas saem e sobra a página comum.
+
+   Para acrescentar um curso, copie um bloco <li> da lista da
+   trilha e troque o número, o título, a descrição, a linha de
+   apoio e o link. A capa conta os cursos sozinha.
+   ══════════════════════════════════════════════════════════════ */
+
+.livrao { --capa:#15284B; --papel:#FDFBF6; --fio:#E9E2D4; position:relative; }
+.lv-3d { position:relative; z-index:0; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+
+/* a sombra do livro na mesa */
+.lv-sombra {
+  position:absolute; z-index:-2; left:2.5%; right:2.5%; top:6%; bottom:-20px; border-radius:30px;
+  background:rgba(16,32,58,.36); filter:blur(26px);
+}
+/* a fita marcadora, saindo por baixo */
+.lv-fita {
+  position:absolute; z-index:-1; left:calc(50% + 36px); bottom:-36px; width:15px; height:64px;
+  background:linear-gradient(90deg,#B9692C,#98511F);
+  clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 9px),0 100%);
+}
+/* a dobra do meio */
+.lv-3d::after {
+  content:""; position:absolute; z-index:1; top:9px; bottom:9px; left:calc(50% - .5px); width:1px;
+  background:rgba(16,32,58,.17); pointer-events:none;
 }
 
-.c-trilha {
-  background:var(--panel,#FFFFFF); border:1px solid var(--line,#DED7CA);
-  border-radius:22px; padding:30px 32px 14px;
+/* cada metade: a capa dura por fora (.lv-dentro) e a folha de papel (.lv-pagina) */
+.lv-folha { position:relative; display:flex; min-width:0; }
+.lv-dentro { flex:1; display:flex; min-width:0; padding:9px; background:var(--capa); box-shadow:0 1px 3px rgba(16,32,58,.22); }
+.lv-esq .lv-dentro { padding-right:0; border-radius:14px 0 0 14px; }
+.lv-dir .lv-dentro { padding-left:0; border-radius:0 14px 14px 0; }
+.lv-pagina {
+  position:relative; flex:1; min-width:0; display:flex; flex-direction:column;
+  padding:38px 42px 62px 38px; background-color:var(--papel);
 }
+/* o papel escurece perto da dobra, e as outras folhas aparecem na beirada de fora */
+.lv-esq .lv-pagina {
+  border-radius:4px 0 0 4px;
+  background-image:linear-gradient(90deg, rgba(16,32,58,0) 84%, rgba(16,32,58,.035) 93%, rgba(16,32,58,.12) 100%);
+  box-shadow:-2px 2px 0 -1px #F3EEE3, -3px 3px 0 -1px #D3CBBB, -5px 5px 0 -2px #F3EEE3, -6px 6px 0 -2px #D3CBBB;
+}
+.lv-dir .lv-pagina {
+  padding:38px 38px 62px 42px; border-radius:0 4px 4px 0;
+  background-image:linear-gradient(270deg, rgba(16,32,58,0) 84%, rgba(16,32,58,.035) 93%, rgba(16,32,58,.12) 100%);
+  box-shadow:2px 2px 0 -1px #F3EEE3, 3px 3px 0 -1px #D3CBBB, 5px 5px 0 -2px #F3EEE3, 6px 6px 0 -2px #D3CBBB;
+}
+
+/* o que vai escrito na página */
 .c-trilha-rot {
-  display:inline-block; font-size:11px; letter-spacing:0.13em; text-transform:uppercase;
+  align-self:flex-start; font-size:11px; letter-spacing:0.13em; text-transform:uppercase;
   color:var(--signal,#1A4893); background:rgba(26,72,147,0.07); border-radius:99px;
   padding:5px 12px; margin-bottom:13px;
 }
-.c-trilha h2 {
+.lv-pagina h2 {
   font-family:'Hedvig Letters Serif',Georgia,serif; font-weight:400;
-  font-size:clamp(22px,2.6vw,28px); line-height:1.15; letter-spacing:-0.012em;
-  color:var(--ink,#10203A); margin:0 0 8px;
+  font-size:clamp(23px,2.5vw,29px); line-height:1.15; letter-spacing:-0.012em;
+  color:var(--ink,#10203A); margin:0 0 9px;
 }
-.c-trilha-txt { font-size:15px; line-height:1.6; color:var(--ink-2,#54606F); margin:0; max-width:62ch; }
+.c-trilha-txt { font-size:14.5px; line-height:1.58; color:var(--ink-2,#54606F); margin:0; }
 
-.c-lista { list-style:none; margin:22px 0 0; padding:0; }
-
+.c-lista { list-style:none; margin:20px 0 0; padding:0; }
+.c-lista > li { border-top:1px solid var(--fio); }
 .c-curso {
-  display:grid; grid-template-columns:30px 1fr 16px; gap:16px; align-items:start;
-  padding:18px 0; border-top:1px solid var(--line-soft,#EAE4D9);
-  text-decoration:none; transition:opacity .16s;
+  position:relative; display:grid; grid-template-columns:27px 1fr; gap:11px; align-items:start;
+  margin:4px -10px; padding:11px 10px; border-radius:11px;
+  text-decoration:none; transition:background .16s;
 }
-.c-curso:hover { opacity:.72; }
+.c-curso:hover { background:rgba(26,72,147,.055); }
+.c-curso:focus-visible { outline:2px solid var(--signal,#1A4893); outline-offset:-2px; }
 
 .c-num {
-  font-size:13px; color:var(--ink-3,#66717F); font-variant-numeric:tabular-nums;
-  padding-top:2px;
+  font-family:'Hedvig Letters Serif',Georgia,serif; font-size:18px; line-height:1.2;
+  color:var(--signal,#1A4893); font-variant-numeric:tabular-nums;
 }
-.c-curso:hover .c-num { color:var(--signal,#1A4893); }
-
 .c-nome {
-  display:block; font-size:16.5px; font-weight:600; letter-spacing:-0.012em;
-  color:var(--ink,#10203A); margin-bottom:5px;
+  display:block; font-size:16px; font-weight:600; letter-spacing:-0.012em;
+  color:var(--ink,#10203A); margin-bottom:4px; padding-right:28px; transition:color .16s;
 }
-.c-desc { display:block; font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F); }
+.c-curso:hover .c-nome { color:var(--signal,#1A4893); }
+.c-desc { display:block; font-size:13.5px; line-height:1.52; color:var(--ink-2,#54606F); }
 .c-apoio {
-  display:block; font-size:12.5px; color:var(--ink-3,#66717F); margin-top:8px;
+  display:block; font-size:12px; color:var(--ink-3,#66717F); margin-top:7px;
 }
-
-.c-seta { color:var(--signal,#1A4893); font-size:15px; padding-top:2px; transition:transform .18s; }
+.c-seta { position:absolute; right:10px; top:12px; color:var(--signal,#1A4893); font-size:15px; transition:transform .18s; }
 .c-curso:hover .c-seta { transform:translateX(3px); }
 
-.c-rodape { margin-top:54px; padding-top:32px; border-top:1px solid var(--line,#DED7CA); max-width:680px; }
+/* o fecho da página da direita e o pé das duas, com o número da página */
+.lv-fim {
+  margin-top:auto; padding-top:26px; text-align:center;
+  font-size:13px; line-height:1.55; color:var(--ink-3,#66717F);
+}
+.lv-fim::before { content:""; display:block; width:56px; height:1px; margin:0 auto 15px; background:#D9D1C1; }
+.lv-pe {
+  position:absolute; left:38px; right:42px; bottom:24px; display:flex; justify-content:space-between;
+  font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#8C919B;
+}
+.lv-dir .lv-pe { left:42px; right:38px; }
+
+/* ── a capa: só existe enquanto o livro está fechado ou abrindo ── */
+.lv-capa { display:none; }
+.livrao.vivo .lv-capa {
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  container-type:size; --u:min(1cqw, .66cqh);   /* a medida das letras da capa */
+  overflow:hidden; cursor:pointer;
+  padding-left:3%; color:#F5F0E6; border-radius:5px 14px 14px 5px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0) 0, rgba(255,255,255,.15) 2.6%, rgba(0,0,0,.26) 4.4%, rgba(0,0,0,.05) 5.8%, rgba(255,255,255,.10) 7%, rgba(255,255,255,0) 10.5%),
+    linear-gradient(125deg, rgba(255,255,255,.13), rgba(255,255,255,0) 46%, rgba(0,0,0,.18)),
+    var(--capa);
+}
+/* a trama do tecido: fios claros deitados e fios escuros em pé */
+.lv-capa::after {
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.2;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='a' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.16 .95' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.5 0 0 0 -.6'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23a)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='a' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95 .16' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.5 0 0 0 -.6'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23a)'/%3E%3C/svg%3E");
+}
+.cp-moldura {
+  position:absolute; top:4.4%; bottom:4.4%; left:10.5%; right:6%;
+  border:1px solid rgba(245,240,230,.36); border-radius:3px;
+}
+.cp-topo { margin-top:calc(var(--u) * 20); font-size:11px; font-size:calc(var(--u) * 2.05); letter-spacing:.3em; text-transform:uppercase; opacity:.8; }
+.cp-tit {
+  margin-top:calc(var(--u) * 9); font-family:'Hedvig Letters Serif',Georgia,serif;
+  font-size:72px; font-size:calc(var(--u) * 18); line-height:1; letter-spacing:-0.02em;
+}
+.cp-fio { width:calc(var(--u) * 13); height:1px; margin:calc(var(--u) * 6.5) 0 calc(var(--u) * 5); background:currentColor; opacity:.5; }
+.cp-sub { font-size:17px; font-size:calc(var(--u) * 3.4); line-height:1.5; opacity:.9; }
+.cp-marca { margin-top:auto; width:calc(var(--u) * 12); height:calc(var(--u) * 12); }
+.cp-pe { margin:calc(var(--u) * 5) 0 calc(var(--u) * 15); font-size:11px; font-size:calc(var(--u) * 2.05); letter-spacing:.26em; text-transform:uppercase; opacity:.72; }
+
+/* ── no computador: o livro fechado fica no meio e a capa vira para a esquerda ── */
+@media (min-width:1041px){
+  .livrao.vivo { perspective:4200px; perspective-origin:50% 46%; }
+  .livrao.vivo .lv-3d { transform-style:preserve-3d; transform:translateX(-25%); }
+  .livrao.vivo .lv-3d::after { display:none; }
+  .livrao.vivo .lv-sombra { transform-origin:100% 50%; transform:translateZ(-8px) scaleX(.5); }
+  .livrao.vivo .lv-esq {
+    transform-style:preserve-3d; transform-origin:100% 50%;
+    transform:rotateY(180deg) translateZ(-2px);
+  }
+  .livrao.vivo .lv-esq .lv-dentro {
+    -webkit-backface-visibility:hidden; backface-visibility:hidden; transform:rotateY(0deg);
+  }
+  .livrao.vivo .lv-capa {
+    position:absolute; inset:0;
+    -webkit-backface-visibility:hidden; backface-visibility:hidden;
+    transform:rotateY(180deg) translateZ(1px);
+  }
+  .livrao.abrindo .lv-3d    { animation:lv-centro 1.25s cubic-bezier(.6,.02,.2,1) var(--t0,0s) both; }
+  .livrao.abrindo .lv-sombra { animation:lv-sombra 1.25s linear var(--t0,0s) both; }
+  .livrao.abrindo .lv-esq   { animation:lv-vira   1.25s cubic-bezier(.6,.02,.2,1) var(--t0,0s) both; }
+}
+@keyframes lv-centro { from { transform:translateX(-25%); } to { transform:translateX(0); } }
+/* a sombra acompanha a ponta da folha: só cresce para a esquerda depois que ela passa do meio */
+@keyframes lv-sombra {
+  0% { transform:translateZ(-8px) scaleX(0.5); }
+  40% { transform:translateZ(-8px) scaleX(0.5); }
+  45% { transform:translateZ(-8px) scaleX(0.633); }
+  50% { transform:translateZ(-8px) scaleX(0.806); }
+  55% { transform:translateZ(-8px) scaleX(0.9); }
+  60% { transform:translateZ(-8px) scaleX(0.95); }
+  65% { transform:translateZ(-8px) scaleX(0.976); }
+  70% { transform:translateZ(-8px) scaleX(0.989); }
+  75% { transform:translateZ(-8px) scaleX(0.995); }
+  80% { transform:translateZ(-8px) scaleX(0.998); }
+  85% { transform:translateZ(-8px) scaleX(1); }
+  95% { transform:translateZ(-8px) scaleX(1); }
+  100% { transform:translateZ(-8px) scaleX(1); }
+}
+@keyframes lv-vira   { from { transform:rotateY(180deg) translateZ(-2px); } to { transform:rotateY(0deg) translateZ(-2px); } }
+
+.c-rodape { margin-top:64px; padding-top:32px; border-top:1px solid var(--line,#DED7CA); max-width:680px; }
 .c-rodape h3 { font-size:16px; font-weight:600; color:var(--ink,#10203A); margin:0 0 8px; }
 .c-rodape p { font-size:14.5px; line-height:1.65; color:var(--ink-2,#54606F); margin:0 0 10px; }
 .c-rodape p:last-child { margin:0; }
 
+/* ── telas estreitas: uma página embaixo da outra ── */
+@media (max-width:1040px){
+  .c-topo { grid-template-columns:1fr; gap:26px; align-items:start; }
+  .c-lado { max-width:820px; border-radius:18px; padding:20px 22px; }
+
+  .livrao { max-width:820px; }
+  .lv-3d { grid-template-columns:minmax(0,1fr); }
+  .lv-3d::after { display:none; }
+  .lv-fita { left:auto; right:38px; }
+  .lv-esq .lv-dentro { padding:9px 9px 0; border-radius:14px 14px 0 0; }
+  .lv-dir .lv-dentro { padding:0 9px 9px; border-radius:0 0 14px 14px; }
+  .lv-esq .lv-pagina, .lv-dir .lv-pagina {
+    padding:32px 30px 30px; background-image:none;
+    box-shadow:2px 0 0 -1px #F3EEE3, 3px 0 0 -1px #D3CBBB, 5px 0 0 -2px #F3EEE3, 6px 0 0 -2px #D3CBBB;
+  }
+  .lv-esq .lv-pagina { border-radius:4px 4px 0 0; }
+  .lv-dir .lv-pagina { border-radius:0 0 4px 4px; border-top:1px solid var(--fio); }
+  .lv-pe, .lv-dir .lv-pe { position:static; margin-top:26px; }
+
+  /* fechado, só a capa aparece; na abertura ela vira para a esquerda e some */
+  .livrao.vivo { --alt-capa:min(128vw,540px); }
+  .livrao.vivo .lv-3d { max-height:var(--alt-capa); overflow:hidden; border-radius:14px; }
+  .livrao.vivo .lv-capa {
+    position:absolute; z-index:3; left:0; right:0; top:0; height:var(--alt-capa);
+    transform-origin:0 50%; border-radius:5px 14px 14px 5px;
+  }
+  .livrao.abrindo .lv-3d { max-height:none; overflow:visible; }
+  .livrao.abrindo .lv-capa { animation:lv-capa-sai .95s cubic-bezier(.6,.02,.3,1) var(--t0,0s) both; }
+  .livrao.abrindo .lv-dentro, .livrao.abrindo .lv-sombra { animation:lv-surge .5s ease var(--t0,0s) both; }
+}
+@keyframes lv-surge { from { opacity:0; } to { opacity:1; } }
+@keyframes lv-capa-sai {
+  from { transform:perspective(1500px) rotateY(0deg); opacity:1; }
+  72%  { opacity:1; }
+  to   { transform:perspective(1500px) rotateY(-104deg); opacity:0; }
+}
+
 @media (max-width:680px){
   .c-main { padding-top:36px; }
-  .c-trilha { padding:24px 22px 8px; border-radius:18px; }
-  .c-curso { grid-template-columns:26px 1fr; gap:12px; }
+  .lv-esq .lv-pagina, .lv-dir .lv-pagina { padding:26px 20px 24px; }
+  .c-curso { grid-template-columns:25px 1fr; gap:10px; }
   .c-seta { display:none; }
+  .c-nome { padding-right:0; }
 }
 </style>
 </head>
@@ -150,122 +317,207 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
 
 <main class="c-main">
 
-  <div class="c-hero">
-    <div class="eyebrow">Cursos</div>
-    <h1>Aprender o trabalho antes da primeira vaga</h1>
-    <p class="c-lead">Boa parte das vagas pede experiência, e é aí que muita gente trava. Estes cursos servem para você chegar à candidatura sabendo o que a empresa faz com o seu julgamento, o que a tarefa espera de você e
-      como é uma avaliação bem feita. Todo conteúdo é escrito a partir de
-      artigos publicados, normas e políticas públicas, com as fontes listadas ao fim de cada curso.</p>
+  <div class="c-topo">
+    <div class="c-hero">
+      <div class="eyebrow">Cursos</div>
+      <h1>Aprender o trabalho antes da primeira vaga</h1>
+      <p class="c-lead">Boa parte das vagas pede experiência, e é aí que muita gente trava. Estes cursos servem para você chegar à candidatura sabendo o que a empresa faz com o seu julgamento, o que a tarefa espera de você e
+        como é uma avaliação bem feita. Todo conteúdo é escrito a partir de
+        artigos publicados, normas e políticas públicas, com as fontes listadas ao fim de cada curso.</p>
+    </div>
+
+    <!-- ── progresso da pessoa (preenchido pelo script do fim da página) ── -->
+    <aside class="c-lado" id="lado" aria-label="Seu progresso nos cursos">
+      <h2>Seu progresso</h2>
+      <p class="c-lado-txt" id="ladoTxt">Nenhuma aula concluída ainda.</p>
+      <div class="c-barra"><i id="ladoBarra"></i></div>
+      <a class="c-continuar" id="ladoBotao" href="curso-fundamentos.html">Começar pelo primeiro curso<small>Fundamentos da Avaliação de IA</small></a>
+      <p class="c-lado-nota" id="ladoNota" hidden></p>
+    </aside>
   </div>
 
-  <div class="c-corpo">
-  <div class="c-trilhas">
+  <!-- ══════════════ O LIVRO DOS CURSOS ══════════════ -->
+  <div class="livrao" id="livro">
+    <script>
+    /* O livro chega fechado na primeira vez de cada visita, menos para quem pediu
+       menos movimento no aparelho. Isso é decidido aqui, antes de as páginas serem
+       desenhadas, para ele não piscar aberto. A abertura está no script logo depois
+       do livro. */
+    (function () {
+      try { if (matchMedia("(prefers-reduced-motion:reduce)").matches) return; } catch (e) { return; }
+      try { if (sessionStorage.getItem("hub.cursos.livro") === "1") return; } catch (e) {}
+      document.getElementById("livro").classList.add("vivo");
+    })();
+    </script>
+    <div class="lv-3d">
+      <span class="lv-sombra" aria-hidden="true"></span>
 
-    <section class="c-trilha">
-      <span class="c-trilha-rot">Trilha 1</span>
-      <h2>Avaliação e julgamento</h2>
-      <p class="c-trilha-txt">Quatro cursos na ordem em que fazem sentido. Cada um se sustenta sozinho, e juntos cobrem o caminho completo: por que o trabalho existe, o documento que define a tarefa, a tarefa em si, e a régua de segurança.</p>
-      <ol class="c-lista">
-        <li>
-          <a class="c-curso" href="curso-fundamentos.html">
-            <span class="c-num">01</span>
-            <span>
-              <span class="c-nome">Fundamentos da Avaliação de IA</span>
-              <span class="c-desc">O curso de entrada. Como um modelo de conversa é treinado, por que ele depende de gente comparando respostas, e o que separa uma avaliação que melhora o modelo de uma que o piora sem ninguém notar.</span>
-              <span class="c-apoio">4 aulas · cerca de 1 hora · introdutório</span>
-            </span>
-            <span class="c-seta" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a class="c-curso" href="curso-guidelines.html">
-            <span class="c-num">02</span>
-            <span>
-              <span class="c-nome">Guidelines, Rubricas e Consistência</span>
-              <span class="c-desc">O curso de não estragar o dado. Como ler a guideline, o que é uma âncora de escala, como se mede concordância entre avaliadores com kappa e alfa, e o que o controle de qualidade olha no seu trabalho.</span>
-              <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
-            </span>
-            <span class="c-seta" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a class="c-curso" href="curso-comparacao.html">
-            <span class="c-num">03</span>
-            <span>
-              <span class="c-nome">Comparação de Respostas e LLM como Juiz</span>
-              <span class="c-desc">A tarefa mais comum do mercado. Formatos e escalas de preferência, os vieses já medidos nesse formato, como funciona a avaliação feita por modelo, e o que fazer quando as duas respostas estão erradas.</span>
-              <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
-            </span>
-            <span class="c-seta" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a class="c-curso" href="curso-seguranca.html">
-            <span class="c-num">04</span>
-            <span>
-              <span class="c-nome">Segurança, Red Teaming e Conteúdo Sensível</span>
-              <span class="c-desc">Onde o trabalho paga melhor e onde mais gente erra. Política de uso e taxonomia de dano, recusa apropriada contra recusa excessiva, métodos de red teaming, e como trabalhar com conteúdo pesado.</span>
-              <span class="c-apoio">4 aulas · cerca de 1 hora · avançado</span>
-            </span>
-            <span class="c-seta" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-      </ol>
-    </section>
+      <!-- página da esquerda: a Trilha 1. Por fora, é esta folha que carrega a capa. -->
+      <section class="lv-folha lv-esq" aria-labelledby="trilha1">
+        <div class="lv-capa" id="capa" aria-hidden="true">
+          <span class="cp-moldura"></span>
+          <span class="cp-topo">Home Office Hub</span>
+          <span class="cp-tit">Cursos</span>
+          <span class="cp-fio"></span>
+          <span class="cp-sub">Avaliação de IA<br>Voz e áudio</span>
+          <svg class="cp-marca" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <circle cx="32" cy="32" r="30.5" stroke-width="1" opacity=".55"/>
+            <g transform="translate(13.44 13.44) scale(.58)">
+              <path d="M22 14v36M22 39c0-7 4.2-10.5 10-10.5s10 3.5 10 10.5v11" stroke-width="6.4"/>
+              <circle cx="35" cy="17.5" r="4.4" fill="currentColor" stroke="none"/>
+            </g>
+          </svg>
+          <span class="cp-pe" id="capaPe">7 cursos · 28 aulas</span>
+        </div>
+        <div class="lv-dentro">
+          <div class="lv-pagina">
+            <span class="c-trilha-rot">Trilha 1</span>
+            <h2 id="trilha1">Avaliação e julgamento</h2>
+            <p class="c-trilha-txt">Quatro cursos na ordem em que fazem sentido. Cada um se sustenta sozinho, e juntos cobrem o caminho completo: por que o trabalho existe, o documento que define a tarefa, a tarefa em si, e a régua de segurança.</p>
+            <ol class="c-lista">
+              <li>
+                <a class="c-curso" href="curso-fundamentos.html">
+                  <span class="c-num">01</span>
+                  <span>
+                    <span class="c-nome">Fundamentos da Avaliação de IA</span>
+                    <span class="c-desc">O curso de entrada. Como um modelo de conversa é treinado, por que ele depende de gente comparando respostas, e o que separa uma avaliação que melhora o modelo de uma que o piora sem ninguém notar.</span>
+                    <span class="c-apoio">4 aulas · cerca de 1 hora · introdutório</span>
+                  </span>
+                  <span class="c-seta" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a class="c-curso" href="curso-guidelines.html">
+                  <span class="c-num">02</span>
+                  <span>
+                    <span class="c-nome">Guidelines, Rubricas e Consistência</span>
+                    <span class="c-desc">O curso de não estragar o dado. Como ler a guideline, o que é uma âncora de escala, como se mede concordância entre avaliadores com kappa e alfa, e o que o controle de qualidade olha no seu trabalho.</span>
+                    <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
+                  </span>
+                  <span class="c-seta" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a class="c-curso" href="curso-comparacao.html">
+                  <span class="c-num">03</span>
+                  <span>
+                    <span class="c-nome">Comparação de Respostas e LLM como Juiz</span>
+                    <span class="c-desc">A tarefa mais comum do mercado. Formatos e escalas de preferência, os vieses já medidos nesse formato, como funciona a avaliação feita por modelo, e o que fazer quando as duas respostas estão erradas.</span>
+                    <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
+                  </span>
+                  <span class="c-seta" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a class="c-curso" href="curso-seguranca.html">
+                  <span class="c-num">04</span>
+                  <span>
+                    <span class="c-nome">Segurança, Red Teaming e Conteúdo Sensível</span>
+                    <span class="c-desc">Onde o trabalho paga melhor e onde mais gente erra. Política de uso e taxonomia de dano, recusa apropriada contra recusa excessiva, métodos de red teaming, e como trabalhar com conteúdo pesado.</span>
+                    <span class="c-apoio">4 aulas · cerca de 1 hora · avançado</span>
+                  </span>
+                  <span class="c-seta" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+            </ol>
+            <span class="lv-pe" aria-hidden="true"><span>2</span><span>Home Office Hub</span></span>
+          </div>
+        </div>
+      </section>
 
-    <section class="c-trilha">
-      <span class="c-trilha-rot">Trilha 2</span>
-      <h2>Voz e áudio</h2>
-      <p class="c-trilha-txt">A área em que mais falta material em português, e a que mais aparece nas vagas de quem fala português do Brasil. Os três cursos se completam, e cada um se sustenta sozinho.</p>
-      <ol class="c-lista">
-        <li>
-          <a class="c-curso" href="curso-tts.html">
-            <span class="c-num">01</span>
-            <span>
-              <span class="c-nome">Avaliação de TTS: MOS, CMOS e as Escalas</span>
-              <span class="c-desc">O que se mede numa voz sintética, de onde vêm as escalas da ITU, como um teste sério é montado, e como escrever um comentário que a equipe consegue usar.</span>
-              <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
-            </span>
-            <span class="c-seta" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a class="c-curso" href="curso-transcricao.html">
-            <span class="c-num">02</span>
-            <span>
-              <span class="c-nome">Transcrição e Convenções</span>
-              <span class="c-desc">A porta de entrada mais comum do mercado. Verbatim contra limpo, como marcar hesitação, ruído e trecho ininteligível, números e ITN, e as métricas WER e CER.</span>
-              <span class="c-apoio">4 aulas · cerca de 1 hora · introdutório</span>
-            </span>
-            <span class="c-seta" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a class="c-curso" href="curso-fonetica.html">
-            <span class="c-num">03</span>
-            <span>
-              <span class="c-nome">Fonética Prática para Quem Avalia Voz</span>
-              <span class="c-desc">Para trocar "soou estranho" por uma descrição que a equipe consegue corrigir. Os sons do português brasileiro, sílaba tônica, entonação, e como o texto vira som num sistema de fala.</span>
-              <span class="c-apoio">4 aulas · cerca de 1 hora · avançado</span>
-            </span>
-            <span class="c-seta" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-      </ol>
-    </section>
+      <!-- página da direita: a Trilha 2 -->
+      <section class="lv-folha lv-dir" aria-labelledby="trilha2">
+        <div class="lv-dentro">
+          <div class="lv-pagina">
+            <span class="c-trilha-rot">Trilha 2</span>
+            <h2 id="trilha2">Voz e áudio</h2>
+            <p class="c-trilha-txt">A área em que mais falta material em português, e a que mais aparece nas vagas de quem fala português do Brasil. Os três cursos se completam, e cada um se sustenta sozinho.</p>
+            <ol class="c-lista">
+              <li>
+                <a class="c-curso" href="curso-tts.html">
+                  <span class="c-num">01</span>
+                  <span>
+                    <span class="c-nome">Avaliação de TTS: MOS, CMOS e as Escalas</span>
+                    <span class="c-desc">O que se mede numa voz sintética, de onde vêm as escalas da ITU, como um teste sério é montado, e como escrever um comentário que a equipe consegue usar.</span>
+                    <span class="c-apoio">4 aulas · cerca de 1 hora · prático</span>
+                  </span>
+                  <span class="c-seta" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a class="c-curso" href="curso-transcricao.html">
+                  <span class="c-num">02</span>
+                  <span>
+                    <span class="c-nome">Transcrição e Convenções</span>
+                    <span class="c-desc">A porta de entrada mais comum do mercado. Verbatim contra limpo, como marcar hesitação, ruído e trecho ininteligível, números e ITN, e as métricas WER e CER.</span>
+                    <span class="c-apoio">4 aulas · cerca de 1 hora · introdutório</span>
+                  </span>
+                  <span class="c-seta" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a class="c-curso" href="curso-fonetica.html">
+                  <span class="c-num">03</span>
+                  <span>
+                    <span class="c-nome">Fonética Prática para Quem Avalia Voz</span>
+                    <span class="c-desc">Para trocar "soou estranho" por uma descrição que a equipe consegue corrigir. Os sons do português brasileiro, sílaba tônica, entonação, e como o texto vira som num sistema de fala.</span>
+                    <span class="c-apoio">4 aulas · cerca de 1 hora · avançado</span>
+                  </span>
+                  <span class="c-seta" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+            </ol>
+            <p class="lv-fim">Todo curso termina com um quiz, um glossário e a lista de fontes.</p>
+            <span class="lv-pe" aria-hidden="true"><span>Cursos</span><span>3</span></span>
+          </div>
+        </div>
+      </section>
 
+      <span class="lv-fita" aria-hidden="true"></span>
+    </div>
   </div>
+  <script>
+  /* ══════════════════════════════════════════════════════════════
+     O LIVRO ABRE
+     Sem script, a página já vem com o livro aberto. Quando o livro
+     chega fechado (ver o script de dentro dele), este aqui abre uma
+     vez: com o mouse em cima da capa, com o toque, com o foco do
+     teclado ou sozinho, um instante depois de o livro aparecer na
+     tela. Aberto, ele fica aberto, e a visita guarda isso: quem sai
+     para um curso e volta já encontra o livro aberto.
+     ══════════════════════════════════════════════════════════════ */
+  (function () {
+    var livro = document.getElementById("livro"), capa = document.getElementById("capa");
+    if (!livro || !capa || !livro.classList.contains("vivo")) return;
 
-  <!-- ── progresso da pessoa (preenchido pelo script do fim da página) ── -->
-  <aside class="c-lado" id="lado" aria-label="Seu progresso nos cursos">
-    <h2>Seu progresso</h2>
-    <p class="c-lado-txt" id="ladoTxt">Nenhuma aula concluída ainda.</p>
-    <div class="c-barra"><i id="ladoBarra"></i></div>
-    <a class="c-continuar" id="ladoBotao" href="curso-fundamentos.html">Começar pelo primeiro curso<small>Fundamentos da Avaliação de IA</small></a>
-    <ul class="c-andamento" id="ladoLista"></ul>
-    <p class="c-lado-nota" id="ladoNota" hidden></p>
-  </aside>
-  </div>
+    var abriu = false;
+    function assentar() { livro.classList.remove("vivo", "abrindo"); }
+    function abrir() {
+      if (abriu) return;
+      abriu = true;
+      try { sessionStorage.setItem("hub.cursos.livro", "1"); } catch (e) {}
+      livro.classList.add("abrindo");
+      setTimeout(assentar, 1700);   // garantia, se o aviso de fim da abertura não vier
+    }
+    livro.addEventListener("animationend", function (ev) {
+      if (ev.animationName === "lv-vira" || ev.animationName === "lv-capa-sai") assentar();
+    });
+    capa.addEventListener("pointerenter", abrir);
+    capa.addEventListener("click", abrir);
+    livro.addEventListener("focusin", abrir);
+
+    // sozinho, um instante depois de aparecer na tela
+    function daquiAPouco() { setTimeout(abrir, 1400); }
+    if ("IntersectionObserver" in window) {
+      var olho = new IntersectionObserver(function (vistas) {
+        for (var i = 0; i < vistas.length; i++) {
+          if (vistas[i].isIntersecting) { olho.disconnect(); daquiAPouco(); return; }
+        }
+      }, { threshold: 0.15 });
+      olho.observe(livro);
+    } else daquiAPouco();
+  })();
+  </script>
 
   <div class="c-rodape">
     <h3>Por que isso conta</h3>
@@ -346,10 +598,9 @@ html.f-solto .eyebrow::before { content:''; width:24px; height:1px; background:#
     rotulo(feitas ? "Começar o próximo curso" : "Começar pelo primeiro curso", alvo.nome);
   }
 
-  document.getElementById("ladoLista").innerHTML = cursos.map(function (c) {
-    return '<li' + (c.feitas >= AULAS ? ' class="feito"' : "") + '><a href="' + c.arquivo + '">' + esc(c.nome) + "</a><span>" +
-      (c.feitas >= AULAS ? "concluído" : c.feitas + " de " + AULAS) + "</span></li>";
-  }).join("");
+  // a capa do livro conta os cursos sozinha
+  var capaPe = document.getElementById("capaPe");
+  if (capaPe) capaPe.textContent = cursos.length + " cursos · " + total + " aulas";
 
   // quem não tem conta lê a primeira aula de cada curso; o resto pede login
   try {
