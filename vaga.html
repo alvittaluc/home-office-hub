@@ -23,8 +23,19 @@
 <link rel="stylesheet" href="estilo.css">
 <style>
   .pagina { max-width:840px; margin:0 auto; padding:30px 20px 60px; }
-  .voltar { display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12.5px; color:var(--ink-2); margin-bottom:24px; transition:color .15s; }
-  .voltar:hover { color:var(--signal); }
+  /* o caminho de volta para a lista, visível de cara: um botão, não um textinho */
+  .voltar {
+    display:inline-flex; align-items:center; gap:9px; font-family:var(--body); font-size:14.5px; font-weight:500;
+    color:var(--ink); background:var(--panel); border:1px solid var(--line); border-radius:999px;
+    padding:10px 18px 10px 14px; margin-bottom:26px; box-shadow:0 6px 16px -12px rgba(16,32,58,.35);
+    transition:border-color .15s, color .15s, transform .15s;
+  }
+  .voltar .seta { font-size:17px; line-height:1; transition:transform .15s; }
+  .voltar:hover { border-color:var(--signal); color:var(--signal); }
+  .voltar:hover .seta { transform:translateX(-3px); }
+  .voltar:focus-visible { outline:2px solid var(--signal); outline-offset:2px; }
+  .fim-volta { margin-top:30px; text-align:center; }
+  .fim-volta .voltar { margin-bottom:0; }
 
   .cabeca { border-bottom:1px solid var(--line-soft); padding-bottom:24px; margin-bottom:28px; }
   .cabeca .cat { font-family:var(--mono); font-size:11px; letter-spacing:0.09em; text-transform:uppercase; color:var(--signal); margin-bottom:12px; }
@@ -94,7 +105,7 @@
 <body>
 
 <div class="pagina">
-  <a href="vagas.html" class="voltar">← voltar para todas as vagas</a>
+  <a href="vagas.html?ver=todas" class="voltar" data-voltar><span class="seta" aria-hidden="true">←</span>Voltar para a lista de vagas</a>
   <div id="conteudo"><div class="vazio"><div class="big">◌</div><p>Carregando vaga</p></div></div>
 </div>
 
@@ -129,9 +140,37 @@ function seloData(v) {
 }
 
 function erro(msg) {
-  return `<div class="vazio"><div class="big">◌</div><p>${msg}</p>
-    <p style="margin-top:18px;"><a href="vagas.html" style="color:var(--signal);">← ver todas as vagas</a></p></div>`;
+  return `<div class="vazio"><div class="big">◌</div><p>${msg}</p></div>`;
 }
+
+/* ══════════════════════════════════════════════════════════
+   VOLTAR PARA A LISTA
+
+   O botão leva para a lista em que a pessoa estava, com os mesmos
+   filtros e na mesma altura da página. Quem anota isso é a própria
+   lista, na memória da aba, na hora em que a vaga é aberta (ver
+   "VOLTAR PARA ONDE A PESSOA ESTAVA" no vagas.html). Aqui a gente só
+   lê o endereço anotado e avisa a lista de que é uma volta.
+
+   Quem chegou direto na vaga, por busca ou pelo e-mail de alerta,
+   não tem lista anotada: vai para a lista completa.
+   ══════════════════════════════════════════════════════════ */
+let DESTINO_VOLTA = "vagas.html?ver=todas";
+try {
+  const onde = JSON.parse(sessionStorage.getItem("hub.vagas.onde") || "null");
+  // só vale um pedaço de endereço do próprio vagas.html: "" ou "?..."
+  if (onde && typeof onde.url === "string" && /^(\?[A-Za-z0-9_=&%.+~-]*)?$/.test(onde.url)) {
+    DESTINO_VOLTA = "vagas.html" + onde.url;
+  }
+} catch (e) {}
+function ligarVoltar() {
+  document.querySelectorAll("a[data-voltar]").forEach(a => { a.href = DESTINO_VOLTA; });
+}
+ligarVoltar();
+document.addEventListener("click", ev => {
+  if (!ev.target.closest("a[data-voltar]")) return;
+  try { sessionStorage.setItem("hub.vagas.voltar", "1"); } catch (e) {}
+});
 
 (async function(){
   const id = new URLSearchParams(location.search).get("id");
@@ -211,7 +250,9 @@ function erro(msg) {
     <div class="ajuda">
       Antes de se candidatar, veja como montar o <a href="como-funciona.html#curriculo">currículo que passa nessas vagas</a>
       e <a href="como-funciona.html#pagamento">como o pagamento chega ao Brasil</a>.
-    </div>`;
+    </div>
+    <div class="fim-volta"><a href="vagas.html?ver=todas" class="voltar" data-voltar><span class="seta" aria-hidden="true">←</span>Voltar para a lista de vagas</a></div>`;
+  ligarVoltar();
 
   /* ══════════════════════════════════════════════════════════
      "Já apliquei para essa vaga?"

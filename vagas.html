@@ -453,6 +453,13 @@
     box-shadow:0 14px 30px -22px rgba(16,32,58,.20);
   }
   .vaga.nova { border-color:#EBD2B4; background:linear-gradient(90deg,#FEFAF5,var(--panel) 42%); }
+  /* a vaga que a pessoa tinha aberto, quando ela volta para a lista */
+  .vaga.de-volta { animation:vaga-de-volta 2.4s ease; }
+  @keyframes vaga-de-volta {
+    0%, 35% { border-color:var(--signal); box-shadow:0 0 0 3px var(--signal-suave); }
+    100%    { box-shadow:0 0 0 3px rgba(234,241,248,0); }
+  }
+  @media (prefers-reduced-motion:reduce){ .vaga.de-volta { animation:none; border-color:var(--signal); } }
   .vaga.nova:hover { border-color:#E0C09A; }
 
   .v-marca {
@@ -815,6 +822,9 @@ async function iniciar() {
     await carregarAplicadas();
     if (typeof Pulso !== "undefined") { try { await Pulso.carregar(); } catch (e) {} }
     render();
+    // voltando de uma vaga: a mesma lista, os mesmos filtros, a mesma altura
+    const onde = ondeEstava();
+    if (onde && TELA === "lista") { reporFiltros(onde); aplicar(); reporRolagem(onde); }
   } catch (e) {
     const esq = document.getElementById("esqueleto");
     if (esq) esq.remove();
@@ -931,6 +941,75 @@ document.addEventListener("click", ev => {
   render();
 });
 window.addEventListener("popstate", () => { lerUrl(); render(); });
+
+/* ══════════════════════════════════════════════════════════
+   VOLTAR PARA ONDE A PESSOA ESTAVA
+
+   Quem abre uma vaga e volta quer cair na mesma lista, com os mesmos
+   filtros e na mesma altura da página. O endereço guarda só a tela;
+   os filtros da coluna, a ordem e a rolagem não cabem nele. Por isso,
+   ao abrir uma vaga, a página anota tudo na memória da aba. Na volta,
+   pelo botão "Voltar para a lista" da página da vaga ou pelo voltar do
+   navegador, se o endereço for o mesmo, ela repõe.
+   ══════════════════════════════════════════════════════════ */
+const CHAVE_ONDE = "hub.vagas.onde", CHAVE_VOLTA = "hub.vagas.voltar";
+
+function anotarOnde(vid) {
+  try {
+    sessionStorage.setItem(CHAVE_ONDE, JSON.stringify({
+      url: location.search, y: Math.round(window.scrollY), vid: vid || "",
+      periodo: fPeriodo, cats: [...fCats], emps: [...fEmps], ordem,
+      busca, semIngles, esconderAplicadas,
+    }));
+  } catch (e) {}
+}
+document.addEventListener("click", ev => {
+  const cartao = ev.target.closest("a.vaga[data-vid]");
+  if (cartao) anotarOnde(cartao.dataset.vid);
+}, true);
+
+/* O que foi anotado, se esta abertura da página é uma volta para o mesmo
+   endereço. Em qualquer outro caso, null: quem chega de novo começa do zero. */
+function ondeEstava() {
+  let pediu = false, onde = null, chegada = "";
+  try {
+    pediu = sessionStorage.getItem(CHAVE_VOLTA) === "1";
+    sessionStorage.removeItem(CHAVE_VOLTA);
+    onde = JSON.parse(sessionStorage.getItem(CHAVE_ONDE) || "null");
+  } catch (e) {}
+  try { chegada = (performance.getEntriesByType("navigation")[0] || {}).type || ""; } catch (e) {}
+  if (!onde || typeof onde !== "object" || onde.url !== location.search) return null;
+  return (pediu || chegada === "back_forward") ? onde : null;
+}
+
+/* Repõe os filtros anotados. Roda depois do lerUrl, que zera tudo. */
+function reporFiltros(onde) {
+  if (TELA !== "lista") return;
+  const textos = l => (Array.isArray(l) ? l : []).filter(x => typeof x === "string").slice(0, 60);
+  if (PERIODOS.some(p => p.id === onde.periodo)) fPeriodo = onde.periodo;
+  fCats = new Set(textos(onde.cats));
+  fEmps = new Set(textos(onde.emps));
+  if (["relevancia", "recentes", "antigas", "empresa", "titulo"].indexOf(onde.ordem) >= 0) ordem = onde.ordem;
+  if (typeof onde.busca === "string") busca = onde.busca.slice(0, 120);
+  semIngles = onde.semIngles === true;
+  esconderAplicadas = onde.esconderAplicadas === true;
+  const cx = document.getElementById("busca"); if (cx) cx.value = busca;
+  const so = document.getElementById("ordem"); if (so) so.value = ordem;
+}
+
+/* Rola até onde a pessoa estava e marca por um instante a vaga que ela abriu. */
+function reporRolagem(onde) {
+  if (TELA !== "lista") return;
+  window.scrollTo({ top: +onde.y || 0, behavior: "instant" });
+  let cartao = null;
+  try { cartao = onde.vid ? document.querySelector('a.vaga[data-vid="' + CSS.escape(String(onde.vid)) + '"]') : null; } catch (e) {}
+  if (!cartao) return;
+  // se a lista mudou e o cartão ficou fora da tela, ele vem para o meio
+  const r = cartao.getBoundingClientRect();
+  if (r.bottom < 90 || r.top > innerHeight - 40) cartao.scrollIntoView({ block: "center", behavior: "instant" });
+  cartao.classList.add("de-volta");
+  setTimeout(() => cartao.classList.remove("de-volta"), 2400);
+}
 
 /* ── datas ── */
 function dias(v) {
