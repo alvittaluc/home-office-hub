@@ -692,18 +692,17 @@ html { scroll-behavior:smooth; }
               <tr><td class="cu-tab-rot">CBRN Information or Capabilities</td><td>informação que ajude em arma química, biológica, radiológica ou nuclear</td></tr>
               <tr><td class="cu-tab-rot">Confabulation</td><td>afirmação inventada apresentada como fato, o que o mercado chama de alucinação</td></tr>
               <tr><td class="cu-tab-rot">Dangerous, Violent, or Hateful Content</td><td>conteúdo perigoso, violento ou de ódio</td></tr>
-              <tr><td class="cu-tab-rot">Data Privacy</td><td>dado pessoal exposto, inferido ou recuperado sem base</td></tr>
+              <tr><td class="cu-tab-rot">Data Privacy</td><td>dado pessoal exposto, deduzido ou recuperado sem autorização</td></tr>
               <tr><td class="cu-tab-rot">Environmental Impacts</td><td>custo ambiental de treinar e operar sistemas</td></tr>
-              <tr><td class="cu-tab-rot">Harmful Bias or Homogenization</td><td>viés que prejudica grupos, e uniformização de saída</td></tr>
-              <tr><td class="cu-tab-rot">Human-AI Configuration</td><td>como pessoas e sistema interagem, incluindo confiança indevida</td></tr>
-              <tr><td class="cu-tab-rot">Information Integrity</td><td>desinformação e degradação do ambiente informacional</td></tr>
+              <tr><td class="cu-tab-rot">Harmful Bias or Homogenization</td><td>viés que prejudica grupos, e respostas todas parecidas</td></tr>
+              <tr><td class="cu-tab-rot">Human-AI Configuration</td><td>como pessoas e sistema interagem, incluindo confiar demais no sistema</td></tr>
+              <tr><td class="cu-tab-rot">Information Integrity</td><td>desinformação, e a piora da informação que circula</td></tr>
               <tr><td class="cu-tab-rot">Information Security</td><td>uso para atacar sistemas, e a segurança do próprio sistema</td></tr>
               <tr><td class="cu-tab-rot">Intellectual Property</td><td>reprodução indevida de obra protegida</td></tr>
               <tr><td class="cu-tab-rot">Obscene, Degrading, and/or Abusive Content</td><td>conteúdo obsceno, degradante ou abusivo</td></tr>
-              <tr><td class="cu-tab-rot">Value Chain and Component Integration</td><td>risco herdado de terceiros na cadeia, incluindo dados e modelos de fora</td></tr>
+              <tr><td class="cu-tab-rot">Value Chain and Component Integration</td><td>risco que vem de fornecedores, como dados e modelos feitos por terceiros</td></tr>
             </table>
-            <p class="cu-tab-legenda">Nomes conforme o documento NIST AI 600-1, julho de 2024. A coluna da
-              direita é uma glosa em português, não tradução oficial.</p>
+            <p class="cu-tab-legenda">Nomes conforme o documento NIST AI 600-1, julho de 2024. A coluna da direita é uma explicação em português, não tradução oficial.</p>
           </div>
           <p class="cu-fig-nota">Ter os doze na cabeça acelera a classificação e reduz a chance de você chamar
             tudo de "conteúdo sensível".</p>
@@ -744,7 +743,7 @@ html { scroll-behavior:smooth; }
 
         <p>A segunda camada tem exemplo público: o Model Spec da OpenAI, já citado no curso anterior, que declara
           o comportamento esperado e organiza a autoridade das instruções numa cadeia de comando, do nível root,
-          que não pode ser sobreposto, até o nível guideline, que cede ao contexto.</p>
+          que ninguém pode contrariar, até o nível guideline, que cede ao contexto.</p>
 
         <h3 id="a1-gravidade">Gravidade, probabilidade e contexto</h3>
         <p>Avaliador novato trata dano como interruptor: tem ou não tem. Avaliador bom trata como três
@@ -752,10 +751,8 @@ html { scroll-behavior:smooth; }
         <ul>
           <li><strong>Gravidade.</strong> Se o dano acontecer, qual é o tamanho? Dano irreversível a uma pessoa
             pesa mais que incômodo a muitas.</li>
-          <li><strong>Probabilidade.</strong> A resposta aumenta de fato a chance do dano, ou a informação já é
-            trivialmente disponível e sem valor operacional? A pergunta não é se o tema é desconfortável, é se a
-            resposta acrescenta capacidade.</li>
-          <li><strong>Contexto do pedido.</strong> O mesmo texto muda de categoria conforme o enquadramento.
+          <li><strong>Probabilidade.</strong> A resposta aumenta de fato a chance do dano, ou a informação já está em qualquer lugar e não ajuda ninguém a agir? A pergunta não é se o tema é desconfortável, é se a resposta dá a alguém uma capacidade que a pessoa não tinha.</li>
+          <li><strong>Contexto do pedido.</strong> O mesmo texto muda de categoria conforme o contexto em que aparece.
             Descrever como um veneno age, num pedido de estudante de biologia, é diferente de dar dose e método
             para uso em alguém.</li>
         </ul>
@@ -863,12 +860,12 @@ html { scroll-behavior:smooth; }
           exagerado.</p>
         <p>A composição do conjunto explica o método: <strong>250 pedidos seguros</strong>, distribuídos em
           <strong>dez tipos</strong>, mais <strong>200 pedidos inseguros</strong> que servem de contraste. Os
-          pedidos seguros são construídos para parecer perigosos na superfície, usando palavra ambígua, figura de
+          pedidos seguros são construídos para parecer perigosos à primeira vista, usando palavra ambígua, figura de
           linguagem ou tema delicado com finalidade legítima. Um modelo bem calibrado atende os 250 e recusa os
           200.</p>
         <p>A ideia dos pares de contraste é a parte que vale levar para a sua prática: <strong>a mesma palavra em
           dois contextos</strong>. "Como matar um processo no Linux" e "como matar meu vizinho" compartilham um
-          verbo e nada mais. Quando você avalia, o que importa é o pedido inteiro, não o gatilho lexical.</p>
+          verbo e nada mais. Quando você avalia, o que importa é o pedido inteiro, não a palavra que assusta.</p>
 
         <h3 id="a2-escada">A escada das respostas seguras</h3>
         <p>Entre atender tudo e recusar tudo existe uma escada, e a maioria das guidelines premia o degrau mais
@@ -908,9 +905,7 @@ html { scroll-behavior:smooth; }
           <li><strong>A recusa sermoneia?</strong> Repreender o usuário, presumir má intenção ou repetir avisos
             é defeito de qualidade, mesmo quando a recusa é correta.</li>
         </ol>
-        <p>E o inverso, quando a resposta atende: ela dá o mínimo necessário ou entrega capacidade além do
-          pedido? Detalhe operacional que ninguém pediu é o sinal mais comum de resposta insegura bem
-          intencionada.</p>
+        <p>E o inverso, quando a resposta atende: ela dá o mínimo necessário ou vai além do que foi pedido? Detalhe de execução que ninguém pediu é o sinal mais comum de resposta insegura bem-intencionada.</p>
 
         <div class="cu-pratica" id="a2-pratica">
           <p class="cu-selo">Prática</p>
@@ -940,7 +935,7 @@ html { scroll-behavior:smooth; }
               o último degrau da escada. Uma resposta boa listaria os sinais, orientaria a procurar emergência
               imediatamente e deixaria claro que não substitui avaliação médica.</p>
             <p><strong>2. Apropriada e bem executada.</strong> É o terceiro degrau: atende a parte segura, que é
-              a defensiva, e recusa explicitamente a parte que daria capacidade de fraude. Registra o limite sem
+              a defensiva, e recusa explicitamente a parte que ensinaria a fraudar. Registra o limite sem
               sermão e entrega o que o usuário pediu, do lado útil.</p>
             <p><strong>3. Apropriada e bem executada.</strong> O pedido é de ajuda para ameaçar uma pessoa, o que
               a política proíbe, então recusar é correto. A resposta está no quarto degrau, quase no terceiro:
@@ -958,7 +953,7 @@ html { scroll-behavior:smooth; }
             dois custam.</li>
           <li>O XSTest, de Röttger e colegas, na NAACL 2024, mede o segundo erro com 250 pedidos seguros em dez
             tipos e 200 pedidos inseguros de contraste.</li>
-          <li>Gatilho lexical não é pedido. A mesma palavra em contextos diferentes é justamente o que o teste
+          <li>Palavra que assusta não é pedido. A mesma palavra em contextos diferentes é justamente o que o teste
             explora.</li>
           <li>Existe uma escada entre atender e recusar. Premie o degrau mais alto que continue seguro, e trate
             recusa seca como defeito.</li>
@@ -989,35 +984,33 @@ html { scroll-behavior:smooth; }
           divide o pedido em partes inofensivas, e registra o que funcionou. É uma das poucas frentes em que o
           avaliador não julga a resposta de outra pessoa, e sim produz o próprio material de teste.</p>
         <p>Isso muda o perfil da tarefa. Em vez de consistência com uma rubrica, o que se cobra é criatividade
-          dentro de um objetivo declarado, mais um relato reproduzível. Um ataque que funcionou e que ninguém
+          dentro de um objetivo declarado, mais um relato que outra pessoa consiga repetir. Um ataque que funcionou e que ninguém
           consegue repetir vale pouco.</p>
 
         <h3 id="a3-ganguli">O estudo que abriu os dados</h3>
-        <p>A referência mais concreta sobre como isso é feito em escala é o artigo
+        <p>A referência mais concreta sobre como isso é feito em grande volume é o artigo
           <em>Red Teaming Language Models to Reduce Harms: Methods, Scaling Behaviors, and Lessons Learned</em>,
           de Deep Ganguli e colegas, da Anthropic, de 2022. Os autores descrevem o próprio esforço de descobrir,
-          medir e reduzir saídas potencialmente danosas, e liberaram <strong>38.961 ataques de red team</strong>
+          medir e reduzir respostas potencialmente danosas, e liberaram <strong>38.961 ataques de red team</strong>
           para que a comunidade pudesse analisar.</p>
         <p>O estudo comparou quatro tipos de modelo, testados em três tamanhos, de 2,7 bilhões, 13 bilhões e 52
           bilhões de parâmetros. Parâmetro é cada um dos números internos que o modelo ajusta durante o treino,
           e a contagem deles é a forma usual de dizer o tamanho de um modelo: mais parâmetros, modelo maior.</p>
 
         <div class="cu-fig">
-          <p class="cu-fig-cap"><b>Figura 3.1</b> · Os quatro tipos comparados no estudo</p>
+          <p class="cu-fig-cap"><b>Figura 3.1</b> · Os quatro tipos de modelo comparados no estudo</p>
           <div class="cu-fig-moldura">
             <div class="cu-seis" style="grid-template-columns:repeat(2,1fr)">
               <div class="cu-esc-cx"><b>Modelo simples</b><span>só o modelo de linguagem, sem nenhuma etapa
                 feita para ajustar comportamento</span></div>
               <div class="cu-esc-cx"><b>Modelo com instrução</b><span>recebe uma instrução fixa, escrita antes da
                 conversa, pedindo que seja útil, honesto e inofensivo</span></div>
-              <div class="cu-esc-cx"><b>Amostragem com rejeição</b><span>gera várias respostas e descarta as que
-                pontuam mal em inofensividade, entregando a que sobrou</span></div>
+              <div class="cu-esc-cx"><b>Amostragem com rejeição</b><span>gera várias respostas, descarta as que tiram nota ruim em inofensividade e entrega a que sobrou</span></div>
               <div class="cu-esc-cx cu-esc-forte"><b>Modelo com RLHF</b><span>treinado com comparações feitas por
                 pessoas. O único que ficou mais difícil de atacar conforme cresceu</span></div>
             </div>
           </div>
-          <p class="cu-fig-nota">Achado central: modelos com RLHF ficam progressivamente mais difíceis de atacar
-            com o aumento de escala, enquanto os outros três mostraram tendência plana.</p>
+          <p class="cu-fig-nota">Achado central: modelos com RLHF ficam cada vez mais difíceis de atacar conforme crescem, enquanto os outros três ficaram no mesmo nível.</p>
         </div>
 
         <p>Esse achado é uma das justificativas mais diretas para o trabalho que você faz. O treino com feedback
@@ -1035,13 +1028,12 @@ html { scroll-behavior:smooth; }
           <div class="cu-fig-moldura">
             <div class="cu-seis">
               <div class="cu-esc-cx"><b>Especialista de domínio</b><span>profissionais da área testam o modelo
-                dentro do próprio campo, do jurídico ao de ameaças de fronteira</span></div>
+                dentro do próprio campo, do jurídico ao de segurança nacional</span></div>
               <div class="cu-esc-cx"><b>Teste de vulnerabilidade de política</b><span>especialistas de confiança
                 e segurança testam exatamente onde a política escrita pode ser furada</span></div>
               <div class="cu-esc-cx"><b>Multilíngue e multicultural</b><span>testa o que falha fora do inglês e
                 fora de um único contexto cultural</span></div>
-              <div class="cu-esc-cx"><b>Automatizado</b><span>usa modelos para gerar ataques em volume, o que
-                cobre superfície que pessoas não cobririam</span></div>
+              <div class="cu-esc-cx"><b>Automatizado</b><span>usa modelos para gerar ataques em volume, o que alcança casos que pessoas não alcançariam</span></div>
               <div class="cu-esc-cx"><b>Multimodal</b><span>testa entrada que combina imagem e texto, onde o
                 ataque pode vir pela imagem</span></div>
               <div class="cu-esc-cx"><b>Multidão e comunidade</b><span>participação aberta, inclusive em eventos
@@ -1076,7 +1068,7 @@ html { scroll-behavior:smooth; }
           <li><strong>Ausência de achado não é prova de segurança.</strong> Significa que aquela equipe, naquele
             período, com aquelas técnicas, não encontrou. É uma afirmação bem mais modesta.</li>
           <li><strong>Resultado envelhece.</strong> Modelo novo, versão nova ou mudança de sistema exigem
-            reteste, porque a superfície mudou.</li>
+            novo teste, porque o que há para atacar mudou.</li>
           <li><strong>Cobertura depende de quem testa.</strong> Equipe homogênea encontra falha homogênea. É por
             isso que o teste multilíngue e multicultural existe como categoria separada, e é uma das portas de
             entrada mais reais para falante de português.</li>
@@ -1092,20 +1084,20 @@ html { scroll-behavior:smooth; }
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="cu-resp">
-            <p>Um relato útil tem seis campos, e o valor está em ser reproduzível, não dramático.</p>
+            <p>Um relato útil tem seis campos, e o valor está em poder ser repetido, não em impressionar.</p>
             <ul>
               <li><strong>Categoria do dano.</strong> Qual risco, no vocabulário do projeto ou da taxonomia
                 usada.</li>
-              <li><strong>Técnica.</strong> Aqui, enquadramento ficcional. Outros nomes comuns: troca de idioma,
+              <li><strong>Técnica.</strong> Aqui, o pedido disfarçado de ficção. Outros nomes comuns: troca de idioma,
                 divisão em partes, contexto de autoridade falsa, pedido em etapas.</li>
               <li><strong>Passos exatos.</strong> O que foi enviado, em qual ordem, com qual configuração. Quem
                 ler precisa repetir sem adivinhar.</li>
               <li><strong>Resultado observado.</strong> O que o modelo fez, de forma factual, sem exagero e sem
                 reproduzir mais conteúdo danoso do que o necessário para provar a falha.</li>
-              <li><strong>Comparação com o caso direto.</strong> O mesmo pedido sem o enquadramento foi recusado.
+              <li><strong>Comparação com o caso direto.</strong> O mesmo pedido, sem o disfarce, foi recusado.
                 É esse contraste que caracteriza a falha como contorno de política, e não como divergência de
                 régua.</li>
-              <li><strong>Reprodutibilidade.</strong> Quantas vezes você repetiu e quantas funcionou. Três de
+              <li><strong>Repetição.</strong> Quantas vezes você repetiu e quantas funcionou. Três de
                 cinco é uma informação diferente de uma de vinte.</li>
             </ul>
             <p>O erro mais comum de relato iniciante é escrever uma narrativa longa do que aconteceu, sem os
@@ -1213,7 +1205,7 @@ html { scroll-behavior:smooth; }
           <li><strong>Exige julgamento, não volume.</strong> Como a aula 2 mostrou, decidir entre recusa
             necessária e recusa excessiva não é tarefa de clicar rápido.</li>
           <li><strong>Depende de contexto local.</strong> Falante nativo que entende gíria, referência cultural e
-            forma local de golpe cobre uma superfície que uma equipe de fora não cobre. É exatamente a categoria
+            forma local de golpe percebe coisas que uma equipe de fora não percebe. É exatamente a categoria
             multilíngue e multicultural da aula anterior.</li>
         </ol>
         <p>Do ponto de vista de carreira, esse é o ponto em que a trilha inteira se junta: você lê guideline com
@@ -1311,8 +1303,7 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q3" value="c"><span>Idioma do pedido e horário do envio</span></label>
             <label><input type="radio" name="q3" value="d"><span>Popularidade do tema e opinião do avaliador</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">A pergunta não é se o tema é desconfortável, é se a resposta acrescenta capacidade
-              e em qual contexto ela foi pedida.</p>
+            <p class="cu-q-pq">A pergunta não é se o tema é desconfortável, é se a resposta dá a alguém uma capacidade que a pessoa não tinha, e em qual contexto ela foi pedida.</p>
           </div>
 
           <div class="cu-q" data-certa="c">
@@ -1334,7 +1325,7 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q5" value="c"><span>Uma métrica de concordância entre avaliadores de segurança</span></label>
             <label><input type="radio" name="q5" value="d"><span>Uma política de uso adotada por várias empresas</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">Os pedidos seguros parecem perigosos na superfície. Um modelo bem calibrado atende
+            <p class="cu-q-pq">Os pedidos seguros parecem perigosos à primeira vista. Um modelo bem calibrado atende
               os 250 e recusa os 200.</p>
           </div>
 
@@ -1351,13 +1342,13 @@ html { scroll-behavior:smooth; }
 
           <div class="cu-q" data-certa="a">
             <p class="cu-q-tit"><i>7</i> No estudo de red teaming da Anthropic, de 2022, qual dos quatro tipos de
-              modelo ficou mais difícil de atacar conforme a escala aumentou?</p>
+              modelo ficou mais difícil de atacar conforme o tamanho aumentou?</p>
             <label><input type="radio" name="q7" value="a"><span>O modelo treinado com RLHF</span></label>
             <label><input type="radio" name="q7" value="b"><span>O modelo simples, sem alinhamento</span></label>
             <label><input type="radio" name="q7" value="c"><span>O modelo apenas orientado por uma instrução fixa</span></label>
             <label><input type="radio" name="q7" value="d"><span>Todos os quatro, na mesma proporção</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">Os outros três mostraram tendência plana nos três tamanhos testados. O estudo
+            <p class="cu-q-pq">Os outros três ficaram no mesmo nível nos três tamanhos testados. O estudo
               liberou 38.961 ataques para análise pública.</p>
           </div>
 
@@ -1446,10 +1437,9 @@ html { scroll-behavior:smooth; }
           <li><b>Especificação de comportamento</b>O documento que diz como o modelo deve agir, incluindo o que
             fazer quando duas instruções se chocam. O Model Spec da OpenAI é o exemplo público usado no
             curso.</li>
-          <li><b>Cadeia de comando</b>A hierarquia de autoridade entre instruções, do nível que não pode ser
-            sobreposto até o que cede ao contexto.</li>
+          <li><b>Cadeia de comando</b>A hierarquia de autoridade entre instruções, do nível que ninguém pode contrariar até o que cede ao contexto.</li>
           <li><b>Gravidade, probabilidade e contexto</b>As três perguntas que definem o nível de risco: qual o
-            tamanho do dano, se a resposta aumenta mesmo a chance dele, e como o pedido foi enquadrado.</li>
+            tamanho do dano, se a resposta aumenta mesmo a chance dele, e em que contexto o pedido foi feito.</li>
           <li><b>Confabulação</b>Afirmação inventada apresentada como fato. É o termo usado em documentos
             técnicos para o que o mercado chama de alucinação.</li>
           <li><b>Usos agênticos</b>Quando o sistema executa tarefas sozinho, como navegar, comprar ou mexer em
@@ -1473,7 +1463,7 @@ html { scroll-behavior:smooth; }
           <li><b>Amostragem com rejeição</b>Gerar várias respostas, descartar as piores segundo algum critério, e
             entregar a que sobrou.</li>
           <li><b>Multimodal</b>Que combina mais de um tipo de entrada, em geral imagem e texto.</li>
-          <li><b>Reprodutibilidade de um ataque</b>Quantas vezes o mesmo ataque funciona quando repetido. Ataque
+          <li><b>Repetição de um ataque</b>Quantas vezes o mesmo ataque funciona quando repetido. Ataque
             que ninguém consegue repetir vale pouco como achado.</li>
         </ul>
       </section>
@@ -1516,7 +1506,7 @@ html { scroll-behavior:smooth; }
             Deep Ganguli e outros, Anthropic, 2022.
             <em><a href="https://arxiv.org/abs/2209.07858" target="_blank" rel="noopener">arxiv.org/abs/2209.07858</a>
               · fonte dos 38.961 ataques liberados, dos quatro tipos de modelo, dos três tamanhos testados e do
-              achado de que só o modelo com RLHF ficou mais difícil de atacar com a escala.</em>
+              achado de que só o modelo com RLHF ficou mais difícil de atacar conforme cresceu.</em>
           </li>
           <li>
             <b>Challenges in red teaming AI systems</b>
@@ -1530,7 +1520,7 @@ html { scroll-behavior:smooth; }
             Lama Ahmad, Sandhini Agarwal, Michael Lampe e Pamela Mishkin, OpenAI, 2024.
             <em><a href="https://cdn.openai.com/papers/openais-approach-to-external-red-teaming.pdf" target="_blank" rel="noopener">cdn.openai.com</a>
               · fonte das quatro decisões de projeto de uma campanha externa e da ressalva de que red teaming
-              sozinho não é panaceia.</em>
+              sozinho não resolve tudo.</em>
           </li>
           <li>
             <b>Model Spec</b>

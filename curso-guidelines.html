@@ -654,7 +654,7 @@ html { scroll-behavior:smooth; }
           Guideline é a tentativa de transformar valor em instrução aplicável.</p>
         <p>Consequência prática: onde a guideline é clara e seguida, avaliadores comuns produzem dado consistente
           em volume. Onde ela é vaga, talento individual não resolve, porque cada pessoa preenche a lacuna de um
-          jeito diferente e o resultado é ruído. O artigo do InstructGPT, da OpenAI, descreve exatamente esse
+          jeito diferente e o resultado é um dado que não se repete. O artigo do InstructGPT, da OpenAI, descreve exatamente esse
           arranjo: cerca de 40 pessoas contratadas, selecionadas por um teste de triagem, trabalhando a partir de
           instruções detalhadas para produzir demonstrações e comparações.</p>
 
@@ -677,8 +677,7 @@ html { scroll-behavior:smooth; }
               <div class="cu-esc-cx"><b>5. Exemplos anotados</b><span>casos resolvidos com a justificativa, que
                 é onde a régua fica visível de verdade</span></div>
               <div class="cu-esc-cx"><b>6. Via de escalonamento</b><span>escalonar é levar o caso para quem
-                conduz o projeto. Esta parte diz para onde mandar o item que a guideline não cobre, em vez de
-                você decidir por conta</span></div>
+                conduz o projeto. Esta parte diz para onde mandar o item que a guideline não cobre, em vez de você decidir por conta própria</span></div>
             </div>
           </div>
           <p class="cu-fig-nota">Leia as seis antes de começar. A parte 3 é a que mais falta, e a que mais
@@ -709,13 +708,13 @@ html { scroll-behavior:smooth; }
           <div class="cu-fig-moldura">
             <div class="cu-anat-crit" style="max-width:520px;margin:0 auto">
               <span class="cu-anat-rot">quem manda mais, de cima para baixo</span>
-              <span class="cu-anat-peso cu-anat-peso-t">não pode ser sobreposto</span>
+              <span class="cu-anat-peso cu-anat-peso-t">ninguém abaixo pode contrariar</span>
               <div class="cu-crit cu-crit-1">root · regras do próprio documento</div>
               <div class="cu-crit cu-crit-2">system · instruções da empresa</div>
               <div class="cu-crit cu-crit-3">developer · quem constrói o produto</div>
               <div class="cu-crit cu-crit-4">user · quem está conversando</div>
               <div class="cu-crit cu-crit-5">guideline · pode ceder ao contexto</div>
-              <span class="cu-anat-peso cu-anat-peso-b">pode ser sobreposto</span>
+              <span class="cu-anat-peso cu-anat-peso-b">cede a quem está acima</span>
             </div>
           </div>
           <p class="cu-fig-nota">Estrutura descrita no Model Spec da OpenAI, versão de 18 de agosto de 2026.</p>
@@ -733,8 +732,7 @@ html { scroll-behavior:smooth; }
           <li><strong>Regra.</strong> Não admite exceção no nível em que está escrita. "Nunca escolher resposta
             que dê instrução para fabricar arma" é regra. Se você se vê achando uma exceção, o lugar de levar
             isso é o canal de escalonamento, não a sua própria decisão.</li>
-          <li><strong>Padrão.</strong> É o comportamento esperado quando nada diz o contrário, e pode ser
-            sobreposto por instrução mais específica. "Responder em português" é padrão: se o usuário pede em
+          <li><strong>Padrão.</strong> É o comportamento esperado quando nada diz o contrário, e pode ser trocado por uma instrução mais específica. "Responder em português" é padrão: se o usuário pede em
             inglês, o padrão cede.</li>
           <li><strong>Julgamento.</strong> O que a guideline deliberadamente deixa para você, em geral porque
             depende do caso. É aqui que a sua nota vale, e é aqui que a justificativa é obrigatória.</li>
@@ -861,8 +859,7 @@ html { scroll-behavior:smooth; }
         <p>A regra para escrever ou interpretar âncora é essa: ela precisa apontar para algo
           <strong>observável no item</strong>. "Resposta excelente" não é observável. "O leitor entende sem
           reler" é. Se a âncora do seu projeto for do primeiro tipo, você pode construir a sua própria versão
-          observável, por escrito, e usar sempre a mesma. É trabalho de cinco minutos que salva centenas de
-          linhas.</p>
+          observável, por escrito, e usar sempre a mesma. É trabalho de cinco minutos que evita erro em centenas de linhas.</p>
 
         <h3 id="a2-drift">Deriva de calibração</h3>
         <p><span class="cu-termo">Deriva</span> é quando a sua régua muda sem você perceber. Depois de trinta
@@ -871,7 +868,7 @@ html { scroll-behavior:smooth; }
           nota.</p>
         <p>Três hábitos que reduzem deriva, e que dá para adotar sozinho:</p>
         <ol>
-          <li><strong>Reancore de vez em quando.</strong> A cada bloco de itens, releia as âncoras antes de
+          <li><strong>Volte às âncoras de vez em quando.</strong> A cada bloco de itens, releia as âncoras antes de
             continuar. Leva segundos.</li>
           <li><strong>Guarde exemplos próprios.</strong> Um item que você considera 3 exemplar, outro que é 4
             exemplar. Quando a dúvida vier, compare com eles em vez de comparar com o item anterior.</li>
@@ -896,14 +893,14 @@ html { scroll-behavior:smooth; }
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="cu-resp">
-            <p>Uma versão defensável, ancorada no que a resposta faz:</p>
+            <p>Uma versão que se sustenta, baseada no que a resposta faz:</p>
             <p><strong>4</strong> responde o que foi pedido e dá ao usuário o próximo passo concreto, sem erro.
               <strong>3</strong> responde o que foi pedido, sem erro, mas deixa o usuário sem saber o que fazer
               em seguida. <strong>2</strong> responde parcialmente, ou responde a uma pergunta vizinha, ou tem
               erro que não invalida o todo. <strong>1</strong> não responde ao pedido, ou o erro invalida a
               resposta.</p>
             <p>Repare em três decisões embutidas aí. A primeira: erro grave puxa para 1, porque correção está
-              acima de utilidade percebida. A segunda: a diferença entre 4 e 3 é uma coisa observável, existir ou
+              acima de utilidade aparente. A segunda: a diferença entre 4 e 3 é uma coisa observável, existir ou
               não o próximo passo, e não "quão útil parece". A terceira: nada na âncora menciona tamanho, tom ou
               formatação, justamente para não abrir a porta para os atalhos que enviesam.</p>
             <p>Se o seu projeto tiver âncora oficial, ela vence a sua. Este exercício serve para quando não
@@ -919,8 +916,7 @@ html { scroll-behavior:smooth; }
           <li>Escala absoluta mede nível e deriva com o tempo. Escala comparativa mede preferência e é mais
             estável, por isso alimenta o treino por preferência.</li>
           <li>Âncora útil descreve algo observável no item, não grau de satisfação.</li>
-          <li>Deriva de calibração é normal e previsível. Reancorar, guardar exemplos próprios e trabalhar em
-            blocos reduz o efeito.</li>
+          <li>Deriva de calibração é normal e previsível. Reler as âncoras, guardar exemplos próprios e trabalhar em blocos reduz o efeito.</li>
           <li>Quando a rubrica oficial é vaga, escreva a sua versão observável e aplique sempre igual, e pergunte
             ao projeto em vez de inventar critério novo a cada item.</li>
         </ul>
@@ -945,7 +941,7 @@ html { scroll-behavior:smooth; }
           resultado: avaliadores diferentes e cuidadosos, olhando o mesmo item com a mesma guideline, deveriam
           chegar perto do mesmo julgamento. Medir isso é a única forma de a
           empresa saber se a tarefa está bem definida antes de treinar um modelo com aquele dado.</p>
-        <p>Um número real, para calibrar expectativa. No artigo do InstructGPT, a OpenAI relata que os
+        <p>Um número real, para ajustar a expectativa. No artigo do InstructGPT, a OpenAI relata que os
           avaliadores de treino concordavam entre si em 72,6 por cento das vezes, com margem de 1,5 ponto, e os
           avaliadores de fora do treino em 77,3 por cento, com margem de 1,3 ponto. O mesmo artigo lembra que no
           trabalho anterior de resumos a concordância entre os próprios pesquisadores foi de 73 por cento, com
@@ -1021,8 +1017,7 @@ html { scroll-behavior:smooth; }
             completamente diferente.</p>
         </div>
 
-        <p>Esse par de contas é o argumento inteiro da aula. Quando um projeto reporta só a concordância bruta,
-          ele não disse quase nada. Quando reporta kappa, ele disse quanto sobrou depois de descontar o acaso.</p>
+        <p>Esse par de contas é o argumento inteiro da aula. Quando um projeto informa só a concordância bruta, ele não disse quase nada. Quando informa o kappa, ele disse quanto sobrou depois de descontar o acaso.</p>
 
         <h3 id="a3-familia">Fleiss, Krippendorff e quando usar cada um</h3>
         <p>Kappa de Cohen resolve o caso mais simples. A família tem mais membros, e a escolha depende do formato
@@ -1109,7 +1104,7 @@ html { scroll-behavior:smooth; }
               Em 20 itens A disse "pode seguir" e B disse "precisa de revisão". Em 10 itens A disse "precisa de
               revisão" e B disse "pode seguir".</p>
           </div>
-          <p>Calcule Po, Pe e kappa. Depois diga o que você reportaria para quem conduz o projeto.</p>
+          <p>Calcule Po, Pe e kappa. Depois diga o que você informaria a quem conduz o projeto.</p>
           <button class="cu-abrir-resp" type="button">Ver o comentário
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
@@ -1120,7 +1115,7 @@ html { scroll-behavior:smooth; }
               Pe = 0,85 × 0,80 mais 0,15 × 0,20 = 0,68 mais 0,03 = <strong>0,71</strong>.</p>
             <p>k = (0,85 − 0,71) / (1 − 0,71) = 0,14 / 0,29 = <strong>0,48</strong>, que cai na faixa moderada da
               escala de Landis e Koch.</p>
-            <p>O que reportar: a concordância bruta de 85 por cento parece boa, mas o kappa de 0,48 mostra que
+            <p>O que informar: a concordância bruta de 85 por cento parece boa, mas o kappa de 0,48 mostra que
               boa parte vinha do desequilíbrio, já que quase todo item é "pode seguir".</p>
             <p>E há um padrão no erro que vale mencionar. As discordâncias não caem igualmente para os dois
               lados: B marca "precisa de revisão" com mais frequência que A, 40 contra 30. Isso não é acaso, é
@@ -1133,8 +1128,8 @@ html { scroll-behavior:smooth; }
         <h3 id="a3-resumo">Resumo da aula</h3>
         <ul>
           <li>Concordância existe para dizer se a tarefa está bem definida. Em tarefa subjetiva bem feita, pouco
-            mais de 70 por cento é o normal, como o artigo do InstructGPT reporta.</li>
-          <li>Kappa de Cohen é Po menos Pe, dividido por 1 menos Pe. Corrigir pelo acaso muda o retrato.</li>
+            mais de 70 por cento é o normal, como mostra o artigo do InstructGPT.</li>
+          <li>Kappa de Cohen é Po menos Pe, dividido por 1 menos Pe. Descontar o acaso muda o retrato.</li>
           <li>A mesma concordância bruta de 85 por cento pode significar kappa de 0,70 ou de 0,21, dependendo do
             equilíbrio da base.</li>
           <li>Cohen para dois avaliadores, Fleiss para muitos, alfa de Krippendorff para escala com ordem, dado
@@ -1157,16 +1152,16 @@ html { scroll-behavior:smooth; }
           trabalho, e por que um rótulo inconsistente sai caro lá na frente.</p>
 
         <h3 id="a4-variacao">Discordância que é informação</h3>
-        <p>A tradição de anotação tratou discordância como ruído a eliminar. Dois trabalhos conhecidos
+        <p>A tradição de anotação tratou discordância como defeito a eliminar. Dois trabalhos conhecidos
           questionam isso de frente.</p>
         <p>Lora Aroyo e Chris Welty, em artigo de 2015 na revista AI Magazine com o título
           <em>Truth Is a Lie: Crowd Truth and the Seven Myths of Human Annotation</em>, argumentam que a ideia de
           uma verdade única por item é um mito operacional: em muitas tarefas de linguagem, a distribuição de
-          respostas de várias pessoas carrega mais informação do que qualquer rótulo único escolhido como
+          respostas de várias pessoas traz mais informação do que qualquer rótulo único escolhido como
           oficial.</p>
         <p>Barbara Plank, em artigo de 2022 na conferência EMNLP com o título
           <em>The "Problem" of Human Label Variation</em>, defende que a variação humana no rótulo tem causas
-          legítimas, como desacordo genuíno, subjetividade e respostas múltiplas plausíveis, e que ela afeta
+          legítimas, como desacordo real, subjetividade e respostas múltiplas plausíveis, e que ela afeta
           todas as etapas seguintes: dado, modelagem e avaliação.</p>
         <p>O que isso muda para você, na prática: discordar de um colega não é, por si, sinal de erro. O trabalho
           é classificar o tipo de discordância antes de reagir. São três tipos, e cada um pede uma conduta
@@ -1180,8 +1175,7 @@ html { scroll-behavior:smooth; }
                 corrigir, recalibrar e seguir. Não precisa escalar.</span></div>
               <div class="cu-esc-cx"><b>Lacuna na regra</b><span>a guideline não cobre o caso, e as duas leituras
                 se defendem. Conduta: escalar com o exemplo concreto.</span></div>
-              <div class="cu-esc-cx cu-esc-forte"><b>Ambiguidade real</b><span>o item é genuinamente dividido,
-                mesmo com a regra clara. Conduta: registrar como está, sem forçar consenso.</span></div>
+              <div class="cu-esc-cx cu-esc-forte"><b>Ambiguidade real</b><span>o item divide de verdade as opiniões, mesmo com a regra clara. Conduta: registrar como está, sem forçar consenso.</span></div>
             </div>
           </div>
           <p class="cu-fig-nota">Os dois últimos tipos são informação sobre a tarefa, não defeito do
@@ -1233,7 +1227,7 @@ html { scroll-behavior:smooth; }
           em três passos: primeiro, reler a guideline no ponto citado; segundo, decidir se o feedback aponta erro
           de leitura seu ou divergência de régua; terceiro, responder com a passagem da guideline quando você tem
           base, e recalibrar sem drama quando não tem. Concordar com tudo, inclusive com o que a guideline
-          contradiz, degrada o dado tanto quanto teimar.</p>
+          contradiz, piora o dado tanto quanto teimar.</p>
 
         <h3 id="a4-cascata">Por que isso chega longe: cascatas de dados</h3>
         <p>Um estudo que vale citar aqui, porque coloca número no que parece abstrato. Nithya Sambasivan e
@@ -1253,8 +1247,7 @@ html { scroll-behavior:smooth; }
               <div class="cu-passo"><b>Régua por pessoa</b><span>cada avaliador preenche a lacuna de um jeito, e
                 a concordância cai</span></div>
               <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-              <div class="cu-passo"><b>Alvo contraditório</b><span>o modelo recebe sinais que se anulam e aprende
-                a característica mais fácil</span></div>
+              <div class="cu-passo"><b>Alvo contraditório</b><span>o modelo recebe exemplos que se contradizem e aprende a característica mais fácil</span></div>
               <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
               <div class="cu-passo cu-forte"><b>Retrabalho</b><span>reescrever guideline, recoletar dado e
                 retreinar, semanas depois</span></div>
@@ -1307,14 +1300,14 @@ html { scroll-behavior:smooth; }
 
         <h3 id="a4-resumo">Resumo da aula</h3>
         <ul>
-          <li>Parte da discordância é variação humana legítima, não ruído. Aroyo e Welty em 2015 e Plank em 2022
+          <li>Parte da discordância é variação humana legítima, não defeito. Aroyo e Welty em 2015 e Plank em 2022
             sustentam isso com argumento e evidência.</li>
           <li>Separe erro de leitura, lacuna na regra e ambiguidade real. Cada um tem uma conduta diferente.</li>
           <li>Maioria quando existe verdade, distribuição quando as duas leituras se defendem.</li>
           <li>O QA usa quatro instrumentos: itens de controle, auditoria por amostra, concordância com pares e
             coerência interna. Todos medem previsibilidade, e todos têm modo de errar.</li>
           <li>Diante de feedback, releia a guideline, decida se é erro seu ou divergência de régua, e responda
-            com a passagem quando tiver base. Aceitar tudo degrada o dado.</li>
+            com a passagem quando tiver base. Aceitar tudo piora o dado.</li>
           <li>Rótulo inconsistente cobra caro longe da origem: 92 por cento dos profissionais entrevistados por
             Sambasivan e colegas passaram por ao menos uma cascata de dados.</li>
         </ul>
@@ -1349,7 +1342,7 @@ html { scroll-behavior:smooth; }
           <div class="cu-q" data-certa="b">
             <p class="cu-q-tit"><i>2</i> Qual é a diferença entre uma regra e um padrão numa guideline?</p>
             <label><input type="radio" name="q2" value="a"><span>Regra vale para o avaliador, padrão vale para o modelo</span></label>
-            <label><input type="radio" name="q2" value="b"><span>Padrão é o comportamento esperado quando nada diz o contrário, e pode ser sobreposto por instrução mais específica; regra não</span></label>
+            <label><input type="radio" name="q2" value="b"><span>Padrão é o comportamento esperado quando nada diz o contrário, e pode ser trocado por uma instrução mais específica; regra não</span></label>
             <label><input type="radio" name="q2" value="c"><span>Regra é escrita, padrão é combinado verbalmente no treinamento</span></label>
             <label><input type="radio" name="q2" value="d"><span>Não há diferença prática, os dois termos são sinônimos</span></label>
             <p class="cu-q-fb"></p>
@@ -1359,7 +1352,7 @@ html { scroll-behavior:smooth; }
 
           <div class="cu-q" data-certa="a">
             <p class="cu-q-tit"><i>3</i> Na cadeia de comando descrita no Model Spec da OpenAI, qual nível não
-              pode ser sobreposto pelos demais?</p>
+              pode ser contrariado pelos demais?</p>
             <label><input type="radio" name="q3" value="a"><span>root, as regras do próprio documento</span></label>
             <label><input type="radio" name="q3" value="b"><span>developer, quem constrói o produto</span></label>
             <label><input type="radio" name="q3" value="c"><span>user, quem está conversando</span></label>
@@ -1387,8 +1380,7 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q5" value="c"><span>Cascata de dados</span></label>
             <label><input type="radio" name="q5" value="d"><span>Variação de rótulo humano</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">Em escala absoluta, o contexto recente empurra a nota. Reancorar nas âncoras e
-              guardar exemplos próprios reduz o efeito.</p>
+            <p class="cu-q-pq">Em escala absoluta, o contexto recente empurra a nota. Reler as âncoras e guardar exemplos próprios reduz o efeito.</p>
           </div>
 
           <div class="cu-q" data-certa="c">
@@ -1398,8 +1390,7 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q6" value="c"><span>(Po menos Pe) dividido por (1 menos Pe)</span></label>
             <label><input type="radio" name="q6" value="d"><span>(1 menos Po) dividido por Pe</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">Po é a concordância observada e Pe a esperada por acaso. O denominador normaliza o
-              que ainda havia para concordar além do acaso.</p>
+            <p class="cu-q-pq">Po é a concordância observada e Pe a esperada por acaso. O denominador é o quanto ainda dava para concordar além do acaso.</p>
           </div>
 
           <div class="cu-q" data-certa="c">
@@ -1414,7 +1405,7 @@ html { scroll-behavior:smooth; }
           </div>
 
           <div class="cu-q" data-certa="b">
-            <p class="cu-q-tit"><i>8</i> Dois projetos reportam 85 por cento de concordância bruta. No primeiro a
+            <p class="cu-q-tit"><i>8</i> Dois projetos informam 85 por cento de concordância bruta. No primeiro a
               base é equilibrada, no segundo quase tudo cai numa só categoria. O que se conclui?</p>
             <label><input type="radio" name="q8" value="a"><span>Os dois têm a mesma qualidade de dado, já que o número é o mesmo</span></label>
             <label><input type="radio" name="q8" value="b"><span>O segundo pode ter concordância real muito menor, porque no desequilíbrio o acaso já explica quase tudo</span></label>
@@ -1504,8 +1495,7 @@ html { scroll-behavior:smooth; }
             para você decidir e explicar.</li>
           <li><b>Model Spec</b>Documento público da OpenAI que declara como os modelos dela devem se comportar.
             Serve neste curso como exemplo de guideline em nível de empresa.</li>
-          <li><b>Cadeia de comando</b>A hierarquia de autoridade entre instruções, do nível que não pode ser
-            sobreposto até o que cede ao contexto. No Model Spec: root, system, developer, user e guideline.</li>
+          <li><b>Cadeia de comando</b>A hierarquia de autoridade entre instruções, do nível que ninguém pode contrariar até o que cede ao contexto. No Model Spec: root, system, developer, user e guideline.</li>
           <li><b>Escala absoluta e escala comparativa</b>Na absoluta você dá nota a um item sozinho, em geral de
             1 a 5. Na comparativa você diz qual de dois itens é melhor. A comparativa é mais estável, porque a
             referência está na tela.</li>
@@ -1517,7 +1507,7 @@ html { scroll-behavior:smooth; }
             rótulo. É a concordância bruta, sem nenhuma correção.</li>
           <li><b>Concordância esperada por acaso, Pe</b>O quanto dois avaliadores concordariam só por
             coincidência, dadas as frequências com que cada um usa cada categoria.</li>
-          <li><b>Kappa de Cohen</b>Medida de concordância corrigida pelo acaso, para dois avaliadores e
+          <li><b>Kappa de Cohen</b>Medida de concordância com o acaso descontado, para dois avaliadores e
             categorias sem ordem. Calcula-se como Po menos Pe, dividido por 1 menos Pe.</li>
           <li><b>Kappa de Fleiss</b>A versão para mais de dois avaliadores, quando nem sempre é a mesma dupla que
             avalia cada item.</li>

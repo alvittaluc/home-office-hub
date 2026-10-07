@@ -651,12 +651,11 @@ html { scroll-behavior:smooth; }
           nuance o formulário aceita. Três variações cobrem quase tudo que você vai encontrar.</p>
         <ul>
           <li><strong>Escolha binária.</strong> A ou B, sem empate. Força uma decisão mesmo em caso apertado.
-            Tende a gerar dado mais fácil de usar, e a esconder os casos genuinamente iguais.</li>
+            Tende a gerar dado mais fácil de usar, e a esconder os casos realmente iguais.</li>
           <li><strong>Escolha com empate.</strong> A, B ou igual. Mais honesta, e por isso mais exigente: a
             guideline precisa dizer o que conta como empate, senão o empate vira o botão do indeciso.</li>
           <li><strong>Escala de intensidade.</strong> Em geral de sete pontos, do tipo A muito melhor, A melhor,
-            A pouco melhor, igual, B pouco melhor, B melhor, B muito melhor. É o formato que mais informação
-            carrega, e o que mais sofre com falta de âncora, porque a fronteira entre "melhor" e "pouco melhor"
+            A pouco melhor, igual, B pouco melhor, B melhor, B muito melhor. É o formato que traz mais informação, e o que mais sofre com falta de âncora, porque a fronteira entre "melhor" e "pouco melhor"
             precisa estar escrita.</li>
         </ul>
         <p>Alguns projetos pedem também notas absolutas por eixo, em paralelo à comparação, do tipo correção,
@@ -675,7 +674,7 @@ html { scroll-behavior:smooth; }
                 os dois critérios têm o mesmo peso na guideline. Empate, com a troca descrita na
                 justificativa.</span></div>
               <div class="cu-esc-cx cu-esc-forte"><b>Empate por cansaço</b><span>você não conseguiu decidir e
-                marcou igual. Isso não é empate, é ruído, e some na média sem deixar rastro.</span></div>
+                marcou igual. Isso não é empate, é um chute, e some na média sem deixar rastro.</span></div>
             </div>
           </div>
           <p class="cu-fig-nota">O teste: você consegue escrever em uma frase por que elas empatam? Se não,
@@ -697,7 +696,7 @@ html { scroll-behavior:smooth; }
         <p>A segunda: <strong>a sua justificativa tem outro público</strong>. Ela é lida por gente, por quem
           escreve a guideline e audita o dado, para entender o que "melhor" significou e corrigir a regra. Por
           isso ela precisa nomear o critério decisivo, não descrever as duas respostas.</p>
-        <p>Em escala pública, o mesmo mecanismo aparece no Chatbot Arena, plataforma em que qualquer pessoa
+        <p>O mesmo mecanismo aparece, aberto ao público, no Chatbot Arena, plataforma em que qualquer pessoa
           compara respostas de dois modelos anônimos. O artigo de Chiang e colegas, de 2024, relata mais de 240
           mil votos coletados e usa métodos estatísticos consagrados de comparação pareada para transformar esses
           votos em ranking. É a mesma tarefa que você faz, com voluntários e sem guideline.</p>
@@ -768,7 +767,7 @@ html { scroll-behavior:smooth; }
           <li>Três formatos: binário, com empate e escala de intensidade. Quanto mais nuance o formulário aceita,
             mais a guideline precisa ancorar as fronteiras.</li>
           <li>Empate é legítimo por equivalência ou por troca entre critérios de peso igual. Empate por não
-            conseguir decidir é ruído.</li>
+            conseguir decidir não vale como dado.</li>
           <li>Cada linha sua vira um trio de pedido, escolhida e rejeitada, que treina o modelo de recompensa.</li>
           <li>O modelo aprende com o padrão das escolhas, não com a sua justificativa. Escolha certa por motivo errado
             ensina errado.</li>
@@ -834,7 +833,7 @@ html { scroll-behavior:smooth; }
           direto a quem avalia.</p>
         <p>Primeiro: quando uma resposta combina com a opinião expressa pelo usuário, ela tem mais chance de ser
           preferida. Segundo, e mais grave: tanto pessoas quanto modelos de preferência escolhem uma resposta
-          bajuladora bem escrita em vez da resposta correta numa fração não desprezível dos casos.</p>
+          bajuladora bem escrita em vez da resposta correta numa parte dos casos que não dá para ignorar.</p>
         <p>Isso desmonta a ideia de que bajulação é defeito do modelo. Ela é, em boa medida, um retrato da
           preferência que foi coletada. O que significa que cada avaliador tem uma decisão real nas mãos: quando o
           usuário afirma algo errado e uma resposta o corrige enquanto a outra o elogia, premiar a correção é o
@@ -882,8 +881,7 @@ html { scroll-behavior:smooth; }
               texto e parece mais cuidadosa, e o eco da <strong>bajulação</strong>, porque A abre elogiando a
               pergunta. Nenhuma das duas tem a ver com responder o que foi perguntado.</p>
             <p>Justificativa que se sustenta: "A não responde a pergunta, porque nunca dá o tempo. B dá a faixa,
-              o fator que a altera e como conferir. Completude de processo não compensa a ausência da informação
-              pedida."</p>
+              o fator que a altera e como conferir. Explicar o processo inteiro não compensa a falta da informação pedida."</p>
           </div>
         </div>
 
@@ -912,7 +910,7 @@ html { scroll-behavior:smooth; }
         <h2>LLM como juiz e o seu papel</h2>
         <p class="cu-resumo-aula">Nesta aula: como funciona a avaliação feita por um modelo, o quanto ela
           concorda com gente segundo a pesquisa publicada, o que é um modelo de recompensa e onde eles falham, e
-          qual trabalho sobra para o avaliador humano quando a primeira passada é automática.</p>
+          qual trabalho sobra para o avaliador humano quando a primeira rodada é automática.</p>
 
         <h3 id="a3-como">Como a avaliação por modelo funciona</h3>
         <p><span class="cu-termo">LLM como juiz</span> é a prática de usar um modelo competente, guiado por uma
@@ -941,22 +939,19 @@ html { scroll-behavior:smooth; }
           tarefas que exigem verificação, que é onde o julgamento humano vale mais.</p>
 
         <div class="cu-fig">
-          <p class="cu-fig-cap"><b>Figura 3.1</b> · O que muda quando a primeira passada é automática</p>
+          <p class="cu-fig-cap"><b>Figura 3.1</b> · O que muda quando a primeira rodada é automática</p>
           <div class="cu-fig-moldura">
             <div class="cu-fluxo">
-              <div class="cu-passo"><b>Fila de pares</b><span>volume que nenhuma equipe humana avaliaria por inteiro</span></div>
+              <div class="cu-passo"><b>Fila de pares</b><span>são pares demais para uma equipe de pessoas avaliar por inteiro</span></div>
               <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-              <div class="cu-passo"><b>Juiz automático</b><span>aplica a rubrica e devolve veredito com
-                justificativa</span></div>
+              <div class="cu-passo"><b>Juiz automático</b><span>um modelo aplica a rubrica e devolve a decisão, com justificativa</span></div>
               <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-              <div class="cu-passo cu-forte"><b>Auditoria humana</b><span>amostra revisada por gente, com foco
-                nos casos de risco e de verificação</span></div>
+              <div class="cu-passo cu-forte"><b>Auditoria humana</b><span>pessoas revisam uma amostra, com atenção aos casos de risco e aos que exigem conferir um fato</span></div>
               <div class="cu-seta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-              <div class="cu-passo"><b>Correção da rubrica</b><span>padrão de erro do juiz vira regra nova na
-                guideline</span></div>
+              <div class="cu-passo"><b>Correção da rubrica</b><span>o erro que o juiz repete vira regra nova na guideline</span></div>
             </div>
           </div>
-          <p class="cu-fig-nota">O humano sai do volume e passa a cuidar da amostra difícil e da régua.</p>
+          <p class="cu-fig-nota">As pessoas deixam o volume e passam a cuidar da amostra difícil e da régua.</p>
         </div>
 
         <h3 id="a3-rm">Modelos de recompensa e RewardBench</h3>
@@ -969,8 +964,7 @@ html { scroll-behavior:smooth; }
           resposta rejeitada, cobrindo conversa, raciocínio e segurança, e inclui pares com diferença
           verificável, como um erro de fato ou um defeito de código.</p>
         <p>Os achados que interessam a quem avalia: os modelos de recompensa testados mostram tendências
-          problemáticas de recusa, limitações em raciocínio e falhas em seguir instrução. Ou seja, as fraquezas
-          se concentram nas mesmas regiões: caso que exige verificar, caso de segurança e caso em que a
+          problemáticas de recusa, limitações em raciocínio e falhas em seguir instrução. Ou seja, as fraquezas se concentram nos mesmos pontos: caso que exige verificar, caso de segurança e caso em que a
           instrução tem uma condição específica.</p>
         <p>Conclusão prática, e ela é boa notícia para a sua carreira: a parte da tarefa em que a máquina é
           fraca é a parte que exige atenção, verificação e leitura de regra. É para lá que o trabalho humano
@@ -990,7 +984,7 @@ html { scroll-behavior:smooth; }
         </ol>
         <p>Esse é o tipo de trabalho que o Constitutional AI, da Anthropic, descreve no outro extremo do mesmo
           movimento: princípios escritos por pessoas guiando crítica e revisão feitas pelo modelo. Em qualquer
-          desses arranjos, o ponto de entrada humano é a régua e a amostra, não o volume.</p>
+          desses arranjos, o lugar das pessoas é a régua e a amostra, não o volume.</p>
 
         <div class="cu-pratica" id="a3-pratica">
           <p class="cu-selo">Prática</p>
@@ -1075,8 +1069,7 @@ html { scroll-behavior:smooth; }
           <p class="cu-fig-nota">A terceira parte é o que impede o revisor de reabrir a sua linha por engano.</p>
         </div>
         <p>Quatro frases que não servem como justificativa, e o motivo: "A é melhor" repete o campo de escolha;
-          "gostei mais de B" é gosto; "A é mais completa e organizada" cita critérios de superfície sem dizer se
-          eles decidiram; "as duas são boas, escolhi A" não diz nada sobre a régua.</p>
+          "gostei mais de B" é gosto; "A é mais completa e organizada" cita critérios de aparência sem dizer se eles decidiram; "as duas são boas, escolhi A" não diz nada sobre a régua.</p>
 
         <h3 id="a4-erradas">Quando as duas estão erradas</h3>
         <p>É o caso que mais gera empate indevido. A guideline manda, e você precisa achar a instrução dela para
@@ -1097,8 +1090,7 @@ html { scroll-behavior:smooth; }
         <h3 id="a4-seguranca">Quando a segurança se sobrepõe à preferência</h3>
         <p>Em praticamente toda guideline de assistente, segurança fica acima de utilidade. O Model Spec da
           OpenAI, documento público que declara o comportamento esperado dos modelos da empresa, organiza isso
-          como uma cadeia de comando, em que instruções de nível mais alto não podem ser sobrepostas por pedido
-          de nível mais baixo.</p>
+          como uma cadeia de comando, em que instruções de nível mais alto não podem ser contrariadas por pedido de nível mais baixo.</p>
         <p>Para o avaliador, o efeito é direto: uma resposta que atende bem o pedido, mas viola uma regra de
           nível superior, não é a melhor resposta. E o inverso também vale, e é a parte que mais gente erra:
           <strong>recusa não é automaticamente a resposta certa</strong>. Recusar um pedido inofensivo é um
@@ -1111,8 +1103,7 @@ html { scroll-behavior:smooth; }
           programação, finanças. O que muda nessas filas não é a régua, é a verificação. Três regras que valem
           em qualquer delas.</p>
         <ol>
-          <li><strong>Verifique o passo decisivo, não o texto inteiro.</strong> Numa resposta técnica, quase
-            sempre existe uma afirmação que carrega o resto. Confira aquela.</li>
+          <li><strong>Verifique o passo decisivo, não o texto inteiro.</strong> Numa resposta técnica, quase sempre existe uma afirmação que sustenta o resto. Confira aquela.</li>
           <li><strong>Fonte no comentário quando houver divergência.</strong> Se você afirma que A erra a
             alíquota de um imposto ou a dose de um remédio, dizer onde isso está escrito transforma a sua linha
             em algo que o projeto pode
@@ -1147,8 +1138,7 @@ html { scroll-behavior:smooth; }
               compensa o risco."</p>
             <p><strong>Caso 2, escolha A.</strong> "A vence por atendimento ao pedido: o usuário pediu o e-mail e
               A entrega o e-mail. As perguntas de B são razoáveis, mas a guideline coloca atendimento ao pedido
-              acima de clareza, e nada no pedido indicava informação faltante que impedisse escrever um texto
-              utilizável." E note a nuance: se a guideline invertesse a ordem, ou se o pedido tivesse ambiguidade
+              acima de clareza, e nada no pedido indicava que faltasse informação para escrever um e-mail que desse para usar." E note a nuance: se a guideline invertesse a ordem, ou se o pedido tivesse ambiguidade
               que mudasse o conteúdo, B passaria a ser a melhor. A régua é que decide, não o estilo.</p>
             <p><strong>Caso 3, empate ou B, conforme o formato.</strong> Se o projeto aceita empate e a guideline
               não valoriza contexto extra, é empate por equivalência, porque as duas acertam o que foi pedido. Se
@@ -1192,7 +1182,7 @@ html { scroll-behavior:smooth; }
               deve ser classificado?</p>
             <label><input type="radio" name="q1" value="a"><span>Empate por equivalência, o caso mais comum</span></label>
             <label><input type="radio" name="q1" value="b"><span>Empate por troca entre critérios</span></label>
-            <label><input type="radio" name="q1" value="c"><span>Ruído, porque não há motivo que sustente o empate</span></label>
+            <label><input type="radio" name="q1" value="c"><span>Dado sem valor, porque não há motivo que sustente o empate</span></label>
             <label><input type="radio" name="q1" value="d"><span>Dado válido, já que indecisão também é preferência</span></label>
             <p class="cu-q-fb"></p>
             <p class="cu-q-pq">O teste é conseguir escrever em uma frase por que as duas empatam. Empate sem
@@ -1294,7 +1284,7 @@ html { scroll-behavior:smooth; }
 
           <div class="cu-q" data-certa="c">
             <p class="cu-q-tit"><i>10</i> As duas respostas do par estão erradas e a guideline não trata desse
-              caso. Qual é a conduta mais defensável?</p>
+              caso. Qual é a conduta que mais se sustenta?</p>
             <label><input type="radio" name="q10" value="a"><span>Marcar empate, porque nenhuma das duas serve</span></label>
             <label><input type="radio" name="q10" value="b"><span>Escolher a mais agradável de ler, já que o conteúdo está errado nas duas</span></label>
             <label><input type="radio" name="q10" value="c"><span>Escolher a menos danosa e registrar no comentário que as duas têm defeito, indicando qual</span></label>
@@ -1370,8 +1360,7 @@ html { scroll-behavior:smooth; }
             sycophancy.</li>
           <li><b>Rubrica</b>A lista escrita de critérios e notas que o avaliador deve aplicar, seja ele pessoa ou
             modelo.</li>
-          <li><b>LLM como juiz</b>Usar um modelo, guiado por uma rubrica, para fazer a primeira passada de
-            avaliação, que pessoas depois auditam por amostra.</li>
+          <li><b>LLM como juiz</b>Usar um modelo, guiado por uma rubrica, para fazer a primeira rodada de avaliação, que pessoas depois auditam por amostra.</li>
           <li><b>Resposta de referência</b>Uma resposta considerada boa, usada como régua para medir as outras.
             Útil sobretudo em tarefa com resposta verificável.</li>
           <li><b>Auditoria por amostra</b>Revisar parte das linhas, em vez de todas, procurando padrão de erro em
@@ -1379,7 +1368,7 @@ html { scroll-behavior:smooth; }
           <li><b>Justificativa</b>A frase que nomeia o critério decisivo e a evidência no item. É lida por gente,
             não pelo modelo, e é o que permite corrigir a guideline.</li>
           <li><b>Cadeia de comando</b>A hierarquia entre instruções, em que uma instrução de nível mais alto não
-            pode ser sobreposta por um pedido de nível mais baixo.</li>
+            pode ser contrariada por um pedido de nível mais baixo.</li>
         </ul>
       </section>
 
@@ -1446,8 +1435,7 @@ html { scroll-behavior:smooth; }
             <b>Model Spec</b>
             OpenAI, versão de 18 de agosto de 2026, licença CC0.
             <em><a href="https://model-spec.openai.com/" target="_blank" rel="noopener">model-spec.openai.com</a>
-              · fonte da cadeia de comando em que instrução de nível mais alto não é sobreposta por pedido de
-              nível mais baixo.</em>
+              · fonte da cadeia de comando em que instrução de nível mais alto não é contrariada por pedido de nível mais baixo.</em>
           </li>
         </ul>
 
