@@ -154,6 +154,9 @@
 .mo-compor textarea:focus { outline:none; }
 .mo-compor-pe { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 10px 10px 16px; }
 .mo-compor-pe small { display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink-3); }
+.mo-compor-anexos { padding:0 14px; }
+.mo-compor-anexos .md-anexos { margin:8px 0 2px; }
+.mo-compor-esq { display:flex; align-items:center; gap:6px 12px; flex-wrap:wrap; min-width:0; }
 .mo-posts { margin-top:12px; }
 .mo-post { display:grid; grid-template-columns:42px minmax(0,1fr); gap:14px; padding:20px 0; border-top:1px solid var(--line-soft); }
 .mo-post-cab { display:flex; flex-wrap:wrap; align-items:center; gap:4px 9px; margin-bottom:5px; }
@@ -231,7 +234,8 @@
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js" integrity="sha384-WgXwGL6fUsYJWNaKJgVbrJKGRQwc1vieh2oy4kw9nXqpNDz3tdSsqEYUgeHD/NuF" crossorigin="anonymous"></script>
-<script src="mentorias-dados.js?v=8"></script>
+<script src="mentorias-dados.js?v=9"></script>
+<script src="leitor.js?v=1"></script>
 <script>
 try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
 
@@ -416,7 +420,8 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     return `<div class="mo-post" id="post-${e(p.id)}">${U.foto(p.autor, resposta ? 32 : 42)}<div>
       <div class="mo-post-cab"><span class="nm">${e(p.autor.nome)}</span>${p.do_mentor ? `<span class="mo-selo-mentor">${ic("verificado", 12)}Mentor</span>` : ""}
         <span class="qd">${e(U.haQuanto(p.criado_em))}</span></div>
-      ${p.removido ? `<div class="apagado">mensagem apagada</div>` : `<div class="tx"><p>${U.texto(p.texto)}</p></div>
+      ${p.removido ? `<div class="apagado">mensagem apagada</div>` : `${p.texto ? `<div class="tx"><p>${U.texto(p.texto)}</p></div>` : ""}
+        ${p.anexos && p.anexos.length ? `<div class="md-anexos">${p.anexos.map(U.htmlAnexo).join("")}</div>` : ""}
         <div class="mo-post-acoes">
           ${!resposta && aberta() && M.meu_papel ? `<button class="mo-acao" data-responder="${e(p.id)}">${ic("conversa", 15)}Responder</button>` : ""}
           ${p.meu || M.sou_admin ? `<button class="mo-acao perigo" data-apagar="${e(p.id)}">${ic("proibido", 15)}Apagar</button>` : ""}
@@ -425,6 +430,16 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       ${resposta ? "" : `<div class="mo-respostas">${posts.filter(r => r.pai_id === p.id).map(r => htmlPost(r, true)).join("")}</div>
         <div class="mo-responder" id="resp-${e(p.id)}" hidden></div>`}
     </div></div>`;
+  }
+
+  /* Só o mentor anexa arquivo, e só com a mentoria no ar. */
+  const podeAnexar = () => MD.anexos.noAr && M.meu_papel === "mentor" && aberta();
+  let anexosNovos = [];   // arquivos escolhidos e ainda não publicados
+  function pintarAnexosNovos() {
+    const cx = tela.querySelector("#anexosNovos");
+    if (!cx) return;
+    cx.hidden = !anexosNovos.length;
+    cx.innerHTML = anexosNovos.map(U.htmlAnexoNovo).join("");
   }
 
   function htmlMural() {
@@ -442,7 +457,11 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       ${podeEscrever ? `<div class="mo-compor">${U.foto(perfil || { nome: "?" }, 42)}
           <div class="mo-compor-cx"><label class="sr" for="novoPost">Nova mensagem</label>
             <textarea id="novoPost" maxlength="4000" placeholder="${M.meu_papel === "mentor" ? "Escreva um aviso ou uma orientação para o grupo" : "Escreva a sua dúvida ou conte como está o seu processo"}"></textarea>
-            <div class="mo-compor-pe"><small>${ic("cadeado", 13)}Visível só para o grupo</small>
+            ${podeAnexar() ? `<div class="mo-compor-anexos"><div class="md-anexos" id="anexosNovos" hidden></div></div>` : ""}
+            <div class="mo-compor-pe"><div class="mo-compor-esq">
+                ${podeAnexar() ? `<label class="md-clipe" title="PDF ou imagem, até 10 MB cada">${ic("clipe", 15)}Anexar arquivo
+                  <input type="file" id="anexar" multiple accept="${e(MD.anexos.aceita)}" aria-label="Anexar PDF ou imagem, até 10 MB cada"></label>` : ""}
+                <small>${ic("cadeado", 13)}Visível só para o grupo</small></div>
               <button class="md-bt pequeno" type="button" data-postar>${ic("enviar", 15)}Publicar</button></div></div></div>` : ""}
       <div class="md-msg" id="muralMsg" role="status" hidden></div>
       <div class="mo-posts">${raiz.length ? raiz.map(p => htmlPost(p, false)).join("")
@@ -494,6 +513,7 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       ${htmlSituacao()}
       ${corpo}`;
     notaEscolhida = M.minha_nota || 0;
+    pintarAnexosNovos();
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -510,6 +530,27 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
   async function agir(onde, acao, depois) {
     try { await acao(); await carregar(); desenhar(); if (depois) depois(); }
     catch (err) { dizer(onde, err.message, "erro"); }
+  }
+
+  /* Publica a mensagem nova do mural. Com anexo, primeiro sobem os arquivos,
+     um por vez, e só depois a mensagem. Se algo falhar no meio, o que já
+     subiu é retirado e o texto continua na caixa. */
+  async function publicar(texto, botao) {
+    const enviados = [];
+    try {
+      for (let i = 0; i < anexosNovos.length; i++) {
+        dizer("muralMsg", anexosNovos.length > 1 ? "Enviando arquivo " + (i + 1) + " de " + anexosNovos.length + "…" : "Enviando o arquivo…", "ok");
+        enviados.push(await MD.enviarArquivo(ID, anexosNovos[i]));
+      }
+      await MD.postar(ID, texto, null, enviados);
+      enviados.length = 0;   // publicou: daqui em diante os arquivos são da mensagem e não podem ser retirados
+      anexosNovos = [];
+      await carregar(); desenhar();
+    } catch (err) {
+      if (enviados.length) MD.apagarArquivos(enviados.map(a => a.caminho));
+      if (botao) botao.disabled = false;
+      dizer("muralMsg", err.message, "erro");
+    }
   }
 
   /* pergunta numa janela no meio da tela e só age se a pessoa confirmar */
@@ -534,6 +575,20 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       agir("muralMsg", () => MD.configurar(ID, marcado), () => dizer("muralMsg",
         marcado ? "Pronto: agora só você abre conversas. Os participantes continuam podendo responder."
                 : "Pronto: os participantes voltaram a poder abrir conversas.", "ok"));
+      return;
+    }
+    if (ev.target.id === "anexar") {
+      const escolhidos = Array.from(ev.target.files || []);
+      ev.target.value = "";
+      const recusas = [];
+      for (const a of escolhidos) {
+        if (anexosNovos.length >= MD.anexos.porPost) { recusas.push("O limite é de " + MD.anexos.porPost + " arquivos por mensagem."); break; }
+        const motivo = MD.anexos.conferir(a);
+        if (motivo) recusas.push(motivo); else anexosNovos.push(a);
+      }
+      pintarAnexosNovos();
+      const m = tela.querySelector("#muralMsg");
+      if (recusas.length) dizer("muralMsg", recusas.join(" "), "erro"); else if (m) m.hidden = true;
       return;
     }
     if (ev.target.id !== "maisProva") return;
@@ -581,9 +636,16 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
     else if (d.recusar) agir("pedMsgMentor", () => MD.responderPedido(ID, d.recusar, false));
     else if ("postar" in d) {
       const t = (tela.querySelector("#novoPost").value || "").trim();
-      if (!t) { dizer("muralMsg", "Escreva alguma coisa antes de publicar.", "erro"); tela.querySelector("#novoPost").focus(); return; }
+      if (!t && !anexosNovos.length) { dizer("muralMsg", "Escreva alguma coisa antes de publicar.", "erro"); tela.querySelector("#novoPost").focus(); return; }
       b.disabled = true;
-      agir("muralMsg", () => MD.postar(ID, t, null));
+      publicar(t, b);
+    }
+    else if ("tirarAnexo" in d) { anexosNovos.splice(+d.tirarAnexo, 1); pintarAnexosNovos(); }
+    else if (d.anexo) {
+      // abre o arquivo dentro do site; o servidor confere de novo se a pessoa pode ler
+      let a = null;
+      posts.forEach(p => (p.anexos || []).forEach(x => { if (x.caminho === d.anexo) a = x; }));
+      if (a) Leitor.abrir({ nome: a.nome, tipo: a.tipo, tamanho: a.tamanho, buscar: () => MD.baixarArquivo(a) });
     }
     else if (d.responder) {
       const cx = tela.querySelector("#resp-" + CSS.escape(d.responder));
@@ -600,9 +662,15 @@ try { montarLayout("mentorias"); } catch (e) { console.warn(e); }
       b.disabled = true;
       agir("muralMsg", () => MD.postar(ID, t, d.enviarResposta));
     }
-    else if (d.apagar) seConfirmar(
-      { titulo: "Apagar esta mensagem?", texto: "Ela some do mural para todo mundo e não dá para trazer de volta.", botao: "Apagar a mensagem" },
-      () => agir("muralMsg", () => MD.apagarPost(d.apagar)));
+    else if (d.apagar) {
+      const alvo = posts.find(p => p.id === d.apagar);
+      const arquivos = ((alvo && alvo.anexos) || []).map(a => a.caminho);
+      seConfirmar(
+        { titulo: "Apagar esta mensagem?", texto: "Ela some do mural para todo mundo e não dá para trazer de volta." +
+            (arquivos.length ? (arquivos.length === 1 ? " O arquivo anexado some junto." : " Os arquivos anexados somem junto.") : ""),
+          botao: "Apagar a mensagem" },
+        () => agir("muralMsg", async () => { await MD.apagarPost(d.apagar); MD.apagarArquivos(arquivos); }));
+    }
     else if (d.denunciarPost) denunciar("post", d.denunciarPost, "muralMsg");
     else if ("denunciarMentoria" in d) denunciar("mentoria", ID, tela.querySelector("#saberMsg") ? "saberMsg" : "geralMsg");
     else if ("avaliar" in d) {

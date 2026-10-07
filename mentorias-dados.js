@@ -21,6 +21,20 @@ const MD = (function () {
   const ENDERECO = "https://zrqucjktympnwilbvisw.supabase.co";
   const CHAVE_PUBLICA = "sb_publishable_4X7Cyykz9ZDMWOTvauxibA_Tpa4KtAh";
 
+  /* ── arquivos do mural ──
+     O mentor anexa PDF ou imagem a uma mensagem, e o grupo abre dentro do
+     site (leitor.js). Os arquivos moram no armazenamento do Supabase, num
+     balde fechado, e as regras de quem envia e quem lê estão no banco
+     (banco/mentorias-6.sql).
+
+     ANEXOS_NO_AR desliga tudo de uma vez se for preciso: com false, o botão
+     de anexar não aparece e o resto do mural segue igual. */
+  const ANEXOS_NO_AR = true;
+  const BALDE = "mural";
+  const TIPOS_ANEXO = { "application/pdf": "pdf", "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp", "image/gif": "gif" };
+  const ANEXO_MAX = 10 * 1024 * 1024;   // por arquivo; o banco confere de novo
+  const ANEXOS_POR_POST = 5;
+
   const LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   let papelDemo = "";
   if (LOCAL) {
@@ -47,6 +61,10 @@ const MD = (function () {
     if (/fetch|network|failed to/i.test(m)) return "Sem conexão com o servidor agora. Confira a internet e tente de novo.";
     if (/violates check constraint/i.test(m)) return "Algum campo ficou curto demais ou longo demais. Confira o que você escreveu.";
     if (/JWT|token/i.test(m)) return "A sua sessão expirou. Entre na conta de novo.";
+    if (/mime type|not supported/i.test(m)) return "Este tipo de arquivo não é aceito. Envie PDF ou imagem (PNG, JPG, WebP ou GIF).";
+    if (/maximum allowed size|payload too large|object exceeded/i.test(m)) return "O arquivo passa de 10 MB. Diminua o arquivo e tente de novo.";
+    if (/row-level security|not authorized|unauthorized/i.test(m)) return "O arquivo não foi aceito. Só o mentor envia arquivos, com a mentoria no ar, e o espaço de arquivos do mural tem limite. Se você é o mentor, apague arquivos antigos ou fale com a equipe.";
+    if (/bucket not found|object not found/i.test(m)) return "Este arquivo não está mais disponível.";
     return m || "Não deu certo. Tente de novo em instantes.";
   }
 
@@ -103,8 +121,36 @@ const MD = (function () {
     pedidos: id => rpc("mentoria_pedidos", { p_id: id }),
     responderPedido: (id, user, aprovar) => rpc("mentoria_responder", { p_id: id, p_user: user, p_aprovar: !!aprovar }),
     posts: id => rpc("mentoria_posts_lista", { p_id: id }),
-    postar: (id, texto, pai) => rpc("mentoria_postar", { p_id: id, p_texto: texto, p_pai: pai || null }),
+    /* anexos: [{ caminho, nome, tipo, tamanho }], já enviados com enviarArquivo.
+       Sem anexo, a chamada é a mesma de antes. */
+    postar: (id, texto, pai, anexos) => rpc("mentoria_postar", Object.assign(
+      { p_id: id, p_texto: texto, p_pai: pai || null },
+      anexos && anexos.length ? { p_anexos: anexos } : {})),
     apagarPost: id => rpc("mentoria_apagar_post", { p_post: id }),
+    /* Sobe um arquivo para a pasta da mentoria. O nome guardado no servidor é
+       sorteado: o nome que a pessoa deu ao arquivo vai só para a lista. */
+    async enviarArquivo(mentoriaId, arquivo) {
+      const tipo = tipoDoArquivo(arquivo);
+      const caminho = mentoriaId + "/" + crypto.randomUUID() + "." + TIPOS_ANEXO[tipo];
+      const r = await cliente().storage.from(BALDE).upload(caminho, arquivo, { contentType: tipo, upsert: false, cacheControl: "3600" });
+      if (r.error) throw new Error(traduzir(r.error));
+      return { caminho, nome: nomeDoArquivo(arquivo), tipo, tamanho: arquivo.size };
+    },
+    /* Traz o arquivo para a memória do navegador. O servidor só entrega para
+       o mentor, para os participantes aprovados e para a equipe. */
+    async baixarArquivo(anexo) {
+      const r = await cliente().storage.from(BALDE).download(anexo.caminho);
+      if (r.error) throw new Error(traduzir(r.error));
+      return r.data;
+    },
+    /* Tira arquivos do armazenamento (mentor ou equipe). Não trava nada se falhar. */
+    async apagarArquivos(caminhos) {
+      if (!caminhos || !caminhos.length) return;
+      try {
+        const r = await cliente().storage.from(BALDE).remove(caminhos);
+        if (r.error) console.warn("arquivos não removidos", r.error);
+      } catch (e) { console.warn(e); }
+    },
     avaliar: (id, nota, comentario) => rpc("mentoria_avaliar", { p_id: id, p_nota: nota, p_comentario: comentario || "" }),
     denunciar: (tipo, alvo, motivo) => rpc("denunciar", { p_tipo: tipo, p_alvo: alvo, p_motivo: motivo }),
     adminTudo: () => rpc("admin_mentorias"),
@@ -126,7 +172,7 @@ const MD = (function () {
 
   /* ── dados de exemplo, só no localhost ── */
   function criarDemo(papel) {
-    const CH = "hub-demo-md";
+    const CH = "hub-demo-md2";
     const agora = () => new Date().toISOString();
     const dias = n => new Date(Date.now() - n * 864e5).toISOString();
     const P = {
@@ -192,6 +238,9 @@ const MD = (function () {
           { id: "p1", mentoria_id: "m1", autor_id: mentorDaPrimeira, pai_id: null, texto: "Bem-vindos! Comecem lendo a primeira parte do guia de diretrizes. Qualquer dúvida, escrevam aqui.", criado_em: dias(9), removido: false },
           { id: "p2", mentoria_id: "m1", autor_id: "u-bia", pai_id: "p1", texto: "Li a parte 1. A prova cobra a parte de Needs Met também?", criado_em: dias(8), removido: false },
           { id: "p3", mentoria_id: "m1", autor_id: mentorDaPrimeira, pai_id: "p1", texto: "Cobra, e é a que mais derruba. Amanhã posto um resumo.", criado_em: dias(2), removido: false },
+          { id: "p6", mentoria_id: "m1", autor_id: mentorDaPrimeira, pai_id: null, texto: "Segue o resumo da parte de Needs Met, com exemplos comentados. A imagem é a tabela de notas que eu uso para revisar antes da prova.", criado_em: dias(1), removido: false,
+            anexos: [{ id: "a1", caminho: "m1/demo-resumo.pdf", nome: "Resumo Needs Met.pdf", tipo: "application/pdf", tamanho: 482133 },
+                     { id: "a2", caminho: "m1/demo-tabela.png", nome: "Tabela de notas.png", tipo: "image/png", tamanho: 233410 }] },
           { id: "p4", mentoria_id: "m4", autor_id: "u-leo", pai_id: null, texto: "Turma nova: a prova de escuta abriu de novo esta semana.", criado_em: dias(1), removido: false },
           { id: "p5", mentoria_id: "m5", autor_id: "u-cla", pai_id: null, texto: "Subi um resumo dos exemplos de imagem mais difíceis.", criado_em: dias(3), removido: false },
         ],
@@ -235,6 +284,36 @@ const MD = (function () {
     };
     const erro = t => { throw new Error(t); };
     const admin = papel === "admin";
+    const ARQUIVOS = {};
+    /* Arquivo de exemplo para os anexos que vêm prontos na demonstração. Se
+       existir um arquivo de teste na pasta (teste-anexo.pdf ou .png), usa ele;
+       senão, desenha um na hora. */
+    async function arquivoDeExemplo(anexo) {
+      const pdf = anexo.tipo === "application/pdf";
+      try {
+        const r = await fetch(pdf ? "teste-anexo.pdf" : "teste-anexo.png");
+        if (r.ok) return await r.blob();
+      } catch (e) {}
+      if (pdf) {
+        const linhas = ["Arquivo de exemplo", "Este PDF existe so no modo de demonstracao."];
+        const fluxo = "BT /F1 26 Tf 72 720 Td (" + linhas[0] + ") Tj 0 -40 Td /F1 14 Tf (" + linhas[1] + ") Tj ET";
+        const objs = ["<< /Type /Catalog /Pages 2 0 R >>", "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+          "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>",
+          "<< /Length " + fluxo.length + " >>\nstream\n" + fluxo + "\nendstream", "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"];
+        let corpo = "%PDF-1.4\n"; const pos = [];
+        objs.forEach((o, i) => { pos.push(corpo.length); corpo += (i + 1) + " 0 obj\n" + o + "\nendobj\n"; });
+        const xref = corpo.length;
+        corpo += "xref\n0 " + (objs.length + 1) + "\n0000000000 65535 f \n" + pos.map(x => String(x).padStart(10, "0") + " 00000 n \n").join("") +
+                 "trailer\n<< /Size " + (objs.length + 1) + " /Root 1 0 R >>\nstartxref\n" + xref + "\n%%EOF";
+        return new Blob([corpo], { type: "application/pdf" });
+      }
+      const tela = document.createElement("canvas"); tela.width = 900; tela.height = 560;
+      const c = tela.getContext("2d");
+      c.fillStyle = "#EAF1F8"; c.fillRect(0, 0, 900, 560);
+      c.fillStyle = "#1A4893"; c.font = "600 40px sans-serif"; c.fillText("Imagem de exemplo", 60, 120);
+      c.fillStyle = "#54606F"; c.font = "22px sans-serif"; c.fillText("Só existe no modo de demonstração.", 60, 170);
+      return await new Promise(ok => tela.toBlob(ok, "image/png"));
+    }
     const PROVAS = { m3: ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="] };
     const EQUIPE = [{ id: "u-eu", dono: true, eu: true, nome: "Você (teste)", email: "teste@exemplo.com" },
                     { id: "u-ana", dono: false, eu: false, nome: "Ana Souza", email: "ana@exemplo.com" }];
@@ -290,15 +369,27 @@ const MD = (function () {
         if (["mentor", "aprovado"].indexOf(papelEm(id)) < 0 && !admin) erro("O mural é só para quem participa desta mentoria.");
         return S.posts.filter(p => p.mentoria_id === id).map(p => ({
           id: p.id, pai_id: p.pai_id, criado_em: p.criado_em, removido: p.removido, texto: p.removido ? "" : p.texto,
-          autor: pessoa(p.autor_id), do_mentor: p.autor_id === m.mentor_id, meu: p.autor_id === "u-eu" }));
+          autor: pessoa(p.autor_id), do_mentor: p.autor_id === m.mentor_id, meu: p.autor_id === "u-eu",
+          anexos: p.removido ? [] : (p.anexos || []) }));
       },
-      async postar(id, texto, pai) {
+      async postar(id, texto, pai, anexos) {
         if (!pai && papelEm(id) !== "mentor" && S.mentorias.find(m => m.id === id).so_mentor_abre)
           erro("Nesta mentoria só o mentor abre conversas. Você pode responder às mensagens dele.");
+        if (anexos && anexos.length && papelEm(id) !== "mentor") erro("Só o mentor anexa arquivos no mural.");
+        if (!texto && !(anexos && anexos.length)) erro("Escreva alguma coisa antes de publicar.");
         const pid = "p" + Date.now();
-        S.posts.push({ id: pid, mentoria_id: id, autor_id: "u-eu", pai_id: pai || null, texto, criado_em: agora(), removido: false });
+        S.posts.push({ id: pid, mentoria_id: id, autor_id: "u-eu", pai_id: pai || null, texto, criado_em: agora(), removido: false,
+                       anexos: (anexos || []).map((a, i) => Object.assign({ id: pid + "-" + i }, a)) });
         salvar(); return pid;
       },
+      /* na demonstração os arquivos ficam só na memória da aba */
+      async enviarArquivo(mentoriaId, arquivo) {
+        const caminho = mentoriaId + "/demo-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
+        ARQUIVOS[caminho] = arquivo;
+        return { caminho, nome: nomeDoArquivo(arquivo), tipo: tipoDoArquivo(arquivo), tamanho: arquivo.size };
+      },
+      async baixarArquivo(anexo) { return ARQUIVOS[anexo.caminho] || arquivoDeExemplo(anexo); },
+      async apagarArquivos(caminhos) { (caminhos || []).forEach(c => delete ARQUIVOS[c]); },
       async apagarPost(id) { const p = S.posts.find(x => x.id === id); if (p) p.removido = true; salvar(); },
       async avaliar(id, nota, comentario) {
         S.avaliacoes = S.avaliacoes.filter(a => !(a.mentoria_id === id && a.user_id === "u-eu"));
@@ -433,6 +524,29 @@ const MD = (function () {
     border:1px dashed var(--ink-3,#66717F); border-radius:12px; padding:10px 16px; cursor:pointer; margin-top:10px; }
   .md-anexar:hover { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
   .md-anexar input { position:absolute; width:1px; height:1px; opacity:0; }
+  /* arquivos anexados a uma mensagem do mural */
+  .md-anexos { display:flex; flex-wrap:wrap; gap:9px; margin:4px 0 10px; }
+  .md-anexo { display:inline-flex; align-items:center; gap:10px; max-width:100%; text-align:left; font:inherit; cursor:pointer;
+    background:var(--panel,#fff); border:1px solid var(--line,#DED7CA); border-radius:13px; padding:9px 14px 9px 10px;
+    transition:border-color .15s, box-shadow .15s, transform .15s; }
+  .md-anexo:hover { border-color:var(--signal,#1A4893); box-shadow:0 8px 20px -14px rgba(16,32,58,.35); transform:translateY(-1px); }
+  .md-anexo:focus-visible { outline:2px solid var(--signal,#1A4893); outline-offset:2px; }
+  .md-anexo-ic { width:38px; height:38px; border-radius:10px; display:grid; place-items:center; flex-shrink:0;
+    color:var(--signal,#1A4893); background:var(--signal-suave,#EAF1F8); }
+  .md-anexo-ic.pdf { color:#A32A3C; background:#FBE9EB; }
+  .md-anexo-tx { min-width:0; }
+  .md-anexo-tx b { display:block; font-size:14px; font-weight:600; color:var(--ink,#10203A); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:260px; }
+  .md-anexo-tx small { display:block; font-size:12px; color:var(--ink-3,#66717F); }
+  .md-anexo.novo { cursor:default; padding-right:8px; }
+  .md-anexo.novo:hover { border-color:var(--line,#DED7CA); box-shadow:none; transform:none; }
+  .md-anexo-tira { width:28px; height:28px; border-radius:50%; border:0; background:none; color:var(--ink-3,#66717F); cursor:pointer;
+    display:grid; place-items:center; flex-shrink:0; }
+  .md-anexo-tira:hover { background:#FBE9EB; color:#A32A3C; }
+  .md-clipe { position:relative; display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:13.5px; font-weight:500;
+    color:var(--ink-2,#54606F); background:none; border:1px solid var(--line,#DED7CA); border-radius:999px; padding:7px 14px; cursor:pointer; }
+  .md-clipe:hover { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
+  .md-clipe:focus-within { outline:2px solid var(--signal,#1A4893); outline-offset:2px; }
+  .md-clipe input { position:absolute; width:1px; height:1px; opacity:0; }
   .md-etq { display:inline-block; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; border-radius:99px; padding:3px 9px; }
   .md-etq.pendente { color:#A85D24; background:#FBF0E4; } .md-etq.aprovada, .md-etq.aprovado { color:#1F7A6E; background:#E4F3F0; }
   .md-etq.recusada, .md-etq.recusado, .md-etq.encerrada { color:#8E2233; background:#FBE9EB; } .md-etq.pedido { color:#1A4893; background:#EAF1F8; }
@@ -754,6 +868,9 @@ const MD = (function () {
     sair: '<path d="M14.5 7.5V5.6a1.6 1.6 0 00-1.6-1.6H6.1a1.6 1.6 0 00-1.6 1.6v12.8c0 .9.7 1.6 1.6 1.6h6.8c.9 0 1.6-.7 1.6-1.6v-1.9M10.2 12H20M16.8 8.6L20.2 12l-3.4 3.4"/>',
     olho: '<path d="M2.8 12S6.2 5.6 12 5.6 21.2 12 21.2 12 17.8 18.4 12 18.4 2.8 12 2.8 12z"/><circle cx="12" cy="12" r="2.7"/>',
     enviar: '<path d="M20.4 3.6L10.6 13.4M20.4 3.6l-6.1 16.8-3.7-7-7-3.7 16.8-6.1z"/>',
+    clipe: '<path d="M19.6 11.4l-7.5 7.5a4.6 4.6 0 01-6.5-6.5l8-8a3.1 3.1 0 014.4 4.4l-8 8a1.6 1.6 0 01-2.3-2.3l7.2-7.2"/>',
+    imagem: '<rect x="3.6" y="4.6" width="16.8" height="14.8" rx="2.2"/><circle cx="9" cy="10" r="1.7"/><path d="M4.4 17.6l4.9-4.6 3.5 3.2 2.6-2.3 4.2 3.7"/>',
+    fechar: '<path d="M6 6l12 12M18 6L6 18"/>',
   };
   /* ic("verificado", 16) devolve o desenho pronto. "cheio" pinta por dentro (a estrela). */
   function ic(nome, tam, cheio) {
@@ -811,11 +928,57 @@ const MD = (function () {
 
   function ehImagem(s) { return /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/]+=*$/.test(s || ""); }
 
+  /* ── arquivos do mural ── */
+  /* O tipo que o navegador informa; se ele não informar, vale a extensão. */
+  function tipoDoArquivo(arquivo) {
+    const t = String((arquivo && arquivo.type) || "").toLowerCase();
+    if (TIPOS_ANEXO[t]) return t;
+    const ext = String((arquivo && arquivo.name) || "").toLowerCase().split(".").pop();
+    if (ext === "jpeg") return "image/jpeg";
+    return Object.keys(TIPOS_ANEXO).find(k => TIPOS_ANEXO[k] === ext) || "";
+  }
+  /* O nome que aparece na lista: sem caminho, sem quebra de linha, até 120 letras. */
+  function nomeDoArquivo(arquivo) {
+    const n = String((arquivo && arquivo.name) || "arquivo").split(/[\\/]/).pop().replace(/[\u0000-\u001f]+/g, " ").trim();
+    return (n || "arquivo").slice(0, 120);
+  }
+  function tamanhoBonito(b) {
+    if (!b && b !== 0) return "";
+    if (b < 1024 * 1024) return Math.max(1, Math.round(b / 1024)) + " KB";
+    return (b / 1024 / 1024).toFixed(1).replace(".", ",") + " MB";
+  }
+  /* Devolve o motivo de um arquivo não poder ser anexado, ou "" se pode. */
+  function conferirArquivo(arquivo) {
+    if (!tipoDoArquivo(arquivo)) return "“" + nomeDoArquivo(arquivo) + "” não é PDF nem imagem. Word e PowerPoint precisam ser salvos como PDF antes.";
+    if (arquivo.size > ANEXO_MAX) return "“" + nomeDoArquivo(arquivo) + "” tem " + tamanhoBonito(arquivo.size) + ". O limite é de 10 MB por arquivo.";
+    if (!arquivo.size) return "“" + nomeDoArquivo(arquivo) + "” está vazio.";
+    return "";
+  }
+  /* O cartão de um arquivo já publicado: clicar abre o leitor. */
+  function htmlAnexo(a) {
+    porCss();
+    const pdf = a.tipo === "application/pdf";
+    return `<button type="button" class="md-anexo" data-anexo="${e(a.caminho)}" title="Abrir ${e(a.nome)}">
+      <span class="md-anexo-ic${pdf ? " pdf" : ""}">${ic(pdf ? "documento" : "imagem", 20)}</span>
+      <span class="md-anexo-tx"><b>${e(a.nome)}</b><small>${pdf ? "PDF" : "Imagem"} · ${e(tamanhoBonito(a.tamanho))}</small></span></button>`;
+  }
+  /* O cartão de um arquivo escolhido e ainda não publicado, com o botão de tirar. */
+  function htmlAnexoNovo(arquivo, i) {
+    porCss();
+    const pdf = tipoDoArquivo(arquivo) === "application/pdf";
+    return `<span class="md-anexo novo">
+      <span class="md-anexo-ic${pdf ? " pdf" : ""}">${ic(pdf ? "documento" : "imagem", 20)}</span>
+      <span class="md-anexo-tx"><b>${e(nomeDoArquivo(arquivo))}</b><small>${pdf ? "PDF" : "Imagem"} · ${e(tamanhoBonito(arquivo.size))}</small></span>
+      <button type="button" class="md-anexo-tira" data-tirar-anexo="${i}" aria-label="Tirar ${e(nomeDoArquivo(arquivo))}">${ic("fechar", 15)}</button></span>`;
+  }
+
   return Object.assign({}, api, {
     demo: papelDemo,
     disponivel: !!papelDemo || (typeof supabase !== "undefined" && !!supabase.createClient),
     ui: { porCss, foto, estrelas, haQuanto, ultimaResposta, texto, reduzirFoto, reduzirProva, ehImagem, confirmar, pedirNota, pedirTexto, conversa, e,
-          ic, seloVerificado, logoEmpresa, empresaDe, dataMes },
+          ic, seloVerificado, logoEmpresa, empresaDe, dataMes, htmlAnexo, htmlAnexoNovo, tamanhoBonito },
+    /* arquivos do mural: ligado no site só depois do banco; na demonstração, sempre */
+    anexos: { noAr: ANEXOS_NO_AR || !!papelDemo, porPost: ANEXOS_POR_POST, aceita: Object.keys(TIPOS_ANEXO).join(","), conferir: conferirArquivo },
     carregarEmpresas,
   });
 })();
