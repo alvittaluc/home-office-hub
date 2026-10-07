@@ -767,7 +767,7 @@ html { scroll-behavior:smooth; }
               boba ou se você concorda com ela, interessa se o som parece produzido por uma pessoa.</p>
             <p><strong>4. Qualidade do áudio.</strong> Nada disso é sobre fala, é sobre sinal. Um locutor humano
               gravado com microfone ruim também receberia nota baixa aqui.</p>
-            <p>Se você errou algum, releia a figura 1.2. Acertar esse mapeamento é metade do trabalho, porque
+            <p>Se você errou algum, releia a figura 1.2. Saber qual eixo cada instrução pede é metade do trabalho, porque
               boa parte das divergências com o QA vem de alguém avaliar um eixo enquanto o projeto pediu
               outro.</p>
           </div>
@@ -934,8 +934,7 @@ html { scroll-behavior:smooth; }
           <div class="cu-resp">
             <p><strong>1. CCR, gerando CMOS.</strong> A pergunta é comparativa e admite melhora e piora, que é
               exatamente o desenho da escala de menos 3 a mais 3. ACR também funcionaria, rodando dois testes e
-              comparando as médias, mas exigiria muito mais gente para detectar uma diferença pequena, porque
-              cada nota carrega a régua pessoal de quem deu.</p>
+              comparando as médias, mas exigiria muito mais gente para detectar uma diferença pequena, porque cada nota traz junto a régua pessoal de quem deu.</p>
             <p><strong>2. ACR.</strong> Não existe outro sistema na comparação, e o que se quer é o nível
               absoluto. Vale lembrar que o número publicado assim só é comparável com outro número obtido com a
               mesma instrução e a mesma escala, um ponto que a aula 3 desenvolve.</p>
@@ -980,7 +979,7 @@ html { scroll-behavior:smooth; }
           <span class="cu-termo">ITU-T P.808</span>, <em>Subjective evaluation of speech quality with a
           crowdsourcing approach</em>.</p>
         <p>Vale conhecer as exigências dela, por dois motivos. Primeiro, porque quando um projeto pede essas
-          coisas de você, não é burocracia, é norma. Segundo, porque quando um projeto não pede nada disso, você sabe que o resultado vai ter mais ruído.</p>
+          coisas de você, não é burocracia, é norma. Segundo, porque quando um projeto não pede nada disso, você sabe que o resultado vai ser menos confiável.</p>
 
         <div class="cu-fig">
           <p class="cu-fig-cap"><b>Figura 3.1</b> · As etapas de um teste no padrão P.808</p>
@@ -1041,7 +1040,7 @@ html { scroll-behavior:smooth; }
             de volume e de brilho.</li>
         </ul>
         <p>E uma regra de honestidade profissional: se o áudio não carregou direito, se a conexão cortou, se
-          você percebeu no meio que o fone estava em um ouvido só, <strong>reporte em vez de chutar a nota</strong>.
+          você percebeu no meio que o fone estava em um ouvido só, <strong>avise em vez de chutar a nota</strong>.
           Item com problema técnico não é item difícil, é item inválido, e a maioria dos projetos prefere saber.</p>
 
         <h3 id="a3-detalhe">Por que detalhe de método muda a nota</h3>
@@ -1080,11 +1079,11 @@ html { scroll-behavior:smooth; }
           <div class="cu-resp">
             <p><strong>Instrução vaga.</strong> "Nota de 1 a 5 para o áudio" não diz qual eixo. Metade do painel
               vai avaliar naturalidade, a outra metade qualidade de sinal ou o quanto gostou da voz. Efeito:
-              variância alta que ninguém consegue explicar depois.</p>
+              notas muito espalhadas, que ninguém consegue explicar depois.</p>
             <p><strong>Sem treino e sem âncora.</strong> Cada pessoa define sozinha o que é 3. Efeito: médias que
               não se comparam entre lotes nem entre avaliadores.</p>
             <p><strong>Sem qualificação e sem item de controle.</strong> Não há como separar quem ouviu de quem
-              clicou. Efeito: ruído puro entrando na média, e ninguém saberá quanto.</p>
+              clicou. Efeito: chute puro entrando na média, e ninguém saberá quanto.</p>
             <p><strong>Lote único de 400 num dia.</strong> Fadiga auditiva garantida, e deriva de régua entre o
               começo e o fim. Efeito: os itens do fim recebem notas sistematicamente diferentes dos do começo,
               sem que a qualidade tenha mudado.</p>
@@ -1106,8 +1105,7 @@ html { scroll-behavior:smooth; }
             correlação de 0,954 com um experimento no padrão P.800.</li>
           <li>O Blizzard Challenge mostra um desenho público, com grupos diferentes de ouvintes e frases
             semanticamente imprevisíveis para medir inteligibilidade.</li>
-          <li>Do seu lado: fone estéreo, volume fixo, ambiente estável, blocos curtos, e reportar item com
-            problema técnico em vez de chutar.</li>
+          <li>Do seu lado: fone estéreo, volume fixo, ambiente estável, blocos curtos, e avisar do item com problema técnico em vez de chutar.</li>
           <li>Detalhe de método muda a nota. Dois estudos de 2023 mostram que escala, instrução e painel alteram
             o MOS, e que a mesma comparação pode produzir ordenações diferentes.</li>
         </ul>
@@ -1220,7 +1218,7 @@ html { scroll-behavior:smooth; }
             palavra específica, se você não prestou atenção nela. Não invente marcação de tempo que você não
             conferiu. Relato inventado, mesmo com boa intenção, é dado falso.</li>
           <li><strong>Não repita a mesma frase em todas as linhas.</strong> Comentário copiado de item para item
-            sinaliza para o QA que você não avaliou item a item, mesmo quando avaliou. Vale variar a redação.</li>
+            dá ao QA a impressão de que você não avaliou item a item, mesmo quando avaliou. Vale variar a redação.</li>
           <li><strong>Item sem defeito também merece uma linha.</strong> Curta: o que foi cumprido. "Pronúncia e
             ritmo corretos, sem artefato" basta, e não precisa inventar defeito para parecer atento.</li>
         </ul>
@@ -1233,8 +1231,7 @@ html { scroll-behavior:smooth; }
           explicar a distância entre a sua nota e o topo da escala</strong>. Defeito que atrapalha o entendimento
           derruba bastante. Defeito perceptível que não atrapalha derruba pouco. Nenhum defeito perceptível e
           nota baixa é uma combinação que sempre volta como pergunta.</p>
-        <p>Vale o mesmo para escala comparativa. Quando o projeto usa CMOS e você marcou diferença pontuada num
-          eixo, o comentário precisa dizer o que separou os dois áudios. E quando um defeito aparece nos dois,
+        <p>Vale o mesmo para escala comparativa. Quando o projeto usa CMOS e você marcou diferença num eixo, o comentário precisa dizer o que separou os dois áudios. E quando um defeito aparece nos dois,
           isso precisa aparecer no texto, mesmo que a nota seja de empate ou de diferença pequena, porque defeito
           presente nos dois é informação sobre o sistema, não empate.</p>
 
@@ -1248,8 +1245,7 @@ html { scroll-behavior:smooth; }
         <p>As <strong>métricas que predizem MOS</strong> tentam prever a nota que humanos dariam. O VoiceMOS
           Challenge, de 2022, organizou uma competição justamente para isso, usando dados de teste de escuta de
           187 sistemas de síntese e de conversão de voz acumulados ao longo de mais de uma década. O resultado é
-          honesto quanto ao limite: modelos ajustados a partir de representações aprendidas funcionam bem, e a
-          dificuldade aparece quando é preciso prever notas para <strong>falantes, ouvintes e sistemas que o
+          honesto quanto ao limite: os programas treinados para isso funcionam bem, e a dificuldade aparece quando é preciso prever notas para <strong>falantes, ouvintes e sistemas que o
           modelo nunca viu</strong>.</p>
         <p>É exatamente por isso que o seu trabalho existe. A predição automática cobre o caso conhecido, e o
           caso novo, que é onde a decisão importa, continua precisando de gente ouvindo.</p>
@@ -1424,7 +1420,7 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q10" value="d"><span>Que só funcionam para música, e não para fala</span></label>
             <p class="cu-q-fb"></p>
             <p class="cu-q-pq">É justamente no caso novo que a decisão importa, e é por isso que o ouvido humano
-              continua no circuito.</p>
+              continua necessário.</p>
           </div>
 
           <div class="cu-quiz-acoes">
