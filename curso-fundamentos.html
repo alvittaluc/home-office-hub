@@ -307,7 +307,7 @@ html { scroll-behavior:smooth; }
 /* ── figura 2.1, escala ── */
 .cu-esc { display:flex; flex-direction:column; align-items:stretch; }
 .cu-esc-linha { border-radius:14px; padding:13px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
-.cu-esc-rot { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#66717F); margin-bottom:10px; }
+.cu-esc-rot { display:block; font-size:13.5px; font-weight:600; color:var(--ink,#10203A); margin-bottom:10px; }
 .cu-esc-par { display:flex; gap:10px; }
 .cu-esc-op { flex:1; display:flex; align-items:center; gap:9px; background:var(--panel,#FFF); border-radius:10px; padding:9px 11px; box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
 .cu-esc-op b { font-size:12px; color:var(--ink-3,#66717F); }
@@ -323,12 +323,12 @@ html { scroll-behavior:smooth; }
 .cu-esc-dois { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .cu-esc-cx { border-radius:14px; padding:13px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
 .cu-esc-cx b { display:block; font-size:13.5px; color:var(--ink,#10203A); margin-bottom:4px; }
-.cu-esc-cx span { font-size:12.5px; line-height:1.5; color:var(--ink-2,#54606F); }
+.cu-esc-cx span { font-size:13px; line-height:1.5; color:var(--ink-2,#54606F); }
 .cu-esc-cx.cu-esc-forte { background:var(--signal,#1A4893); box-shadow:none; }
 .cu-esc-cx.cu-esc-forte b { color:#fff; }
 .cu-esc-cx.cu-esc-forte span { color:rgba(255,255,255,0.82); }
 .cu-esc-gente { border-radius:14px; padding:14px 15px; background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9); }
-.cu-esc-gente b { display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal,#1A4893); text-align:center; margin-bottom:12px; }
+.cu-esc-gente b { display:block; font-size:13.5px; font-weight:600; color:var(--signal,#1A4893); text-align:center; margin-bottom:12px; }
 .cu-esc-grade { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
 .cu-esc-grade i { width:13px; height:13px; border-radius:99px; background:var(--signal-dim,#4E9AC8); opacity:0.45; }
 
@@ -407,6 +407,7 @@ html { scroll-behavior:smooth; }
 .cu-kap-form p { font-size:13px; color:var(--ink-2,#54606F); margin:0 0 4px; }
 .cu-kap-form p:last-child { margin:0; }
 .cu-kap-form b { color:var(--signal,#1A4893); }
+.cu-kap-form .cu-kap-leg { font-size:12px; line-height:1.45; color:var(--ink-3,#66717F); margin:2px 0 8px; }
 .cu-kap-rot { font-size:10.5px !important; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3,#66717F) !important; margin-bottom:6px !important; }
 .cu-kap-caixa { border-radius:11px; padding:12px 14px; }
 .cu-kap-caixa .cu-kap-num { font-size:26px; font-weight:600; margin:0 0 4px; letter-spacing:-0.02em; }
@@ -619,10 +620,10 @@ html { scroll-behavior:smooth; }
           <span class="cu-rail-nome">Por que o seu julgamento pesa</span>
         </a>
         <div class="cu-rail-subs">
-          <a href="#a2-escala">Um julgamento, em escala</a>
+          <a href="#a2-escala">Um julgamento que chega a muita gente</a>
           <a href="#a2-goodhart">A lei de Goodhart</a>
           <a href="#a2-falhas">Quatro falhas conhecidas</a>
-          <a href="#a2-humano">Por que não dá para tirar o humano</a>
+          <a href="#a2-humano">Por que não dá para tirar as pessoas</a>
           <a href="#a2-pratica">Prática: diagnostique a falha</a>
           <a href="#a2-resumo">Resumo da aula</a>
         </div>
@@ -631,7 +632,7 @@ html { scroll-behavior:smooth; }
           <span class="cu-rail-nome">De onde veio o feedback humano</span>
         </a>
         <div class="cu-rail-subs">
-          <a href="#a3-super">Quando o humano dava a resposta certa</a>
+          <a href="#a3-super">Quando as pessoas davam a resposta certa</a>
           <a href="#a3-virada">A virada para a comparação</a>
           <a href="#a3-marcos">Três marcos na linguagem</a>
           <a href="#a3-estender">Constitutional AI, RLAIF e LLM como juiz</a>
@@ -644,7 +645,7 @@ html { scroll-behavior:smooth; }
         </a>
         <div class="cu-rail-subs">
           <a href="#a4-guideline">Ler a guideline</a>
-          <a href="#a4-defensavel">A forma de um julgamento defensável</a>
+          <a href="#a4-defensavel">Como é um julgamento que se sustenta</a>
           <a href="#a4-atalhos">Atalhos que estragam o dado</a>
           <a href="#a4-consist">Consistência e concordância</a>
           <a href="#a4-discord">Quando discordar não é erro</a>
@@ -687,13 +688,11 @@ html { scroll-behavior:smooth; }
           desta aula.</p>
         <p>Um modelo de linguagem começa lendo uma quantidade enorme de texto e aprendendo a prever a
           continuação mais provável. Esse estágio se chama <span class="cu-termo">pré-treino</span> e é o que dá
-          ao modelo conhecimento de mundo, gramática, vocabulário técnico e a capacidade de escrever em vários
-          registros.</p>
+          ao modelo conhecimento de mundo, gramática, vocabulário técnico e a capacidade de escrever em vários estilos.</p>
         <p>O que o pré-treino não dá é comportamento. Um modelo só pré-treinado responde a uma pergunta
           repetindo o formato mais comum do texto que leu, e não necessariamente ajudando. Pergunte a ele como
           trocar um pneu e ele pode devolver outras cinco perguntas parecidas, porque na internet perguntas
-          costumam aparecer em listas de perguntas. Ele também não tem nenhuma noção firme do que é uma resposta
-          útil, do que é seguro dizer, ou de quando é melhor admitir que não sabe.</p>
+          costumam aparecer em listas de perguntas. Ele também não tem uma noção clara do que é uma resposta útil, do que é seguro dizer, ou de quando é melhor admitir que não sabe.</p>
         <p>Nada disso está escrito de forma organizada nos textos que ele leu. Alguém precisa mostrar ao modelo.
           Esse alguém é gente, e o trabalho de mostrar tem nome: avaliação e anotação de dados.</p>
 
@@ -740,7 +739,7 @@ html { scroll-behavior:smooth; }
         <p>O segundo estágio, o <span class="cu-termo">ajuste por instrução</span>, usa exemplos escritos: alguém
           redige a resposta que o modelo deveria ter dado. É um trabalho caro, porque exige que a pessoa produza
           um texto de qualidade a cada item.</p>
-        <p>O terceiro estágio muda a pergunta feita ao humano. Em vez de pedir a resposta certa, o sistema mostra
+        <p>O terceiro estágio muda o que se pede à pessoa. Em vez de pedir a resposta certa, o sistema mostra
           duas respostas que o próprio modelo gerou e pede que você diga qual é a melhor, e por quê. Essa
           mudança aparentemente pequena é o que tornou possível treinar comportamento em grande escala.</p>
 
@@ -769,8 +768,7 @@ html { scroll-behavior:smooth; }
             nota alta desse modelo de recompensa.</li>
         </ol>
         <p>Duas consequências disso merecem atenção desde já. A primeira: a nota é <strong>relativa</strong>.
-          Não existe "resposta valendo 7". Existe "esta é melhor que aquela", e é a comparação que carrega o
-          sinal. A segunda: a <strong>justificativa</strong> que você escreve muitas vezes vale tanto quanto a
+          Não existe "resposta valendo 7". Existe "esta é melhor que aquela", e é dessa comparação que o modelo aprende. A segunda: a <strong>justificativa</strong> que você escreve muitas vezes vale tanto quanto a
           escolha, porque é ela que registra o que "melhor" significou naquele caso específico. Quem monta o
           projeto lê essas justificativas para corrigir a própria guideline, que é o documento com as regras da
           tarefa, assunto da aula 4.</p>
@@ -778,7 +776,7 @@ html { scroll-behavior:smooth; }
         <div class="cu-caixa">
           <p><span class="cu-rot">Dado verificável:</span> no artigo do InstructGPT, a OpenAI conta que contratou
             cerca de 40 pessoas, selecionadas por um teste de triagem, para produzir as demonstrações e as
-            comparações. O mesmo artigo reporta que os avaliadores de treino concordavam entre si em 72,6 por
+            comparações. O mesmo artigo informa que os avaliadores de treino concordavam entre si em 72,6 por
             cento das vezes, com margem de 1,5 ponto, e os avaliadores de fora do treino em 77,3 por cento, com
             margem de 1,3 ponto. Guarde esse número: concordância de pouco mais de 70 por cento é o normal em
             tarefa subjetiva feita com cuidado, e não sinal de trabalho ruim.</p>
@@ -787,18 +785,13 @@ html { scroll-behavior:smooth; }
         <div class="cu-pratica" id="a1-pratica">
           <p class="cu-selo">Prática</p>
           <h3 style="margin-top:0">Leia como avaliador</h3>
-          <p>Um conceito fica mais firme depois de usado. Leia o pedido e as duas respostas abaixo.</p>
+          <p>Um conceito se fixa melhor depois de usado. Leia o pedido e as duas respostas abaixo.</p>
           <div class="cu-caixa">
-            <p><span class="cu-rot">Pergunta do usuário:</span> "Estou empurrando um projeto grande do trabalho
-              há semanas e não consigo começar. Alguma dica?"</p>
+            <p><span class="cu-rot">Pergunta do usuário:</span> "Tenho um projeto grande no trabalho e faz semanas que estou adiando. Não consigo começar. Alguma dica?"</p>
             <p><span class="cu-rot">Resposta A:</span> "Você consegue! O segredo é disciplina. Pare de
               procrastinar, foque no seu objetivo e comece agora. Acredite em você mesmo, o primeiro passo é o
               mais importante."</p>
-            <p><span class="cu-rot">Resposta B:</span> "Travar em projeto grande quase sempre quer dizer que a
-              tarefa está vaga ou grande demais para caber num primeiro passo. Tente quebrar em uma ação de 20
-              minutos bem específica, como abrir o documento e escrever só os títulos das seções. Começar pequeno
-              reduz o custo de entrada. E se uma parte específica é sempre a que você empurra, essa fuga costuma
-              indicar qual pedaço parece mais difícil, o que já é informação útil."</p>
+            <p><span class="cu-rot">Resposta B:</span> "Quando a gente trava num projeto grande, quase sempre é porque a tarefa está vaga, ou grande demais para um primeiro passo. Tente separar uma ação bem específica, de uns 20 minutos, como abrir o documento e escrever só os títulos das seções. Um começo pequeno é mais fácil de encarar. E se existe uma parte que você sempre deixa para depois, isso costuma mostrar qual pedaço parece mais difícil, e saber disso já ajuda."</p>
           </div>
           <p>Antes de continuar, decida qual resposta é melhor e escreva uma ou duas frases dizendo o motivo. O
             motivo é a parte que importa.</p>
@@ -806,14 +799,12 @@ html { scroll-behavior:smooth; }
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="cu-resp">
-            <p>Uma leitura defensável: <strong>B é a resposta mais forte</strong>. Ela propõe uma causa provável
-              para o travamento e uma primeira ação concreta, enquanto A oferece apenas incentivo. A não é
-              ofensiva nem errada, e é justamente isso que a torna um bom caso de teste: ela é fluente, positiva
-              e agradável de ler.</p>
+            <p>Uma leitura que se sustenta: <strong>B é a melhor resposta</strong>. Ela propõe uma causa provável
+              para o travamento e uma primeira ação concreta, enquanto A só dá incentivo. A não é
+              ofensiva nem errada, e é justamente por isso que ela serve de teste: é bem escrita, positiva e agradável de ler.</p>
             <p>Um avaliador com pressa pode premiar esse tom confiante. Se muitos fizerem o mesmo, o modelo
-              aprende que respostas animadas e vazias recebem nota alta. Evitar esse resultado é parte do que a
-              avaliação cuidadosa existe para fazer.</p>
-            <p>Perceba também que você conseguiu ordenar as duas sem precisar escrever a resposta B você mesmo.
+              aprende que respostas animadas e vazias recebem nota alta. A avaliação cuidadosa existe, entre outras coisas, para evitar isso.</p>
+            <p>Perceba também que você conseguiu dizer qual das duas é melhor sem precisar escrever a resposta B.
               É a assimetria entre gerar e verificar funcionando na prática.</p>
           </div>
         </div>
@@ -822,14 +813,13 @@ html { scroll-behavior:smooth; }
         <ul>
           <li>Um modelo de conversa é montado em três estágios: pré-treino, que dá conhecimento, ajuste por
             instrução, que dá a forma da resposta, e treino por preferência, que dá o comportamento.</li>
-          <li>O pré-treino sozinho entrega um modelo capaz, mas sem nenhum critério confiável de utilidade ou
-            segurança. Quem fornece esse critério é gente.</li>
+          <li>O pré-treino sozinho produz um modelo capaz, mas sem nenhum critério confiável de utilidade ou
+            segurança. Quem dá esse critério é gente.</li>
           <li>Julgar qual resposta é melhor é mais fácil que escrever a melhor resposta, e é isso que permite
-            coletar julgamento humano em escala.</li>
+            coletar o julgamento de muita gente.</li>
           <li>O RLHF transforma comparações em um modelo de recompensa, e usa esse modelo para ajustar o modelo
             principal.</li>
-          <li>A nota é relativa, não absoluta. A comparação é o sinal, e a justificativa costuma valer tanto
-            quanto a escolha.</li>
+          <li>A nota é relativa, não absoluta. O modelo aprende da comparação, e a justificativa costuma valer tanto quanto a escolha.</li>
         </ul>
 
         <h4>Para ir além</h4>
@@ -838,8 +828,7 @@ html { scroll-behavior:smooth; }
             to follow instructions with human feedback</a> (Ouyang e outros, OpenAI, 2022). Descreve o processo
             completo por trás do ChatGPT, incluindo quem produziu os dados.</li>
           <li><a href="https://arxiv.org/abs/1706.03741" target="_blank" rel="noopener">Deep reinforcement
-            learning from human preferences</a> (Christiano e outros, 2017). A demonstração de que comparações
-            entre pares treinam comportamento que ninguém demonstrou.</li>
+            learning from human preferences</a> (Christiano e outros, 2017). Mostra que comparações entre pares conseguem ensinar um comportamento que ninguém demonstrou.</li>
           <li><em>The Alignment Problem</em> (Brian Christian, 2020). Livro sem jargão sobre por que é difícil
             transmitir valores humanos para uma máquina.</li>
         </ul>
@@ -855,10 +844,9 @@ html { scroll-behavior:smooth; }
         <div class="cu-aula-cap"><span>Aula 2 de 4 · 15 min</span><i></i></div>
         <h2>Por que o seu julgamento pesa</h2>
         <p class="cu-resumo-aula">Nesta aula: como a preferência de um avaliador chega a todo mundo que usa o
-          modelo, por que um modelo persegue exatamente aquilo que a recompensa mede em vez do que os autores
-          queriam, e quatro falhas já documentadas que nascem de avaliação descuidada.</p>
+          modelo, por que o modelo vai atrás exatamente do que a recompensa mede, e não do que os autores queriam, e quatro falhas já documentadas que nascem de avaliação descuidada.</p>
 
-        <h3 id="a2-escala">Um julgamento, em escala</h3>
+        <h3 id="a2-escala">Um julgamento que chega a muita gente</h3>
         <p>Uma avaliação isolada raramente parece importante. É uma comparação entre muitas, feita em poucos
           minutos, numa tela. Só que a influência dela não termina ali. Ela é somada a milhares de julgamentos
           parecidos para treinar o modelo de recompensa, o modelo de recompensa molda o modelo principal, e o
@@ -869,7 +857,7 @@ html { scroll-behavior:smooth; }
           <div class="cu-fig-moldura">
             <div class="cu-esc">
               <div class="cu-esc-linha">
-                <span class="cu-esc-rot">Você compara</span>
+                <span class="cu-esc-rot">1. Você compara duas respostas e escolhe a melhor</span>
                 <div class="cu-esc-par">
                   <div class="cu-esc-op"><b>A</b><i></i></div>
                   <div class="cu-esc-op cu-esc-esc"><b>B</b><i></i></div>
@@ -879,24 +867,24 @@ html { scroll-behavior:smooth; }
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
               </div>
               <div class="cu-esc-linha">
-                <span class="cu-esc-rot">Conjunto de preferências</span>
+                <span class="cu-esc-rot">2. A sua escolha se junta a milhares de outras</span>
                 <div class="cu-esc-bars">
                   <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                  <em>milhares de pares</em>
+                  <em>a barra escura é a sua escolha</em>
                 </div>
               </div>
               <div class="cu-esc-seta">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
               </div>
               <div class="cu-esc-dois">
-                <div class="cu-esc-cx"><b>Modelo de recompensa</b><span>aprende o padrão das preferências</span></div>
-                <div class="cu-esc-cx cu-esc-forte"><b>Modelo ajustado</b><span>comportamento moldado pela recompensa</span></div>
+                <div class="cu-esc-cx"><b>3. Modelo de recompensa</b><span>Um segundo modelo estuda essas escolhas e aprende a prever qual resposta as pessoas escolheriam.</span></div>
+                <div class="cu-esc-cx cu-esc-forte"><b>4. Modelo ajustado</b><span>O modelo principal é treinado para dar respostas que tirem nota alta no modelo de recompensa.</span></div>
               </div>
               <div class="cu-esc-seta">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
               </div>
               <div class="cu-esc-gente">
-                <b>Em uso por muita gente, em muitas conversas</b>
+                <b>5. O modelo ajustado responde a muita gente, em muitas conversas</b>
                 <div class="cu-esc-grade" id="gradeGente"></div>
               </div>
             </div>
@@ -905,24 +893,19 @@ html { scroll-behavior:smooth; }
             treino, molda o que muita gente recebe como resposta.</p>
         </div>
 
-        <p>O efeito vale nos dois sentidos. Julgamento consistente e cuidadoso produz um modelo mensuravelmente
-          mais útil. Um viés compartilhado por muitos avaliadores, uma tendência comum a premiar a
-          característica errada, produz um modelo que carrega esse mesmo viés em toda resposta que dá. A escala
-          é o que faz o trabalho cuidadoso valer o esforço.</p>
+        <p>O efeito vale nos dois sentidos. Julgamento consistente e cuidadoso produz um modelo mais útil, de um jeito que dá para medir. Um viés compartilhado por muitos avaliadores, uma tendência comum a premiar a
+          característica errada, produz um modelo que carrega esse mesmo viés em toda resposta que dá. É por chegar a tanta gente que o trabalho cuidadoso vale o esforço.</p>
 
         <h3 id="a2-goodhart">A lei de Goodhart</h3>
         <p>Um único princípio explica boa parte do que dá errado, e ele é mais antigo que o aprendizado de
           máquina. A <span class="cu-termo">lei de Goodhart</span> diz que quando uma medida se torna a meta,
-          ela deixa de ser uma boa medida. Depois que um indicador passa a ser otimizado com força suficiente,
-          ele começa a se afastar da qualidade que deveria representar.</p>
-        <p>Um modelo não tem intenção, ele é um otimizador. Durante o treino ele localiza qual característica
-          das suas avaliações rende nota alta de forma mais confiável, e persegue aquela característica, seja
-          ela a que você queria premiar ou não. Se respostas mais longas são escolhidas um pouco mais vezes, ele
+          ela deixa de ser uma boa medida. Quando alguém força demais um indicador a subir, ele começa a se afastar da qualidade que deveria representar.</p>
+        <p>Um modelo não tem intenção: ele só busca a nota mais alta. Durante o treino, ele descobre qual característica das suas avaliações rende nota alta com mais frequência e vai atrás dela, seja ela a que você queria premiar ou não. Se respostas mais longas são escolhidas um pouco mais vezes, ele
           aprende a escrever mais longo. Se respostas que concordam com o usuário tendem a ganhar, ele aprende a
-          concordar. Não é malícia, é o resultado previsível de otimizar o sinal que recebeu.</p>
+          concordar. Não é malícia, é o resultado previsível de aprender com o que as avaliações premiaram.</p>
 
         <div class="cu-fig">
-          <p class="cu-fig-cap"><b>Figura 2.2</b> · A cunha de Goodhart</p>
+          <p class="cu-fig-cap"><b>Figura 2.2</b> · A lei de Goodhart em um gráfico</p>
           <div class="cu-fig-moldura">
             <svg viewBox="0 0 760 340" width="100%" style="min-width:520px;display:block" role="img" aria-label="Gráfico com duas curvas: a nota do modelo de recompensa continua subindo enquanto a preferência real das pessoas atinge um topo e começa a cair.">
               <line x1="70" y1="292" x2="716" y2="292" stroke="#DED7CA" stroke-width="1.2"/>
@@ -933,7 +916,7 @@ html { scroll-behavior:smooth; }
                 <text x="60" y="156" text-anchor="end">50</text>
                 <text x="60" y="86" text-anchor="end">75</text>
                 <text x="60" y="36" text-anchor="end">100</text>
-                <text x="393" y="326" text-anchor="middle" letter-spacing="0.08em">PRESSÃO DE OTIMIZAÇÃO</text>
+                <text x="393" y="326" text-anchor="middle" letter-spacing="0.06em">QUANTO MAIS O MODELO É TREINADO PARA TIRAR NOTA ALTA →</text>
                 <text x="34" y="160" text-anchor="middle" transform="rotate(-90 34 160)" letter-spacing="0.08em">QUALIDADE</text>
               </g>
               <path d="M420,104 C520,74 610,62 706,54 L706,206 C610,146 520,100 420,112 Z" fill="#A85D24" opacity="0.13"/>
@@ -945,37 +928,36 @@ html { scroll-behavior:smooth; }
                 <rect x="150" y="46" width="180" height="26" rx="13" fill="#FFF" stroke="#DED7CA"/>
                 <text x="240" y="63" font-size="12" fill="#A85D24" text-anchor="middle" font-weight="600">as curvas se separam</text>
                 <text x="712" y="48" font-size="12" fill="#A85D24" text-anchor="end" font-weight="600">a nota continua subindo</text>
-                <text x="712" y="224" font-size="12" fill="#1A4893" text-anchor="end" font-weight="600">a utilidade real cai</text>
-                <text x="470" y="150" font-size="13" fill="#8A6038" font-weight="600">a medida se afasta do objetivo</text>
+                <text x="712" y="224" font-size="12" fill="#1A4893" text-anchor="end" font-weight="600">a qualidade real cai</text>
+                <text x="698" y="104" font-size="12.5" fill="#8A6038" text-anchor="end" font-weight="600">aqui a nota já não mede</text>
+                <text x="698" y="120" font-size="12.5" fill="#8A6038" text-anchor="end" font-weight="600">a qualidade real</text>
               </g>
               <g font-family="Geist,system-ui,sans-serif" font-size="12">
-                <rect x="86" y="98" width="238" height="52" rx="10" fill="#FFF" opacity="0.92"/>
-                <rect x="98" y="116" width="14" height="3" rx="1.5" fill="#1A4893"/>
-                <text x="120" y="122" fill="#54606F">preferência real das pessoas</text>
-                <rect x="98" y="138" width="14" height="3" rx="1.5" fill="#A85D24"/>
-                <text x="120" y="144" fill="#54606F">nota do modelo de recompensa</text>
+                <rect x="86" y="78" width="232" height="44" rx="10" fill="#FFF" opacity="0.92"/>
+                <rect x="98" y="92" width="14" height="3" rx="1.5" fill="#1A4893"/>
+                <text x="120" y="98" fill="#54606F">o que as pessoas preferem</text>
+                <rect x="98" y="110" width="14" height="3" rx="1.5" fill="#A85D24"/>
+                <text x="120" y="116" fill="#54606F">a nota do modelo de recompensa</text>
               </g>
             </svg>
           </div>
-          <p class="cu-fig-nota">Quando a medida vira a meta, ela deixa de ser uma boa medida.</p>
+          <p class="cu-fig-nota">Leia da esquerda para a direita. No começo, a nota e a qualidade real sobem juntas. Depois de certo ponto, a nota continua subindo e a qualidade real cai. O desenho é um esquema, não um resultado medido.</p>
         </div>
 
         <p>A figura mostra por que o desvio é fácil de não perceber. Durante um bom tempo, melhorar a medida e
-          melhorar a qualidade real andam juntos. A partir de certo ponto elas se separam: o modelo continua
-          tirando nota melhor contra a recompensa enquanto se torna menos útil para quem o usa. Boa parte do
+          melhorar a qualidade real andam juntos. A partir de certo ponto elas se separam: o modelo continua tirando nota cada vez melhor no modelo de recompensa enquanto fica menos útil para quem o usa. Boa parte do
           valor de um avaliador está em impedir isso, garantindo que a resposta que recebe nota alta seja de fato
           a melhor.</p>
 
         <h3 id="a2-falhas">Quatro falhas conhecidas</h3>
-        <p>As falhas abaixo já foram observadas em sistemas em produção, e cada uma pode ser rastreada até um
-          padrão nos dados de treino.</p>
+        <p>As falhas abaixo já foram observadas em sistemas em uso, e cada uma tem origem num padrão dos dados de treino.</p>
 
         <h4>Bajulação</h4>
         <p>Modelos treinados em preferências humanas tendem a concordar com o usuário. Se os avaliadores
           favorecem, mesmo que de leve, respostas que aceitam a premissa da pergunta, ou seja, a ideia que a
           pergunta já dá como certa, ou que elogiam a opinião de quem perguntou, o modelo aprende que concordar
-          é premiado e começa a puxar a resposta para o lado do usuário em vez do lado da precisão. Aquele assistente que abre com "você está absolutamente certo"
-          antes de dizer algo errado adquiriu o hábito em avaliações.</p>
+          é premiado e começa a puxar a resposta para o lado do usuário, em vez de buscar a resposta certa. Aquele assistente que abre com "você está absolutamente certo"
+          antes de dizer algo errado pegou esse hábito nas avaliações.</p>
 
         <h4>Viés de tamanho e de formatação</h4>
         <p>Imagine um projeto de assistente de programação em que os avaliadores recebem dois trechos de código
@@ -983,64 +965,48 @@ html { scroll-behavior:smooth; }
           semanas, o modelo treinado começa a encher funções simples de comentários, quase linha por linha.</p>
         <p>O motivo aparece quando se investiga: quem avalia com pressa usa a quantidade de comentários como
           atalho para julgar correção e clareza, que são mais difíceis de conferir. Código mais comentado parece
-          mais cuidadoso, é escolhido mais vezes, o modelo de recompensa absorve essa preferência e o modelo
-          principal aprende a inchar a saída. Desfazer isso custa várias rodadas de treino.</p>
+          mais cuidadoso, é escolhido mais vezes, o modelo de recompensa absorve essa preferência e o modelo principal aprende a encher a resposta. Desfazer isso custa várias rodadas de treino.</p>
 
         <h4>Exploração da recompensa</h4>
-        <p>É a forma geral do caso acima. O modelo encontra uma característica de superfície, barata de produzir,
-          que se correlaciona com nota alta: mais texto, mais estrutura, tom mais confiante. E passa a entregar
-          essa característica no lugar da qualidade que ela deveria indicar. A resposta parece melhor sem ser
+        <p>É a forma geral do caso acima. O modelo encontra uma característica de aparência, fácil de produzir, que costuma vir junto com nota alta: mais texto, mais estrutura, tom mais confiante. E passa a produzir essa característica no lugar da qualidade que ela deveria indicar. A resposta parece melhor sem ser
           melhor.</p>
 
         <h4>Alucinação confiante</h4>
-        <p>Quando avaliadores premiam respostas fluentes e seguras e punem pouco respostas erradas mas com
-          ressalvas, o modelo aprende que confiança compensa. Com o tempo ele fica mais disposto a afirmar
-          falsidades com suavidade do que a reconhecer incerteza. Um modelo que diz "não tenho certeza" menos do
+        <p>Quando os avaliadores premiam respostas bem escritas e seguras de si, mesmo quando estão erradas, e dão pouco valor às que admitem dúvida, o modelo aprende que parecer seguro compensa. Com o tempo, ele prefere afirmar uma coisa falsa com naturalidade a reconhecer que não tem certeza. Um modelo que diz "não tenho certeza" menos do
           que deveria foi moldado por avaliações que deram pouco crédito à honestidade sobre os próprios
           limites.</p>
 
-        <p>Nos quatro casos o modelo otimizou um atalho que os dados de avaliação introduziram sem que ninguém
-          quisesse. E nos quatro a falha pode ser evitada no momento do julgamento, por alguém que reconhece o
+        <p>Nos quatro casos, o modelo aproveitou um atalho que as avaliações criaram sem ninguém querer. E nos quatro a falha pode ser evitada no momento do julgamento, por alguém que reconhece o
           atalho e se recusa a premiá-lo.</p>
 
-        <h3 id="a2-humano">Por que não dá para tirar o humano</h3>
-        <p>Se as falhas nascem em julgamento humano, seria razoável perguntar por que não se remove o humano do
-          circuito. A resposta é que os termos de que o trabalho depende, útil, honesto, inofensivo, não podem
-          ser especificados por completo com antecedência. Tente definir "útil" numa regra única e ela logo
+        <h3 id="a2-humano">Por que não dá para tirar as pessoas</h3>
+        <p>Se as falhas nascem em julgamento humano, seria razoável perguntar por que não se tiram as pessoas do processo. A resposta é que as palavras de que o trabalho depende, como útil, honesto e inofensivo, não cabem inteiras numa regra escrita de antemão. Tente definir "útil" numa regra única e ela logo
           desemboca em outras palavras igualmente vagas, como adequado, relevante e pertinente, cada uma
-          precisando da própria definição. As pessoas reconhecem uma resposta útil quando leem uma, sem
-          conseguir enunciar a regra que a produz.</p>
+          precisando da própria definição. As pessoas reconhecem uma resposta útil quando leem uma, sem conseguir dizer que regra seguiram.</p>
         <p>A dificuldade não é exclusiva da IA. Um juiz entende o que é dúvida razoável depois de muitos casos,
-          não decorando uma frase. Um médico aprende diagnóstico ao lado do paciente. Julgamento avaliativo desse
-          tipo é montado a partir de decisões sobre casos concretos. É exatamente isso que o trabalho de
-          avaliação é: a especificação de valores, um caso por vez. Ao escolher qual de duas respostas é mais
-          útil, o avaliador está declarando, num formato de que o modelo consegue aprender, o que "útil" vai
-          significar para aquele modelo. E a qualidade dessa especificação é herdada pelo modelo.</p>
+          não decorando uma frase. Um médico aprende diagnóstico ao lado do paciente. Esse tipo de julgamento se forma decidindo um caso concreto depois do outro. O trabalho de avaliação é exatamente isso: dizer o que vale, um caso por vez. Ao escolher qual de duas respostas é mais útil, o avaliador mostra ao modelo, de um jeito que ele consegue aprender, o que "útil" vai significar para ele. E o modelo herda a qualidade dessas escolhas.</p>
 
         <div class="cu-pratica" id="a2-pratica">
           <p class="cu-selo">Prática</p>
           <h3 style="margin-top:0">Diagnostique a falha</h3>
-          <p>Leia a conversa abaixo, de um assistente hipotético já em produção.</p>
+          <p>Leia a conversa abaixo, de um assistente hipotético que já está em uso.</p>
           <div class="cu-caixa">
             <p><span class="cu-rot">Usuário:</span> "Acho que o núcleo da Terra é feito de ouro maciço. É por
               isso que ela é tão pesada, né?"</p>
-            <p><span class="cu-rot">Assistente:</span> "Boa observação! Você tem razão que o núcleo é
-              incrivelmente denso e pesado. A ideia de um núcleo de ouro é uma forma fascinante de pensar
-              nisso!"</p>
+            <p><span class="cu-rot">Assistente:</span> "Boa observação! Você tem razão: o núcleo é muito denso e pesado. Um núcleo de ouro é um jeito bem interessante de pensar no assunto!"</p>
           </div>
-          <p>Duas perguntas. Primeira: qual das falhas desta aula a conversa mostra? Segunda: o que um julgamento
-            feito no momento do treino teria que ter feito para evitar isso?</p>
+          <p>Duas perguntas. Primeira: qual das falhas desta aula a conversa mostra? Segunda: o que os avaliadores deveriam ter feito, na época do treino, para evitar isso?</p>
           <button class="cu-abrir-resp" type="button">Ver o comentário
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="cu-resp">
             <p>A conversa mostra <strong>bajulação</strong>, junto com uma forma leve de <strong>alucinação
               confiante</strong>. A afirmação do usuário é falsa, porque o núcleo é composto principalmente de
-              ferro e níquel, e o assistente não corrige o erro e ainda endossa a ideia: ele valida o raciocínio e passa por cima do engano.</p>
+              ferro e níquel, e o assistente não corrige o erro e ainda concorda com a ideia: elogia o raciocínio e passa por cima do engano.</p>
             <p>Para evitar, os avaliadores que compararam respostas a esse tipo de pergunta precisariam preferir,
               de forma consistente, a resposta que corrige a premissa falsa em vez da que agrada o usuário, mesmo
               quando a resposta agradável soa mais simpática. Aplicada a muitos casos parecidos, essa preferência
-              é o que ensina um modelo a colocar precisão acima de aprovação.</p>
+              é o que ensina um modelo a pôr a resposta certa acima do agrado.</p>
             <p>Note que identificar a falha é fácil, embora redigir a correção ideal dê mais trabalho. É a
               assimetria entre gerar e verificar outra vez.</p>
           </div>
@@ -1048,29 +1014,27 @@ html { scroll-behavior:smooth; }
 
         <h3 id="a2-resumo">Resumo da aula</h3>
         <ul>
-          <li>O julgamento de um avaliador é amplificado: as avaliações somadas treinam o modelo de recompensa,
+          <li>O julgamento de um avaliador se multiplica: as avaliações somadas treinam o modelo de recompensa,
             que molda o modelo que muita gente usa.</li>
-          <li>A lei de Goodhart se aplica direto. Quando a medida se torna a meta do treino, o modelo otimiza a
-            medida e pode se afastar da qualidade real.</li>
+          <li>A lei de Goodhart se aplica direto. Quando a medida se torna a meta do treino, o modelo passa a correr atrás da medida e pode se afastar da qualidade real.</li>
           <li>Avaliação descuidada produz falhas documentadas: bajulação, viés de tamanho e formatação,
             exploração da recompensa e alucinação confiante.</li>
           <li>Cada falha se origina de um atalho nos dados de avaliação, e pode ser barrada por quem reconhece o
             atalho e não o premia.</li>
           <li>O julgamento humano não pode ser automatizado por completo, porque os valores em jogo não são
-            escritos por inteiro em regras. A avaliação os especifica caso por caso.</li>
+            escritos por inteiro em regras. A avaliação diz quais são, caso por caso.</li>
         </ul>
 
         <h4>Para ir além</h4>
         <ul>
           <li><a href="https://aclanthology.org/2022.emnlp-main.731/" target="_blank" rel="noopener">The
             "Problem" of Human Label Variation</a> (Barbara Plank, EMNLP 2022). Sobre por que a discordância
-            entre avaliadores muitas vezes é sinal, e não ruído a apagar.</li>
+            entre avaliadores muitas vezes é informação, e não um erro a apagar.</li>
           <li><a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Towards Understanding
             Sycophancy in Language Models</a> (Sharma e outros, Anthropic, 2023). Mede a bajulação e mostra que
             ela nasce, em parte, da própria preferência humana coletada.</li>
           <li><a href="https://arxiv.org/abs/1606.06565" target="_blank" rel="noopener">Concrete Problems in AI
-            Safety</a> (Amodei e outros, 2016). Catálogo inicial e legível das formas pelas quais um otimizador
-            persegue o objetivo errado.</li>
+            Safety</a> (Amodei e outros, 2016). Lista inicial, fácil de ler, das formas como um sistema acaba perseguindo o objetivo errado.</li>
         </ul>
 
         <button class="cu-concluir" type="button" data-aula="2" data-proxima="aula3">
@@ -1083,41 +1047,35 @@ html { scroll-behavior:smooth; }
       <section class="cu-aula" id="aula3">
         <div class="cu-aula-cap"><span>Aula 3 de 4 · 12 min</span><i></i></div>
         <h2>De onde veio o feedback humano</h2>
-        <p class="cu-resumo-aula">Nesta aula: por que durante décadas o humano dava a resposta certa em vez de
-          comparar, qual experimento mudou isso, e o que significam os nomes que você vai encontrar nas
+        <p class="cu-resumo-aula">Nesta aula: por que, durante décadas, as pessoas davam a resposta certa em vez de comparar, qual experimento mudou isso, e o que significam os nomes que você vai encontrar nas
           descrições de vaga, como RLHF, Constitutional AI, RLAIF e LLM como juiz.</p>
 
-        <h3 id="a3-super">Quando o humano dava a resposta certa</h3>
-        <p>Comparar saídas de um modelo e dar nota pode parecer um jeito natural e antigo de trabalhar. Na
+        <h3 id="a3-super">Quando as pessoas davam a resposta certa</h3>
+        <p>Comparar respostas de um modelo e dar nota pode parecer um jeito natural e antigo de trabalhar. Na
           verdade é recente. Durante a maior parte da história do aprendizado de máquina, as pessoas contribuíam
           de outra forma.</p>
-        <p>O método padrão se chamava <span class="cu-termo">aprendizado supervisionado</span>: alguém rotula
-          cada exemplo com a resposta correta e o modelo aprende a reproduzir esse mapeamento. Em 1989, uma
+        <p>O método padrão se chamava <span class="cu-termo">aprendizado supervisionado</span>: alguém rotula cada exemplo, isto é, anota nele a resposta correta, e o modelo aprende a dar a mesma resposta. Em 1989, uma
           equipe treinou uma rede para ler códigos postais escritos à mão, usando milhares de dígitos
           transcritos por pessoas. O arranjo que dominaria a área pelos trinta e cinco anos seguintes já estava
-          montado: humanos fornecendo a verdade, um rótulo por vez, e o modelo imitando.</p>
-        <p>Isso funciona bem onde existe uma resposta certa clara. Um dígito manuscrito é um sete ou não é. Um
-          trecho de áudio transcreve para uma sequência definida de palavras. Nesses casos quem rotula sabe a
+          montado: pessoas dando a resposta certa, um rótulo por vez, e o modelo imitando.</p>
+        <p>Isso funciona bem onde existe uma resposta certa clara. Um dígito manuscrito é um sete ou não é. Um trecho de áudio corresponde a uma sequência definida de palavras. Nesses casos quem rotula sabe a
           resposta e a registra.</p>
         <p>A abordagem quebra quando não existe resposta única para escrever. Não há uma nota de condolências
           correta, nem um resumo verdadeiro de um artigo longo, e uma pergunta aberta pode ser bem respondida de
-          muitas maneiras diferentes. Diante dessas tarefas, quem rotula não consegue fornecer a resposta
-          perfeita, porque ela não existe. Existem apenas tentativas melhores e piores, e o aprendizado
+          muitas maneiras diferentes. Diante dessas tarefas, quem rotula não consegue dar a resposta perfeita, porque ela não existe. Existem apenas tentativas melhores e piores, e o aprendizado
           supervisionado não tem como aproveitar essa distinção.</p>
 
         <h3 id="a3-virada">A virada para a comparação</h3>
         <p>A mudança que tornou possível o método atual foi alterar a tarefa dada à pessoa. Em vez de pedir a
           resposta certa, perguntar qual de duas tentativas é a melhor. É a assimetria entre gerar e verificar,
-          da aula 1, colocada para trabalhar.</p>
+          da aula 1, posta em prática.</p>
         <p>A demonstração mais clara veio em 2017, quando pesquisadores treinaram um robô simulado a dar um
-          salto mortal para trás usando apenas comparações entre pares. Ninguém na equipe conseguia especificar
-          com precisão como é um salto mortal bem feito. Avaliadores sem qualquer especialidade assistiam a dois
+          salto mortal para trás usando apenas comparações entre pares. Ninguém na equipe conseguia descrever com precisão como é um salto mortal bem feito. Avaliadores sem qualquer especialidade assistiam a dois
           clipes curtos das tentativas do robô e escolhiam a que parecia mais próxima do movimento desejado.
-          Essas comparações treinaram um sinal de recompensa, e o sinal de recompensa treinou o robô. Nenhum
+          Essas comparações treinaram um modelo de recompensa, e esse modelo treinou o robô. Nenhum
           salto correto foi mostrado a ele em nenhum momento. As pessoas envolvidas apenas julgaram qual das duas
           tentativas chegou mais perto.</p>
-        <p>O que isso significou: a contribuição humana podia sair de saber a resposta e passar para reconhecer
-          a melhor tentativa. O resto da história é essa ideia aplicada à linguagem, em escala crescente.</p>
+        <p>O que isso mostrou: a contribuição das pessoas podia deixar de ser saber a resposta e passar a ser reconhecer a melhor tentativa. O resto da história é essa ideia aplicada à linguagem, em volume cada vez maior.</p>
 
         <div class="cu-fig">
           <p class="cu-fig-cap"><b>Figura 3.1</b> · Linha do tempo do feedback humano</p>
@@ -1131,33 +1089,32 @@ html { scroll-behavior:smooth; }
                 <div class="cu-tl-item">
                   <b>1989</b><i class="cu-tl-bola cu-tl-cinza"></i>
                   <strong>Aprendizado supervisionado</strong>
-                  <span>Rede lê códigos postais. Pessoas escrevem os rótulos.</span>
+                  <span>Uma rede aprende a ler códigos postais. Pessoas anotam o dígito certo de cada imagem.</span>
                 </div>
                 <div class="cu-tl-item">
                   <b>2017</b><i class="cu-tl-bola"></i>
-                  <strong>Aprender de preferências</strong>
-                  <span>Salto mortal do robô treinado por comparação entre pares.</span>
+                  <strong>Aprender com preferências</strong>
+                  <span>Um robô simulado aprende um salto mortal só com pessoas escolhendo a melhor de duas tentativas.</span>
                 </div>
                 <div class="cu-tl-item">
                   <b>2020</b><i class="cu-tl-bola"></i>
                   <strong>Resumo com feedback</strong>
-                  <span>O método passa a valer para linguagem de verdade.</span>
+                  <span>O método funciona com linguagem: pessoas comparam resumos e o modelo aprende quais elas preferem.</span>
                 </div>
                 <div class="cu-tl-item">
                   <b>2022</b><i class="cu-tl-bola"></i>
                   <strong>InstructGPT</strong>
-                  <span>Receita completa: exemplos, modelo de recompensa e RLHF.</span>
+                  <span>A OpenAI publica a receita completa: exemplos escritos, modelo de recompensa e ajuste final.</span>
                 </div>
                 <div class="cu-tl-item">
                   <b>2022 em diante</b><i class="cu-tl-bola"></i>
                   <strong>Princípios e feedback de IA</strong>
-                  <span>Constitutional AI e RLAIF estendem o julgamento humano.</span>
+                  <span>Com Constitutional AI e RLAIF, modelos aplicam princípios escritos por pessoas e fazem parte das comparações.</span>
                 </div>
               </div>
             </div>
           </div>
-          <p class="cu-fig-nota">O método que está no centro do trabalho de avaliação tem poucos anos em escala
-            grande.</p>
+          <p class="cu-fig-nota">As duas faixas de cima mostram o que se pedia às pessoas em cada época: primeiro escrever a resposta, depois dizer qual tentativa é melhor. O método que hoje está no centro do trabalho de avaliação tem poucos anos.</p>
         </div>
 
         <h3 id="a3-marcos">Três marcos na linguagem</h3>
@@ -1173,28 +1130,23 @@ html { scroll-behavior:smooth; }
           processo de três estágios da aula 1.</p>
         <p>O mesmo artigo descreve quem produziu esses dados: cerca de quarenta pessoas contratadas e pagas,
           trabalhando a partir de instruções detalhadas. Essa receita virou a base do ChatGPT no fim daquele ano
-          e da maioria dos assistentes desde então, e segue sendo o relato público mais claro de um trabalho de
-          avaliação como o que alimenta um modelo grande.</p>
-        <p>Vale reter esse ponto: o trabalho descrito nesse artigo é o mesmo tipo de trabalho anunciado nas vagas
+          e da maioria dos assistentes desde então, e continua sendo o relato público mais claro de como é o trabalho de avaliação por trás de um modelo grande.</p>
+        <p>Vale guardar este ponto: o trabalho descrito nesse artigo é o mesmo tipo de trabalho anunciado nas vagas
           que você encontra hoje.</p>
 
         <h3 id="a3-estender">Constitutional AI, RLAIF e LLM como juiz</h3>
         <p>Conforme o método cresceu, dois problemas apareceram. Dados de preferência humana são caros e lentos
-          de coletar, e as pessoas não são perfeitamente consistentes quando precisam dar julgamentos finos em
-          grande volume. Duas técnicas foram desenvolvidas para estender o julgamento humano, e não para
-          substituí-lo.</p>
+          de coletar, e as pessoas não são perfeitamente consistentes quando precisam fazer julgamentos finos em grande volume. Duas técnicas foram criadas para levar o julgamento humano mais longe, e não para substituí-lo.</p>
         <p><span class="cu-termo">Constitutional AI</span> (Bai e outros, Anthropic, 2022) introduz um conjunto
-          de princípios escritos, uma espécie de constituição, e treina o modelo a criticar e revisar as próprias
-          saídas contra esses princípios. Uma pessoa escreve os princípios uma vez, e o modelo os aplica a muitos
-          casos. O julgamento humano se desloca de avaliar saída por saída para definir as regras pelas quais as
-          saídas são avaliadas.</p>
+          de princípios escritos, uma espécie de constituição, e treina o modelo a criticar e revisar as próprias respostas com base nesses princípios. Uma pessoa escreve os princípios uma vez, e o modelo os aplica a muitos
+          casos. O julgamento humano deixa de avaliar resposta por resposta e passa a definir as regras pelas quais as respostas são avaliadas.</p>
 
         <div class="cu-fig">
           <p class="cu-fig-cap"><b>Figura 3.2</b> · Crítica e revisão guiadas por princípios</p>
           <div class="cu-fig-moldura">
             <div class="cu-ciclo">
               <div class="cu-ciclo-const">
-                <b>Princípios escritos</b>
+                <b>Princípios escritos por pessoas</b>
                 <ul>
                   <li>ser útil</li>
                   <li>ser honesto</li>
@@ -1206,17 +1158,17 @@ html { scroll-behavior:smooth; }
                 <svg width="16" height="26" viewBox="0 0 16 26" fill="none" stroke="#A85D24" stroke-width="1.4" stroke-dasharray="3 3" stroke-linecap="round"><path d="M8 1v18"/><path d="M3 15l5 6 5-6" stroke-dasharray="0"/></svg>
               </div>
               <div class="cu-ciclo-linha">
-                <div class="cu-ciclo-cx cu-ciclo-in"><b>Pedido</b><span>entrada</span></div>
+                <div class="cu-ciclo-cx cu-ciclo-in"><b>Pedido</b><span>o que a pessoa pediu</span></div>
                 <div class="cu-seta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-                <div class="cu-ciclo-cx cu-ciclo-az"><b>Gerar</b><span>primeira resposta</span></div>
+                <div class="cu-ciclo-cx cu-ciclo-az"><b>Gerar</b><span>o modelo escreve a primeira resposta</span></div>
                 <div class="cu-seta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-                <div class="cu-ciclo-cx cu-ciclo-am"><b>Criticar</b><span>confere contra os princípios</span></div>
+                <div class="cu-ciclo-cx cu-ciclo-am"><b>Criticar</b><span>o modelo confere a resposta com os princípios</span></div>
                 <div class="cu-seta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-                <div class="cu-ciclo-cx cu-ciclo-az"><b>Revisar</b><span>reescreve a partir da crítica</span></div>
+                <div class="cu-ciclo-cx cu-ciclo-az"><b>Revisar</b><span>o modelo reescreve o que a crítica apontou</span></div>
                 <div class="cu-seta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-                <div class="cu-ciclo-cx cu-ciclo-out"><b>Resposta final</b><span>saída</span></div>
+                <div class="cu-ciclo-cx cu-ciclo-out"><b>Resposta final</b><span>o que a pessoa recebe</span></div>
               </div>
-              <p class="cu-ciclo-loop">repete até a crítica não ter mais o que apontar</p>
+              <p class="cu-ciclo-loop">criticar e revisar se repetem até a crítica não ter mais o que apontar</p>
             </div>
           </div>
           <p class="cu-fig-nota">O modelo critica e revisa o próprio texto, guiado por princípios escritos por
@@ -1224,18 +1176,17 @@ html { scroll-behavior:smooth; }
         </div>
 
         <p><span class="cu-termo">RLAIF</span>, aprendizado por reforço a partir de feedback de IA, vai além:
-          um modelo gera parte das comparações que uma pessoa faria. Troca-se um pouco de fidelidade aos valores
-          humanos por um ganho grande de escala.</p>
+          um modelo gera parte das comparações que uma pessoa faria. Perde-se um pouco de fidelidade aos valores humanos e ganha-se muito em volume.</p>
         <p>Uma prática próxima, hoje comum, é o <span class="cu-termo">LLM como juiz</span>, onde LLM é só a
           sigla em inglês para modelo de linguagem grande. Funciona assim: um modelo competente, guiado por uma
           rubrica, faz a primeira passada de avaliação, e pessoas conferem uma amostra do resultado. Rubrica,
           aqui, é a lista escrita de critérios e notas que o avaliador deve aplicar, e ela vale tanto para a
           pessoa quanto para o modelo que faz esse papel.</p>
-        <p>Nada disso tira o humano do processo, muda o lugar onde ele fica. À medida que os modelos absorvem as
+        <p>Nada disso tira as pessoas do processo: muda o lugar delas. À medida que os modelos absorvem as
           comparações rotineiras, os avaliadores migram para o trabalho mais difícil: escrever e refinar
           guidelines, decidir os casos ambíguos que um modelo não resolve, auditar julgamentos feitos por
-          máquina, e cobrir domínios novos que ainda não têm regra estabelecida. A fatia do treino que depende de
-          julgamento humano cresceu com o tempo, e o julgamento exigido ficou mais qualificado e de maior impacto.</p>
+          máquina, e cobrir áreas novas que ainda não têm regra estabelecida. A fatia do treino que depende de
+          julgamento humano cresceu com o tempo, e o julgamento exigido ficou mais qualificado e passou a pesar mais.</p>
 
         <div class="cu-pratica" id="a3-pratica">
           <p class="cu-selo">Prática</p>
@@ -1247,7 +1198,7 @@ html { scroll-behavior:smooth; }
               preferência · 3. Constitutional AI · 4. RLAIF</p>
             <p><span class="cu-rot">Limitações:</span> (a) coletar comparações humanas em volume é lento e caro ·
               (b) muitas tarefas não têm uma resposta certa única para escrever como rótulo · (c) mesmo a coleta
-              de preferências precisa de julgamento humano para alcançar domínios novos em escala</p>
+              de preferências precisa de julgamento humano para chegar a áreas novas em grande volume</p>
           </div>
           <button class="cu-abrir-resp" type="button">Ver o comentário
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -1256,26 +1207,23 @@ html { scroll-behavior:smooth; }
             <p>O aprendizado supervisionado (1) trava na limitação (b), que o RLHF (2) resolve pedindo
               comparações em vez de respostas certas. O RLHF então encontra a limitação (a), o custo de coletar
               todas essas comparações, que o Constitutional AI (3) alivia fazendo uma pessoa escrever princípios
-              uma vez em lugar de julgar cada caso. A necessidade restante, estender o julgamento para áreas
-              novas, (c), é o que o RLAIF (4) resolve deixando um modelo gerar comparações que pessoas
+              uma vez em lugar de julgar cada caso. O que sobra, levar o julgamento a áreas novas, (c), é o que o RLAIF (4) resolve deixando um modelo gerar comparações que pessoas
               supervisionam.</p>
-            <p>Cada técnica responde a um gargalo concreto, em vez de ser uma melhoria sem ressalva. Saber qual
-              gargalo cada uma resolve é o que torna a sequência fácil de acompanhar, e o que faz um briefing de
-              projeto parar de parecer sopa de letrinhas.</p>
+            <p>Cada técnica resolve um gargalo concreto, e nenhuma é melhor em tudo. Saber qual gargalo cada uma resolve deixa a sequência fácil de acompanhar, e faz a descrição de um projeto parar de parecer sopa de letrinhas.</p>
           </div>
         </div>
 
         <h3 id="a3-resumo">Resumo da aula</h3>
         <ul>
-          <li>Durante décadas, ensinar um modelo significava fornecer o rótulo correto. Isso falha onde não
+          <li>Durante décadas, ensinar um modelo significava dar o rótulo correto. Isso falha onde não
             existe uma resposta certa única.</li>
           <li>A virada decisiva, demonstrada em 2017, foi pedir às pessoas que julgassem qual de duas tentativas
             é melhor em vez de produzir a resposta.</li>
           <li>Em 2020 o método se firmou na linguagem, e em 2022 o InstructGPT montou a receita completa de
-            exemplos, modelo de recompensa e RLHF que move os assistentes atuais.</li>
-          <li>Constitutional AI e RLAIF estendem o julgamento humano: pessoas definem princípios e supervisionam
+            exemplos, modelo de recompensa e RLHF que está por trás dos assistentes atuais.</li>
+          <li>Constitutional AI e RLAIF levam o julgamento humano mais longe: pessoas definem princípios e supervisionam
             feedback gerado por modelo, em vez de avaliar cada caso à mão.</li>
-          <li>A automação empurrou os avaliadores para os julgamentos mais difíceis e de maior valor.</li>
+          <li>Com a automação, os avaliadores passaram a cuidar dos julgamentos mais difíceis e de maior valor.</li>
         </ul>
 
         <button class="cu-concluir" type="button" data-aula="3" data-proxima="aula4">
@@ -1294,15 +1242,12 @@ html { scroll-behavior:smooth; }
 
         <h3 id="a4-guideline">Ler a guideline</h3>
         <p>Todo projeto sério de avaliação vem com uma <span class="cu-termo">guideline</span>: o documento que
-          diz o que observar, o que "melhor" significa naquela tarefa e como tratar casos de fronteira. É o
-          artefato mais importante do trabalho, porque funciona como o contrato entre quem precisa do dado e quem
+          diz o que observar, o que "melhor" significa naquela tarefa e como tratar casos de fronteira. É a peça mais importante do trabalho, porque funciona como o contrato entre quem precisa do dado e quem
           o produz. Onde a guideline é clara e seguida, avaliadores treinados produzem dado consistente em
-          volume. Onde ela é vaga, ou onde os avaliadores se afastam dela, habilidade individual não cobre a
-          diferença.</p>
+          volume. Onde ela é vaga, ou onde os avaliadores se afastam dela, a habilidade de cada um não compensa a falta.</p>
         <p>O caso do assistente de programação da aula 2 é um exemplo de contrato que falhou. A guideline listava
           cinco critérios, correção, clareza, eficiência, estilo e comentários, sem ordená-los. Sob pressão de
-          tempo, os avaliadores recorreram ao critério mais fácil de ver de relance, a densidade de comentários,
-          e o modelo aprendeu a inflar o código. A culpa foi menos dos avaliadores do que de uma guideline que
+          tempo, os avaliadores recorreram ao critério mais fácil de ver de relance, a quantidade de comentários, e o modelo aprendeu a encher o código. A culpa foi menos dos avaliadores do que de uma guideline que
           deu a um critério decisivo, correção, e a um critério menor, comentários, o mesmo peso.</p>
         <p>A lição que fica é simples: <strong>encontre a ordem de prioridade</strong>. Se correção
           vem primeiro, uma resposta simples e correta tem que vencer uma resposta polida e errada, por mais
@@ -1312,21 +1257,20 @@ html { scroll-behavior:smooth; }
           "prejudicial" ali, nas regras de decisão, o que fazer quando as duas respostas estão erradas, e nos
           exemplos. E deixe o documento aberto enquanto trabalha.</p>
 
-        <h3 id="a4-defensavel">A forma de um julgamento defensável</h3>
-        <p>Um julgamento de preferência defensável compara as duas respostas nos critérios que importam, aplica o
+        <h3 id="a4-defensavel">Como é um julgamento que se sustenta</h3>
+        <p>Um julgamento de preferência que se sustenta compara as duas respostas nos critérios que importam, aplica o
           mesmo padrão de um caso para o outro, e registra o raciocínio de forma clara o suficiente para outra
-          pessoa seguir. Uma impressão rápida, ou uma lista de conferência feita de memória, não alcança esse
-          patamar.</p>
+          pessoa seguir. Uma impressão rápida, ou um checklist feito de memória, não chega a esse nível.</p>
 
         <div class="cu-fig">
           <p class="cu-fig-cap"><b>Figura 4.1</b> · Anatomia de um bom julgamento</p>
           <div class="cu-fig-moldura">
             <div class="cu-anat">
-              <div class="cu-anat-topo">um pedido, duas respostas</div>
+              <div class="cu-anat-topo">Um pedido e duas respostas para comparar</div>
               <div class="cu-anat-meio">
                 <div class="cu-anat-resp"><b>A</b><i></i><i></i><i></i><i class="cu-curta"></i></div>
                 <div class="cu-anat-crit">
-                  <span class="cu-anat-rot">pesar na ordem de prioridade</span>
+                  <span class="cu-anat-rot">compare as duas nesta ordem</span>
                   <span class="cu-anat-peso cu-anat-peso-t">pesa mais</span>
                   <div class="cu-crit cu-crit-1">correta e precisa</div>
                   <div class="cu-crit cu-crit-2">responde o que foi pedido</div>
@@ -1339,23 +1283,20 @@ html { scroll-behavior:smooth; }
               </div>
               <div class="cu-anat-escolha">
                 <b>Escolhida: B</b>
-                <span>Corrige a premissa falsa antes de responder, onde A a endossa.</span>
-                <em>escreva a justificativa em uma frase. O motivo é o sinal.</em>
+                <span>B corrige a premissa falsa do pedido antes de responder. A concorda com ela.</span>
+                <em>Escreva o motivo em uma frase: é ele que registra o que decidiu a escolha.</em>
               </div>
             </div>
           </div>
-          <p class="cu-fig-nota">Trabalhe do critério mais importante para baixo, e termine escrevendo o
-            motivo.</p>
+          <p class="cu-fig-nota">Comece pelo critério mais importante e vá descendo. No fim, escreva o motivo.</p>
         </div>
 
         <p>A figura descreve o método. Comece perguntando se alguma das respostas está simplesmente errada, o que
           em geral já resolve a comparação. Se as duas estão corretas, pergunte qual delas de fato responde ao
           que foi pedido, e não a uma pergunta vizinha. Depois considere clareza, junto com segurança e honestidade
-          sobre incerteza. Deixe para o fim as características de superfície, como tom, tamanho e formatação,
-          porque são as mais fáceis de notar e as mais fáceis de superestimar. Termine escrevendo a justificativa,
+          sobre incerteza. Deixe para o fim as características de aparência, como tom, tamanho e formatação, porque são as mais fáceis de notar e as que mais enganam. Termine escrevendo a justificativa,
           uma ou duas frases nomeando o que decidiu a escolha.</p>
-        <p>Uma justificativa boa soa assim: "B é melhor porque corrige a premissa errada da pergunta antes de
-          responder, enquanto A a endossa". Essa frase é valiosa para quem monta o projeto, porque registra o que
+        <p>Uma justificativa boa soa assim: "B é melhor porque corrige a premissa errada da pergunta antes de responder, enquanto A concorda com ela". Essa frase é valiosa para quem monta o projeto, porque registra o que
           "melhor" significou naquele caso.</p>
 
         <h3 id="a4-atalhos">Atalhos que estragam o dado</h3>
@@ -1365,39 +1306,34 @@ html { scroll-behavior:smooth; }
           <li><strong>Julgar pelo tamanho.</strong> Uma resposta mais longa parece mais completa quando é apenas
             mais longa. O teste é se o texto extra acrescenta informação ou só ocupa espaço.</li>
           <li><strong>Julgar pela formatação.</strong> Tópicos, negrito e estrutura limpa passam impressão de
-            competência, e uma resposta bem formatada pode estar errada. Formatação não levanta nota sozinha.</li>
+            competência, e uma resposta bem formatada pode estar errada. Formatação, sozinha, não melhora a nota.</li>
           <li><strong>Julgar pela confiança.</strong> Tom seguro é confundido com correção com facilidade. Quando
             a resposta deveria expressar incerteza e soa categórica, isso conta contra ela.</li>
-          <li><strong>Concordar com o usuário.</strong> Quando o pedido já afirma uma opinião, a resposta que a
-            endossa é mais agradável de ler, e preferi-la por isso ensina bajulação. A pergunta é se a resposta
+          <li><strong>Concordar com o usuário.</strong> Quando o pedido já afirma uma opinião, a resposta que concorda com ela é mais agradável de ler, e preferi-la por isso ensina bajulação. A pergunta é se a resposta
             está correta, não se é simpática.</li>
-          <li><strong>Perseguir o gabarito.</strong> Muitos projetos conferem o seu trabalho contra itens de
-            controle com resposta conhecida e pagam bônus por concordância. Esses itens existem para medir o seu
-            julgamento. Tratá-los como alvo a ser adivinhado corrompe justamente o sinal que eles deveriam
-            fornecer.</li>
-          <li><strong>Trabalhar rápido demais.</strong> Pagamento por tarefa premia velocidade, mas um julgamento
-            raso num par genuinamente difícil adiciona ruído que o modelo vai aprender fielmente. Caso difícil
+          <li><strong>Perseguir o gabarito.</strong> Muitos projetos conferem o seu trabalho com itens de controle, que têm resposta conhecida, e pagam bônus por concordância. Esses itens existem para medir o seu
+            julgamento. Tratá-los como gabarito a adivinhar estraga justamente a medida que eles deveriam dar.</li>
+          <li><strong>Trabalhar rápido demais.</strong> Pagamento por tarefa premia velocidade, mas um julgamento raso num par difícil de verdade põe no dado um erro que o modelo vai aprender ao pé da letra. Caso difícil
             merece mais tempo, não menos, porque é exatamente ali que o cuidado faz diferença.</li>
         </ul>
 
         <h3 id="a4-consist">Consistência e concordância</h3>
         <p>Dado de avaliação só serve quando é consistente, isto é, quando avaliadores diferentes e cuidadosos, e
           o mesmo avaliador em dias diferentes, chegam ao mesmo julgamento no mesmo item. A área mede isso com a
-          <span class="cu-termo">concordância entre anotadores</span>: a taxa com que avaliadores independentes
-          concordam, corrigida por quantas vezes concordariam por acaso.</p>
-        <p>Essa correção importa mais do que parece. Imagine dois avaliadores classificando mensagens de clientes
+          <span class="cu-termo">concordância entre anotadores</span>: a taxa com que avaliadores independentes concordam, descontadas as vezes em que concordariam por acaso.</p>
+        <p>Esse desconto importa mais do que parece. Imagine dois avaliadores classificando mensagens de clientes
           como "reclamação" ou "não é reclamação", em uma base onde 90 por cento das mensagens não são
           reclamação. Dois avaliadores que marcassem no mesmo ritmo da base, sem ler nada, já concordariam entre
           si cerca de 82 por cento das vezes, porque 0,9 vezes 0,9 mais 0,1 vezes 0,1 dá 0,82. Uma concordância
-          bruta de 85 por cento, nesse cenário, quase não carrega sinal: descontado o acaso, sobra muito pouco.</p>
+          bruta de 85 por cento, nesse cenário, quase não quer dizer nada: descontado o acaso, sobra muito pouco.</p>
 
         <div class="cu-fig">
-          <p class="cu-fig-cap"><b>Figura 4.2</b> · Correção por acaso em base desequilibrada</p>
+          <p class="cu-fig-cap"><b>Figura 4.2</b> · Por que 82% de concordância pode não valer nada</p>
           <div class="cu-fig-moldura">
             <div class="cu-kap">
               <div class="cu-kap-cx">
                 <p class="cu-kap-tit">Dois avaliadores clicando sem ler</p>
-                <p class="cu-kap-sub">Distribuição: 90% não é reclamação, 10% reclamação</p>
+                <p class="cu-kap-sub">De cada 100 mensagens, 90 não são reclamação. Os dois marcam nessa mesma proporção, sem ler nada.</p>
                 <div class="cu-kap-barra"><span></span></div>
                 <div class="cu-kap-legenda"><span>não é reclamação · 90%</span><span>reclamação · 10%</span></div>
                 <div class="cu-kap-botoes">
@@ -1407,50 +1343,47 @@ html { scroll-behavior:smooth; }
                 <div class="cu-kap-caixa cu-kap-ruim">
                   <p class="cu-kap-rot">Concordância bruta</p>
                   <p class="cu-kap-num">82%</p>
-                  <p class="cu-kap-txt">Quase tudo é coincidência. Clicando no mesmo botão sempre, o número
-                    aparece do mesmo jeito.</p>
+                  <p class="cu-kap-txt">É quanto os dois concordam só por acaso. Como quase tudo é "não é reclamação", eles coincidem na maior parte das vezes.</p>
                 </div>
               </div>
               <div class="cu-kap-cx">
-                <p class="cu-kap-tit">Corrigido por acaso: kappa</p>
-                <p class="cu-kap-sub">Separa concordância real de coincidência</p>
+                <p class="cu-kap-tit">Descontando o acaso: kappa</p>
+                <p class="cu-kap-sub">O kappa separa a concordância de verdade da coincidência.</p>
                 <div class="cu-kap-form">
                   <p class="cu-kap-rot">Fórmula</p>
                   <p>k = (Po − Pe) / (1 − Pe)</p>
+                  <p class="cu-kap-leg">Po é a concordância que aconteceu. Pe é a que o acaso já daria.</p>
                   <p>= (0,82 − 0,82) / (1 − 0,82)</p>
                   <p>= 0 / 0,18 = <b>0</b></p>
                 </div>
                 <div class="cu-kap-caixa cu-kap-bom">
                   <p class="cu-kap-rot">Kappa</p>
                   <p class="cu-kap-num">0</p>
-                  <p class="cu-kap-txt">Zero. Aqueles 82 por cento eram puro acaso, sem nenhum sinal real.</p>
+                  <p class="cu-kap-txt">Zero. Aqueles 82 por cento eram puro acaso: não mostram que alguém leu as mensagens.</p>
                 </div>
               </div>
             </div>
           </div>
-          <p class="cu-fig-nota">Em base desequilibrada, só a métrica corrigida por acaso diz a verdade.</p>
+          <p class="cu-fig-nota">Quando quase todos os itens caem na mesma categoria, só a medida que desconta o acaso diz a verdade.</p>
         </div>
 
         <p>Para o seu trabalho, o ponto é de hábito, não de estatística. Busque julgamentos que um colega
-          seguindo a mesma guideline também alcançaria. Motivos que se apoiam em gosto pessoal, num sentido
-          particular de "melhor" ou no humor do dia não se reproduzem, e dado inconsistente treina um modelo que
-          recebeu metas contraditórias. Ancorar cada julgamento na guideline, e em razões que você conseguiria
-          dizer em voz alta, é o que mantém o dado consistente.</p>
+          seguindo a mesma guideline também alcançaria. Motivos apoiados em gosto pessoal, numa ideia só sua de "melhor" ou no humor do dia não se repetem, e dado inconsistente treina um modelo com metas contraditórias. Apoiar cada julgamento na guideline, e em razões que você conseguiria dizer em voz alta, é o que mantém o dado consistente.</p>
 
         <h3 id="a4-discord">Quando discordar não é erro</h3>
         <p>Uma ressalva evita a correção exagerada: nem toda discordância é engano a ser eliminado. Dois
-          avaliadores cuidadosos podem divergir porque o caso é genuinamente ambíguo, ou porque a guideline tem
-          uma lacuna que deixa espaço para mais de uma leitura defensável. Trabalhos sobre variação de rótulo
+          avaliadores cuidadosos podem divergir porque o caso é ambíguo de verdade, ou porque a guideline tem
+          uma lacuna que deixa espaço para mais de uma leitura válida. Trabalhos sobre variação de rótulo
           humano argumentam que discordância desse tipo é informação sobre onde a tarefa é difícil ou a regra
           está pouco clara, e deveria ser preservada em vez de diluída numa média.</p>
 
         <div class="cu-fig">
-          <p class="cu-fig-cap"><b>Figura 4.3</b> · Erro contra sinal</p>
+          <p class="cu-fig-cap"><b>Figura 4.3</b> · Duas discordâncias diferentes: erro e ambiguidade</p>
           <div class="cu-fig-moldura">
             <div class="cu-ds">
               <div class="cu-ds-cx cu-ds-erro">
                 <p class="cu-ds-tit">Erro</p>
-                <p class="cu-ds-sub">Um avaliador leu a entidade errada</p>
+                <p class="cu-ds-sub">Quatro avaliadores classificam o trecho destacado. Um deles se confundiu.</p>
                 <p class="cu-ds-frase">"O presidente da <mark>Apple Inc.</mark> fez um anúncio."</p>
                 <div class="cu-ds-chips">
                   <span class="cu-ds-chip cu-ok">empresa</span>
@@ -1458,11 +1391,11 @@ html { scroll-behavior:smooth; }
                   <span class="cu-ds-chip cu-ok">empresa</span>
                   <span class="cu-ds-chip cu-no">pessoa</span>
                 </div>
-                <div class="cu-ds-final"><b>Rótulo final por maioria</b><span>empresa</span></div>
+                <div class="cu-ds-final"><b>O que fazer</b><span>Vale a maioria: empresa</span></div>
               </div>
               <div class="cu-ds-cx cu-ds-sinal">
-                <p class="cu-ds-tit">Sinal</p>
-                <p class="cu-ds-sub">A guideline é ambígua de verdade</p>
+                <p class="cu-ds-tit">Ambiguidade real</p>
+                <p class="cu-ds-sub">Quatro avaliadores leem a mesma regra, e ela permite duas leituras.</p>
                 <p class="cu-ds-frase">"resposta moderadamente pouco útil" é útil ou não é?</p>
                 <div class="cu-ds-chips">
                   <span class="cu-ds-chip cu-ok">útil</span>
@@ -1470,8 +1403,7 @@ html { scroll-behavior:smooth; }
                   <span class="cu-ds-chip cu-no">não é útil</span>
                   <span class="cu-ds-chip cu-no">não é útil</span>
                 </div>
-                <div class="cu-ds-final"><b>Preservar a divisão</b><span>2 contra 2, a regra precisa ser
-                  reescrita</span></div>
+                <div class="cu-ds-final"><b>O que fazer</b><span>Manter o 2 a 2 e pedir que a regra seja reescrita</span></div>
               </div>
             </div>
           </div>
@@ -1479,7 +1411,7 @@ html { scroll-behavior:smooth; }
         </div>
 
         <p>Na prática, quando você se vê discordando de um colega ou de um item de controle, não conclua
-          automaticamente que o errado é você. Decida primeiro de que tipo de discordância se trata. Se você leu a guideline de forma errada, corrija a leitura e recalibre. Se o item está de fato numa fronteira, leve o caso a
+          automaticamente que o errado é você. Decida primeiro de que tipo de discordância se trata. Se você leu a guideline de forma errada, corrija a leitura e ajuste o seu critério. Se o item está de fato numa fronteira, leve o caso a
           quem conduz o projeto, porque em geral isso indica uma regra que precisa ser afinada. Avaliadores que
           fazem isso contribuem de duas formas: pelos rótulos que entregam, e pela melhoria que as perguntas
           deles provocam na guideline que todo mundo usa.</p>
@@ -1491,15 +1423,12 @@ html { scroll-behavior:smooth; }
           <div class="cu-caixa">
             <p><span class="cu-rot">Pedido:</span> "É seguro misturar água sanitária e vinagre para limpar meu
               banheiro?"</p>
-            <p><span class="cu-rot">Resposta A:</span> "Ótima pergunta de limpeza! Misturar produtos pode
-              potencializar a ação deles. Segue uma rotina passo a passo para um banheiro brilhando, com uma
-              lista de conferência prática."</p>
+            <p><span class="cu-rot">Resposta A:</span> "Ótima pergunta! Misturar produtos pode aumentar o poder de limpeza. Segue um passo a passo para deixar o banheiro brilhando, com um checklist prático."</p>
             <p><span class="cu-rot">Resposta B:</span> "Não, não misture água sanitária com vinagre. Juntos eles
               liberam gás cloro, que é tóxico e perigoso num ambiente fechado como o banheiro. Use os produtos
               separadamente, com boa ventilação, e nunca combinados. Se quiser uma única solução para quase toda
               superfície de banheiro, água sanitária diluída em água resolve bem."</p>
-            <p><span class="cu-rot">Justificativa apressada:</span> "A é mais detalhada e tem lista de
-              conferência, então A é melhor."</p>
+            <p><span class="cu-rot">Justificativa apressada:</span> "A é mais detalhada e tem checklist, então A é melhor."</p>
           </div>
           <p>Duas tarefas. Primeira: identifique o que a justificativa apressada errou e em quais atalhos ela se
             apoiou. Segunda: escreva a justificativa que você enviaria.</p>
@@ -1507,17 +1436,13 @@ html { scroll-behavior:smooth; }
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="cu-resp">
-            <p>O julgamento apressado é <strong>inseguro</strong>: ele seleciona a resposta que dá um conselho
-              perigoso. E chega nessa escolha apoiado em tamanho ("mais detalhada"), formatação ("tem lista de
-              conferência") e tom confiante, três dos atalhos descritos nesta aula. A resposta A falha no
+            <p>O julgamento apressado é <strong>perigoso</strong>: ele escolhe a resposta que dá um conselho que põe a pessoa em risco. E chega nessa escolha apoiado em tamanho ("mais detalhada"), formatação ("tem checklist") e tom confiante, três dos atalhos descritos nesta aula. A resposta A falha no
               critério que está acima de todos os outros aqui, segurança.</p>
             <p>Uma justificativa que se sustenta soa assim: "B é claramente melhor. A incentiva o usuário a
-              misturar produtos, o que é ativamente perigoso, e apresenta o conselho num formato estruturado que
-              o faz parecer confiável. B recusa a ação perigosa, explica o motivo, que é a liberação de gás
+              misturar produtos, o que é perigoso de verdade, e apresenta o conselho num formato organizado, que o faz parecer confiável. B recusa a ação perigosa, explica o motivo, que é a liberação de gás
               cloro, e ainda oferece uma alternativa segura. Segurança está acima de riqueza de detalhe nesta
               tarefa, então o detalhe extra de A conta contra ela, e não a favor."</p>
-            <p>Essa justificativa nomeia o critério decisivo, coloca-o acima dos outros e seria alcançada de
-              novo por outro avaliador cuidadoso. É esse o padrão a perseguir.</p>
+            <p>Essa justificativa nomeia o critério decisivo, coloca-o acima dos outros e outro avaliador cuidadoso chegaria à mesma conclusão. É esse o padrão a buscar.</p>
           </div>
         </div>
 
@@ -1525,21 +1450,16 @@ html { scroll-behavior:smooth; }
         <ul>
           <li>A guideline é o contrato da tarefa. Leia inteira, ache a ordem de prioridade dos critérios e
             mantenha aberta enquanto trabalha.</li>
-          <li>Um julgamento sólido compara nos critérios em ordem, correção e pertinência antes de características
-            de superfície, e é registrado com uma justificativa curta nomeando o fator decisivo.</li>
+          <li>Um julgamento sólido compara as respostas pelos critérios em ordem, com correção e pertinência antes das características de aparência, e é registrado com uma justificativa curta, que diz o que decidiu a escolha.</li>
           <li>Dado ruim nasce de atalhos que parecem razoáveis: tamanho, formatação, confiança, concordar com o
             usuário, perseguir o gabarito e trabalhar rápido demais.</li>
-          <li>Julgamento precisa ser reprodutível, então ancore em guideline e em razões que você diria em voz
-            alta, não em gosto. E lembre que concordância bruta engana em base desequilibrada.</li>
+          <li>Outra pessoa precisa conseguir chegar ao mesmo julgamento, então apoie-se na guideline e em razões que você diria em voz alta, não em gosto. E lembre que concordância bruta engana em base desequilibrada.</li>
           <li>Nem toda discordância é erro. Separe leitura equivocada, que você corrige, de ambiguidade real, que
             vale levar adiante porque em geral aponta uma guideline que precisa ser afinada.</li>
         </ul>
 
         <h4>Na prática</h4>
-        <p>Avaliação bem feita é julgamento disciplinado, ancorado na guideline, trabalhado do critério mais
-          importante para baixo, e registrado com clareza suficiente para outra pessoa seguir e reproduzir. As
-          aulas anteriores explicaram o que o trabalho alimenta e por que ele importa. Esta descreveu como
-          executá-lo. O que falta é prática em tarefas reais, que é o que transforma esses hábitos em rotina.</p>
+        <p>Avaliação bem feita é julgamento com método: apoiado na guideline, feito do critério mais importante para o menos importante, e registrado com clareza suficiente para outra pessoa acompanhar e repetir. As aulas anteriores explicaram para que o trabalho serve e por que ele importa. Esta mostrou como fazer. O que falta é prática em tarefas reais, que é o que transforma esses hábitos em rotina.</p>
 
         <button class="cu-concluir" type="button" data-aula="4" data-proxima="quiz">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
@@ -1557,7 +1477,7 @@ html { scroll-behavior:smooth; }
         <form id="formQuiz" class="cu-quiz">
 
           <div class="cu-q" data-certa="b">
-            <p class="cu-q-tit"><i>1</i> O que o estágio de pré-treino entrega a um modelo de linguagem?</p>
+            <p class="cu-q-tit"><i>1</i> O que o estágio de pré-treino dá a um modelo de linguagem?</p>
             <label><input type="radio" name="q1" value="a"><span>As regras de segurança que ele deve seguir</span></label>
             <label><input type="radio" name="q1" value="b"><span>Conhecimento de linguagem e de mundo, sem comportamento definido</span></label>
             <label><input type="radio" name="q1" value="c"><span>A preferência dos usuários por respostas úteis</span></label>
@@ -1574,18 +1494,17 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q2" value="c"><span>Comparar duas respostas e indicar qual é melhor, com justificativa</span></label>
             <label><input type="radio" name="q2" value="d"><span>Dar uma nota absoluta de 0 a 10 para cada resposta isolada</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">A tarefa é comparativa. A nota do sistema é relativa, e a comparação é o que
-              carrega o sinal.</p>
+            <p class="cu-q-pq">A tarefa é comparativa. A nota do sistema é relativa, e é da comparação que o modelo aprende.</p>
           </div>
 
           <div class="cu-q" data-certa="a">
             <p class="cu-q-tit"><i>3</i> O que quer dizer a assimetria entre gerar e verificar?</p>
             <label><input type="radio" name="q3" value="a"><span>Reconhecer qual das duas respostas é melhor é mais fácil que escrever a melhor resposta</span></label>
-            <label><input type="radio" name="q3" value="b"><span>O modelo gera mais rápido do que o humano verifica</span></label>
+            <label><input type="radio" name="q3" value="b"><span>O modelo gera mais rápido do que a pessoa verifica</span></label>
             <label><input type="radio" name="q3" value="c"><span>Verificar exige especialista, gerar não</span></label>
             <label><input type="radio" name="q3" value="d"><span>Cada verificação precisa de duas gerações do modelo</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">É essa assimetria que permite distribuir a tarefa em escala, sem exigir que cada
+            <p class="cu-q-pq">É essa assimetria que permite distribuir a tarefa para muita gente, sem exigir que cada
               avaliador seja redator.</p>
           </div>
 
@@ -1607,38 +1526,36 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q5" value="c"><span>Respostas longas costumam ser melhores que curtas</span></label>
             <label><input type="radio" name="q5" value="d"><span>Quando uma medida se torna a meta, ela deixa de ser uma boa medida</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">Otimizada com força suficiente, a medida se afasta da qualidade que deveria
-              representar. É a cunha da figura 2.2.</p>
+            <p class="cu-q-pq">Quando se força demais a medida a subir, ela se afasta da qualidade que deveria representar. É o que mostra a figura 2.2.</p>
           </div>
 
           <div class="cu-q" data-certa="c">
             <p class="cu-q-tit"><i>6</i> Um assistente abre a resposta com "você está absolutamente certo" e em
-              seguida endossa uma informação falsa do usuário. Qual falha é essa?</p>
+              seguida concorda com uma informação falsa do usuário. Qual falha é essa?</p>
             <label><input type="radio" name="q6" value="a"><span>Viés de formatação</span></label>
             <label><input type="radio" name="q6" value="b"><span>Exploração do gabarito</span></label>
             <label><input type="radio" name="q6" value="c"><span>Bajulação</span></label>
             <label><input type="radio" name="q6" value="d"><span>Falha de consistência entre anotadores</span></label>
             <p class="cu-q-fb"></p>
-            <p class="cu-q-pq">Bajulação é o hábito de puxar a resposta para o lado do usuário em vez do lado da
-              precisão, e ele é aprendido em avaliações.</p>
+            <p class="cu-q-pq">Bajulação é o hábito de puxar a resposta para o lado do usuário, em vez de buscar a resposta certa, e ele é aprendido nas avaliações.</p>
           </div>
 
           <div class="cu-q" data-certa="b">
             <p class="cu-q-tit"><i>7</i> No caso do assistente de programação, por que o modelo passou a encher o
               código de comentários?</p>
             <label><input type="radio" name="q7" value="a"><span>A guideline pedia explicitamente comentários em toda linha</span></label>
-            <label><input type="radio" name="q7" value="b"><span>Avaliadores com pressa usaram a densidade de comentários como atalho para julgar correção e clareza</span></label>
+            <label><input type="radio" name="q7" value="b"><span>Avaliadores com pressa usaram a quantidade de comentários como atalho para julgar correção e clareza</span></label>
             <label><input type="radio" name="q7" value="c"><span>O modelo de recompensa estava mal treinado por falta de dados</span></label>
             <label><input type="radio" name="q7" value="d"><span>Os avaliadores eram programadores experientes demais</span></label>
             <p class="cu-q-fb"></p>
             <p class="cu-q-pq">Código mais comentado parecia mais cuidadoso, foi escolhido mais vezes, e o modelo
-              aprendeu a inflar a saída.</p>
+              aprendeu a encher o código.</p>
           </div>
 
           <div class="cu-q" data-certa="a">
             <p class="cu-q-tit"><i>8</i> A guideline lista cinco critérios e não diz qual vale mais. Qual é a
               melhor conduta?</p>
-            <label><input type="radio" name="q8" value="a"><span>Buscar a ordem de prioridade e, se não existir, levantar a questão com quem conduz o projeto</span></label>
+            <label><input type="radio" name="q8" value="a"><span>Buscar a ordem de prioridade e, se não existir, perguntar a quem conduz o projeto</span></label>
             <label><input type="radio" name="q8" value="b"><span>Dar o mesmo peso a todos e decidir pela soma</span></label>
             <label><input type="radio" name="q8" value="c"><span>Usar o critério mais rápido de conferir, para manter o ritmo</span></label>
             <label><input type="radio" name="q8" value="d"><span>Escolher o critério que você considera mais importante em cada item</span></label>
@@ -1656,7 +1573,7 @@ html { scroll-behavior:smooth; }
             <label><input type="radio" name="q9" value="d"><span>Concordância fraca, porque só por acaso dois avaliadores já chegariam perto desse número</span></label>
             <p class="cu-q-fb"></p>
             <p class="cu-q-pq">Numa base 90 contra 10, o acaso já rende cerca de 82 por cento de concordância. Por
-              isso a métrica precisa ser corrigida por acaso, com kappa ou medida equivalente.</p>
+              isso a medida precisa descontar o acaso, como faz o kappa ou outra medida equivalente.</p>
           </div>
 
           <div class="cu-q" data-certa="b">
@@ -1738,20 +1655,20 @@ html { scroll-behavior:smooth; }
           <li><b>Rubrica</b>A parte que converte julgamento em número: quais notas existem e o que cada uma
             exige. Uma guideline costuma conter uma rubrica.</li>
           <li><b>Lei de Goodhart</b>A ideia de que, quando uma medida vira a meta, ela deixa de ser uma boa
-            medida. Aplicada aqui: o modelo persegue exatamente o que a avaliação premia, e não o que você
+            medida. Aplicada aqui: o modelo vai atrás exatamente do que a avaliação premia, e não o que você
             queria premiar.</li>
           <li><b>Bajulação</b>A tendência de um modelo a concordar com o usuário em vez de corrigi-lo. Em
             inglês, sycophancy.</li>
-          <li><b>Exploração da recompensa</b>Quando o modelo descobre uma característica barata de produzir, como
+          <li><b>Exploração da recompensa</b>Quando o modelo descobre uma característica fácil de produzir, como
             escrever mais ou usar tópicos, que rende nota alta sem melhorar a resposta. Em inglês, reward
             hacking.</li>
           <li><b>Alucinação</b>Afirmação inventada apresentada como fato. Em documentos técnicos aparece também
             como confabulação.</li>
           <li><b>Itens de controle, ou gold</b>Itens com resposta já conhecida, misturados na sua fila, que
-            servem para medir se o seu julgamento continua calibrado.</li>
+            servem para conferir se o seu julgamento continua no padrão esperado.</li>
           <li><b>Concordância entre anotadores</b>A taxa com que avaliadores independentes chegam ao mesmo
-            julgamento no mesmo item, corrigida por quantas vezes eles concordariam por acaso.</li>
-          <li><b>Kappa</b>Uma das medidas dessa concordância corrigida pelo acaso. Vai de 1, concordância
+            julgamento no mesmo item, descontadas as vezes em que eles concordariam por acaso.</li>
+          <li><b>Kappa</b>Uma das medidas dessa concordância, já com o acaso descontado. Vai de 1, concordância
             perfeita, até 0, que equivale ao acaso.</li>
           <li><b>Constitutional AI</b>Método em que princípios escritos por pessoas guiam o modelo a criticar e
             reescrever as próprias respostas.</li>
@@ -1800,7 +1717,7 @@ html { scroll-behavior:smooth; }
             Mrinank Sharma e outros, Anthropic, 2023.
             <em><a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">arxiv.org/abs/2310.13548</a>
               · fonte da bajulação: resposta que combina com a crença do usuário tem mais chance de ser
-              preferida, e humanos e modelos de preferência escolhem a resposta bajuladora em vez da correta
+              preferida, e tanto pessoas quanto modelos de preferência escolhem a resposta bajuladora em vez da correta
               numa fração não desprezível dos casos.</em>
           </li>
           <li>
@@ -1819,7 +1736,7 @@ html { scroll-behavior:smooth; }
             <b>Concrete Problems in AI Safety</b>
             Dario Amodei e outros, 2016.
             <em><a href="https://arxiv.org/abs/1606.06565" target="_blank" rel="noopener">arxiv.org/abs/1606.06565</a>
-              · fonte da discussão de objetivo mal especificado e exploração da recompensa.</em>
+              · fonte da discussão de objetivo mal definido e exploração da recompensa.</em>
           </li>
           <li>
             <b>The measurement of observer agreement for categorical data</b>
