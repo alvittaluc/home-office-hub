@@ -250,6 +250,40 @@ html { scroll-behavior:smooth; }
 }
 .cu-quem b { color:var(--ink,#10203A); }
 
+/* Figura 1.1: os estágios um embaixo do outro, cada um respondendo às mesmas
+   três perguntas (o que acontece, o que as pessoas fazem, como o modelo sai) */
+.cu-etapas { display:grid; }
+.cu-etapa { position:relative; display:grid; grid-template-columns:34px minmax(0,1fr); gap:16px; padding-bottom:20px; }
+.cu-etapa:last-child { padding-bottom:0; }
+/* o fio que liga um estágio ao seguinte */
+.cu-etapa:not(:last-child)::before {
+  content:""; position:absolute; left:16.5px; top:40px; bottom:6px; width:1px; background:var(--line,#DED7CA);
+}
+.cu-etapa-n {
+  width:34px; height:34px; border-radius:50%; display:grid; place-items:center;
+  font-size:14px; font-weight:600; color:var(--signal,#1A4893); background:var(--signal-suave,#EAF1F8);
+}
+.cu-etapa-corpo {
+  min-width:0; border-radius:14px; padding:15px 18px 8px;
+  background:var(--bg-soft,#F1ECE3); box-shadow:inset 0 0 0 1px var(--line-soft,#EAE4D9);
+}
+.cu-etapa-tit { display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 10px; margin-bottom:10px; }
+.cu-etapa-tit b { font-size:16px; color:var(--ink,#10203A); }
+.cu-etapa-tit span { font-size:13.5px; color:var(--ink-3,#66717F); }
+.cu-etapa-linha {
+  display:grid; grid-template-columns:112px minmax(0,1fr); gap:14px; padding:9px 0;
+  border-top:1px solid rgba(16,32,58,.09);
+  font-size:14.5px; line-height:1.6; color:var(--ink-2,#54606F);
+}
+.cu-etapa-linha i {
+  font-style:normal; font-size:11px; line-height:1.45; letter-spacing:0.09em; text-transform:uppercase;
+  color:var(--ink-3,#66717F); padding-top:4px;
+}
+.cu-etapa-linha b { color:var(--ink,#10203A); font-weight:600; }
+/* o estágio em que entra o trabalho de avaliação */
+.cu-etapa.cu-forte .cu-etapa-n { color:#fff; background:var(--signal,#1A4893); }
+.cu-etapa.cu-forte .cu-etapa-corpo { background:var(--signal-suave,#EAF1F8); box-shadow:inset 0 0 0 1.5px var(--signal,#1A4893); }
+
 /* ── botões ── */
 .cu-bt-forte, .cu-bt-leve {
   appearance:none; font-family:inherit; font-size:14.5px; font-weight:600;
@@ -514,6 +548,12 @@ html { scroll-behavior:smooth; }
   .cu-fig-moldura { padding:18px 14px; }
   .cu-pratica { padding:20px 18px 6px; }
   .cu-quem { grid-template-columns:1fr; }
+  .cu-etapa { grid-template-columns:28px minmax(0,1fr); gap:11px; }
+  .cu-etapa:not(:last-child)::before { left:13.5px; top:34px; }
+  .cu-etapa-n { width:28px; height:28px; font-size:13px; }
+  .cu-etapa-corpo { padding:13px 14px 6px; }
+  .cu-etapa-linha { grid-template-columns:1fr; gap:1px; }
+  .cu-etapa-linha i { padding-top:0; }
   .cu-fluxo { flex-direction:column; }
   .cu-fluxo .cu-seta { transform:rotate(90deg); padding:2px 0; }
   .cu-ciclo-linha { flex-direction:column; }
@@ -654,7 +694,7 @@ html { scroll-behavior:smooth; }
           trocar um pneu e ele pode devolver outras cinco perguntas parecidas, porque na internet perguntas
           costumam aparecer em listas de perguntas. Ele também não tem nenhuma noção firme do que é uma resposta
           útil, do que é seguro dizer, ou de quando é melhor admitir que não sabe.</p>
-        <p>Nada disso está escrito no texto do mundo de forma organizada. Alguém precisa mostrar ao modelo.
+        <p>Nada disso está escrito de forma organizada nos textos que ele leu. Alguém precisa mostrar ao modelo.
           Esse alguém é gente, e o trabalho de mostrar tem nome: avaliação e anotação de dados.</p>
 
         <h3 id="a1-tres">Onde entra o julgamento humano</h3>
@@ -662,35 +702,39 @@ html { scroll-behavior:smooth; }
           que você vê anunciadas quase sempre alimentam o segundo ou o terceiro.</p>
 
         <div class="cu-fig">
-          <p class="cu-fig-cap"><b>Figura 1.1</b> · Os três estágios de treino</p>
+          <p class="cu-fig-cap"><b>Figura 1.1</b> · Os três estágios de treino, um por um</p>
           <div class="cu-fig-moldura">
-            <div class="cu-fluxo">
-              <div class="cu-passo">
-                <b>1. Pré-treino</b>
-                <span>Lê texto em grande volume e aprende a prever a próxima palavra. Resultado: conhecimento, sem comportamento.</span>
+            <div class="cu-etapas">
+              <div class="cu-etapa">
+                <div class="cu-etapa-n" aria-hidden="true">1</div>
+                <div class="cu-etapa-corpo">
+                  <div class="cu-etapa-tit"><b>Pré-treino</b><span>o modelo lê</span></div>
+                  <div class="cu-etapa-linha"><i>O que acontece</i><span>O modelo lê uma quantidade enorme de texto que já existia, como livros, sites e artigos, e treina uma coisa só: acertar qual é a próxima palavra.</span></div>
+                  <div class="cu-etapa-linha"><i>As pessoas</i><span>Nenhum trabalho de avaliação aqui. Os textos já estavam prontos, escritos por gente que não estava pensando no modelo.</span></div>
+                  <div class="cu-etapa-linha"><i>Como o modelo sai</i><span>Sabe muita coisa e escreve bem, mas ainda não sabe responder. Pergunte como trocar um pneu e ele pode devolver outras perguntas parecidas.</span></div>
+                </div>
               </div>
-              <div class="cu-seta">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <div class="cu-etapa">
+                <div class="cu-etapa-n" aria-hidden="true">2</div>
+                <div class="cu-etapa-corpo">
+                  <div class="cu-etapa-tit"><b>Ajuste por instrução</b><span>o modelo vê exemplos de boa resposta</span></div>
+                  <div class="cu-etapa-linha"><i>O que acontece</i><span>O modelo estuda perguntas que vêm junto com uma boa resposta. Cada resposta foi escrita por uma pessoa, do jeito que o assistente deveria responder.</span></div>
+                  <div class="cu-etapa-linha"><i>As pessoas</i><span><b>Escrevem</b> a resposta que serve de exemplo. Também há vagas para esse trabalho.</span></div>
+                  <div class="cu-etapa-linha"><i>Como o modelo sai</i><span>Responde como um assistente: à pergunta do pneu, ele agora dá os passos. Só não sabe ainda qual jeito de responder as pessoas acham melhor.</span></div>
+                </div>
               </div>
-              <div class="cu-passo">
-                <b>2. Ajuste por instrução</b>
-                <span>Aprende com exemplos escritos por pessoas de como uma boa resposta se parece. Resultado: a forma da resposta.</span>
+              <div class="cu-etapa cu-forte">
+                <div class="cu-etapa-n" aria-hidden="true">3</div>
+                <div class="cu-etapa-corpo">
+                  <div class="cu-etapa-tit"><b>Treino por preferência</b><span>o modelo aprende o que as pessoas preferem</span></div>
+                  <div class="cu-etapa-linha"><i>O que acontece</i><span>O modelo escreve duas respostas para a mesma pergunta. Uma pessoa lê as duas e diz qual é a melhor. Com muitas escolhas assim, ele passa a dar mais vezes o tipo de resposta que foi escolhido.</span></div>
+                  <div class="cu-etapa-linha"><i>As pessoas</i><span><b>Comparam</b> duas respostas e escolhem a melhor. É aqui que está a maior parte do trabalho de avaliação.</span></div>
+                  <div class="cu-etapa-linha"><i>Como o modelo sai</i><span>Com o comportamento que as pessoas preferiram. Se, na pergunta do pneu, a resposta mais clara e mais cuidadosa ganhou das outras, é esse tipo de resposta que ele passa a dar.</span></div>
+                </div>
               </div>
-              <div class="cu-seta">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </div>
-              <div class="cu-passo cu-forte">
-                <b>3. Treino por preferência</b>
-                <span>Aprende com comparações entre respostas, feitas por avaliadores. Resultado: o comportamento que as pessoas preferem.</span>
-              </div>
-            </div>
-            <div class="cu-quem">
-              <div>O humano fornece <b>texto do mundo</b>, sem tarefa</div>
-              <div>O humano <b>escreve</b> a resposta modelo</div>
-              <div>O humano <b>compara</b> respostas do modelo</div>
             </div>
           </div>
-          <p class="cu-fig-nota">O terceiro estágio é onde a maior parte do trabalho de avaliação acontece hoje.</p>
+          <p class="cu-fig-nota">Leia de cima para baixo: cada estágio começa com o modelo que saiu do anterior.</p>
         </div>
 
         <p>O segundo estágio, o <span class="cu-termo">ajuste por instrução</span>, usa exemplos escritos: alguém
