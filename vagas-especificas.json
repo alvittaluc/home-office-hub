@@ -132,7 +132,7 @@
       "data_oficial": true,
       "id": "c726db3087",
       "resumo": {
-        "o_que_faz": "Atuar como Especialista (SME) brasileiro em Religião ou Filosofia, contribuindo com conhecimento aprofundado para projetos de IA. Você cria e valida conteúdo especializado na sua área de domínio.",
+        "o_que_faz": "Atuar como Especialista (SME) brasileiro em Religião ou Filosofia, contribuindo com conhecimento aprofundado para projetos de IA. Você cria e valida conteúdo especializado na área que você domina.",
         "requisitos": "Conhecimento aprofundado em Religião ou Filosofia (formação e/ou experiência). Português nativo. Bom inglês. Capacidade de explicar conceitos complexos com clareza.",
         "dica_cv": "Destaque: sua formação/experiência em Filosofia, Teologia ou Ciências da Religião, capacidade analítica e de escrita, e nível de inglês.",
         "contrato": "Freelance · Remoto",
@@ -173,8 +173,8 @@
       "data_oficial": true,
       "id": "3c1f28002b",
       "resumo": {
-        "o_que_faz": "Traduzir e revisar (LQA) patentes de inglês para português (Brasil), com foco em conteúdo técnico e científico, especialmente da área biológica. Você adapta linguagem científica complexa mantendo a precisão.",
-        "requisitos": "Formação superior em linguística, tradução, biologia ou áreas afins. 2+ anos de experiência em tradução ou avaliação de qualidade linguística, de preferência com patentes ou conteúdo técnico. Inglês (en-US) excelente. Domínio de terminologia biológica.",
+        "o_que_faz": "Traduzir patentes de inglês para português (Brasil) e fazer a revisão de qualidade linguística (LQA), com foco em conteúdo técnico e científico, especialmente da área biológica. Você adapta linguagem científica complexa mantendo a precisão.",
+        "requisitos": "Formação superior em linguística, tradução, biologia ou áreas afins. Mais de 2 anos de experiência em tradução ou avaliação de qualidade linguística, de preferência com patentes ou conteúdo técnico. Inglês americano excelente. Domínio de terminologia biológica.",
         "dica_cv": "Destaque: diploma na área, 2+ anos com tradução técnica/patentes, domínio de terminologia científica (especialmente biologia), e inglês avançado. É uma vaga mais sênior.",
         "contrato": "Freelance · Remoto",
         "remuneracao": ""
@@ -216,7 +216,7 @@
       "id": "4d59850d89",
       "resumo": {
         "o_que_faz": "Você usa a sua experiência de programação para testar e treinar modelos de IA, conversando com eles em português do Brasil sobre problemas reais de engenharia de software. Os temas vão de algoritmos e estruturas de dados a arquitetura, front-end, back-end, nuvem, programação assíncrona, integração de APIs REST, gerenciamento de memória, orientação a objetos, segurança e depuração de sistemas distribuídos. Além de avaliar se a resposta técnica está correta, você julga se o português usado soa natural. Faixa de US$ 8 a US$ 65 por hora, contrato remoto de nível pleno a sênior.",
-        "requisitos": "Experiência real de programação e fluência em português do Brasil. Graduação, mestrado ou doutorado em computação ou engenharia de software é o cenário ideal, mas experiência prática, escrita técnica em português e contribuições em código aberto também contam. Inglês para ler as diretrizes e capacidade de explicar o raciocínio passo a passo por escrito. Computador seguro e internet rápida por sua conta.",
+        "requisitos": "Experiência real de programação e fluência em português do Brasil. Graduação, mestrado ou doutorado em computação ou engenharia de software é o ideal, mas experiência prática, escrita técnica em português e contribuições em código aberto também contam. Inglês para ler as diretrizes e capacidade de explicar o raciocínio passo a passo por escrito. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Currículo em inglês com as linguagens e o tempo de experiência em cada uma bem visíveis. Coloque o link do GitHub, porque contribuição em código aberto é citada como sinal de aderência. Descreva um problema técnico difícil que você resolveu e como chegou lá, já que a vaga valoriza quem sabe explicar o raciocínio. Se você escreve documentação ou dá aula de programação em português, destaque, porque é exatamente o cruzamento que essa vaga procura."
       },
       "indicacao": false
@@ -237,8 +237,8 @@
       "data_oficial": true,
       "id": "4cc90c09d7",
       "resumo": {
-        "o_que_faz": "Você usa a sua bagagem em matemática para desafiar modelos de IA, propondo desde problemas de sala de aula até questões teóricas em álgebra, cálculo, teoria dos números, álgebra linear, equações diferenciais, estatística, geometria, lógica e matemática discreta. O trabalho é verificar se a resposta é correta e logicamente coerente, registrar as falhas de forma reproduzível e sugerir melhorias nos prompts e nas métricas. Faixa de US$ 6 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e domínio real de matemática. Mestrado ou doutorado na área é o cenário ideal, e publicações, experiência docente, pesquisa pura ou aplicada e modelagem matemática são sinais valorizados. Inglês para as diretrizes e, acima de tudo, capacidade de escrever a solução passo a passo, mostrando o raciocínio e não só o resultado. Computador seguro e internet rápida por sua conta.",
+        "o_que_faz": "Você usa a sua bagagem em matemática para desafiar modelos de IA, propondo desde problemas de sala de aula até questões teóricas em álgebra, cálculo, teoria dos números, álgebra linear, equações diferenciais, estatística, geometria, lógica e matemática discreta. O trabalho é verificar se a resposta é correta e logicamente coerente, registrar as falhas de um jeito que outra pessoa consiga repetir e sugerir melhorias nos prompts e nas métricas. Faixa de US$ 6 a US$ 65 por hora, remoto, nível pleno a sênior.",
+        "requisitos": "Fluência em português do Brasil e domínio real de matemática. Mestrado ou doutorado na área é o ideal, e publicações, experiência docente, pesquisa pura ou aplicada e modelagem matemática contam a favor. Inglês para ler as diretrizes e, acima de tudo, capacidade de escrever a solução passo a passo, mostrando o raciocínio e não só o resultado. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Currículo em inglês listando formação, área de especialidade e publicações, se houver. Se você dá aula de matemática, escreva o nível, porque saber explicar é justamente o que a vaga compra. Inclua um exemplo de demonstração ou de resolução comentada, já que a triagem costuma pedir uma amostra de raciocínio. Domínio de LaTeX ajuda e vale citar."
       },
       "indicacao": false
@@ -259,8 +259,8 @@
       "data_oficial": true,
       "id": "df91131f02",
       "resumo": {
-        "o_que_faz": "Você atua como especialista em língua portuguesa do Brasil desafiando modelos avançados de IA em fonética, morfologia, sintaxe, semântica, pragmática e sociolinguística. O dia a dia é conversar com o modelo sobre cenários linguísticos, verificar precisão e coerência, capturar os erros de forma reproduzível e sugerir melhorias nos prompts e nas métricas de avaliação. É a versão mais sênior das vagas de língua da Meridial. Faixa de US$ 6 a US$ 65 por hora, remoto.",
-        "requisitos": "Mestrado ou doutorado em letras, linguística ou área próxima é o perfil ideal deste anúncio, que está classificado como pleno a sênior. Publicações revisadas por pares, experiência docente e projetos de análise linguística são sinais valorizados. Inglês para as diretrizes e comunicação clara, com o hábito de mostrar o raciocínio por escrito. Computador seguro e internet rápida por sua conta.",
+        "o_que_faz": "Você atua como especialista em língua portuguesa do Brasil desafiando modelos avançados de IA em fonética, morfologia, sintaxe, semântica, pragmática e sociolinguística. O dia a dia é conversar com o modelo sobre situações de uso da língua, verificar se as respostas são precisas e coerentes, registrar os erros de um jeito que outra pessoa consiga repetir e sugerir melhorias nos prompts e nas métricas de avaliação. Entre as vagas de língua da Meridial, é a de nível mais alto. Faixa de US$ 6 a US$ 65 por hora, remoto.",
+        "requisitos": "Mestrado ou doutorado em letras, linguística ou área próxima é o perfil ideal deste anúncio, que está classificado como pleno a sênior. Publicações revisadas por pares, experiência docente e projetos de análise linguística contam a favor. Inglês para ler as diretrizes e comunicação clara, com o hábito de mostrar o raciocínio por escrito. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Se você tem pós-graduação na área, este é o anúncio da Meridial em que a titulação mais pesa, então coloque formação e publicações no topo. Se você não tem mestrado, prefira a versão multimodal, que é de nível de entrada, ou as de dialeto. Inclua uma amostra curta de análise linguística escrita, porque vale mais que qualquer descrição genérica.",
         "frase": "Desafiar a IA em questões avançadas de língua portuguesa.",
         "remuneracao": "US$ 6 a 65 por hora"
@@ -283,8 +283,8 @@
       "data_oficial": true,
       "id": "56652b524e",
       "resumo": {
-        "o_que_faz": "Você usa a sua formação científica para testar modelos de IA em física, química, astronomia, ciências da terra e do ambiente, cobrindo temas como transformação de energia, estrutura atômica, movimento dos planetas, sistemas ecológicos, ciclo da água e método científico. O trabalho é propor cenários e questões, checar se a resposta está factualmente certa e logicamente coerente, registrar as falhas e sugerir melhorias na avaliação. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e formação em uma área científica, com graduação, mestrado ou doutorado. Experiência docente, publicações, pesquisa de laboratório ou de campo e projetos de divulgação científica são sinais valorizados. Inglês para as diretrizes e clareza para explicar o raciocínio passo a passo. Computador seguro e internet rápida por sua conta.",
+        "o_que_faz": "Você usa a sua formação científica para testar modelos de IA em física, química, astronomia, ciências da terra e do ambiente, cobrindo temas como transformação de energia, estrutura atômica, movimento dos planetas, sistemas ecológicos, ciclo da água e método científico. O trabalho é propor cenários e questões, checar se a resposta está certa nos fatos e coerente na lógica, registrar as falhas e sugerir melhorias na avaliação. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
+        "requisitos": "Fluência em português do Brasil e formação em uma área científica, com graduação, mestrado ou doutorado. Experiência docente, publicações, pesquisa de laboratório ou de campo e projetos de divulgação científica contam a favor. Inglês para ler as diretrizes e clareza para explicar o raciocínio passo a passo. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Currículo em inglês, com a área de especialidade e a titulação bem visíveis. Se você é professor de ciências, física ou química, destaque o nível em que leciona, porque parte das tarefas simula problemas de sala de aula. Cite publicações, pesquisas ou trabalhos de divulgação, com link se possível. Escrever uma explicação curta e clara de um conceito difícil é a melhor amostra que você pode anexar."
       },
       "indicacao": false
@@ -306,7 +306,7 @@
       "id": "e2481ca329",
       "resumo": {
         "o_que_faz": "Versão mais ampla das vagas técnicas da Meridial, cobrindo matemática, física, química, engenharia, ciência de dados, computação e computação científica. Você conversa com o modelo sobre problemas reais e questões teóricas em temas como termodinâmica, mecânica, cálculo, estatística, ciência dos materiais, eletrônica, projeto de algoritmos e modelagem quantitativa, verificando a precisão e documentando cada falha. Faixa de US$ 8 a US$ 65 por hora, remoto, nível pleno a sênior.",
-        "requisitos": "Fluência em português do Brasil e graduação ou mestrado em alguma área de exatas ou engenharia. Pesquisa publicada, experiência com projeto de engenharia, análise de dados ou portfólio de código são sinais valorizados. Inglês para as diretrizes e capacidade de mostrar o raciocínio por escrito, o que é exigência explícita. Computador seguro e internet rápida por sua conta.",
+        "requisitos": "Fluência em português do Brasil e graduação ou mestrado em alguma área de exatas ou engenharia. Pesquisa publicada, experiência com projeto de engenharia, análise de dados ou portfólio de código contam a favor. Inglês para ler as diretrizes e capacidade de mostrar o raciocínio por escrito, o que é exigência explícita. Computador seguro e internet rápida por sua conta.",
         "dica_cv": "Se o seu perfil é técnico mas não se encaixa exatamente em matemática ou em ciências, esta é a vaga guarda-chuva certa. Escolha uma especialidade principal e deixe-a clara logo no topo, em vez de listar tudo em nível superficial. Inclua links de GitHub, projetos de dados ou trabalhos de engenharia. Vale se candidatar a mais de uma vaga da Meridial, já que são projetos independentes."
       },
       "indicacao": false
@@ -1815,7 +1815,7 @@
       "data_oficial": true,
       "id": "72838e8df6",
       "resumo": {
-        "o_que_faz": "Você ouve gravações de campo de 30 a 90 segundos e anota o que dá para escutar: quais instrumentos estão tocando, o andamento, o tom, os sons de fundo e as reações do público. Também compara duas gravações da mesma música feitas em lugares diferentes. Nas fases seguintes, avalia se as descrições feitas por IA batem com o que você ouviu. Há uma sessão de treinamento paga e uma reunião curta por semana.",
+        "o_que_faz": "Você ouve gravações de 30 a 90 segundos, feitas fora de estúdio, e anota o que dá para escutar: quais instrumentos estão tocando, o andamento, o tom, os sons de fundo e as reações do público. Também compara duas gravações da mesma música feitas em lugares diferentes. Nas fases seguintes, avalia se as descrições feitas por IA batem com o que você ouviu. Há uma sessão de treinamento paga e uma reunião curta por semana.",
         "requisitos": "Pelo menos 3 anos de prática com música ou áudio, como músico, produtor, professor de música, técnico de som ou editor de áudio. Conseguir separar instrumentos numa gravação cheia de ruído e identificar o andamento e o tom. Inglês escrito para notas curtas. Bons fones de ouvido, ambiente silencioso e disponibilidade de 20 a 25 horas por semana.",
         "dica_cv": "Descreva a sua experiência musical de forma concreta: instrumentos que toca, tempo de estrada, formação, trabalhos de gravação ou mixagem. Mencione se tem treino de percepção musical. Um portfólio ou link de trabalhos ajuda.",
         "frase": "Ouvir gravações e anotar instrumentos, andamento e tom.",
@@ -6807,7 +6807,7 @@
       "data_oficial": true,
       "id": "6501a41ea4",
       "resumo": {
-        "o_que_faz": "Você cria conversas simuladas entre uma pessoa e um assistente de IA que usa ferramentas como agenda, e-mail, mapas e armazenamento na nuvem. Você faz os dois papéis: escreve o que o usuário pede e como o assistente responde, decidindo quando ele deve chamar cada ferramenta. As conversas ensinam a IA a completar tarefas possíveis, reconhecer as impossíveis e conversar bem quando não precisa de ferramenta. O trabalho é para um grande laboratório de IA.",
+        "o_que_faz": "Você cria conversas simuladas entre uma pessoa e um assistente de IA que usa ferramentas como agenda, e-mail, mapas e armazenamento na nuvem. Você faz os dois papéis: escreve o que o usuário pede e como o assistente responde, decidindo quando ele deve chamar cada ferramenta. As conversas ensinam a IA a concluir as tarefas possíveis, reconhecer as impossíveis e conversar bem quando não precisa de ferramenta. O trabalho é para um grande laboratório de IA.",
         "requisitos": "Noções de programação em Python, Java ou JavaScript e entendimento de como funcionam chamadas de função e APIs. Excelente escrita, raciocínio lógico e atenção à coerência em conversas longas. Inglês fluente, já que esse tipo de projeto costuma ser conduzido nesse idioma.",
         "dica_cv": "Destaque experiência com APIs, integrações ou automações, mesmo que simples, e mostre que você escreve bem. Se já trabalhou com treinamento de IA, criação de prompts ou roteiros de chatbot, coloque no topo. Um exemplo curto de conversa bem estruturada no portfólio pode fazer diferença.",
         "frase": "Escrever conversas entre um usuário e um assistente de IA."
@@ -7975,8 +7975,8 @@
       "data_oficial": true,
       "id": "22d855d2a9",
       "resumo": {
-        "o_que_faz": "Painel de especialistas em defesa química para testar a segurança de modelos de IA. Você escreve perguntas técnicas classificadas como inofensivas, de uso duplo ou adversariais, avalia se a IA respondeu o que devia e recusou o que era perigoso, e escreve a resposta de referência com a justificativa técnica. O pagamento é por tarefa, entre US$ 65 e US$ 75.",
-        "requisitos": "Experiência institucional com ameaças químicas pelo lado da defesa: contramedidas, proteção, detecção, descontaminação, toxicologia de agentes químicos ou trabalho ligado à Convenção sobre Armas Químicas. Escrita técnica clara para leigos. Experiência com testes adversariais em IA é um diferencial. Inglês fluente.",
+        "o_que_faz": "Painel de especialistas em defesa química para testar a segurança de modelos de IA. Você escreve perguntas técnicas classificadas como inofensivas, de uso duplo ou mal-intencionadas, avalia se a IA respondeu o que devia e recusou o que era perigoso, e escreve a resposta de referência com a justificativa técnica. O pagamento é por tarefa, entre US$ 65 e US$ 75.",
+        "requisitos": "Experiência em instituições que lidam com ameaças químicas, pelo lado da defesa: contramedidas, proteção, detecção, descontaminação, toxicologia de agentes químicos ou trabalho ligado à Convenção sobre Armas Químicas. Escrita técnica clara para leigos. Experiência com red teaming, que é tentar fazer a IA errar de propósito, é um diferencial. Inglês fluente.",
         "dica_cv": "Vaga muito específica, para quem trabalhou em institutos de pesquisa, forças armadas, defesa civil ou laboratórios da área. Envie amostra de escrita técnica, artigo publicado ou parecer. O trabalho envolve ler e escrever sobre cenários de uso indevido por longos períodos, então avalie se isso é confortável para você.",
         "frase": "Testar a segurança da IA em temas de defesa química.",
         "remuneracao": "US$ 65 a 75 por tarefa",
@@ -9894,8 +9894,8 @@
       "data_oficial": true,
       "id": "ec971e76be",
       "resumo": {
-        "o_que_faz": "Você cria perguntas difíceis que testam a capacidade de uma IA de buscar, analisar e raciocinar sobre dados estruturados, como tabelas. Depois avalia as respostas quanto à precisão, lógica e completude, identifica erros, contradições e informações inventadas, e documenta tudo com explicações baseadas em evidências.",
-        "requisitos": "Mestrado ou doutorado em qualquer área. Pelo menos 3 anos de experiência profissional, em pesquisa ou em docência. Forte capacidade analítica e pensamento crítico. Inglês escrito excelente.",
+        "o_que_faz": "Você cria perguntas difíceis que testam a capacidade de uma IA de buscar, analisar e raciocinar sobre dados organizados em tabelas. Depois avalia se as respostas estão corretas, lógicas e completas, identifica erros, contradições e informações inventadas, e registra tudo com explicações apoiadas em provas.",
+        "requisitos": "Mestrado ou doutorado em qualquer área. Pelo menos 3 anos de experiência profissional, em pesquisa ou em docência. Ótima capacidade de análise e senso crítico. Inglês escrito excelente.",
         "dica_cv": "O mestrado é eliminatório, então coloque o título e a área logo no início. Destaque experiência com análise de dados, pesquisa ou ensino, mostrando que você sabe verificar informações com rigor. Se já usa IA no trabalho e percebe quando ela erra, dê exemplos.",
         "frase": "Criar perguntas difíceis sobre tabelas e avaliar as respostas."
       },
@@ -10286,8 +10286,8 @@
       "data_oficial": true,
       "id": "6d18b807d8",
       "resumo": {
-        "o_que_faz": "Você cria e revisa desafios baseados em jogos de tabuleiro para treinar e avaliar o raciocínio de IAs. O trabalho envolve analisar situações de jogo, árvores de decisão e sistemas de regras, avaliar se as respostas da IA estão corretas e bem justificadas, e identificar erros de lógica ou violações de regras. Também ajuda a montar critérios de avaliação e bancos de testes.",
-        "requisitos": "Graduação em computação, matemática, ciência cognitiva, design de jogos, filosofia, economia ou área analítica. Pelo menos 2 anos de experiência em design de jogos de tabuleiro, testes de jogos, comunidades de jogos de mesa ou ambientes de estratégia. Conhecimento de lógica, probabilidade, teoria dos jogos e regras complexas. Inglês fluente.",
+        "o_que_faz": "Você cria e revisa desafios baseados em jogos de tabuleiro para treinar e avaliar o raciocínio de IAs. O trabalho envolve analisar situações de jogo, árvores de decisão e sistemas de regras, avaliar se as respostas da IA estão corretas e bem justificadas, e identificar erros de lógica ou jogadas que desrespeitam as regras. Também ajuda a montar critérios de avaliação e bancos de testes.",
+        "requisitos": "Graduação em computação, matemática, ciência cognitiva, design de jogos, filosofia, economia ou outra área de raciocínio analítico. Pelo menos 2 anos de experiência em design de jogos de tabuleiro, testes de jogos, comunidades de jogos de mesa ou jogos de estratégia. Conhecimento de lógica, probabilidade, teoria dos jogos e regras complexas. Inglês fluente.",
         "dica_cv": "Liste os jogos que você domina (xadrez, jogos modernos de tabuleiro, card games, RPG) e sua experiência concreta: torneios, rankings, criação ou teste de jogos, comunidades que organiza. Relacione isso com a sua formação analítica. Se criou algum jogo ou escreveu análises de estratégia, coloque o link.",
         "frase": "Criar desafios de jogos de tabuleiro para testar a IA."
       },
@@ -10647,7 +10647,7 @@
       "id": "4c05c032ec",
       "resumo": {
         "o_que_faz": "Você escreve textos profissionais das áreas de educação e academia que servem de exemplo para treinar IA. Podem ser planos de aula, materiais de orientação acadêmica, avaliações, textos de pesquisa e outros documentos, sempre com tom profissional, bem estruturados e embasados. A vaga aceita especialistas de muitas áreas, de pedagogia e ciências humanas a ciências exatas e tecnologia.",
-        "requisitos": "Experiência prática em ensino, orientação acadêmica, desenvolvimento de currículo, design instrucional ou pesquisa em alguma área do conhecimento. Escrita excelente em inglês. Familiaridade com as práticas educacionais e os padrões acadêmicos dos Estados Unidos.",
+        "requisitos": "Experiência prática em ensino, orientação acadêmica, elaboração de currículo, design instrucional ou pesquisa em alguma área do conhecimento. Escrita excelente em inglês. Familiaridade com as práticas educacionais e os padrões acadêmicos dos Estados Unidos.",
         "dica_cv": "Destaque a sua área de formação e o tempo de docência ou pesquisa, com exemplos de materiais que você criou. Anexe amostras de escrita em inglês. Se já trabalhou com instituições ou programas dos Estados Unidos, ou conhece o sistema educacional de lá, deixe isso bem visível.",
         "frase": "Escrever textos de educação em inglês para treinar IA."
       },
@@ -10806,7 +10806,7 @@
       "data_oficial": true,
       "id": "cd1faf6315",
       "resumo": {
-        "o_que_faz": "Projeto curto de dois dias em que você ouve trechos de áudio e identifica a família do instrumento (cordas, metais, madeiras, percussão, teclas) e o instrumento específico. Você usa áudios de referência para guiar as decisões e segue regras de anotação. O horário é flexível dentro dos dois dias e o ganho estimado é de cerca de US$ 150 a US$ 160 para quem trabalhar os dois dias inteiros, com chance de extensão.",
+        "o_que_faz": "Projeto curto de dois dias em que você ouve trechos de áudio e identifica a família do instrumento (cordas, metais, madeiras, percussão, teclas) e o instrumento específico. Você usa áudios de referência para guiar as decisões e segue regras de anotação. O horário é flexível dentro dos dois dias e o ganho estimado é de cerca de US$ 150 a US$ 160 para quem trabalhar os dois dias inteiros, com chance de o projeto ser prorrogado.",
         "requisitos": "Graduação em música ou área relacionada. Pelo menos 3 anos de experiência com apresentações musicais, produção musical, engenharia de áudio ou trabalho parecido. Ouvido treinado para reconhecer instrumentos pelo som. Bom inglês e disposição para tarefas repetitivas de escuta. Há um teste de qualificação de uns 15 minutos antes de começar.",
         "dica_cv": "Coloque a formação em música logo no início e liste os instrumentos que você toca ou com que trabalha. Cite experiência com produção, mixagem, transcrição musical ou estúdio. Como o projeto dura só dois dias, faça o teste de qualificação assim que puder e use fones de boa qualidade.",
         "frase": "Identificar instrumentos musicais em trechos de áudio.",
@@ -10867,8 +10867,8 @@
       "data_oficial": true,
       "id": "e307a9ddc5",
       "resumo": {
-        "o_que_faz": "Você transforma processos reais de empresas que usam ServiceNow em tarefas estruturadas para treinar IA. Isso inclui criar cenários como atendimento de chamados, controle de prazos de SLA, pedidos de RH e resposta a incidentes de TI, escrever as instruções, representar as tarefas em JSON e checar os dados com SQL. Não é configuração da plataforma: é traduzir o conhecimento de negócio em material de treinamento.",
-        "requisitos": "Conhecimento funcional profundo em módulos do ServiceNow, como CSM, ITSM ou HRSD. Capacidade analítica, noções de engenharia de prompt, familiaridade com JSON e SQL básico. Inglês fluente e boa escrita.",
+        "o_que_faz": "Você transforma processos reais de empresas que usam ServiceNow em tarefas bem definidas para treinar IA. Isso inclui criar cenários como atendimento de chamados, controle de prazos de SLA, pedidos de RH e resposta a incidentes de TI, escrever as instruções, representar as tarefas em JSON e checar os dados com SQL. Não é configuração da plataforma: é traduzir o conhecimento de negócio em material de treinamento.",
+        "requisitos": "Conhecer a fundo o funcionamento de módulos do ServiceNow, como CSM, ITSM ou HRSD. Capacidade analítica, noções de engenharia de prompt, familiaridade com JSON e SQL básico. Inglês fluente e boa escrita.",
         "dica_cv": "Destaque os módulos do ServiceNow com que você trabalhou e os processos de negócio que conhece a fundo, com exemplos. Certificações ServiceNow ajudam muito. Se já documentou fluxos de trabalho ou escreveu requisitos de negócio, mencione, porque é a habilidade central da vaga.",
         "frase": "Transformar processos do ServiceNow em tarefas para IA."
       },
@@ -11103,7 +11103,7 @@
       "data_oficial": true,
       "id": "cf85b0c716",
       "resumo": {
-        "o_que_faz": "Você analisa conversas entre pessoas e assistentes de IA sobre situações do dia a dia e relacionamentos. Avalia se a IA reuniu contexto suficiente antes de dar uma recomendação, aponta perguntas que deveriam ter sido feitas e separa as informações essenciais das secundárias. Documenta tudo seguindo diretrizes de avaliação estruturadas. A vaga é aberta para a América Latina, entre outras regiões.",
+        "o_que_faz": "Você analisa conversas entre pessoas e assistentes de IA sobre situações do dia a dia e relacionamentos. Avalia se a IA levantou informação suficiente antes de dar uma recomendação, aponta perguntas que deveriam ter sido feitas e separa as informações essenciais das secundárias. Registra tudo seguindo as diretrizes de avaliação do projeto. A vaga é aberta para a América Latina, entre outras regiões.",
         "requisitos": "De 3 a 5 anos de prática profissional em áreas como serviço social, psicologia, aconselhamento, terapia, pesquisa qualitativa, comunicação, mediação de conflitos ou coaching. Muitas opções pedem pós-graduação ou registro profissional na área, como CRP ou CRESS no Brasil. Inglês fluente.",
         "dica_cv": "Coloque formação, registro profissional e tempo de prática logo no início. Dê exemplos de como você conduz entrevistas ou avaliações de caso, porque essa é a habilidade central: saber o que perguntar antes de orientar alguém. Se já trabalhou com atendimento online ou pesquisa qualitativa, destaque.",
         "frase": "Avaliar se a IA perguntou o suficiente antes de aconselhar."
@@ -11265,7 +11265,7 @@
       "id": "95e6e4284d",
       "resumo": {
         "o_que_faz": "Você cria perguntas de pesquisa tão difíceis que nem as IAs mais avançadas, com acesso completo à internet, conseguem responder. Você parte de um fato verificável e constrói a pergunta de trás para frente, com pistas que envolvem datas, pessoas, lugares, organizações e registros. Depois comprova tudo com um registro detalhado das fontes e das buscas óbvias que não levam à resposta. É trabalho de investigação, não de redação.",
-        "requisitos": "Mestrado ou mais de 3 anos de experiência. Habilidade comprovada de pesquisa na internet, incluindo registros oficiais, arquivos, bases de dados públicas e documentos em PDF. Precisão ao citar fontes, com página e seção exatas. Inglês escrito nativo ou quase nativo. Experiência com avaliação de IA, biblioteconomia, jornalismo investigativo, checagem de fatos ou OSINT é um diferencial.",
+        "requisitos": "Mestrado ou mais de 3 anos de experiência. Habilidade comprovada de pesquisa na internet, incluindo registros oficiais, arquivos, bases de dados públicas e documentos em PDF. Precisão ao citar fontes, com página e seção exatas. Inglês escrito nativo ou quase nativo. Experiência com avaliação de IA, biblioteconomia, jornalismo investigativo, checagem de fatos ou OSINT (investigação com fontes abertas) é um diferencial.",
         "dica_cv": "Mostre casos concretos de pesquisa difícil que você resolveu e como documentou as fontes. Destaque experiência com arquivos, cartórios, bases governamentais, jornalismo ou checagem de fatos. Tenha paciência com a papelada: a própria vaga avisa que documentar as evidências é a maior parte do trabalho.",
         "frase": "Criar perguntas de pesquisa que a IA não consegue responder."
       },
