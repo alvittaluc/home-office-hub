@@ -1,6 +1,17 @@
 {
-  "total": 1,
+  "total": 2,
   "vagas": [
+    {
+      "id": "1d515ac504",
+      "empresa": "welocalize",
+      "titulo": "MSR Project - Portuguese (Brazil) Culture Expert",
+      "url": "https://jobs.lever.co/weloglobal/2f4cfc90-c8b2-42f9-af96-d165ebddef15",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "Especialista",
+      "descricao": "Overview \nAre you passionate about languages, writing, and quality evaluation? We are launching an exciting language evaluation project and are looking for Portuguese-speaking experts to join our team. \n \nWhat you will do:  \nIdentify realistic search-related failures where an AI model provides inadequate responses. Create search queries, test them, document what went wrong, and write instructions and evaluation criteria for correct answers.\nCommon issues: local relevance, source quality, outdated information, language mismatches, incomplete answers, and region-specific inapplicability. Testing multiple queries before finding failures is expected.\n \nProject Details: \n    - Start Date: ASAP\n    - Duration: Ongoing Project.\n    - Commitment: 20 hours per week.\n    - Job Type: Freelance contract.\n    - Location: Remote\n    - Rate: $20 per hour.\n \nRequirements:  \n    - Research skills — ability to find and verify information from multiple sources; comfort navigating different websites, databases, and documentation\n    - Critical thinking — Can spot contradictions between sources, identify outdated information, and recognize when something doesn't apply to a specific locale/context\n    - Attention to detail — Can catch nuances in language, local variations (prices, regulations, requirements), and edge cases\n    - Problem-solving mindset — Comfortable iterating and testing when things don't work; doesn't get frustrated by trial-and-error\n    - Domain knowledge — Ideally someone with background in research, quality assurance, compliance, or similar work that requires precision and source verification\n    - Writing clarity — Can articulate instructions and rubrics clearly so others understand the logic behind their reasoning\n    - Locale knowledge — Deep familiarity with their specific locale (local regulations, business practices, cultural nuances) is valuable for spotting region-specific failures\n",
+      "requisitos": "",
+      "remuneracao": ""
+    },
     {
       "id": "d0a50fdafe",
       "empresa": "mercor",
