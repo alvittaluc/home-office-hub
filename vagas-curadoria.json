@@ -924,6 +924,48 @@
       "titulo": "Bilingual Writer - Portuguese (Brazil)",
       "revisado_em": "2026-10-05",
       "motivo": "Pede português do Brasil nativo e a Mercor indica o Brasil como local. Remota. Exige Mac com chip Apple Silicon."
+    },
+    {
+      "id": "1d515ac504",
+      "empresa": "welocalize",
+      "titulo": "MSR Project - Portuguese (Brazil) Culture Expert",
+      "revisado_em": "2026-10-15",
+      "motivo": "Pede quem conhece bem o Brasil e escreve em português. Remota, 20 horas por semana, sem exigência de diploma."
+    },
+    {
+      "id": "24b26e60d0",
+      "empresa": "telus",
+      "titulo": "Personalized Internet Ads Assessor - Portuguese (BR)",
+      "revisado_em": "2026-10-15",
+      "motivo": "Avaliação de anúncios em português do Brasil, remota e com horário flexível. A TELUS lista a vaga para o Brasil."
+    },
+    {
+      "id": "2edd9d5f33",
+      "empresa": "telus",
+      "titulo": "Quality Assurance Rater - Portuguese (Brazil)",
+      "revisado_em": "2026-10-15",
+      "motivo": "Avaliação de buscas e respostas de IA em português do Brasil, remota. Não pede diploma."
+    },
+    {
+      "id": "059a387ef0",
+      "empresa": "micro1",
+      "titulo": "Hospitality Worker (Toast POS User)",
+      "revisado_em": "2026-10-15",
+      "motivo": "Remota, sem país exigido e sem diploma. Prefere quem trabalha em restaurante com o sistema Toast, que é pouco usado no Brasil, mas isso não é obrigatório."
+    },
+    {
+      "id": "a58b648588",
+      "empresa": "micro1",
+      "titulo": "Video Data Annotator",
+      "revisado_em": "2026-10-15",
+      "motivo": "Anotação de vídeo e áudio, remota, sem país exigido. Pede bom inglês escrito e não pede diploma."
+    },
+    {
+      "id": "8e9ed61fac",
+      "empresa": "mercor",
+      "titulo": "English AI Safety Specialist",
+      "revisado_em": "2026-10-15",
+      "motivo": "Leitura e rotulagem de conversas em inglês, remota, sem país exigido. Experiência anterior ajuda, mas não é obrigatória."
     }
   ],
   "bloqueadas": [
@@ -968,6 +1010,69 @@
       "titulo": "Fitness Data Contributor",
       "revisado_em": "2026-10-02",
       "motivo": "Mesma coleta de dados de saúde: exige prontuário em hospitais dos Estados Unidos ligado ao Apple Health."
+    },
+    {
+      "id": "cfc72dd374",
+      "empresa": "micro1",
+      "titulo": "Postal Clerk",
+      "revisado_em": "2026-10-15",
+      "motivo": "Exige morar nos Estados Unidos e ter trabalhado no balcão dos Correios americanos (USPS)."
+    },
+    {
+      "id": "476c97c338",
+      "empresa": "micro1",
+      "titulo": "Usability Tester",
+      "revisado_em": "2026-10-15",
+      "motivo": "Exige morar nos Estados Unidos. O trabalho é sobre serviços do governo americano."
+    },
+    {
+      "id": "114e86fd6f",
+      "empresa": "micro1",
+      "titulo": "Consumer Reviewer",
+      "revisado_em": "2026-10-15",
+      "motivo": "Exige morar nos Estados Unidos, ter 60 anos ou mais e experiência com o Medicare ou outro serviço do governo americano."
+    },
+    {
+      "id": "310734e069",
+      "empresa": "micro1",
+      "titulo": "211 Specialist",
+      "revisado_em": "2026-10-15",
+      "motivo": "Exige morar nos Estados Unidos e experiência no atendimento 211 ou em programas sociais americanos."
+    },
+    {
+      "id": "12b6c5b21b",
+      "empresa": "micro1",
+      "titulo": "National Park Ranger",
+      "revisado_em": "2026-10-15",
+      "motivo": "Exige morar nos Estados Unidos e ter trabalhado no serviço de parques nacionais americano."
+    },
+    {
+      "id": "3fac83237f",
+      "empresa": "micro1",
+      "titulo": "VA Eligibility Specialist",
+      "revisado_em": "2026-10-15",
+      "motivo": "Exige morar nos Estados Unidos e experiência no sistema de saúde dos veteranos americanos (VA)."
+    },
+    {
+      "id": "e1197d009d",
+      "empresa": "micro1",
+      "titulo": "Passport Acceptance Agent",
+      "revisado_em": "2026-10-15",
+      "motivo": "Exige morar nos Estados Unidos e ser agente credenciado para receber pedidos de passaporte americano."
+    },
+    {
+      "id": "bc28211827",
+      "empresa": "micro1",
+      "titulo": "Paid Photo Contributor Opportunity (Alaska-based)",
+      "revisado_em": "2026-10-15",
+      "motivo": "Só para quem mora no Alasca."
+    },
+    {
+      "id": "686b8d0cc9",
+      "empresa": "micro1",
+      "titulo": "Paid Photo Contributor Opportunity (Hawaii-based)",
+      "revisado_em": "2026-10-15",
+      "motivo": "Só para quem mora no Havaí."
     }
   ]
 }

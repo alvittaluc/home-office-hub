@@ -1,5 +1,5 @@
 {
-  "total": 200,
+  "total": 206,
   "vagas": [
     {
       "id": "65762fd387",
@@ -2164,6 +2164,70 @@
         "remuneracao": "US$ 12,60 por tarefa",
         "contrato": "Freelancer, 4 semanas",
         "idioma": "pt"
+      }
+    },
+    {
+      "id": "1d515ac504",
+      "resumo": {
+        "frase": "Encontrar perguntas de busca em que a IA responde mal para quem está no Brasil.",
+        "o_que_faz": "Você cria perguntas como as que um brasileiro faria num buscador, testa as respostas de um modelo de IA e procura os casos em que ele erra. Os erros mais comuns são informação desatualizada, fonte fraca, resposta incompleta, resposta em outro idioma ou que não vale para o Brasil, como preços, leis e regras locais. Quando acha uma falha, você anota o que deu errado e escreve as instruções e os critérios de uma boa resposta. É normal testar várias perguntas até encontrar uma que dê problema.",
+        "requisitos": "Português do Brasil e bom conhecimento do país: leis, costumes, jeito de fazer negócio. Saber pesquisar e conferir informação em vários sites, notar quando duas fontes se contradizem e ter paciência para tentar de novo quando não dá certo. Escrever com clareza, porque outras pessoas vão seguir as suas instruções. O anúncio diz que experiência com pesquisa, controle de qualidade ou conferência de fontes ajuda.",
+        "idioma": "pt",
+        "remuneracao": "US$ 20 por hora",
+        "carga": "20 h por semana",
+        "contrato": "Freelancer, projeto contínuo"
+      }
+    },
+    {
+      "id": "24b26e60d0",
+      "resumo": {
+        "frase": "Avaliar anúncios da internet em português do Brasil.",
+        "o_que_faz": "Você vê anúncios que aparecem em buscas na internet e dá uma nota para cada um, conforme o anúncio combine ou não com o que a pessoa pesquisou. Também comenta o português do anúncio e se ele faz sentido para o público brasileiro. É um trabalho de meio período, de casa, no horário que você quiser.",
+        "requisitos": "O anúncio não lista requisitos além do português do Brasil e de gostar de tecnologia. O horário é flexível, então dá para encaixar o trabalho na sua rotina.",
+        "idioma": "pt",
+        "remuneracao": "Cerca de US$ 5 por hora, pago por tarefa concluída",
+        "contrato": "Freelancer, meio período"
+      }
+    },
+    {
+      "id": "2edd9d5f33",
+      "resumo": {
+        "frase": "Avaliar resultados de busca e respostas de IA em português do Brasil.",
+        "o_que_faz": "Você analisa resultados de busca e respostas geradas por IA e dá notas de qualidade, relevância, precisão e utilidade, seguindo as diretrizes do projeto. Pesquisa na internet para conferir as informações, anota os casos extremos e as falhas que encontrar nas diretrizes e explica por escrito o motivo das notas quando pedirem. Também participa de treinamentos e sessões de calibração com a equipe. O texto chama a equipe de avaliadores sênior, mas não pede diploma nem anos de experiência.",
+        "requisitos": "Português do Brasil, facilidade para pesquisar e conferir informação, atenção aos detalhes e escrita clara para justificar as notas. É preciso seguir as diretrizes com constância e manter uma boa produtividade sem perder a qualidade.",
+        "idioma": "pt",
+        "remuneracao": "US$ 8 por hora, pago por tarefa concluída",
+        "contrato": "Freelancer"
+      }
+    },
+    {
+      "id": "059a387ef0",
+      "resumo": {
+        "frase": "Ensinar uma IA a entender o dia a dia de restaurante com o sistema Toast.",
+        "o_que_faz": "Você usa a sua experiência de restaurante para explicar como funciona o Toast, um sistema de caixa e pedidos: lançar pedido, receber pagamento, tirar relatório. Escreve guias passo a passo com situações reais, aponta problemas comuns do sistema e analisa pedidos, cardápios e transações para a IA aprender. Também participa de reuniões para ajustar as tarefas com a equipe.",
+        "requisitos": "O anúncio prefere quem trabalha hoje em restaurante e usa o Toast no dia a dia, e diz que não é preciso ter experiência com IA. O Toast é pouco usado no Brasil, então a vaga faz mais sentido para quem já trabalhou com ele em outro país. Também pedem ótima comunicação escrita e falada (o anúncio está em inglês) e conhecer tipos diferentes de restaurante, do fast food ao requintado.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "a58b648588",
+      "resumo": {
+        "frase": "Rotular vídeos e áudios curtos e avaliar descrições feitas por IA.",
+        "o_que_faz": "Você assiste a vídeos e ouve áudios curtos e marca o conteúdo seguindo as diretrizes do projeto. Confere se as descrições escritas pela IA estão certas e adequadas, e verifica se o conteúdo respeita regras de moderação, apontando o que for duvidoso ou impróprio e explicando o motivo. São muitas tarefas seguidas, então é preciso manter o mesmo critério do começo ao fim.",
+        "requisitos": "Bom inglês escrito para explicar o que você encontrou. Atenção aos detalhes de imagem e som, e facilidade para trabalhar sozinho e se adaptar quando as regras mudam. O anúncio prefere quem já fez anotação de vídeo ou áudio ou moderação de conteúdo, e diz que não é preciso ter experiência com IA. Também pede sigilo com os dados do projeto.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "8e9ed61fac",
+      "resumo": {
+        "frase": "Ler conversas em inglês com uma IA e avaliar as respostas.",
+        "o_que_faz": "Você lê conversas curtas em inglês entre uma pessoa e uma IA e avalia se a resposta atende bem ao pedido. Para isso, aplica os rótulos certos seguindo as diretrizes escritas do projeto. O trabalho é feito por lotes, sozinho e com cuidado. É remoto e por projeto.",
+        "requisitos": "Ótima leitura em inglês, atenção aos detalhes e facilidade para seguir instruções escritas. Já ter feito revisão ou anotação ajuda, mas não é obrigatório: a empresa dá o treinamento e as diretrizes.",
+        "idioma": "en+",
+        "contrato": "Por projeto"
       }
     }
   ]
