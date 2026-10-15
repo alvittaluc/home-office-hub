@@ -172,6 +172,13 @@ EXCECOES = {
     "=Audio Expert": "Musica e Audio",
     "Sound Engineer": "Musica e Audio",
     "Audio Engineer": "Musica e Audio",
+    # Mercor, outubro de 2026: pedem carreira na area (memorandos de CEO em
+    # grande empresa, redacao de jornal, documentacao para programadores,
+    # cinco anos de banco de dados ou doutorado)
+    "=Executive Communicator": "Marketing e Vendas",
+    "News & Copy Editor": "Humanidades",
+    "=Technical Writer": "Programacao e Software",
+    "Database Systems Evaluation Expert": "Programacao e Software",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -798,6 +805,12 @@ if __name__ == "__main__":
         ("Application Users - Vivado on Windows - STEM", "", "Engenharia"),
         ("Education & Training Expert", "", "Educacao e Ensino"),
         ("Legal Headhunter - Referral Partner", "", "Economia e Negocios"),
+        ("Executive Communicator", "", "Marketing e Vendas"),
+        ("News & Copy Editor", "", "Humanidades"),
+        ("Technical Writer", "", "Programacao e Software"),
+        ("Database Systems Evaluation Expert", "", "Programacao e Software"),
+        ("English AI Safety Specialist", "", "GERAL"),
+        ("Video Data Annotator", "", "GERAL"),
     ]
 
     falhas = 0
