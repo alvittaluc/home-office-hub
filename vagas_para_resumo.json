@@ -1,6 +1,17 @@
 {
-  "total": 1,
+  "total": 2,
   "vagas": [
+    {
+      "id": "6f79c729a9",
+      "empresa": "mercor",
+      "titulo": "AI Assistant User – Weekly Feedback Study",
+      "url": "https://work.mercor.com/jobs/list_AAABoUy490I18PYMxlZAyoYA/ai-assistant-user-weekly-feedback-study",
+      "local": "Remoto · Mundial",
+      "categoria_badge": "IA & Dados",
+      "descricao": "We're looking for everyday users of Meta Muse or Instinct who have used the app for at least 2 weeks. Each week you'll keep using the assistant across different parts of your life (at least 3, e.g. work, health, errands, social), then log and rate the proactive messages it sends you. You'll also export your weekly conversations with personal details removed. This is an ongoing study with the same group of raters each week.",
+      "requisitos": "",
+      "remuneracao": "USD 30-35 / hora"
+    },
     {
       "id": "1db174c7e5",
       "empresa": "turing",
