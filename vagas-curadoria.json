@@ -1022,6 +1022,27 @@
       "titulo": "Quality Analyst - US",
       "revisado_em": "2026-10-21",
       "motivo": "Comparação de respostas de chatbots, remota. O título diz US, mas o anúncio não exige morar nos EUA e a Turing aceita o Brasil."
+    },
+    {
+      "id": "6d22784714",
+      "empresa": "handshake",
+      "titulo": "Portuguese AI Evaluation Specialist (Brazil)",
+      "revisado_em": "2026-10-21",
+      "motivo": "Avaliação de respostas de IA em português, remota, só para quem mora no Brasil. Pede graduação em qualquer área."
+    },
+    {
+      "id": "cc85f47c53",
+      "empresa": "mercor",
+      "titulo": "[LONG PROJECT] Anonymization Writer",
+      "revisado_em": "2026-10-21",
+      "motivo": "Marcação de dados pessoais em documentos, remota. Prefere quem mora nos EUA, mas não exige. Pede experiência com detalhe, não diploma."
+    },
+    {
+      "id": "1a63a7e098",
+      "empresa": "mercor",
+      "titulo": "[LONG PROJECT] Anonymization Quality Reviewer",
+      "revisado_em": "2026-10-21",
+      "motivo": "Revisão da marcação de dados pessoais, remota, sem país exigido. Pede experiência com revisão ou controle de qualidade, não diploma."
     }
   ],
   "bloqueadas": [

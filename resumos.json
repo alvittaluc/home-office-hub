@@ -1,5 +1,5 @@
 {
-  "total": 215,
+  "total": 218,
   "vagas": [
     {
       "id": "65762fd387",
@@ -2319,6 +2319,37 @@
         "frase": "Usar um assistente de IA no dia a dia e avaliar as mensagens dele.",
         "o_que_faz": "É um estudo contínuo, com o mesmo grupo de pessoas toda semana. Você continua usando o assistente (Meta Muse ou Instinct) em pelo menos três partes da sua vida, como trabalho, saúde, tarefas e vida social, e registra e dá nota às mensagens que ele manda por conta própria. Toda semana você também exporta as suas conversas, tirando antes os dados pessoais.",
         "requisitos": "Já usar o Meta Muse ou o Instinct há pelo menos duas semanas. O anúncio não diz se esses aplicativos estão disponíveis no Brasil, então confira isso antes de se candidatar. Disposição para compartilhar as conversas da semana, sem informações pessoais."
+      }
+    },
+    {
+      "id": "6d22784714",
+      "resumo": {
+        "frase": "Comparar respostas de IA e dizer qual você prefere, em português.",
+        "o_que_faz": "Você usa a plataforma de tarefas da Handshake para comparar respostas geradas por IA, dizer qual prefere e explicar o porquê por escrito. A ideia é ajudar os modelos a dar respostas mais personalizadas para cada pessoa, a partir da sua experiência real com ferramentas de IA. O trabalho é por projeto, sem horário fixo e sem mínimo de horas, e dá para fazer junto com outro emprego. A Handshake fala em até US$ 25 por hora, conforme o projeto.",
+        "requisitos": "Morar no Brasil e ter graduação completa, em qualquer área. Português fluente, falado e escrito, e inglês a partir do nível B2, porque as instruções e o treinamento são em inglês. Segurança para escolher entre duas respostas parecidas e defender a sua escolha por escrito. Na entrada, você cria uma conta e confirma a sua identidade.",
+        "idioma": "pt",
+        "remuneracao": "Até US$ 25 por hora",
+        "contrato": "Por projeto",
+        "carga": "Sem mínimo de horas"
+      }
+    },
+    {
+      "id": "cc85f47c53",
+      "resumo": {
+        "frase": "Marcar dados pessoais em documentos de empresas para anonimizar.",
+        "o_que_faz": "Você trabalha em documentos e registros de empresas, como exportações de sistemas de clientes, e-mails, chamados de suporte, conversas e dados contábeis, e decide o que é informação pessoal e o que não é. Confirma, recusa, acrescenta e classifica cada dado pessoal, junta as menções à mesma pessoa ou empresa e acha o que a detecção automática deixou passar. Um revisor confere o seu trabalho antes da entrega. É um projeto interno e longo da Mercor, que quer montar uma equipe fixa.",
+        "requisitos": "Disponibilidade de 30 horas ou mais por semana, com este como o seu projeto principal. Experiência anterior com dados para IA, como rotulagem, avaliação de respostas ou revisão. Histórico em trabalho que exige muita atenção aos detalhes, como operações, contabilidade, edição, design ou compliance. Inglês escrito excelente e disposição para fazer as tarefas sem ajuda de IA. O anúncio prefere quem mora nos Estados Unidos, mas não exige.",
+        "idioma": "en+",
+        "carga": "30 h ou mais por semana"
+      }
+    },
+    {
+      "id": "1a63a7e098",
+      "resumo": {
+        "frase": "Revisar a marcação de dados pessoais feita por outras pessoas.",
+        "o_que_faz": "Você revisa o trabalho de quem marca dados pessoais em documentos e registros de empresas, como exportações de sistemas de clientes, e-mails, chamados e dados contábeis, e decide se cada tarefa pode ser aprovada ou precisa de correção. Procura dado pessoal que passou, classificação errada e agrupamento errado de pessoas e empresas, e só devolve o que tem defeito de verdade, com um comentário claro para a correção sair de uma vez. As regras mudam várias vezes por semana. É um projeto interno e longo da Mercor.",
+        "requisitos": "Experiência com controle de qualidade, revisão de textos, revisão de compliance ou outra função em que o seu julgamento era a última conferência antes da entrega. Atenção aos detalhes em material longo e repetitivo, sem aprovar tudo nem devolver demais. Escrita clara e direta em inglês. A sua precisão é medida o tempo todo, e a vaga de revisor pode ser perdida e reconquistada.",
+        "idioma": "en+"
       }
     }
   ]
