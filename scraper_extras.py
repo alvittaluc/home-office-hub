@@ -1226,6 +1226,9 @@ _HS_MORA_EM = re.compile(r"\b(?:based|located|resid\w*|living)\s+in\s+(?:the\s+)
 _HS_QUALQUER_LUGAR = re.compile(r"work from anywhere|anywhere in the world|worldwide|any country", re.I)
 _HS_PRESENCIAL = re.compile(r"\bin[- ]person\b|\bon[- ]?site\b", re.I)
 _HS_TAG = re.compile(r"(?i)^(associate|bachelor|master|ph\.?\s?d|postdoc|\d+\+?\s+years?)")
+# A página de cada vaga monta o JobPosting do Google com a data em que a vaga
+# foi criada no site: const createdDate = "2026-10-14T16:51:42.549Z"
+_HS_DATA = re.compile(r'const\s+createdDate\s*=\s*"(\d{4}-\d{2}-\d{2})')
 
 
 def _texto_handshake(pagina):
@@ -1314,7 +1317,7 @@ def coletar_handshake(conexoes=6):
             "requisitos": " · ".join(l for l in topo if _HS_TAG.match(l)),
             "pagamento": next((l for l in topo if re.match(r"(?i)up to \$\s?\d", l)), ""),
             "horario": "Part-time" if "Part-time" in topo else "",
-            "data_post": None,
+            "data_post": (lambda m: m.group(1) if m else None)(_HS_DATA.search(pagina)),
         })
     print(f"{len(vagas)} vaga(s) para o Brasil de {len(urls)} páginas"
           + (f" ({falhas} não abriram)" if falhas else ""))
