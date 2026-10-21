@@ -188,6 +188,16 @@ EXCECOES = {
     "PhysioNet Competitor": "Programacao e Software",
     "=Task Writer": "Outras areas",
     "AI Benchmark & Red-Teaming Specialist": "Outras areas",
+    # Handshake AI (21/10/2026): vagas abertas a qualquer pais, mas para quem
+    # tem 4 anos ou mais na profissao, mestrado ou doutorado
+    "=Credit Processor": "Financas e Contabilidade",
+    "=Claims Specialist": "Financas e Contabilidade",
+    "Defense and Intelligence Specialists": "Outras areas",
+    "Geological Technicians": "Meio Ambiente e Ciencias da Terra",
+    "Geoscience Teachers": "Meio Ambiente e Ciencias da Terra",
+    "=Geoscientists": "Meio Ambiente e Ciencias da Terra",
+    "=Ophthalmologists": "Medicina e Saude",
+    "=Table Games Managers": "Outras areas",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -829,6 +839,19 @@ if __name__ == "__main__":
         ("Photographer", "", "GERAL"),
         ("Quality Analyst - US", "", "GERAL"),
         ("AI Safety Annotation Reviewer", "", "GERAL"),
+        # ── Handshake AI ──
+        ("Portuguese AI Evaluation Specialist (Brazil)", "", "GERAL"),
+        ("STEM PhD (LATAM)", "", "Outras areas"),
+        ("Credit Processor", "", "Financas e Contabilidade"),
+        ("Claims Specialist", "", "Financas e Contabilidade"),
+        ("Defense and Intelligence Specialists", "", "Outras areas"),
+        ("Geological Technicians", "", "Meio Ambiente e Ciencias da Terra"),
+        ("Geoscience Teachers, Postsecondary", "", "Meio Ambiente e Ciencias da Terra"),
+        ("Geoscientists", "", "Meio Ambiente e Ciencias da Terra"),
+        ("Lawyers", "", "Direito"),
+        ("Physicians", "", "Medicina e Saude"),
+        ("Ophthalmologists", "", "Medicina e Saude"),
+        ("Table Games Managers", "", "Outras areas"),
     ]
 
     falhas = 0

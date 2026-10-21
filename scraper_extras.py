@@ -401,7 +401,7 @@ def pais_estrangeiro(titulo):
 # Idioma estrangeiro no título. Inglês não conta: é o idioma padrão dessas
 # plataformas e aparece em vaga aberta a qualquer pessoa.
 _OUTRO_IDIOMA = re.compile(
-    r"\b(korean|japanese|mandarin|cantonese|chinese|hindi|bengali|gujarati|"
+    r"\b(korean|japanese|mandarin|cantonese|chinese|hindi|bengali|bangla|gujarati|"
     r"malayalam|tamil|telugu|marathi|punjabi|kannada|odia|assamese|urdu|"
     r"nepali|sinhala|thai|vietnamese|indonesian|malay|tagalog|filipino|"
     r"khmer|lao|burmese|mongolian|kazakh|uzbek|arabic|hebrew|persian|farsi|"
@@ -1204,6 +1204,124 @@ def coletar_mercor(pausa=0.8, max_paginas=None):
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  HANDSHAKE AI (joinhandshake.com/ai/opportunities), outubro de 2026
+# ═══════════════════════════════════════════════════════════════════
+# O site é feito no Framer. A lista de vagas é carregada aos pedaços, em
+# arquivos internos do Framer, e não tem API aberta. Mas o sitemap traz o
+# endereço de cada vaga, e a página de cada uma vem com o texto completo no
+# HTML. São umas 250 páginas, quase todas de especialista ou só para quem
+# mora nos EUA: o robô lê todas com 6 conexões ao mesmo tempo (um ou dois
+# minutos) e fica só com as que servem a quem mora no Brasil.
+#
+# A página geral do programa ainda diz que é preciso morar nos EUA, mas cada
+# vaga traz a sua própria regra de local, e é ela que vale aqui:
+#   "Based in Brazil", "residing in LATAM"           -> Remoto · Brasil
+#   "work from anywhere"                              -> Remoto · Mundial
+#   outro país ou idioma no título, "based in the US" -> fora
+#   página que não diz nada sobre o local             -> fora (o padrão é EUA)
+
+_HS_SITEMAP = "https://joinhandshake.com/sitemap.xml"
+_HS_RAIZ = "https://joinhandshake.com/ai/opportunities"
+_HS_MORA_EM = re.compile(r"\b(?:based|located|resid\w*|living)\s+in\s+(?:the\s+)?([A-Za-z][^|\n.;:]{1,60})", re.I)
+_HS_QUALQUER_LUGAR = re.compile(r"work from anywhere|anywhere in the world|worldwide|any country", re.I)
+_HS_PRESENCIAL = re.compile(r"\bin[- ]person\b|\bon[- ]?site\b", re.I)
+_HS_TAG = re.compile(r"(?i)^(associate|bachelor|master|ph\.?\s?d|postdoc|\d+\+?\s+years?)")
+
+
+def _texto_handshake(pagina):
+    """Título e linhas de texto visíveis de uma página de vaga da Handshake."""
+    m = re.search(r"<title>(.*?)</title>", pagina, re.S)
+    titulo = _html.unescape(m.group(1)).split(" - Handshake AI")[0].strip() if m else ""
+    t = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", pagina)
+    t = _html.unescape(re.sub(r"<[^>]+>", "\n", t))
+    linhas = [l.strip() for l in t.split("\n")]
+    linhas = [l for l in linhas if l and not re.fullmatch(r"[·,|'\")>\s]+", l)]
+    try:
+        ini = linhas.index("Sign up now") + 1
+    except ValueError:
+        ini = 0
+    fim = next((i for i, l in enumerate(linhas) if i > ini and l.startswith("The application process")), len(linhas))
+    return titulo, linhas[ini:fim]
+
+
+def aceita_handshake(titulo, texto, url=""):
+    """Decide se a vaga serve a quem mora no Brasil. Devolve (aceita, local).
+
+    O endereço também conta: há vaga com o país só no link, como
+    bengali-ai-evaluation-specialist-(singapore), de título "Bangla AI Evaluation Specialist"."""
+    no_link = re.sub(r"[-_()/]+", " ", url.rsplit("/opportunities/", 1)[-1])
+    if _HS_PRESENCIAL.search(titulo) or re.search(r"(?i)location:\s*(in[- ]person|on[- ]?site)", texto):
+        return False, ""
+    lugares = [m.group(1) for m in _HS_MORA_EM.finditer(texto)]
+    if (_BRASIL.search(titulo) or _LATAM.search(titulo)
+            or any(_BRASIL.search(l) or _LATAM.search(l) for l in lugares)):
+        return True, "Remoto · Brasil"
+    if any(pais_estrangeiro(x) or idioma_estrangeiro(x) or _REGIAO_NO_TITULO.search(x) for x in (titulo, no_link)):
+        return False, ""
+    if _SO_EUA.search(texto) or lugares:
+        return False, ""
+    if _HS_QUALQUER_LUGAR.search(texto):
+        return True, "Remoto · Mundial"
+    return False, ""
+
+
+def coletar_handshake(conexoes=6):
+    """Lê todas as vagas do programa de IA da Handshake e devolve as que servem ao Brasil."""
+    from concurrent.futures import ThreadPoolExecutor
+    print("  → Handshake ...", end=" ")
+    indice = _baixar(_HS_SITEMAP, tipo_json=False)
+    urls = []
+    for loc in re.findall(r"<loc>([^<]+)</loc>", indice):
+        loc = loc.strip()
+        if loc.endswith(".xml"):
+            urls += re.findall(r"<loc>(https://joinhandshake\.com/ai/opportunities/[^<]+)</loc>",
+                               _baixar(loc, tipo_json=False))
+        elif loc.startswith(_HS_RAIZ + "/"):
+            urls.append(loc)
+    urls = sorted({u.strip() for u in urls if u.strip().rstrip("/") != _HS_RAIZ})
+    if not urls:
+        raise RuntimeError("o sitemap não trouxe nenhuma vaga")
+
+    def ler(url):
+        try:
+            return url, _baixar(url, tipo_json=False, tentativas=2)
+        except Exception:
+            return url, None
+
+    with ThreadPoolExecutor(conexoes) as ex:
+        paginas = list(ex.map(ler, urls))
+    falhas = sum(1 for _, p in paginas if not p)
+    if falhas > len(urls) / 2:
+        raise RuntimeError(f"{falhas} de {len(urls)} páginas não abriram")
+
+    vagas = []
+    for url, pagina in paginas:
+        if not pagina:
+            continue
+        titulo, linhas = _texto_handshake(pagina)
+        texto = "\n".join(linhas)
+        if not titulo or not texto:
+            continue
+        aceita, local = aceita_handshake(titulo, texto, url)
+        if not aceita:
+            continue
+        topo = linhas[:25]
+        vagas.append({
+            "titulo": titulo,
+            "url": url,
+            "local": local,
+            "desc": texto,
+            "requisitos": " · ".join(l for l in topo if _HS_TAG.match(l)),
+            "pagamento": next((l for l in topo if re.match(r"(?i)up to \$\s?\d", l)), ""),
+            "horario": "Part-time" if "Part-time" in topo else "",
+            "data_post": None,
+        })
+    print(f"{len(vagas)} vaga(s) para o Brasil de {len(urls)} páginas"
+          + (f" ({falhas} não abriram)" if falhas else ""))
+    return vagas
+
+
+# ═══════════════════════════════════════════════════════════════════
 #  TESTE MANUAL: python3 scraper_extras.py
 # ═══════════════════════════════════════════════════════════════════
 
@@ -1214,6 +1332,7 @@ if __name__ == "__main__":
                          ("ALIGNERR", coletar_alignerr),
                          ("TURING", coletar_turing),
                          ("MERCOR", coletar_mercor),
+                         ("HANDSHAKE", coletar_handshake),
                          ("IMERIT", coletar_imerit)]:
         print("\n" + "=" * 60)
         print(f"  {nome}")

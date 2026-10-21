@@ -160,6 +160,12 @@ USAR_IMERIT = True
 # Mercor: lê o HTML de work.mercor.com/explore, sem API e sem login.
 USAR_MERCOR = True
 
+# ─── FONTE NOVA DE OUTUBRO DE 2026 ───
+# Handshake AI: o site é feito no Framer, sem API. O sitemap traz o endereço
+# de cada vaga e a página de cada uma tem o texto completo, inclusive a regra
+# de onde a pessoa precisa morar. Lê umas 250 páginas em menos de um minuto.
+USAR_HANDSHAKE = True
+
 # ─── VAGAS POR ÁREA ───
 # Vagas que exigem formação (direito, medicina, exatas...). Não aparecem na
 # aba Vagas: vão para o vagas-especificas.json e só serão mostradas depois,
@@ -1101,6 +1107,10 @@ def buscar_mercor() -> list:
     return _buscar_extra("mercor", "coletar_mercor")
 
 
+def buscar_handshake() -> list:
+    return _buscar_extra("handshake", "coletar_handshake")
+
+
 # ═══════════════════════════════════════════════════════════════════
 #  SCRAPER — Rex.zone (via módulo scraper_rexzone.py)
 # ═══════════════════════════════════════════════════════════════════
@@ -1482,6 +1492,7 @@ def coletar_tudo():
         (USAR_TURING, buscar_turing, "turing"),
         (USAR_IMERIT, buscar_imerit, "imerit"),
         (USAR_MERCOR, buscar_mercor, "mercor"),
+        (USAR_HANDSHAKE, buscar_handshake, "handshake"),
     ):
         if not ligada:
             if so_roda_no_pc(nome):

@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-10-05",
+  "atualizado": "2026-10-21",
   "nota": "Arquivo dos perfis de empresa, mantido a mao. Editar aqui muda a pagina inicial, a de empresas e a de vagas de uma vez so.",
   "empresas": [
     {
@@ -456,6 +456,36 @@
       "pagamento": "Por tarefa concluída, em calendário combinado com a empresa.",
       "clientes": "Marcas globais de tecnologia de consumo",
       "atencao": "A empresa informa que não está contratando no Brasil no momento. Na página da comunidade dá para deixar nome e e-mail e ser avisado quando abrir."
+    },
+    {
+      "id": "handshake",
+      "nome": "Handshake AI",
+      "sigla": "HS",
+      "cor": "#C7F542",
+      "bg": "#073D42",
+      "dom": "joinhandshake.com",
+      "logo": "logos/handshake.svg",
+      "desc": "IA · Avaliação · Especialistas",
+      "link": "https://joinhandshake.com/ai/opportunities",
+      "site": "https://joinhandshake.com/ai/",
+      "tipo": "Programa de trabalho com IA da Handshake",
+      "fundada": "2014 (a Handshake)",
+      "sede": "São Francisco, Estados Unidos",
+      "porte": "Diz já ter pago mais de 100 milhões de dólares aos participantes do programa",
+      "coleta": "auto",
+      "destaque": false,
+      "areas": [
+        "Avaliação de IA",
+        "Especialistas de área"
+      ],
+      "resumo": "A Handshake é uma rede de carreira muito usada nas universidades americanas, que liga estudantes e recém-formados a empregos. O Handshake AI é o programa dela de trabalho remoto com IA: quem participa avalia respostas de modelos e cria tarefas de treino, por projeto. A maior parte das vagas pede diploma ou anos de experiência numa profissão, e muitas são só para quem mora nos Estados Unidos, mas algumas aceitam quem mora no Brasil ou em qualquer país.",
+      "curto": "Programa de trabalho remoto com IA da Handshake. Poucas vagas abertas ao Brasil, quase todas pedindo diploma.",
+      "o_que_voce_faz": "Comparar e avaliar respostas de IA, explicando por escrito qual você prefere e por quê, e criar perguntas e critérios de avaliação na sua área de conhecimento, sempre na plataforma de tarefas da própria Handshake.",
+      "bom_para": "Quem tem graduação completa e inglês intermediário ou melhor, e quer um trabalho de meio período sem horário fixo. Para quem tem mestrado, doutorado ou anos de profissão, há vagas de especialista que pagam mais.",
+      "como_entrar": "Você cria uma conta, confirma a sua identidade e entra nos projetos que combinam com o seu perfil. A empresa avisa que a entrada num projeto depende de haver projeto aberto na sua área.",
+      "pagamento": "Por hora, como autônomo. Cada vaga informa o valor máximo: a de português do Brasil paga até US$ 25 por hora, conforme o projeto.",
+      "clientes": "Laboratórios de IA de ponta",
+      "atencao": "A página geral do programa ainda diz que é preciso morar nos Estados Unidos. As vagas que aparecem no Hub são as que dizem, na própria página, que aceitam quem mora no Brasil, na América Latina ou em qualquer país. Confira essa regra na página da vaga antes de se candidatar."
     }
   ]
 }
