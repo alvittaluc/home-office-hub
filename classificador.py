@@ -179,6 +179,15 @@ EXCECOES = {
     "News & Copy Editor": "Humanidades",
     "=Technical Writer": "Programacao e Software",
     "Database Systems Evaluation Expert": "Programacao e Software",
+    # Rotina de 21/10/2026: micro1 pede especialista em historia, direito,
+    # financas ou jornalismo com experiencia em treino de IA; PhysioNet pede
+    # processamento de sinais biomedicos e aprendizado de maquina; a Mercor
+    # pede pos-graduacao na "Task Writer"; a Turing pede experiencia com
+    # benchmarks de IA (GAIA, BrowseComp) na de red teaming
+    "Domain Contributor - Evaluation Specialist": "Outras areas",
+    "PhysioNet Competitor": "Programacao e Software",
+    "=Task Writer": "Outras areas",
+    "AI Benchmark & Red-Teaming Specialist": "Outras areas",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -811,6 +820,15 @@ if __name__ == "__main__":
         ("Database Systems Evaluation Expert", "", "Programacao e Software"),
         ("English AI Safety Specialist", "", "GERAL"),
         ("Video Data Annotator", "", "GERAL"),
+        # ── rotina de 21/10/2026 ──
+        ("Domain Contributor - Evaluation Specialist", "", "Outras areas"),
+        ("PhysioNet Competitor (Biomedical Signal Processing & ML)", "", "Programacao e Software"),
+        ("Task Writer", "", "Outras areas"),
+        ("AI Benchmark & Red-Teaming Specialist", "", "Outras areas"),
+        ("Evaluation Specialist/Recent Grad", "", "GERAL"),
+        ("Photographer", "", "GERAL"),
+        ("Quality Analyst - US", "", "GERAL"),
+        ("AI Safety Annotation Reviewer", "", "GERAL"),
     ]
 
     falhas = 0
