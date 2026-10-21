@@ -717,7 +717,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       <div class="ct-passos">
         <div class="ct-passo">
           <b>Já me candidatei a esta vaga?</b>
-          <p>Registre para onde você mandou currículo, quando, e em que pé está.
+          <p>Registre para onde você mandou currículo, quando, e em que etapa está cada candidatura.
              Quando abrir uma vaga aqui no Hub, ela avisa se você já se candidatou.</p>
           <button class="ct-b" data-ir-ap>Registrar uma candidatura</button>
         </div>
@@ -915,7 +915,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
     $("#aplicacoes").innerHTML = `
       <div class="ct-cab-tela">
-        <div><h1>Candidaturas</h1><p>Para onde você mandou currículo, e em que pé está cada um.</p></div>
+        <div><h1>Candidaturas</h1><p>Para onde você mandou currículo, e em que etapa está cada candidatura.</p></div>
         <div class="ct-cab-bts"><button class="ct-b pequeno forte" data-nova-ap>Nova candidatura</button></div>
       </div>
       <div class="ct-filtros" id="filtrosAp"></div>
@@ -1013,7 +1013,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   /* ══════════════════════════════════════════════════════════
      ABA "A VAGA" DE UMA CANDIDATURA
      Mostra de novo o que a página da vaga mostrava: o resumo, o que a
-     vaga pede, os links para a página e para o anúncio. A cópia da vaga
+     vaga pede e o link para o anúncio oficial. A cópia da vaga
      fica guardada na própria candidatura (Dados.fotoDaVaga), então ela
      continua aqui mesmo depois que a vaga sai da lista do site.
      A etapa muda com um clique, e cada etapa pode ter links de estudo
@@ -1079,7 +1079,6 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       ["Idioma do trabalho", f.idioma],
     ].filter(x => x[1]);
     const anuncio = urlSegura(ap.url || f.url);
-    const pagina = noAr && ap.vagaId ? "vaga.html?id=" + encodeURIComponent(ap.vagaId) : "";
     let aviso = "";
     if (ap.vagaId && !noAr && foto) aviso = `<p class="cv-aviso">Esta vaga saiu da lista do site. O resumo abaixo ficou guardado na sua candidatura em ${esc(Dados.dataBonita(f.guardada_em))}.</p>`;
     else if (ap.vagaId && !noAr) aviso = `<p class="cv-aviso">Esta vaga saiu da lista do site antes de o Meu Controle guardar o resumo dela. O anúncio oficial pode continuar no ar.</p>`;
@@ -1098,9 +1097,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       ${f.requisitos ? `<div class="cv-parte"><h3>Requisitos</h3><p>${esc(f.requisitos)}</p></div>` : ""}
       ${ap.observacoes ? `<div class="cv-parte"><h3>Suas observações</h3><p>${esc(ap.observacoes)}</p></div>` : ""}
       ${!foto && !ap.vagaId ? `<p class="cv-leve">Esta candidatura foi registrada à mão, sem uma vaga do Hub. Na aba Editar dá para guardar o link do anúncio e anotações.</p>` : ""}
-      ${pagina || anuncio ? `<div class="cv-links">
-        ${pagina ? `<a class="ct-b pequeno" href="${pagina}">Abrir a página da vaga</a>` : ""}
-        ${anuncio ? `<a class="ct-b pequeno" href="${esc(anuncio)}" target="_blank" rel="noopener">Ir para o anúncio oficial ↗</a>` : ""}
+      ${anuncio ? `<div class="cv-links">
+        <a class="ct-b pequeno" href="${esc(anuncio)}" target="_blank" rel="noopener">Ir para o anúncio oficial ↗</a>
       </div>` : ""}`;
   }
 
@@ -1109,7 +1107,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     if (!caixa) return;
     const atual = ap.estado || "aplicado", iAtual = CAMINHO.indexOf(atual);
     caixa.innerHTML = `
-      <div class="cv-etapas-tit">Em que pé está <span>clique na etapa para atualizar</span></div>
+      <div class="cv-etapas-tit">Em que etapa está <span>clique na etapa para atualizar</span></div>
       <ol class="cv-trilho">${CAMINHO.map((id, i) => {
         const classe = id === atual ? " atual" : (iAtual >= 0 && i < iAtual ? " feita" : "");
         return `<li class="cv-passo${classe}"><button type="button" data-estado="${id}" aria-pressed="${id === atual}"><i></i><span>${esc(estadoDe(id).nome)}</span></button></li>`;
@@ -1171,7 +1169,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       ${UI.campo({ nome: "titulo", rotulo: "Título da vaga", valor: ap.titulo, obrigatorio: true, dica: "AI Data Annotator - Portuguese (Brazil)" })}
       ${UI.campo({ nome: "url", rotulo: "Link do anúncio", tipo: "url", valor: ap.url, dica: "https://" })}
       <div class="u-tripla">
-        ${UI.campo({ nome: "estado", rotulo: "Em que pé está", tipo: "escolha", valor: ap.estado,
+        ${UI.campo({ nome: "estado", rotulo: "Em que etapa está", tipo: "escolha", valor: ap.estado,
                      opcoes: ESTADOS.map(e => ({ valor: e.id, nome: e.nome })) })}
         ${UI.campo({ nome: "origem", rotulo: "Onde você viu", tipo: "escolha", valor: ap.origem,
                      opcoes: [{ valor: "", nome: "Não informado" }].concat(ORIGENS.map(o => ({ valor: o, nome: o }))) })}
