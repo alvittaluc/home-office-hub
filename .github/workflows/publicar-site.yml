@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
   workflow_dispatch: {}
+  # O robô "Atualizar vagas" grava as vagas com a chave automática do GitHub, e
+  # gravação feita com essa chave não dispara o "push" acima. Sem esta linha, as
+  # vagas do robô ficavam no repositório e só iam para o ar quando alguém
+  # gravava do PC. Agora o site é publicado sempre que o robô termina bem.
+  workflow_run:
+    workflows: ["Atualizar vagas"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -16,6 +23,8 @@ concurrency:
 
 jobs:
   publicar:
+    # se o robô falhou, não há nada novo para publicar
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
