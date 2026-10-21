@@ -1,5 +1,5 @@
 {
-  "total": 206,
+  "total": 215,
   "vagas": [
     {
       "id": "65762fd387",
@@ -2228,6 +2228,97 @@
         "requisitos": "Ótima leitura em inglês, atenção aos detalhes e facilidade para seguir instruções escritas. Já ter feito revisão ou anotação ajuda, mas não é obrigatório: a empresa dá o treinamento e as diretrizes.",
         "idioma": "en+",
         "contrato": "Por projeto"
+      }
+    },
+    {
+      "id": "b24061003e",
+      "resumo": {
+        "frase": "Avaliar resultados de busca em português.",
+        "o_que_faz": "Você analisa textos, páginas, imagens e outros conteúdos que aparecem em um grande buscador e dá nota para a relevância e a qualidade dos resultados, usando uma ferramenta online. Esse trabalho ajuda a melhorar o que milhões de pessoas veem quando fazem uma busca. É um projeto freelancer de meio período, com horário flexível. A TELUS estima ganhos de US$ 5 por hora, mas o pagamento é por tarefa concluída e pode subir conforme a sua produtividade.",
+        "requisitos": "A vaga é para quem trabalha em português do Brasil, e o anúncio não detalha outros requisitos. Pede familiaridade com internet e tecnologia e vontade de aprender. Na TELUS, a entrada costuma ter um teste de qualificação, com diretrizes em inglês.",
+        "idioma": "pt",
+        "remuneracao": "Cerca de US$ 5 por hora",
+        "contrato": "Freelancer",
+        "carga": "Meio período"
+      }
+    },
+    {
+      "id": "73a95bd216",
+      "resumo": {
+        "frase": "Criar perguntas difíceis, com pesquisa, para testar a IA.",
+        "o_que_faz": "Você cria pares de pergunta e resposta originais e difíceis, sobre assuntos variados, para testar os limites de modelos avançados de IA. Cada resposta exige pesquisa a fundo, conferida em mais de uma fonte, e as perguntas precisam juntar várias informações e raciocínio, não só uma busca simples. Depois você testa as perguntas na IA, ajusta a dificuldade e registra as fontes e o raciocínio de cada resposta. O pagamento é por tarefa aprovada, com um mínimo de tarefas por semana.",
+        "requisitos": "Inglês fluente para escrever com precisão, sem precisar ser a sua língua nativa. Saber pesquisar sozinho, avaliar fontes com senso crítico e escrever perguntas bem construídas. O anúncio aceita recém-formados, pós-graduados e pessoas de qualquer formação ou área que mostrem experiência com pesquisa e escrita. Não exige experiência com IA.",
+        "idioma": "en",
+        "contrato": "Por tarefa"
+      }
+    },
+    {
+      "id": "e9afc6adde",
+      "resumo": {
+        "frase": "Usar a experiência de fotógrafo para descrever imagens para a IA.",
+        "o_que_faz": "Você usa o seu conhecimento de fotografia para ajudar a treinar sistemas de IA. O trabalho é escrever descrições, rótulos e informações de contexto sobre imagens, explicar o que aparece nelas e entregar o material organizado, dentro das regras e dos prazos do projeto. O anúncio também fala em fornecer imagens de alta qualidade.",
+        "requisitos": "Experiência profissional com fotografia, como retrato, paisagem, fotografia comercial ou editorial, e um portfólio consistente. Saber usar câmera e programas de edição como Photoshop ou Lightroom. Boa comunicação em inglês e capacidade de seguir instruções e prazos. Não exige experiência com IA; já ter escrito legendas ou descrições de imagens é um diferencial.",
+        "idioma": "en"
+      }
+    },
+    {
+      "id": "73fd7d7fdb",
+      "resumo": {
+        "frase": "Gravar o seu trabalho do dia a dia com o celular preso na cabeça.",
+        "o_que_faz": "A vaga é para donos de pequenos negócios e para os funcionários deles. Você grava vídeos em primeira pessoa enquanto faz as tarefas normais do trabalho, com o celular preso na cabeça, mostrando as mãos e os objetos. Vale para oficina mecânica, cozinha de restaurante, construção, depósito, fábrica, limpeza, hotel, comércio e outros ambientes de trabalho. O mínimo é de 2 horas de gravação por dia, e o dono do negócio pode inscrever vários funcionários.",
+        "requisitos": "Trabalhar de verdade num ambiente comercial ou industrial e ter a autorização do responsável pelo local para gravar. Ter um celular compatível: iPhone 12 ou mais novo, Google Pixel 6 a 9, ou Samsung Galaxy S21 ou mais novo. Comprar uma faixa de cabeça para o celular, reembolsada até US$ 20 com a nota fiscal. O Brasil está na lista de países aceitos.",
+        "idioma": "nenhum",
+        "contrato": "Freelancer",
+        "carga": "Mínimo de 2 h por dia"
+      }
+    },
+    {
+      "id": "e1805ba0c6",
+      "resumo": {
+        "frase": "Gravar as tarefas de casa com o celular preso na cabeça.",
+        "o_que_faz": "Apesar do título, é a vaga de gravação em casa da micro1. Você grava vídeos em primeira pessoa fazendo as tarefas comuns de casa, com o celular preso na cabeça, para treinar sistemas de IA e robôs. A vaga é para quem mora na América Latina e no Caribe, e o Brasil está na lista. O pagamento é por hora de vídeo aprovado, e a micro1 paga US$ 20 de bônus, que também cobre a faixa de cabeça, depois de 20 horas de trabalho.",
+        "requisitos": "Ter um celular compatível: iPhone 12 ou mais novo, Google Pixel 6 a 9, ou Samsung Galaxy S21 ou mais novo. Usar a faixa de cabeça durante as gravações; o anúncio diz num trecho que ela é enviada para a sua casa e em outro que você compra e é reembolsado. Ter condição física para movimentos repetitivos. Na entrada há um teste de compatibilidade do aparelho, uma entrevista conduzida por IA e uma verificação de identidade que precisa ser feita em até 48 horas.",
+        "idioma": "nenhum",
+        "contrato": "Por hora de vídeo aprovado"
+      }
+    },
+    {
+      "id": "91d5f7ad1b",
+      "resumo": {
+        "o_que_faz": "Você avalia um recurso de personalização do Gemini, o assistente de IA do Google, em inglês. A ideia é testar se o Gemini usa bem as informações das suas conversas anteriores, do Gmail, das buscas no Google e do YouTube para dar respostas mais relevantes. Você cria perguntas a partir das suas experiências e analisa as respostas em critérios como embasamento, integração e utilidade.",
+        "requisitos": "Inglês avançado de leitura e escrita, já que é o idioma do projeto. Aceitar usar a sua conta pessoal principal do Google, e não uma conta de teste, com essas fontes de dados ativadas. Disponibilidade em tempo integral no seu fuso, porque a operação funciona 24 horas. Pensamento analítico e criatividade para montar conversas.",
+        "frase": "Avaliar a personalização do Gemini em inglês.",
+        "carga": "Tempo integral",
+        "idioma": "en+"
+      }
+    },
+    {
+      "id": "a8641549b5",
+      "resumo": {
+        "frase": "Revisar avaliações de segurança de IA feitas por outras pessoas.",
+        "o_que_faz": "Você confere avaliações de segurança de IA feitas por outros avaliadores, procurando regra aplicada errado, raciocínio incompleto, nota fora do padrão, erro de formato e incoerência. Aponta os erros de cada pessoa e os que se repetem, dá feedback direto e ajuda a melhorar o treinamento da equipe. O conteúdo inclui temas sensíveis, como automutilação, violência e abuso. O anúncio é confuso: no começo fala em liderar uma equipe de analistas, mas as tarefas descritas são de revisão.",
+        "requisitos": "Inglês em nível nativo, boa escrita e bom conhecimento da cultura e do jeito de se comunicar dos Estados Unidos. Experiência em achar erros em anotações, avaliações ou textos escritos por outras pessoas, e facilidade para aplicar regras detalhadas. Disponibilidade de 40 horas por semana, de preferência para começar logo. Experiência com revisão de anotação de IA, moderação de conteúdo ou checagem de fatos é um diferencial.",
+        "idioma": "en+",
+        "carga": "40 h por semana"
+      }
+    },
+    {
+      "id": "1db174c7e5",
+      "resumo": {
+        "frase": "Comparar as respostas de vários chatbots e dar a avaliação final.",
+        "o_que_faz": "Você compara as respostas de vários chatbots para a mesma tarefa e avalia se estão corretas, relevantes, completas, claras e dentro das diretrizes. Aponta erros, incoerências e informações que faltam, e fecha cada tarefa com uma avaliação final por escrito. É um projeto de 16 semanas, com cinco dias de trabalho por semana, incluindo fins de semana quando preciso, e duas folgas durante a semana. O título fala em US, mas o anúncio não exige morar nos Estados Unidos.",
+        "requisitos": "Experiência com controle de qualidade, anotação de dados, avaliação de conteúdo, testes ou função parecida. Senso crítico, atenção aos detalhes para achar erros sutis e boa comunicação escrita e falada em inglês. Facilidade com ferramentas de IA e chatbots. Já ter avaliado chatbots ou modelos de linguagem é um diferencial.",
+        "idioma": "en",
+        "contrato": "Projeto de 16 semanas",
+        "carga": "5 dias por semana"
+      }
+    },
+    {
+      "id": "6f79c729a9",
+      "resumo": {
+        "frase": "Usar um assistente de IA no dia a dia e avaliar as mensagens dele.",
+        "o_que_faz": "É um estudo contínuo, com o mesmo grupo de pessoas toda semana. Você continua usando o assistente (Meta Muse ou Instinct) em pelo menos três partes da sua vida, como trabalho, saúde, tarefas e vida social, e registra e dá nota às mensagens que ele manda por conta própria. Toda semana você também exporta as suas conversas, tirando antes os dados pessoais.",
+        "requisitos": "Já usar o Meta Muse ou o Instinct há pelo menos duas semanas. O anúncio não diz se esses aplicativos estão disponíveis no Brasil, então confira isso antes de se candidatar. Disposição para compartilhar as conversas da semana, sem informações pessoais."
       }
     }
   ]

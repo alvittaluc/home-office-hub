@@ -966,6 +966,62 @@
       "titulo": "English AI Safety Specialist",
       "revisado_em": "2026-10-15",
       "motivo": "Leitura e rotulagem de conversas em inglês, remota, sem país exigido. Experiência anterior ajuda, mas não é obrigatória."
+    },
+    {
+      "id": "b24061003e",
+      "empresa": "telus",
+      "titulo": "Personalized Internet Assessor - Portuguese (BR)",
+      "revisado_em": "2026-10-21",
+      "motivo": "Avaliação de resultados de busca em português do Brasil, remota, para quem mora no Brasil."
+    },
+    {
+      "id": "73a95bd216",
+      "empresa": "micro1",
+      "titulo": "Evaluation Specialist/Recent Grad",
+      "revisado_em": "2026-10-21",
+      "motivo": "Perguntas e respostas com pesquisa para testar a IA, remota, sem país exigido. Aceita qualquer formação e não exige experiência com IA."
+    },
+    {
+      "id": "e9afc6adde",
+      "empresa": "micro1",
+      "titulo": "Photographer",
+      "revisado_em": "2026-10-21",
+      "motivo": "Descrição e rotulagem de imagens por fotógrafos, remota, sem país exigido. Pede experiência e portfólio de fotografia, não diploma."
+    },
+    {
+      "id": "73fd7d7fdb",
+      "empresa": "micro1",
+      "titulo": "At-Work Video Recorder [Remote]",
+      "revisado_em": "2026-10-21",
+      "motivo": "Gravação do próprio trabalho com o celular, remota, e o Brasil está na lista de países aceitos."
+    },
+    {
+      "id": "e1805ba0c6",
+      "empresa": "micro1",
+      "titulo": "Video Data Entry Specialist (LATAM)",
+      "revisado_em": "2026-10-21",
+      "motivo": "É a vaga de gravação em casa da micro1 para a América Latina, com o Brasil na lista de países."
+    },
+    {
+      "id": "91d5f7ad1b",
+      "empresa": "turing",
+      "titulo": "AI Quality Analyst - English",
+      "revisado_em": "2026-10-21",
+      "motivo": "Mesma vaga de avaliação da personalização do Gemini já aprovada antes, republicada com outro link. Remota, sem país exigido."
+    },
+    {
+      "id": "a8641549b5",
+      "empresa": "turing",
+      "titulo": "AI Safety Annotation Reviewer",
+      "revisado_em": "2026-10-21",
+      "motivo": "Revisão de avaliações de segurança de IA, remota, sem país exigido. Pede inglês nativo e conhecimento da cultura dos EUA, mas não residência."
+    },
+    {
+      "id": "1db174c7e5",
+      "empresa": "turing",
+      "titulo": "Quality Analyst - US",
+      "revisado_em": "2026-10-21",
+      "motivo": "Comparação de respostas de chatbots, remota. O título diz US, mas o anúncio não exige morar nos EUA e a Turing aceita o Brasil."
     }
   ],
   "bloqueadas": [
@@ -1073,6 +1129,13 @@
       "titulo": "Paid Photo Contributor Opportunity (Hawaii-based)",
       "revisado_em": "2026-10-15",
       "motivo": "Só para quem mora no Havaí."
+    },
+    {
+      "id": "8f0ef9f8ca",
+      "empresa": "micro1",
+      "titulo": "English Voice Coach",
+      "revisado_em": "2026-10-21",
+      "motivo": "Só para quem tem inglês nativo da Irlanda, da Austrália ou do Reino Unido."
     }
   ]
 }
