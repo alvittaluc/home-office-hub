@@ -110,7 +110,7 @@
 </div>
 
 <script src="layout.js"></script>
-<script src="controle-dados.js"></script>
+<script src="controle-dados.js?v=3"></script>
 <script src="pulso-site.js"></script>
 <script>
 montarLayout("vagas");
@@ -297,6 +297,7 @@ document.addEventListener("click", ev => {
               data: Dados.hoje(), estado: "aplicado", origem: "Home Office Hub",
               remuneracao: (v.resumo && v.resumo.remuneracao) || "",
               proximo: "", proximoEm: "", observacoes: "", email: "", curriculo: "",
+              vaga: Dados.fotoDaVaga(v),   // a vaga fica guardada na candidatura
             });
             if (typeof Pulso !== "undefined") Pulso.enviar(v.id, "aplicou");
             await desenharTarja();

@@ -610,6 +610,25 @@ const Dados = (function () {
     return todas.find(a => normalizar(a.empresa) + "|" + normalizar(a.titulo) === chave) || null;
   }
 
+  /* Cópia da vaga guardada dentro da candidatura.
+     A lista de vagas do site muda todo dia e a vaga sai de lá quando fecha.
+     Guardando o resumo junto da candidatura, a pessoa continua vendo, no
+     Meu Controle, o que a vaga pedia e o que ela ia fazer, mesmo depois.
+     "estudo" fica reservado para os links de aulas de cada etapa
+     ({ teste: [{ titulo, url }], entrevista: [...] }), que entram depois. */
+  function fotoDaVaga(v) {
+    if (!v || !v.id) return null;
+    const r = v.resumo || {};
+    let idioma = "";
+    try { idioma = (typeof idiomaDaVaga === "function" && (idiomaDaVaga(v) || {}).longo) || ""; } catch (e) {}
+    return {
+      id: v.id, titulo: v.titulo || "", empresa: v.empresa || "", badge: v.badge || "", local: v.local || "",
+      frase: r.frase || "", o_que_faz: r.o_que_faz || "", requisitos: r.requisitos || "",
+      remuneracao: r.remuneracao || "", carga: r.carga || "", contrato: r.contrato || "", idioma,
+      estudo: r.estudo || null, url: v.url || "", guardada_em: hojeISO(),
+    };
+  }
+
   /* Data de hoje no formato do <input type="date">. */
   function hoje() { return hojeISO(); }
 
@@ -639,7 +658,7 @@ const Dados = (function () {
     nuvem,
     // banco
     abrir, listar, obter, salvar, remover, removerTrabalho,
-    obterConfig, salvarConfig, estadoDoBanco, apagarTudo, procurarAplicacao,
+    obterConfig, salvarConfig, estadoDoBanco, apagarTudo, procurarAplicacao, fotoDaVaga,
     exportarTudo, importarTudo, baixarBackup, lerArquivoBackup,
     // câmbio
     cotacao, emReais, MOEDAS,

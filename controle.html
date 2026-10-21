@@ -273,6 +273,57 @@ body > header.site .hd { max-width:1460px; }
 
 .ct-carregando { text-align:center; padding:70px 20px; color:var(--ink-3,#66717F); font-size:14px; }
 [hidden] { display:none !important; }
+
+/* ── candidatura aberta: abas "A vaga" e "Editar" ── */
+.cv-abas { display:flex; gap:4px; padding:4px; border-radius:12px; background:var(--bg-soft,#F1ECE3); align-self:flex-start; }
+.cv-aba { font:inherit; font-size:13.5px; font-weight:600; color:var(--ink-2,#54606F); background:none; border:0; border-radius:9px; padding:8px 18px; cursor:pointer; }
+.cv-aba[aria-selected="true"] { background:var(--panel,#fff); color:var(--ink,#10203A); box-shadow:0 1px 3px rgba(16,32,58,.12); }
+.cv-sec { display:flex; flex-direction:column; gap:16px; }
+.cv-leve { font-size:13.5px; color:var(--ink-3,#66717F); margin:0; }
+.cv-cat { font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--signal,#1A4893); margin-bottom:4px; }
+.cv-frase { font-size:15.5px; color:var(--ink,#10203A); margin:0 0 4px; line-height:1.45; }
+.cv-emp { font-size:13px; color:var(--ink-3,#66717F); margin:0; }
+.cv-etapas { border:1px solid var(--line-soft,#EAE4D9); border-radius:14px; padding:14px 16px 12px; background:var(--panel,#fff); }
+.cv-etapas-tit { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-2,#54606F); margin-bottom:12px; }
+.cv-etapas-tit span { text-transform:none; letter-spacing:0; font-weight:400; color:var(--ink-3,#66717F); margin-left:6px; }
+.cv-trilho { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4, 1fr); }
+.cv-passo { position:relative; }
+.cv-passo::before { content:""; position:absolute; top:11px; left:-50%; right:50%; height:2px; background:var(--line,#DED7CA); }
+.cv-passo:first-child::before { display:none; }
+.cv-passo.feita::before, .cv-passo.atual::before { background:var(--signal,#1A4893); }
+.cv-passo button { position:relative; z-index:1; width:100%; display:flex; flex-direction:column; align-items:center; gap:7px; font:inherit; font-size:12.5px; font-weight:500;
+  color:var(--ink-2,#54606F); background:none; border:0; cursor:pointer; padding:0 4px 2px; text-align:center; line-height:1.25; }
+.cv-passo button i { width:24px; height:24px; border-radius:50%; background:var(--panel,#fff); border:2px solid var(--line,#DED7CA); display:grid; place-items:center; transition:transform .15s; }
+.cv-passo button:hover i { transform:scale(1.08); border-color:var(--signal,#1A4893); }
+.cv-passo.feita button i { background:var(--signal,#1A4893); border-color:var(--signal,#1A4893); }
+.cv-passo.feita button i::after { content:""; width:9px; height:5px; border:2px solid #fff; border-top:0; border-right:0; transform:rotate(-45deg) translate(1px,-1px); }
+.cv-passo.atual button i { border-color:var(--signal,#1A4893); box-shadow:0 0 0 5px rgba(26,72,147,.14); }
+.cv-passo.atual button i::after { content:""; width:10px; height:10px; border-radius:50%; background:var(--signal,#1A4893); }
+.cv-passo.atual button { color:var(--ink,#10203A); font-weight:600; }
+.cv-desfechos { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:14px; padding-top:12px; border-top:1px dashed var(--line,#DED7CA); font-size:12.5px; color:var(--ink-3,#66717F); }
+.cv-desfechos > span { margin-right:4px; }
+.cv-desf { font:inherit; font-size:12.5px; font-weight:500; color:var(--ink-2,#54606F); background:var(--panel,#fff); border:1px solid var(--line,#DED7CA); border-radius:99px; padding:4px 11px; cursor:pointer; }
+.cv-desf:hover { border-color:var(--ink-3,#66717F); }
+.cv-desf.atual { font-weight:600; }
+.cv-estudo { border-radius:14px; padding:13px 16px; background:var(--signal-suave,#EAF1F8); border:1px solid #D3E2F1; }
+.cv-estudo-tit { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--signal,#1A4893); margin-bottom:7px; }
+.cv-estudo ul { margin:0; padding-left:18px; display:grid; gap:4px; }
+.cv-estudo a { color:var(--signal,#1A4893); font-size:14px; font-weight:500; }
+.cv-aviso { font-size:13px; line-height:1.5; color:var(--amber,#A85D24); background:var(--amber-suave,#FBF0E4); border-radius:11px; padding:10px 13px; margin:0; }
+.cv-fatos { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:8px; }
+.cv-fato { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:12px; padding:9px 12px; min-width:0; }
+.cv-fato small { display:block; font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3,#66717F); margin-bottom:2px; }
+.cv-fato b { font-size:13.5px; font-weight:600; color:var(--ink,#10203A); line-height:1.35; }
+.cv-fato.pg { background:#E4F3F0; border-color:#C6E5DE; }
+.cv-fato.pg small, .cv-fato.pg b { color:#1F7A6E; }
+.cv-parte h3 { display:flex; align-items:center; gap:8px; font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2,#54606F); margin:0 0 6px; }
+.cv-parte h3::before { content:""; width:5px; height:5px; border-radius:50%; background:var(--signal,#1A4893); }
+.cv-parte p { font-size:14.5px; line-height:1.65; color:var(--ink,#10203A); margin:0; white-space:pre-line; }
+.cv-links { display:flex; flex-wrap:wrap; gap:8px; }
+@media (max-width:560px) {
+  .cv-trilho { grid-template-columns:repeat(2, 1fr); row-gap:14px; }
+  .cv-passo:nth-child(3)::before { display:none; }
+}
 </style>
 </head>
 <body>
@@ -305,7 +356,7 @@ body > header.site .hd { max-width:1460px; }
 </main>
 
 <script src="layout.js"></script>
-<script src="controle-dados.js?v=2"></script>
+<script src="controle-dados.js?v=3"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js" integrity="sha384-WgXwGL6fUsYJWNaKJgVbrJKGRQwc1vieh2oy4kw9nXqpNDz3tdSsqEYUgeHD/NuF" crossorigin="anonymous"></script>
 <script src="controle-conta.js?v=8"></script>
 <script src="pulso-site.js"></script>
@@ -941,6 +992,166 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     }));
   }
 
+  /* ── depois que a etapa muda (pelo formulário ou pela aba "A vaga") ── */
+  function depoisDaEtapa(salvo, estadoNovo, estadoAntigo, titulo, empresa) {
+    /* Pulso: só age se a pessoa tiver ligado, e só para vagas vindas do Hub. */
+    if (typeof Pulso !== "undefined") Pulso.porEstado(salvo.vagaId, estadoNovo, estadoAntigo);
+
+    // Virou aprovado: oferece criar o trabalho na hora.
+    if (estadoNovo === "aprovado" && estadoAntigo !== "aprovado") {
+      setTimeout(async () => {
+        const sim = await UI.confirmar({
+          titulo: "Aprovado. Quer criar o trabalho?",
+          texto: "Dá para começar a lançar horas e ganhos de <b>" + esc(titulo) + "</b> agora, com empresa e nome já preenchidos.",
+          acaoTexto: "Criar o trabalho",
+        });
+        if (sim) formTrabalho({ empresa, projeto: titulo, aplicacaoId: salvo.id });
+      }, 260);
+    }
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     ABA "A VAGA" DE UMA CANDIDATURA
+     Mostra de novo o que a página da vaga mostrava: o resumo, o que a
+     vaga pede, os links para a página e para o anúncio. A cópia da vaga
+     fica guardada na própria candidatura (Dados.fotoDaVaga), então ela
+     continua aqui mesmo depois que a vaga sai da lista do site.
+     A etapa muda com um clique, e cada etapa pode ter links de estudo
+     (campo "estudo" do resumo da vaga), que aparecem quando existirem.
+     ══════════════════════════════════════════════════════════ */
+  const CAMINHO = ["aplicado", "teste", "entrevista", "aprovado"];
+  const DESFECHOS = ["recusado", "semresposta", "banco"];
+
+  /* link de estudo: endereço completo (https) ou página do próprio site */
+  function linkDeEstudo(u) {
+    u = String(u || "").trim();
+    if (/^https?:\/\//i.test(u)) return u;
+    if (/^[a-z0-9-]+\.html([?#][\w=&#.-]*)?$/i.test(u)) return u;
+    return "";
+  }
+
+  function ligarAbas(dlg, ap) {
+    const abas = dlg.querySelectorAll(".cv-aba");
+    const ok = dlg.querySelector("[data-ok]"), cancelar = dlg.querySelector("[data-cancelar]"), extra = dlg.querySelector(".u-extra");
+    function mostrar(nome) {
+      abas.forEach(b => b.setAttribute("aria-selected", String(b.dataset.aba === nome)));
+      dlg.querySelectorAll(".cv-sec").forEach(s => { s.hidden = s.dataset.sec !== nome; });
+      const naVaga = nome === "vaga";
+      ok.hidden = naVaga;
+      if (extra) extra.style.visibility = naVaga ? "hidden" : "";
+      cancelar.textContent = naVaga ? "Fechar" : "Cancelar";
+    }
+    abas.forEach(b => b.addEventListener("click", () => mostrar(b.dataset.aba)));
+    mostrar("vaga");
+    desenharVaga(dlg, ap);
+  }
+
+  async function desenharVaga(dlg, ap) {
+    const sec = dlg.querySelector('[data-sec="vaga"]');
+    let foto = ap.vaga || null, noAr = false;
+    if (ap.vagaId && typeof lerVagasComEscondidas === "function") {
+      try {
+        const d = await lerVagasComEscondidas();
+        const v = (d.vagas || []).find(x => x.id === ap.vagaId);
+        if (v) {
+          noAr = true;
+          const nova = Dados.fotoDaVaga(v);
+          const semData = f => JSON.stringify(Object.assign({}, f, { guardada_em: "" }));
+          // a vaga ainda está no site: a cópia guardada acompanha o que mudou nela
+          if (nova && (!foto || semData(foto) !== semData(nova))) {
+            foto = nova; ap.vaga = nova;
+            await Dados.salvar("aplicacoes", Object.assign({}, ap));
+          }
+        }
+      } catch (e) { console.warn("Meu Controle: não deu para ler a vaga", e); }
+    }
+    if (!sec || !dlg.isConnected) return;
+    sec.innerHTML = htmlVaga(ap, foto, noAr);
+    desenharEtapas(dlg, ap, foto);
+  }
+
+  function htmlVaga(ap, foto, noAr) {
+    const f = foto || {};
+    const fatos = [
+      ["Pagamento", f.remuneracao || ap.remuneracao, true],
+      ["Carga", f.carga],
+      ["Contrato", f.contrato],
+      ["Idioma do trabalho", f.idioma],
+    ].filter(x => x[1]);
+    const anuncio = urlSegura(ap.url || f.url);
+    const pagina = noAr && ap.vagaId ? "vaga.html?id=" + encodeURIComponent(ap.vagaId) : "";
+    let aviso = "";
+    if (ap.vagaId && !noAr && foto) aviso = `<p class="cv-aviso">Esta vaga saiu da lista do site. O resumo abaixo ficou guardado na sua candidatura em ${esc(Dados.dataBonita(f.guardada_em))}.</p>`;
+    else if (ap.vagaId && !noAr) aviso = `<p class="cv-aviso">Esta vaga saiu da lista do site antes de o Meu Controle guardar o resumo dela. O anúncio oficial pode continuar no ar.</p>`;
+    return `
+      <div class="cv-cab">
+        ${f.badge ? `<div class="cv-cat">${esc(f.badge)}</div>` : ""}
+        ${f.frase ? `<p class="cv-frase">${esc(f.frase)}</p>` : ""}
+        <p class="cv-emp">Enviada em ${esc(Dados.dataBonita(ap.data))}${ap.origem ? " · vista em " + esc(ap.origem) : ""}</p>
+      </div>
+      <div class="cv-etapas" data-etapas></div>
+      <div data-estudo></div>
+      ${aviso}
+      ${fatos.length ? `<div class="cv-fatos">${fatos.map(x =>
+        `<div class="cv-fato${x[2] ? " pg" : ""}"><small>${x[0]}</small><b>${esc(x[1])}</b></div>`).join("")}</div>` : ""}
+      ${f.o_que_faz ? `<div class="cv-parte"><h3>O que você vai fazer</h3><p>${esc(f.o_que_faz)}</p></div>` : ""}
+      ${f.requisitos ? `<div class="cv-parte"><h3>Requisitos</h3><p>${esc(f.requisitos)}</p></div>` : ""}
+      ${ap.observacoes ? `<div class="cv-parte"><h3>Suas observações</h3><p>${esc(ap.observacoes)}</p></div>` : ""}
+      ${!foto && !ap.vagaId ? `<p class="cv-leve">Esta candidatura foi registrada à mão, sem uma vaga do Hub. Na aba Editar dá para guardar o link do anúncio e anotações.</p>` : ""}
+      ${pagina || anuncio ? `<div class="cv-links">
+        ${pagina ? `<a class="ct-b pequeno" href="${pagina}">Abrir a página da vaga</a>` : ""}
+        ${anuncio ? `<a class="ct-b pequeno" href="${esc(anuncio)}" target="_blank" rel="noopener">Ir para o anúncio oficial ↗</a>` : ""}
+      </div>` : ""}`;
+  }
+
+  function desenharEtapas(dlg, ap, foto) {
+    const caixa = dlg.querySelector("[data-etapas]");
+    if (!caixa) return;
+    const atual = ap.estado || "aplicado", iAtual = CAMINHO.indexOf(atual);
+    caixa.innerHTML = `
+      <div class="cv-etapas-tit">Em que pé está <span>clique na etapa para atualizar</span></div>
+      <ol class="cv-trilho">${CAMINHO.map((id, i) => {
+        const classe = id === atual ? " atual" : (iAtual >= 0 && i < iAtual ? " feita" : "");
+        return `<li class="cv-passo${classe}"><button type="button" data-estado="${id}" aria-pressed="${id === atual}"><i></i><span>${esc(estadoDe(id).nome)}</span></button></li>`;
+      }).join("")}</ol>
+      <div class="cv-desfechos"><span>Outro desfecho:</span>${DESFECHOS.map(id => {
+        const e = estadoDe(id), ativo = id === atual;
+        return `<button type="button" class="cv-desf${ativo ? " atual" : ""}" data-estado="${id}" aria-pressed="${ativo}"
+          ${ativo ? `style="background:${e.fundo};color:${e.texto};border-color:${e.borda};"` : ""}>${esc(e.nome)}</button>`;
+      }).join("")}</div>`;
+    caixa.querySelectorAll("[data-estado]").forEach(b => b.addEventListener("click", () => mudarEtapa(dlg, ap, foto, b.dataset.estado)));
+    desenharEstudo(dlg, ap, foto);
+  }
+
+  function desenharEstudo(dlg, ap, foto) {
+    const caixa = dlg.querySelector("[data-estudo]");
+    if (!caixa) return;
+    const lista = foto && foto.estudo && Array.isArray(foto.estudo[ap.estado]) ? foto.estudo[ap.estado] : [];
+    const links = lista.map(l => ({ titulo: l && l.titulo, url: linkDeEstudo(l && l.url) })).filter(l => l.titulo && l.url);
+    caixa.innerHTML = !links.length ? "" : `
+      <div class="cv-estudo">
+        <div class="cv-estudo-tit">Para esta etapa · ${esc(estadoDe(ap.estado).nome)}</div>
+        <ul>${links.map(l => `<li><a href="${esc(l.url)}"${/^https?:/i.test(l.url) ? ' target="_blank" rel="noopener"' : ""}>${esc(l.titulo)}</a></li>`).join("")}</ul>
+      </div>`;
+  }
+
+  async function mudarEtapa(dlg, ap, foto, novo) {
+    if (!novo || novo === ap.estado) return;
+    const antigo = ap.estado;
+    let salvo;
+    try { salvo = await Dados.salvar("aplicacoes", Object.assign({}, ap, { estado: novo })); }
+    catch (e) { console.error(e); UI.aviso("Não deu para salvar agora.", "erro"); return; }
+    ap.estado = novo;
+    const campo = dlg.querySelector('[name="estado"]');
+    if (campo) campo.value = novo;
+    desenharEtapas(dlg, ap, foto);
+    await recarregar();
+    if (rota.tela === "aplicacoes") desenharAplicacoes();
+    if (rota.tela === "hoje") await desenharHoje();
+    UI.aviso("Etapa atualizada: " + estadoDe(novo).nome + ".");
+    depoisDaEtapa(salvo || ap, novo, antigo, ap.titulo, ap.empresa);
+  }
+
   /* ── formulário de aplicação ── */
   async function formAplicacao(base) {
     const novo = !base || !base.id;
@@ -981,11 +1192,21 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
                    dica: "Nome do recrutador, o que pediram, o que você respondeu" })}
       <div id="avisoRepetida"></div>`;
 
+    /* Candidatura já registrada abre em duas abas: "A vaga" (o resumo guardado,
+       a etapa e, depois, os links de estudo de cada etapa) e "Editar" (o formulário). */
+    const comVaga = !novo;
     const dlg = UI.painel({
-      titulo: novo ? "Nova candidatura" : "Editar candidatura",
+      titulo: novo ? "Nova candidatura" : (ap.titulo || "Candidatura"),
       subtitulo: novo ? "" : ap.empresa,
       acaoTexto: novo ? "Registrar" : "Salvar",
-      corpo,
+      largo: comVaga,
+      corpo: !comVaga ? corpo : `
+        <div class="cv-abas" role="tablist" aria-label="Candidatura">
+          <button type="button" role="tab" class="cv-aba" data-aba="vaga" aria-selected="true">A vaga</button>
+          <button type="button" role="tab" class="cv-aba" data-aba="editar" aria-selected="false">Editar</button>
+        </div>
+        <section class="cv-sec" data-sec="vaga"><p class="cv-leve">Abrindo a vaga…</p></section>
+        <section class="cv-sec" data-sec="editar" hidden>${corpo}</section>`,
       extra: novo ? "" : `<button type="button" class="u-link u-perigo-txt" data-apagar>Apagar</button>`,
       acao: async (d) => {
         const empresa = UI.ler(d, "empresa"), titulo = UI.ler(d, "titulo");
@@ -1019,20 +1240,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         if (rota.tela === "hoje") await desenharHoje();
         UI.aviso(novo ? "Candidatura registrada." : "Candidatura salva.");
 
-        /* Pulso: só age se a pessoa tiver ligado, e só para vagas vindas do Hub. */
-        if (typeof Pulso !== "undefined") Pulso.porEstado(salvo.vagaId, estadoNovo, ap.estado);
-
-        // Virou aprovado: oferece criar o trabalho na hora.
-        if (estadoNovo === "aprovado" && ap.estado !== "aprovado") {
-          setTimeout(async () => {
-            const sim = await UI.confirmar({
-              titulo: "Aprovado. Quer criar o trabalho?",
-              texto: "Dá para começar a lançar horas e ganhos de <b>" + esc(titulo) + "</b> agora, com empresa e nome já preenchidos.",
-              acaoTexto: "Criar o trabalho",
-            });
-            if (sim) formTrabalho({ empresa, projeto: titulo, aplicacaoId: salvo.id });
-          }, 260);
-        }
+        depoisDaEtapa(salvo, estadoNovo, ap.estado, titulo, empresa);
       },
     });
 
@@ -1057,6 +1265,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       el.addEventListener("input", () => { clearTimeout(el._t); el._t = setTimeout(conferirRepetida, 450); });
     });
     if (!novo) conferirRepetida();
+    if (comVaga) ligarAbas(dlg, ap);
 
     const apagar = dlg.querySelector("[data-apagar]");
     if (apagar) apagar.addEventListener("click", async () => {
