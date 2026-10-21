@@ -1046,13 +1046,45 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     desenharVaga(dlg, ap);
   }
 
+  /* Resumos de toda vaga que já passou pelo Hub, por id (resumos-arquivo.json,
+     gerado na publicação do site). Serve para a candidatura antiga cuja vaga
+     já saiu da lista. Lido uma vez só, e só quando precisa. */
+  let arquivoDeResumos = null;
+  async function resumoArquivado(id) {
+    if (!id) return null;
+    if (!arquivoDeResumos) {
+      try {
+        const r = await fetch("resumos-arquivo.json?v=" + Date.now());
+        arquivoDeResumos = r.ok ? ((await r.json()).resumos || {}) : {};
+      } catch (e) { arquivoDeResumos = {}; }
+    }
+    return arquivoDeResumos[id] || null;
+  }
+
+  /* A mesma vaga republicada com outro link (o id muda): mesmo título e mesma empresa. */
+  const chaveTitulo = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+  function mesmaVaga(ap, v) {
+    const t = chaveTitulo(ap.titulo), e = chaveTitulo(ap.empresa), ve = chaveTitulo(v.empresa);
+    return !!t && !!v.resumo && chaveTitulo(v.titulo) === t && (!e || !ve || e.indexOf(ve) >= 0 || ve.indexOf(e) >= 0);
+  }
+
   async function desenharVaga(dlg, ap) {
     const sec = dlg.querySelector('[data-sec="vaga"]');
     let foto = ap.vaga || null, noAr = false;
-    if (ap.vagaId && typeof lerVagasComEscondidas === "function") {
+    if (typeof lerVagasComEscondidas === "function" && (ap.vagaId || !foto)) {
       try {
         const d = await lerVagasComEscondidas();
-        const v = (d.vagas || []).find(x => x.id === ap.vagaId);
+        const lista = d.vagas || [];
+        const v = (ap.vagaId && lista.find(x => x.id === ap.vagaId)) || lista.find(x => mesmaVaga(ap, x));
+        if (!v && ap.vagaId && !foto) {
+          // saiu da lista: o resumo vem do arquivo do Hub e fica guardado na candidatura
+          const r = await resumoArquivado(ap.vagaId);
+          if (r) {
+            foto = Dados.fotoDaVaga({ id: ap.vagaId, titulo: ap.titulo, url: ap.url, resumo: r });
+            ap.vaga = foto;
+            await Dados.salvar("aplicacoes", Object.assign({}, ap));
+          }
+        }
         if (v) {
           noAr = true;
           const nova = Dados.fotoDaVaga(v);

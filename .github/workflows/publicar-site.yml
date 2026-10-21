@@ -51,6 +51,11 @@ jobs:
             --exclude 'alertas-enviados.json' --exclude 'vagas-curadoria.json' --exclude 'alignerr-mestres.json'
           echo "Arquivos que vão para o ar: $(find _site -type f | wc -l)"
 
+      # O resumos.json fica fora do site, mas o Meu Controle precisa do resumo
+      # das vagas que já saíram da lista para mostrar as candidaturas antigas.
+      - name: Guardar os resumos das vagas que já saíram da lista
+        run: python3 arquivo_resumos.py _site/resumos-arquivo.json
+
       - name: Empacotar o site
         uses: actions/upload-pages-artifact@v3
         with:
