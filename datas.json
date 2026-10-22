@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-10-21T19:04:23.289948+00:00",
-  "total": 1158,
+  "atualizado_em": "2026-10-22T13:19:45.109340+00:00",
+  "total": 1161,
   "primeira_vez": {
     "alignerr|accounting & finance expert": "2026-10-02",
     "alignerr|accounting instructor": "2026-10-02",
@@ -266,6 +266,7 @@
     "alignerr|soil and water conservation scientist": "2026-10-02",
     "alignerr|statistics expert": "2026-10-02",
     "alignerr|structural engineer ai task creator opensees": "2026-10-02",
+    "alignerr|structural engineering expert: building design and quality review": "2026-10-22",
     "alignerr|systems programmer ai data pipelines": "2026-10-02",
     "alignerr|systems software engineer machine learning ops": "2026-10-02",
     "alignerr|threat intelligence analyst": "2026-10-02",
@@ -876,6 +877,7 @@
     "oneforma|app store and music search evaluator": "2026-08-05",
     "oneforma|audio transcription quality reviewer": "2026-08-28",
     "oneforma|bilingual translation quality rater": "2026-08-05",
+    "oneforma|local maps search evaluator": "2026-10-22",
     "oneforma|multilingual ai response and rubric evaluator": "2026-08-05",
     "oneforma|multilingual intent and response annotator": "2026-08-05",
     "oneforma|multilingual podcast transcription and speech annotator": "2026-08-05",
@@ -1039,6 +1041,7 @@
     "turing|mle bench data analyst": "2026-08-28",
     "turing|mle bench ml engineers": "2026-08-28",
     "turing|music and audio experts": "2026-09-11",
+    "turing|music professionals": "2026-10-22",
     "turing|operations supply chain sme": "2026-09-11",
     "turing|personal finance sme": "2026-09-11",
     "turing|ph.d. postdoctoral master’s expert": "2026-09-11",
