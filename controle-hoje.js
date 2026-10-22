@@ -181,7 +181,7 @@ const Hoje = (function () {
         // trabalho pago por tarefa mostra as tarefas do dia; as horas vêm junto se houver
         const q = r ? UI.qtdTarefas(r) : 0;
         const feito = [q ? UI.escreverTarefas(q) : "", h ? Dados.escreverHoras(h) : ""].filter(Boolean).join(" · ");
-        const pl = comAgenda ? Agenda.planoDoDia(t, hoje) : null;
+        const pl = comAgenda ? Agenda.planoDoDia(t, hoje, ctx.agenda) : null;
         const plano = !pl ? "" : `<span class="h-dia-plano">plano de hoje: <b>${esc(Agenda.horas(pl.horas))}</b></span>`;
         return `<button class="h-dia-cartao" data-dia="${esc(t.id)}"${pl && !h ? ` data-horas="${pl.horas}"` : ""}>
           <span class="h-dia-nome">
