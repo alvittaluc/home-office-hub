@@ -35,8 +35,10 @@ const Acesso = (function () {
   /* false: nada é trancado ainda, e só o botão Entrar aparece no topo.
             Para ver como fica, abra qualquer página com ?previa=1 no fim
             do endereço (e ?previa=0 para voltar ao normal).
-     true:  as portas valem para todo mundo. */
-  const PORTAS_LIGADAS = true;
+     true:  as portas valem para todo mundo.
+     Desligadas em 22/10/2026, por um tempo, para um amigo do dono analisar
+     o site inteiro sem precisar de conta. Volta para true quando acabar. */
+  const PORTAS_LIGADAS = false;
 
   const PROJETO = "zrqucjktympnwilbvisw";   // o mesmo do controle-conta.js
 
