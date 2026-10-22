@@ -2,8 +2,9 @@
  * Pulso do Hub — peça de navegador.
  *
  * Faz três coisas, e nenhuma delas é obrigatória para o site funcionar:
- *   1. diz quais vagas estão em destaque e o que a equipe anotou sobre elas,
- *      para a lista montar o bloco "Estão chamando agora";
+ *   1. diz quais vagas estão em destaque e o que a equipe anotou sobre elas
+ *      (em que etapa a empresa está chamando), para a lista montar o grupo
+ *      "Em alta" e o selo verde de cada uma;
  *   2. põe o selo discreto nos cartões dessas vagas;
  *   3. despacha os eventos do Meu Controle, se a pessoa tiver ligado o Pulso.
  *
@@ -110,20 +111,39 @@
 
   /** Põe o selo nos cartões .vaga[data-vid] que já estiverem na tela. */
   function marcar(raiz) {
-    if (!dados || !dados.sinais) return;
+    if (!dados) return;
     (raiz || document).querySelectorAll(".vaga[data-vid]").forEach(el => {
+      const onde = el.querySelector(".v-emp");
+      if (!onde || onde.querySelector(".selo-pulso, .selo-chamando")) return;
+
+      /* Lista feita à mão: a equipe confirmou que a empresa está chamando.
+         A linha ganha o fundo verde e o selo que pulsa, onde quer que apareça. */
+      const d = manual() ? detalhe(el.dataset.vid) : null;
+      if (d) {
+        el.classList.add("chamando");
+        const s = document.createElement("span");
+        s.className = "selo-chamando";
+        s.title = [confirmado(d) + " pela equipe do Hub", d.nota].filter(Boolean).join(". ");
+        s.innerHTML = '<i class="ch-pulso" aria-hidden="true"></i>';
+        s.appendChild(document.createTextNode(etapa(d)));
+        onde.appendChild(s);
+        const quando = confirmado(d);
+        if (quando) {
+          const q = document.createElement("span");
+          q.className = "ch-quando";
+          q.textContent = quando.charAt(0).toLowerCase() + quando.slice(1);
+          onde.appendChild(q);
+        }
+        return;
+      }
+
       const lista = selos(el.dataset.vid);
       if (!lista.length) return;
-      const onde = el.querySelector(".v-emp");
-      if (!onde || onde.querySelector(".selo-pulso")) return;
       const chave = lista.indexOf("responde") >= 0 ? "responde" : "alta";
       const s = document.createElement("span");
       s.className = "selo-pulso " + chave;
-      /* Na lista feita à mão, "em alta" quer dizer que a equipe confirmou
-         que a empresa está chamando gente. */
-      const aMao = manual() && chave === "alta";
-      s.title = aMao ? "A equipe do Hub confirmou que esta vaga está chamando gente" : SELOS[chave].titulo;
-      s.textContent = aMao ? "chamando agora" : SELOS[chave].texto;
+      s.title = SELOS[chave].titulo;
+      s.textContent = SELOS[chave].texto;
       onde.appendChild(s);
     });
   }

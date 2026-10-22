@@ -529,75 +529,36 @@
     font-size:9.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
     border-radius:20px; padding:2px 8px; flex-shrink:0;
   }
-  .v-emp .selo-pulso.alta     { color:#156B45; background:#E3F5EC; border:1px solid #BFE6D2;
-                                display:inline-flex; align-items:center; gap:5px; }
-  .v-emp .selo-pulso.alta::before { content:""; width:6px; height:6px; border-radius:50%; background:#2BB673; }
+  .v-emp .selo-pulso.alta     { color:var(--signal); background:var(--signal-suave); border:1px solid #D3E2F1; }
   .v-emp .selo-pulso.responde { color:var(--violet); background:#F1EEF7; border:1px solid #DFD8EE; }
 
-  /* cartões de demonstração do bloco "Estão chamando agora", para quem não
-     tem conta: só o formato de um cartão, com barras no lugar do texto */
-  .demo-l { display:block; flex-shrink:0; max-width:100%; height:11px; border-radius:6px; background:#C4CCD8; }
-  .demo-l.forte { height:14px; background:#7C8898; }
-  .demo-l.fina { height:9px; background:#D8DDE5; }
-  .demo-l.selo { height:17px; border-radius:20px; background:#C6E5DE; }
-
-  /* ═══════════════ CHAMANDO AGORA ═══════════════
-     As vagas "Em alta": a equipe do Hub confirmou que a empresa está
-     chamando gente nos últimos dias. Painel escuro no topo da lista, com
-     um cartão por vaga. O ponto que pulsa é o "ao vivo" do bloco. */
-  .ch { position:relative; overflow:hidden; background:var(--escuro); border-radius:22px; padding:26px 26px 22px;
-    margin:0 0 30px; color:var(--ink-claro); box-shadow:0 24px 50px -28px rgba(16,32,58,.55); }
-  .ch::before { content:""; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(60% 120% at 100% 0%, rgba(43,182,115,.16), transparent 60%),
-               radial-gradient(55% 100% at 0% 100%, rgba(26,72,147,.40), transparent 65%); }
-  .ch > * { position:relative; }
-  .ch-cab { display:flex; justify-content:space-between; align-items:flex-end; gap:18px; margin-bottom:20px; }
-  .ch-olho { display:inline-flex; align-items:center; gap:9px; font-size:11.5px; font-weight:600; letter-spacing:.12em;
-    text-transform:uppercase; color:#8FD9B4; }
-  .ch h2 { font-family:var(--display); font-weight:400; font-size:30px; line-height:1.12; color:#fff; margin:10px 0 7px; letter-spacing:-.01em; }
-  .ch-cab p { font-size:14.5px; line-height:1.55; color:var(--ink-claro-2); margin:0; max-width:60ch; }
-  .ch-qt { font-size:13px; color:var(--ink-claro-2); white-space:nowrap; }
-
-  .ch-pulso { position:relative; width:9px; height:9px; border-radius:50%; background:#2BB673; flex-shrink:0; }
+  /* Em alta: a equipe confirmou que a empresa está chamando gente. A linha é a
+     mesma das outras vagas, com um fundo verde leve e o selo que pulsa. */
+  .vaga.chamando { border-color:#BFE6D2; background:linear-gradient(90deg,#F1FAF5,var(--panel) 45%); }
+  .vaga.chamando:hover { border-color:#9FD8BC; }
+  .v-emp .selo-chamando {
+    display:inline-flex; align-items:center; gap:7px; font-size:11.5px; font-weight:600; white-space:nowrap;
+    color:#156B45; background:#E3F5EC; border:1px solid #BFE6D2; border-radius:20px; padding:1px 10px 1px 8px; flex-shrink:0;
+  }
+  .v-emp .ch-quando { font-size:11.5px; color:var(--ink-3); white-space:nowrap; }
+  .ch-pulso { position:relative; display:inline-block; width:7px; height:7px; border-radius:50%; background:#2BB673; flex-shrink:0; }
   .ch-pulso::after { content:""; position:absolute; inset:0; border-radius:50%; background:#2BB673;
     animation:ch-pulsa 1.8s ease-out infinite; }
   @keyframes ch-pulsa { 0% { transform:scale(1); opacity:.7; } 80%, 100% { transform:scale(3.2); opacity:0; } }
   @media (prefers-reduced-motion:reduce){ .ch-pulso::after { animation:none; opacity:0; } }
+  .grupo-titulo h2 .ch-pulso { margin:0 8px 1px 1px; vertical-align:middle; }
+  .grupo-titulo h2:has(.ch-pulso) { white-space:nowrap; }
 
-  .ch-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:14px; }
-  .ch-card { display:flex; flex-direction:column; gap:9px; background:var(--panel); border-radius:16px; padding:16px 17px 14px;
-    color:var(--ink); text-decoration:none; box-shadow:0 14px 30px -22px rgba(0,0,0,.8);
-    transition:transform .18s, box-shadow .18s; }
-  .ch-card:hover { transform:translateY(-3px); box-shadow:0 22px 40px -24px rgba(0,0,0,.9); }
-  .ch-status { align-self:flex-start; display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600;
-    color:#156B45; background:#E3F5EC; border:1px solid #BFE6D2; border-radius:999px; padding:4px 11px 4px 10px; }
-  .ch-emp { display:flex; align-items:center; gap:9px; font-size:12.5px; color:var(--ink-3); margin-top:2px; }
-  .ch-emp .v-marca { width:30px; height:30px; border-radius:9px; }
-  .ch-emp .v-marca img { width:18px; height:18px; }
-  .ch-tit { font-weight:600; font-size:15.5px; line-height:1.3; color:var(--ink); letter-spacing:-.01em;
-    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .ch-frase { font-size:13.5px; line-height:1.45; color:var(--ink-2); }
-  .ch-chips { display:flex; flex-wrap:wrap; gap:6px; }
-  .ch-chips .selo-pg { font-size:11.5px; font-weight:600; color:#1F7A6E; background:#E4F3F0; border:1px solid #C6E5DE;
-    border-radius:20px; padding:1px 9px; white-space:nowrap; }
-  .ch-chips .selo-idi { font-size:11px; color:var(--ink-2); background:var(--bg-soft); border:1px solid var(--line-soft);
-    border-radius:20px; padding:1px 9px; white-space:nowrap; }
-  .ch-chips .selo-idi.av { color:var(--amber); background:var(--amber-suave); border-color:#EBD2B4; }
-  .ch-nota { font-size:13px; line-height:1.5; color:var(--ink-2); background:var(--bg); border-radius:10px; padding:9px 11px; }
-  .ch-nota b { color:var(--ink); font-weight:600; }
-  .ch-pe { margin-top:auto; padding-top:9px; border-top:1px solid var(--line-soft); display:flex; justify-content:space-between;
-    align-items:center; gap:10px; font-size:12.5px; color:var(--ink-3); }
-  .ch-ver { color:var(--signal); font-weight:600; white-space:nowrap; }
-  .ch-card.demo { pointer-events:none; }
-  .ch .ac-cortina .ac-aviso { box-shadow:0 20px 50px -20px rgba(0,0,0,.6); }
-  @media (max-width:720px) {
-    .ch { padding:22px 16px 16px; border-radius:18px; margin:0 -4px 26px; }
-    .ch-cab { flex-direction:column; align-items:flex-start; gap:6px; }
-    .ch h2 { font-size:25px; }
-    .ch-cards { grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:84%; overflow-x:auto;
-      scroll-snap-type:x mandatory; padding-bottom:6px; }
-    .ch-card { scroll-snap-align:start; }
-  }
+  /* cartões de demonstração do bloco "Em alta", para quem não tem conta:
+     só o formato de um cartão, com barras no lugar do texto */
+  .vaga.demo { pointer-events:none; }
+  .vaga.demo .v-marca { border-color:transparent; }
+  .vaga.demo .v-nome { gap:7px; }
+  .demo-l { display:block; flex-shrink:0; max-width:100%; height:11px; border-radius:6px; background:#C4CCD8; }
+  .demo-l.forte { height:14px; background:#7C8898; }
+  .demo-l.fina { height:9px; background:#D8DDE5; }
+  .demo-l.selo { height:17px; border-radius:20px; background:#C6E5DE; }
+  @media (max-width:720px) { .ac-borrado .vaga.demo:nth-child(n+4) { display:none; } }
 
   /* colunas de dados, com rótulo em cima */
   .v-col { display:flex; flex-direction:column; gap:4px; min-width:0; }
@@ -1315,40 +1276,29 @@ function linha(v) {
   </a>`;
 }
 
-/* Cartão do bloco "Estão chamando agora". O que a equipe anotou no
-   pulso.json (em que etapa a empresa está chamando, quando isso foi
-   confirmado e um recado curto) aparece aqui; o que não foi anotado, some. */
-function cartaoChamando(v) {
-  const e = EMPRESAS[v.empresa] || { nome:v.empresa, sigla:"?", cor:"#66717F", bg:"#EAE4D9" };
-  const d = (typeof Pulso.detalhe === "function" && Pulso.detalhe(v.id)) || {};
-  const r = v.resumo || {};
-  const idi = idiomaDaVaga(v);
-  const quando = typeof Pulso.confirmado === "function" ? Pulso.confirmado(d) : "";
-  return `<a class="ch-card" href="vaga.html?id=${encodeURIComponent(v.id || "")}" data-vid="${esc(v.id || "")}">
-    <span class="ch-status"><span class="ch-pulso"></span>${esc(Pulso.etapa ? Pulso.etapa(d) : "Chamando agora")}</span>
-    <span class="ch-emp"><span class="v-marca" style="background:${e.bg};color:${e.cor};">${logoHtml(e,30)}</span>${esc(e.nome)}</span>
-    <span class="ch-tit">${esc(v.titulo)}</span>
-    ${r.frase ? `<span class="ch-frase">${esc(r.frase)}</span>` : ""}
-    <span class="ch-chips">${r.remuneracao ? `<span class="selo-pg">${esc(r.remuneracao.replace(/ por hora\b/, "/h"))}</span>` : ""}${
-      idi ? `<span class="selo-idi ${idi.tipo}">${esc(idi.curto)}</span>` : ""}</span>
-    ${d.nota ? `<span class="ch-nota"><b>Da equipe:</b> ${esc(d.nota)}</span>` : ""}
-    <span class="ch-pe"><span>${esc(quando)}</span><span class="ch-ver">ver vaga →</span></span>
-  </a>`;
-}
-
-/* O mesmo cartão para quem não tem conta. Não é vaga nenhuma: tem só o
-   formato, com barras no lugar do texto. Fica borrado, com o convite para
-   entrar por cima. Quem tirar o borrão pelas ferramentas do navegador
-   encontra as barras, e nada mais. */
-function cartaoDeMentira(i) {
-  const m = [{ cor:"#1A2040", tit:78, frase:90 }, { cor:"#12302E", tit:60, frase:72 }, { cor:"#2A2118", tit:70, frase:84 }][i % 3];
-  return `<div class="ch-card demo">
-    <i class="demo-l selo" style="width:130px;background:#BFE6D2"></i>
-    <span class="ch-emp"><span class="v-marca" style="background:${m.cor};"></span><i class="demo-l fina" style="width:70px"></i></span>
-    <i class="demo-l forte" style="width:${m.tit}%"></i>
-    <i class="demo-l" style="width:${m.frase}%"></i>
-    <i class="demo-l fina" style="width:100%;height:34px;border-radius:10px;background:#EEF0F3"></i>
-    <span class="ch-pe"><i class="demo-l fina" style="width:90px"></i><i class="demo-l fina" style="width:60px"></i></span>
+/* Cartão de demonstração do bloco "Em alta" para quem não tem conta.
+   Não é vaga nenhuma: tem só o formato de um cartão, com barras no lugar do
+   texto. Fica borrado, com o convite para entrar por cima. Quem tirar o
+   borrão pelas ferramentas do navegador encontra as barras, e nada mais. */
+function linhaDeMentira(i) {
+  const m = [
+    { cor:"#1A2040", tit:64, frase:82, emp:24, selo:70 },
+    { cor:"#12302E", tit:46, frase:74, emp:18, selo:0 },
+    { cor:"#1E1A38", tit:72, frase:60, emp:28, selo:84 },
+    { cor:"#2A2118", tit:54, frase:88, emp:20, selo:0 },
+  ][i % 4];
+  return `<div class="vaga demo">
+    <span class="v-marca" style="background:${m.cor};"></span>
+    <span class="v-nome">
+      <i class="demo-l forte" style="width:${m.tit}%"></i>
+      <i class="demo-l" style="width:${m.frase}%"></i>
+      <span class="v-emp"><i class="demo-l fina" style="width:${m.emp}%"></i>${
+        m.selo ? `<i class="demo-l selo" style="width:${m.selo}px"></i>` : ""}</span>
+    </span>
+    <span class="v-col"><i class="demo-l fina" style="width:44px"></i><i class="demo-l" style="width:88px"></i></span>
+    <span class="v-col col-area"><i class="demo-l fina" style="width:38px"></i><i class="demo-l" style="width:72px"></i></span>
+    <span class="v-col"><i class="demo-l fina" style="width:62px"></i><i class="demo-l" style="width:70px"></i></span>
+    <span class="v-acao"><i class="demo-l fina" style="width:82px"></i></span>
   </div>`;
 }
 
@@ -1666,7 +1616,7 @@ function aplicar() {
      verdade, e bastava tirar o borrão pelas ferramentas do navegador para
      ler tudo. Agora, para essas pessoas, a lista nem é carregada (ver
      Pulso.carregar) e o bloco é de demonstração, feito de cartões de mentira
-     (ver cartaoDeMentira). As vagas em si continuam todas na lista de baixo,
+     (ver linhaDeMentira). As vagas em si continuam todas na lista de baixo,
      sem marca nenhuma: a vaga é aberta, o que pede conta é saber quais
      estão em alta. */
   const fechado = typeof Acesso !== "undefined" && Acesso.trancado();
@@ -1691,23 +1641,14 @@ function aplicar() {
        pela equipe ("manual" no pulso.json), e o texto diz isso. O convite de
        quem não tem conta usa o mesmo texto, porque hoje a lista é essa. */
     const aMao = convite || (typeof Pulso.manual === "function" && Pulso.manual());
-    const qt = destacadas.length;
-    html += `<section class="ch" aria-label="${aMao ? "Vagas que estão chamando agora" : "Vagas em movimento"}">
-      <div class="ch-cab">
-        <div>
-          <div class="ch-olho"><span class="ch-pulso"></span>${aMao ? "Em alta · validadas pelo Hub" : "Pulso do Hub"}</div>
-          <h2>${aMao ? "Estão chamando agora" : "Em movimento"}</h2>
-          <p>${aMao ? "Vagas em que a equipe do Hub confirmou que a empresa está chamando gente nos últimos dias."
-                    : "Onde os alunos do Hub estão se candidatando e recebendo resposta."}</p>
-        </div>
-        ${qt ? `<span class="ch-qt">${qt} ${qt === 1 ? "vaga" : "vagas"}</span>` : ""}
-      </div>
-      ${convite
-        ? Acesso.cortina(`<div class="ch-cards">${[0, 1, 2].map(cartaoDeMentira).join("")}</div>`,
-            "As vagas que estão chamando são para quem tem conta",
-            "Veja em quais vagas as empresas estão chamando gente agora.")
-        : `<div class="ch-cards">${destacadas.map(cartaoChamando).join("")}</div>`}
-    </section>`;
+    html += `<div class="grupo-titulo"><h2>${aMao ? '<span class="ch-pulso" aria-hidden="true"></span>Em alta' : "Em movimento"}</h2>
+             <span>${aMao ? "as empresas estão chamando gente agora, segundo a equipe do Hub"
+                          : "onde os alunos do Hub estão se candidatando e recebendo resposta"}</span></div>
+             ${convite
+               ? Acesso.cortina(`<div class="lista">${[0, 1, 2, 3].map(linhaDeMentira).join("")}</div>`,
+                   "As vagas em alta são para quem tem conta",
+                   "Veja em quais vagas as empresas estão chamando gente agora.")
+               : `<div class="lista">${destacadas.map(linha).join("")}</div>`}`;
   }
   if (novas.length) {
     html += `<div class="grupo-titulo"><h2>Publicadas nesta semana</h2><span>${novas.length}</span></div>
