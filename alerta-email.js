@@ -105,7 +105,7 @@
         <span>Só as vagas em destaque do Hub<small>As que a equipe destaca na lista Em alta.</small></span></label>`;
     }
     return `<label class="ae-fechada"><input type="radio" name="ALERTA" value="destaques" disabled>
-      <span>Só as vagas em destaque do Hub<small>A lista Em alta é para quem tem conta.
+      <span>Só as vagas em destaque do Hub<small>Opção para quem tem conta no Hub.
       <a href="${escapar(entrar)}">Entrar na conta</a></small></span></label>`;
   }
 
