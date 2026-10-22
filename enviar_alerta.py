@@ -11,11 +11,17 @@ mesmo e-mail da inscrição e marcou áreas de formação recebe também as
 vagas novas dessas áreas, no mesmo e-mail. Vaga de uma formação nunca vai
 para quem não marcou aquela área.
 
+Na inscrição, quem tem conta no Hub pode escolher receber só as vagas em
+destaque (a lista "Em alta", que no site também é só para quem tem conta).
+Essas pessoas ficam fora do alerta de todas as vagas e recebem um e-mail só
+quando entra vaga nova na lista de destaques.
+
 Como usar:
     python3 enviar_alerta.py              envia de verdade para a lista
     python3 enviar_alerta.py --teste      manda só para o e-mail da conta Brevo
-    python3 enviar_alerta.py --previa     grava previa-alerta.html e
-                                          previa-alerta-area.html, sem enviar
+    python3 enviar_alerta.py --previa     grava previa-alerta.html,
+                                          previa-alerta-area.html e
+                                          previa-alerta-destaques.html, sem enviar
     --area="Direito"                      (com --teste ou --previa) escolhe a
                                           área do exemplo
 
@@ -64,6 +70,14 @@ DIAS_ATE_APAGAR = 3
 
 # Guarda quais vagas já foram avisadas. Sem ele, todo dia iria tudo de novo.
 ARQUIVO_ENVIADOS = "alertas-enviados.json"
+
+# Na inscrição, a pessoa escolhe o que receber. O formulário do Brevo grava
+# a escolha no campo de contato ALERTA: "todas" (ou vazio, quem se inscreveu
+# antes de existir a escolha) recebe todas as vagas novas; "destaques" recebe
+# só as vagas que entram na lista "Em alta" do site (pulso.json), escolhidas
+# pela equipe do Hub, desde que tenha conta no Hub com o mesmo e-mail.
+CAMPO_ESCOLHA = "ALERTA"
+ARQUIVO_DESTAQUES = "pulso.json"
 
 # Acima disso, em cada parte do e-mail, mostra as primeiras e manda ver o
 # resto no site.
@@ -159,15 +173,19 @@ def achar_remetente():
 
 
 def inscritos_da_lista(id_lista):
-    """Os e-mails ativos da lista: sem quem saiu ou foi bloqueado."""
-    emails = set()
+    """Os e-mails ativos da lista, sem quem saiu ou foi bloqueado, e à parte
+    quem escolheu receber só os destaques do Hub (campo ALERTA do contato)."""
+    emails, so_destaques = set(), set()
     for c in paginas(f"/contacts/lists/{id_lista}/contacts", "contacts", 500):
         if c.get("emailBlacklisted") or c.get("listUnsubscribed"):
             continue
         e = (c.get("email") or "").strip().lower()
         if e:
             emails.add(e)
-    return sorted(emails)
+            escolha = str((c.get("attributes") or {}).get(CAMPO_ESCOLHA) or "").strip().lower()
+            if escolha.startswith("destaq"):
+                so_destaques.add(e)
+    return sorted(emails), so_destaques
 
 
 def achar_pasta():
@@ -222,14 +240,14 @@ def enviar_campanha(nome, assunto, conteudo, listas, remetente, excluir=None):
 #  AS ÁREAS DE CADA INSCRITO
 # ═══════════════════════════════════════════════════════════════════
 
-def areas_dos_inscritos(emails):
-    """Pergunta ao Supabase quem, entre os inscritos, tem conta no Hub com
-    áreas marcadas. Devolve {email: (areas, especialidades)}, ou None se o
-    ALERTA_CHAVE não estiver configurado."""
+def _contas_do_hub(emails):
+    """Pergunta ao Supabase quais destes e-mails têm conta no Hub. Devolve as
+    linhas {email, areas, subareas} de quem tem, ou None se o ALERTA_CHAVE
+    não estiver configurado."""
     chave = (os.environ.get("ALERTA_CHAVE") or "").strip()
     if not chave:
         return None
-    perfis = {}
+    todas = []
     for i in range(0, len(emails), 500):
         corpo = json.dumps({"p_chave": chave, "p_emails": emails[i:i + 500]}).encode("utf-8")
         req = urllib.request.Request(SUPABASE + "/rest/v1/rpc/alerta_areas", data=corpo, method="POST", headers={
@@ -244,15 +262,35 @@ def areas_dos_inscritos(emails):
             detalhe = e.read().decode("utf-8", errors="replace")
             motivo = ("o ALERTA_CHAVE não confere com o código do Supabase"
                       if "chave" in detalhe else f"HTTP {e.code}")
-            raise RuntimeError(f"Supabase recusou a consulta das áreas: {motivo}")
+            raise RuntimeError(f"Supabase recusou a consulta das contas: {motivo}")
         except (urllib.error.URLError, TimeoutError) as e:
-            raise RuntimeError(f"Supabase não respondeu à consulta das áreas: {e}")
-        for linha in linhas:
-            areas = [a for a in (linha.get("areas") or []) if isinstance(a, str)]
-            subs = [s for s in (linha.get("subareas") or []) if isinstance(s, str)]
-            if areas:
-                perfis[(linha.get("email") or "").strip().lower()] = (areas, subs)
+            raise RuntimeError(f"Supabase não respondeu à consulta das contas: {e}")
+        todas += linhas
+    return todas
+
+
+def areas_dos_inscritos(emails):
+    """Quem, entre os inscritos, tem conta no Hub com áreas marcadas. Devolve
+    {email: (areas, especialidades)}, ou None se o ALERTA_CHAVE não estiver
+    configurado."""
+    linhas = _contas_do_hub(emails)
+    if linhas is None:
+        return None
+    perfis = {}
+    for linha in linhas:
+        areas = [a for a in (linha.get("areas") or []) if isinstance(a, str)]
+        subs = [s for s in (linha.get("subareas") or []) if isinstance(s, str)]
+        if areas:
+            perfis[(linha.get("email") or "").strip().lower()] = (areas, subs)
     return perfis
+
+
+def com_conta(emails):
+    """Os e-mails que têm conta no Hub, ou None sem o ALERTA_CHAVE."""
+    linhas = _contas_do_hub(emails)
+    if linhas is None:
+        return None
+    return {(l.get("email") or "").strip().lower() for l in linhas} - {""}
 
 
 def serve(v, areas, subs):
@@ -420,16 +458,34 @@ def _rotulo(texto):
       <tr><td style="padding:10px 4px 12px 4px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#1A4893;font-weight:bold;">{html.escape(texto)}</td></tr>"""
 
 
-def montar_html(gerais, da_area=None):
+def assunto_destaques(vagas):
+    if len(vagas) == 1:
+        return f"Vaga em destaque no Hub: {vagas[0].get('titulo', '')}"[:120]
+    return f"{len(vagas)} vagas em destaque no Home Office Hub"
+
+
+def montar_html(gerais, da_area=None, destaque=False):
     """E-mail em tabela e estilo embutido, que é o que os programas de e-mail
     entendem. Cores e tom iguais aos do site. Sem vagas de área, sai igual ao
-    alerta de sempre; com elas, ganha uma parte para a área da pessoa."""
+    alerta de sempre; com elas, ganha uma parte para a área da pessoa.
+    destaque=True é o e-mail de quem escolheu receber só os destaques do Hub."""
     e = html.escape
     da_area = da_area or []
     total = len(gerais) + len(da_area)
     quantas = "1 vaga nova" if total == 1 else f"{total} vagas novas"
+    assunto = assunto_destaques(gerais) if destaque else assunto_para(gerais, da_area)
 
-    if not da_area:
+    if destaque:
+        titulo = "1 vaga nova em destaque" if len(gerais) == 1 else f"{len(gerais)} vagas novas em destaque"
+        abertura = ("A equipe do Hub acabou de destacar "
+                    + ("esta vaga" if len(gerais) == 1 else "estas vagas")
+                    + ", entre as abertas para quem mora no Brasil.")
+        corpo = _cartoes(gerais, f"{SITE}vagas.html", ("em destaque", "em destaque"), "no site")
+        botao = ("Ver as vagas no site", f"{SITE}vagas.html")
+        nota_area = ("Você escolheu receber só as vagas em destaque. Para receber todas as vagas novas, "
+                     f'faça a inscrição de novo no <a href="{SITE}vagas.html" style="color:#8A94A1;">site</a> '
+                     "e marque essa opção.<br><br>")
+    elif not da_area:
         titulo = f"{quantas} para quem mora no Brasil"
         abertura = "Trabalho remoto com IA, dados e tradução. Estas entraram no hub desde o último aviso."
         corpo = _cartoes(gerais, f"{SITE}vagas.html", ("na", "na"), "lista completa")
@@ -456,7 +512,7 @@ def montar_html(gerais, da_area=None):
 
     return f"""<!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{e(assunto_para(gerais, da_area))}</title></head>
+<title>{e(assunto)}</title></head>
 <body style="margin:0;padding:0;background:#F7F4EF;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F7F4EF;">
   <tr><td align="center" style="padding:28px 14px;">
@@ -488,22 +544,38 @@ def montar_html(gerais, da_area=None):
 #  PROGRAMA
 # ═══════════════════════════════════════════════════════════════════
 
-def gravar_enviados(estado, vistas, no_ar, enviou, especificas_desde):
+def gravar_enviados(estado, vistas, no_ar, enviou, especificas_desde, destaques_avisados=None):
     """Guarda os ids avisados: os das vagas no ar que já foram avisadas e um
-    histórico recente, para a vaga que some e volta não ser avisada de novo."""
+    histórico recente, para a vaga que some e volta não ser avisada de novo.
+    destaques_avisados são as vagas "Em alta" que já foram para quem escolheu
+    só os destaques (um histórico curto basta: a lista tem poucas vagas)."""
     atuais = list(dict.fromkeys(v["id"] for v in no_ar if v.get("id")))
     ids_no_ar = set(atuais)
     historico = [i for i in (estado or {}).get("ids", []) if i not in ids_no_ar][-3000:]
+    if destaques_avisados is None:
+        destaques_avisados = (estado or {}).get("destaques_avisados")
     agora = datetime.now(timezone.utc).isoformat()
+    dados = {
+        "nota": ("Vagas que já foram avisadas por e-mail (as abertas a todos e as "
+                 "de área). Mantido pelo enviar_alerta.py. Não edite à mão."),
+        "ultimo_envio": agora if enviou else (estado or {}).get("ultimo_envio"),
+        "conferido_em": agora,
+        "especificas_desde": especificas_desde,
+        "ids": historico + [i for i in atuais if i in vistas],
+    }
+    if destaques_avisados is not None:
+        dados["destaques_avisados"] = list(dict.fromkeys(destaques_avisados))[-300:]
     with open(ARQUIVO_ENVIADOS, "w", encoding="utf-8") as f:
-        json.dump({
-            "nota": ("Vagas que já foram avisadas por e-mail (as abertas a todos e as "
-                     "de área). Mantido pelo enviar_alerta.py. Não edite à mão."),
-            "ultimo_envio": agora if enviou else (estado or {}).get("ultimo_envio"),
-            "conferido_em": agora,
-            "especificas_desde": especificas_desde,
-            "ids": historico + [i for i in atuais if i in vistas],
-        }, f, ensure_ascii=False, indent=2)
+        json.dump(dados, f, ensure_ascii=False, indent=2)
+
+
+def destaques_no_ar(no_ar):
+    """As vagas da lista "Em alta" (pulso.json) que continuam no ar, na ordem
+    em que a equipe pôs."""
+    pulso = ler_json(ARQUIVO_DESTAQUES, {}) or {}
+    por_id = {v["id"]: v for v in no_ar if v.get("id")}
+    ids = [d.get("id") if isinstance(d, dict) else d for d in (pulso.get("destaques") or [])]
+    return [por_id[i] for i in ids if i in por_id]
 
 
 def _aviso(texto):
@@ -552,6 +624,15 @@ def main():
         else:
             novas_esp.append(v)
 
+    # Destaques ("Em alta"): as vagas que entraram na lista desde o último
+    # aviso. Na primeira vez, as que já estão lá viram ponto de partida.
+    dest = destaques_no_ar(no_ar)
+    if estado is not None and "destaques_avisados" in estado:
+        avisados_dest = set(estado.get("destaques_avisados") or [])
+    else:
+        avisados_dest = {v["id"] for v in dest}
+    novos_dest = [v for v in dest if v["id"] not in avisados_dest]
+
     # Prévia e teste usam as vagas novas ou, se não houver, as mais recentes.
     amostra = novas_ger if (estado is not None and novas_ger) else gerais[:5]
 
@@ -561,9 +642,13 @@ def main():
             f.write(montar_html(amostra).replace("{{ unsubscribe }}", "#"))
         with open("previa-alerta-area.html", "w", encoding="utf-8") as f:
             f.write(montar_html(amostra, amostra_area).replace("{{ unsubscribe }}", "#"))
-        print(f"  ✓ previa-alerta.html ({len(amostra)} vaga(s)) e previa-alerta-area.html "
+        amostra_dest = novos_dest or dest[:2] or amostra[:2]
+        with open("previa-alerta-destaques.html", "w", encoding="utf-8") as f:
+            f.write(montar_html(amostra_dest, destaque=True).replace("{{ unsubscribe }}", "#"))
+        print(f"  ✓ previa-alerta.html ({len(amostra)} vaga(s)), previa-alerta-area.html "
               f"(+{len(amostra_area)} de {nome_area(amostra_area[0]['area']) if amostra_area else '—'}) "
-              "gravados. Nada foi enviado.")
+              f"e previa-alerta-destaques.html ({len(amostra_dest)} destaque(s), "
+              f"{len(novos_dest)} novo(s) desde o último aviso) gravados. Nada foi enviado.")
         return
 
     if not os.environ.get("BREVO_API_KEY"):
@@ -577,39 +662,58 @@ def main():
     # Primeira vez: ninguém recebe o catálogo inteiro. Só marca o ponto de
     # partida, e o primeiro e-mail sai quando entrar vaga nova de verdade.
     if estado is None:
-        gravar_enviados(estado, {v["id"] for v in no_ar if v.get("id")}, no_ar, False, especificas_desde)
+        gravar_enviados(estado, {v["id"] for v in no_ar if v.get("id")}, no_ar, False, especificas_desde,
+                        sorted(avisados_dest))
         print(f"  ✓ Primeira rodada: {len(no_ar)} vaga(s) marcadas como ponto de partida. "
               "O primeiro e-mail sai quando entrar vaga nova.")
         return
 
-    if not novas_ger and not novas_esp:
-        gravar_enviados(estado, vistas, no_ar, False, especificas_desde)
+    if not novas_ger and not novas_esp and not novos_dest:
+        gravar_enviados(estado, vistas, no_ar, False, especificas_desde, sorted(avisados_dest))
         print("  ✓ Nenhuma vaga nova desde o último aviso. Nada enviado.")
         return
 
     id_lista, total = achar_lista()
     if id_lista is None:
         raise RuntimeError(f"Não achei no Brevo a lista chamada \"{NOME_DA_LISTA}\".")
-    inscritos = inscritos_da_lista(id_lista)
+    inscritos, so_destaques = inscritos_da_lista(id_lista)
     if not inscritos:
         vistas |= {v["id"] for v in novas_ger + novas_esp}
-        gravar_enviados(estado, vistas, no_ar, False, especificas_desde)
+        avisados_dest |= {v["id"] for v in novos_dest}
+        gravar_enviados(estado, vistas, no_ar, False, especificas_desde, sorted(avisados_dest))
         print(f"  ✓ {len(novas_ger) + len(novas_esp)} vaga(s) nova(s), mas a lista ainda não tem inscritos. Nada enviado.")
         return
+
+    # Só os destaques: como no site, a lista "Em alta" é para quem tem conta
+    # no Hub. Quem escolheu só os destaques sem ter conta com esse e-mail
+    # recebe o alerta de todas as vagas. Se a consulta das contas falhar,
+    # essas pessoas ficam sem e-mail hoje e os destaques esperam o próximo.
+    destaque_ok, destaque_espera = set(), set()
+    if so_destaques:
+        try:
+            contas = com_conta(sorted(so_destaques))
+            destaque_ok = so_destaques & (contas or set())
+        except RuntimeError as erro:
+            destaque_espera = set(so_destaques)
+            _aviso(f"{erro}. Quem escolheu só os destaques fica para o próximo envio.")
+    separados = destaque_ok | destaque_espera
+
+    # Quem fica com os destaques sai do alerta de todas as vagas.
+    todos = [e for e in inscritos if e not in separados]
 
     # Quem marcou quais áreas. Sem o ALERTA_CHAVE, ou se a consulta falhar,
     # todo mundo recebe só as abertas a todos.
     perfis, consulta = {}, "sem_chave"
-    if novas_esp:
+    if novas_esp and todos:
         try:
-            r = areas_dos_inscritos(inscritos)
+            r = areas_dos_inscritos(todos)
             if r is not None:
                 perfis, consulta = r, "ok"
         except RuntimeError as erro:
             consulta = "falhou"
             _aviso(f"{erro}. Hoje foram só as abertas a todos; as de área ficam para o próximo envio.")
 
-    grupos = montar_grupos(inscritos, perfis, novas_esp)
+    grupos = montar_grupos(todos, perfis, novas_esp)
     so_gerais = grupos.pop((), [])
     por_id = {v["id"]: v for v in novas_esp}
     remetente = achar_remetente()
@@ -619,9 +723,29 @@ def main():
     excluir = []          # listas que já receberam a sua versão
     pessoas, envios, falhas = 0, 0, []
 
-    if grupos:
+    id_pasta = None
+    if grupos or separados:
         id_pasta = achar_pasta()
         apagar_listas_antigas(id_pasta)
+
+    # Uma lista do dia só com quem fica com os destaques: ela recebe o e-mail
+    # dos destaques (se entrou algum) e fica de fora do alerta de todas.
+    if separados:
+        try:
+            id_dest = criar_lista(id_pasta, f"Alerta {hoje} · só destaques", sorted(separados))
+            excluir.append(id_dest)
+            if novos_dest and not destaque_espera:
+                enviar_campanha(f"Destaques do Hub {data_br}", assunto_destaques(novos_dest),
+                                montar_html(novos_dest, destaque=True), [id_dest], remetente)
+                avisados_dest |= {v["id"] for v in novos_dest}
+                pessoas += len(destaque_ok)
+                envios += 1
+        except RuntimeError as erro:
+            falhas.append(f"só destaques: {erro}")
+    else:
+        avisados_dest |= {v["id"] for v in novos_dest}   # ninguém fica só com os destaques
+
+    if grupos:
         for n, (chave, emails) in enumerate(sorted(grupos.items(), key=lambda g: -len(g[1])), 1):
             vagas_area = [por_id[i] for i in chave]
             nomes = juntar([nome_area(a) for a in areas_das_vagas(vagas_area)])
@@ -657,13 +781,21 @@ def main():
         vistas |= {v["id"] for v in novas_esp if v["id"] not in casadas}
     elif consulta == "sem_chave":
         vistas |= {v["id"] for v in novas_esp}
-    gravar_enviados(estado, vistas, no_ar, envios > 0, especificas_desde)
+    gravar_enviados(estado, vistas, no_ar, envios > 0, especificas_desde, sorted(avisados_dest))
 
     de_area = len({i for i in saiu if i in por_id})
+    if so_destaques:
+        sem_conta = len(so_destaques) - len(separados)
+        print(f"  ✓ {len(so_destaques)} inscrito(s) escolheram só os destaques"
+              + (f" ({sem_conta} sem conta no Hub, que recebem todas as vagas)" if sem_conta else "") + ": "
+              + ("consulta das contas falhou, destaques ficam para o próximo envio." if destaque_espera
+                 else f"{len(novos_dest)} destaque(s) novo(s) enviado(s)." if novos_dest and destaque_ok
+                 else "nenhum destaque novo hoje." if destaque_ok
+                 else "nenhum com conta no Hub."))
     if envios:
         print(f"  ✓ {envios} envio(s) para {pessoas} inscrito(s): {len(novas_ger)} vaga(s) aberta(s) a todos"
               f" e {de_area} de área.")
-    elif not falhas:
+    elif not falhas and novas_esp:
         print(f"  ✓ {len(novas_esp)} vaga(s) de área nova(s), mas nenhuma é da área de quem está inscrito. "
               "Nada enviado.")
     if falhas:
@@ -688,7 +820,15 @@ def testar(amostra, novas_esp, especificas, area_exemplo=None):
             "monta envio para lista vazia. Inscreva um e-mail pelo campo do site, "
             "confirme pelo link que chega, e rode o teste de novo.")
 
-    inscritos = inscritos_da_lista(id_lista)
+    inscritos, so_destaques = inscritos_da_lista(id_lista)
+    print(f"  ✓ {len(inscritos)} inscrito(s), {len(so_destaques)} com a escolha de receber só os destaques.")
+    if so_destaques:
+        try:
+            contas = com_conta(sorted(so_destaques))
+            if contas is not None:
+                print(f"    · {len(so_destaques & contas)} delas com conta no Hub (as outras recebem todas as vagas)")
+        except RuntimeError as erro:
+            _aviso(str(erro))
     perfis = None
     try:
         perfis = areas_dos_inscritos(inscritos)

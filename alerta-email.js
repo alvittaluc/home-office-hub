@@ -9,6 +9,12 @@
    área, desde que se inscreva com o mesmo e-mail da conta: é por ele que o
    envio (enviar_alerta.py) acha as áreas. Por isso, com a pessoa logada, o
    campo já vem com o e-mail da conta.
+
+   A pessoa também escolhe o que receber: todas as vagas novas ou só as
+   vagas em destaque do Hub (a lista "Em alta"). A escolha vai no campo
+   ALERTA do formulário do Brevo ("todas" ou "destaques"). Como no site, a
+   lista "Em alta" é para quem tem conta: sem login a opção fica fechada, e
+   o envio confere a conta pelo e-mail antes de mandar.
    ═══════════════════════════════════════════════════════════════════ */
 (function () {
   "use strict";
@@ -22,7 +28,19 @@
   .ae-olho { font-family:var(--mono,sans-serif); font-size:11.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--signal,#1A4893); }
   .ae h2 { font-family:var(--display,Georgia,serif); font-weight:400; font-size:25px; line-height:1.2; color:var(--ink,#10203A); margin:8px 0 8px; }
   .ae p { font-size:15px; line-height:1.55; color:var(--ink-2,#54606F); margin:0; }
-  .ae form { display:flex; gap:10px; }
+  .ae form { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; }
+  .ae form > input[type=email] { grid-column:1; grid-row:1; }
+  .ae form > button { grid-column:2; grid-row:1; }
+  .ae-escolha { grid-column:1 / -1; grid-row:2; border:0; margin:4px 0 0; padding:0; min-width:0; }
+  .ae-escolha legend { font-size:13px; font-weight:600; color:var(--ink-2,#54606F); padding:0; margin:0 0 8px; }
+  .ae-escolha label { display:flex; align-items:flex-start; gap:9px; font-size:14.5px; line-height:1.4; color:var(--ink,#10203A); cursor:pointer; }
+  .ae-escolha label + label { margin-top:8px; }
+  .ae-escolha input { accent-color:var(--signal,#1A4893); width:17px; height:17px; margin:1px 0 0; flex:none; cursor:pointer; }
+  .ae-escolha small { display:block; font-size:12.5px; color:var(--ink-3,#66717F); margin-top:1px; }
+  .ae-escolha small a { color:var(--signal,#1A4893); font-weight:600; text-decoration:none; }
+  .ae-escolha small a:hover { text-decoration:underline; }
+  .ae-escolha .ae-fechada { cursor:default; color:var(--ink-3,#66717F); }
+  .ae-escolha .ae-fechada input { cursor:default; }
   .ae input[type=email] { flex:1; min-width:0; font:inherit; font-size:15px; color:var(--ink,#10203A); background:var(--bg,#F7F4EF);
            border:1px solid var(--line,#DED7CA); border-radius:12px; padding:13px 15px; }
   .ae input[type=email]:focus { outline:2px solid var(--signal,#1A4893); outline-offset:1px; background:#fff; }
@@ -41,7 +59,10 @@
   @media (max-width:760px) {
     .ae { padding:0 16px; margin-top:32px; }
     .ae-cx { grid-template-columns:1fr; padding:22px 20px; }
-    .ae form { flex-direction:column; }
+    /* no celular a escolha fica entre o e-mail e o botão */
+    .ae form { grid-template-columns:minmax(0,1fr); }
+    .ae-escolha { grid-row:2; margin:6px 0 4px; }
+    .ae form > button { grid-column:1; grid-row:3; }
   }`;
 
   const escapar = s => String(s).replace(/[&<>"']/g, c =>
@@ -71,6 +92,23 @@
     }
   }
 
+  /* "Só os destaques": aberta para quem está na conta; sem login, fechada e
+     com o caminho para entrar. */
+  function opcaoDestaques() {
+    let comConta = false, entrar = "entrar.html";
+    try {
+      comConta = typeof Acesso !== "undefined" && Acesso.logado();
+      if (typeof Acesso !== "undefined") entrar = Acesso.linkEntrar();
+    } catch (e) { /* sem o layout.js, fica fechada */ }
+    if (comConta) {
+      return `<label><input type="radio" name="ALERTA" value="destaques">
+        <span>Só as vagas em destaque do Hub<small>As que a equipe destaca na lista Em alta.</small></span></label>`;
+    }
+    return `<label class="ae-fechada"><input type="radio" name="ALERTA" value="destaques" disabled>
+      <span>Só as vagas em destaque do Hub<small>A lista Em alta é para quem tem conta.
+      <a href="${escapar(entrar)}">Entrar na conta</a></small></span></label>`;
+  }
+
   function montar(alvo) {
     const conta = sobreAreas();
     alvo.classList.add("ae");
@@ -86,11 +124,16 @@
           <form novalidate>
             <input type="email" name="EMAIL" required autocomplete="email"
                    placeholder="seu@email.com" aria-label="Seu e-mail">
+            <button type="submit">Quero receber</button>
+            <fieldset class="ae-escolha">
+              <legend>O que você quer receber</legend>
+              <label><input type="radio" name="ALERTA" value="todas" checked> <span>Todas as vagas novas</span></label>
+              ${opcaoDestaques()}
+            </fieldset>
             <span class="ae-armadilha" aria-hidden="true">
               <input type="text" name="email_address_check" tabindex="-1" autocomplete="off">
             </span>
             <input type="hidden" name="locale" value="pt">
-            <button type="submit">Quero receber</button>
           </form>
           <p class="ae-msg" role="status" hidden></p>
           <p class="ae-nota">Você confirma a inscrição por um link que chega no seu e-mail e pode sair quando quiser, pelo link no fim de cada mensagem.</p>
@@ -99,7 +142,7 @@
 
     const form = alvo.querySelector("form");
     const campo = form.querySelector("input[type=email]");
-    const botao = form.querySelector("button");
+    const botao = form.querySelector("button[type=submit]");
     const msg = alvo.querySelector(".ae-msg");
     if (conta.email) campo.value = conta.email;
 
