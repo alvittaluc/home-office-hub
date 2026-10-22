@@ -68,6 +68,10 @@ const Hoje = (function () {
 .h-num { font-size:26px; font-weight:600; letter-spacing:-.015em; }
 .h-num-sub { font-size:13px; color:var(--ink-3,#66717F); }
 .h-nota { font-size:12.5px; color:var(--ink-3,#66717F); margin-top:9px; }
+.h-per { display:inline-flex; align-items:center; gap:8px; font-size:12.5px; color:var(--ink-3,#66717F); margin:0 0 12px; }
+.h-per select { font:inherit; font-size:13.5px; font-weight:500; color:var(--ink,#10203A); background:var(--panel,#fff);
+  border:1px solid var(--line,#DED7CA); border-radius:10px; padding:6px 10px; cursor:pointer; }
+.h-per select:focus-visible { outline:2px solid var(--signal,#1A4893); outline-offset:1px; }
 
 .h-buracos { display:flex; flex-wrap:wrap; gap:8px; }
 .h-buraco {
@@ -115,6 +119,19 @@ const Hoje = (function () {
     if (dias === 1) return { txt: "ontem", atrasado: true };
     if (dias > 1) return { txt: "há " + dias + " dias", atrasado: true };
     return { txt: Dados.dataBonita(iso), atrasado: false };
+  }
+
+  /* Períodos do cartão de ganhos: [meses, nome]. */
+  const PERIODOS_GANHO = [[1, "Último mês"], [2, "Últimos 2 meses"], [3, "Últimos 3 meses"], [6, "Últimos 6 meses"], [12, "Último ano"]];
+
+  /* A data de n meses atrás (no mesmo dia, ou no último dia do mês, se ele
+     for mais curto), mais d dias. somarMeses("2026-10-22", -1, 1) = "2026-09-23". */
+  function somarMeses(iso, n, d) {
+    const p = iso.split("-").map(Number);
+    const alvo = new Date(Date.UTC(p[0], p[1] - 1 + n, 1, 12));
+    const ultimo = new Date(Date.UTC(alvo.getUTCFullYear(), alvo.getUTCMonth() + 1, 0, 12)).getUTCDate();
+    alvo.setUTCDate(Math.min(p[2], ultimo));
+    return somarDias(alvo.toISOString().slice(0, 10), d || 0);
   }
 
   function cartao(titulo, sub, corpo, largo) {
@@ -262,28 +279,21 @@ const Hoje = (function () {
       });
     }
 
-    /* 5. EM ABERTO ──────────────────────────────────────────────────────
-       Previsto menos recebido, do começo de tudo até hoje. */
+    /* 5. GANHOS ─────────────────────────────────────────────────────────
+       Quanto a pessoa ganhou num período que ela escolhe, do último mês ao
+       último ano. A conta sai dos dias e tarefas registrados: não depende de
+       registrar pagamento. A escolha fica guardada na configuração. */
     if (ctx.trabalhos.length && ctx.registros.length) {
-      const r = await UI.resumo({
-        trabalhos: ctx.trabalhos, registros: ctx.registros,
-        pagamentos: ctx.pagamentos, de: "0000-01-01", ate: hoje,
+      const escolhido = PERIODOS_GANHO.some(p => p[0] === +ctx.cfg.ganhoMeses) ? +ctx.cfg.ganhoMeses : 3;
+      blocos.push({
+        peso: 5,
+        html: cartao("Ganhos", "quanto você ganhou, pelo que registrou", `
+          <label class="h-per"><span>Período</span>
+            <select data-ganho-per aria-label="Período dos ganhos">${PERIODOS_GANHO.map(p =>
+              `<option value="${p[0]}"${p[0] === escolhido ? " selected" : ""}>${esc(p[1])}</option>`).join("")}</select>
+          </label>
+          <div data-ganho-val><div class="h-linha-num"><span class="h-num">…</span></div></div>`),
       });
-      const aberto = Math.max(0, r.emAbertoBRL);
-      if (aberto > 0) {
-        const ultimo = ctx.pagamentos.slice().sort((a, b) => (a.data > b.data ? -1 : 1))[0];
-        blocos.push({
-          peso: 5,
-          html: cartao("Em aberto", "trabalhado e ainda não pago", `
-            <div class="h-linha-num">
-              <span class="h-num">${esc(Dados.escreverDinheiro(aberto, "BRL"))}</span>
-              ${r.estimado ? `<span class="h-num-sub">com câmbio estimado</span>` : ""}
-            </div>
-            <div class="h-nota">${ultimo
-              ? "Último pagamento registrado em " + esc(Dados.dataBonita(ultimo.data)) + "."
-              : "Nenhum pagamento registrado ainda."}</div>`),
-        });
-      }
     }
 
     /* 6. BURACOS ────────────────────────────────────────────────────────
@@ -358,6 +368,35 @@ const Hoje = (function () {
     }));
 
     alvo.querySelectorAll("[data-ir]").forEach(b => b.addEventListener("click", () => ctx.irPara(b.dataset.ir)));
+
+    const seletor = alvo.querySelector("[data-ganho-per]");
+    if (seletor) {
+      const desenharGanho = async meses => {
+        const caixa = alvo.querySelector("[data-ganho-val]");
+        const de = somarMeses(hoje, -meses, 1);
+        // a primeira conta de um período longo busca a cotação de cada mês e pode demorar
+        if (caixa) caixa.style.opacity = ".45";
+        const r = await UI.resumo({ trabalhos: ctx.trabalhos, registros: ctx.registros, pagamentos: [], de, ate: hoje });
+        if (caixa && +seletor.value === meses) caixa.style.opacity = "";
+        const outras = Object.keys(r.previstoPorMoeda).filter(m => m !== "BRL" && r.previstoPorMoeda[m]);
+        if (!caixa || +seletor.value !== meses) return;   // a pessoa já trocou de novo
+        caixa.innerHTML = `
+          <div class="h-linha-num">
+            <span class="h-num">${esc(Dados.escreverDinheiro(r.previstoBRL, "BRL"))}</span>
+            ${r.estimado ? `<span class="h-num-sub">com câmbio estimado</span>` : ""}
+          </div>
+          ${outras.length ? `<div class="h-nota">${outras.map(m =>
+            esc(Dados.escreverDinheiro(r.previstoPorMoeda[m], m))).join(" + ")} na moeda original</div>` : ""}
+          <div class="h-nota">De ${esc(Dados.dataBonita(de))} até hoje. Valor bruto, antes do imposto, pelos dias e tarefas que você registrou.</div>`;
+      };
+      seletor.addEventListener("change", async () => {
+        const meses = +seletor.value;
+        ctx.cfg.ganhoMeses = meses;
+        try { await Dados.salvarConfig(ctx.cfg); } catch (e) { console.warn("Meu Controle: não deu para guardar o período", e); }
+        desenharGanho(meses);
+      });
+      await desenharGanho(+seletor.value);
+    }
 
     const bt = alvo.querySelector("[data-sem-resposta]");
     if (bt) bt.addEventListener("click", async () => {

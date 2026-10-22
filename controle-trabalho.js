@@ -104,7 +104,6 @@ const Trabalho = (function () {
         </div>
         <div class="t-cab-bts">
           <button class="t-b forte" data-dia>Registrar o dia</button>
-          <button class="t-b" data-pagamento>Recebi um pagamento</button>
           <button class="t-b pequeno" data-editar-trab>Editar</button>
         </div>
       </div>
@@ -190,22 +189,15 @@ const Trabalho = (function () {
           <div><div class="t-num">${esc(Dados.escreverDinheiro(brutoMoeda, moeda))}</div>
             <div class="t-rot">bruto no período</div>
             ${moeda !== "BRL" ? `<div class="t-menor">${esc(Dados.escreverDinheiro(resumo.previstoBRL, "BRL"))}${resumo.estimado ? " (câmbio estimado)" : ""}</div>` : ""}</div>
-          <div><div class="t-num">${esc(Dados.escreverDinheiro(resumo.recebidoBRL, "BRL"))}</div>
-            <div class="t-rot">recebido no período</div></div>
           <div><div class="t-num">${resumo.horas || !porTarefa ? esc(Dados.escreverDinheiro(resumo.porHoraBRL, "BRL")) : "—"}</div>
             <div class="t-rot">por hora, na prática</div>
             ${porTarefa && !resumo.horas ? `<div class="t-menor">aparece quando você lança as horas</div>` : ""}</div>
         </div>
       </div>
 
-      <div class="t-cartao t-l2">
+      <div class="t-cartao t-l3">
         <h2>Dias deste período</h2>
         <div class="t-corpo b-rolagem">${htmlHistorico(per)}</div>
-      </div>
-
-      <div class="t-cartao">
-        <h2>Pagamentos recebidos</h2>
-        <div class="t-corpo">${htmlPagamentos()}</div>
       </div>
 
       <div class="t-cartao t-l3">
@@ -214,15 +206,15 @@ const Trabalho = (function () {
       </div>`;
   }
 
-  /* Uma linha por período em que houve dia registrado ou pagamento, do mais
-     novo para o mais antigo. Clicar numa linha abre aquele período. */
+  /* Uma linha por período em que houve dia registrado, do mais novo para o
+     mais antigo. Clicar numa linha abre aquele período. */
   function htmlPeriodos(naTela) {
     const dia = UI.diaDoPeriodo(T);
     const moeda = T.moeda || "BRL";
     const mapa = {};
     const linhaDe = data => {
       const p = UI.periodoDe(data, dia);
-      return mapa[p.de] || (mapa[p.de] = { per: p, horas: 0, tarefas: 0, dias: new Set(), bruto: 0, recebido: {}, temRegistro: false });
+      return mapa[p.de] || (mapa[p.de] = { per: p, horas: 0, tarefas: 0, dias: new Set(), bruto: 0, temRegistro: false });
     };
     REGISTROS.forEach(r => {
       if (!UI.temAlgo(r)) return;
@@ -233,10 +225,6 @@ const Trabalho = (function () {
       if (UI.diaFeito(r)) l.dias.add(r.data);
       l.bruto += UI.ganhoBruto(r, T);
     });
-    PAGAMENTOS.forEach(p => {
-      const l = linhaDe(p.data);
-      l.recebido[p.moeda || "BRL"] = (l.recebido[p.moeda || "BRL"] || 0) + (+p.valor || 0);
-    });
     linhaDe(Dados.hoje());   // o período atual aparece sempre, mesmo vazio
 
     const linhas = Object.keys(mapa).sort().reverse().map(k => mapa[k]);
@@ -244,16 +232,15 @@ const Trabalho = (function () {
     const comTarefas = T.pagamento === "tarefa" || linhas.some(l => l.tarefas);
 
     return `<table class="t-hist t-pers">
-      <thead><tr><th>Período</th>${comTarefas ? "<th>Tarefas</th>" : ""}<th>Horas</th><th>Dias</th><th>Bruto</th><th>Recebido</th></tr></thead>
+      <thead><tr><th>Período</th>${comTarefas ? "<th>Tarefas</th>" : ""}<th>Horas</th><th>Dias</th><th>Bruto</th></tr></thead>
       <tbody>${linhas.map(l => `<tr data-abrir-per="${esc(l.per.de)}"${l.per.de === naTela.de ? ' class="t-sel"' : ""}>
         <td class="t-dia">${esc(UI.nomeDoPeriodo(l.per, dia))}${ehOAtual(l.per) ? ' <span class="t-agora">atual</span>' : ""}</td>
         ${comTarefas ? `<td class="t-h">${l.tarefas ? esc(UI.escreverQtd(l.tarefas)) : "—"}</td>` : ""}
         <td class="t-h">${esc(Dados.escreverHoras(l.horas) || "—")}</td>
         <td class="t-h">${l.dias.size || "—"}</td>
         <td class="t-h">${l.bruto ? esc(Dados.escreverDinheiro(l.bruto, moeda)) : "—"}</td>
-        <td class="t-h">${Object.keys(l.recebido).length ? esc(UI.escreverPorMoeda(l.recebido)) : "—"}</td>
       </tr>`).join("")}</tbody></table>
-      <p class="t-menor" style="padding:11px 10px 0;">Clique em um período para ver os dias e os números dele. "Recebido" conta pela data em que o dinheiro caiu.</p>`;
+      <p class="t-menor" style="padding:11px 10px 0;">Clique em um período para ver os dias e os números dele.</p>`;
   }
 
   /* Dias sem registro na semana, dito sem cobrar nada de ninguém. */
@@ -298,18 +285,6 @@ const Trabalho = (function () {
         ${comGanho ? `<td class="t-h">${esc(ganho ? Dados.escreverDinheiro(ganho, moeda) : "—")}</td>` : ""}
         <td class="t-obs">${esc(r.observacoes || "")}</td>
       </tr>`; }).join("")}</tbody></table>`;
-  }
-
-  function htmlPagamentos() {
-    if (!PAGAMENTOS.length) {
-      return `<p class="t-vazio">Nada recebido ainda.<br><span style="font-size:12.5px;">
-        Quando o dinheiro cair, registre com o câmbio real da plataforma.</span></p>`;
-    }
-    return `<ul class="t-pgs">${PAGAMENTOS.slice(0, 8).map(p => `<li>
-      <button data-pg="${esc(p.id)}">
-        <span class="t-val">${esc(Dados.escreverDinheiro(p.valor, p.moeda))}</span>
-        <span class="t-data">${esc(Dados.dataBonita(p.data))}${p.nota ? " · " + esc(p.nota) : ""}${p.taxa ? " · câmbio " + Number(p.taxa).toFixed(4).replace(".", ",") : ""}</span>
-      </button></li>`).join("")}</ul>`;
   }
 
   function htmlSemBlocos() {
@@ -435,8 +410,6 @@ const Trabalho = (function () {
     }));
 
     CAIXA.querySelectorAll("#tFixos [data-dia]").forEach(b => b.addEventListener("click", abrirDia));
-    CAIXA.querySelectorAll("[data-pg]").forEach(b => b.addEventListener("click", () =>
-      UI.abrirPagamento(T, { pagamento: PAGAMENTOS.find(p => p.id === b.dataset.pg), aoSalvar: recarregar })));
     CAIXA.querySelectorAll("[data-reg]").forEach(tr => tr.addEventListener("click", () =>
       UI.abrirRegistroDia(T, { data: tr.dataset.reg, aoSalvar: recarregar })));
   }
@@ -446,9 +419,6 @@ const Trabalho = (function () {
   function ligar() {
     ligarFixos();
     CAIXA.querySelectorAll(".t-cab-bts [data-dia]").forEach(b => b.addEventListener("click", abrirDia));
-
-    const pg = CAIXA.querySelector("[data-pagamento]");
-    if (pg) pg.addEventListener("click", () => UI.abrirPagamento(T, { aoSalvar: recarregar }));
 
     const et = CAIXA.querySelector("[data-editar-trab]");
     if (et) et.addEventListener("click", editarTrabalho);

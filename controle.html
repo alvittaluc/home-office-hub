@@ -363,8 +363,8 @@ body > header.site .hd { max-width:1460px; }
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
 <script src="controle-ui.js?v=4"></script>
-<script src="controle-trabalho.js?v=4"></script>
-<script src="controle-hoje.js?v=2"></script>
+<script src="controle-trabalho.js?v=5"></script>
+<script src="controle-hoje.js?v=3"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
    junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
@@ -582,8 +582,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
        os outros filtros e os gráficos por mês usam o mês em que o período
               de cada trabalho FECHA (UI.mesDeFechamento).
 
-     Pagamento recebido conta sempre pela data em que caiu.
-     cabe(registro, trabalho) e cabePg(pagamento, trabalho) dizem o que entra. */
+     cabe(registro, trabalho) diz o que entra. (cabePg é dos pagamentos
+     recebidos, que a tela não mostra mais desde outubro de 2026: o ganho
+     sai só dos dias registrados.) */
   function mesAtras(n) {
     const d = new Date(Dados.hoje().slice(0, 8) + "01T12:00:00");
     d.setMonth(d.getMonth() - n);
@@ -655,12 +656,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           <div class="ct-tile"><div class="ct-tile-rot">Por hora, na prática</div>
             <div class="ct-tile-val">${esc(Dados.escreverDinheiro(r.porHoraBRL, "BRL"))}</div>
             <div class="ct-tile-sub">ganho dos dias com horas, dividido pelas horas</div></div>
-          <div class="ct-tile"><div class="ct-tile-rot">Recebido</div>
-            <div class="ct-tile-val">${esc(Dados.escreverDinheiro(r.recebidoBRL, "BRL"))}</div>
-            <div class="ct-tile-sub">o que caiu na conta</div></div>
-          <div class="ct-tile"><div class="ct-tile-rot">Em aberto</div>
-            <div class="ct-tile-val">${esc(Dados.escreverDinheiro(Math.max(0, r.emAbertoBRL), "BRL"))}</div>
-            <div class="ct-tile-sub">trabalhado e ainda não pago</div></div>
+          ${r.tarefas ? `<div class="ct-tile"><div class="ct-tile-rot">Tarefas</div>
+            <div class="ct-tile-val">${esc(UI.escreverQtd(r.tarefas))}</div>
+            <div class="ct-tile-sub">registradas no período</div></div>` : ""}
           <div class="ct-tile"><div class="ct-tile-rot">Processos abertos</div>
             <div class="ct-tile-val">${emProcesso}</div>
             <div class="ct-tile-sub">de ${APLICACOES.length} ${APLICACOES.length === 1 ? "candidatura" : "candidaturas"}</div></div>
@@ -690,10 +688,6 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         <div class="ct-cartao ct-larga">
           <div class="ct-cab-cartao"><h2>Dias trabalhados</h2><p>o ano inteiro, um quadrado por dia</p></div>
           <div id="grAno"></div>
-        </div>
-        <div class="ct-cartao ct-larga">
-          <div class="ct-cab-cartao"><h2>Previsto e recebido</h2><p>a distância entre as duas linhas é o que está em aberto</p></div>
-          <div id="grFluxo"></div>
         </div>
       </div>`;
 
@@ -784,7 +778,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     caixa.innerHTML = html;
   }
 
-  /* ── os cinco gráficos ── */
+  /* ── os quatro gráficos ── */
   async function desenharGraficos(filtro) {
     const porId = {}; TRABALHOS.forEach((t, i) => porId[t.id] = Object.assign({ cor: t.cor || Graficos.corDe(i) }, t));
     const NOMES_MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
@@ -871,37 +865,6 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       valores: porDia, ano: +Dados.hoje().slice(0, 4),
       titulo: "Dias trabalhados no ano",
       formatar: v => Dados.escreverHoras(v),
-    });
-
-    const prev = [], receb = [];
-    for (const ym of meses) {
-      let p = 0;
-      for (const t of TRABALHOS) {
-        const regs = REGISTROS.filter(r => r.trabalhoId === t.id && mesDe[r.id] === ym);
-        let bruto = regs.reduce((s, r) => s + UI.ganhoBruto(r, t), 0);
-        if (t.pagamento === "mes" && regs.length) bruto += +t.valor || 0;
-        if (!bruto) continue;
-        const tx = await UI.taxaDoMes(t.moeda || "BRL", ym);
-        p += bruto * tx.taxa;
-      }
-      prev.push(p);
-      let g = 0;
-      for (const pg of PAGAMENTOS.filter(x => x.data.slice(0, 7) === ym)) {
-        const rr = await Dados.emReais(+pg.valor || 0, pg.moeda, pg.data, pg.taxa);
-        g += rr.valor;
-      }
-      receb.push(g);
-    }
-    Graficos.linhas($("#grFluxo"), {
-      categorias: meses.map(m => NOMES_MES[+m.slice(5, 7) - 1]),
-      series: [
-        { nome: "Previsto pelas horas", valores: prev, cor: Graficos.corDe(0) },
-        { nome: "Recebido de fato", valores: receb, cor: Graficos.corDe(1) },
-      ],
-      altura: 230, titulo: "Previsto e recebido por mês, em reais",
-      formatar: v => Dados.escreverDinheiro(v, "BRL"),
-      formatarEixo: v => (v >= 1000 ? Graficos.numeroCurto(v) : String(Math.round(v))),
-      vazio: "Registre dias e pagamentos para comparar as duas linhas.",
     });
   }
 
