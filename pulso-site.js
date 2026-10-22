@@ -2,9 +2,8 @@
  * Pulso do Hub — peça de navegador.
  *
  * Faz três coisas, e nenhuma delas é obrigatória para o site funcionar:
- *   1. diz quais vagas estão em destaque e o que a equipe anotou sobre elas
- *      (em que etapa a empresa está chamando), para a lista montar o grupo
- *      "Em alta" e o selo verde de cada uma;
+ *   1. diz quais vagas estão em destaque, para a lista montar o grupo
+ *      "Em alta" e o selo "Contratando com frequência" de cada uma;
  *   2. põe o selo discreto nos cartões dessas vagas;
  *   3. despacha os eventos do Meu Controle, se a pessoa tiver ligado o Pulso.
  *
@@ -72,36 +71,13 @@
       não dizer que há movimento medido onde só há escolha da equipe. */
   function manual() { return !!(dados && dados.manual === true); }
 
-  /** O que a equipe anotou sobre uma vaga do destaque, ou null.
-      Campos opcionais de cada item de "destaques" no pulso.json:
-        chamando       "teste", "entrevista" ou "contratando": a etapa em que
-                       a empresa está chamando
-        confirmado_em  "AAAA-MM-DD": quando a equipe confirmou as chamadas
-        nota           recado curto da equipe, uma frase */
-  function detalhe(id) {
-    if (!dados || !Array.isArray(dados.destaques)) return null;
-    return dados.destaques.find(d => d && d.id === id) || null;
+  /** A vaga está na lista "Em alta" feita à mão pela equipe? Na lista à mão,
+      em alta quer dizer que a empresa está contratando com frequência. */
+  function emAlta(id) {
+    if (!manual() || !Array.isArray(dados.destaques)) return false;
+    return dados.destaques.some(d => d && d.id === id);
   }
-
-  const ETAPAS = {
-    teste: "Chamando para o teste",
-    entrevista: "Chamando para entrevista",
-    contratando: "Contratando agora",
-  };
-  /** "Chamando para o teste", ou "Chamando agora" quando a etapa não foi anotada. */
-  function etapa(d) { return (d && ETAPAS[d.chamando]) || "Chamando agora"; }
-
-  /** "Confirmado hoje", "Confirmado há 3 dias"... Sem data, usa a de entrada no destaque. */
-  function confirmado(d) {
-    const quando = d && (d.confirmado_em || d.desde);
-    if (!quando || !/^\d{4}-\d{2}-\d{2}$/.test(quando)) return "";
-    const hoje = new Date(); hoje.setHours(12, 0, 0, 0);
-    const dias = Math.round((hoje - new Date(quando + "T12:00:00")) / 86400000);
-    if (dias <= 0) return "Confirmado hoje";
-    if (dias === 1) return "Confirmado ontem";
-    if (dias <= 13) return "Confirmado há " + dias + " dias";
-    return "Confirmado em " + quando.slice(8, 10) + "/" + quando.slice(5, 7);
-  }
+  const TEXTO_EM_ALTA = "Contratando com frequência";
 
   /** Selos de uma vaga, inclusive das que não couberam no destaque. */
   function selos(id) {
@@ -116,24 +92,16 @@
       const onde = el.querySelector(".v-emp");
       if (!onde || onde.querySelector(".selo-pulso, .selo-chamando")) return;
 
-      /* Lista feita à mão: a equipe confirmou que a empresa está chamando.
-         A linha ganha o fundo verde e o selo que pulsa, onde quer que apareça. */
-      const d = manual() ? detalhe(el.dataset.vid) : null;
-      if (d) {
+      /* Vaga em alta: a linha ganha o fundo azul e o selo verde que pulsa,
+         onde quer que apareça na lista. */
+      if (emAlta(el.dataset.vid)) {
         el.classList.add("chamando");
         const s = document.createElement("span");
         s.className = "selo-chamando";
-        s.title = [confirmado(d) + " pela equipe do Hub", d.nota].filter(Boolean).join(". ");
+        s.title = "Vaga em alta no Hub";
         s.innerHTML = '<i class="ch-pulso" aria-hidden="true"></i>';
-        s.appendChild(document.createTextNode(etapa(d)));
+        s.appendChild(document.createTextNode(TEXTO_EM_ALTA));
         onde.appendChild(s);
-        const quando = confirmado(d);
-        if (quando) {
-          const q = document.createElement("span");
-          q.className = "ch-quando";
-          q.textContent = quando.charAt(0).toLowerCase() + quando.slice(1);
-          onde.appendChild(q);
-        }
         return;
       }
 
@@ -284,7 +252,7 @@
   }
 
   window.Pulso = {
-    carregar, destaques, detalhe, etapa, confirmado, selos, marcar, manual,
+    carregar, destaques, emAlta, TEXTO_EM_ALTA, selos, marcar, manual,
     enviar, porEstado, enviarHistorico, tamanhoDoHistorico,
     ligar, desligar, ligado, respondeu,
   };

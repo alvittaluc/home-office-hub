@@ -101,7 +101,7 @@
   }
   .aplic button:hover, .aplic a.bt:hover { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
 
-  /* vaga do bloco "Estão chamando agora" (pulso.json): aviso no topo da vaga */
+  /* vaga em alta (pulso.json): aviso no topo da vaga */
   .chamando { display:flex; align-items:flex-start; gap:13px; margin:0 0 22px; padding:14px 17px; border-radius:14px;
     background:#E3F5EC; border:1px solid #BFE6D2; color:#156B45; }
   .chamando .ch-pulso { margin-top:7px; }
@@ -123,7 +123,7 @@
 
 <script src="layout.js"></script>
 <script src="controle-dados.js?v=3"></script>
-<script src="pulso-site.js?v=4"></script>
+<script src="pulso-site.js?v=5"></script>
 <script>
 montarLayout("vagas");
 
@@ -266,18 +266,16 @@ document.addEventListener("click", ev => {
     <div class="fim-volta"><a href="vagas.html?ver=todas" class="voltar" data-voltar><span class="seta" aria-hidden="true">←</span>Voltar para a lista de vagas</a></div>`;
   ligarVoltar();
 
-  /* Vaga do bloco "Estão chamando agora": o aviso entra no topo. Quem não
-     tem conta não recebe a lista (Pulso.carregar), então não vê o aviso. */
-  if (typeof Pulso !== "undefined" && typeof Pulso.detalhe === "function") {
+  /* Vaga em alta: o aviso entra no topo. Quem não tem conta não recebe a
+     lista (Pulso.carregar), então não vê o aviso. */
+  if (typeof Pulso !== "undefined" && typeof Pulso.emAlta === "function") {
     Pulso.carregar().then(() => {
-      const d = Pulso.detalhe(v.id);
       const cab = cont.querySelector(".cabeca");
-      if (!d || !cab) return;
-      const quando = Pulso.confirmado(d);
+      if (!cab || !Pulso.emAlta(v.id)) return;
       cab.insertAdjacentHTML("afterbegin", `<div class="chamando" role="status">
         <span class="ch-pulso" aria-hidden="true"></span>
-        <div><b>${esc(Pulso.etapa(d))}</b>
-          <span class="t">${quando ? esc(quando) + " pela equipe do Hub." : "Confirmado pela equipe do Hub."}${d.nota ? " " + esc(d.nota) : ""}</span></div>
+        <div><b>${esc(Pulso.TEXTO_EM_ALTA)}</b>
+          <span class="t">Vaga em alta no Hub: a empresa tem chamado candidatos com frequência.</span></div>
       </div>`);
     }).catch(() => {});
   }

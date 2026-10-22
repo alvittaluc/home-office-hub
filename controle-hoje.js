@@ -121,12 +121,6 @@ const Hoje = (function () {
     return d.toISOString().slice(0, 10);
   }
 
-  /* "09:00" vira "9h", "14:30" vira "14h30". */
-  function horaCurta(h) {
-    const p = String(h || "").split(":").map(Number);
-    return p[0] + "h" + (p[1] ? String(p[1]).padStart(2, "0") : "");
-  }
-
   /* Quando o próximo passo está marcado: hoje, ontem, ou a data. */
   function quandoBonito(iso, hoje) {
     const dias = Dados.diasEntre(iso, hoje);   // positivo quando iso já passou
@@ -188,8 +182,7 @@ const Hoje = (function () {
         const q = r ? UI.qtdTarefas(r) : 0;
         const feito = [q ? UI.escreverTarefas(q) : "", h ? Dados.escreverHoras(h) : ""].filter(Boolean).join(" · ");
         const pl = comAgenda ? Agenda.planoDoDia(t, hoje) : null;
-        const plano = !pl ? "" : `<span class="h-dia-plano">plano: <b>${esc(Dados.escreverHoras(pl.horas))}</b>${
-          pl.inicio ? ", das " + esc(horaCurta(pl.inicio)) + " às " + esc(horaCurta(pl.fim)) : ""}</span>`;
+        const plano = !pl ? "" : `<span class="h-dia-plano">plano de hoje: <b>${esc(Agenda.horas(pl.horas))}</b></span>`;
         return `<button class="h-dia-cartao" data-dia="${esc(t.id)}"${pl && !h ? ` data-horas="${pl.horas}"` : ""}>
           <span class="h-dia-nome">
             <i class="h-ponto" style="background:${esc(t.cor || "#2C6BB5")}"></i>

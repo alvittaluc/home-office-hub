@@ -532,9 +532,9 @@
   .v-emp .selo-pulso.alta     { color:var(--signal); background:var(--signal-suave); border:1px solid #D3E2F1; }
   .v-emp .selo-pulso.responde { color:var(--violet); background:#F1EEF7; border:1px solid #DFD8EE; }
 
-  /* Em alta: a equipe confirmou que a empresa está chamando gente. A linha é a
-     mesma das outras vagas, com um azul leve que se desfaz para a direita e o
-     selo verde que pulsa. */
+  /* Em alta: a empresa está contratando com frequência. A linha é a mesma das
+     outras vagas, com um azul leve que se desfaz para a direita e o selo
+     verde que pulsa. */
   .vaga.chamando { border-color:#CCDCEE;
     background:radial-gradient(90% 160% at 0% 50%, #E2ECF8 0%, rgba(234,241,248,.55) 38%, rgba(255,255,255,0) 70%), var(--panel); }
   .vaga.chamando:hover { border-color:#AFC7E4; }
@@ -542,7 +542,6 @@
     display:inline-flex; align-items:center; gap:7px; font-size:11.5px; font-weight:600; white-space:nowrap;
     color:#156B45; background:#E3F5EC; border:1px solid #BFE6D2; border-radius:20px; padding:1px 10px 1px 8px; flex-shrink:0;
   }
-  .v-emp .ch-quando { font-size:11.5px; color:var(--ink-3); white-space:nowrap; }
   .ch-pulso { position:relative; display:inline-block; width:7px; height:7px; border-radius:50%; background:#2BB673; flex-shrink:0; }
   .ch-pulso::after { content:""; position:absolute; inset:0; border-radius:50%; background:#2BB673;
     animation:ch-pulsa 1.8s ease-out infinite; }
@@ -745,7 +744,7 @@
 <script src="alerta-email.js?v=3"></script>
 <script src="layout.js"></script>
 <script src="controle-dados.js?v=3"></script>
-<script src="pulso-site.js?v=4"></script>
+<script src="pulso-site.js?v=5"></script>
 <script>
 montarLayout("vagas");
 
@@ -1644,12 +1643,12 @@ function aplicar() {
        quem não tem conta usa o mesmo texto, porque hoje a lista é essa. */
     const aMao = convite || (typeof Pulso.manual === "function" && Pulso.manual());
     html += `<div class="grupo-titulo"><h2>${aMao ? '<span class="ch-pulso" aria-hidden="true"></span>Em alta' : "Em movimento"}</h2>
-             <span>${aMao ? "as empresas estão chamando gente agora, segundo a equipe do Hub"
+             <span>${aMao ? "empresas que estão contratando com frequência, segundo a equipe do Hub"
                           : "onde os alunos do Hub estão se candidatando e recebendo resposta"}</span></div>
              ${convite
                ? Acesso.cortina(`<div class="lista">${[0, 1, 2, 3].map(linhaDeMentira).join("")}</div>`,
                    "As vagas em alta são para quem tem conta",
-                   "Veja em quais vagas as empresas estão chamando gente agora.")
+                   "Veja quais empresas estão contratando com frequência.")
                : `<div class="lista">${destacadas.map(linha).join("")}</div>`}`;
   }
   if (novas.length) {
