@@ -343,6 +343,7 @@ body > header.site .hd { max-width:1460px; }
       <div class="ct-carregando" id="carregando">Abrindo os seus dados…</div>
 
       <section id="hoje" hidden></section>
+      <section id="agenda" hidden></section>
       <section id="painel" hidden></section>
       <section id="aplicacoes" hidden></section>
       <section id="trabalhos" hidden></section>
@@ -356,15 +357,16 @@ body > header.site .hd { max-width:1460px; }
 </main>
 
 <script src="layout.js"></script>
-<script src="controle-dados.js?v=3"></script>
+<script src="controle-dados.js?v=4"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js" integrity="sha384-WgXwGL6fUsYJWNaKJgVbrJKGRQwc1vieh2oy4kw9nXqpNDz3tdSsqEYUgeHD/NuF" crossorigin="anonymous"></script>
 <script src="controle-conta.js?v=8"></script>
-<script src="pulso-site.js"></script>
+<script src="pulso-site.js?v=4"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
-<script src="controle-ui.js?v=4"></script>
+<script src="controle-ui.js?v=5"></script>
 <script src="controle-trabalho.js?v=5"></script>
 <script src="controle-hoje.js?v=3"></script>
+<script src="controle-agenda.js?v=1"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
    junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
@@ -398,6 +400,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     trabalhos:  '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4.5" width="12" height="9" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M6 4.5v-1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.4"/></svg>',
     dados:      '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="4" rx="5.5" ry="2" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 4v8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2V4M2.5 8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2" stroke="currentColor" stroke-width="1.4"/></svg>',
     hoje:       '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M2 6.5h12M5.5 1.8v2.4M10.5 1.8v2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="10" r="1.5" fill="currentColor"/></svg>',
+    agenda:     '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M2 6.5h12M5.5 1.8v2.4M10.5 1.8v2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M4.8 9h1.4M7.3 9h1.4M9.8 9h1.4M4.8 11.4h1.4M7.3 11.4h1.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>',
     mais:       '<svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3.5v9M3.5 8h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   };
 
@@ -405,7 +408,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      ESTADO DA PÁGINA
      ══════════════════════════════════════════════════════════ */
 
-  let TRABALHOS = [], APLICACOES = [], REGISTROS = [], PAGAMENTOS = [], CFG = {};
+  let TRABALHOS = [], APLICACOES = [], REGISTROS = [], PAGAMENTOS = [], AGENDA = [], CFG = {};
   let EMPRESAS = [];
   let filtro = { estado: "", busca: "" };
   let periodo = "mes";
@@ -414,9 +417,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   async function recarregar() {
     const r = await Promise.all([
       Dados.listar("trabalhos"), Dados.listar("aplicacoes"),
-      Dados.listar("registros"), Dados.listar("pagamentos"), Dados.obterConfig(),
+      Dados.listar("registros"), Dados.listar("pagamentos"), Dados.obterConfig(), Dados.listar("agenda"),
     ]);
-    TRABALHOS = r[0]; APLICACOES = r[1]; REGISTROS = r[2]; PAGAMENTOS = r[3]; CFG = r[4];
+    TRABALHOS = r[0]; APLICACOES = r[1]; REGISTROS = r[2]; PAGAMENTOS = r[3]; CFG = r[4]; AGENDA = r[5];
     // Ativos primeiro, e dentro de cada grupo na ordem em que foram criados.
     // Ordem estável de propósito: é uma lista de navegação, e item que muda
     // de lugar a cada trabalho novo faz a pessoa clicar no errado.
@@ -466,6 +469,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     // Contador da tela Hoje: só o que tem data marcada para hoje ou para trás.
     const aFazer = APLICACOES.filter(a => a.proximo && a.proximoEm && a.proximoEm <= Dados.hoje() &&
       ["aplicado", "teste", "entrevista", "banco"].indexOf(a.estado) >= 0).length;
+    // Contador da Agenda: o que a pessoa marcou para hoje.
+    const naAgendaHoje = typeof Agenda !== "undefined" ? Agenda.quantosHoje(AGENDA) : 0;
 
     const itensTrab = TRABALHOS.map(t => {
       const horas = REGISTROS
@@ -488,6 +493,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       <button class="ct-item" data-ir="hoje" aria-current="${rota.tela === "hoje"}">
         ${IC.hoje}<span class="ct-txt">Hoje</span>
         <span class="ct-cont">${aFazer ? aFazer : ""}</span></button>
+      <button class="ct-item" data-ir="agenda" aria-current="${rota.tela === "agenda"}">
+        ${IC.agenda}<span class="ct-txt">Agenda</span>
+        <span class="ct-cont">${naAgendaHoje || ""}</span></button>
       <button class="ct-item" data-ir="painel" aria-current="${rota.tela === "painel"}">
         ${IC.painel}<span class="ct-txt">Painel</span></button>
       <button class="ct-item" data-ir="aplicacoes" aria-current="${rota.tela === "aplicacoes"}">
@@ -514,7 +522,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      ROTAS
      ══════════════════════════════════════════════════════════ */
 
-  const TELAS = ["hoje", "painel", "aplicacoes", "trabalhos", "trabalho", "dados"];
+  const TELAS = ["hoje", "agenda", "painel", "aplicacoes", "trabalhos", "trabalho", "dados"];
 
   function irPara(caminho) {
     if (location.hash.slice(1) === caminho) return abrir(caminho);
@@ -536,6 +544,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     desenharLado();
 
     if (tela === "hoje")       await desenharHoje();
+    if (tela === "agenda")     await desenharAgenda();
     if (tela === "painel")     await desenharPainel();
     if (tela === "aplicacoes") desenharAplicacoes();
     if (tela === "trabalhos")  await desenharTrabalhos();
@@ -567,6 +576,20 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       registrarDia: (t, data) => registrarDiaRapido(t, data),
       abrirAplicacao: (ap) => formAplicacao(ap),
       aoMudar: async () => { await recarregar(); await desenharHoje(); },
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     AGENDA
+
+     Toda a lógica mora no controle-agenda.js; aqui ficam os ganchos.
+     ══════════════════════════════════════════════════════════ */
+
+  async function desenharAgenda() {
+    await Agenda.montar($("#agenda"), {
+      trabalhos: TRABALHOS, aplicacoes: APLICACOES, registros: REGISTROS, irPara,
+      abrirAplicacao: (ap) => formAplicacao(ap),
+      aoMudar: async () => { await recarregar(); await desenharAgenda(); },
     });
   }
 
@@ -1141,6 +1164,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     await recarregar();
     if (rota.tela === "aplicacoes") desenharAplicacoes();
     if (rota.tela === "hoje") await desenharHoje();
+    if (rota.tela === "agenda") await desenharAgenda();
     UI.aviso("Etapa atualizada: " + estadoDe(novo).nome + ".");
     depoisDaEtapa(salvo || ap, novo, antigo, ap.titulo, ap.empresa);
   }
@@ -1231,6 +1255,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         await recarregar();
         if (rota.tela === "aplicacoes") desenharAplicacoes();
         if (rota.tela === "hoje") await desenharHoje();
+        if (rota.tela === "agenda") await desenharAgenda();
         UI.aviso(novo ? "Candidatura registrada." : "Candidatura salva.");
 
         depoisDaEtapa(salvo, estadoNovo, ap.estado, titulo, empresa);
@@ -1441,6 +1466,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       await recarregar();
       if (rota.tela === "painel") await desenharPainel();
       if (rota.tela === "hoje")   await desenharHoje();
+      if (rota.tela === "agenda") await desenharAgenda();
     };
     const opcoes = { aoSalvar: depois };
     if (data) opcoes.data = data;

@@ -16,7 +16,7 @@ const Dados = (function () {
   "use strict";
 
   const DB_NOME   = "hub-controle";
-  const DB_VERSAO = 1;
+  const DB_VERSAO = 2;   // 2: entrou a coleção agenda
   const ESQUEMA   = 1;   // versão do FORMATO dos dados, não do banco
 
   const COLECOES = {
@@ -25,6 +25,7 @@ const Dados = (function () {
     registros:  { indices: ["trabalhoId", "data"] },
     pagamentos: { indices: ["trabalhoId", "data"] },
     blocos:     { indices: ["trabalhoId"] },
+    agenda:     { indices: ["data"] },
     cotacoes:   { indices: [] },
     config:     { indices: [] },
   };
@@ -53,7 +54,7 @@ const Dados = (function () {
 
       // Trava de segurança: em janela anônima o open às vezes nunca responde,
       // nem com sucesso nem com erro. Sem isto a página ficaria carregando para sempre.
-      const relogio = setTimeout(() => erro(new Error("indexedDB não respondeu")), 4000);
+      let relogio = setTimeout(() => erro(new Error("indexedDB não respondeu")), 4000);
 
       req.onupgradeneeded = (ev) => {
         const banco = ev.target.result;
@@ -63,9 +64,28 @@ const Dados = (function () {
           COLECOES[nome].indices.forEach(campo => loja.createIndex(campo, campo, { unique: false }));
         });
       };
-      req.onsuccess = () => { clearTimeout(relogio); ok(req.result); };
+      req.onsuccess = () => {
+        clearTimeout(relogio);
+        const banco = req.result;
+        // Quando uma versão mais nova do site abrir em outra aba, esta solta o
+        // banco e recarrega, em vez de travar a atualização da outra.
+        banco.onversionchange = () => {
+          banco.close();
+          try { if (typeof UI !== "undefined") UI.aviso("O Meu Controle foi atualizado em outra aba. Recarregando…"); } catch (e) {}
+          setTimeout(() => location.reload(), 1500);
+        };
+        ok(banco);
+      };
       req.onerror   = () => { clearTimeout(relogio); erro(req.error); };
-      req.onblocked = () => { clearTimeout(relogio); erro(new Error("banco travado por outra aba")); };
+      // Outra aba aberta com a versão antiga segura o banco. A atualização
+      // espera ela fechar; cair para o localStorage agora espalharia os dados
+      // em dois lugares. Só desiste depois de um minuto.
+      req.onblocked = () => {
+        clearTimeout(relogio);
+        const aviso = document.getElementById("carregando");
+        if (aviso) aviso.textContent = "Feche as outras abas do Meu Controle para continuar. O Meu Controle foi atualizado e precisa delas fechadas uma vez.";
+        relogio = setTimeout(() => erro(new Error("banco travado por outra aba")), 60000);
+      };
     });
   }
 
@@ -140,7 +160,9 @@ const Dados = (function () {
      hora de enviar, o conteúdo é lido de novo, sempre na versão mais nova.
      ══════════════════════════════════════════════════════════ */
 
-  // cotacoes fica de fora: é cache de câmbio, igual para todo mundo
+  // cotacoes fica de fora: é cache de câmbio, igual para todo mundo.
+  // agenda também, por enquanto: a tabela da nuvem só aceita as coleções
+  // listadas em banco/esquema.sql. Entra aqui depois de rodar banco/agenda.sql.
   const NA_NUVEM = ["aplicacoes", "trabalhos", "registros", "pagamentos", "blocos", "config"];
   const CHAVE_FILA = "hub-controle:fila-nuvem";
 

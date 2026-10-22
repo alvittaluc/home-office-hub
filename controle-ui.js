@@ -363,7 +363,8 @@ const UI = (function () {
       .filter(b => b.escopo === "dia").sort((a, b) => a.ordem - b.ordem);
 
     const jaTem = (await Dados.listar("registros", { trabalhoId: trabalho.id })).find(r => r.data === data);
-    const reg = jaTem || { trabalhoId: trabalho.id, data, horas: "", valor: "", observacoes: "", blocos: {} };
+    // opcoes.horas vem da Agenda ("lançar estas horas"); só preenche dia novo
+    const reg = jaTem || { trabalhoId: trabalho.id, data, horas: opcoes.horas || "", valor: "", observacoes: "", blocos: {} };
 
     const forma = trabalho.pagamento || "hora";
     const moeda = trabalho.moeda || "BRL";

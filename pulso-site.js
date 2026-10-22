@@ -2,7 +2,8 @@
  * Pulso do Hub — peça de navegador.
  *
  * Faz três coisas, e nenhuma delas é obrigatória para o site funcionar:
- *   1. diz quais vagas estão em destaque, para a lista montar o grupo "Em movimento";
+ *   1. diz quais vagas estão em destaque e o que a equipe anotou sobre elas,
+ *      para a lista montar o bloco "Estão chamando agora";
  *   2. põe o selo discreto nos cartões dessas vagas;
  *   3. despacha os eventos do Meu Controle, se a pessoa tiver ligado o Pulso.
  *
@@ -70,6 +71,37 @@
       não dizer que há movimento medido onde só há escolha da equipe. */
   function manual() { return !!(dados && dados.manual === true); }
 
+  /** O que a equipe anotou sobre uma vaga do destaque, ou null.
+      Campos opcionais de cada item de "destaques" no pulso.json:
+        chamando       "teste", "entrevista" ou "contratando": a etapa em que
+                       a empresa está chamando
+        confirmado_em  "AAAA-MM-DD": quando a equipe confirmou as chamadas
+        nota           recado curto da equipe, uma frase */
+  function detalhe(id) {
+    if (!dados || !Array.isArray(dados.destaques)) return null;
+    return dados.destaques.find(d => d && d.id === id) || null;
+  }
+
+  const ETAPAS = {
+    teste: "Chamando para o teste",
+    entrevista: "Chamando para entrevista",
+    contratando: "Contratando agora",
+  };
+  /** "Chamando para o teste", ou "Chamando agora" quando a etapa não foi anotada. */
+  function etapa(d) { return (d && ETAPAS[d.chamando]) || "Chamando agora"; }
+
+  /** "Confirmado hoje", "Confirmado há 3 dias"... Sem data, usa a de entrada no destaque. */
+  function confirmado(d) {
+    const quando = d && (d.confirmado_em || d.desde);
+    if (!quando || !/^\d{4}-\d{2}-\d{2}$/.test(quando)) return "";
+    const hoje = new Date(); hoje.setHours(12, 0, 0, 0);
+    const dias = Math.round((hoje - new Date(quando + "T12:00:00")) / 86400000);
+    if (dias <= 0) return "Confirmado hoje";
+    if (dias === 1) return "Confirmado ontem";
+    if (dias <= 13) return "Confirmado há " + dias + " dias";
+    return "Confirmado em " + quando.slice(8, 10) + "/" + quando.slice(5, 7);
+  }
+
   /** Selos de uma vaga, inclusive das que não couberam no destaque. */
   function selos(id) {
     if (!dados || !dados.sinais || !dados.sinais[id]) return [];
@@ -87,8 +119,11 @@
       const chave = lista.indexOf("responde") >= 0 ? "responde" : "alta";
       const s = document.createElement("span");
       s.className = "selo-pulso " + chave;
-      s.title = manual() ? "Vaga em destaque, escolhida pela equipe do Hub" : SELOS[chave].titulo;
-      s.textContent = SELOS[chave].texto;
+      /* Na lista feita à mão, "em alta" quer dizer que a equipe confirmou
+         que a empresa está chamando gente. */
+      const aMao = manual() && chave === "alta";
+      s.title = aMao ? "A equipe do Hub confirmou que esta vaga está chamando gente" : SELOS[chave].titulo;
+      s.textContent = aMao ? "chamando agora" : SELOS[chave].texto;
       onde.appendChild(s);
     });
   }
@@ -229,7 +264,7 @@
   }
 
   window.Pulso = {
-    carregar, destaques, selos, marcar, manual,
+    carregar, destaques, detalhe, etapa, confirmado, selos, marcar, manual,
     enviar, porEstado, enviarHistorico, tamanhoDoHistorico,
     ligar, desligar, ligado, respondeu,
   };

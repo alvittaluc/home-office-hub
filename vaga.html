@@ -100,6 +100,18 @@
     background:#fff; color:var(--ink,#10203A); transition:all .16s;
   }
   .aplic button:hover, .aplic a.bt:hover { border-color:var(--signal,#1A4893); color:var(--signal,#1A4893); }
+
+  /* vaga do bloco "Estão chamando agora" (pulso.json): aviso no topo da vaga */
+  .chamando { display:flex; align-items:flex-start; gap:13px; margin:0 0 22px; padding:14px 17px; border-radius:14px;
+    background:#E3F5EC; border:1px solid #BFE6D2; color:#156B45; }
+  .chamando .ch-pulso { margin-top:7px; }
+  .chamando b { display:block; font-size:15.5px; font-weight:600; }
+  .chamando .t { display:block; font-size:13.5px; line-height:1.55; color:#2C6A4D; margin-top:2px; }
+  .ch-pulso { position:relative; width:9px; height:9px; border-radius:50%; background:#2BB673; flex-shrink:0; }
+  .ch-pulso::after { content:""; position:absolute; inset:0; border-radius:50%; background:#2BB673;
+    animation:ch-pulsa 1.8s ease-out infinite; }
+  @keyframes ch-pulsa { 0% { transform:scale(1); opacity:.7; } 80%, 100% { transform:scale(3.2); opacity:0; } }
+  @media (prefers-reduced-motion:reduce){ .ch-pulso::after { animation:none; opacity:0; } }
 </style>
 </head>
 <body>
@@ -111,7 +123,7 @@
 
 <script src="layout.js"></script>
 <script src="controle-dados.js?v=3"></script>
-<script src="pulso-site.js"></script>
+<script src="pulso-site.js?v=4"></script>
 <script>
 montarLayout("vagas");
 
@@ -253,6 +265,22 @@ document.addEventListener("click", ev => {
     </div>
     <div class="fim-volta"><a href="vagas.html?ver=todas" class="voltar" data-voltar><span class="seta" aria-hidden="true">←</span>Voltar para a lista de vagas</a></div>`;
   ligarVoltar();
+
+  /* Vaga do bloco "Estão chamando agora": o aviso entra no topo. Quem não
+     tem conta não recebe a lista (Pulso.carregar), então não vê o aviso. */
+  if (typeof Pulso !== "undefined" && typeof Pulso.detalhe === "function") {
+    Pulso.carregar().then(() => {
+      const d = Pulso.detalhe(v.id);
+      const cab = cont.querySelector(".cabeca");
+      if (!d || !cab) return;
+      const quando = Pulso.confirmado(d);
+      cab.insertAdjacentHTML("afterbegin", `<div class="chamando" role="status">
+        <span class="ch-pulso" aria-hidden="true"></span>
+        <div><b>${esc(Pulso.etapa(d))}</b>
+          <span class="t">${quando ? esc(quando) + " pela equipe do Hub." : "Confirmado pela equipe do Hub."}${d.nota ? " " + esc(d.nota) : ""}</span></div>
+      </div>`);
+    }).catch(() => {});
+  }
 
   /* ══════════════════════════════════════════════════════════
      "Já apliquei para essa vaga?"
