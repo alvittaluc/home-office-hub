@@ -365,8 +365,8 @@ body > header.site .hd { max-width:1460px; }
 <script src="controle-blocos.js?v=2"></script>
 <script src="controle-ui.js?v=5"></script>
 <script src="controle-trabalho.js?v=5"></script>
-<script src="controle-hoje.js?v=3"></script>
-<script src="controle-agenda.js?v=1"></script>
+<script src="controle-hoje.js?v=4"></script>
+<script src="controle-agenda.js?v=2"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
    junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
@@ -571,7 +571,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   async function desenharHoje() {
     await Hoje.montar($("#hoje"), {
       trabalhos: TRABALHOS, aplicacoes: APLICACOES, registros: REGISTROS,
-      pagamentos: PAGAMENTOS, cfg: CFG,
+      pagamentos: PAGAMENTOS, agenda: AGENDA, cfg: CFG,
       estadoDe, marcaHtml, irPara,
       registrarDia: (t, data) => registrarDiaRapido(t, data),
       abrirAplicacao: (ap) => formAplicacao(ap),

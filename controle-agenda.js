@@ -6,20 +6,27 @@
    própria, dentro do Meu Controle, e não fala com Google nem com nada de fora.
 
    O que ela mostra:
-   - o que a pessoa marcou (coleção "agenda"): horas de trabalho planejadas,
-     entrevista, teste, prazo, estudo ou outro, com ou sem horário, e que
-     pode se repetir toda semana ou de segunda a sexta;
+   - o plano da semana de cada trabalho: a pessoa diz uma vez quantas horas
+     quer fazer por semana, em quais dias e a partir de que horas, e a agenda
+     monta os blocos sozinha e vai dizendo quanto falta. Um bloco de dia que
+     já chegou abre o registro do dia já preenchido com as horas;
+   - o que a pessoa marcou (coleção "agenda"): entrevista, teste, prazo,
+     estudo ou outro, com ou sem horário, e que pode se repetir toda semana
+     ou de segunda a sexta;
    - o que já está no Meu Controle, sem a pessoa marcar de novo: as horas
-     lançadas em cada dia, o próximo passo das candidaturas e o dia em que
-     fecha o período de cada trabalho.
+     lançadas em cada dia, o próximo passo das candidaturas, o dia em que
+     fecha o período de cada trabalho e, se a pessoa disse quantos dias
+     depois o pagamento cai, o dia previsto e o valor pelas horas lançadas.
 
-   Horas planejadas viram horas lançadas com um clique ("Lançar estas horas"),
-   que abre o registro do dia já preenchido.
-
+   O plano fica dentro do próprio trabalho:
+     trabalho.plano = { horas, dias: [0-6, 0 = domingo], inicio, desde }
+     trabalho.diasAtePagar = dias entre o fim do período e o pagamento
    Um item da agenda:
-     { tipo, titulo, data, inicio, fim, trabalhoId, aplicacaoId, nota,
+     { tipo, titulo, data, inicio, fim, aplicacaoId, nota,
        repetir: "" | "semana" | "uteis", repetirAte, pular: [datas] }
    Sem inicio, é do dia inteiro.
+
+   A tela Hoje usa planoDoDia() e compromissos() para mostrar o dia.
 
    O CSS mora aqui dentro, pela regra das peças compartilhadas.
    ══════════════════════════════════════════════════════════════════════════ */
@@ -29,6 +36,7 @@ const Agenda = (function () {
 
   const esc = s => UI.esc(s);
 
+  // trabalho só aparece pelo plano da semana; os outros a pessoa marca à mão
   const TIPOS = {
     trabalho:   { nome: "Horas de trabalho", cor: null },
     entrevista: { nome: "Entrevista",        cor: "#5B4B9E" },
@@ -66,15 +74,35 @@ const Agenda = (function () {
   background:transparent; color:var(--ink-2,#54606F); cursor:pointer; }
 .ag-vistas button[aria-selected="true"] { background:var(--panel,#fff); color:var(--ink,#10203A); box-shadow:0 1px 3px rgba(16,32,58,.12); }
 
-.ag-resumo { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
-.ag-res { flex:1 1 220px; min-width:0; background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:14px; padding:12px 14px; }
-.ag-res-nome { display:flex; align-items:center; gap:7px; font-size:13px; color:var(--ink-2,#54606F); }
-.ag-res-nome i { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-.ag-res-nome span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.ag-res-num { font-size:20px; font-weight:600; color:var(--ink,#10203A); margin-top:4px; letter-spacing:-.01em; }
-.ag-res-num small { font-size:13px; font-weight:500; color:var(--ink-3,#66717F); }
-.ag-res-barra { height:6px; border-radius:99px; background:var(--bg-soft,#F1ECE3); overflow:hidden; margin-top:8px; }
-.ag-res-barra i { display:block; height:100%; border-radius:99px; }
+.ag-planos-cab { display:flex; align-items:baseline; gap:10px; margin:0 0 10px; }
+.ag-planos-cab h2 { font-family:var(--body,'Geist',sans-serif); font-size:15px; font-weight:600; color:var(--ink,#10203A); margin:0; }
+.ag-planos-cab p { font-size:12.5px; color:var(--ink-3,#66717F); margin:0; }
+.ag-planos { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-bottom:20px; }
+.ag-plano { background:var(--panel,#fff); border:1px solid var(--line-soft,#EAE4D9); border-radius:16px; padding:15px 16px 14px;
+  display:flex; flex-direction:column; gap:8px; min-width:0; }
+.ag-plano-nome { display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600; color:var(--ink,#10203A); }
+.ag-plano-nome i { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.ag-plano-nome span { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ag-plano-nome button { font:inherit; font-size:12.5px; font-weight:600; color:var(--signal,#1A4893); background:none; border:0; cursor:pointer; padding:2px 0; }
+.ag-plano-num { font-size:22px; font-weight:600; color:var(--ink,#10203A); letter-spacing:-.01em; line-height:1.1; }
+.ag-plano-num small { font-size:13px; font-weight:500; color:var(--ink-3,#66717F); }
+.ag-plano-barra { height:7px; border-radius:99px; background:var(--bg-soft,#F1ECE3); overflow:hidden; }
+.ag-plano-barra i { display:block; height:100%; border-radius:99px; }
+.ag-plano-txt { font-size:13px; line-height:1.5; color:var(--ink-2,#54606F); }
+.ag-plano-dias { font-size:12px; color:var(--ink-3,#66717F); }
+.ag-plano-pg { display:flex; align-items:center; gap:7px; margin-top:2px; padding-top:9px; border-top:1px solid var(--line-soft,#EAE4D9);
+  font-size:12.5px; color:var(--ink-2,#54606F); }
+.ag-plano-pg b { color:#1F7A6E; font-weight:600; }
+.ag-plano.vazio { border-style:dashed; background:transparent; }
+.ag-plano.vazio .ct-b { align-self:flex-start; }
+.ag-dias { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px; }
+.ag-dias label { cursor:pointer; }
+.ag-dias input { position:absolute; opacity:0; pointer-events:none; }
+.ag-dias span { display:inline-block; min-width:44px; text-align:center; font-size:13px; font-weight:500; padding:8px 10px; border-radius:999px;
+  border:1px solid var(--line,#DED7CA); background:var(--panel,#fff); color:var(--ink-2,#54606F); }
+.ag-dias input:checked + span { background:var(--signal,#1A4893); border-color:var(--signal,#1A4893); color:#fff; }
+.ag-dias input:focus-visible + span { outline:2px solid var(--signal,#1A4893); outline-offset:2px; }
+.ag-conta { font-size:13px; color:var(--ink-2,#54606F); background:var(--bg,#F7F4EF); border-radius:10px; padding:10px 12px; margin:-4px 0 14px; }
 
 .ag-cal { padding:0 !important; overflow:hidden; }
 .ag-rolar-x { overflow-x:auto; }
@@ -181,12 +209,14 @@ const Agenda = (function () {
   const hhmm = m => String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0");
   const horaCurta = h => { const m = minutos(h); return m === null ? "" : (m % 60 ? hhmm(m).replace(":", "h") : Math.floor(m / 60) + "h"); };
   function duracao(it) {
+    if (it._plano) return it.horas || 0;
     const a = minutos(it.inicio), b = minutos(it.fim);
     return a !== null && b !== null && b > a ? (b - a) / 60 : 0;
   }
   const diaCurto = s => { const p = partes(s); return p[2] + " " + MESES[p[1] - 1]; };
   const diaLongo = s => DSEM_LONGO[dsem(s)] + ", " + partes(s)[2] + " de " + MESES_LONGOS[partes(s)[1] - 1];
-  const faixa = it => it.inicio ? horaCurta(it.inicio) + (it.fim ? " – " + horaCurta(it.fim) : "") : "dia todo";
+  const faixa = it => it.inicio ? horaCurta(it.inicio) + (it.fim ? " – " + horaCurta(it.fim) : "")
+    : (it._plano ? Dados.escreverHoras(it.horas) : "dia todo");
 
   /* ── o que cai em cada dia ───────────────────────────────────────────── */
 
@@ -207,6 +237,82 @@ const Agenda = (function () {
       }
     }
     return out;
+  }
+
+  /* ── plano da semana ─────────────────────────────────────────────────── */
+
+  /* As horas que o plano do trabalho pede num dia, ou null. Vale da semana
+     em que o plano foi feito em diante, e só para trabalho ativo. */
+  function planoDoDia(t, data) {
+    const p = t && t.plano;
+    if (!p || !(+p.horas > 0) || !Array.isArray(p.dias) || !p.dias.length || t.estado !== "ativo") return null;
+    if (p.desde && data < p.desde) return null;
+    if (p.dias.indexOf(dsem(data)) < 0) return null;
+    const horas = Math.round(+p.horas / p.dias.length * 4) / 4;    // de 15 em 15 minutos
+    const ini = minutos(p.inicio);
+    if (ini === null) return { horas, inicio: "", fim: "" };
+    return { horas, inicio: hhmm(ini), fim: hhmm(Math.min(ini + Math.round(horas * 60), 23 * 60 + 59)) };
+  }
+
+  /* Os blocos do plano no intervalo, no mesmo formato das ocorrências. */
+  function ocorrenciasDoPlano(trabalhos, de, ate) {
+    const out = [];
+    for (const t of trabalhos) {
+      for (let d = de; d <= ate; d = somar(d, 1)) {
+        const p = planoDoDia(t, d);
+        if (p) out.push({ item: { tipo: "trabalho", _plano: true, trabalhoId: t.id, horas: p.horas, inicio: p.inicio, fim: p.fim }, data: d });
+      }
+    }
+    return out;
+  }
+
+  /* A semana do plano: quanto já foi lançado, quanto falta e em quantos dias. */
+  function contaDaSemana(t, registros, hoje) {
+    const de = segunda(hoje), ate = somar(de, 6);
+    const feitas = registros.filter(r => r.trabalhoId === t.id && r.data >= de && r.data <= ate)
+      .reduce((s, r) => s + (+r.horas || 0), 0);
+    const meta = t.plano ? +t.plano.horas || 0 : 0;
+    const falta = Math.max(0, meta - feitas);
+    let dias = 0;
+    for (let d = hoje; d <= ate; d = somar(d, 1)) if (planoDoDia(t, d)) dias++;
+    return { feitas, meta, falta, dias, ultimo: ate };
+  }
+
+  /* ── quando cai o dinheiro ───────────────────────────────────────────── */
+
+  /* Os pagamentos previstos que caem no intervalo: o fim de cada período mais
+     os dias que a pessoa disse que a empresa leva para pagar. */
+  function pagamentosPrevistos(trabalhos, de, ate) {
+    const out = [];
+    for (const t of trabalhos) {
+      const n = parseInt(t.diasAtePagar, 10);
+      if (t.estado !== "ativo" || !(n >= 0)) continue;
+      const dia = UI.diaDoPeriodo(t);
+      let p = UI.periodoDe(somar(de, -n), dia);
+      for (let k = 0; k < 4; k++) {
+        const quando = somar(p.ate, n);
+        if (quando > ate) break;
+        if (quando >= de) out.push({ auto: "pagamento", data: quando, cor: "#1F7A6E", trabalho: t, periodo: p,
+          texto: "Pagamento previsto · " + (t.projeto || t.empresa) });
+        p = UI.periodoVizinho(p, dia, 1);
+      }
+    }
+    return out;
+  }
+
+  /* Quanto deve cair: o que foi lançado no período, na moeda do trabalho.
+     A conta é a mesma do resto do Meu Controle (UI.resumo). */
+  const VALORES = {};
+  async function valorDoPeriodo(t, periodo, registros) {
+    const hoje = Dados.hoje();
+    const ate = periodo.ate < hoje ? periodo.ate : hoje;
+    const chave = t.id + "|" + periodo.de + "|" + ate + "|" + registros.length;
+    if (VALORES[chave]) return VALORES[chave];
+    const r = await UI.resumo({ trabalhos: [t], registros: registros.filter(x => x.trabalhoId === t.id), pagamentos: [], de: periodo.de, ate });
+    const moeda = t.moeda || "BRL";
+    const v = (r.previstoPorMoeda && r.previstoPorMoeda[moeda]) || 0;
+    VALORES[chave] = { texto: v ? "~" + Dados.escreverDinheiro(v, moeda) : "", parcial: periodo.ate >= hoje };
+    return VALORES[chave];
   }
 
   /* O que já está no Meu Controle e aparece na agenda sem ser marcado. */
@@ -232,12 +338,37 @@ const Agenda = (function () {
       const dia = UI.diaDoPeriodo(t);
       let p = UI.periodoDe(de, dia);
       for (let n = 0; n < 4 && p.ate <= ate; n++) {
-        if (p.ate >= de) out.push({ auto: "periodo", data: p.ate, cor: "#1F7A6E", trabalho: t,
-          texto: "Fecha o período · " + (t.projeto || t.empresa) });
+        if (p.ate >= de) out.push({ auto: "periodo", data: p.ate, cor: "#54606F", trabalho: t,
+          texto: "Fecha o período · " + (t.projeto || t.empresa), curto: "Fecha · " + (t.projeto || t.empresa) });
         p = UI.periodoVizinho(p, dia, 1);
       }
     }
+    // pagamento previsto, com o valor quando já foi calculado
+    for (const a of pagamentosPrevistos(ctx.trabalhos, de, ate)) {
+      const ate2 = a.periodo.ate < Dados.hoje() ? a.periodo.ate : Dados.hoje();
+      const v = VALORES[a.trabalho.id + "|" + a.periodo.de + "|" + ate2 + "|" + ctx.registros.length];
+      const nome = a.trabalho.projeto || a.trabalho.empresa;
+      if (v && v.texto) {
+        a.texto = "Pagamento previsto " + v.texto + (v.parcial ? " até agora" : "") + " · " + nome;
+        a.curto = "Recebe " + v.texto + " · " + nome;
+      } else a.curto = "Recebe · " + nome;
+      out.push(a);
+    }
     return out;
+  }
+
+  /* Calcula antes de desenhar os valores dos pagamentos que vão aparecer. */
+  async function prepararValores(de, ate) {
+    const lista = pagamentosPrevistos(CTX.trabalhos, de, ate);
+    // e o próximo pagamento de cada trabalho, que aparece no cartão do plano
+    for (const t of CTX.trabalhos) { const p = proximoPagamento(t); if (p) lista.push(p); }
+    try { await Promise.all(lista.map(a => valorDoPeriodo(a.trabalho, a.periodo, CTX.registros))); }
+    catch (e) { console.warn("Agenda: não deu para calcular o valor previsto", e); }
+  }
+
+  function proximoPagamento(t) {
+    const hoje = Dados.hoje();
+    return pagamentosPrevistos([t], hoje, somar(hoje, 70))[0] || null;
   }
 
   /* ── estado da tela ──────────────────────────────────────────────────── */
@@ -255,7 +386,7 @@ const Agenda = (function () {
     if (!vista) vista = estreito() ? "lista" : "semana";
     if (!ref) ref = Dados.hoje();
     ITENS = await Dados.listar("agenda");
-    desenhar();
+    await desenhar();
   }
 
   function corDe(oc) {
@@ -314,9 +445,10 @@ const Agenda = (function () {
 
   /* ── desenho ─────────────────────────────────────────────────────────── */
 
-  function desenhar() {
+  async function desenhar() {
     const i = intervalo();
-    const ocs = ocorrencias(ITENS, i.de, i.ate);
+    await prepararValores(i.de, i.ate);
+    const ocs = ocorrencias(ITENS, i.de, i.ate).concat(ocorrenciasDoPlano(CTX.trabalhos, i.de, i.ate));
     // horas lançadas num dia que já tem bloco planejado do mesmo trabalho
     // aparecem no próprio bloco, e não de novo como marca à parte
     const autos = automaticos(CTX, i.de, i.ate).filter(a => !(a.auto === "lancado" &&
@@ -324,11 +456,12 @@ const Agenda = (function () {
 
     CAIXA.innerHTML = `
       <div class="ct-cab-tela">
-        <div><h1>Agenda</h1><p>Planeje as horas de cada trabalho e guarde entrevistas, testes e prazos.</p></div>
+        <div><h1>Agenda</h1><p>O plano de horas de cada trabalho, as entrevistas, os testes, os prazos e os dias de receber.</p></div>
         <div class="ct-cab-bts"><button class="ct-b forte" type="button" data-novo>
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3.5v9M3.5 8h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          Marcar</button></div>
+          Marcar compromisso</button></div>
       </div>
+      ${htmlPlanos()}
       <div class="ag-barra">
         <div class="ag-nav">
           <button class="ag-seta" type="button" data-ir="-1" aria-label="Anterior">‹</button>
@@ -341,12 +474,11 @@ const Agenda = (function () {
             `<button type="button" role="tab" data-vista="${v[0]}" aria-selected="${vista === v[0]}">${v[1]}</button>`).join("")}
         </div>
       </div>
-      ${vista === "semana" ? htmlResumo(i, ocs) : ""}
       <div class="ct-cartao ag-cal">
         ${vista === "semana" ? htmlSemana(i, ocs, autos) : vista === "mes" ? htmlMes(i, ocs, autos) : htmlLista(i, ocs, autos)}
       </div>
       <p class="ag-dicas">${vista === "lista" ? "Os próximos 14 dias." :
-        "Clique num espaço vazio para marcar ali. O que tem contorno vem do resto do Meu Controle: horas lançadas, próximo passo das candidaturas e fim de período."}</p>`;
+        "Clique num espaço vazio para marcar um compromisso ali. Os blocos de trabalho vêm do plano da semana; o que tem contorno vem do resto do Meu Controle."}</p>`;
 
     ligar(ocs, autos);
 
@@ -359,34 +491,69 @@ const Agenda = (function () {
     }
   }
 
-  /* Horas planejadas e lançadas na semana, por trabalho. */
-  function htmlResumo(i, ocs) {
-    const linhas = CTX.trabalhos.map(t => {
-      const plano = ocs.filter(o => o.item.tipo === "trabalho" && o.item.trabalhoId === t.id)
-        .reduce((s, o) => s + duracao(o.item), 0);
-      const feito = CTX.registros.filter(r => r.trabalhoId === t.id && r.data >= i.de && r.data <= i.ate)
-        .reduce((s, r) => s + (+r.horas || 0), 0);
-      return { t, plano, feito };
-    }).filter(l => l.plano > 0 || l.feito > 0);
-    if (!linhas.length) return "";
-    return `<div class="ag-resumo">${linhas.map(l => {
-      const cor = l.t.cor || "#2C6BB5";
-      const pct = l.plano ? Math.min(100, Math.round(l.feito / l.plano * 100)) : 100;
-      return `<div class="ag-res">
-        <div class="ag-res-nome"><i style="background:${esc(cor)}"></i><span>${esc(l.t.projeto || l.t.empresa)}</span></div>
-        <div class="ag-res-num">${esc(Dados.escreverHoras(l.feito) || "0h")} <small>${l.plano ? "de " + esc(Dados.escreverHoras(l.plano)) + " planejadas" : "lançadas, nada planejado"}</small></div>
-        ${l.plano ? `<div class="ag-res-barra"><i style="width:${pct}%;background:${esc(cor)}"></i></div>` : ""}
+  /* Um cartão por trabalho ativo: o plano desta semana, quanto falta e o
+     próximo pagamento. Trabalho sem plano mostra o convite para planejar. */
+  function htmlPlanos() {
+    const ativos = CTX.trabalhos.filter(t => t.estado === "ativo");
+    if (!ativos.length) return "";
+    const hoje = Dados.hoje();
+    const cartoes = ativos.map(t => {
+      const cor = esc(t.cor || "#2C6BB5");
+      const nome = esc(t.projeto || t.empresa);
+      const pg = proximoPagamento(t);
+      let linhaPg = "";
+      if (pg) {
+        const ate2 = pg.periodo.ate < hoje ? pg.periodo.ate : hoje;
+        const v = VALORES[t.id + "|" + pg.periodo.de + "|" + ate2 + "|" + CTX.registros.length];
+        linhaPg = `<div class="ag-plano-pg">Próximo pagamento: <b>${esc(diaCurto(pg.data))}</b>${
+          v && v.texto ? ` · ${esc(v.texto)}${v.parcial ? " até agora" : ""}` : ""}</div>`;
+      } else {
+        const p = UI.periodoDe(hoje, UI.diaDoPeriodo(t));
+        linhaPg = `<div class="ag-plano-pg">O período fecha em ${esc(diaCurto(p.ate))}.
+          <button type="button" class="ag-link" data-plano="${esc(t.id)}" style="padding:0">Quando cai o pagamento?</button></div>`;
+      }
+      if (!t.plano || !(+t.plano.horas > 0)) {
+        return `<div class="ag-plano vazio">
+          <div class="ag-plano-nome"><i style="background:${cor}"></i><span>${nome}</span></div>
+          <div class="ag-plano-txt">Diga quantas horas quer fazer por semana e em quais dias. A agenda monta a semana para você.</div>
+          <button type="button" class="ct-b pequeno" data-plano="${esc(t.id)}">Planejar a semana</button>
+          ${linhaPg}
+        </div>`;
+      }
+      const c = contaDaSemana(t, CTX.registros, hoje);
+      const pct = Math.min(100, Math.round(c.feitas / c.meta * 100));
+      const fim = DSEM_LONGO[dsem(c.ultimo)].toLowerCase();
+      let txt;
+      if (c.falta <= 0) txt = "Plano da semana cumprido.";
+      else if (c.dias === 0) txt = "Faltam " + Dados.escreverHoras(c.falta) + ", e os dias do plano desta semana já passaram.";
+      else if (c.dias === 1) {
+        let d = hoje; while (!planoDoDia(t, d)) d = somar(d, 1);
+        txt = "Faltam " + Dados.escreverHoras(c.falta) + ", e o último dia do plano é " + (d === hoje ? "hoje." : DSEM_LONGO[dsem(d)].toLowerCase() + ".");
+      }
+      else txt = "Faltam " + Dados.escreverHoras(c.falta) + ": dá " + Dados.escreverHoras(Math.ceil(c.falta / c.dias * 4) / 4) + " por dia em " + c.dias + " dias.";
+      const dias = t.plano.dias.slice().sort((a, b) => ((a + 6) % 7) - ((b + 6) % 7)).map(d => DSEM[d]).join(", ");
+      return `<div class="ag-plano">
+        <div class="ag-plano-nome"><i style="background:${cor}"></i><span>${nome}</span><button type="button" data-plano="${esc(t.id)}">Ajustar</button></div>
+        <div class="ag-plano-num">${esc(Dados.escreverHoras(c.feitas) || "0h")} <small>de ${esc(Dados.escreverHoras(c.meta))} nesta semana</small></div>
+        <div class="ag-plano-barra"><i style="width:${pct}%;background:${cor}"></i></div>
+        <div class="ag-plano-txt">${esc(txt)}</div>
+        <div class="ag-plano-dias">${esc(dias)}${t.plano.inicio ? " · a partir das " + esc(horaCurta(t.plano.inicio)) : ""}</div>
+        ${linhaPg}
       </div>`;
-    }).join("")}</div>`;
+    }).join("");
+    return `<div class="ag-planos-cab"><h2>Plano desta semana</h2><p>de segunda a domingo</p></div>
+      <div class="ag-planos">${cartoes}</div>`;
   }
 
   function chipItem(oc, idx) {
-    const st = situacao(oc);
-    return `<button type="button" class="ag-chip${st === "feito" ? " feito" : ""}" style="--c:${esc(corDe(oc))}" data-oc="${idx}">${
-      oc.item.inicio ? esc(horaCurta(oc.item.inicio)) + " " : ""}${esc(tituloDe(oc.item))}</button>`;
+    const st = situacao(oc), it = oc.item;
+    const texto = it._plano && !it.inicio
+      ? Dados.escreverHoras(it.horas) + " · " + tituloDe(it)
+      : (it.inicio ? horaCurta(it.inicio) + " " : "") + tituloDe(it);
+    return `<button type="button" class="ag-chip${st === "feito" ? " feito" : ""}" style="--c:${esc(corDe(oc))}" data-oc="${idx}">${esc(texto)}</button>`;
   }
   function chipAuto(a, idx) {
-    return `<button type="button" class="ag-chip auto" style="--c:${esc(a.cor)}" data-auto="${idx}" title="${esc(a.texto)}">${esc(a.texto)}</button>`;
+    return `<button type="button" class="ag-chip auto" style="--c:${esc(a.cor)}" data-auto="${idx}" title="${esc(a.texto)}">${esc(a.curto || a.texto)}</button>`;
   }
 
   function htmlSemana(i, ocs, autos) {
@@ -529,6 +696,10 @@ const Agenda = (function () {
     CAIXA.querySelectorAll("[data-oc]").forEach(b => b.addEventListener("click", ev => {
       ev.stopPropagation(); abrir(ocs[+b.dataset.oc]);
     }));
+    CAIXA.querySelectorAll("[data-plano]").forEach(b => b.addEventListener("click", () => {
+      const t = CTX.trabalhos.find(x => x.id === b.dataset.plano);
+      if (t) abrirPlano(t);
+    }));
     CAIXA.querySelectorAll("[data-auto]").forEach(b => b.addEventListener("click", ev => {
       ev.stopPropagation();
       const a = autos[+b.dataset.auto];
@@ -560,26 +731,28 @@ const Agenda = (function () {
   /* ── janela de marcar e editar ───────────────────────────────────────── */
 
   function abrir(oc, novo) {
+    // Bloco do plano: dia que já chegou abre o registro do dia, preenchido
+    // com as horas do plano; dia que ainda vem abre o plano do trabalho.
+    if (oc && oc.item._plano) {
+      const t = CTX.trabalhos.find(x => x.id === oc.item.trabalhoId);
+      if (!t) return;
+      if (oc.data <= Dados.hoje()) return UI.abrirRegistroDia(t, { data: oc.data, horas: oc.item.horas, aoSalvar: depois });
+      return abrirPlano(t);
+    }
     const it = oc ? oc.item : Object.assign({
-      tipo: CTX.trabalhos.some(t => t.estado === "ativo") ? "trabalho" : "entrevista",
-      titulo: "", data: Dados.hoje(), inicio: "09:00", fim: "10:00", nota: "", repetir: "", repetirAte: "",
+      tipo: "entrevista", titulo: "", data: Dados.hoje(), inicio: "09:00", fim: "10:00", nota: "", repetir: "", repetirAte: "",
     }, novo || {});
     if (novo && novo.diaInteiro) { it.inicio = ""; it.fim = ""; }
     const dataDaVez = oc ? oc.data : it.data;
-    const ativos = CTX.trabalhos.filter(t => t.estado === "ativo" || t.id === it.trabalhoId);
     const cands = CTX.aplicacoes.filter(a => VIVOS.indexOf(a.estado) >= 0 || a.id === it.aplicacaoId);
     const diaInteiro = !it.inicio;
 
     const corpo = `
       ${UI.campo({ nome: "tipo", rotulo: "O que é", tipo: "escolha", valor: it.tipo,
-        opcoes: Object.keys(TIPOS).map(k => ({ valor: k, nome: TIPOS[k].nome })) })}
-      <div data-so="trabalho">${ativos.length
-        ? UI.campo({ nome: "trabalhoId", rotulo: "Trabalho", tipo: "escolha", valor: it.trabalhoId,
-            opcoes: ativos.map(t => ({ valor: t.id, nome: t.projeto || t.empresa })) })
-        : `<p class="u-ajuda" style="margin:0 0 12px">Cadastre um trabalho para planejar as horas dele.</p>`}</div>
+        opcoes: Object.keys(TIPOS).filter(k => k !== "trabalho").map(k => ({ valor: k, nome: TIPOS[k].nome })) })}
       <div data-so="candidatura">${UI.campo({ nome: "aplicacaoId", rotulo: "Candidatura", tipo: "escolha", valor: it.aplicacaoId || "",
         opcoes: [{ valor: "", nome: "Nenhuma" }].concat(cands.map(a => ({ valor: a.id, nome: (a.empresa || "?") + " · " + (a.titulo || "vaga") }))) })}</div>
-      ${UI.campo({ nome: "titulo", rotulo: "Título", valor: it.titulo, dica: "Fica com o nome do trabalho se você deixar vazio" })}
+      ${UI.campo({ nome: "titulo", rotulo: "Título", valor: it.titulo })}
       ${UI.campo({ nome: "data", rotulo: "Dia", tipo: "date", valor: oc ? oc.data : it.data, obrigatorio: true })}
       <label class="ag-chk"><input type="checkbox" name="diaInteiro"${diaInteiro ? " checked" : ""}> O dia todo, sem horário</label>
       <div class="ag-duas" data-horario>
@@ -592,9 +765,7 @@ const Agenda = (function () {
       </div>
       ${UI.campo({ nome: "nota", rotulo: "Anotação", tipo: "texto-longo", valor: it.nota, dica: "Link da chamada, o que levar, o que estudar" })}`;
 
-    const podeLancar = oc && it.tipo === "trabalho" && dataDaVez <= Dados.hoje() && duracao(it) > 0;
     const extra = !oc ? "" : `<div class="ag-acoes-extra">
-      ${podeLancar ? `<button type="button" class="ag-lancar" data-lancar>Lançar estas horas</button>` : ""}
       ${it.repetir ? `<button type="button" class="ag-link" data-pular>Tirar só ${esc(diaCurto(dataDaVez))}</button>` : ""}
       <button type="button" class="ag-link perigo" data-apagar>Apagar${it.repetir ? " todos" : ""}</button></div>`;
 
@@ -611,14 +782,12 @@ const Agenda = (function () {
           data: UI.ler(d, "data"),
           inicio: todo ? "" : UI.ler(d, "inicio"),
           fim: todo ? "" : UI.ler(d, "fim"),
-          trabalhoId: tipo === "trabalho" ? UI.ler(d, "trabalhoId") : "",
           aplicacaoId: ["entrevista", "teste", "prazo"].indexOf(tipo) >= 0 ? UI.ler(d, "aplicacaoId") : "",
           nota: UI.ler(d, "nota"),
           repetir: UI.ler(d, "repetir"),
           repetirAte: UI.ler(d, "repetir") ? UI.ler(d, "repetirAte") : "",
         };
         if (!dado.data) throw new Error("Escolha o dia.");
-        if (tipo === "trabalho" && !dado.trabalhoId) throw new Error("Escolha o trabalho.");
         if (dado.inicio && dado.fim && minutos(dado.fim) <= minutos(dado.inicio)) throw new Error("O fim precisa ser depois do começo.");
         if (dado.repetirAte && dado.repetirAte < dado.data) throw new Error("O \"até\" precisa ser depois do dia.");
         // Item que se repete guarda o primeiro dia da série; mudar o dia de
@@ -636,23 +805,14 @@ const Agenda = (function () {
 
     const mostrar = () => {
       const tipo = UI.ler(dlg, "tipo");
-      dlg.querySelector('[data-so="trabalho"]').hidden = tipo !== "trabalho";
       dlg.querySelector('[data-so="candidatura"]').hidden = ["entrevista", "teste", "prazo"].indexOf(tipo) < 0;
       dlg.querySelector("[data-horario]").hidden = UI.ler(dlg, "diaInteiro");
       dlg.querySelector("[data-ate]").style.visibility = UI.ler(dlg, "repetir") ? "visible" : "hidden";
-      const t = dlg.querySelector('[name="titulo"]');
-      t.placeholder = tipo === "trabalho" ? "Fica com o nome do trabalho se você deixar vazio" : "Fica \"" + TIPOS[tipo].nome + "\" se você deixar vazio";
+      dlg.querySelector('[name="titulo"]').placeholder = "Fica \"" + (TIPOS[tipo] || TIPOS.outro).nome + "\" se você deixar vazio";
     };
     ["tipo", "diaInteiro", "repetir"].forEach(n => dlg.querySelector(`[name="${n}"]`).addEventListener("change", mostrar));
     mostrar();
 
-    const lancar = dlg.querySelector("[data-lancar]");
-    if (lancar) lancar.addEventListener("click", () => {
-      const t = CTX.trabalhos.find(x => x.id === it.trabalhoId);
-      if (!t) return;
-      dlg.close(); dlg.remove();
-      UI.abrirRegistroDia(t, { data: dataDaVez, horas: duracao(it), aoSalvar: depois });
-    });
     const pular = dlg.querySelector("[data-pular]");
     if (pular) pular.addEventListener("click", async () => {
       const salvo = Object.assign({}, it, { pular: (it.pular || []).concat(dataDaVez) });
@@ -675,11 +835,102 @@ const Agenda = (function () {
     });
   }
 
+  /* ── janela do plano de um trabalho ──────────────────────────────────── */
+
+  function abrirPlano(t) {
+    const p = t.plano || {};
+    const dias = Array.isArray(p.dias) && p.dias.length ? p.dias : [1, 2, 3, 4, 5];
+    const ordem = [1, 2, 3, 4, 5, 6, 0];
+    const corpo = `
+      ${UI.campo({ nome: "horas", rotulo: "Quantas horas por semana", tipo: "number", valor: p.horas || "", dica: "15", min: 0, passo: 0.5 })}
+      <div class="d-linha"><span class="d-rot">Em quais dias</span>
+        <div class="ag-dias">${ordem.map(d => `<label><input type="checkbox" name="dia${d}"${dias.indexOf(d) >= 0 ? " checked" : ""}><span>${DSEM[d]}</span></label>`).join("")}</div>
+      </div>
+      <div class="ag-conta" data-conta></div>
+      ${UI.campo({ nome: "inicio", rotulo: "A partir de que horas (opcional)", tipo: "time", valor: p.inicio || "", passo: 900,
+        ajuda: "Com o horário, os blocos aparecem na semana no lugar certo. Sem ele, aparecem no topo do dia." })}
+      ${UI.campo({ nome: "diasAtePagar", rotulo: "O pagamento cai quantos dias depois que o período fecha (opcional)", tipo: "number",
+        valor: t.diasAtePagar === 0 || t.diasAtePagar ? t.diasAtePagar : "", dica: "15", min: 0, passo: 1,
+        ajuda: "Com isso, a agenda marca o dia previsto do pagamento e quanto deve cair, pelas horas que você lançou. Deixe vazio se não sabe." })}`;
+
+    const dlg = UI.painel({
+      titulo: "Plano da semana",
+      subtitulo: t.projeto || t.empresa,
+      corpo,
+      extra: t.plano ? `<button type="button" class="ag-link perigo" data-tirar>Tirar o plano</button>` : "",
+      acaoTexto: "Salvar o plano",
+      acao: async (d) => {
+        const horas = parseFloat(String(UI.ler(d, "horas")).replace(",", "."));
+        const escolhidos = ordem.filter(x => UI.ler(d, "dia" + x));
+        const pagar = UI.ler(d, "diasAtePagar");
+        if (!(horas > 0)) throw new Error("Diga quantas horas por semana.");
+        if (horas > 112) throw new Error("Confira as horas: passa de 16 por dia.");
+        if (!escolhidos.length) throw new Error("Escolha pelo menos um dia.");
+        const plano = { horas, dias: escolhidos, inicio: UI.ler(d, "inicio"),
+          desde: (t.plano && t.plano.desde) || segunda(Dados.hoje()) };
+        const n = parseInt(pagar, 10);
+        await Dados.salvar("trabalhos", Object.assign({}, t, { plano, diasAtePagar: pagar === "" || !(n >= 0) ? "" : n }));
+        UI.aviso("Plano salvo.", "ok");
+        await depois();
+      },
+    });
+
+    const conta = () => {
+      const h = parseFloat(String(UI.ler(dlg, "horas")).replace(",", "."));
+      const n = ordem.filter(x => UI.ler(dlg, "dia" + x)).length;
+      dlg.querySelector("[data-conta]").textContent = h > 0 && n
+        ? "Dá " + Dados.escreverHoras(Math.round(h / n * 4) / 4) + " em cada dia escolhido."
+        : "Escolha as horas e os dias para ver quanto dá por dia.";
+    };
+    dlg.querySelectorAll('[name="horas"], .ag-dias input').forEach(el => el.addEventListener("input", conta));
+    dlg.querySelectorAll(".ag-dias input").forEach(el => el.addEventListener("change", conta));
+    conta();
+
+    const tirar = dlg.querySelector("[data-tirar]");
+    if (tirar) tirar.addEventListener("click", async () => {
+      const ok = await UI.confirmar({ titulo: "Tirar o plano deste trabalho?", texto: "Os blocos somem da agenda. As horas lançadas continuam.",
+        acaoTexto: "Tirar o plano", perigo: true });
+      if (!ok) return;
+      const copia = Object.assign({}, t); delete copia.plano;
+      await Dados.salvar("trabalhos", copia);
+      await depois();
+    });
+  }
+
+  /* ── para a tela Hoje ────────────────────────────────────────────────── */
+
+  /* Os compromissos de um dia, já prontos para listar: o que a pessoa marcou,
+     o fim de período e o pagamento previsto. O plano de horas e o próximo
+     passo das candidaturas a tela Hoje já mostra do jeito dela. */
+  function compromissos(ctx, itens, data) {
+    const out = ocorrencias(itens, data, data).map(o => {
+      const it = o.item;
+      const a = it.aplicacaoId && ctx.aplicacoes.find(x => x.id === it.aplicacaoId);
+      return {
+        ordem: it.inicio || "", hora: faixa(it), cor: (TIPOS[it.tipo] || TIPOS.outro).cor,
+        titulo: it.titulo || ((TIPOS[it.tipo] || TIPOS.outro).nome + (a && a.empresa ? " · " + a.empresa : "")),
+        sub: it.titulo ? (TIPOS[it.tipo] || TIPOS.outro).nome + (a && a.empresa ? " · " + a.empresa : "") : (it.nota || ""),
+        aplicacao: a || null,
+      };
+    });
+    automaticos(ctx, data, data).filter(x => x.auto === "periodo" || x.auto === "pagamento").forEach(x => {
+      out.push({ ordem: "", hora: "dia todo", cor: x.cor, titulo: x.texto, sub: x.auto === "pagamento" ? "previsão pelas horas lançadas" : "", trabalho: x.trabalho });
+    });
+    return out.sort((x, y) => (x.ordem > y.ordem ? 1 : -1));
+  }
+
+  /* Calcula os valores dos pagamentos de hoje e de amanhã antes da tela Hoje desenhar. */
+  async function prepararParaHoje(ctx) {
+    const hoje = Dados.hoje();
+    const lista = pagamentosPrevistos(ctx.trabalhos, hoje, somar(hoje, 1));
+    try { await Promise.all(lista.map(a => valorDoPeriodo(a.trabalho, a.periodo, ctx.registros))); } catch (e) { /* sem valor, segue */ }
+  }
+
   /* Quantos itens a pessoa marcou para hoje (o número do menu). */
   function quantosHoje(itens) {
     const h = Dados.hoje();
     return ocorrencias(itens, h, h).length;
   }
 
-  return { montar, ocorrencias, quantosHoje };
+  return { montar, ocorrencias, quantosHoje, planoDoDia, compromissos, prepararParaHoje, somar };
 })();

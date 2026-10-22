@@ -6,7 +6,8 @@
    primeiro, com dado que já está no banco.
 
    Regras que valem aqui:
-   - Nenhuma coleção nova e nenhum campo novo. Tudo sai do que já existe.
+   - Só lê. Tudo sai do que já existe no Meu Controle, inclusive a Agenda
+     (o plano de horas de cada trabalho e os compromissos marcados).
    - Bloco sem conteúdo não aparece. Nada de caixa vazia explicando que está
      vazia.
    - Não conta sequência de dias, não parabeniza e não cobra.
@@ -63,6 +64,14 @@ const Hoje = (function () {
 }
 .h-dia-val { font-size:22px; font-weight:600; letter-spacing:-.01em; }
 .h-dia-val.vazio { color:var(--ink-3,#66717F); font-weight:500; }
+.h-dia-plano { display:block; font-size:12.5px; color:var(--ink-3,#66717F); margin-top:5px; }
+.h-dia-plano b { color:var(--ink-2,#54606F); font-weight:600; }
+
+.h-ag-dia { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3,#66717F); margin:4px 10px 2px; }
+.h-ag-dia + .h-item { border-top:0; }
+.h-ag-hora { width:74px; flex-shrink:0; font-size:12.5px; color:var(--ink-2,#54606F); white-space:nowrap; }
+.h-ag-cor { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
+.h-ag-mais { font:inherit; font-size:13px; font-weight:600; color:var(--signal,#1A4893); background:none; border:0; cursor:pointer; padding:10px 10px 0; }
 
 .h-linha-num { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
 .h-num { font-size:26px; font-weight:600; letter-spacing:-.015em; }
@@ -112,6 +121,12 @@ const Hoje = (function () {
     return d.toISOString().slice(0, 10);
   }
 
+  /* "09:00" vira "9h", "14:30" vira "14h30". */
+  function horaCurta(h) {
+    const p = String(h || "").split(":").map(Number);
+    return p[0] + "h" + (p[1] ? String(p[1]).padStart(2, "0") : "");
+  }
+
   /* Quando o próximo passo está marcado: hoje, ontem, ou a data. */
   function quandoBonito(iso, hoje) {
     const dias = Dados.diasEntre(iso, hoje);   // positivo quando iso já passou
@@ -145,7 +160,7 @@ const Hoje = (function () {
 
   /*
     ctx traz o que a tela precisa e nada além disso:
-      trabalhos, aplicacoes, registros, pagamentos, cfg
+      trabalhos, aplicacoes, registros, pagamentos, agenda, cfg
       estadoDe(id), marcaHtml(empresa, tam)
       abrirAplicacao(ap), registrarDia(trabalho, data), irPara(rota)
       aoMudar()  -> recarrega os dados e redesenha
@@ -156,10 +171,14 @@ const Hoje = (function () {
     const hoje = Dados.hoje();
     const ativos = ctx.trabalhos.filter(t => t.estado === "ativo");
     const blocos = [];
+    const comAgenda = typeof Agenda !== "undefined";
+    if (comAgenda) await Agenda.prepararParaHoje(ctx);
 
     /* 1. O DIA ──────────────────────────────────────────────────────────
        Único bloco que escreve. Um cartão por trabalho ativo, com as horas
-       já lançadas hoje. Clicar abre o formulário do dia daquele trabalho. */
+       já lançadas hoje e, se o trabalho tem plano na Agenda, as horas que o
+       plano pede para hoje. Clicar abre o formulário do dia, já com as horas
+       do plano quando o dia ainda está em branco. */
     if (ativos.length) {
       const doDia = ctx.registros.filter(r => r.data === hoje);
       const cartoes = ativos.map(t => {
@@ -168,12 +187,16 @@ const Hoje = (function () {
         // trabalho pago por tarefa mostra as tarefas do dia; as horas vêm junto se houver
         const q = r ? UI.qtdTarefas(r) : 0;
         const feito = [q ? UI.escreverTarefas(q) : "", h ? Dados.escreverHoras(h) : ""].filter(Boolean).join(" · ");
-        return `<button class="h-dia-cartao" data-dia="${esc(t.id)}">
+        const pl = comAgenda ? Agenda.planoDoDia(t, hoje) : null;
+        const plano = !pl ? "" : `<span class="h-dia-plano">plano: <b>${esc(Dados.escreverHoras(pl.horas))}</b>${
+          pl.inicio ? ", das " + esc(horaCurta(pl.inicio)) + " às " + esc(horaCurta(pl.fim)) : ""}</span>`;
+        return `<button class="h-dia-cartao" data-dia="${esc(t.id)}"${pl && !h ? ` data-horas="${pl.horas}"` : ""}>
           <span class="h-dia-nome">
             <i class="h-ponto" style="background:${esc(t.cor || "#2C6BB5")}"></i>
             ${esc(t.projeto || t.empresa)}
           </span>
           <span class="h-dia-val${feito ? "" : " vazio"}">${feito ? esc(feito) : "lançar"}</span>
+          ${plano}
         </button>`;
       }).join("");
 
@@ -188,6 +211,38 @@ const Hoje = (function () {
           lancado ? lancado + (total || totalTarefas > 1 ? " lançadas até agora" : " lançada até agora") : "nada lançado ainda",
           `<div class="h-dia">${cartoes}</div>`, true),
       });
+    }
+
+    /* 1b. NA AGENDA ─────────────────────────────────────────────────────
+       O que está marcado para hoje e amanhã: entrevistas, testes, prazos,
+       estudo, fim de período e pagamento previsto. Sem nada, não aparece. */
+    if (comAgenda) {
+      const amanha = Agenda.somar(hoje, 1);
+      const deHoje = Agenda.compromissos(ctx, ctx.agenda || [], hoje);
+      const deAmanha = Agenda.compromissos(ctx, ctx.agenda || [], amanha);
+      if (deHoje.length || deAmanha.length) {
+        const lista = (rot, itens, dia) => !itens.length ? "" :
+          `<div class="h-ag-dia">${rot}</div>` + itens.map((c, k) => `<button class="h-item" data-ag="${dia}|${k}">
+            <span class="h-ag-hora">${esc(c.hora)}</span>
+            <i class="h-ag-cor" style="background:${esc(c.cor)}"></i>
+            <span class="h-item-txt">
+              <span class="h-item-tit">${esc(c.titulo)}</span>
+              ${c.sub ? `<span class="h-item-sub">${esc(c.sub)}</span>` : ""}
+            </span>
+          </button>`).join("");
+        blocos.push({
+          peso: 1.5,
+          html: cartao("Na agenda", "hoje e amanhã",
+            `<div class="h-itens">${lista("Hoje", deHoje, "h")}${lista("Amanhã", deAmanha, "a")}</div>
+             <button class="h-ag-mais" data-ir="agenda">Ver a semana na Agenda →</button>`),
+          ligar: el => el.querySelectorAll("[data-ag]").forEach(b => b.addEventListener("click", () => {
+            const [dia, k] = b.dataset.ag.split("|");
+            const c = (dia === "h" ? deHoje : deAmanha)[+k];
+            if (c && c.aplicacao) ctx.abrirAplicacao(c.aplicacao);
+            else ctx.irPara("agenda");
+          })),
+        });
+      }
     }
 
     /* 2. PRECISA DE VOCÊ ────────────────────────────────────────────────
@@ -353,8 +408,12 @@ const Hoje = (function () {
 
     alvo.querySelectorAll("[data-dia]").forEach(b => b.addEventListener("click", () => {
       const t = ctx.trabalhos.find(x => x.id === b.dataset.dia);
-      if (t) ctx.registrarDia(t, hoje);
+      if (!t) return;
+      // dia em branco com plano na Agenda: o formulário já vem com as horas do plano
+      if (b.dataset.horas) return UI.abrirRegistroDia(t, { data: hoje, horas: +b.dataset.horas, aoSalvar: ctx.aoMudar });
+      ctx.registrarDia(t, hoje);
     }));
+    blocos.forEach(b => { if (b.ligar) b.ligar(alvo); });
 
     alvo.querySelectorAll("[data-buraco]").forEach(b => b.addEventListener("click", () => {
       const t = ativos[0];
