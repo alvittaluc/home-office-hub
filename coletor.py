@@ -153,9 +153,13 @@ USAR_HANDSHAKE = True
 USAR_AREAS = True
 ARQUIVO_ESPECIFICAS = "vagas-especificas.json"
 
-# Enquanto as específicas estiverem escondidas, elas ficam fora do
-# vagas_para_resumo.json para não encher o arquivo de resumos.
+# Vagas de área no vagas_para_resumo.json: entram as que apareceram no hub a
+# partir de RESUMO_ESPECIFICAS_DESDE, para a rotina diária resumir as novas
+# junto com as da aba Vagas (pedido do dono em 23/10/2026). As que já estavam
+# lá antes ficam para ser resumidas aos poucos, em lotes; para mandar todas de
+# uma vez, ligue RESUMO_INCLUI_ESPECIFICAS.
 RESUMO_INCLUI_ESPECIFICAS = False
+RESUMO_ESPECIFICAS_DESDE = "2026-10-23"
 
 # ─── LINKS DE INDICAÇÃO (referral) ───
 # Algumas empresas pagam por candidato indicado. O link de indicação é o
@@ -1528,8 +1532,9 @@ def processar(todas):
         for v in todas:
             desc = v.get("_desc", "")
             req = v.get("_req", "")
-            # vagas escondidas também ficam de fora enquanto não aparecerem
-            if v.get("area") and not RESUMO_INCLUI_ESPECIFICAS:
+            # vaga de área só entra se apareceu no hub a partir da data acima
+            if (v.get("area") and not RESUMO_INCLUI_ESPECIFICAS
+                    and (v.get("data_vista") or "") < RESUMO_ESPECIFICAS_DESDE):
                 continue
             # sem nenhum texto para resumir, não adianta mandar
             if not desc and not req:

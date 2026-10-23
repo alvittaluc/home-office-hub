@@ -95,7 +95,11 @@ Como registrar a decisão:
 
 ### 4. Escrever os resumos (`vagas_para_resumo.json`)
 
-Para cada vaga do `vagas_para_resumo.json` que você não bloqueou nem mandou para uma área, escreva um resumo no `resumos_novos.json`, no formato `{"total": N, "vagas": [{"id": "...", "resumo": {...}}]}`. Campos do `resumo`:
+Para cada vaga do `vagas_para_resumo.json` que você não bloqueou, escreva um resumo no `resumos_novos.json`, no formato `{"total": N, "vagas": [{"id": "...", "resumo": {...}}]}`.
+
+O arquivo traz as vagas novas da aba Vagas e também as vagas novas das áreas, as que pedem formação e ficam escondidas (as que apareceram no hub a partir de 23/10/2026, `RESUMO_ESPECIFICAS_DESDE` no `coletor.py`). Todas ganham resumo, no mesmo formato. As vagas de área mais antigas, ainda sem resumo, são resumidas em lotes só quando alguém da equipe pedir.
+
+Campos do `resumo`:
 
 - `frase`: uma frase curta dizendo o que é a vaga.
 - `o_que_faz` e `requisitos`: de 3 a 4 frases cada, falando com "você". Quando o anúncio citar teste ou entrevista na seleção, diga isso no fim de `requisitos`.
@@ -151,7 +155,7 @@ Rode `coletor.py --reaproveitar`. Ela usa o que a primeira passada coletou (o ar
 Confira o resultado antes de publicar:
 - `vagas.json`, `vagas-especificas.json`, `resumos.json`, `datas.json` e `vagas-curadoria.json` abrem como JSON.
 - O número de vagas visíveis faz sentido comparado com o HEAD. Uma queda de mais de 30% sem nenhuma fonte com falha que explique quer dizer que algo deu errado: não publique, volte os arquivos com `git checkout` e relate.
-- Toda vaga que você resumiu está com `resumo` no `vagas.json`, e toda vaga que você bloqueou sumiu.
+- Toda vaga que você resumiu está com `resumo` no `vagas.json` ou, se for de área, no `vagas-especificas.json`, e toda vaga que você bloqueou sumiu.
 
 ### 6. Publicar
 
