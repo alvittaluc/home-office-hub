@@ -612,7 +612,7 @@ function revelarAoRolar(seletores) {
    Enquanto o token não estiver preenchido, nada é carregado e o
    site funciona normalmente.
    ══════════════════════════════════════════════════════════════ */
-const TOKEN_MEDICAO = "COLE-O-TOKEN-AQUI";
+const TOKEN_MEDICAO = "16b0fc18983c4fa7885470c3ad8c572b";
 
 (function medicao() {
   if (!TOKEN_MEDICAO || TOKEN_MEDICAO === "COLE-O-TOKEN-AQUI") return;
