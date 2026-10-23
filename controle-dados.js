@@ -78,13 +78,12 @@ const Dados = (function () {
       };
       req.onerror   = () => { clearTimeout(relogio); erro(req.error); };
       // Outra aba aberta com a versão antiga segura o banco. A atualização
-      // espera ela fechar; cair para o localStorage agora espalharia os dados
-      // em dois lugares. Só desiste depois de um minuto.
+      // espera ela fechar, sem prazo: cair para o localStorage espalharia os
+      // dados em dois lugares (foi o que aconteceu na atualização da agenda).
       req.onblocked = () => {
         clearTimeout(relogio);
         const aviso = document.getElementById("carregando");
-        if (aviso) aviso.textContent = "Feche as outras abas do Meu Controle para continuar. O Meu Controle foi atualizado e precisa delas fechadas uma vez.";
-        relogio = setTimeout(() => erro(new Error("banco travado por outra aba")), 60000);
+        if (aviso) aviso.textContent = "Feche as outras abas do Home Office Hub para continuar. O Meu Controle foi atualizado e precisa delas fechadas uma vez.";
       };
     });
   }
@@ -197,7 +196,21 @@ const Dados = (function () {
         db = await abrirIndexedDB();
         mot = motorIDB;
         motor = "indexeddb";
+        try { sessionStorage.removeItem("hub-controle-recarregou"); } catch (x) {}
       } catch (e) {
+        // O banco deste navegador já está numa versão mais nova que este
+        // arquivo: a página rodava uma cópia antiga do script. Recarregar uma
+        // vez traz a página nova; cair para o localStorage aqui espalharia os
+        // dados em dois lugares.
+        if (e && e.name === "VersionError") {
+          let ja = false;
+          try { ja = sessionStorage.getItem("hub-controle-recarregou") === "1"; } catch (x) {}
+          if (!ja) {
+            try { sessionStorage.setItem("hub-controle-recarregou", "1"); } catch (x) {}
+            location.reload();
+            return new Promise(() => {});
+          }
+        }
         mot = motorLS;
         motor = "localStorage";
         avisoMotor = "Este navegador não liberou o armazenamento completo, então os dados estão indo para um espaço menor. " +
