@@ -39,8 +39,9 @@ begin
     raise exception 'Somente a administração.' using errcode = '42501';
   end if;
 
-  with ap as (
+  with ap0 as (
     select i.user_id,
+           i.id,
            nullif(i.dados->>'vagaId', '')                                   as vaga_id,
            coalesce(nullif(btrim(i.dados->>'empresa'), ''), '(sem empresa)') as empresa,
            coalesce(nullif(btrim(i.dados->>'titulo'), ''), '(sem título)')   as titulo,
@@ -50,12 +51,34 @@ begin
     from public.controle_itens i
     where i.colecao = 'aplicacoes' and not i.apagado
   ),
+  ap as (
+    select ap0.*, coalesce(ap0.vaga_id, lower(ap0.empresa) || '|' || lower(ap0.titulo)) as chave
+    from ap0
+  ),
   tr as (
     select i.user_id,
            coalesce(nullif(btrim(i.dados->>'empresa'), ''), '(sem empresa)') as empresa,
-           coalesce(nullif(i.dados->>'estado', ''), 'ativo')                 as estado
+           coalesce(nullif(i.dados->>'estado', ''), 'ativo')                 as estado,
+           nullif(i.dados->>'aplicacaoId', '')                               as aplicacao_id
     from public.controle_itens i
     where i.colecao = 'trabalhos' and not i.apagado
+  ),
+  -- quantas pessoas trabalham em cada vaga: o trabalho fica ligado à vaga
+  -- pela candidatura de onde nasceu (aplicacaoId, gravado quando a pessoa
+  -- marca a candidatura como aprovada e cria o trabalho na hora)
+  trab_vaga as (
+    select a.chave, count(distinct t.user_id) as n
+    from tr t
+    join ap a on a.user_id = t.user_id and a.id = t.aplicacao_id
+    where t.estado = 'ativo'
+    group by a.chave
+  ),
+  -- e em cada empresa, pelo nome da empresa do trabalho
+  trab_empresa as (
+    select lower(t.empresa) as chave, max(t.empresa) as empresa, count(distinct t.user_id) as n
+    from tr t
+    where t.estado = 'ativo'
+    group by 1
   )
   select jsonb_build_object(
     'gerado_em', now(),
@@ -119,41 +142,41 @@ begin
                    count(*)                 as candidaturas,
                    count(distinct ap.user_id) as pessoas,
                    count(*) filter (where ap.estado in ('teste', 'entrevista', 'aprovado')) as positivas,
-                   count(*) filter (where ap.estado = 'aprovado')                           as aprovadas
+                   count(*) filter (where ap.estado = 'aprovado')                           as aprovadas,
+                   coalesce(max(tv.n), 0)                                                   as trabalhando
             from ap
-            group by coalesce(ap.vaga_id, lower(ap.empresa) || '|' || lower(ap.titulo))
+            left join trab_vaga tv on tv.chave = ap.chave
+            group by ap.chave
             order by count(distinct ap.user_id) desc, count(*) desc
             limit 40) x),
 
     'empresas', (
-      select coalesce(jsonb_agg(to_jsonb(x) order by x.candidaturas desc), '[]'::jsonb)
-      from (select max(ap.empresa) as empresa,
-                   count(*)                 as candidaturas,
-                   count(distinct ap.user_id) as pessoas,
-                   count(*) filter (where ap.estado in ('teste', 'entrevista', 'aprovado')) as positivas,
-                   count(*) filter (where ap.estado = 'aprovado')                           as aprovadas,
-                   count(*) filter (where ap.estado = 'recusado')                           as recusadas
-            from ap
-            group by lower(ap.empresa)
-            order by count(*) desc
+      select coalesce(jsonb_agg(to_jsonb(x) order by x.candidaturas desc, x.trabalhando desc), '[]'::jsonb)
+      from (select coalesce(a.empresa, te.empresa) as empresa,
+                   coalesce(a.candidaturas, 0)     as candidaturas,
+                   coalesce(a.pessoas, 0)          as pessoas,
+                   coalesce(a.positivas, 0)        as positivas,
+                   coalesce(a.aprovadas, 0)        as aprovadas,
+                   coalesce(a.recusadas, 0)        as recusadas,
+                   coalesce(te.n, 0)               as trabalhando
+            from (select lower(ap.empresa) as chave,
+                         max(ap.empresa)   as empresa,
+                         count(*)                   as candidaturas,
+                         count(distinct ap.user_id) as pessoas,
+                         count(*) filter (where ap.estado in ('teste', 'entrevista', 'aprovado')) as positivas,
+                         count(*) filter (where ap.estado = 'aprovado')                           as aprovadas,
+                         count(*) filter (where ap.estado = 'recusado')                           as recusadas
+                  from ap
+                  group by 1) a
+            full join trab_empresa te on te.chave = a.chave
+            order by 2 desc, 7 desc
             limit 30) x),
 
     'trabalhos', (
       select jsonb_build_object(
         'total',  count(*),
         'ativos', count(*) filter (where tr.estado = 'ativo'))
-      from tr),
-
-    'trabalhos_por_empresa', (
-      select coalesce(jsonb_agg(to_jsonb(x) order by x.pessoas desc, x.trabalhos desc), '[]'::jsonb)
-      from (select max(tr.empresa) as empresa,
-                   count(*)                   as trabalhos,
-                   count(distinct tr.user_id) as pessoas,
-                   count(*) filter (where tr.estado = 'ativo') as ativos
-            from tr
-            group by lower(tr.empresa)
-            order by count(distinct tr.user_id) desc, count(*) desc
-            limit 20) x)
+      from tr)
   ) into resultado;
 
   return resultado;

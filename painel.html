@@ -145,7 +145,6 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
       <button type="button" role="tab" data-aba="denuncias">Denúncias <span class="p-conta" id="nDenuncias" hidden></span></button>
       <button type="button" role="tab" data-aba="numeros">Números</button>
       <button type="button" role="tab" data-aba="candidaturas">Candidaturas</button>
-      <button type="button" role="tab" data-aba="trabalhos">Trabalhos</button>
       <button type="button" role="tab" data-aba="equipe">Equipe</button>
     </nav>
   </div>
@@ -157,7 +156,6 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
     <div id="painel" hidden></div>
   </div>
   <div class="p-sec" data-sec="candidaturas" id="secCand" hidden></div>
-  <div class="p-sec" data-sec="trabalhos" id="secTrab" hidden></div>
   <div class="p-sec" data-sec="equipe" id="equipe" hidden></div>
   <div class="md-msg" id="mentMsg" role="status" hidden></div>
 </main>
@@ -216,7 +214,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
 
     const vagas = (t.vagas || []);
     const tabVagas = vagas.length ? `<div class="p-rolagem"><table class="p-tab">
-        <thead><tr><th>Vaga</th><th class="n">Pessoas</th><th class="n">Avançaram</th><th class="n">Aprovadas</th></tr></thead>
+        <thead><tr><th>Vaga</th><th class="n">Pessoas</th><th class="n">Avançaram</th><th class="n">Aprovadas</th><th class="n">Trabalhando</th></tr></thead>
         <tbody>${vagas.map(v => `<tr>
           <td class="tit">${v.vaga_id
               ? `<a href="vaga.html?id=${encodeURIComponent(v.vaga_id)}">${esc(v.titulo)}</a>`
@@ -224,17 +222,19 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
             <span class="emp">${esc(v.empresa)}</span></td>
           <td class="n">${num(v.pessoas)}</td>
           <td class="n">${num(v.positivas)} <span style="color:var(--ink-3,#66717F)">(${pct(v.positivas, v.candidaturas)})</span></td>
-          <td class="n">${num(v.aprovadas)}</td></tr>`).join("")}</tbody></table></div>`
+          <td class="n">${num(v.aprovadas)}</td>
+          <td class="n">${num(v.trabalhando)}</td></tr>`).join("")}</tbody></table></div>`
       : `<div class="p-vazio">Ninguém registrou candidatura ainda.</div>`;
 
     const empresas = (t.empresas || []);
     const tabEmpresas = empresas.length ? `<div class="p-rolagem"><table class="p-tab">
-        <thead><tr><th>Empresa</th><th class="n">Candidaturas</th><th class="n">Avançaram</th><th class="n">Recusadas</th></tr></thead>
+        <thead><tr><th>Empresa</th><th class="n">Candidaturas</th><th class="n">Avançaram</th><th class="n">Recusadas</th><th class="n">Trabalhando</th></tr></thead>
         <tbody>${empresas.map(e => `<tr>
           <td class="tit">${esc(e.empresa)}</td>
           <td class="n">${num(e.candidaturas)}</td>
           <td class="n">${num(e.positivas)} <span style="color:var(--ink-3,#66717F)">(${pct(e.positivas, e.candidaturas)})</span></td>
-          <td class="n">${num(e.recusadas)}</td></tr>`).join("")}</tbody></table></div>`
+          <td class="n">${num(e.recusadas)}</td>
+          <td class="n">${num(e.trabalhando)}</td></tr>`).join("")}</tbody></table></div>`
       : `<div class="p-vazio">Ainda sem dados.</div>`;
 
     const porEstado = t.por_estado || {};
@@ -251,7 +251,6 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       const p = String(s.semana).split("-");
       return ["semana de " + p[2] + "/" + p[1], s.n];
     });
-    const linhasTrab = (t.trabalhos_por_empresa || []).map(x => [x.empresa, x.pessoas]);
 
     const quando = t.gerado_em ? new Date(t.gerado_em).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }) : "";
 
@@ -269,13 +268,13 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       <div class="p-grade">
         <section class="p-cx larga">
           <h2>Vagas com mais candidaturas</h2>
-          <p class="sub">Quantas pessoas registraram candidatura em cada vaga e quantas passaram da primeira etapa.</p>
+          <p class="sub">Quantas pessoas registraram candidatura em cada vaga, quantas passaram da primeira etapa e quantas estão trabalhando nela.</p>
           ${tabVagas}
         </section>
 
         <section class="p-cx larga">
           <h2>Empresas</h2>
-          <p class="sub">Somando todas as vagas de cada empresa. "Avançaram" conta teste, entrevista e aprovação.</p>
+          <p class="sub">Somando todas as vagas de cada empresa. "Avançaram" conta teste, entrevista e aprovação; "Trabalhando", as pessoas com trabalho ativo lá.</p>
           ${tabEmpresas}
         </section>
 
@@ -312,12 +311,6 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
             ["Lançam horas ou tarefas", u.com_registros || 0],
           ])}
           <p class="sub" style="margin:14px 0 0">${num(tr.total)} ${tr.total === 1 ? "trabalho cadastrado" : "trabalhos cadastrados"}, ${num(tr.ativos)} em andamento.</p>
-        </section>
-
-        <section class="p-cx">
-          <h2>Onde as pessoas estão trabalhando</h2>
-          <p class="sub">Quantas pessoas têm trabalho cadastrado em cada empresa.</p>
-          ${barras(linhasTrab)}
         </section>
       </div>
 
@@ -465,89 +458,10 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
   }
 
   /* ══════════════════════════════════════════════════════════
-     TRABALHOS: onde as pessoas estão trabalhando, por vaga e por
-     empresa. Só contagens, sem nomes: com muita gente, uma lista de
-     nomes por vaga não se lê. Também em teste (banco/painel-pessoas.sql).
-     ══════════════════════════════════════════════════════════ */
-  const secTrab = document.getElementById("secTrab");
-  let trabLidos = false;
-
-  async function carregarTrab() {
-    if (!cli) { secTrab.innerHTML = `<div class="p-espera">Os trabalhos não aparecem no modo de demonstração.</div>`; return; }
-    secTrab.innerHTML = `<div class="p-espera">Buscando os trabalhos…</div>`;
-    const r = await cli.rpc("admin_trabalhos");
-    if (r.error) {
-      console.warn(r.error);
-      trabLidos = false;
-      secTrab.innerHTML = `<div class="p-espera">Não deu para buscar os trabalhos agora. Confira a internet e clique na aba de novo.</div>`;
-      return;
-    }
-    desenharTrab(r.data || {});
-  }
-
-  function desenharTrab(t) {
-    const s = t.resumo || {}, empresas = t.empresas || [], vagas = t.vagas || [];
-    const quando = t.gerado_em ? new Date(t.gerado_em).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }) : "";
-    const topo = vagas.find(v => v.trabalhando);
-
-    const tabVagas = vagas.length ? `<div class="p-rolagem"><table class="p-tab">
-        <thead><tr><th>Vaga</th><th class="n">Trabalhando</th><th class="n">Aprovadas</th></tr></thead>
-        <tbody>${vagas.map(v => `<tr>
-          <td class="tit">${v.vaga_id
-              ? `<a href="vaga.html?id=${encodeURIComponent(v.vaga_id)}">${esc(v.titulo)}</a>`
-              : `${esc(v.titulo)}<span class="p-fora" title="Trabalho cadastrado à mão, sem uma vaga do Hub">de fora</span>`}
-            <span class="emp">${esc(v.empresa)}</span></td>
-          <td class="n">${num(v.trabalhando)}</td>
-          <td class="n">${num(v.aprovadas)}</td></tr>`).join("")}</tbody></table></div>`
-      : `<div class="p-vazio">Ninguém cadastrou trabalho nem candidatura aprovada ainda.</div>`;
-
-    const tabEmpresas = empresas.length ? `<div class="p-rolagem"><table class="p-tab">
-        <thead><tr><th>Empresa</th><th class="n">Trabalhando</th><th class="n">Aprovadas</th><th class="n">Pararam</th></tr></thead>
-        <tbody>${empresas.map(e => `<tr>
-          <td class="tit">${esc(e.empresa)}</td>
-          <td class="n">${num(e.trabalhando)}</td>
-          <td class="n">${num(e.aprovadas)}</td>
-          <td class="n">${num(e.pararam)}</td></tr>`).join("")}</tbody></table></div>`
-      : `<div class="p-vazio">Ainda sem dados.</div>`;
-
-    secTrab.innerHTML = `
-      <div class="p-subtopo">
-        <p>Onde as pessoas estão trabalhando e em que vaga, pelo que cada uma registrou no Meu Controle.
-          Em teste: só a equipe vê esta aba. Valores ganhos não aparecem.</p>
-        <div>
-          <button class="p-atualizar" type="button" id="atualizarTrab">Atualizar</button>
-          <div class="p-quando">${quando ? "Lido em " + esc(quando) : ""}</div>
-        </div>
-      </div>
-      <div class="p-nums">
-        ${cartao("Pessoas trabalhando", num(s.pessoas_trabalhando), `em ${num(s.trabalhos_ativos)} ${s.trabalhos_ativos === 1 ? "trabalho ativo" : "trabalhos ativos"}`)}
-        ${cartao("Empresas", num(s.empresas), "com alguém do Hub trabalhando agora")}
-        ${cartao("Aprovações", num(s.aprovacoes), `${num(s.pessoas_aprovadas)} ${s.pessoas_aprovadas === 1 ? "pessoa com candidatura aprovada" : "pessoas com candidatura aprovada"}`)}
-        ${cartao("Vaga com mais gente", topo ? num(topo.trabalhando) : "–", topo ? esc(topo.titulo) + " · " + esc(topo.empresa) : "ninguém trabalhando ainda")}
-      </div>
-      <div class="p-grade">
-        <section class="p-cx larga">
-          <h2>Vagas com mais gente trabalhando</h2>
-          <p class="sub">Quantas pessoas estão trabalhando em cada vaga e quantas foram aprovadas.
-            Quando o trabalho foi cadastrado à mão, sem uma vaga do Hub, aparece o nome que a pessoa deu ao projeto, marcado "de fora".</p>
-          ${tabVagas}
-        </section>
-        <section class="p-cx larga">
-          <h2>Empresas com mais gente trabalhando</h2>
-          <p class="sub">Pessoas diferentes em cada empresa: quem trabalha lá agora, quem foi aprovado e quem já parou.</p>
-          ${tabEmpresas}
-        </section>
-      </div>
-      <p class="p-nota">Trabalhando quer dizer trabalho ativo no Meu Controle. Aprovada quer dizer candidatura marcada como aprovada, mesmo que a pessoa ainda não tenha cadastrado o trabalho.
-        Parou quer dizer trabalho pausado ou encerrado.</p>`;
-    document.getElementById("atualizarTrab").addEventListener("click", carregarTrab);
-  }
-
-  /* ══════════════════════════════════════════════════════════
      ABAS: uma parte do painel de cada vez. A aba aberta fica no
      endereço (#denuncias), para o link e o F5 voltarem nela.
      ══════════════════════════════════════════════════════════ */
-  const ABAS = ["mentorias", "denuncias", "numeros", "candidaturas", "trabalhos", "equipe"];
+  const ABAS = ["mentorias", "denuncias", "numeros", "candidaturas", "equipe"];
   let numerosLidos = false;
   function abrirAba(nome, semMexerNoEndereco) {
     if (ABAS.indexOf(nome) < 0) nome = "mentorias";
@@ -558,7 +472,6 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     // os números só são buscados quando alguém abre a aba deles
     if (nome === "numeros" && !numerosLidos) { numerosLidos = true; carregar(); }
     if (nome === "candidaturas" && !candLidas) { candLidas = true; carregarCand(); }
-    if (nome === "trabalhos" && !trabLidos) { trabLidos = true; carregarTrab(); }
   }
   document.getElementById("abas").addEventListener("click", ev => {
     const b = ev.target.closest("[data-aba]"); if (b) abrirAba(b.dataset.aba);
