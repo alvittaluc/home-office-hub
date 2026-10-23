@@ -1030,8 +1030,9 @@ function reporRolagem(onde) {
 }
 
 /* ── datas ── */
+/* Vaga antiga que a empresa reabriu conta a partir do dia em que reabriu. */
 function dias(v) {
-  const d = v.data_ref || v.data_post || v.data_vista;
+  const d = v.data_reaberta || v.data_ref || v.data_post || v.data_vista;
   if (!d) return null;
   const data = new Date(d + "T12:00:00Z");
   if (isNaN(data)) return null;
@@ -1045,7 +1046,8 @@ function textoData(v) {
   if (n === 1) return "ontem";
   if (n <= 30) return `há ${n} dias`;
   if (n <= 60) return "há 1 mês";
-  return "há 2 meses";
+  if (n < 365) return `há ${Math.floor(n / 30)} meses`;
+  return "há mais de 1 ano";
 }
 /* "nova" só vale quando a data veio da própria empresa. Quando o hub só sabe
    quando VIU a vaga, chamar de nova seria falar da nossa coleta, não da vaga. */
@@ -1253,7 +1255,7 @@ function linha(v) {
         <span class="e">${esc(e.nome)}${real}</span>
         ${pg}
         ${idi ? `<span class="selo-idi ${idi.tipo}" title="Idioma do trabalho">${esc(idi.curto)}</span>` : ""}
-        ${nova ? '<span class="selo-novo">nova</span>' : ""}
+        ${nova ? `<span class="selo-novo">${v.data_reaberta ? "reaberta" : "nova"}</span>` : ""}
         ${v.area ? `<span class="selo-area">${esc(v.sub ? nomeSub(v.area, v.sub) : nomeArea(v.area))}</span>` : ""}
       </span>
     </span>
@@ -1269,7 +1271,7 @@ function linha(v) {
     </span>
 
     <span class="v-col">
-      <span class="r">${IC.data}<span>${temDataOficial(v) ? "Publicada" : "No hub desde"}</span></span>
+      <span class="r">${IC.data}<span>${v.data_reaberta ? "Reaberta" : temDataOficial(v) ? "Publicada" : "No hub desde"}</span></span>
       <span class="v">${textoData(v)}</span>
     </span>
 
@@ -1652,7 +1654,9 @@ function aplicar() {
                : `<div class="lista">${destacadas.map(linha).join("")}</div>`}`;
   }
   if (novas.length) {
-    html += `<div class="grupo-titulo"><h2>Publicadas nesta semana</h2><span>${novas.length}</span></div>
+    const tituloNovas = novas.some(v => v.data_reaberta)
+      ? "Publicadas ou reabertas nesta semana" : "Publicadas nesta semana";
+    html += `<div class="grupo-titulo"><h2>${tituloNovas}</h2><span>${novas.length}</span></div>
              <div class="lista">${novas.map(linha).join("")}</div>`;
   }
   if (resto.length) {

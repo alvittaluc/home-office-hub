@@ -1043,6 +1043,27 @@
       "titulo": "[LONG PROJECT] Anonymization Quality Reviewer",
       "revisado_em": "2026-10-21",
       "motivo": "Revisão da marcação de dados pessoais, remota, sem país exigido. Pede experiência com revisão ou controle de qualidade, não diploma."
+    },
+    {
+      "id": "d1856cbd96",
+      "empresa": "oneforma",
+      "titulo": "Local Maps Search Evaluator",
+      "revisado_em": "2026-10-23",
+      "motivo": "Avaliação de buscas em mapas, remota, para quem mora no Brasil e conhece bem a região há pelo menos cinco anos. Não pede diploma."
+    },
+    {
+      "id": "492c60de39",
+      "empresa": "telus",
+      "titulo": "Freelance AI Content Evaluator – LLM/VLM, Audio & Data Labelling",
+      "revisado_em": "2026-10-23",
+      "motivo": "Avaliação de fala e áudio gerados por IA, remota, com português do Brasil entre as línguas. O país exigido depende do projeto e o diploma não é obrigatório."
+    },
+    {
+      "id": "7f8c02ae4c",
+      "empresa": "turing",
+      "titulo": "Image Annotation QA",
+      "revisado_em": "2026-10-23",
+      "motivo": "Controle de qualidade remoto, aberto a vários países. Pede inglês e análise; graduação e experiência aparecem só como preferência."
     }
   ],
   "bloqueadas": [

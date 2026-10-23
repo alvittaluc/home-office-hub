@@ -164,6 +164,26 @@ def _extrair_projetos(html_pagina):
     return projetos
 
 
+def _datas_do_projeto(url):
+    """Lê na página do projeto a data em que ele foi publicado e a da última
+    alteração, que a OneForma põe no JSON-LD de toda página. A listagem não
+    traz data nenhuma. Devolve ("AAAA-MM-DD", "AAAA-MM-DD"), com "" no que
+    não achar."""
+    try:
+        pagina = _baixar(url)
+    except Exception:
+        return "", ""
+
+    def achar(*nomes):
+        for nome in nomes:
+            m = re.search(r'"%s"\s*:\s*"(\d{4}-\d{2}-\d{2})' % nome, pagina)
+            if m:
+                return m.group(1)
+        return ""
+
+    return achar("datePosted", "datePublished"), achar("dateModified")
+
+
 def coletar_oneforma(max_paginas=6, abrir_incertos=False, pausa=1.0):
     """Coleta os projetos da OneForma abertos para o Brasil.
 
@@ -195,7 +215,17 @@ def coletar_oneforma(max_paginas=6, abrir_incertos=False, pausa=1.0):
             break     # acabou a paginação
         time.sleep(pausa)
 
-    print(f"{len(todos)} vaga(s) para o Brasil")
+    # Uma visita a cada projeto para saber quando foi publicado e quando foi
+    # alterado. Projeto antigo alterado no dia em que voltou à lista é vaga
+    # que a OneForma reabriu (o coletor.py decide isso).
+    com_data = 0
+    for p in todos:
+        time.sleep(pausa)
+        p["data_publicada"], p["data_alterada"] = _datas_do_projeto(p["url"])
+        if p["data_publicada"]:
+            com_data += 1
+
+    print(f"{len(todos)} vaga(s) para o Brasil ({com_data} com data)")
     return todos
 
 
@@ -205,4 +235,5 @@ if __name__ == "__main__":
         print(f"\n- {v['titulo']}")
         print(f"  {v['url']}")
         print(f"  pagamento: {v['pagamento']} | horario: {v['horario']}")
+        print(f"  publicada: {v['data_publicada']} | alterada: {v['data_alterada']}")
         print(f"  desc: {v['desc'][:130]}")

@@ -133,12 +133,17 @@ let EMPRESAS = {};
    Sem data oficial o selo fala de quando a vaga entrou no hub, não de
    quando foi publicada, e por isso não pode se chamar de nova. */
 function seloData(v) {
-  const d = v.data_ref || v.data_post || v.data_vista;
+  const d = v.data_reaberta || v.data_ref || v.data_post || v.data_vista;
   if (!d) return "";
   const data = new Date(d + "T12:00:00Z");
   if (isNaN(data)) return "";
   const dias = Math.floor((new Date() - data) / 86400000);
   if (dias < 0) return "";
+  /* vaga antiga que a empresa reabriu: o selo fala da reabertura */
+  if (v.data_reaberta) {
+    const quando = dias === 0 ? "hoje" : dias === 1 ? "ontem" : `há ${dias} dias`;
+    return `<span class="tag${dias <= 7 ? " amb" : ""}">reaberta ${quando}</span>`;
+  }
   const oficial = v.data_oficial === true || (v.data_oficial === undefined && !!v.data_post);
   if (!oficial) {
     if (dias <= 30) return `<span class="tag">no hub há ${dias} dias</span>`;
