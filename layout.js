@@ -14,6 +14,15 @@ const ABAS = [
   { id: "mentorias", nome: "Mentorias", href: "mentorias.html" },
 ];
 
+/* Mentorias desligadas por enquanto (23/10/2026): saem do menu, do rodapé e
+   do menu da conta, e quem abre a página delas vai para o início. As páginas
+   e os dados continuam guardados. Para religar, volte para true. */
+const MENTORIAS_LIGADAS = false;
+if (!MENTORIAS_LIGADAS) {
+  ABAS.splice(ABAS.findIndex(a => a.id === "mentorias"), 1);
+  if (/^mentorias?\.html$/.test(location.pathname.split("/").pop())) location.replace("index.html");
+}
+
 /* ══════════════════════════════════════════════════════════════
    ACESSO — o que é aberto e o que pede conta
 
@@ -293,7 +302,7 @@ const Acesso = (function () {
           <a href="perfil.html?voltar=${volta}">Meu perfil<small>nome, apresentação e foto</small></a>
           <a href="entrar.html?areas=1&voltar=${volta}">Minhas áreas de formação<small>${esc(resumo)}</small></a>
           <a href="vagas.html${minhas && minhas.length ? "?ver=voce" : ""}">Vagas para mim</a>
-          <a href="mentorias.html">Mentorias</a>
+          ${MENTORIAS_LIGADAS ? '<a href="mentorias.html">Mentorias</a>' : ""}
           <a href="controle.html">Meu Controle</a>
           <a href="controle.html#dados">Dados da conta e sair</a>
         </div>`;
@@ -301,7 +310,7 @@ const Acesso = (function () {
       daEquipe(() => {
         if (d.querySelector(".hd-menu-equipe")) return;
         d.querySelector(".hd-menu-cx").insertAdjacentHTML("beforeend",
-          `<a class="hd-menu-equipe" href="painel.html">Painel da equipe<small>mentores para aprovar, denúncias e números</small></a>`);
+          `<a class="hd-menu-equipe" href="painel.html">Painel da equipe<small>números, pessoas e denúncias</small></a>`);
       });
       document.addEventListener("click", ev => { if (d.open && !d.contains(ev.target)) d.open = false; });
       document.addEventListener("keydown", ev => { if (ev.key === "Escape") d.open = false; });

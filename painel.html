@@ -143,7 +143,6 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
     <div class="eyebrow">Administração</div>
     <h1 class="p-h1">Painel da equipe</h1>
     <nav class="p-abas" id="abas" role="tablist" aria-label="Partes do painel">
-      <button type="button" role="tab" data-aba="mentorias">Mentorias <span class="p-conta" id="nPedidos" hidden></span></button>
       <button type="button" role="tab" data-aba="denuncias">Denúncias <span class="p-conta" id="nDenuncias" hidden></span></button>
       <button type="button" role="tab" data-aba="numeros">Números</button>
       <button type="button" role="tab" data-aba="pessoas">Pessoas</button>
@@ -151,7 +150,6 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
     </nav>
   </div>
 
-  <div class="p-sec" data-sec="mentorias" id="secMentorias" hidden></div>
   <div class="p-sec" data-sec="denuncias" id="secDenuncias" hidden></div>
   <div class="p-sec" data-sec="numeros" hidden>
     <div class="p-espera" id="esperaNum" hidden></div>
@@ -490,10 +488,10 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
      ABAS: uma parte do painel de cada vez. A aba aberta fica no
      endereço (#denuncias), para o link e o F5 voltarem nela.
      ══════════════════════════════════════════════════════════ */
-  const ABAS = ["mentorias", "denuncias", "numeros", "pessoas", "equipe"];
+  const ABAS = ["denuncias", "numeros", "pessoas", "equipe"];
   let numerosLidos = false;
   function abrirAba(nome, semMexerNoEndereco) {
-    if (ABAS.indexOf(nome) < 0) nome = "mentorias";
+    if (ABAS.indexOf(nome) < 0) nome = "numeros";
     document.querySelectorAll("#abas [data-aba]").forEach(b => b.setAttribute("aria-selected", b.dataset.aba === nome ? "true" : "false"));
     document.querySelectorAll(".p-sec").forEach(s => { s.hidden = s.dataset.sec !== nome; });
     document.getElementById("mentMsg").hidden = true;
@@ -508,12 +506,13 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
   function contar(id, n) { const c = document.getElementById(id); c.textContent = n; c.hidden = !n; }
 
   /* ══════════════════════════════════════════════════════════
-     MENTORIAS e DENÚNCIAS
-     Usa as mesmas funções do banco das páginas de mentoria. Uma
-     leitura só alimenta as duas abas e os contadores delas.
-     Devolve false se o banco disser que a pessoa não é da equipe.
+     DENÚNCIAS
+     Usa as mesmas funções do banco das páginas de mentoria. As
+     mentorias estão desligadas no site (MENTORIAS_LIGADAS no
+     layout.js) e a aba delas saiu do painel; esta leitura continua
+     alimentando as denúncias e servindo de porteiro: devolve false
+     se o banco disser que a pessoa não é da equipe.
      ══════════════════════════════════════════════════════════ */
-  const secMent = document.getElementById("secMentorias");
   const secDen = document.getElementById("secDenuncias");
   const rascunhos = {};   // resposta que a equipe estava escrevendo, por denúncia
 
@@ -523,45 +522,9 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     try { d = await MD.adminTudo(); } catch (e) { console.warn(e); return false; }
     const U = MD.ui;
     U.porCss();
-    const pend = d.mentorias.filter(m => m.status === "pendente");
-    const outras = d.mentorias.filter(m => m.status !== "pendente");
     const den = d.denuncias.filter(x => !x.resolvida);
     const resolvidas = d.denuncias.filter(x => x.resolvida);
-    const NOME = { aprovada: "no ar", recusada: "recusada", encerrada: "encerrada", pendente: "em análise" };
-    contar("nPedidos", pend.length);
     contar("nDenuncias", den.length);
-
-    const pedido = m => `<div class="p-pedido">
-      <h3>${esc(m.vaga_titulo)} · ${esc(m.empresa)}</h3>
-      <div class="quem">${esc(m.mentor.nome)} · ${esc(m.mentor_email || "")} · pedido ${esc(U.haQuanto(m.criado_em))}</div>
-      <dl>
-        <div><dt>Link de indicação</dt><dd><a href="${esc(urlSegura(m.link) || "#")}" target="_blank" rel="noopener nofollow">${esc(m.link)}</a></dd></div>
-        <div><dt>Comprovação (só a equipe lê)</dt><dd>${U.texto(m.comprovacao)}</dd>
-          ${m.provas ? `<div class="md-provas" data-provas-de="${esc(m.id)}"><span class="p-vazio">Abrindo ${m.provas === 1 ? "a imagem" : "as " + m.provas + " imagens"}…</span></div>
-            <div class="p-dica">Clique numa imagem para ver em tamanho grande.</div>` : `<div class="p-dica">Nenhuma imagem anexada.</div>`}</div>
-        <div><dt>Apresentação</dt><dd>${esc(m.apresentacao)}</dd></div>
-        <div><dt>Como vai ajudar</dt><dd>${esc(m.como_ajuda)}</dd></div>
-      </dl>
-      <div class="p-bts">
-        <button class="md-bt pequeno" data-decidir="aprovada" data-id="${esc(m.id)}">Aprovar</button>
-        <input type="text" maxlength="300" placeholder="Motivo, se for recusar (o mentor lê)" data-motivo="${esc(m.id)}">
-        <button class="md-bt claro pequeno" data-decidir="recusada" data-id="${esc(m.id)}">Recusar</button>
-      </div></div>`;
-
-    secMent.innerHTML = `<div class="p-grade">
-        <section class="p-cx larga"><h2>Pedidos para ser mentor</h2>
-          <p class="sub">${pend.length ? "Confira a comprovação antes de aprovar. Se precisar de mais prova, escreva para o e-mail da pessoa." : ""}</p>
-          ${pend.length ? pend.map(pedido).join("") : `<div class="p-vazio">Nenhum pedido esperando análise.</div>`}
-        </section>
-        <section class="p-cx larga"><h2>Todas as mentorias</h2><p class="sub">Para encerrar uma mentoria no ar ou reabrir a análise de uma recusada.</p>
-          ${outras.length ? `<div class="p-rolagem"><table class="p-tab"><thead><tr><th>Mentoria</th><th>Situação</th><th class="n">Participantes</th><th class="n">Nota</th><th></th></tr></thead><tbody>
-            ${outras.map(m => `<tr><td class="tit"><a href="mentoria.html?id=${encodeURIComponent(m.id)}">${esc(m.vaga_titulo)}</a><span class="emp">${esc(m.mentor.nome)} · ${esc(m.empresa)}</span></td>
-              <td>${esc(NOME[m.status] || m.status)}</td><td class="n">${num(m.membros)}</td><td class="n">${m.nota ? String(m.nota).replace(".", ",") : "–"}</td>
-              <td class="n">${m.status === "aprovada" ? `<button class="md-link" data-decidir="encerrada" data-id="${esc(m.id)}">encerrar</button>`
-                : `<button class="md-link" data-decidir="pendente" data-id="${esc(m.id)}">voltar para análise</button>`}</td></tr>`).join("")}
-            </tbody></table></div>` : `<div class="p-vazio">Ainda não há mentoria aprovada.</div>`}
-        </section>
-      </div>`;
 
     /* Uma denúncia: do que se trata, a conversa com quem denunciou e, se
        ainda estiver aberta, o campo para a equipe responder. */
@@ -578,7 +541,6 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
             <textarea maxlength="2000" data-resposta="${esc(x.id)}" placeholder="Peça mais detalhes ou conte o que foi feito">${esc(rascunhos[x.id] || "")}</textarea></label>`}
         <div class="p-bts">
           ${x.resolvida ? "" : `<button class="md-bt pequeno" data-responder="${esc(x.id)}">Enviar resposta</button>`}
-          ${x.mentoria_id ? `<a class="md-bt claro pequeno" href="mentoria.html?id=${encodeURIComponent(x.mentoria_id)}">Abrir a mentoria</a>` : ""}
           ${!x.resolvida && x.post && !x.post.removido ? `<button class="md-bt claro pequeno" data-apagar-post="${esc(x.alvo_id)}" data-den="${esc(x.id)}">Apagar a mensagem</button>` : ""}
           ${x.resolvida ? "" : `<button class="md-bt claro pequeno" data-resolver="${esc(x.id)}">Marcar como resolvida</button>`}
         </div></section>`;
@@ -594,13 +556,6 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       ${den.length ? den.map(denuncia).join("") : `<section class="p-cx"><div class="p-vazio">Nenhuma denúncia em aberto.</div></section>`}
       ${resolvidas.length ? `<details class="p-resolvidas"${estavaAberto ? " open" : ""}><summary>Resolvidas (${resolvidas.length})</summary>${resolvidas.map(denuncia).join("")}</details>` : ""}`;
 
-    // os prints vêm depois, um pedido de cada vez, para a página não demorar a abrir
-    secMent.querySelectorAll("[data-provas-de]").forEach(async cx => {
-      try {
-        const imgs = ((await MD.provas(cx.dataset.provasDe)) || []).filter(U.ehImagem);
-        cx.innerHTML = imgs.map((p, i) => `<div class="md-prova"><img data-ampliar src="${p}" alt="Comprovante ${i + 1}"></div>`).join("");
-      } catch (e) { cx.innerHTML = `<span class="p-vazio">Não deu para abrir as imagens: ${esc(e.message)}</span>`; }
-    });
     return true;
   }
 
@@ -615,14 +570,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     const msg = document.getElementById("mentMsg");
     msg.hidden = true;
     try {
-      if (d2.decidir) {
-        const campo = alvo.querySelector('[data-motivo="' + d2.id + '"]');
-        const motivo = campo ? campo.value.trim() : "";
-        if (d2.decidir === "recusada" && motivo.length < 3) { campo.focus(); campo.placeholder = "Escreva o motivo da recusa"; return; }
-        if (d2.decidir === "encerrada" && !(await U.confirmar({ titulo: "Encerrar esta mentoria?",
-          texto: "Ela sai da lista, não entram novos participantes e o mural fica só para leitura. O mentor é avisado na página dela.", botao: "Encerrar a mentoria" }))) return;
-        b.disabled = true;
-        await MD.adminDecidir(d2.id, d2.decidir, d2.decidir === "recusada" ? motivo : "");
+      if (d2.responder) {
       } else if (d2.responder) {
         const campo = alvo.querySelector('[data-resposta="' + d2.responder + '"]');
         const texto = campo.value.trim();
@@ -644,7 +592,6 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       await mentoriasAdmin();
     } catch (e) { msg.textContent = e.message; msg.className = "md-msg erro"; msg.hidden = false; b.disabled = false; }
   }
-  secMent.addEventListener("click", cliqueMentorias);
   secDen.addEventListener("click", cliqueMentorias);
 
   /* ══════════════════════════════════════════════════════════
