@@ -1,118 +1,76 @@
 {
   "versao": 1,
   "manual": true,
-  "gerado_em": "2026-10-02T00:00:00Z",
+  "gerado_em": "2026-10-23T19:07:47Z",
   "janela_dias": 21,
   "destaques": [
     {
-      "id": "a5eacac204",
+      "id": "b24061003e",
       "posicao": 1,
       "selos": [
         "alta"
       ],
-      "desde": "2026-10-02"
+      "desde": "2026-10-23"
     },
     {
-      "id": "cdf300f69a",
+      "id": "d1856cbd96",
       "posicao": 2,
       "selos": [
         "alta"
       ],
-      "desde": "2026-10-02"
+      "desde": "2026-10-23"
     },
     {
-      "id": "e108256c3e",
+      "id": "492c60de39",
       "posicao": 3,
       "selos": [
         "alta"
       ],
-      "desde": "2026-10-02"
+      "desde": "2026-10-23"
     },
     {
-      "id": "270ba47e26",
+      "id": "6d22784714",
       "posicao": 4,
       "selos": [
         "alta"
       ],
-      "desde": "2026-10-02"
+      "desde": "2026-10-23"
     },
     {
-      "id": "3f4f33bc06",
+      "id": "24b26e60d0",
       "posicao": 5,
       "selos": [
         "alta"
       ],
-      "desde": "2026-10-02"
-    },
-    {
-      "id": "2dd3d94eeb",
-      "posicao": 6,
-      "selos": [
-        "alta"
-      ],
-      "desde": "2026-10-02"
-    },
-    {
-      "id": "3af7827b01",
-      "posicao": 7,
-      "selos": [
-        "alta"
-      ],
-      "desde": "2026-10-02"
-    },
-    {
-      "id": "ac162cdd13",
-      "posicao": 8,
-      "selos": [
-        "alta"
-      ],
-      "desde": "2026-10-02"
+      "desde": "2026-10-23"
     }
   ],
   "sinais": {
-    "a5eacac204": {
+    "b24061003e": {
       "pontos": 1,
       "selos": [
         "alta"
       ]
     },
-    "cdf300f69a": {
+    "d1856cbd96": {
       "pontos": 1,
       "selos": [
         "alta"
       ]
     },
-    "e108256c3e": {
+    "492c60de39": {
       "pontos": 1,
       "selos": [
         "alta"
       ]
     },
-    "270ba47e26": {
+    "6d22784714": {
       "pontos": 1,
       "selos": [
         "alta"
       ]
     },
-    "3f4f33bc06": {
-      "pontos": 1,
-      "selos": [
-        "alta"
-      ]
-    },
-    "2dd3d94eeb": {
-      "pontos": 1,
-      "selos": [
-        "alta"
-      ]
-    },
-    "3af7827b01": {
-      "pontos": 1,
-      "selos": [
-        "alta"
-      ]
-    },
-    "ac162cdd13": {
+    "24b26e60d0": {
       "pontos": 1,
       "selos": [
         "alta"
