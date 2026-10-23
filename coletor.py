@@ -899,6 +899,8 @@ def buscar_oneforma() -> list:
             "url": v["url"],
             "commitment": v.get("horario", ""),
             "fonte": "direto",
+            "data_post": normalizar_data(v.get("data_publicada")),
+            "_data_alterada": normalizar_data(v.get("data_alterada")),
             "_desc": v.get("desc", ""),
             "_comp": v.get("pagamento", ""),
         })
@@ -1317,6 +1319,51 @@ def carregar_datas() -> dict:
     return mapa
 
 
+def listadas_antes() -> dict:
+    """As vagas da rodada anterior, visíveis e escondidas por área, pela
+    chave de cada uma. Lidas antes de os arquivos serem regravados, servem
+    para saber se uma vaga já estava na lista ou se voltou hoje."""
+    antes = {}
+    for arquivo in ("vagas.json", "vagas-especificas.json"):
+        try:
+            with open(arquivo, "r", encoding="utf-8") as f:
+                for v in json.load(f).get("vagas", []):
+                    antes[chave_da_vaga(v)] = v
+        except Exception:
+            pass
+    return antes
+
+
+def dias_entre(de: str, ate: str) -> int:
+    """Quantos dias vão de uma data 'AAAA-MM-DD' a outra."""
+    d1 = datetime.strptime(de, "%Y-%m-%d")
+    d2 = datetime.strptime(ate, "%Y-%m-%d")
+    return (d2 - d1).days
+
+
+def data_em_que_reabriu(v: dict, alterada: str, guardada: str, hoje: str,
+                        antes) -> str:
+    """Devolve o dia em que a empresa reabriu uma vaga antiga, ou "".
+
+    Por enquanto só a OneForma informa, além da data de publicação, a data
+    da última alteração da página. Mas ela altera páginas sem reabrir nada
+    (em 21/10/2026 mexeu em todas de uma vez), então a alteração sozinha não
+    prova nada. A vaga só conta como reaberta quando, além de a página ter
+    sido publicada há mais de 30 dias e alterada agora, ela também entrou ou
+    voltou à lista do hub nesses mesmos dias. Depois disso a data fica
+    guardada no vagas.json e passa de uma rodada para a outra."""
+    publicada = v.get("data_post")
+    try:
+        if publicada and alterada and dias_entre(publicada, alterada) > 30:
+            voltou_hoje = antes is None and 0 <= dias_entre(alterada, hoje) <= 3
+            entrou_junto = abs(dias_entre(guardada, alterada)) <= 3
+            if voltou_hoje or entrou_junto:
+                return alterada
+    except ValueError:
+        pass
+    return (antes or {}).get("data_reaberta", "")
+
+
 def gravar_datas(mapa: dict, chaves_de_hoje: set) -> None:
     """Grava o datas.json. Vaga que sumiu continua registrada, para o caso de
     voltar depois com a data certa. Só é descartado o registro que sumiu há
@@ -1600,8 +1647,10 @@ def processar(todas):
     # noutro computador. É isso que impede a tag "nova" de zerar sozinha.
     hoje = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     primeira_vez = carregar_datas()
+    antes = listadas_antes()
     chaves_de_hoje = set()
     estreantes = 0
+    reabertas = 0
 
     for v in todas:
         ch = chave_da_vaga(v)
@@ -1617,8 +1666,19 @@ def processar(todas):
         # "No hub desde", e para só chamar de "nova" a vaga que tem data
         # oficial da empresa. Sem ele a tag falava por vagas sem data.
         v["data_oficial"] = bool(v.get("data_post"))
+        # vaga antiga que a empresa reabriu: o site escreve "Reaberta" e
+        # conta a vaga entre as da semana a partir desse dia
+        v.pop("data_reaberta", None)
+        reaberta = data_em_que_reabriu(v, v.pop("_data_alterada", ""),
+                                       guardada, hoje, antes.get(ch))
+        if reaberta:
+            v["data_reaberta"] = reaberta
+            if dias_entre(reaberta, hoje) <= 7:
+                reabertas += 1
 
     print(f"  → {estreantes} vaga(s) aparecendo pela primeira vez hoje")
+    if reabertas:
+        print(f"  → {reabertas} vaga(s) reaberta(s) pela empresa nos últimos 7 dias")
     gravar_datas(primeira_vez, chaves_de_hoje)
 
     # dá um id único e estável a cada vaga (usado nos resumos e na página)
