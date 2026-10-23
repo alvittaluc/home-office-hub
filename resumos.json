@@ -1,5 +1,5 @@
 {
-  "total": 218,
+  "total": 220,
   "vagas": [
     {
       "id": "65762fd387",
@@ -2349,6 +2349,26 @@
         "frase": "Revisar a marcação de dados pessoais feita por outras pessoas.",
         "o_que_faz": "Você revisa o trabalho de quem marca dados pessoais em documentos e registros de empresas, como exportações de sistemas de clientes, e-mails, chamados e dados contábeis, e decide se cada tarefa pode ser aprovada ou precisa de correção. Procura dado pessoal que passou, classificação errada e agrupamento errado de pessoas e empresas, e só devolve o que tem defeito de verdade, com um comentário claro para a correção sair de uma vez. As regras mudam várias vezes por semana. É um projeto interno e longo da Mercor.",
         "requisitos": "Experiência com controle de qualidade, revisão de textos, revisão de compliance ou outra função em que o seu julgamento era a última conferência antes da entrega. Atenção aos detalhes em material longo e repetitivo, sem aprovar tudo nem devolver demais. Escrita clara e direta em inglês. A sua precisão é medida o tempo todo, e a vaga de revisor pode ser perdida e reconquistada.",
+        "idioma": "en+"
+      }
+    },
+    {
+      "id": "492c60de39",
+      "resumo": {
+        "frase": "Avaliar fala, áudio e vídeo gerados por IA, em português.",
+        "o_que_faz": "Você ouve e assiste a conteúdos gerados por IA e avalia se a fala soa natural, se é fluente e se a pronúncia está certa. Também confere se o áudio está limpo e se a voz se mantém a mesma do começo ao fim, aponta erros de língua e trechos que soam artificiais e dá notas seguindo as diretrizes do projeto. Em alguns projetos, você confere se o áudio bate com o vídeo, as legendas e as marcações de tempo.",
+        "requisitos": "Português do Brasil ou de Portugal como a sua língua mais forte, com bom ouvido para sotaques, expressões e diferenças regionais, e inglês a partir do nível B2. Ajuda ter experiência com avaliação de respostas de IA, transcrição, revisão de qualidade de texto, rotulagem de dados ou moderação de conteúdo, mas basta uma dessas. Diploma conta a favor, só que quem não tem também pode entrar mostrando o que sabe. O país onde você precisa morar depende de cada projeto, e na candidatura você informa a sua língua mais forte e as outras que fala bem.",
+        "idioma": "pt",
+        "remuneracao": "US$ 4,50 por hora",
+        "contrato": "Freelancer"
+      }
+    },
+    {
+      "id": "7f8c02ae4c",
+      "resumo": {
+        "frase": "Controle de qualidade em tarefas para treinar IA.",
+        "o_que_faz": "O título fala em controle de qualidade de anotação de imagens, mas o texto do anúncio descreve outro trabalho: responder perguntas de análise e raciocínio e criar situações que ensinem os modelos de IA, explicando a resposta certa quando o modelo erra. Também pede para ler e resumir textos longos, dividir o conteúdo em partes menores e conferir na internet se o que está escrito é verdade. Como a Turing lista Photoshop e Illustrator entre as habilidades da vaga, vale confirmar na candidatura qual é a tarefa de fato. O horário é flexível.",
+        "requisitos": "Ótimo inglês para ler e escrever, boa capacidade de pesquisa e análise e facilidade para fazer comentários e anotações detalhadas. Computador com boa internet e disciplina para trabalhar sozinho. O anúncio prefere, sem exigir, graduação em áreas como engenharia, letras, jornalismo, comunicação, artes ou estatística, mais de 2 anos com controle de qualidade, anotação de dados ou revisão de conteúdo e familiaridade com Excel e com as ferramentas do Google. Photoshop e Illustrator aparecem entre as habilidades pedidas.",
         "idioma": "en+"
       }
     }
