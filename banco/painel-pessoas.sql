@@ -16,7 +16,7 @@
 --  e, de cada candidatura, a vaga, a empresa, a etapa, a data, onde a
 --  pessoa viu a vaga e o próximo passo.
 --  admin_trabalhos (aba Trabalhos): empresas e vagas com mais gente
---  trabalhando ou aprovada, e o nome de quem está em cada vaga.
+--  trabalhando ou aprovada. Só contagens, sem nomes.
 --  O que NÃO vai em nenhuma: observações, currículo usado, pretensão de
 --  remuneração, valor ganho e e-mail de contato que a pessoa anotou.
 --
@@ -168,11 +168,6 @@ begin
            bool_or(j.trabalhando) as trabalhando, bool_or(j.parou) as parou, bool_or(j.aprovado) as aprovado
     from juntos j
     group by 1, 2
-  ),
-  nomes as (
-    select u.id, coalesce(nullif(btrim(pf.nome), ''), u.email, '') as nome
-    from auth.users u
-    left join public.perfis pf on pf.user_id = u.id
   )
   select jsonb_build_object(
     'gerado_em', now(),
@@ -197,13 +192,8 @@ begin
       from (select max(v.vaga_id) as vaga_id, max(v.empresa) as empresa, max(v.titulo) as titulo,
                    count(*) filter (where v.trabalhando)                 as trabalhando,
                    count(*) filter (where v.aprovado)                    as aprovadas,
-                   count(*) filter (where v.parou and not v.trabalhando) as pararam,
-                   jsonb_agg(jsonb_build_object('nome', n.nome,
-                       'situacao', case when v.trabalhando then 'trabalhando'
-                                        when v.parou then 'parou' else 'aprovada' end)
-                     order by v.trabalhando desc, n.nome) as pessoas
+                   count(*) filter (where v.parou and not v.trabalhando) as pararam
             from por_vaga v
-            join nomes n on n.id = v.user_id
             group by v.chave
             order by 4 desc, 5 desc
             limit 60) x)

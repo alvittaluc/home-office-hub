@@ -126,14 +126,6 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
 .p-cand .p-tab { margin-top:8px; }
 .p-cand tr.achou td { background:#FBF6EC; }
 .p-etapa { display:inline-block; font-size:11.5px; font-weight:600; line-height:1.5; padding:1px 9px; border-radius:99px; border:1px solid; white-space:nowrap; }
-/* trabalhos: quem está em cada vaga */
-.p-quem { display:inline-block; font-size:12.5px; line-height:1.5; padding:1px 8px; margin:0 4px 4px 0; border-radius:99px; border:1px solid var(--line-soft,#EAE4D9); color:var(--ink-2,#54606F); background:var(--bg,#F7F4EF); white-space:nowrap; }
-.p-quem.trabalhando { color:#1F7A6E; background:#E4F3F0; border-color:#C6E5DE; }
-.p-quem.parou { color:var(--ink-3,#66717F); background:none; }
-.p-quem.mais { color:var(--ink-3,#66717F); background:none; border-color:transparent; }
-.p-tab td.quem { min-width:220px; padding-bottom:5px; }
-.p-legenda { display:flex; flex-wrap:wrap; gap:4px 14px; align-items:center; font-size:12.5px; color:var(--ink-3,#66717F); margin:-4px 0 12px; }
-.p-legenda .p-quem { margin:0 5px 0 0; }
 @media (max-width:700px){ .p-cand > summary { grid-template-columns:1fr auto; } .p-cand .etapas { grid-column:1 / -1; grid-row:2; justify-content:flex-start; } }
 @media (max-width:900px){ .p-nums { grid-template-columns:repeat(2,1fr); } .p-grade { grid-template-columns:1fr; } }
 @media (max-width:520px){ .p-num .val { font-size:32px; } .p-main { padding-top:30px; } }
@@ -474,12 +466,11 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
 
   /* ══════════════════════════════════════════════════════════
      TRABALHOS: onde as pessoas estão trabalhando, por vaga e por
-     empresa, e quem está em cada vaga. Também em teste
-     (banco/painel-pessoas.sql).
+     empresa. Só contagens, sem nomes: com muita gente, uma lista de
+     nomes por vaga não se lê. Também em teste (banco/painel-pessoas.sql).
      ══════════════════════════════════════════════════════════ */
   const secTrab = document.getElementById("secTrab");
   let trabLidos = false;
-  const SITUACAO = { trabalhando: "trabalhando", aprovada: "aprovada, ainda sem o trabalho cadastrado", parou: "parou: trabalho pausado ou encerrado" };
 
   async function carregarTrab() {
     if (!cli) { secTrab.innerHTML = `<div class="p-espera">Os trabalhos não aparecem no modo de demonstração.</div>`; return; }
@@ -497,21 +488,17 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
   function desenharTrab(t) {
     const s = t.resumo || {}, empresas = t.empresas || [], vagas = t.vagas || [];
     const quando = t.gerado_em ? new Date(t.gerado_em).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }) : "";
-    const quem = ps => ps.slice(0, 8).map(p =>
-        `<span class="p-quem ${esc(p.situacao)}" title="${esc(SITUACAO[p.situacao] || "")}">${esc(p.nome || "sem nome")}</span>`).join("")
-      + (ps.length > 8 ? `<span class="p-quem mais">e mais ${ps.length - 8}</span>` : "");
     const topo = vagas.find(v => v.trabalhando);
 
     const tabVagas = vagas.length ? `<div class="p-rolagem"><table class="p-tab">
-        <thead><tr><th>Vaga</th><th class="n">Trabalhando</th><th class="n">Aprovadas</th><th>Quem</th></tr></thead>
+        <thead><tr><th>Vaga</th><th class="n">Trabalhando</th><th class="n">Aprovadas</th></tr></thead>
         <tbody>${vagas.map(v => `<tr>
           <td class="tit">${v.vaga_id
               ? `<a href="vaga.html?id=${encodeURIComponent(v.vaga_id)}">${esc(v.titulo)}</a>`
               : `${esc(v.titulo)}<span class="p-fora" title="Trabalho cadastrado à mão, sem uma vaga do Hub">de fora</span>`}
             <span class="emp">${esc(v.empresa)}</span></td>
           <td class="n">${num(v.trabalhando)}</td>
-          <td class="n">${num(v.aprovadas)}</td>
-          <td class="quem">${quem(v.pessoas || [])}</td></tr>`).join("")}</tbody></table></div>`
+          <td class="n">${num(v.aprovadas)}</td></tr>`).join("")}</tbody></table></div>`
       : `<div class="p-vazio">Ninguém cadastrou trabalho nem candidatura aprovada ainda.</div>`;
 
     const tabEmpresas = empresas.length ? `<div class="p-rolagem"><table class="p-tab">
@@ -541,11 +528,8 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       <div class="p-grade">
         <section class="p-cx larga">
           <h2>Vagas com mais gente trabalhando</h2>
-          <p class="sub">Quantas pessoas estão trabalhando em cada vaga, quantas foram aprovadas e quem são.
+          <p class="sub">Quantas pessoas estão trabalhando em cada vaga e quantas foram aprovadas.
             Quando o trabalho foi cadastrado à mão, sem uma vaga do Hub, aparece o nome que a pessoa deu ao projeto, marcado "de fora".</p>
-          <div class="p-legenda"><span><span class="p-quem trabalhando">nome</span>trabalhando</span>
-            <span><span class="p-quem aprovada">nome</span>aprovada, sem o trabalho cadastrado</span>
-            <span><span class="p-quem parou">nome</span>parou</span></div>
           ${tabVagas}
         </section>
         <section class="p-cx larga">
