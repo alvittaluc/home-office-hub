@@ -68,23 +68,7 @@ EMPRESAS_WORKABLE = {
     "toloka": "toloka-annotators",  # apply.workable.com/toloka-annotators
 }
 
-# ─── FASE 2: AGREGADORES ───
-# Estes trazem vagas de MUITAS empresas de uma vez (parte do "LinkedIn").
-# ATENÇÃO: as regras deles exigem CREDITAR A FONTE e LINKAR de volta.
-# Por isso cada vaga guarda o campo "fonte" e o link aponta pro agregador.
-#
-# Palavras que buscamos nos agregadores (foco em IA/dados/tradução PT-BR).
-BUSCAS_AGREGADOR = [
-    "portuguese", "brazil", "annotation", "ai trainer",
-    "data annotator", "transcription", "localization",
-]
-
-# Ligue/desligue cada agregador aqui:
-# (DESLIGADOS: traziam vagas genéricas fora da área de IA/dados/anotação)
-USAR_JOBICY = False
-USAR_REMOTEOK = False
-
-# ─── FASE 3: SCRAPERS (empresas sem API) ───
+# ─── SCRAPERS (empresas sem API) ───
 # Estes "leem" o site da empresa. Podem ser bloqueados em servidores de
 # nuvem (GitHub) — se falharem lá, rode no seu PC.
 USAR_ONEFORMA = True
@@ -96,7 +80,6 @@ ONEFORMA_ABRIR_INCERTOS = True
 # Telus: LIGADA de novo em agosto de 2026. O site foi refeito, saiu o
 # Cloudflare e apareceu uma API pública de verdade. Cada vaga traz o idioma
 # exato ("Portuguese (Brazil)"), então o filtro não precisa adivinhar.
-# O scraper antigo (scraper_telus.py) ficou obsoleto e não é mais usado.
 #
 # ATENÇÃO: a API da TELUS filtra pelo PAÍS DE QUEM CHAMA, descoberto pelo
 # endereço de IP. Do Brasil ela devolve 107 vagas, com as exclusivas do Brasil
@@ -105,9 +88,6 @@ ONEFORMA_ABRIR_INCERTOS = True
 # country, region, language_ids e keyword no corpo, e a API ignora todos.
 # Por isso a TELUS também entra na lista de fontes que só rodam no seu PC.
 USAR_TELUS = True
-
-# Rex.zone (RemoExperts): DESLIGADO — as vagas dele já chegam pelo LinkedIn.
-USAR_REXZONE = False
 
 # ─── FONTES NOVAS (agosto de 2026, no módulo scraper_extras.py) ───
 # Meridial: o site meridial.ai é vitrine, por baixo é Greenhouse (quadro
@@ -319,25 +299,8 @@ def carregar_curadoria():
         "bloqueadas": [b for b in dados.get("bloqueadas", []) if b.get("id")],
     }
 
-# ─── FASE 4: LINKEDIN via GMAIL ───
-# As vagas do LinkedIn chegam por email, um Google Apps Script as coloca numa
-# planilha, e a planilha é publicada como CSV. O coletor lê esse CSV aqui.
-#
-# DESLIGADO em agosto de 2026. Quatro motivos, todos visíveis no site:
-#   · a planilha só cresce, então vaga fechada ficava na lista para sempre
-#   · o título vinha com empresa, local e salário grudados no fim
-#   · o mesmo anúncio entrava duas vezes, porque a deduplicação compara
-#     títulos e esse lixo no fim fazia parecerem vagas diferentes
-#   · entrava vaga de desenvolvedor, fora do nicho do hub
-# A planilha CONTINUA sendo preenchida pelo Apps Script, nada foi perdido.
-# Para religar depois de redesenhar esse fluxo, volte esta linha para True.
-USAR_LINKEDIN = False
-LINKEDIN_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRj6J6YOyu5ofZvOYuwbqnPAuTTXq5BD3FisRMd4fGEpsVYgDahOr6IFzKUIT5HUtSo3IVkPO5LspO7/pub?gid=300031726&single=true&output=csv"
-
 # ─── RESUMO DAS VAGAS (função + requisitos + dica de currículo) ───
-# O robô gera um resumo de cada vaga e tenta traduzir para PT-BR (grátis).
-# Se a tradução falhar, mantém o texto original. Reaproveita resumos já
-# feitos para não reprocessar toda vez.
+# Junta ao vagas.json os resumos escritos na rotina diária (resumos.json).
 USAR_RESUMOS = True
 
 # Gera um arquivo extra (vagas_para_resumo.json) com as descrições completas
@@ -774,100 +737,6 @@ def buscar_workable(nome_interno: str, slug: str) -> list:
 
 
 # ═══════════════════════════════════════════════════════════════════
-#  BUSCA — AGREGADORES (Fase 2)
-#  Regra: sempre creditar a fonte e linkar de volta ao agregador.
-# ═══════════════════════════════════════════════════════════════════
-
-def buscar_jobicy() -> list:
-    """Jobicy tem filtro por região — usamos geo apropriado + tags."""
-    print("  → Jobicy ...", end=" ")
-    vagas = []
-    vistos = set()
-    # Jobicy usa 'geo' por país/região; buscamos por tags relevantes
-    for tag in BUSCAS_AGREGADOR:
-        url = f"https://jobicy.com/api/v2/remote-jobs?count=50&tag={urllib.parse.quote(tag)}"
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-            with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
-                dados = json.loads(r.read().decode())
-        except Exception:
-            continue
-        for v in dados.get("jobs", []):
-            titulo = (v.get("jobTitle") or "").strip()
-            empresa_nome = (v.get("companyName") or "").strip()
-            geo = (v.get("jobGeo") or "").strip()
-            excerpt = (v.get("jobExcerpt") or "")
-            job_id = v.get("id")
-
-            if job_id in vistos:
-                continue
-
-            # FILTRO BRASIL — checa título, geo, empresa e trecho
-            if not texto_parece_brasil(titulo, geo, empresa_nome, excerpt):
-                continue
-
-            vistos.add(job_id)
-            cat_id, badge = categorizar(titulo)
-            vagas.append({
-                "empresa": "jobicy",  # agrupa todas sob o agregador
-                "empresa_real": empresa_nome,
-                "titulo": titulo,
-                "local": limpar_local(geo),
-                "categoria": cat_id,
-                "badge": badge,
-                "url": v.get("url") or "",
-                "commitment": v.get("jobType", "") or "",
-                "fonte": "Jobicy",
-            })
-        time.sleep(1)
-    print(f"{len(vagas)} vaga(s) BR")
-    return vagas
-
-
-def buscar_remoteok() -> list:
-    """RemoteOK: um único feed grande. Filtramos localmente por Brasil."""
-    print("  → RemoteOK ...", end=" ")
-    url = "https://remoteok.com/api"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
-            dados = json.loads(r.read().decode())
-    except Exception as e:
-        print(f"FALHOU ({str(e)[:40]})")
-        return []
-
-    vagas = []
-    for v in dados:
-        # O primeiro item costuma ser um aviso legal (sem 'position')
-        if not isinstance(v, dict) or not v.get("position"):
-            continue
-        titulo = (v.get("position") or "").strip()
-        empresa_nome = (v.get("company") or "").strip()
-        local = (v.get("location") or "")
-        tags = " ".join(v.get("tags", []) or [])
-        desc = (v.get("description") or "")[:400]
-
-        # FILTRO BRASIL — RemoteOK é global, então filtro é essencial
-        if not texto_parece_brasil(titulo, local, empresa_nome, tags, desc):
-            continue
-
-        cat_id, badge = categorizar(titulo)
-        vagas.append({
-            "empresa": "remoteok",
-            "empresa_real": empresa_nome,
-            "titulo": titulo,
-            "local": limpar_local(local),
-            "categoria": cat_id,
-            "badge": badge,
-            "url": v.get("url") or "",
-            "commitment": "",
-            "fonte": "RemoteOK",
-        })
-    print(f"{len(vagas)} vaga(s) BR de {len(dados)} total")
-    return vagas
-
-
-# ═══════════════════════════════════════════════════════════════════
 #  SCRAPER — OneForma (via módulo scraper_oneforma.py)
 # ═══════════════════════════════════════════════════════════════════
 
@@ -904,119 +773,6 @@ def buscar_oneforma() -> list:
             "_desc": v.get("desc", ""),
             "_comp": v.get("pagamento", ""),
         })
-    return vagas
-
-
-# ═══════════════════════════════════════════════════════════════════
-#  SCRAPER — Telus (via módulo scraper_telus.py)
-# ═══════════════════════════════════════════════════════════════════
-
-def buscar_telus() -> list:
-    """Chama o scraper da Telus e converte para o formato padrão."""
-    try:
-        from scraper_telus import coletar_telus
-    except Exception as e:
-        print(f"  → Telus: módulo não encontrado ({str(e)[:40]})")
-        return []
-
-    try:
-        cruas = coletar_telus()
-    except Exception as e:
-        print(f"  → Telus: falhou ({str(e)[:50]})")
-        return []
-
-    vagas = []
-    for v in cruas:
-        titulo = v["titulo"]
-        cat_id, badge = categorizar(titulo)
-        vagas.append({
-            "empresa": "telus",
-            "titulo": titulo,
-            "local": limpar_local(v.get("local", "")),
-            "categoria": cat_id,
-            "badge": badge,
-            "url": v["url"],
-            "commitment": "",
-            "fonte": "direto",
-        })
-    return vagas
-
-
-# ═══════════════════════════════════════════════════════════════════
-#  FASE 4 — LINKEDIN (lê a planilha do Google publicada como CSV)
-# ═══════════════════════════════════════════════════════════════════
-
-def buscar_linkedin() -> list:
-    """Lê a planilha do Google (CSV) que o Apps Script preenche com as
-    vagas vindas dos alertas do LinkedIn. Colunas: titulo, url, capturado_em."""
-    import csv
-    import io
-
-    print("  → LinkedIn (planilha Google) ...", end=" ")
-    try:
-        req = urllib.request.Request(LINKEDIN_CSV_URL, headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                          "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        })
-        with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
-            texto = r.read().decode("utf-8", errors="ignore")
-    except Exception as e:
-        print(f"FALHOU ({str(e)[:40]})")
-        return []
-
-    linhas = list(csv.reader(io.StringIO(texto)))
-    if not linhas:
-        print("0 (planilha vazia)")
-        return []
-
-    # primeira linha é cabeçalho (titulo, url, capturado_em)
-    cabecalho = [c.strip().lower() for c in linhas[0]]
-    try:
-        i_titulo = cabecalho.index("titulo")
-    except ValueError:
-        i_titulo = 0
-    try:
-        i_url = cabecalho.index("url")
-    except ValueError:
-        i_url = 1
-    # o Apps Script já escreve quando o alerta chegou. Antes o coletor jogava
-    # essa coluna fora, e por isso vaga do LinkedIn ficava sem data nenhuma.
-    try:
-        i_data = cabecalho.index("capturado_em")
-    except ValueError:
-        i_data = -1
-
-    vagas = []
-    for linha in linhas[1:]:
-        if len(linha) <= max(i_titulo, i_url):
-            continue
-        titulo = (linha[i_titulo] or "").strip()
-        url = (linha[i_url] or "").strip()
-        if not titulo or not url:
-            continue
-
-        # filtro Brasil (reforço — o Apps Script já filtra, mas garantimos)
-        if not texto_parece_brasil(titulo):
-            continue
-
-        capturado = ""
-        if i_data >= 0 and len(linha) > i_data:
-            capturado = normalizar_data(linha[i_data])
-
-        cat_id, badge = categorizar(titulo)
-        vagas.append({
-            "empresa": "linkedin",
-            "titulo": titulo,
-            "local": "Remoto · Brasil",
-            "categoria": cat_id,
-            "badge": badge,
-            "url": url,
-            "commitment": "",
-            "fonte": "linkedin",
-            "data_post": capturado,
-        })
-
-    print(f"{len(vagas)} vaga(s)")
     return vagas
 
 
@@ -1111,45 +867,6 @@ def buscar_mercor() -> list:
 
 def buscar_handshake() -> list:
     return _buscar_extra("handshake", "coletar_handshake")
-
-
-# ═══════════════════════════════════════════════════════════════════
-#  SCRAPER — Rex.zone (via módulo scraper_rexzone.py)
-# ═══════════════════════════════════════════════════════════════════
-
-def buscar_rexzone() -> list:
-    """Chama o scraper do Rex.zone e converte para o formato padrão."""
-    try:
-        from scraper_rexzone import coletar_rexzone
-    except Exception as e:
-        print(f"  → Rex.zone: módulo não encontrado ({str(e)[:40]})")
-        return []
-
-    try:
-        cruas = coletar_rexzone()
-    except Exception as e:
-        print(f"  → Rex.zone: falhou ({str(e)[:50]})")
-        return []
-
-    vagas = []
-    for v in cruas:
-        titulo = v["titulo"]
-        cat_id, badge = categorizar(titulo)
-        vagas.append({
-            "empresa": "rexzone",
-            "titulo": titulo,
-            "local": "Remoto · Brasil",
-            "categoria": cat_id,
-            "badge": badge,
-            "url": v["url"],
-            "commitment": "",
-            "fonte": "direto",
-            "data_post": normalizar_data(v.get("data_post")),
-            "_desc": v.get("desc") or "",
-            "_req": v.get("req") or "",
-            "_comp": v.get("comp") or "",
-        })
-    return vagas
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -1503,15 +1220,7 @@ def coletar_tudo():
         todas += buscar_workable(nome, slug)
         time.sleep(1)
 
-    print("\n[3/4] Buscando em agregadores...")
-    if USAR_JOBICY:
-        todas += buscar_jobicy()
-    if USAR_REMOTEOK:
-        todas += buscar_remoteok()
-    if not USAR_JOBICY and not USAR_REMOTEOK:
-        print("  (agregadores desligados)")
-
-    print("\n[4/4] Buscando em empresas via scraping...")
+    print("\n[3/3] Buscando em empresas via scraping...")
     if USAR_ONEFORMA:
         vagas_of = buscar_oneforma()
         if vagas_of:
@@ -1525,8 +1234,6 @@ def coletar_tudo():
                 print(f"  → OneForma: scraper não retornou nada, "
                       f"mantendo {len(preservadas_of)} vaga(s) da última vez")
                 todas += preservadas_of
-    if USAR_REXZONE:
-        todas += buscar_rexzone()
 
     # ─── Fontes novas de agosto de 2026 ───
     # Todas seguem a mesma proteção: se a fonte não responder, mantemos as
@@ -1565,9 +1272,6 @@ def coletar_tudo():
                 print(f"  → {nome}: não retornou nada, "
                       f"mantendo {len(preservadas)} vaga(s) da última vez")
                 todas += preservadas
-
-    if USAR_LINKEDIN:
-        todas += buscar_linkedin()
 
     # ─── Vagas por área ───
     # Mesma passada, outros termos de busca: aqui procuramos por formação
@@ -1809,7 +1513,6 @@ def processar(todas):
     # ─── ARQUIVO PARA ANÁLISE (com descrições completas) ───
     # Salva um arquivo separado que MANTÉM a descrição completa de cada vaga.
     # É este que você me envia quando quiser que eu gere resumos de qualidade.
-    # As vagas do LinkedIn não têm descrição, então ficam de fora deste arquivo.
     # TRAVAS DE SEGURANÇA antes de regerar o arquivo:
     #  · USAR_RESUMOS desligado = não sabemos quem já tem resumo
     #  · resumos_ok False = o resumos.json existe mas não pôde ser lido
@@ -1825,9 +1528,6 @@ def processar(todas):
         for v in todas:
             desc = v.get("_desc", "")
             req = v.get("_req", "")
-            # LinkedIn fica SEMPRE de fora: ainda não fazemos resumo para lá.
-            if v.get("fonte") == "linkedin" or v.get("empresa") == "linkedin":
-                continue
             # vagas escondidas também ficam de fora enquanto não aparecerem
             if v.get("area") and not RESUMO_INCLUI_ESPECIFICAS:
                 continue
