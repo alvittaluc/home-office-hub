@@ -198,6 +198,11 @@ EXCECOES = {
     "=Geoscientists": "Meio Ambiente e Ciencias da Terra",
     "=Ophthalmologists": "Medicina e Saude",
     "=Table Games Managers": "Outras areas",
+    # Rotina de 23/10/2026: a Alignerr pede recrutador com experiencia na
+    # profissao; a Turing pede artista 2D e 3D senior, com 2 anos ou mais
+    # de profissao e portfolio
+    "Talent Acquisition Specialist": "Economia e Negocios",
+    "Digital Imaging Specialist": "Design e Criacao",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -852,6 +857,8 @@ if __name__ == "__main__":
         ("Physicians", "", "Medicina e Saude"),
         ("Ophthalmologists", "", "Medicina e Saude"),
         ("Table Games Managers", "", "Outras areas"),
+        ("Talent Acquisition Specialist: Recruiting and Talent Sourcing", "", "Economia e Negocios"),
+        ("Digital Imaging Specialist/ Digital Artist", "", "Design e Criacao"),
     ]
 
     falhas = 0
