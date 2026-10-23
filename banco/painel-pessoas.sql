@@ -3,26 +3,28 @@
 --
 --  Cópia do que foi rodado no SQL Editor do Supabase.
 --
---  Em TESTE desde 23/10/2026, a pedido do dono: a equipe quer ver, no
---  painel, em que vaga cada pessoa se candidatou e em que etapa está, para
---  entender como o Meu Controle está sendo usado. Diferente do
---  painel_totais (banco/painel.sql), esta função devolve nome e e-mail.
---  ATENÇÃO: a página de privacidade ainda promete que a equipe vê só
---  totais. Antes de abrir o site ao público, ou essa página muda e as
---  pessoas são avisadas, ou esta função sai (drop function abaixo).
+--  A aba Pessoas do painel mostra o que cada pessoa registrou no Meu
+--  Controle: as candidaturas, em que etapa cada uma está, e os trabalhos,
+--  com o uso dos últimos 30 dias. Diferente do painel_totais
+--  (banco/painel.sql), esta função devolve nome e e-mail.
 --
---  O que vai: nome do perfil, e-mail da conta e, de cada candidatura, a
+--  O que vai: nome do perfil e e-mail da conta; de cada candidatura, a
 --  vaga, a empresa, a etapa, a data, onde a pessoa viu a vaga e o próximo
---  passo. O que NÃO vai: observações, currículo usado, pretensão de
---  remuneração e e-mail de contato que a pessoa anotou.
+--  passo; de cada trabalho, a empresa, o projeto, a situação, o início, o
+--  último dia lançado e quantos dias e horas foram lançados nos últimos 30
+--  dias. O que NÃO vai: observações, currículo usado, pretensão de
+--  remuneração, e-mail de contato anotado, valores e pagamentos.
 --
 --  Quem pode ver: só quem está na tabela "administradores". Quem recusa
 --  os outros é o banco, não a tela.
 --
---  Para desligar:  drop function if exists public.admin_candidaturas();
+--  Para desligar:  drop function if exists public.admin_pessoas();
 -- ══════════════════════════════════════════════════════════════
 
-create or replace function public.admin_candidaturas()
+-- a primeira versão (23/10/2026) só tinha as candidaturas
+drop function if exists public.admin_candidaturas();
+
+create or replace function public.admin_pessoas()
 returns jsonb
 language plpgsql
 stable
@@ -31,6 +33,7 @@ set search_path = ''
 as $$
 declare
   resultado jsonb;
+  desde text := to_char(current_date - 30, 'YYYY-MM-DD');
 begin
   if auth.uid() is null
      or not exists (select 1 from public.administradores a where a.user_id = auth.uid()) then
@@ -52,39 +55,91 @@ begin
     from public.controle_itens i
     where i.colecao = 'aplicacoes' and not i.apagado
   ),
-  pessoas as (
+  tr as (
+    select i.user_id,
+           i.id,
+           i.atualizado_em,
+           coalesce(nullif(btrim(i.dados->>'empresa'), ''), '(sem empresa)') as empresa,
+           coalesce(btrim(i.dados->>'projeto'), '')                          as projeto,
+           coalesce(nullif(i.dados->>'estado', ''), 'ativo')                 as estado,
+           coalesce(i.dados->>'inicio', '')                                  as inicio
+    from public.controle_itens i
+    where i.colecao = 'trabalhos' and not i.apagado
+  ),
+  -- os dias lançados; horas que não forem número contam como zero
+  rg as (
+    select i.user_id,
+           i.atualizado_em,
+           i.dados->>'trabalhoId'     as trabalho_id,
+           coalesce(i.dados->>'data', '') as data,
+           case when (i.dados->>'horas') ~ '^[0-9]+([.,][0-9]+)?$'
+                then replace(i.dados->>'horas', ',', '.')::numeric else 0 end as horas
+    from public.controle_itens i
+    where i.colecao = 'registros' and not i.apagado
+  ),
+  uso as (
+    select rg.user_id, rg.trabalho_id,
+           max(rg.data)                                  as ultimo_dia,
+           count(*) filter (where rg.data >= desde)      as dias_30,
+           coalesce(sum(rg.horas) filter (where rg.data >= desde), 0) as horas_30
+    from rg
+    group by rg.user_id, rg.trabalho_id
+  ),
+  cand as (
     select ap.user_id,
-           max(ap.atualizado_em) as ultima,
            count(*)              as total,
+           max(ap.atualizado_em) as ultima,
            jsonb_agg(jsonb_build_object(
              'id', ap.id, 'vaga_id', ap.vaga_id, 'empresa', ap.empresa, 'titulo', ap.titulo,
              'estado', ap.estado, 'origem', ap.origem, 'data', ap.data,
-             'proximo', ap.proximo, 'proximo_em', ap.proximo_em, 'atualizado_em', ap.atualizado_em)
+             'proximo', ap.proximo, 'proximo_em', ap.proximo_em)
              order by ap.data desc, ap.atualizado_em desc) as candidaturas
     from ap
     group by ap.user_id
+  ),
+  trab as (
+    select tr.user_id,
+           count(*) filter (where tr.estado = 'ativo') as ativos,
+           max(tr.atualizado_em)                      as ultima,
+           jsonb_agg(jsonb_build_object(
+             'id', tr.id, 'empresa', tr.empresa, 'projeto', tr.projeto, 'estado', tr.estado,
+             'inicio', tr.inicio, 'ultimo_dia', coalesce(u.ultimo_dia, ''),
+             'dias_30', coalesce(u.dias_30, 0), 'horas_30', coalesce(u.horas_30, 0))
+             order by (tr.estado = 'ativo') desc, u.ultimo_dia desc nulls last) as trabalhos
+    from tr
+    left join uso u on u.user_id = tr.user_id and u.trabalho_id = tr.id
+    group by tr.user_id
+  ),
+  lancou as (
+    select rg.user_id, max(rg.atualizado_em) as ultima from rg group by rg.user_id
+  ),
+  ids as (
+    select user_id from ap union select user_id from tr
   )
   select jsonb_build_object(
     'gerado_em', now(),
     'contas', (select count(*) from auth.users),
     'pessoas', coalesce(jsonb_agg(jsonb_build_object(
-        'id', p.user_id,
+        'id', i.user_id,
         'nome', coalesce(pf.nome, ''),
         'email', coalesce(u.email, ''),
-        'conta_desde', u.created_at,
-        'ultima', p.ultima,
-        'total', p.total,
-        'candidaturas', p.candidaturas)
-      order by p.ultima desc), '[]'::jsonb))
+        'ultima', greatest(c.ultima, t.ultima, l.ultima),
+        'total', coalesce(c.total, 0),
+        'candidaturas', coalesce(c.candidaturas, '[]'::jsonb),
+        'trabalhos_ativos', coalesce(t.ativos, 0),
+        'trabalhos', coalesce(t.trabalhos, '[]'::jsonb))
+      order by greatest(c.ultima, t.ultima, l.ultima) desc), '[]'::jsonb))
   into resultado
-  from pessoas p
-  join auth.users u on u.id = p.user_id
-  left join public.perfis pf on pf.user_id = p.user_id;
+  from ids i
+  join auth.users u on u.id = i.user_id
+  left join public.perfis pf on pf.user_id = i.user_id
+  left join cand c on c.user_id = i.user_id
+  left join trab t on t.user_id = i.user_id
+  left join lancou l on l.user_id = i.user_id;
 
   return resultado;
 end;
 $$;
 
-revoke all on function public.admin_candidaturas() from public, anon;
-grant execute on function public.admin_candidaturas() to authenticated;
-
+revoke all on function public.admin_pessoas() from public, anon;
+grant execute on function public.admin_pessoas() to authenticated;

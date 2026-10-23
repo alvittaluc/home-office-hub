@@ -108,7 +108,7 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
 .p-pessoa:first-of-type { border-top:0; }
 .p-pessoa span { display:block; font-size:12.5px; color:var(--ink-3,#66717F); overflow-wrap:anywhere; }
 #equipe .p-bts { margin-top:14px; padding-top:14px; border-top:1px solid var(--line-soft,#EAE4D9); }
-/* candidaturas de cada pessoa (em teste, banco/painel-pessoas.sql) */
+/* pessoas: candidaturas e trabalhos de cada uma (banco/painel-pessoas.sql) */
 .p-busca { margin:14px 0 4px; }
 .p-busca input { width:100%; font:inherit; font-size:14.5px; padding:11px 14px; border:1px solid var(--line,#DED7CA); border-radius:12px; background:var(--panel,#fff); color:var(--ink,#10203A); }
 .p-cand { margin-top:10px; padding:0; }
@@ -122,8 +122,10 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
 .p-cand .tot { font-size:13px; color:var(--ink-2,#54606F); white-space:nowrap; }
 .p-cand .tot::after { content:"›"; display:inline-block; margin-left:10px; color:var(--ink-3,#66717F); transition:transform .15s; }
 .p-cand[open] .tot::after { transform:rotate(90deg); }
-.p-cand .p-rolagem { padding:0 20px 12px; border-top:1px solid var(--line-soft,#EAE4D9); }
-.p-cand .p-tab { margin-top:8px; }
+.p-cand .p-dentro { padding:2px 20px 14px; border-top:1px solid var(--line-soft,#EAE4D9); }
+.p-cand .p-dentro h3 { font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3,#66717F); margin:16px 0 0; }
+.p-cand .p-dentro .p-vazio { padding-top:8px; }
+.p-cand .p-tab { margin-top:4px; }
 .p-cand tr.achou td { background:#FBF6EC; }
 .p-etapa { display:inline-block; font-size:11.5px; font-weight:600; line-height:1.5; padding:1px 9px; border-radius:99px; border:1px solid; white-space:nowrap; }
 @media (max-width:700px){ .p-cand > summary { grid-template-columns:1fr auto; } .p-cand .etapas { grid-column:1 / -1; grid-row:2; justify-content:flex-start; } }
@@ -144,7 +146,7 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
       <button type="button" role="tab" data-aba="mentorias">Mentorias <span class="p-conta" id="nPedidos" hidden></span></button>
       <button type="button" role="tab" data-aba="denuncias">Denúncias <span class="p-conta" id="nDenuncias" hidden></span></button>
       <button type="button" role="tab" data-aba="numeros">Números</button>
-      <button type="button" role="tab" data-aba="candidaturas">Candidaturas</button>
+      <button type="button" role="tab" data-aba="pessoas">Pessoas</button>
       <button type="button" role="tab" data-aba="equipe">Equipe</button>
     </nav>
   </div>
@@ -155,7 +157,7 @@ details.p-resolvidas > summary { cursor:pointer; font-size:14px; font-weight:600
     <div class="p-espera" id="esperaNum" hidden></div>
     <div id="painel" hidden></div>
   </div>
-  <div class="p-sec" data-sec="candidaturas" id="secCand" hidden></div>
+  <div class="p-sec" data-sec="pessoas" id="secPessoas" hidden></div>
   <div class="p-sec" data-sec="equipe" id="equipe" hidden></div>
   <div class="md-msg" id="mentMsg" role="status" hidden></div>
 </main>
@@ -337,103 +339,122 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
   }
 
   /* ══════════════════════════════════════════════════════════
-     CANDIDATURAS: o que cada pessoa registrou no Meu Controle.
-     Em teste (banco/painel-pessoas.sql): só a equipe vê, e o
-     banco não manda as observações pessoais de cada candidatura.
+     PESSOAS: o que cada pessoa registrou no Meu Controle, as
+     candidaturas e os trabalhos (banco/painel-pessoas.sql). O banco
+     não manda observações pessoais, valores nem pagamentos.
      ══════════════════════════════════════════════════════════ */
-  const secCand = document.getElementById("secCand");
+  const secPessoas = document.getElementById("secPessoas");
   const COR_ETAPA = {   // as mesmas cores das etapas no Meu Controle
     aplicado: ["#F1ECE3", "#54606F", "#DED7CA"], teste: ["#EAF1F8", "#1A4893", "#D3E2F1"],
     entrevista: ["#FBF0E4", "#A85D24", "#F0DCC6"], aprovado: ["#E4F3F0", "#1F7A6E", "#C6E5DE"],
     recusado: ["#FBE9EB", "#8E2233", "#F1CDD2"], semresposta: ["#F7F4EF", "#66717F", "#EAE4D9"],
     banco: ["#F1EEF7", "#5B4B9E", "#DFD8EE"],
   };
-  const nomeEtapa = id => (ESTADOS.find(e => e[0] === id) || [id, id])[1];
-  const selo = id => {
-    const c = COR_ETAPA[id] || COR_ETAPA.semresposta;
-    return `<span class="p-etapa" style="background:${c[0]};color:${c[1]};border-color:${c[2]}">${esc(nomeEtapa(id))}</span>`;
+  const SITUACAO = {
+    ativo: ["#E4F3F0", "#1F7A6E", "#C6E5DE", "Ativo"], pausado: ["#FBF0E4", "#A85D24", "#F0DCC6", "Pausado"],
+    encerrado: ["#F7F4EF", "#66717F", "#EAE4D9", "Encerrado"],
   };
+  const pilula = (c, texto) => `<span class="p-etapa" style="background:${c[0]};color:${c[1]};border-color:${c[2]}">${esc(texto)}</span>`;
+  const nomeEtapa = id => (ESTADOS.find(e => e[0] === id) || [id, id])[1];
+  const selo = id => pilula(COR_ETAPA[id] || COR_ETAPA.semresposta, nomeEtapa(id));
+  const seloTrab = id => { const c = SITUACAO[id] || SITUACAO.encerrado; return pilula(c, c[3]); };
   const diaBR = d => /^\d{4}-\d{2}-\d{2}/.test(d || "") ? d.slice(8, 10) + "/" + d.slice(5, 7) + "/" + d.slice(0, 4) : "";
+  const horas = h => (Math.round((Number(h) || 0) * 10) / 10).toLocaleString("pt-BR") + " h";
   function haQuanto(iso) {
     const t = Date.parse(iso || "");
     if (isNaN(t)) return "";
     const dias = Math.floor((Date.now() - t) / 86400000);
     return dias <= 0 ? "hoje" : dias === 1 ? "ontem" : dias <= 30 ? `há ${dias} dias` : "em " + diaBR(new Date(t).toISOString());
   }
-  let CAND = null, buscaCand = "", candLidas = false;
+  let PES = null, buscaPes = "", pesLidas = false;
 
-  async function carregarCand() {
-    if (!cli) { secCand.innerHTML = `<div class="p-espera">As candidaturas não aparecem no modo de demonstração.</div>`; return; }
-    secCand.innerHTML = `<div class="p-espera">Buscando as candidaturas…</div>`;
-    const r = await cli.rpc("admin_candidaturas");
+  async function carregarPessoas() {
+    if (!cli) { secPessoas.innerHTML = `<div class="p-espera">As pessoas não aparecem no modo de demonstração.</div>`; return; }
+    secPessoas.innerHTML = `<div class="p-espera">Buscando as pessoas…</div>`;
+    const r = await cli.rpc("admin_pessoas");
     if (r.error) {
       console.warn(r.error);
-      candLidas = false;
-      secCand.innerHTML = `<div class="p-espera">Não deu para buscar as candidaturas agora. Confira a internet e clique na aba de novo.</div>`;
+      pesLidas = false;
+      secPessoas.innerHTML = `<div class="p-espera">Não deu para buscar as pessoas agora. Confira a internet e clique na aba de novo.</div>`;
       return;
     }
-    CAND = r.data || {};
-    desenharCand();
+    PES = r.data || {};
+    desenharPessoas();
   }
 
-  function desenharCand() {
-    const pessoas = CAND.pessoas || [];
-    const todas = pessoas.reduce((s, p) => s.concat(p.candidaturas || []), []);
-    const avancaram = todas.filter(c => ["teste", "entrevista", "aprovado"].indexOf(c.estado) >= 0).length;
+  function desenharPessoas() {
+    const pessoas = PES.pessoas || [];
+    const cands = pessoas.reduce((s, p) => s.concat(p.candidaturas || []), []);
+    const comCand = pessoas.filter(p => (p.candidaturas || []).length).length;
+    const trabalhando = pessoas.filter(p => p.trabalhos_ativos > 0).length;
+    const ativos = pessoas.reduce((s, p) => s + (p.trabalhos_ativos || 0), 0);
     const ativas = pessoas.filter(p => Date.now() - Date.parse(p.ultima) < 7 * 86400000).length;
-    const media = pessoas.length ? (todas.length / pessoas.length).toFixed(1).replace(".", ",") : "";
-    const quando = CAND.gerado_em ? new Date(CAND.gerado_em).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }) : "";
+    const quando = PES.gerado_em ? new Date(PES.gerado_em).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }) : "";
 
-    secCand.innerHTML = `
+    secPessoas.innerHTML = `
       <div class="p-subtopo">
-        <p>O que cada pessoa registrou no Meu Controle: em que vaga se candidatou e em que etapa está.
-          Em teste: só a equipe vê esta aba, e as observações pessoais de cada candidatura não aparecem.</p>
+        <p>O que cada pessoa registrou no Meu Controle: as candidaturas, com a etapa de cada uma, e os trabalhos,
+          com o que foi lançado nos últimos 30 dias. Observações pessoais e valores ganhos não aparecem.</p>
         <div>
-          <button class="p-atualizar" type="button" id="atualizarCand">Atualizar</button>
+          <button class="p-atualizar" type="button" id="atualizarPessoas">Atualizar</button>
           <div class="p-quando">${quando ? "Lido em " + esc(quando) : ""}</div>
         </div>
       </div>
       <div class="p-nums">
-        ${cartao("Pessoas", num(pessoas.length), `registram candidaturas, de ${num(CAND.contas)} ${CAND.contas === 1 ? "conta" : "contas"} no Hub`)}
-        ${cartao("Candidaturas", num(todas.length), media ? media + " por pessoa, em média" : "–")}
-        ${cartao("Avançaram", pct(avancaram, todas.length), `${num(avancaram)} chegaram a teste, entrevista ou aprovação`)}
-        ${cartao("Ativas na semana", num(ativas), `${ativas === 1 ? "pessoa mexeu" : "pessoas mexeram"} nas candidaturas nos últimos 7 dias`)}
+        ${cartao("Pessoas", num(pessoas.length), `com candidatura ou trabalho cadastrado, de ${num(PES.contas)} ${PES.contas === 1 ? "conta" : "contas"} no Hub`)}
+        ${cartao("Candidaturas", num(cands.length), `de ${num(comCand)} ${comCand === 1 ? "pessoa" : "pessoas"}`)}
+        ${cartao("Trabalhando", num(trabalhando), `${trabalhando === 1 ? "pessoa" : "pessoas"} com trabalho ativo, em ${num(ativos)} ${ativos === 1 ? "trabalho" : "trabalhos"}`)}
+        ${cartao("Ativas na semana", num(ativas), `${ativas === 1 ? "pessoa mexeu" : "pessoas mexeram"} no Meu Controle nos últimos 7 dias`)}
       </div>
-      <div class="p-busca"><input type="search" id="buscaCand" placeholder="Buscar por nome, e-mail, vaga ou empresa" value="${esc(buscaCand)}" autocomplete="off"></div>
-      <div id="listaCand"></div>`;
+      <div class="p-busca"><input type="search" id="buscaPessoas" placeholder="Buscar por nome, e-mail, vaga, empresa ou projeto" value="${esc(buscaPes)}" autocomplete="off"></div>
+      <div id="listaPessoas"></div>`;
 
-    document.getElementById("atualizarCand").addEventListener("click", carregarCand);
-    document.getElementById("buscaCand").addEventListener("input", ev => { buscaCand = ev.target.value; listarCand(); });
-    listarCand();
+    document.getElementById("atualizarPessoas").addEventListener("click", carregarPessoas);
+    document.getElementById("buscaPessoas").addEventListener("input", ev => { buscaPes = ev.target.value; listarPessoas(); });
+    listarPessoas();
   }
 
-  /* A busca acha a pessoa pelo nome ou e-mail, ou pela vaga e empresa de
-     alguma candidatura; nesse caso a pessoa já aparece aberta e a linha
-     que casou fica marcada. */
-  function listarCand() {
-    const alvo = document.getElementById("listaCand");
+  /* A busca acha a pessoa pelo nome ou e-mail, ou por alguma candidatura
+     ou trabalho dela; nesse caso a pessoa já aparece aberta e a linha que
+     casou fica marcada. */
+  function listarPessoas() {
+    const alvo = document.getElementById("listaPessoas");
     if (!alvo) return;
-    const pessoas = CAND.pessoas || [];
-    const q = buscaCand.trim().toLowerCase();
+    const pessoas = PES.pessoas || [];
+    const q = buscaPes.trim().toLowerCase();
     const casa = t => String(t || "").toLowerCase().indexOf(q) >= 0;
     const lista = !q ? pessoas.map(p => [p, false]) : pessoas.map(p => {
       if (casa(p.nome) || casa(p.email)) return [p, false];
-      return (p.candidaturas || []).some(c => casa(c.titulo) || casa(c.empresa)) ? [p, true] : null;
+      const achou = (p.candidaturas || []).some(c => casa(c.titulo) || casa(c.empresa))
+                 || (p.trabalhos || []).some(t => casa(t.empresa) || casa(t.projeto));
+      return achou ? [p, true] : null;
     }).filter(Boolean);
-    if (!pessoas.length) { alvo.innerHTML = `<section class="p-cx"><div class="p-vazio">Ninguém registrou candidatura ainda.</div></section>`; return; }
-    if (!lista.length) { alvo.innerHTML = `<section class="p-cx"><div class="p-vazio">Nada encontrado para "${esc(buscaCand.trim())}".</div></section>`; return; }
-    alvo.innerHTML = lista.map(([p, abrir]) => pessoaCand(p, abrir, q)).join("");
+    if (!pessoas.length) { alvo.innerHTML = `<section class="p-cx"><div class="p-vazio">Ninguém registrou candidatura nem trabalho ainda.</div></section>`; return; }
+    if (!lista.length) { alvo.innerHTML = `<section class="p-cx"><div class="p-vazio">Nada encontrado para "${esc(buscaPes.trim())}".</div></section>`; return; }
+    alvo.innerHTML = lista.map(([p, abrir]) => pessoaHtml(p, abrir, q)).join("");
   }
 
-  function pessoaCand(p, abrir, q) {
-    const cs = p.candidaturas || [];
+  function pessoaHtml(p, abrir, q) {
+    const cs = p.candidaturas || [], ts = p.trabalhos || [];
+    const casa = t => !!q && String(t || "").toLowerCase().indexOf(q) >= 0;
     const porEtapa = {};
     cs.forEach(c => { porEtapa[c.estado] = (porEtapa[c.estado] || 0) + 1; });
     const etapas = ESTADOS.map(e => e[0]).filter(id => porEtapa[id])
       .concat(Object.keys(porEtapa).filter(id => !ESTADOS.some(e => e[0] === id)));
-    const linhas = cs.map(c => {
-      const achou = q && (String(c.titulo).toLowerCase().indexOf(q) >= 0 || String(c.empresa).toLowerCase().indexOf(q) >= 0);
-      return `<tr${achou ? ' class="achou"' : ""}>
+
+    const linhasTrab = ts.map(t => {
+      const nome = t.projeto && t.projeto !== t.empresa ? t.projeto : t.empresa;
+      const uso = t.dias_30 ? `${num(t.dias_30)} ${t.dias_30 === 1 ? "dia" : "dias"}${Number(t.horas_30) ? " · " + horas(t.horas_30) : ""}` : "–";
+      return `<tr${casa(t.empresa) || casa(t.projeto) ? ' class="achou"' : ""}>
+        <td class="tit">${esc(nome)}${nome !== t.empresa ? `<span class="emp">${esc(t.empresa)}</span>` : ""}</td>
+        <td>${seloTrab(t.estado)}</td>
+        <td>${esc(diaBR(t.inicio)) || "–"}</td>
+        <td>${t.ultimo_dia ? esc(diaBR(t.ultimo_dia)) : "nenhum"}</td>
+        <td>${uso}</td>
+      </tr>`;
+    }).join("");
+
+    const linhasCand = cs.map(c => `<tr${casa(c.titulo) || casa(c.empresa) ? ' class="achou"' : ""}>
         <td class="tit">${c.vaga_id
             ? `<a href="vaga.html?id=${encodeURIComponent(c.vaga_id)}">${esc(c.titulo)}</a>`
             : `${esc(c.titulo)}<span class="p-fora" title="A pessoa cadastrou à mão; não veio da lista do Hub">de fora</span>`}
@@ -442,18 +463,29 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
         <td>${esc(diaBR(c.data)) || "–"}</td>
         <td>${esc(c.origem) || "–"}</td>
         <td>${c.proximo ? esc(c.proximo) + (c.proximo_em ? `<span class="emp">${esc(diaBR(c.proximo_em) || c.proximo_em)}</span>` : "") : "–"}</td>
-      </tr>`;
-    }).join("");
+      </tr>`).join("");
+
+    const contas = [];
+    if (ts.length) contas.push(`${num(ts.length)} ${ts.length === 1 ? "trabalho" : "trabalhos"}`);
+    if (cs.length) contas.push(`${num(cs.length)} ${cs.length === 1 ? "candidatura" : "candidaturas"}`);
+
     return `<details class="p-cx p-cand"${abrir ? " open" : ""}>
       <summary>
         <span class="quem"><b>${esc(p.nome || p.email || "Sem nome")}</b>
           <span>${p.nome ? esc(p.email) + " · " : ""}última mudança ${esc(haQuanto(p.ultima))}</span></span>
-        <span class="etapas">${etapas.map(id => `<span class="e">${selo(id)}<i>${num(porEtapa[id])}</i></span>`).join("")}</span>
-        <span class="tot">${num(cs.length)} ${cs.length === 1 ? "candidatura" : "candidaturas"}</span>
+        <span class="etapas">${p.trabalhos_ativos ? `<span class="e">${pilula(SITUACAO.ativo, "Trabalhando")}<i>${num(p.trabalhos_ativos)}</i></span>` : ""}${etapas.map(id => `<span class="e">${selo(id)}<i>${num(porEtapa[id])}</i></span>`).join("")}</span>
+        <span class="tot">${contas.join(" · ")}</span>
       </summary>
-      <div class="p-rolagem"><table class="p-tab">
-        <thead><tr><th>Vaga</th><th>Etapa</th><th>Enviada em</th><th>Onde viu</th><th>Próximo passo</th></tr></thead>
-        <tbody>${linhas}</tbody></table></div>
+      <div class="p-dentro">
+        ${ts.length ? `<h3>Trabalhos</h3>
+        <div class="p-rolagem"><table class="p-tab">
+          <thead><tr><th>Trabalho</th><th>Situação</th><th>Desde</th><th>Último dia lançado</th><th>Últimos 30 dias</th></tr></thead>
+          <tbody>${linhasTrab}</tbody></table></div>` : ""}
+        <h3>Candidaturas</h3>
+        ${cs.length ? `<div class="p-rolagem"><table class="p-tab">
+          <thead><tr><th>Vaga</th><th>Etapa</th><th>Enviada em</th><th>Onde viu</th><th>Próximo passo</th></tr></thead>
+          <tbody>${linhasCand}</tbody></table></div>` : `<div class="p-vazio">Nenhuma candidatura registrada.</div>`}
+      </div>
     </details>`;
   }
 
@@ -461,7 +493,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
      ABAS: uma parte do painel de cada vez. A aba aberta fica no
      endereço (#denuncias), para o link e o F5 voltarem nela.
      ══════════════════════════════════════════════════════════ */
-  const ABAS = ["mentorias", "denuncias", "numeros", "candidaturas", "equipe"];
+  const ABAS = ["mentorias", "denuncias", "numeros", "pessoas", "equipe"];
   let numerosLidos = false;
   function abrirAba(nome, semMexerNoEndereco) {
     if (ABAS.indexOf(nome) < 0) nome = "mentorias";
@@ -471,7 +503,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     if (!semMexerNoEndereco) { try { history.replaceState(null, "", "#" + nome); } catch (e) {} }
     // os números só são buscados quando alguém abre a aba deles
     if (nome === "numeros" && !numerosLidos) { numerosLidos = true; carregar(); }
-    if (nome === "candidaturas" && !candLidas) { candLidas = true; carregarCand(); }
+    if (nome === "pessoas" && !pesLidas) { pesLidas = true; carregarPessoas(); }
   }
   document.getElementById("abas").addEventListener("click", ev => {
     const b = ev.target.closest("[data-aba]"); if (b) abrirAba(b.dataset.aba);

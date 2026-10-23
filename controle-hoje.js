@@ -72,6 +72,7 @@ const Hoje = (function () {
 .h-ag-hora { width:74px; flex-shrink:0; font-size:12.5px; color:var(--ink-2,#54606F); white-space:nowrap; }
 .h-ag-cor { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
 .h-ag-mais { font:inherit; font-size:13px; font-weight:600; color:var(--signal,#1A4893); background:none; border:0; cursor:pointer; padding:10px 10px 0; }
+.h-ag-vazio { font-size:14px; line-height:1.55; color:var(--ink-2,#54606F); margin:2px 10px 4px; }
 
 .h-linha-num { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
 .h-num { font-size:26px; font-weight:600; letter-spacing:-.015em; }
@@ -208,12 +209,21 @@ const Hoje = (function () {
 
     /* 1b. NA AGENDA ─────────────────────────────────────────────────────
        O que está marcado para hoje e amanhã: entrevistas, testes, prazos,
-       estudo, fim de período e pagamento previsto. Sem nada, não aparece. */
+       estudo, fim de período e pagamento previsto. Sem nada marcado, o
+       quadro continua na tela, com o caminho para a Agenda: sumir fazia
+       parecer que a Agenda não estava ligada à tela Hoje. */
     if (comAgenda) {
       const amanha = Agenda.somar(hoje, 1);
       const deHoje = Agenda.compromissos(ctx, ctx.agenda || [], hoje);
       const deAmanha = Agenda.compromissos(ctx, ctx.agenda || [], amanha);
-      if (deHoje.length || deAmanha.length) {
+      if (!deHoje.length && !deAmanha.length) {
+        blocos.push({
+          peso: 1.5,
+          html: cartao("Na agenda", "hoje e amanhã",
+            `<p class="h-ag-vazio">Nada marcado para hoje nem para amanhã. Entrevistas, testes, prazos e o plano de horas de cada trabalho ficam na Agenda.</p>
+             <button class="h-ag-mais" data-ir="agenda">Abrir a Agenda →</button>`),
+        });
+      } else {
         const lista = (rot, itens, dia) => !itens.length ? "" :
           `<div class="h-ag-dia">${rot}</div>` + itens.map((c, k) => `<button class="h-item" data-ag="${dia}|${k}">
             <span class="h-ag-hora">${esc(c.hora)}</span>
