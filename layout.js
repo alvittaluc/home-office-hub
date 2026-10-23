@@ -310,7 +310,7 @@ const Acesso = (function () {
       daEquipe(() => {
         if (d.querySelector(".hd-menu-equipe")) return;
         d.querySelector(".hd-menu-cx").insertAdjacentHTML("beforeend",
-          `<a class="hd-menu-equipe" href="painel.html">Painel da equipe<small>números, pessoas e denúncias</small></a>`);
+          `<a class="hd-menu-equipe" href="painel.html">Painel da equipe<small>${MENTORIAS_LIGADAS ? "números, pessoas e denúncias" : "números, pessoas e equipe"}</small></a>`);
       });
       document.addEventListener("click", ev => { if (d.open && !d.contains(ev.target)) d.open = false; });
       document.addEventListener("keydown", ev => { if (ev.key === "Escape") d.open = false; });

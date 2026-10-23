@@ -488,7 +488,12 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
      ABAS: uma parte do painel de cada vez. A aba aberta fica no
      endereço (#denuncias), para o link e o F5 voltarem nela.
      ══════════════════════════════════════════════════════════ */
-  const ABAS = ["denuncias", "numeros", "pessoas", "equipe"];
+  /* Sem mentorias no site (MENTORIAS_LIGADAS no layout.js) também não há
+     denúncias, que são só de mensagens e grupos de mentoria: a aba fica
+     guardada, fora da tela, e volta junto com as mentorias. */
+  const COM_MENTORIAS = typeof MENTORIAS_LIGADAS === "undefined" || MENTORIAS_LIGADAS;
+  if (!COM_MENTORIAS) document.querySelector('#abas [data-aba="denuncias"]').remove();
+  const ABAS = COM_MENTORIAS ? ["denuncias", "numeros", "pessoas", "equipe"] : ["numeros", "pessoas", "equipe"];
   let numerosLidos = false;
   function abrirAba(nome, semMexerNoEndereco) {
     if (ABAS.indexOf(nome) < 0) nome = "numeros";
@@ -503,7 +508,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
   document.getElementById("abas").addEventListener("click", ev => {
     const b = ev.target.closest("[data-aba]"); if (b) abrirAba(b.dataset.aba);
   });
-  function contar(id, n) { const c = document.getElementById(id); c.textContent = n; c.hidden = !n; }
+  function contar(id, n) { const c = document.getElementById(id); if (!c) return; c.textContent = n; c.hidden = !n; }
 
   /* ══════════════════════════════════════════════════════════
      DENÚNCIAS
@@ -607,7 +612,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     MD.ui.porCss();
     const pessoas = d.pessoas || [];
     alvo.innerHTML = `<div class="p-grade"><section class="p-cx larga"><h2>Equipe</h2>
-      <p class="sub">Quem está nesta lista abre este painel, aprova mentores e cuida das denúncias. Ninguém mais consegue: o servidor recusa.
+      <p class="sub">Quem está nesta lista abre este painel${COM_MENTORIAS ? ", aprova mentores e cuida das denúncias" : ""}. Ninguém mais consegue: o servidor recusa.
         ${d.sou_dono ? "" : "Só o dono do site inclui ou tira pessoas."}</p>
       ${pessoas.map(p => `<div class="p-pessoa"><div><b>${esc(p.nome || p.email)}</b>${p.eu ? " (você)" : ""}
           <span>${p.nome ? esc(p.email) + " · " : ""}${p.dono ? "dono do site" : "equipe"}</span></div>
@@ -632,7 +637,8 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
     alvo.onclick = async ev => {
       const b = ev.target.closest("[data-tirar]"); if (!b) return;
       if (!(await MD.ui.confirmar({ titulo: "Tirar esta pessoa da equipe?",
-        texto: "Ela deixa de abrir o painel, de aprovar mentores e de ver as denúncias. A conta dela no Hub continua normal.", botao: "Tirar da equipe" }))) return;
+        texto: COM_MENTORIAS ? "Ela deixa de abrir o painel, de aprovar mentores e de ver as denúncias. A conta dela no Hub continua normal."
+          : "Ela deixa de abrir o painel. A conta dela no Hub continua normal.", botao: "Tirar da equipe" }))) return;
       b.disabled = true;
       try { await MD.equipeRemover(b.dataset.tirar); equipe(["Pessoa tirada da equipe.", "ok"]); }
       catch (e) { dizerEq(e.message, "erro"); b.disabled = false; }

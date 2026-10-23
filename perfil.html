@@ -13,8 +13,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
 <style>
-/* Perfil: o nome, a apresentação curta e a foto que aparecem para os outros
-   nas mentorias. O e-mail nunca aparece. */
+/* Perfil: o nome, a apresentação curta e a foto que aparecem para os outros.
+   O e-mail nunca aparece. Com as mentorias desligadas (MENTORIAS_LIGADAS no
+   layout.js), a opção dos avisos delas por e-mail fica fora da tela. */
 .pf-main { max-width:560px; margin:0 auto; padding:44px 20px 90px; min-height:60vh; }
 .pf-main h1 { font-family:var(--display,'Hedvig Letters Serif',Georgia,serif); font-weight:400; font-size:clamp(28px,3.6vw,38px);
   line-height:1.1; letter-spacing:-0.015em; color:var(--ink,#10203A); margin:0 0 8px; }
@@ -48,7 +49,8 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
   const U = MD.ui, espera = document.getElementById("espera"), tela = document.getElementById("tela");
   const pedido = new URLSearchParams(location.search).get("voltar") || "";
   // só volta para página do próprio site
-  const voltar = /^[a-z0-9-]+\.html(\?[\w=&%.-]*)?(#[\w\/.-]*)?$/i.test(pedido) ? pedido : "mentorias.html";
+  const comMentorias = typeof MENTORIAS_LIGADAS === "undefined" || MENTORIAS_LIGADAS;
+  const voltar = /^[a-z0-9-]+\.html(\?[\w=&%.-]*)?(#[\w\/.-]*)?$/i.test(pedido) ? pedido : (comMentorias ? "mentorias.html" : "index.html");
 
   if (!MD.disponivel) { espera.textContent = "Não deu para falar com o servidor de contas. Confira a internet e recarregue a página."; return; }
   let eu = null;
@@ -70,7 +72,7 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
   tela.innerHTML = `
     <div class="eyebrow">Sua conta</div>
     <h1>Meu perfil</h1>
-    <p class="pf-lead">É assim que você aparece para as outras pessoas nas mentorias. O seu e-mail nunca é mostrado.</p>
+    <p class="pf-lead">É assim que você aparece para as outras pessoas. O seu e-mail nunca é mostrado.</p>
     <form class="pf-cx" novalidate>
       <div class="pf-foto">
         <span id="fotoVer"></span>
@@ -86,9 +88,9 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
       <label class="md-campo"><span>Sobre você</span>
         <small>Opcional. Duas ou três linhas: onde trabalha, há quanto tempo, o que faz.</small>
         <textarea id="bio" maxlength="600"></textarea></label>
-      <label class="pf-aviso"><input type="checkbox" id="avisos">
+      ${comMentorias ? `<label class="pf-aviso"><input type="checkbox" id="avisos">
         <span><b>Receber os avisos das mentorias por e-mail</b>
-          <small>Pedido de entrada no seu grupo, pedido aceito e resposta da equipe. Só isso, sem propaganda.</small></span></label>
+          <small>Pedido de entrada no seu grupo, pedido aceito e resposta da equipe. Só isso, sem propaganda.</small></span></label>` : ""}
       <div class="pf-acoes">
         <button class="md-bt" type="submit">Salvar perfil</button>
         <a class="md-link" href="${U.e(voltar)}">voltar sem salvar</a>
@@ -100,7 +102,7 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
   const $ = s => tela.querySelector(s);
   $("#nome").value = (perfil && perfil.nome) || "";
   $("#bio").value = (perfil && perfil.bio) || "";
-  $("#avisos").checked = avisosAntes;
+  if ($("#avisos")) $("#avisos").checked = avisosAntes;
   const pintarFoto = () => {
     $("#fotoVer").innerHTML = U.foto({ nome: $("#nome").value || "?", foto: fotoAtual }, 76);
     $("#fotoTirar").hidden = !fotoAtual;
@@ -124,7 +126,7 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
     bt.disabled = true; bt.textContent = "Salvando…";
     try {
       await MD.salvarPerfil({ nome, bio: $("#bio").value.trim(), foto: fotoAtual });
-      if ($("#avisos").checked !== avisosAntes) await MD.definirAvisosEmail($("#avisos").checked);
+      if ($("#avisos") && $("#avisos").checked !== avisosAntes) await MD.definirAvisosEmail($("#avisos").checked);
       location.href = voltar;
     } catch (e) {
       dizer(e.message, "erro"); bt.disabled = false; bt.textContent = "Salvar perfil";
