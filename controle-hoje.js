@@ -220,7 +220,7 @@ const Hoje = (function () {
         blocos.push({
           peso: 1.5,
           html: cartao("Na agenda", "hoje e amanhã",
-            `<p class="h-ag-vazio">Nada marcado para hoje nem para amanhã. Entrevistas, testes, prazos e o plano de horas de cada trabalho ficam na Agenda.</p>
+            `<p class="h-ag-vazio">Nada marcado para hoje nem amanhã. Agende seus compromissos.</p>
              <button class="h-ag-mais" data-ir="agenda">Abrir a Agenda →</button>`),
         });
       } else {

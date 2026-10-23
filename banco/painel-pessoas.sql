@@ -5,15 +5,15 @@
 --
 --  A aba Pessoas do painel mostra o que cada pessoa registrou no Meu
 --  Controle: as candidaturas, em que etapa cada uma está, e os trabalhos,
---  com o uso dos últimos 30 dias. Diferente do painel_totais
+--  com o último dia lançado. Diferente do painel_totais
 --  (banco/painel.sql), esta função devolve nome e e-mail.
 --
 --  O que vai: nome do perfil e e-mail da conta; de cada candidatura, a
 --  vaga, a empresa, a etapa, a data, onde a pessoa viu a vaga e o próximo
---  passo; de cada trabalho, a empresa, o projeto, a situação, o início, o
---  último dia lançado e quantos dias e horas foram lançados nos últimos 30
---  dias. O que NÃO vai: observações, currículo usado, pretensão de
---  remuneração, e-mail de contato anotado, valores e pagamentos.
+--  passo; de cada trabalho, a empresa, o projeto, a situação, o início e o
+--  último dia lançado. O que NÃO vai: observações, currículo usado,
+--  pretensão de remuneração, e-mail de contato anotado, horas, valores e
+--  pagamentos.
 --
 --  Quem pode ver: só quem está na tabela "administradores". Quem recusa
 --  os outros é o banco, não a tela.
@@ -33,7 +33,6 @@ set search_path = ''
 as $$
 declare
   resultado jsonb;
-  desde text := to_char(current_date - 30, 'YYYY-MM-DD');
 begin
   if auth.uid() is null
      or not exists (select 1 from public.administradores a where a.user_id = auth.uid()) then
@@ -66,22 +65,17 @@ begin
     from public.controle_itens i
     where i.colecao = 'trabalhos' and not i.apagado
   ),
-  -- os dias lançados; horas que não forem número contam como zero
+  -- os dias lançados: daqui sai só a data do último de cada trabalho
   rg as (
     select i.user_id,
            i.atualizado_em,
-           i.dados->>'trabalhoId'     as trabalho_id,
-           coalesce(i.dados->>'data', '') as data,
-           case when (i.dados->>'horas') ~ '^[0-9]+([.,][0-9]+)?$'
-                then replace(i.dados->>'horas', ',', '.')::numeric else 0 end as horas
+           i.dados->>'trabalhoId'         as trabalho_id,
+           coalesce(i.dados->>'data', '') as data
     from public.controle_itens i
     where i.colecao = 'registros' and not i.apagado
   ),
   uso as (
-    select rg.user_id, rg.trabalho_id,
-           max(rg.data)                                  as ultimo_dia,
-           count(*) filter (where rg.data >= desde)      as dias_30,
-           coalesce(sum(rg.horas) filter (where rg.data >= desde), 0) as horas_30
+    select rg.user_id, rg.trabalho_id, max(rg.data) as ultimo_dia
     from rg
     group by rg.user_id, rg.trabalho_id
   ),
@@ -103,8 +97,7 @@ begin
            max(tr.atualizado_em)                      as ultima,
            jsonb_agg(jsonb_build_object(
              'id', tr.id, 'empresa', tr.empresa, 'projeto', tr.projeto, 'estado', tr.estado,
-             'inicio', tr.inicio, 'ultimo_dia', coalesce(u.ultimo_dia, ''),
-             'dias_30', coalesce(u.dias_30, 0), 'horas_30', coalesce(u.horas_30, 0))
+             'inicio', tr.inicio, 'ultimo_dia', coalesce(u.ultimo_dia, ''))
              order by (tr.estado = 'ativo') desc, u.ultimo_dia desc nulls last) as trabalhos
     from tr
     left join uso u on u.user_id = tr.user_id and u.trabalho_id = tr.id
