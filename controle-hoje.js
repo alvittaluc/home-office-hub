@@ -183,7 +183,7 @@ const Hoje = (function () {
         const q = r ? UI.qtdTarefas(r) : 0;
         const feito = [q ? UI.escreverTarefas(q) : "", h ? Dados.escreverHoras(h) : ""].filter(Boolean).join(" · ");
         const pl = comAgenda ? Agenda.planoDoDia(t, hoje, ctx.agenda) : null;
-        const plano = !pl ? "" : `<span class="h-dia-plano">plano de hoje: <b>${esc(Agenda.horas(pl.horas))}</b></span>`;
+        const plano = !pl ? "" : `<span class="h-dia-plano">agendado para hoje: <b>${esc(Agenda.horas(pl.horas))}</b>${pl.inicio && Agenda.relogio ? " às " + esc(Agenda.relogio(pl.inicio)) : ""}</span>`;
         return `<button class="h-dia-cartao" data-dia="${esc(t.id)}"${pl && !h ? ` data-horas="${pl.horas}"` : ""}>
           <span class="h-dia-nome">
             <i class="h-ponto" style="background:${esc(t.cor || "#2C6BB5")}"></i>

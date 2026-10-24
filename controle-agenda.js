@@ -7,24 +7,26 @@
    para hora do relógio e quantidade de horas não se confundirem.
 
    Em cada dia aparece:
-   - as horas de cada trabalho: planejadas ("5 horas") ou feitas ("✓ 3 horas").
-     O plano vem do plano da semana do trabalho ou de horas marcadas só para
-     aquele dia;
+   - as horas de cada trabalho: agendadas ("às 9h · 2 horas") ou feitas
+     ("✓ 3 horas"). Só aparecem as horas que a própria pessoa agendou: a meta
+     da semana não divide nada sozinha;
    - os compromissos: entrevista, teste, prazo, estudo ou outro;
    - o que já está no Meu Controle: o próximo passo das candidaturas, o fim
      do período de cada trabalho e o dia de receber, com o valor previsto
      pelas horas lançadas.
 
-   Clicar num dia abre o resumo do dia, de onde se lança horas, muda as horas
-   planejadas do dia e marca compromisso.
+   Clicar num dia abre o resumo do dia, de onde se lança horas, agenda horas
+   e marca compromisso.
 
-   O plano da semana fica dentro do próprio trabalho:
-     trabalho.plano = { horas, dias: [0-6, 0 = domingo], desde }
+   A meta da semana fica dentro do próprio trabalho e não marca horas sozinha:
+   ela só mostra quanto já foi feito, quanto está agendado e quanto falta.
+     trabalho.plano = { horas, desde }   (o "dias" de versões antigas fica
+                                          guardado, mas não vale mais)
      trabalho.diasAtePagar = dias entre o fim do período e o pagamento
    Um item da agenda (coleção "agenda"):
-     compromisso  { tipo, titulo, data, inicio, fim, aplicacaoId, nota }
-     horas do dia { tipo: "trabalho", trabalhoId, data, horas }   (troca o
-                  plano da semana naquele dia; horas 0 tira o trabalho do dia)
+     compromisso     { tipo, titulo, data, inicio, fim, aplicacaoId, nota }
+     horas agendadas { tipo: "trabalho", trabalhoId, data, horas, inicio }
+                     (um por trabalho em cada dia; "inicio" é opcional)
 
    A tela Hoje usa planoDoDia(), compromissos() e horas().
    O CSS mora aqui dentro, pela regra das peças compartilhadas.
@@ -57,12 +59,15 @@ const Agenda = (function () {
 .ag-pl-nome { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:var(--ink,#10203A); min-width:0; }
 .ag-pl-nome i { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
 .ag-pl-nome span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.ag-pl-barra { height:7px; border-radius:99px; background:var(--bg-soft,#F1ECE3); overflow:hidden; }
-.ag-pl-barra i { display:block; height:100%; border-radius:99px; }
+.ag-pl-barra { position:relative; height:7px; border-radius:99px; background:var(--bg-soft,#F1ECE3); overflow:hidden; }
+.ag-pl-barra i { position:absolute; left:0; top:0; height:100%; border-radius:99px; }
+.ag-pl-barra i.ag-pl-ag { opacity:.28; }
 .ag-pl-txt { font-size:13.5px; color:var(--ink-2,#54606F); line-height:1.45; }
 .ag-pl-txt b { color:var(--ink,#10203A); font-weight:600; }
 .ag-pl-txt small { display:block; font-size:12.5px; color:var(--ink-3,#66717F); margin-top:1px; }
 .ag-pl-bt { font:inherit; font-size:13px; font-weight:600; color:var(--signal,#1A4893); background:none; border:0; cursor:pointer; padding:4px 0; white-space:nowrap; }
+.ag-pl-bt.leve { color:var(--ink-3,#66717F); font-weight:500; padding-top:0; }
+.ag-pl-bts { display:flex; flex-direction:column; align-items:flex-end; }
 
 .ag-barra { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:0 0 12px; }
 .ag-barra h2 { font-family:var(--body,'Geist',sans-serif); font-size:17px; font-weight:600; color:var(--ink,#10203A); margin:0 0 0 6px; }
@@ -153,7 +158,7 @@ const Agenda = (function () {
 }
 @media (max-width:700px) {
   .ag-pl { grid-template-columns:1fr auto; }
-  .ag-pl-bt { grid-row:1; grid-column:2; }
+  .ag-pl-bts { grid-row:1; grid-column:2; }
   .ag-pl-barra { grid-column:1 / -1; }
   .ag-pl-txt { grid-column:1 / -1 !important; }
   .ag-vistas { margin-left:0; }
@@ -196,6 +201,8 @@ const Agenda = (function () {
     const base = H + (H === 1 ? " hora" : " horas");
     return M === 0 ? base : M === 30 ? base + " e meia" : base + " e " + M + " min";
   }
+  /* "2 horas agendadas", "1 hora feita", "30 min agendados". */
+  const com = (h, palavra) => horas(h) + " " + palavra + (h < 1 ? "os" : h < 2 ? "a" : "as");
   const diaMes = s => { const p = partes(s); return p[2] + " de " + MESES[p[1] - 1]; };
   const diaLongo = s => { const n = DSEM_LONGO[dsem(s)]; return n[0].toUpperCase() + n.slice(1) + ", " + diaMes(s); };
   function tituloDaSemana(de, ate, estaSemana) {
@@ -204,20 +211,15 @@ const Agenda = (function () {
     return (estaSemana ? "Esta semana, " : "") + faixa;
   }
 
-  /* ── horas planejadas ────────────────────────────────────────────────── */
+  /* ── horas agendadas ─────────────────────────────────────────────────── */
 
-  /* As horas planejadas de um trabalho num dia, ou null. Horas marcadas só
-     para aquele dia mandam; sem elas, vale o plano da semana, da semana em
-     que foi feito em diante. Só para trabalho ativo. */
+  /* As horas que a pessoa agendou para um trabalho num dia, ou null. A meta
+     da semana não entra aqui: ela não marca horas sozinha. Só para trabalho
+     ativo. */
   function planoDoDia(t, data, itens) {
     if (!t || t.estado !== "ativo") return null;
     const doDia = (itens || []).find(it => it.tipo === "trabalho" && it.trabalhoId === t.id && it.data === data);
-    if (doDia) return +doDia.horas > 0 ? { horas: +doDia.horas, avulso: true } : null;
-    const p = t.plano;
-    if (!p || !(+p.horas > 0) || !Array.isArray(p.dias) || !p.dias.length) return null;
-    if (p.desde && data < p.desde) return null;
-    if (p.dias.indexOf(dsem(data)) < 0) return null;
-    return { horas: Math.round(+p.horas / p.dias.length * 4) / 4 };   // de 15 em 15 minutos
+    return doDia && +doDia.horas > 0 ? { horas: +doDia.horas, inicio: doDia.inicio || "", item: doDia } : null;
   }
 
   const feitasNoDia = (t, data, registros) => registros
@@ -283,7 +285,7 @@ const Agenda = (function () {
       const pl = planoDoDia(t, data, itens);
       const feitas = feitasNoDia(t, data, ctx.registros);
       if (!pl && !feitas) continue;
-      out.push({ tipo: "trabalho", trabalho: t, plano: pl ? pl.horas : 0, feitas, cor: t.cor || "#2C6BB5", futuro: data > hoje, hoje: data === hoje });
+      out.push({ tipo: "trabalho", trabalho: t, plano: pl ? pl.horas : 0, inicio: pl ? pl.inicio : "", feitas, cor: t.cor || "#2C6BB5", futuro: data > hoje, hoje: data === hoje });
     }
     itens.filter(it => it.data === data && it.tipo !== "trabalho")
       .sort((a, b) => ((a.inicio || "") > (b.inicio || "") ? 1 : -1))
@@ -299,13 +301,14 @@ const Agenda = (function () {
     return out;
   }
 
-  /* "5 horas planejadas", "2 horas de 5 horas", "✓ 3 horas feitas". */
+  /* "às 9h · 2 horas agendadas", "2 horas de 5 horas", "✓ 3 horas feitas". */
   function situacao(x) {
-    if (!x.plano) return { texto: "✓ " + horas(x.feitas) + " feitas", feito: true };
-    if (x.futuro) return { texto: horas(x.plano) + " planejadas", feito: false };
-    if (x.feitas >= x.plano) return { texto: "✓ " + horas(x.feitas) + " feitas", feito: true };
+    const as = x.inicio ? "às " + relogio(x.inicio) + " · " : "";
+    if (!x.plano) return { texto: "✓ " + com(x.feitas, "feit"), feito: true };
+    if (x.futuro) return { texto: as + com(x.plano, "agendad"), feito: false };
+    if (x.feitas >= x.plano) return { texto: "✓ " + com(x.feitas, "feit"), feito: true };
     if (x.feitas) return { texto: horas(x.feitas) + " de " + horas(x.plano), feito: false };
-    return { texto: horas(x.plano) + " planejadas", feito: false };
+    return { texto: as + com(x.plano, "agendad"), feito: false };
   }
 
   function nomeDoCompromisso(it, aplicacoes) {
@@ -370,7 +373,9 @@ const Agenda = (function () {
     ligar();
   }
 
-  /* Uma linha por trabalho ativo: o plano desta semana e o próximo pagamento. */
+  /* Uma linha por trabalho ativo: a meta da semana, o que já foi feito, o que
+     está agendado daqui até domingo e o próximo pagamento. A meta não marca
+     horas sozinha: quem agenda é a pessoa. */
   function htmlPlano() {
     const ativos = CTX.trabalhos.filter(t => t.estado === "ativo");
     if (!ativos.length) return "";
@@ -384,35 +389,40 @@ const Agenda = (function () {
       const pe = receber
         ? `Próximo pagamento: ${esc(diaMes(receber.data))}${valor ? ", " + esc(valor) : ""}.`
         : `O período fecha em ${esc(diaMes(UI.periodoDe(hoje, UI.diaDoPeriodo(t)).ate))}.`;
-      let meta = 0, feitas = 0;
-      const restam = [];
+      const meta = t.plano && +t.plano.horas > 0 ? +t.plano.horas : 0;
+      let feitas = 0, agendadas = 0;
       for (let d = de; d <= ate; d = somar(d, 1)) {
+        const f = feitasNoDia(t, d, CTX.registros);
+        feitas += f;
         const pl = planoDoDia(t, d, ITENS);
-        if (pl) { meta += pl.horas; if (d >= hoje) restam.push(d); }
-        feitas += feitasNoDia(t, d, CTX.registros);
+        // de hoje conta só o que ainda falta fazer do que foi agendado
+        if (pl && d >= hoje) agendadas += d === hoje ? Math.max(0, pl.horas - f) : pl.horas;
       }
+      const bts = `<span class="ag-pl-bts">
+          <button type="button" class="ag-pl-bt" data-agendar="${esc(t.id)}">Agendar horas</button>
+          <button type="button" class="ag-pl-bt leve" data-plano="${esc(t.id)}">${meta ? "Mudar a meta" : "Definir meta"}</button></span>`;
+      const ag = agendadas ? com(agendadas, "agendad") + " até domingo" : "nada agendado até domingo";
       if (!meta) {
         return `<div class="ag-pl">
           <span class="ag-pl-nome"><i style="background:${cor}"></i><span>${nome}</span></span>
-          <span class="ag-pl-txt" style="grid-column:2 / 4">Sem horas planejadas nesta semana.<small>${pe}</small></span>
-          <button type="button" class="ag-pl-bt" data-plano="${esc(t.id)}">Planejar</button>
+          <span class="ag-pl-txt" style="grid-column:2 / 4">${feitas ? `<b>${esc(com(feitas, "feit"))}</b> nesta semana · ` : "Sem meta para esta semana · "}${esc(ag)}.<small>${pe}</small></span>
+          ${bts}
         </div>`;
       }
-      const falta = Math.max(0, meta - feitas);
-      let detalhe;
-      if (falta <= 0) detalhe = "Plano da semana cumprido.";
-      else if (!restam.length) detalhe = "Faltaram " + horas(falta) + ".";
-      else if (restam.length === 1) detalhe = "Faltam " + horas(falta) + (restam[0] === hoje ? ", para hoje." : ", para " + DSEM_LONGO[dsem(restam[0])] + ".");
-      else detalhe = "Faltam " + horas(falta) + ": " + horas(Math.ceil(falta / restam.length * 4) / 4) + " por dia até " + DSEM_LONGO[dsem(restam[restam.length - 1])] + ".";
+      const falta = meta - feitas - agendadas;
+      const detalhe = feitas >= meta ? "Meta da semana cumprida."
+        : falta <= 0 ? "O que está agendado já completa a meta."
+        : "Falta agendar " + horas(falta) + ".";
+      const pc = h => Math.min(100, Math.round(h / meta * 100));
       return `<div class="ag-pl">
         <span class="ag-pl-nome"><i style="background:${cor}"></i><span>${nome}</span></span>
-        <span class="ag-pl-barra"><i style="width:${Math.min(100, Math.round(feitas / meta * 100))}%;background:${cor}"></i></span>
-        <span class="ag-pl-txt"><b>${esc(horas(feitas))}</b> feitas de ${esc(horas(meta))} · ${esc(detalhe)}<small>${pe}</small></span>
-        <button type="button" class="ag-pl-bt" data-plano="${esc(t.id)}">Ajustar</button>
+        <span class="ag-pl-barra" title="feitas e agendadas"><i class="ag-pl-ag" style="width:${pc(feitas + agendadas)}%;background:${cor}"></i><i style="width:${pc(feitas)}%;background:${cor}"></i></span>
+        <span class="ag-pl-txt"><b>${esc(horas(feitas))}</b> feitas de ${esc(horas(meta))} · ${esc(ag)}. ${esc(detalhe)}<small>${pe}</small></span>
+        ${bts}
       </div>`;
     }).join("");
     return `<div class="ct-cartao ag-plano">
-      <div class="ct-cab-cartao"><h2>Plano desta semana</h2><p>quantas horas você quer fazer em cada trabalho</p></div>
+      <div class="ct-cab-cartao"><h2>Meta desta semana</h2><p>você agenda as horas nos dias e horários que quiser</p></div>
       ${linhas}
     </div>`;
   }
@@ -421,7 +431,9 @@ const Agenda = (function () {
   function chips(x) {
     if (x.tipo === "trabalho") {
       const s = situacao(x);
-      const texto = (s.feito ? "✓ " + horas(x.feitas) : horas(x.feitas && !x.futuro ? x.feitas : x.plano) + (x.feitas && !x.futuro ? " de " + horas(x.plano) : "")) + " · " + (x.trabalho.projeto || x.trabalho.empresa);
+      const texto = (x.inicio && !s.feito && !(x.feitas && !x.futuro) ? "às " + relogio(x.inicio) + " · " : "")
+        + (s.feito ? "✓ " + horas(x.feitas) : horas(x.feitas && !x.futuro ? x.feitas : x.plano) + (x.feitas && !x.futuro ? " de " + horas(x.plano) : ""))
+        + " · " + (x.trabalho.projeto || x.trabalho.empresa);
       return `<span class="ag-ch${s.feito ? " feito" : ""}" style="--c:${esc(x.cor)}">${esc(texto)}</span>`;
     }
     if (x.tipo === "compromisso") {
@@ -487,6 +499,8 @@ const Agenda = (function () {
     if (esta) esta.addEventListener("click", () => { ref = Dados.hoje(); desenhar(); });
     CAIXA.querySelectorAll("[data-vista]").forEach(b => b.addEventListener("click", () => { vista = b.dataset.vista; desenhar(); }));
     CAIXA.querySelector("[data-marcar]").addEventListener("click", () => abrir(null, { data: Dados.hoje() }));
+    CAIXA.querySelectorAll("[data-agendar]").forEach(b => b.addEventListener("click", () =>
+      abrir(null, { tipo: "trabalho", trabalhoId: b.dataset.agendar, data: Dados.hoje() })));
     CAIXA.querySelectorAll("[data-plano]").forEach(b => b.addEventListener("click", () => {
       const t = CTX.trabalhos.find(x => x.id === b.dataset.plano);
       if (t) abrirPlano(t);
@@ -514,7 +528,7 @@ const Agenda = (function () {
 
     const linhaTrab = (x, k) => {
       const s = situacao(x);
-      const acao = d <= hoje ? (x.feitas ? "Editar o dia" : "Lançar horas") : "Mudar as horas";
+      const acao = d <= hoje ? (x.feitas ? "Editar o dia" : "Lançar horas") : "Mudar";
       return `<div class="ag-dd"><i style="background:${esc(x.cor)}"></i>
         <span class="ag-dd-txt"><b>${esc(x.trabalho.projeto || x.trabalho.empresa)}</b><span>${esc(s.texto)}</span></span>
         <button type="button" class="ag-dd-bt${d <= hoje && !x.feitas ? " forte" : ""}" data-trab="${k}">${acao}</button></div>`;
@@ -538,8 +552,8 @@ const Agenda = (function () {
 
     const corpo = `
       <div class="ag-dd-sec"><h3>Trabalho</h3>
-        ${trabs.length ? trabs.map(linhaTrab).join("") : `<div class="ag-dd-vazio">Nenhuma hora planejada ou lançada.</div>`}
-        ${semNoDia.length ? `<button type="button" class="ag-dd-mais" data-outro>+ ${d <= hoje ? "Lançar horas" : "Planejar horas"} de ${semNoDia.length === 1 ? esc(semNoDia[0].projeto || semNoDia[0].empresa) : "outro trabalho"}</button>` : ""}
+        ${trabs.length ? trabs.map(linhaTrab).join("") : `<div class="ag-dd-vazio">Nenhuma hora agendada ou lançada.</div>`}
+        ${semNoDia.length ? `<button type="button" class="ag-dd-mais" data-outro>+ ${d < hoje ? "Lançar horas" : "Agendar horas"} de ${semNoDia.length === 1 ? esc(semNoDia[0].projeto || semNoDia[0].empresa) : "outro trabalho"}</button>` : ""}
       </div>
       <div class="ag-dd-sec"><h3>Compromissos</h3>
         ${comps.length ? comps.map(linhaComp).join("") : `<div class="ag-dd-vazio">Nada marcado.</div>`}
@@ -555,7 +569,7 @@ const Agenda = (function () {
     dlg.querySelectorAll("[data-trab]").forEach(b => b.addEventListener("click", () => {
       const x = trabs[+b.dataset.trab];
       if (d <= hoje) return trocar(dlg, () => UI.abrirRegistroDia(x.trabalho, { data: d, horas: x.feitas ? undefined : x.plano || undefined, aoSalvar: depois }));
-      trocar(dlg, () => abrir(null, { data: d, tipo: "trabalho", trabalhoId: x.trabalho.id, horas: x.plano }));
+      trocar(dlg, () => abrir(null, { data: d, tipo: "trabalho", trabalhoId: x.trabalho.id, horas: x.plano, inicio: x.inicio }));
     }));
     dlg.querySelectorAll("[data-comp]").forEach(b => b.addEventListener("click", () => trocar(dlg, () => abrir(comps[+b.dataset.comp].item))));
     dlg.querySelectorAll("[data-passo]").forEach(b => b.addEventListener("click", () => {
@@ -575,6 +589,12 @@ const Agenda = (function () {
     const ativos = CTX.trabalhos.filter(t => t.estado === "ativo");
     it = it || Object.assign({ tipo: ativos.length ? "trabalho" : "entrevista", titulo: "", data: hoje, inicio: "", fim: "",
       nota: "", aplicacaoId: "", trabalhoId: ativos.length === 1 ? ativos[0].id : "", horas: "" }, novo || {});
+    // horas que já estão agendadas para um trabalho num dia
+    const blocoDe = (tid, data) => ITENS.find(x => x.tipo === "trabalho" && x.trabalhoId === tid && x.data === data && +x.horas > 0);
+    if (it.tipo === "trabalho" && ehNovo && !it.horas) {
+      const b = blocoDe(it.trabalhoId, it.data);
+      if (b) { it.horas = b.horas; it.inicio = b.inicio || ""; }
+    }
     const cands = CTX.aplicacoes.filter(a => VIVOS.indexOf(a.estado) >= 0 || a.id === it.aplicacaoId);
     const tipos = (ativos.length ? [{ valor: "trabalho", nome: "Horas de trabalho" }] : [])
       .concat(Object.keys(TIPOS).map(k => ({ valor: k, nome: TIPOS[k].nome })));
@@ -585,8 +605,11 @@ const Agenda = (function () {
       <div data-so="trabalho">
         ${ativos.length ? UI.campo({ nome: "trabalhoId", rotulo: "Trabalho", tipo: "escolha", valor: it.trabalhoId || "",
           opcoes: [{ valor: "", nome: "Escolha o trabalho" }].concat(ativos.map(t => ({ valor: t.id, nome: t.projeto || t.empresa }))) }) : ""}
-        ${UI.campo({ nome: "horas", rotulo: "Quantas horas", valor: it.horas ? Dados.escreverHoras(+it.horas) : "", dica: "3h, 2h30, 4",
-          ajuda: "<span data-explica></span>" })}
+        <div class="ag-duas">
+          ${UI.campo({ nome: "horas", rotulo: "Quantas horas", valor: it.horas ? Dados.escreverHoras(+it.horas) : "", dica: "3h, 2h30, 4" })}
+          ${UI.campo({ nome: "inicioTrab", rotulo: "Começa às (opcional)", tipo: "time", valor: it.tipo === "trabalho" ? it.inicio || "" : "", passo: 900 })}
+        </div>
+        <p class="u-ajuda" data-explica></p>
       </div>
       <div data-so="compromisso">
         <div data-cand>${cands.length ? UI.campo({ nome: "aplicacaoId", rotulo: "De qual candidatura (opcional)", tipo: "escolha", valor: it.aplicacaoId || "",
@@ -599,14 +622,11 @@ const Agenda = (function () {
         ${UI.campo({ nome: "nota", rotulo: "Anotação", tipo: "texto-longo", valor: it.nota, dica: "Link da chamada, o que levar, o que estudar" })}
       </div>`;
 
-    const avulso = it.tipo === "trabalho" && ITENS.find(x => x.tipo === "trabalho" && x.trabalhoId === it.trabalhoId && x.data === it.data);
     const dlg = UI.painel({
-      titulo: ehNovo ? "Marcar na agenda" : (it.tipo === "trabalho" ? "Horas planejadas" : "Compromisso"),
+      titulo: ehNovo ? "Marcar na agenda" : (it.tipo === "trabalho" ? "Horas agendadas" : "Compromisso"),
       corpo,
       extra: !ehNovo && it.id ? `<button type="button" class="ag-link perigo" data-apagar>Apagar</button>`
-        : (it.tipo === "trabalho" && it.data > hoje && (avulso || it.horas)) ? `<div style="display:flex;flex-wrap:wrap;gap:4px 12px">${
-          avulso ? `<button type="button" class="ag-link" data-voltar>Voltar ao plano da semana</button>` : ""}
-          <button type="button" class="ag-link perigo" data-folga>Não trabalhar neste dia</button></div>` : "",
+        : ativos.length ? `<button type="button" class="ag-link perigo" data-tirar-dia hidden>Tirar da agenda</button>` : "",
       acaoTexto: "Salvar",
       acao: async (d) => {
         const tipo = UI.ler(d, "tipo"), data = UI.ler(d, "data");
@@ -616,11 +636,11 @@ const Agenda = (function () {
           if (!t) throw new Error("Escolha o trabalho.");
           const h = Dados.lerHoras(UI.ler(d, "horas"));
           if (h === null || !(h > 0)) throw new Error("Diga quantas horas. Aceita 3h, 2h30 ou 4.");
-          // dia que já chegou: as horas vão para o registro do dia, que abre preenchido
-          if (data <= hoje) { setTimeout(() => UI.abrirRegistroDia(t, { data, horas: h, aoSalvar: depois }), 60); return true; }
+          // dia que já passou: as horas vão para o registro do dia, que abre preenchido
+          if (data < hoje) { setTimeout(() => UI.abrirRegistroDia(t, { data, horas: h, aoSalvar: depois }), 60); return true; }
           const ja = ITENS.find(x => x.tipo === "trabalho" && x.trabalhoId === t.id && x.data === data);
-          await Dados.salvar("agenda", Object.assign({}, ja || {}, { tipo: "trabalho", trabalhoId: t.id, data, horas: h }));
-          UI.aviso(horas(h) + " planejadas para " + diaMes(data) + ".", "ok");
+          await Dados.salvar("agenda", Object.assign({}, ja || {}, { tipo: "trabalho", trabalhoId: t.id, data, horas: h, inicio: UI.ler(d, "inicioTrab") }));
+          UI.aviso(com(h, "agendad") + " para " + diaMes(data) + ".", "ok");
         } else {
           const dado = {
             tipo, titulo: UI.ler(d, "titulo"), data,
@@ -646,92 +666,81 @@ const Agenda = (function () {
       const cand = dlg.querySelector("[data-cand]");
       if (cand) cand.hidden = ["entrevista", "teste", "prazo"].indexOf(tipo) < 0;
       const explica = dlg.querySelector("[data-explica]");
-      if (explica) explica.textContent = !data ? "" : data <= hoje
-        ? "Este dia já chegou: as horas vão para o registro do dia, que abre em seguida para você conferir."
-        : "Horas planejadas só para este dia. Elas trocam o plano da semana neste dia.";
-      botao.textContent = ehTrab && data && data <= hoje ? "Continuar para lançar" : "Salvar";
+      if (explica) explica.textContent = !data ? "" : data < hoje
+        ? "Este dia já passou: as horas vão para o registro do dia, que abre em seguida para você conferir."
+        : "Você escolhe o dia, o horário e quantas horas. Depois de trabalhar, lance as horas no registro do dia.";
+      botao.textContent = ehTrab && data && data < hoje ? "Continuar para lançar" : "Salvar";
+      const tirar = dlg.querySelector("[data-tirar-dia]");
+      if (tirar) tirar.hidden = !(ehTrab && data >= hoje && blocoDe(UI.ler(dlg, "trabalhoId"), data));
     };
-    ["tipo", "data"].forEach(n => { const el = dlg.querySelector(`[name="${n}"]`); if (el) { el.addEventListener("change", mostrar); el.addEventListener("input", mostrar); } });
+    /* Trocou o dia ou o trabalho: se já há horas agendadas ali, elas aparecem
+       nos campos, para a pessoa mudar em vez de agendar de novo. */
+    const preencher = () => {
+      if (UI.ler(dlg, "tipo") !== "trabalho") return;
+      const b = blocoDe(UI.ler(dlg, "trabalhoId"), UI.ler(dlg, "data"));
+      if (!b) return;
+      dlg.querySelector('[name="horas"]').value = Dados.escreverHoras(+b.horas);
+      dlg.querySelector('[name="inicioTrab"]').value = b.inicio || "";
+    };
+    ["tipo", "data", "trabalhoId"].forEach(n => { const el = dlg.querySelector(`[name="${n}"]`); if (el) { el.addEventListener("change", mostrar); el.addEventListener("input", mostrar); } });
+    ["data", "trabalhoId"].forEach(n => { const el = dlg.querySelector(`[name="${n}"]`); if (el) el.addEventListener("change", preencher); });
     mostrar();
 
     const apagar = dlg.querySelector("[data-apagar]");
     if (apagar) apagar.addEventListener("click", async () => {
-      const ok = await UI.confirmar({ titulo: it.tipo === "trabalho" ? "Voltar ao plano da semana neste dia?" : "Apagar este compromisso?",
-        texto: it.tipo === "trabalho" ? "As horas marcadas só para este dia saem, e volta a valer o plano da semana." : "Não dá para desfazer.",
+      const ok = await UI.confirmar({ titulo: it.tipo === "trabalho" ? "Tirar estas horas da agenda?" : "Apagar este compromisso?",
+        texto: it.tipo === "trabalho" ? "As horas agendadas neste dia saem. As horas lançadas continuam." : "Não dá para desfazer.",
         acaoTexto: "Apagar", perigo: true });
       if (!ok) return;
       await Dados.remover("agenda", it.id);
       UI.aviso("Apagado da agenda.", "ok");
       await depois();
     });
-    const voltar = dlg.querySelector("[data-voltar]");
-    if (voltar) voltar.addEventListener("click", async () => {
-      await Dados.remover("agenda", avulso.id);
+    const tirarDia = dlg.querySelector("[data-tirar-dia]");
+    if (tirarDia) tirarDia.addEventListener("click", async () => {
+      const b = blocoDe(UI.ler(dlg, "trabalhoId"), UI.ler(dlg, "data"));
+      if (!b) return;
+      await Dados.remover("agenda", b.id);
       dlg.close(); dlg.remove();
-      UI.aviso("Voltou o plano da semana em " + diaMes(it.data) + ".", "ok");
-      await depois();
-    });
-    const folga = dlg.querySelector("[data-folga]");
-    if (folga) folga.addEventListener("click", async () => {
-      await Dados.salvar("agenda", Object.assign({}, avulso || {}, { tipo: "trabalho", trabalhoId: it.trabalhoId, data: it.data, horas: 0 }));
-      dlg.close(); dlg.remove();
-      UI.aviso("Sem trabalho em " + diaMes(it.data) + ".", "ok");
+      UI.aviso("Horas tiradas da agenda em " + diaMes(b.data) + ".", "ok");
       await depois();
     });
   }
 
-  /* ── janela do plano da semana de um trabalho ────────────────────────── */
+  /* ── janela da meta da semana de um trabalho ─────────────────────────── */
 
   function abrirPlano(t) {
     const p = t.plano || {};
-    const dias = Array.isArray(p.dias) && p.dias.length ? p.dias : [1, 2, 3, 4, 5];
-    const ordem = [1, 2, 3, 4, 5, 6, 0];
     const corpo = `
-      ${UI.campo({ nome: "horas", rotulo: "Quantas horas você quer fazer por semana", tipo: "number", valor: p.horas || "", dica: "15", min: 0, passo: 0.5 })}
-      <div class="d-linha"><span class="d-rot">Em quais dias</span>
-        <div class="ag-dias">${ordem.map(d => `<label><input type="checkbox" name="dia${d}"${dias.indexOf(d) >= 0 ? " checked" : ""}><span>${DSEM[d]}</span></label>`).join("")}</div>
-      </div>
-      <div class="ag-conta" data-conta></div>
+      ${UI.campo({ nome: "horas", rotulo: "Quantas horas você quer fazer por semana", tipo: "number", valor: p.horas || "", dica: "20", min: 0, passo: 0.5 })}
+      <div class="ag-conta">A meta não marca nada na agenda. Você agenda as horas nos dias e horários que quiser, e a agenda mostra quanto falta.</div>
       ${UI.campo({ nome: "diasAtePagar", rotulo: "O pagamento cai quantos dias depois que o período fecha (opcional)", tipo: "number",
         valor: t.diasAtePagar === 0 || t.diasAtePagar ? t.diasAtePagar : "", dica: "15", min: 0, passo: 1,
         ajuda: "Com isso, a agenda mostra o dia de receber e quanto deve cair, pelas horas que você lançou. Deixe vazio se não sabe." })}`;
 
     const dlg = UI.painel({
-      titulo: "Plano da semana",
+      titulo: "Meta da semana",
       subtitulo: t.projeto || t.empresa,
       corpo,
-      extra: t.plano ? `<button type="button" class="ag-link perigo" data-tirar>Tirar o plano</button>` : "",
-      acaoTexto: "Salvar o plano",
+      extra: t.plano ? `<button type="button" class="ag-link perigo" data-tirar>Tirar a meta</button>` : "",
+      acaoTexto: "Salvar a meta",
       acao: async (d) => {
         const h = parseFloat(String(UI.ler(d, "horas")).replace(",", "."));
-        const escolhidos = ordem.filter(x => UI.ler(d, "dia" + x));
         const pagar = UI.ler(d, "diasAtePagar");
         if (!(h > 0)) throw new Error("Diga quantas horas por semana.");
         if (h > 112) throw new Error("Confira as horas: passa de 16 por dia.");
-        if (!escolhidos.length) throw new Error("Escolha pelo menos um dia.");
-        const plano = { horas: h, dias: escolhidos, desde: (t.plano && t.plano.desde) || segunda(Dados.hoje()) };
+        const plano = { horas: h, desde: (t.plano && t.plano.desde) || segunda(Dados.hoje()) };
         const n = parseInt(pagar, 10);
         await Dados.salvar("trabalhos", Object.assign({}, t, { plano, diasAtePagar: pagar === "" || !(n >= 0) ? "" : n }));
-        UI.aviso("Plano salvo.", "ok");
+        UI.aviso("Meta salva.", "ok");
         await depois();
       },
     });
 
-    const conta = () => {
-      const h = parseFloat(String(UI.ler(dlg, "horas")).replace(",", "."));
-      const n = ordem.filter(x => UI.ler(dlg, "dia" + x)).length;
-      dlg.querySelector("[data-conta]").textContent = h > 0 && n
-        ? "Dá " + horas(Math.round(h / n * 4) / 4) + " em cada dia escolhido."
-        : "Escolha as horas e os dias para ver quanto dá por dia.";
-    };
-    dlg.querySelectorAll('[name="horas"], .ag-dias input').forEach(el => el.addEventListener("input", conta));
-    dlg.querySelectorAll(".ag-dias input").forEach(el => el.addEventListener("change", conta));
-    conta();
-
     const tirar = dlg.querySelector("[data-tirar]");
     if (tirar) tirar.addEventListener("click", async () => {
-      const ok = await UI.confirmar({ titulo: "Tirar o plano deste trabalho?", texto: "As horas planejadas somem da agenda. As horas lançadas continuam.",
-        acaoTexto: "Tirar o plano", perigo: true });
+      const ok = await UI.confirmar({ titulo: "Tirar a meta deste trabalho?", texto: "As horas agendadas e as lançadas continuam.",
+        acaoTexto: "Tirar a meta", perigo: true });
       if (!ok) return;
       const copia = Object.assign({}, t); delete copia.plano;
       await Dados.salvar("trabalhos", copia);
@@ -769,5 +778,5 @@ const Agenda = (function () {
     return (itens || []).filter(it => it.data === h && it.tipo !== "trabalho").length;
   }
 
-  return { montar, quantosHoje, planoDoDia, compromissos, prepararParaHoje, somar, horas };
+  return { montar, quantosHoje, planoDoDia, compromissos, prepararParaHoje, somar, horas, relogio };
 })();
