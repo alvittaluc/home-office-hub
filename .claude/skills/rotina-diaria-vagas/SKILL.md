@@ -73,6 +73,8 @@ O `vagas_revisao.json` (local, fora do Git) lista as vagas que estão visíveis 
 
 **Regra 1, local e quem pode se candidatar.** A vaga só fica se for remota E aberta ao mundo todo ou a quem mora no Brasil. Bloqueie quando ela exigir morar em outro país ou cidade, for presencial ou híbrida fora do Brasil, ou quando quem mora no Brasil não tiver como se qualificar (por exemplo, falante nativo de uma lista de línguas sem o português, ou um cadastro que só existe fora do país). Vaga baseada no Brasil que pede outra língua fica.
 
+A regra vale também para as vagas das áreas escondidas (pedido do dono em 24/10/2026: "a gente só quer ver coisa que brasileiro pode candidatar"). Vaga que exige licença médica americana, inscrição na ordem dos advogados americana, diploma J.D. sem "ou equivalente", prática profissional nos EUA ou passagem pelo Departamento de Defesa americano sai do site. O `coletor.py` já tira sozinho as que usam as frases de `EXIGE_EUA`; quando aparecer no `vagas_para_resumo.json` uma vaga assim que escapou do filtro, bloqueie-a no `vagas-curadoria.json` (e, se a frase for comum, acrescente-a em `EXIGE_EUA`) em vez de resumi-la. Conhecimento de normas americanas (US GAAP, códigos de segurança) não é motivo de bloqueio: quem mora no Brasil pode ter.
+
 Armadilhas conhecidas:
 - Na Alignerr, `location: United States` é um valor padrão. O que vale é o código do país e a linha "Location:" do texto.
 - Na Mercor, o `applicantLocationRequirements: US` do JSON-LD aparece em todas as vagas e não quer dizer nada.

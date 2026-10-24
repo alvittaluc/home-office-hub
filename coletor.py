@@ -232,6 +232,40 @@ def sem_indicacao(empresa, url):
 ARQUIVO_CURADORIA = "vagas-curadoria.json"
 ARQUIVO_REVISAO = "vagas_revisao.json"
 
+# ─── VAGAS SÓ PARA QUEM TEM REGISTRO OU PRÁTICA NOS EUA ───
+# Pedido do dono em 24/10/2026: o hub só mostra vaga em que quem mora no
+# Brasil pode se candidatar, inclusive nas áreas escondidas. Médico com
+# licença americana, advogado com inscrição na ordem americana ou diploma
+# J.D., farmacêutico que trabalha nos EUA, militar do Departamento de Defesa
+# americano: quem estudou e trabalhou no Brasil não tem como entrar. Estes
+# trechos, lidos no texto do anúncio, tiram a vaga do site. São frases
+# exatas de propósito; o que ficar de fora a revisão manual bloqueia.
+EXIGE_EUA = re.compile("|".join([
+    r"unrestricted us medical license",
+    r"medical license in good standing in at least one us state",
+    r"us-based academic",
+    r"license to practice law in the united states",
+    r"bar admission in (the united states|good standing within the united states)",
+    r"(active|current) u\.?s\.? bar",
+    r"bar (admission|membership|license)[^.\n]{0,40}\b(in|within) (at least one |any |a )?(u\.s\.|us\b|the united states)",
+    r"law license in at least one u\.s\.",
+    r"\bu\.s\.-licensed",
+    r"aba-accredited",
+    r"from an accredited u\.s\.\s+law school",
+    r"(j\.?d\.?|graduation) from (a|an accredited)\s+u\.?s\.?\s+law school",
+    # J.D. sem "ou equivalente" é diploma de faculdade americana
+    r"juris doctor \(j\.?d\.?\)( degree)?( from an accredited law school)?\s+(and |with )?(active|admission|bar)",
+    r"expertise in u\.s\. immigration law",
+    r"\bucmj\b",
+    r"within the u\.s\. department of defense",
+    r"\bus-based\s*•",
+    r"\bus candidates only\b",
+    r"location\s*:\s*us only",
+    r"u\.s\.-based pharmacists",
+    r"representing indigent clients in the united states",
+    r"law degree from a university in the united states, canada, united kingdom",
+]), re.IGNORECASE)
+
 
 # ─── SEGUNDA PASSADA SEM IR ÀS FONTES DE NOVO ───
 # No PC a rotina tem duas passadas. A primeira coleta e mostra o que falta
@@ -1409,6 +1443,13 @@ def processar(todas):
     todas = [v for v in todas if v["id"] not in bloqueadas]
     if antes != len(todas):
         print(f"  → {antes - len(todas)} vaga(s) removida(s) pela curadoria")
+
+    antes = len(todas)
+    todas = [v for v in todas
+             if not EXIGE_EUA.search(f"{v.get('_desc', '')} {v.get('_req', '')}")]
+    if antes != len(todas):
+        print(f"  → {antes - len(todas)} vaga(s) removida(s) por exigir "
+              f"registro ou prática nos EUA")
 
     # Arquivo só do PC: as vagas visíveis que ainda ninguém revisou, com o
     # texto completo, para a revisão manual. Não vai para o GitHub.
