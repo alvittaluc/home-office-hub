@@ -39,6 +39,9 @@ EXCECOES = {
     "Multilingual Image & Text AI Quality Expert": "",
     "=Customer Service Expert": "",
     "=Lifestyle Experts": "",
+    # A TELUS diz que nao precisa de diploma nem de anos de profissao:
+    # basta conhecer musica ou audio e passar na avaliacao de habilidades
+    "Join the TELUS Digital AI Music & Audio Expert Community": "",
     "Data Operations Specialist": "",
     "Document Review Specialist": "",
     "Creative Writing Evaluator": "",
@@ -760,6 +763,7 @@ if __name__ == "__main__":
         ("Senior AI Trainer", "", "GERAL"),
         ("Hydrus - Session Director - Portuguese (BR) - V2", "", "GERAL"),
         ("Lifestyle Experts", "", "GERAL"),
+        ("Join the TELUS Digital AI Music & Audio Expert Community", "", "GERAL"),
         ("AI Quality Analyst (Personalization) - Portuguese", "", "GERAL"),
         # descricao pede diploma, mas o titulo diz que o trabalho e do ramo
         ("Portuguese (Brazil) Translator",
