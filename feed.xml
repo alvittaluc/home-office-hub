@@ -5,7 +5,14 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Sat, 24 Oct 2026 12:21:25 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 24 Oct 2026 22:28:27 +0000</lastBuildDate>
+    <item>
+      <title>At-Work Video Recorder [for Business Owners] — micro1</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=73fd7d7fdb</link>
+      <guid isPermaLink="false">73fd7d7fdb</guid>
+      <pubDate>Sat, 24 Oct 2026 00:00:00 +0000</pubDate>
+      <description>A vaga é para donos de pequenos negócios e para os funcionários deles. Você grava vídeos em primeira pessoa enquanto faz as tarefas normais do trabalho, com o celular preso na cabeça, mostrando as mãos e os objetos. Vale para oficina mecânica, cozinha de restaurante, construção, depósito, fábrica, limpeza, hotel, comércio e outros ambientes de trabalho. O mínimo é de 2 horas de gravação por dia, e o dono do negócio pode inscrever vários funcionários.</description>
+    </item>
     <item>
       <title>Freelance AI Content Evaluator – LLM/VLM, Audio &amp; Data Labelling — TELUS Digital</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=492c60de39</link>
@@ -40,13 +47,6 @@
       <guid isPermaLink="false">73a95bd216</guid>
       <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
       <description>Você cria pares de pergunta e resposta originais e difíceis, sobre assuntos variados, para testar os limites de modelos avançados de IA. Cada resposta exige pesquisa a fundo, conferida em mais de uma fonte, e as perguntas precisam juntar várias informações e raciocínio, não só uma busca simples. Depois você testa as perguntas na IA, ajusta a dificuldade e registra as fontes e o raciocínio de cada resposta. O pagamento é por tarefa aprovada, com um mínimo de tarefas por semana.</description>
-    </item>
-    <item>
-      <title>At-Work Video Recorder [Remote] — micro1</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=73fd7d7fdb</link>
-      <guid isPermaLink="false">73fd7d7fdb</guid>
-      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
-      <description>A vaga é para donos de pequenos negócios e para os funcionários deles. Você grava vídeos em primeira pessoa enquanto faz as tarefas normais do trabalho, com o celular preso na cabeça, mostrando as mãos e os objetos. Vale para oficina mecânica, cozinha de restaurante, construção, depósito, fábrica, limpeza, hotel, comércio e outros ambientes de trabalho. O mínimo é de 2 horas de gravação por dia, e o dono do negócio pode inscrever vários funcionários.</description>
     </item>
     <item>
       <title>[LONG PROJECT] Anonymization Writer — Mercor</title>
@@ -238,25 +238,25 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
-      <title>Map &amp; Location Data Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=e0f426ba23</link>
-      <guid isPermaLink="false">e0f426ba23</guid>
+      <title>AI Data Quality Analyst — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4bdb89f9f0</link>
+      <guid isPermaLink="false">4bdb89f9f0</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você usa o que conhece da sua cidade, como ruas, pontos de referência, comércios e bairros, para conferir e corrigir dados de mapa e de localização gerados por IA. É trabalho de achar erro com método, usando mapas digitais.</description>
+      <description>Você revisa e avalia o que a IA produz, em texto, imagem e tabelas de dados, seguindo as diretrizes e as rubricas do projeto. Lê, critica e explica por escrito o que está errado. O anúncio resume o perfil assim: se você percebe quando algo está fora do lugar, você serve.</description>
     </item>
     <item>
-      <title>E-commerce Data Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3d82b44c66</link>
-      <guid isPermaLink="false">3d82b44c66</guid>
+      <title>AI Chatbot Tester — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=bd7cf3a141</link>
+      <guid isPermaLink="false">bd7cf3a141</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você revisa, categoriza e melhora os dados de produtos que alimentam sistemas de IA de compras e recomendação: categoria certa, descrição coerente, informação que bate. É trabalho com tabelas de dados, em ferramentas online.</description>
+      <description>Você conversa com chatbots de IA sobre assuntos e situações variadas e avalia se cada resposta é útil, correta, segura e tem o tom adequado. Também põe o modelo à prova com perguntas criativas e casos difíceis, e registra informação errada, frase estranha, conteúdo nocivo ou viés em um formulário padronizado.</description>
     </item>
     <item>
-      <title>Image Description Specialist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=b85d28d5bc</link>
-      <guid isPermaLink="false">b85d28d5bc</guid>
+      <title>Voice Recording Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4ce708dfd2</link>
+      <guid isPermaLink="false">4ce708dfd2</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você escreve descrições ricas e precisas de imagens, para ensinar sistemas de IA a interpretar conteúdo visual. É um trabalho de observação e de texto claro, repetido com método em muitas imagens.</description>
+      <description>Você grava amostras de fala natural para treinar sistemas de voz: lê roteiros e responde a perguntas abertas, variando tom, ritmo e estilo conforme a orientação. As gravações precisam sair limpas, sem ruído nem distorção, e cada sessão vem com um formulário de dados para preencher.</description>
     </item>
     <item>
       <title>Prompt Writer — Alignerr</title>
@@ -266,18 +266,18 @@
       <description>Você cria prompts originais, ou seja, perguntas, cenários e tarefas, em assuntos e níveis de dificuldade variados, para desafiar o raciocínio, a criatividade e a precisão dos modelos. Parte dos prompts testa como a IA se sai em temas de segurança, em situações delicadas e em casos extremos. Você segue os formatos e os guias de estilo do projeto e ajusta o texto conforme as correções que recebe.</description>
     </item>
     <item>
-      <title>Robotics Technician — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=963f23f487</link>
-      <guid isPermaLink="false">963f23f487</guid>
+      <title>Audio Transcription Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4e6565c964</link>
+      <guid isPermaLink="false">4e6565c964</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Apesar do nome, não é trabalho técnico. Você grava em vídeo ações comuns, como fazer café, arrumar uma prateleira ou abrir uma porta, seguindo instruções detalhadas. As gravações viram dados de treino para robôs aprenderem a lidar com o mundo real.</description>
+      <description>Você transforma gravações de áudio em texto correto e bem formatado, seguindo diretrizes claras. Os áudios variam em sotaque, velocidade e qualidade de gravação. Você aplica as regras de pontuação e de identificação de quem fala e marca os trechos que não dá para entender.</description>
     </item>
     <item>
-      <title>Content Reviewer — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=dc72984de8</link>
-      <guid isPermaLink="false">dc72984de8</guid>
+      <title>AI Training Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1fc54d7ed5</link>
+      <guid isPermaLink="false">1fc54d7ed5</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você lê textos gerados por IA sobre assuntos variados, de notícias e cultura a ciência e tecnologia, e avalia se estão claros, corretos, no tom certo e bem escritos. Marca o que estiver enganoso, inadequado ou mal escrito e registra a avaliação com notas e comentários.</description>
+      <description>Você faz tarefas de rotular, classificar e avaliar, sempre com regras definidas, que ensinam sistemas de IA a responder melhor. O conteúdo pode ser texto, imagem ou áudio, e para cada item você segue um guia e uma rubrica, apontando erros e respostas de baixa qualidade. É uma das vagas da Alignerr mais acessíveis para quem está começando.</description>
     </item>
     <item>
       <title>Social Media Content Evaluator — Alignerr</title>

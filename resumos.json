@@ -1,5 +1,5 @@
 {
-  "total": 220,
+  "total": 279,
   "vagas": [
     {
       "id": "65762fd387",
@@ -2370,6 +2370,666 @@
         "o_que_faz": "O título fala em controle de qualidade de anotação de imagens, mas o texto do anúncio descreve outro trabalho: responder perguntas de análise e raciocínio e criar situações que ensinem os modelos de IA, explicando a resposta certa quando o modelo erra. Também pede para ler e resumir textos longos, dividir o conteúdo em partes menores e conferir na internet se o que está escrito é verdade. Como a Turing lista Photoshop e Illustrator entre as habilidades da vaga, vale confirmar na candidatura qual é a tarefa de fato. O horário é flexível.",
         "requisitos": "Ótimo inglês para ler e escrever, boa capacidade de pesquisa e análise e facilidade para fazer comentários e anotações detalhadas. Computador com boa internet e disciplina para trabalhar sozinho. O anúncio prefere, sem exigir, graduação em áreas como engenharia, letras, jornalismo, comunicação, artes ou estatística, mais de 2 anos com controle de qualidade, anotação de dados ou revisão de conteúdo e familiaridade com Excel e com as ferramentas do Google. Photoshop e Illustrator aparecem entre as habilidades pedidas.",
         "idioma": "en+"
+      }
+    },
+    {
+      "id": "8fa691ec09",
+      "resumo": {
+        "frase": "Avaliar músicas, efeitos sonoros e trilhas gerados por IA.",
+        "o_que_faz": "Você ouve músicas e áudios criados por IA e avalia se combinam com a descrição escrita e com as imagens, olhando gênero, instrumentos, ritmo, clima e estrutura. Também confere a composição, o arranjo, a mixagem e a masterização, marca ruídos, distorções e outros defeitos em efeitos sonoros e avalia se a trilha de um vídeo acompanha bem o que acontece na tela. Tudo segue as diretrizes de anotação do projeto, com conferências de qualidade.",
+        "requisitos": "Conhecimento de música ou de áudio e um bom ouvido, seja em teoria musical, produção, composição, trilha para vídeo ou desenho de som. A TELUS diz que não é obrigatório ter diploma nem anos de profissão: quem não tem pode entrar por uma avaliação de habilidades. Português do Brasil como língua nativa, morando no Brasil, e inglês a partir do nível B2. Na candidatura você informa a sua língua mais forte e as outras que fala bem.",
+        "idioma": "pt",
+        "remuneracao": "US$ 5 por hora",
+        "contrato": "Por projeto"
+      }
+    },
+    {
+      "id": "a2e5fc56c6",
+      "resumo": {
+        "frase": "Criar tarefas de compras e gestão de fornecedores para testar IA.",
+        "o_que_faz": "Você transforma o trabalho real de compras e gestão de fornecedores em tarefas difíceis para testar o que a IA consegue fazer, como avaliar fornecedores, comparar propostas, analisar riscos de um fornecedor e revisar contratos. Cada tarefa tem várias etapas, instruções claras e arquivos de apoio realistas, como respostas a cotações, tabelas de preços, contratos e acordos de nível de serviço, que você mesmo cria ou reúne. Você também define critérios de correção objetivos, para que duas pessoas qualificadas cheguem à mesma nota, e avisa quando uma tarefa ficou ambígua em vez de entregá-la assim.",
+        "requisitos": "O anúncio prefere 5 anos ou mais fazendo esse trabalho com as próprias mãos, em compras, avaliação de fornecedores ou gestão de contratos com fornecedores, e não só supervisionando. Conta a favor ter criado ou aplicado padrões de avaliação, como checklists e critérios de pontuação. Certificação como CIPS ou CPSM ajuda, mas não é obrigatória. Inglês bom na escrita e na fala, no mínimo B2 e de preferência C1, e não precisa de experiência com IA. A seleção tem perguntas iniciais, uma entrevista feita por IA específica para a vaga e a análise do perfil.",
+        "idioma": "en+",
+        "remuneracao": "Até US$ 90 por hora",
+        "carga": "Cerca de 10 h por tarefa",
+        "contrato": "Autônomo, por projeto"
+      }
+    },
+    {
+      "id": "2def412fae",
+      "resumo": {
+        "frase": "Criar tarefas de RH e departamento pessoal para testar IA.",
+        "o_que_faz": "Você transforma o trabalho real de RH e departamento pessoal em tarefas difíceis para testar o que a IA consegue fazer, como folha de pagamento, planejamento de quadro de funcionários, aplicação de políticas internas e admissão e desligamento. Cada tarefa tem várias etapas, instruções claras e arquivos de apoio realistas, como políticas internas, relatórios de folha, dados de quadro de pessoal e contratos de trabalho, que você mesmo cria ou reúne. Você também define critérios de correção objetivos, para que duas pessoas qualificadas cheguem à mesma nota, e avisa quando uma tarefa ficou ambígua em vez de entregá-la assim.",
+        "requisitos": "O anúncio prefere 5 anos ou mais fazendo esse trabalho com as próprias mãos, em folha de pagamento, planejamento de pessoal, políticas de RH ou rotinas de admissão e desligamento, e não só supervisionando. Conta a favor ter criado ou aplicado padrões de avaliação, como checklists e critérios de pontuação. Certificação de RH como SHRM, CIPD ou PHR ajuda, mas não é obrigatória. Inglês bom na escrita e na fala, no mínimo B2 e de preferência C1, e não precisa de experiência com IA. A seleção tem perguntas iniciais, uma entrevista feita por IA específica para a vaga e a análise do perfil.",
+        "idioma": "en+",
+        "remuneracao": "Até US$ 90 por hora",
+        "carga": "Cerca de 10 h por tarefa",
+        "contrato": "Autônomo, por projeto"
+      }
+    },
+    {
+      "id": "9ab7e6df0e",
+      "resumo": {
+        "frase": "Criar tarefas de operações de empresa para testar IA.",
+        "o_que_faz": "Você transforma o trabalho real de operações de empresa em tarefas difíceis para testar o que a IA consegue fazer, como relatórios operacionais, desenho de processos e gestão de fluxos de trabalho. Cada tarefa tem várias etapas, instruções claras e arquivos de apoio realistas, como planilhas, dados exportados de sistemas, documentação de processos e relatórios, que você mesmo cria ou reúne. Você também define critérios de correção objetivos, para que duas pessoas qualificadas cheguem à mesma nota, e avisa quando uma tarefa ficou ambígua em vez de entregá-la assim.",
+        "requisitos": "O anúncio prefere 5 anos ou mais fazendo esse trabalho com as próprias mãos, em operações, relatórios operacionais, desenho de processos ou gestão de fluxos de trabalho, e não só supervisionando. Conta a favor ter criado ou aplicado padrões de avaliação, como checklists e critérios de pontuação. Também pede Excel avançado e facilidade para cruzar vários documentos ao mesmo tempo. Inglês bom na escrita e na fala, no mínimo B2 e de preferência C1, e não precisa de experiência com IA. A seleção tem perguntas iniciais, uma entrevista feita por IA específica para a vaga e a análise do perfil.",
+        "idioma": "en+",
+        "remuneracao": "Até US$ 90 por hora",
+        "carga": "Cerca de 10 h por tarefa",
+        "contrato": "Autônomo, por projeto"
+      }
+    },
+    {
+      "id": "e73fb6d4ad",
+      "resumo": {
+        "frase": "Criar tarefas jurídicas e de compliance para testar IA.",
+        "o_que_faz": "Você transforma o trabalho real de direito e compliance em tarefas difíceis para testar o que a IA consegue fazer, como revisão de contratos, auditoria jurídica (due diligence), análise regulatória e análise de riscos. Cada tarefa tem várias etapas, instruções claras e arquivos de apoio realistas, como contratos, políticas, textos de normas e arquivos de due diligence, que você mesmo cria ou reúne. Você também define critérios de correção objetivos, para que duas pessoas qualificadas cheguem à mesma nota, e avisa quando uma tarefa ficou ambígua em vez de entregá-la assim.",
+        "requisitos": "O anúncio prefere 5 anos ou mais fazendo esse trabalho com as próprias mãos, em revisão de contratos, due diligence, compliance regulatório ou gestão de riscos, e não só supervisionando. Conta a favor ter criado ou aplicado padrões de avaliação, como checklists e critérios de pontuação. Diploma de direito com OAB, ou qualificação equivalente em compliance, ajuda, mas o que pesa é a prática. Inglês bom na escrita e na fala, no mínimo B2 e de preferência C1, e não precisa de experiência com IA. A seleção tem perguntas iniciais, uma entrevista feita por IA específica para a vaga e a análise do perfil.",
+        "idioma": "en+",
+        "remuneracao": "Até US$ 90 por hora",
+        "carga": "Cerca de 10 h por tarefa",
+        "contrato": "Autônomo, pago por tarefa aprovada"
+      }
+    },
+    {
+      "id": "10e1863537",
+      "resumo": {
+        "frase": "Criar tarefas de finanças e contabilidade para testar IA.",
+        "o_que_faz": "Você transforma o trabalho real de finanças e contabilidade em tarefas difíceis para testar o que a IA consegue fazer, como planejamento financeiro (FP&A), relatórios financeiros, procedimentos de auditoria e conciliações. Cada tarefa tem várias etapas, instruções claras e arquivos de apoio realistas, como planilhas, extratos do razão contábil, demonstrações financeiras e políticas, que você mesmo cria ou reúne. Você também define critérios de correção objetivos, para que duas pessoas qualificadas cheguem à mesma nota, e avisa quando uma tarefa ficou ambígua em vez de entregá-la assim.",
+        "requisitos": "O anúncio prefere 5 anos ou mais fazendo esse trabalho com as próprias mãos, em FP&A, relatórios financeiros, auditoria, conciliações ou contabilidade, e não só supervisionando. Conta a favor ter criado ou aplicado programas de auditoria, checklists de fechamento ou rubricas de correção, e pede Excel avançado. Certificação como CPA, ACCA ou CMA ajuda, mas não é obrigatória. Inglês escrito muito bom (o anúncio fala em B2 avançado ou C1). A seleção tem perguntas iniciais, uma entrevista feita por IA e a análise do perfil.",
+        "idioma": "en+",
+        "remuneracao": "Até US$ 90 por hora",
+        "carga": "Cerca de 10 h por tarefa",
+        "contrato": "Autônomo, pago por tarefa aprovada"
+      }
+    },
+    {
+      "id": "16191bc1cd",
+      "resumo": {
+        "frase": "Avaliar cenários militares e de defesa escritos por IA.",
+        "o_que_faz": "Você avalia cenários escritos por IA sobre operações militares, conflitos armados e planejamento de defesa, e diz se as capacidades militares, as suposições e as análises fazem sentido. Também revisa cenários sobre proteção de civis e aplicação do direito internacional humanitário. Quando acha informação errada, raciocínio falho ou suposição irreal, escreve um comentário claro para melhorar o modelo.",
+        "requisitos": "Experiência profissional como analista de defesa, analista de operações militares, analista de conflitos ou pesquisador de segurança nacional, em funções civis. Conta muito ter trabalhado em órgão de defesa, governo, instituto de pesquisa, think tank ou organização internacional. Conhecer direito internacional humanitário e regras de engajamento ajuda. Inglês escrito muito bom.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 80 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "39d544f33d",
+      "resumo": {
+        "frase": "Avaliar cenários de combate terrestre escritos por IA.",
+        "o_que_faz": "Você avalia cenários militares escritos por IA sobre combate terrestre, planejamento tático e operações militares e diz se eles são realistas e corretos. Confere as decisões táticas, o uso de armas e os procedimentos da missão, e se tudo respeita as regras de engajamento e o direito internacional dos conflitos armados. Quando acha suposições irreais ou erros, escreve um comentário claro para melhorar o raciocínio do modelo.",
+        "requisitos": "Ser ou ter sido militar do Exército em infantaria, artilharia, cavalaria blindada, engenharia de combate, aviação do Exército ou outra arma combatente, com experiência prática em operações táticas, planejamento de missões ou emprego de armamento. Precisa explicar assuntos militares complexos por escrito com clareza, em inglês. Contam a favor missões em combate, curso de Ranger, especialização em armamento ou experiência como instrutor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 80 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "0d215f4a3e",
+      "resumo": {
+        "frase": "Avaliar cenários de operações militares escritos por IA.",
+        "o_que_faz": "Você avalia cenários militares escritos por IA sobre planejamento militar, combate, escolha de alvos e uso de armamento e diz se eles são realistas e corretos. Confere as decisões táticas, o uso de armas e os procedimentos da missão, e se tudo respeita as regras de engajamento e o direito internacional dos conflitos armados. Quando acha suposições irreais ou erros, escreve um comentário claro para melhorar o raciocínio do modelo.",
+        "requisitos": "Ser ou ter sido militar com experiência operacional em áreas como infantaria, forças especiais, aviação de combate, artilharia, defesa antiaérea, operações navais ou inteligência militar, com bom conhecimento de planejamento tático e de tomada de decisão em operações. Precisa explicar assuntos militares complexos por escrito com clareza, em inglês. Contam a favor missões em combate, comando de operações e experiência como instrutor. Conhecer as regras de engajamento e o direito dos conflitos armados ajuda.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 80 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "854752a646",
+      "resumo": {
+        "frase": "Avaliar cenários com sistemas de armas escritos por IA.",
+        "o_que_faz": "Você avalia cenários militares escritos por IA sobre defesa antiaérea, mísseis, armamento naval e aviação tática e diz se eles são realistas e corretos. Confere as decisões táticas, o uso de armas e os procedimentos da missão, e se tudo respeita as regras de engajamento e o direito internacional dos conflitos armados. Quando acha suposições irreais ou erros, escreve um comentário claro para melhorar o raciocínio do modelo.",
+        "requisitos": "Ser ou ter sido operador de sistemas de armas militares, com experiência prática em defesa antiaérea, mísseis, sistemas de combate navais ou aviação tática, de preferência com sistemas como Patriot, THAAD, Aegis ou NASAMS. Precisa explicar assuntos militares complexos por escrito com clareza, em inglês. Contam a favor missões reais, experiência com tiro real e experiência como instrutor de armamento.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 80 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "a9184765e5",
+      "resumo": {
+        "frase": "Avaliar cenários de operações especiais escritos por IA.",
+        "o_que_faz": "Você avalia cenários militares escritos por IA sobre operações especiais, planejamento tático e decisões em combate e diz se eles são realistas e corretos. Confere as decisões táticas, o uso de armas e os procedimentos da missão, e se tudo respeita as regras de engajamento e o direito internacional dos conflitos armados. Quando acha suposições irreais ou erros, escreve um comentário claro para melhorar o raciocínio do modelo.",
+        "requisitos": "Ser ou ter sido militar de forças especiais (como Green Beret, Ranger, SEAL ou equivalente em forças aliadas), com experiência prática em operações táticas, planejamento de missões e uso de armamento. Precisa explicar assuntos militares complexos por escrito com clareza, em inglês. Contam a favor missões em combate, especialização em armamento e experiência como instrutor tático.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 80 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "9ae8bbb6e4",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em logística, transporte e armazenagem.",
+        "o_que_faz": "Você analisa situações de logística, transporte e armazenagem e escreve comentários detalhados para o desenvolvimento de modelos de IA. Revisa e confere documentos reais de cadeia de suprimentos, cargas, despacho e frete, explica por escrito processos como gestão de estoque, planejamento de distribuição e roteirização de cargas, e avalia se as respostas do sistema estão certas. Também cria perguntas, estudos de caso e situações para testar o raciocínio da IA e aponta o que falta no conhecimento dela.",
+        "requisitos": "O anúncio prefere no mínimo 5 anos como profissional de logística, gestor de cadeia de suprimentos, gestor de transporte ou distribuição, agente de cargas ou despachante. Bom conhecimento das operações e normas de armazenagem e transporte, e prática com os sistemas de logística e rastreamento usados no setor. Precisa explicar processos complexos por escrito e falando, em inglês. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 30 a 70 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "d6f73917af",
+      "resumo": {
+        "frase": "Avaliar cenários de aviação de caça escritos por IA.",
+        "o_que_faz": "Você avalia cenários militares escritos por IA sobre aviação de caça, combate aéreo, ataque ao solo e uso de armamento e diz se eles são realistas e corretos. Confere as decisões táticas, o uso de armas e os procedimentos da missão, e se tudo respeita as regras de engajamento e o direito internacional dos conflitos armados. Quando acha suposições irreais ou erros, escreve um comentário claro para melhorar o raciocínio do modelo.",
+        "requisitos": "Ser ou ter sido piloto de caça militar ou oficial de sistemas de armas, de preferência em aviões como F-16, F/A-18, F-15, F-35 ou A-10, com experiência em missões reais, treinamento tático ou combate. Precisa explicar assuntos militares complexos por escrito com clareza, em inglês. Contam a favor ter feito escola de armas, ter sido instrutor de voo ou líder de missão de combate.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 80 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "7ab21c8527",
+      "resumo": {
+        "frase": "Resolver e validar problemas de back-end em Rust para treinar IA.",
+        "o_que_faz": "Você resolve e confere problemas de back-end em Rust que envolvem o comportamento de serviços, APIs, banco de dados, concorrência, desempenho e confiabilidade. Transforma requisitos, metas de desempenho e regras de tratamento de falhas em implementações e testes que outra pessoa consiga repetir. Também prepara os ambientes de cada tarefa: workspaces de crates, arquivos de configuração, dados de teste, bancos de dados e contêineres.",
+        "requisitos": "Ótimo conhecimento de Rust, desenho de serviços de back-end, APIs, sistemas de dados, concorrência e arquitetura de software em produção, com uso de Rust em trabalho profissional, pesquisa ou projeto de código aberto de peso. Ter sido responsável pela arquitetura de sistemas em Rust conta muito. A seleção tem perguntas iniciais, uma entrevista feita por IA de uns 30 minutos e a análise de um gestor. O pagamento é por tarefa aprovada e há um mínimo de tarefas por semana.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 70 por hora",
+        "carga": "Cerca de 15 h por semana",
+        "contrato": "Autônomo, pago por tarefa aprovada"
+      }
+    },
+    {
+      "id": "8542fdb3e1",
+      "resumo": {
+        "frase": "Criar e resolver tarefas de machine learning para treinar IA.",
+        "o_que_faz": "Você cria, resolve, revisa e confere tarefas difíceis de engenharia de machine learning para treinar IA. Uma tarefa típica pede para implementar ou modificar um modelo, montar um fluxo de treino ou de inferência que outra pessoa consiga repetir, otimizar uso de memória ou velocidade, encontrar a causa de falhas numéricas ou de sistema e provar que o resultado cumpre os requisitos. É um trabalho com muito código em Python e linha de comando, usando agentes de programação no dia a dia.",
+        "requisitos": "Mestrado ou doutorado em ciência da computação, machine learning, IA, matemática aplicada, estatística, engenharia ou área quantitativa próxima, com experiência sólida em machine learning, no trabalho ou na pesquisa. Prática com Python e com agentes de programação. Ter trabalhado numa empresa de tecnologia conhecida, num laboratório de IA ou num centro de pesquisa conta muito, mas um ótimo histórico em código aberto ou na universidade também pode valer. A seleção tem perguntas iniciais, uma entrevista feita por IA de uns 30 minutos e a análise de um gestor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 120 por hora",
+        "carga": "Cerca de 15 h por semana",
+        "contrato": "Autônomo, pago por tarefa aprovada"
+      }
+    },
+    {
+      "id": "7b8a133c34",
+      "resumo": {
+        "frase": "Criar e resolver tarefas de pesquisa em machine learning para treinar IA.",
+        "o_que_faz": "Você cria, resolve, revisa e confere tarefas difíceis de engenharia de machine learning para treinar IA. Uma tarefa típica pede para implementar ou modificar um modelo, montar um fluxo de treino ou de inferência que outra pessoa consiga repetir, otimizar uso de memória ou velocidade, encontrar a causa de falhas numéricas ou de sistema e provar que o resultado cumpre os requisitos. É um trabalho com muito código em Python e linha de comando, usando agentes de programação no dia a dia.",
+        "requisitos": "Mestrado ou doutorado em ciência da computação, machine learning, IA, matemática aplicada, estatística, engenharia ou área quantitativa próxima, com experiência sólida em machine learning, no trabalho ou na pesquisa. Prática com Python e com agentes de programação. Ter trabalhado numa empresa de tecnologia conhecida, num laboratório de IA ou num centro de pesquisa conta muito, mas um ótimo histórico em código aberto ou na universidade também pode valer. A seleção tem perguntas iniciais, uma entrevista feita por IA de uns 30 minutos e a análise de um gestor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 120 por hora",
+        "carga": "Cerca de 15 h por semana",
+        "contrato": "Autônomo, pago por tarefa aprovada"
+      }
+    },
+    {
+      "id": "1b9945ac76",
+      "resumo": {
+        "frase": "Criar e avaliar casos de proteção de civis para treinar IA.",
+        "o_que_faz": "Você cria casos e situações sobre proteção de civis, proporcionalidade e limites humanitários em conflitos, para testar modelos de IA. Avalia e dá nota às respostas do modelo, olhando se estão certas, se o raciocínio é profundo e se levam em conta o risco para civis. Também aponta quando o modelo é cauteloso demais ou de menos, registra os casos difíceis ou ambíguos e ajuda a escrever orientações sobre o direito internacional humanitário.",
+        "requisitos": "O anúncio prefere quem trabalhou com operações humanitárias, proteção ou políticas em organizações como Cruz Vermelha, agências da ONU ou grandes ONGs, com bom conhecimento do direito internacional humanitário e da proteção de civis. Contam muito o trabalho de campo em zonas de conflito e a experiência dando treinamento sobre o tema. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 30 a 70 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "5c9bc8f1da",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre direito militar e direito internacional.",
+        "o_que_faz": "Você cria situações que ficam no limite entre o que é legal e o que não é em assuntos de defesa, como revisão de políticas e apoio militar, e confere se as categorias usadas pelo projeto se sustentam diante do direito dos conflitos armados e do direito internacional. Avalia e dá nota às respostas do modelo, olhando o raciocínio jurídico, a clareza sobre os limites e a forma de lidar com a incerteza. Também aponta quando o modelo se recusa sem motivo a responder perguntas legítimas e discute os casos polêmicos com outros especialistas.",
+        "requisitos": "O anúncio prefere quem foi advogado militar (como os JAG, das forças armadas americanas) ou tem bastante experiência em direito internacional humanitário e direito dos conflitos armados. Conhecer as regras de engajamento e ter assessorado em questões jurídicas de operações militares ou de governo conta muito. Precisa explicar conceitos jurídicos complexos por escrito e falando, em inglês. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 120 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "14716fc2db",
+      "resumo": {
+        "frase": "Criar e avaliar casos de análise de inteligência para testar IA.",
+        "o_que_faz": "Você cria casos de análise de inteligência e os encaixa nas categorias do projeto, montando testes que mostram como o modelo lida com fontes, rigor na análise e incerteza. Avalia e dá nota às respostas, olhando o raciocínio, o uso das fontes, a clareza sobre os limites e a utilidade prática. Também aponta quando o modelo se recusa sem motivo a fazer uma análise legítima e registra os casos extremos e as divergências.",
+        "requisitos": "O anúncio prefere experiência como analista de inteligência com várias fontes, ou especialização forte numa área da análise, de preferência em órgãos civis. Conta muito saber avaliar fontes e níveis de confiança e conhecer as técnicas de análise usadas na área. Ter ensinado ou revisado o trabalho de outros analistas ajuda. Inglês excelente na escrita e na fala, e não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 30 a 80 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "9f6ccb50da",
+      "resumo": {
+        "frase": "Criar e avaliar casos de ciência de dados com IA para testar modelos.",
+        "o_que_faz": "Você cria casos que mostram como modelos de linguagem são usados em fluxos de análise de dados de verdade, como triagem automática, enriquecimento de dados e análise de muitas informações de uma vez, incluindo as falhas mais comuns. Encaixa esses casos nas categorias do projeto e avalia as respostas do modelo, olhando o uso das fontes, o raciocínio, a clareza sobre os limites e a utilidade prática. Também aponta quando o modelo se recusa sem motivo a fazer uma análise legítima e sugere melhorias.",
+        "requisitos": "O anúncio prefere quem já integrou modelos de linguagem em fluxos de dados ou de análise complexos e entende como a automação falha e como medir isso. Contam a favor experiência ensinando ou liderando equipes de ciência de dados, criação de métodos de avaliação e familiaridade com análise na área de defesa, inteligência ou governo. Inglês escrito muito bom. Não precisa de experiência com treino de IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "610b42db5c",
+      "resumo": {
+        "frase": "Criar e avaliar casos de inteligência de ameaças cibernéticas para IA.",
+        "o_que_faz": "Você cria casos de inteligência de ameaças cibernéticas e os encaixa nas categorias do projeto, principalmente nas de vigilância e privacidade. Escreve casos no limite, com pedidos de vigilância, atribuição de ataques e invasão que o modelo não deve atender, para separar o que é permitido do que não é. Também avalia as respostas sobre ameaças, olhando a confiabilidade das fontes e o raciocínio, e aponta quando o modelo se recusa sem motivo a fazer uma análise legítima.",
+        "requisitos": "O anúncio prefere bastante experiência em inteligência de ameaças cibernéticas, de preferência com operações de governos estrangeiros e ameaças avançadas. Conta muito saber separar atividade legítima de defesa e análise de pedidos de ataque ou vigilância, e ter trabalhado com atribuição de ataques ou acompanhamento de grupos de ameaça (APT). Ter ensinado ou liderado profissionais da área e ter participado de avaliação de IA ou red teaming ajuda. Inglês escrito muito bom.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 110 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "a6fe4790aa",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre escolha de alvos e apoio de fogo militar.",
+        "o_que_faz": "Você encaixa situações militares reais nas categorias do projeto, separando explicação de conceitos e apoio legítimo a políticas de decisões operacionais, armas autônomas e planejamento ilegal, que o modelo não deve apoiar. Propõe casos difíceis que um avaliador com menos experiência classificaria errado e avalia as respostas do modelo, olhando o uso das fontes, a forma de lidar com a incerteza e o raciocínio. Também aponta quando o modelo se recusa sem motivo a responder perguntas legítimas e registra os casos polêmicos.",
+        "requisitos": "O anúncio prefere bastante experiência prática com apoio de fogo, escolha de alvos ou decisões sobre uso de armamento, por exemplo como piloto de combate, controlador aéreo avançado (JTAC), oficial de artilharia ou de defesa antiaérea. Contam a favor cursos táticos avançados, como TOPGUN ou equivalentes de países aliados, e experiência como instrutor ou líder de missão. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 110 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "567f0f3b9c",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em vistoria de cargas e de calado de navios.",
+        "o_que_faz": "Você analisa fotos e documentos de contêineres e cargas na entrega e no recebimento e avalia o estado de cada um. Lê as marcas de calado dos navios e as medições dos tanques para calcular a quantidade de carga, seguindo as normas de medição marítima, e escreve relatórios de vistoria claros, explicando o motivo de cada conclusão. O trabalho é sem horário fixo e serve para melhorar a rotulagem de dados e as decisões da IA no setor marítimo.",
+        "requisitos": "O anúncio prefere pelo menos 7 anos fazendo vistoria de cargas e de calado, de preferência como autônomo ou consultor, com formação por escola marítima reconhecida ou certificado de competência (CoC) válido. Conta muito ser membro de associações como NAMS, SAMS ou IIMS. Precisa saber tirar conclusões a partir de fotos e documentos, sem estar no local, e escrever relatórios em inglês. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 20 a 60 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "18c85e04ca",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em reclamações de cargas aéreas e encomendas.",
+        "o_que_faz": "Você analisa reclamações de cargas aéreas e encomendas, olhando fotos da carga na origem e no destino, conhecimentos de transporte aéreo (AWB) e fotos de entrega contestadas. Decide com base nas provas quem estava com a carga no momento do problema e quem é responsável, e escreve a justificativa de cada decisão. Também aponta falhas, faltas e problemas de procedimento nos documentos de frete e nas reclamações.",
+        "requisitos": "O anúncio prefere 5 anos ou mais analisando reclamações ou resolvendo disputas em carga aérea, atendimento em solo (ground handling) ou transportadora de encomendas. Bom conhecimento de regras de responsabilidade e de liberação de cargas e experiência com provas em foto. Escrita clara e atenção aos detalhes, em inglês. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 20 a 60 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "99163cf8f1",
+      "resumo": {
+        "frase": "Analisar sinistros de seguro para treinar IA.",
+        "o_que_faz": "Você analisa sinistros de seguro complicados, sem sair de casa: acidentes de carro com culpa contestada, usando vídeos e depoimentos; danos em imóveis e catástrofes, usando imagens aéreas de telhados; e bens danificados, avaliados por fotos. Para cada caso, você decide a responsabilidade e o valor da perda e escreve o relatório com o raciocínio, no padrão de um regulador de sinistros. Esse material ajuda a deixar a IA mais precisa nesse tipo de análise.",
+        "requisitos": "O anúncio prefere no mínimo 5 anos em regulação de sinistros, com foco em responsabilidade civil de automóveis, imóveis, catástrofes e bens. Conta muito ter licença de regulador de sinistros de algum estado americano ou certificações como AIC, CPCU, HAAG ou ACTAR, o que pesa para quem trabalhou só no Brasil. Experiência com divisão de culpa e com análise de fotos, vídeos e imagens aéreas. Escrita clara e profissional em inglês.",
+        "idioma": "en+",
+        "remuneracao": "US$ 20 a 60 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "9b100b7da9",
+      "resumo": {
+        "frase": "Revisar documentos jurídicos americanos para treinar IA.",
+        "o_que_faz": "Você revisa e anota documentos jurídicos, contratos e decisões judiciais, conferindo se estão claros, certos e de acordo com o direito dos Estados Unidos. Confere as citações e garante que sigam o padrão Bluebook, usado nos Estados Unidos. Também edita e avalia textos jurídicos para montar dados de treino, comenta argumentos e uso de precedentes e resume conceitos complicados em linguagem simples.",
+        "requisitos": "O anúncio prefere formados em direito por faculdade dos Estados Unidos (o diploma J.D.), de preferência das 14 mais bem colocadas, ou estudantes que tenham sido editores de revista jurídica. Precisa dominar o padrão Bluebook de citação e ter experiência com revisão de documentos ou análise jurídica no sistema americano. Na prática, a vaga é difícil para quem estudou só no Brasil. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 80 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "756f9a2c6b",
+      "resumo": {
+        "frase": "Criar e resolver problemas de matemática com Python para treinar IA.",
+        "o_que_faz": "Você cria, resolve, revisa e confere tarefas de matemática que podem ser feitas por programação, na linha de comando. Uma tarefa típica pede para transformar um problema matemático num procedimento de cálculo, implementar as equações ou algoritmos, chegar a um resultado que outra pessoa consiga repetir, testar casos especiais e dizer se a resposta está certa. Você usa Python para automatizar cálculos, experimentos numéricos, gráficos e conferências.",
+        "requisitos": "Mestrado ou doutorado em matemática, matemática aplicada, estatística, pesquisa operacional, computação científica ou área próxima, ou graduação em matemática com 1 a 2 anos de trabalho ou pesquisa em matemática em empresas ou instituições de ponta. Domínio de pelo menos uma área, como análise numérica, otimização, probabilidade, álgebra ou modelagem. Prática com ferramentas como NumPy, SciPy, SymPy ou SageMath. A seleção tem perguntas iniciais, uma entrevista feita por IA de uns 30 minutos e a análise de um gestor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 80 a 120 por hora",
+        "carga": "Cerca de 15 h por semana",
+        "contrato": "Autônomo, pago por tarefa aprovada"
+      }
+    },
+    {
+      "id": "cac8a29c84",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito de fundos de investimento.",
+        "o_que_faz": "Você analisa e anota documentos jurídicos sobre fundos de investimento, gestão de recursos e regulação do mercado de capitais. Escreve perguntas, situações e estudos de caso realistas sobre criação de fundos, compliance e relação com investidores, e revisa textos gerados por IA para ver se estão certos e de acordo com as normas. Também pesquisa e resume novidades sobre estruturas de fundos e regras da SEC, a comissão de valores mobiliários dos Estados Unidos.",
+        "requisitos": "O anúncio prefere advogados com diploma J.D. (o de direito nos Estados Unidos) e inscrição ativa na ordem, com experiência recente e extensa em fundos de investimento e gestão de recursos. Precisa conhecer bem as leis de mercado de capitais dos Estados Unidos e de outros países e ter redigido e revisado prospectos, contratos de subscrição e documentos para órgãos reguladores. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "bdb93eb1fb",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito societário e venture capital.",
+        "o_que_faz": "Você analisa operações de venture capital e societárias e escreve comentários especializados sobre elas. Redige, avalia e comenta documentos de investimento, como term sheets, contratos de compra de participação e notas conversíveis, e explica questões de estrutura e governança de startups, investidores e empresas. Também resume conceitos jurídicos em linguagem simples e aponta problemas jurídicos ou regulatórios em casos de exemplo.",
+        "requisitos": "O anúncio prefere advogados com diploma J.D. (o de direito nos Estados Unidos) e inscrição ativa em pelo menos uma jurisdição, com bastante experiência, de preferência 7 anos ou mais, em rodadas de investimento, operações societárias e assessoria a startups. Precisa saber redigir e negociar documentos de investimento e de governança. Conhecer regras de investimento entre países ajuda. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "cf74a41f32",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito regulatório da FDA.",
+        "o_que_faz": "Você analisa e interpreta leis, regulamentos e orientações da FDA, a agência americana que regula alimentos, remédios e dispositivos médicos. Revisa e critica pedidos de registro, documentos de compliance e procedimentos, avalia riscos regulatórios em situações reais e escreve perguntas e respostas sobre boas práticas. Também explica exigências jurídicas complexas de um jeito que pessoas da área técnica e de fora dela entendam.",
+        "requisitos": "O anúncio prefere advogados com diploma J.D. (o de direito nos Estados Unidos) e licença ativa para advogar no país, com 5 anos ou mais em direito da FDA, estratégia regulatória ou compliance em ciências da vida, indústria farmacêutica ou dispositivos médicos. Conta a favor ter atuado em investigações e advertências da FDA. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "8dc1623051",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito de finanças estruturadas.",
+        "o_que_faz": "Você revisa, analisa e anota contratos e documentos de operações de finanças estruturadas, como títulos lastreados em ativos ou em hipotecas e CDOs. Redige ou avalia cláusulas e documentos de exemplo, comenta situações hipotéticas e textos gerados por IA e explica os termos, as exigências regulatórias e as estruturas jurídicas comuns do setor. Também traz as práticas de mercado e as mudanças recentes nas regras.",
+        "requisitos": "O anúncio prefere advogados com diploma J.D. ou equivalente de outro país e inscrição ativa em pelo menos uma jurisdição, com experiência extensa, em geral 5 anos ou mais, assessorando operações de finanças estruturadas, incluindo redação e negociação dos documentos. Precisa conhecer bem o direito do mercado de capitais e já ter revisado prospectos e term sheets. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "6e360aa248",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito militar americano.",
+        "o_que_faz": "Você analisa situações e temas de direito militar e escreve, edita e critica textos sobre normas e procedimentos da área. Avalia se as informações jurídicas geradas pela IA estão certas e claras e comenta como melhorá-las. Também ajuda a criar prompts e dados sobre processos, códigos e jurisprudência militar e aponta lacunas e ambiguidades no conteúdo.",
+        "requisitos": "O anúncio prefere advogados com licença ativa e experiência em direito militar, como no corpo jurídico das forças armadas americanas (JAG), com atuação em cortes marciais, processos administrativos ou tribunais militares. Precisa dominar o código de justiça militar americano (UCMJ), os regulamentos militares e as leis federais ligadas a eles, o que na prática pesa muito para quem atuou só no Brasil. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "4c660a4315",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito de mídia e comunicações americano.",
+        "o_que_faz": "Você responde com raciocínio jurídico de especialista a perguntas sobre direito de mídia, editoras e comunicações, como liberação de direitos, licenciamento e regras de radiodifusão. Trabalha com situações realistas de licenciamento de conteúdo, regulação de rádio e TV e revisão de textos antes da publicação, explicando a análise por trás de cada conclusão. Também revisa o trabalho de outros colaboradores e aponta quando a resposta depende de fatos ou de qual jurisdição se aplica.",
+        "requisitos": "O anúncio exige diploma J.D. e inscrição ativa na ordem dos advogados de algum estado dos Estados Unidos, com 5 anos ou mais de prática real em direito de mídia ou de comunicações. Pede também base em direito societário, de preferência construída num grande escritório americano. Pode morar em qualquer país, desde que tenha a inscrição nos Estados Unidos. A seleção tem perguntas iniciais, uma entrevista feita por IA e a análise do perfil. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "7f09aaba8b",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito de segurança de produtos.",
+        "o_que_faz": "Você revisa e analisa leis, regulamentos e normas de segurança de produtos de vários países. Redige, edita e avalia documentos de compliance regulatório, comenta estudos de caso e estratégias de conformidade e sugere melhorias com base nas boas práticas jurídicas. Também traduz textos regulatórios complicados em orientações práticas e aponta riscos e falhas em materiais de compliance.",
+        "requisitos": "O anúncio prefere diploma de direito (J.D. ou equivalente) com foco em segurança de produtos, defesa do consumidor ou compliance regulatório. Precisa ter bastante experiência assessorando empresas sobre normas de segurança de produtos americanas, estaduais e internacionais, como as da CPSC, as diretivas da União Europeia e as da FDA. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "0df5f298ab",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito de jogos e apostas.",
+        "o_que_faz": "Você analisa, interpreta e resume leis, regulamentos e exigências de compliance sobre jogos e apostas de vários países. Escreve explicações sobre princípios, procedimentos e decisões judiciais do setor, comenta perguntas jurídicas e casos simulados de jogos online e presenciais e avalia documentos e políticas. Também revisa textos gerados por IA para ver se estão certos e aponta tendências e riscos jurídicos.",
+        "requisitos": "O anúncio prefere diploma de direito (J.D. ou equivalente) com licença ativa para advogar e bastante experiência em direito de jogos e apostas, incluindo licenciamento e compliance. Conhecer as regras de vários países e ter feito consultoria no setor de jogos ou de tecnologia ajuda. Inglês excelente na escrita e na fala. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "32cbc3830d",
+      "resumo": {
+        "frase": "Ajudar a treinar IA em direito regulatório de energia americano.",
+        "o_que_faz": "Você responde com raciocínio jurídico de especialista a perguntas sobre regulação de energia e serviços públicos, como definição de tarifas, estrutura de tarifas e obrigações de compliance. Trabalha com situações realistas tiradas da prática diante da FERC e das comissões estaduais americanas, explicando a análise por trás de cada conclusão. Também revisa o trabalho de outros colaboradores e aponta quando a resposta depende de fatos ou de qual jurisdição se aplica.",
+        "requisitos": "O anúncio exige diploma J.D. de faculdade credenciada pela ABA e inscrição ativa na ordem dos advogados dos Estados Unidos, com 4 anos ou mais de prática real em regulação de energia e serviços públicos. Pede também base em direito societário, de preferência construída num grande escritório americano. Pode morar em qualquer país, desde que tenha a inscrição nos Estados Unidos. A seleção tem perguntas iniciais, uma entrevista feita por IA e a análise do perfil. Não precisa de experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 140 a 400 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "aa86f85b86",
+      "resumo": {
+        "frase": "Criar e resolver problemas de ciências da vida com Python para treinar IA.",
+        "o_que_faz": "Você cria, resolve e revisa problemas científicos difíceis na sua área, como medicina, biologia computacional, neurociência, genética, bioinformática ou bioestatística. Usa Python para analisar dados científicos, montar modelos, simulações ou análises que outra pessoa consiga repetir e conferir resultados de cálculos. Também revisa soluções e código de outras pessoas para ver se estão certos, claros e completos.",
+        "requisitos": "O anúncio prefere doutorado, formação em medicina ou mestrado com bastante pesquisa numa área de ciências da vida, com histórico comprovado por publicações, tese, projetos ou pesquisa na indústria. Prática com Python para computação científica e ferramentas como NumPy, pandas, SciPy ou scikit-learn. A seleção tem perguntas iniciais, uma entrevista feita por IA de uns 30 minutos e a análise de um gestor. O pagamento é por tarefa aprovada e há um mínimo de entregas.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 120 por hora",
+        "carga": "Cerca de 15 h por semana",
+        "contrato": "Autônomo, pago por tarefa aprovada"
+      }
+    },
+    {
+      "id": "59840ecc0c",
+      "resumo": {
+        "frase": "Encontrar e atrair profissionais para os projetos da Alignerr.",
+        "o_que_faz": "Você procura profissionais qualificados no LinkedIn, em redes profissionais e no banco de talentos da empresa, montando buscas para cada projeto. Entra em contato com os candidatos de forma personalizada, apresenta as oportunidades, avalia se a experiência de cada um combina com o que o projeto pede e acompanha as respostas. Também mantém as planilhas de candidatos em dia e sugere melhorias no processo de recrutamento.",
+        "requisitos": "Experiência como recrutador, analista de atração de talentos ou sourcer, com prática no LinkedIn Recruiter e em buscas booleanas (buscas com operadores como AND e OR). Precisa saber organizar várias buscas ao mesmo tempo, manter os registros em ordem e se comunicar bem com candidatos e equipes, em inglês. Ter recrutado para tecnologia ou IA conta a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 15 a 25 por hora",
+        "contrato": "Freelancer, por hora"
+      }
+    },
+    {
+      "id": "4f8060a71a",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre radiologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de radiologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em radiologia diagnóstica por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 350 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "f32d061048",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre cardiologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de cardiologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em cardiologia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 350 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "9966c67cec",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre ortopedia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de ortopedia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em ortopedia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 350 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "8e6824e914",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre dermatologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de dermatologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em dermatologia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 275 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "cfd3733373",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre cirurgia geral.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de cirurgia geral. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em cirurgia geral por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 200 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "3d30ccbc14",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre medicina intensiva.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de medicina intensiva. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em medicina intensiva por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 200 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "52cf534680",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre ginecologia e obstetrícia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de ginecologia e obstetrícia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em ginecologia e obstetrícia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 200 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "ac240e18f8",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre neurologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de neurologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em neurologia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 200 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "8e98946d13",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre reumatologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de reumatologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em reumatologia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 200 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "07cb52c72f",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre nefrologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de nefrologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em nefrologia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 200 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "adbbf7561a",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre infectologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de infectologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em infectologia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 200 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "cb900a3b1d",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre endocrinologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de endocrinologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em endocrinologia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 200 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "a5a7dd4c3e",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre otorrinolaringologia.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de otorrinolaringologia. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em otorrinolaringologia por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 150 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "4cae84446a",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre geriatria.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de geriatria. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em geriatria por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 150 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "cd4cf8977d",
+      "resumo": {
+        "frase": "Avaliar respostas de IA sobre psiquiatria.",
+        "o_que_faz": "Você lê prontuários de pacientes sem dados de identificação e avalia respostas de IA a perguntas clínicas de psiquiatria. Confere se cada resposta está certa, é segura e segue o padrão atual de cuidado, compara duas respostas para dizer qual é melhor e escreve a justificativa sobre rigor clínico, completude e clareza. Também aponta erros que poderiam colocar o paciente em risco.",
+        "requisitos": "Médico (MD ou DO) com título de especialista em psiquiatria por conselho americano (ABMS ou AOA) e licença médica ativa nos Estados Unidos. Precisa estar atendendo pacientes nos Estados Unidos, com pelo menos 1 ano de prática depois da residência, e a empresa confere tudo isso. Por isso, na prática, a vaga não serve para quem é médico só no Brasil. A seleção tem envio do currículo e uma entrevista em conversa de 25 minutos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 150 por hora",
+        "contrato": "Por hora, meio período flexível"
+      }
+    },
+    {
+      "id": "edb09624c2",
+      "resumo": {
+        "frase": "Criar e avaliar tarefas de infraestrutura de modelos de linguagem.",
+        "o_que_faz": "Você cria tarefas difíceis sobre kernels para aceleradores, análise de desempenho (profiling), depuração de cargas distribuídas e serviço de inferência de modelos de linguagem, incluindo problemas que mostram onde os modelos de ponta erram, e escreve as soluções certas. Avalia tarefas e soluções de outras pessoas com comentários técnicos por escrito e ajuda a montar diretrizes e rubricas sobre otimização de kernels, leitura de profilers e o equilíbrio entre velocidade, latência e memória. O trabalho é para a equipe de IA generativa de um grande laboratório de IA.",
+        "requisitos": "2 anos ou mais de experiência prática em sistemas de machine learning, infraestrutura de ML, serviço de modelos ou desempenho em aceleradores, com prática em pelo menos uma destas: kernels (Pallas, Triton, CUDA), profiling (JAX/XLA, Nsight), depuração de cargas distribuídas ou serviço de modelos de linguagem (vLLM, SGLang, TensorRT-LLM). Experiência de produção com JAX ou PyTorch e com aceleradores como TPU ou H100. É tempo integral, 40 horas por semana nos dias úteis, sem outro trabalho ao mesmo tempo. A contratação é feita pela Cincinnatus LLC ou por uma empresa parceira no seu país.",
+        "idioma": "en+",
+        "remuneracao": "US$ 90 a 120 por hora",
+        "carga": "40 h por semana",
+        "contrato": "Tempo integral, exclusivo"
+      }
+    },
+    {
+      "id": "b9007f0e20",
+      "resumo": {
+        "frase": "Liderar um grupo que cria tarefas de física para testar IA.",
+        "o_que_faz": "Você lidera um grupo de 5 a 10 pessoas que criam tarefas científicas de física feitas no terminal, para o Terminal Bench Science, um conjunto de testes para IA. Revisa cada tarefa do começo ao fim: enunciado, dados, ambiente, solução de referência e testes automáticos. Confere se a física está certa: unidades, leis de conservação, simetrias, convergência e tratamento das incertezas, garante que os resultados possam ser repetidos e que a tarefa não possa ser burlada com resposta pronta. Também treina as pessoas do grupo, distribui o trabalho e acompanha a qualidade e o ritmo de entregas.",
+        "requisitos": "Doutorado, pós-doutorado ou experiência avançada equivalente em física, com prática em física computacional, simulação ou análise de dados físicos. Precisa programar bem em Python, C/C++, Julia ou Fortran, dominar Linux e o terminal e ter experiência revisando código ou pesquisas e liderando pequenas equipes técnicas. Comentários por escrito claros e precisos, em inglês. São no mínimo 40 horas por semana, pelo menos 4 horas por dia, com 4 horas no horário do Pacífico (Califórnia).",
+        "idioma": "en+",
+        "carga": "40 h por semana",
+        "contrato": "Autônomo, 4 semanas"
+      }
+    },
+    {
+      "id": "a30e05ec82",
+      "resumo": {
+        "frase": "Liderar um grupo que cria tarefas de química para testar IA.",
+        "o_que_faz": "Você lidera um grupo de 5 a 10 pessoas que criam tarefas científicas de química feitas no terminal, para o Terminal Bench Science, um conjunto de testes para IA. Revisa cada tarefa do começo ao fim: enunciado, dados, ambiente, solução de referência e testes automáticos. Confere se a química está certa (unidades, carga e spin, estereoquímica, convergência dos cálculos) e se a tarefa não traz riscos de segurança, como síntese de substâncias perigosas, garante que os resultados possam ser repetidos e que a tarefa não possa ser burlada com resposta pronta. Também treina as pessoas do grupo, distribui o trabalho e acompanha a qualidade e o ritmo de entregas.",
+        "requisitos": "Doutorado, pós-doutorado ou experiência avançada equivalente em química ou área próxima, com prática em química computacional, simulação molecular ou quimioinformática. Precisa programar bem em Python, C/C++, Julia ou Fortran, dominar Linux e o terminal e ter experiência revisando código ou pesquisas e liderando pequenas equipes técnicas. Comentários por escrito claros e precisos, em inglês. São no mínimo 40 horas por semana, pelo menos 4 horas por dia, com 4 horas no horário do Pacífico (Califórnia).",
+        "idioma": "en+",
+        "carga": "40 h por semana",
+        "contrato": "Autônomo, 4 semanas"
+      }
+    },
+    {
+      "id": "9dd216c151",
+      "resumo": {
+        "frase": "Liderar um grupo que cria tarefas de matemática para testar IA.",
+        "o_que_faz": "Você lidera um grupo de 5 a 10 pessoas que criam tarefas científicas de matemática feitas no terminal, para o Terminal Bench Science, um conjunto de testes para IA. Revisa cada tarefa do começo ao fim: enunciado, dados, ambiente, solução de referência e testes automáticos. Confere se a matemática está certa: problema bem formulado, convergência, estabilidade, erro de discretização, tolerâncias e casos extremos, garante que os resultados possam ser repetidos e que a tarefa não possa ser burlada com resposta pronta. Também treina as pessoas do grupo, distribui o trabalho e acompanha a qualidade e o ritmo de entregas.",
+        "requisitos": "Doutorado, pós-doutorado ou experiência avançada equivalente em matemática, matemática aplicada ou estatística, com prática em métodos numéricos, computação científica, otimização ou modelagem. Precisa programar bem em Python, Julia, C/C++, MATLAB/Octave ou num sistema de álgebra computacional, dominar Linux e o terminal e ter experiência revisando código ou pesquisas e liderando pequenas equipes técnicas. Comentários por escrito claros e precisos, em inglês. São no mínimo 40 horas por semana, pelo menos 4 horas por dia, com 4 horas no horário do Pacífico (Califórnia).",
+        "idioma": "en+",
+        "carga": "40 h por semana",
+        "contrato": "Autônomo, 4 semanas"
+      }
+    },
+    {
+      "id": "e73fc60f9b",
+      "resumo": {
+        "frase": "Liderar um grupo que cria tarefas de ciência dos materiais para testar IA.",
+        "o_que_faz": "Você lidera um grupo de 5 a 10 pessoas que criam tarefas científicas de ciência dos materiais feitas no terminal, para o Terminal Bench Science, um conjunto de testes para IA. Revisa cada tarefa do começo ao fim: enunciado, dados, ambiente, solução de referência e testes automáticos. Confere se a ciência está certa em temas como DFT, dinâmica molecular, termodinâmica, diagramas de fase e cristalografia, olhando unidades, simetria e critérios de convergência, garante que os resultados possam ser repetidos e que a tarefa não possa ser burlada com resposta pronta. Também treina as pessoas do grupo, distribui o trabalho e acompanha a qualidade e o ritmo de entregas.",
+        "requisitos": "Doutorado, pós-doutorado ou experiência avançada equivalente em ciência dos materiais, metalurgia ou área próxima, com prática em simulação atomística, termodinâmica computacional ou cálculos de estrutura eletrônica. Precisa programar bem em Python, C/C++, Fortran ou Julia, dominar Linux e o terminal e ter experiência revisando código ou pesquisas e liderando pequenas equipes técnicas. Comentários por escrito claros e precisos, em inglês. São no mínimo 40 horas por semana, pelo menos 4 horas por dia, com 4 horas no horário do Pacífico (Califórnia).",
+        "idioma": "en+",
+        "carga": "40 h por semana",
+        "contrato": "Autônomo, 4 semanas"
+      }
+    },
+    {
+      "id": "828e5cad30",
+      "resumo": {
+        "frase": "Editar e criar imagens 2D e 3D para um projeto de IA.",
+        "o_que_faz": "Você edita, anota e modifica imagens seguindo briefings, referências e diretrizes, e cria variações mantendo o mesmo estilo, composição, cores, luz e textura. Faz retoque, montagem, limpeza e troca de fundo, e recria ou melhora texturas, materiais, objetos, personagens e cenários. Também registra o seu processo e as escolhas de estilo e entrega tudo pronto para uso.",
+        "requisitos": "No mínimo 2 anos como artista 2D ou 3D ou em função parecida, com portfólio de trabalhos estilizados e de materiais. Precisa reproduzir bem materiais reais e texturas com aparência de feito à mão, conhecer renderização não fotorrealista e plug-ins de After Effects, 3ds Max e Cinema 4D, e entender modelagem, iluminação e renderização em 3D. A seleção tem análise do portfólio e um teste curto antes do início.",
+        "idioma": "en",
+        "carga": "Até 40 h por semana (meio período de 25 a 30 h também serve)",
+        "contrato": "Projeto de 8 a 10 semanas"
       }
     }
   ]
