@@ -203,6 +203,15 @@ EXCECOES = {
     # de profissao e portfolio
     "Talent Acquisition Specialist": "Economia e Negocios",
     "Digital Imaging Specialist": "Design e Criacao",
+    # Rotina de 24/10/2026: micro1 pede militar da ativa ou da reserva,
+    # analista de defesa ou de inteligencia, ou quem trabalhou em ajuda
+    # humanitaria (Cruz Vermelha, ONU), para avaliar cenarios de guerra
+    "=Defense Analyst": "Outras areas",
+    "=Weapons Systems Operator": "Outras areas",
+    "=Special Forces Operator": "Outras areas",
+    "=Fighter Pilot": "Outras areas",
+    "=Humanitarian Aid Representative": "Outras areas",
+    "=Intelligence Analyst": "Outras areas",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -859,6 +868,12 @@ if __name__ == "__main__":
         ("Table Games Managers", "", "Outras areas"),
         ("Talent Acquisition Specialist: Recruiting and Talent Sourcing", "", "Economia e Negocios"),
         ("Digital Imaging Specialist/ Digital Artist", "", "Design e Criacao"),
+        ("Defense Analyst", "", "Outras areas"),
+        ("Weapons Systems Operator", "", "Outras areas"),
+        ("Special Forces Operator", "", "Outras areas"),
+        ("Fighter Pilot", "", "Outras areas"),
+        ("Humanitarian Aid Representative", "", "Outras areas"),
+        ("Intelligence Analyst", "", "Outras areas"),
     ]
 
     falhas = 0
