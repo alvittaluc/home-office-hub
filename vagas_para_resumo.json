@@ -1,4 +1,16 @@
 {
-  "total": 0,
-  "vagas": []
+  "total": 1,
+  "vagas": [
+    {
+      "id": "adb8485e4a",
+      "empresa": "mercor",
+      "titulo": "Senior Software Engineer",
+      "url": "https://work.mercor.com/jobs/list_AAABoWnFjw3ghoyupCxKLYb6/senior-software-engineer",
+      "local": "Remoto · Mundial",
+      "categoria_badge": "IA & Dados",
+      "descricao": "Mercor is hiring Senior Software Engineers to work on a project with a leading AI research lab. You'll apply your open-source engineering experience to real software engineering work.\n\n**You're a good fit if you:**\n\n- Work as a Senior, Staff or Principal Software Engineer (or equivalent senior individual contributor)\n- Actively contribute to open-source projects, with merged pull requests or commits in the last 6 months\n- Maintain or contribute to projects with real adoption, such as 100+ GitHub stars or clear package usage",
+      "requisitos": "",
+      "remuneracao": "USD 120 / hora"
+    }
+  ]
 }
