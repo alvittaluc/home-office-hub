@@ -1,5 +1,5 @@
 {
-  "total": 1,
+  "total": 2,
   "vagas": [
     {
       "id": "adb8485e4a",
@@ -11,6 +11,17 @@
       "descricao": "Mercor is hiring Senior Software Engineers to work on a project with a leading AI research lab. You'll apply your open-source engineering experience to real software engineering work.\n\n**You're a good fit if you:**\n\n- Work as a Senior, Staff or Principal Software Engineer (or equivalent senior individual contributor)\n- Actively contribute to open-source projects, with merged pull requests or commits in the last 6 months\n- Maintain or contribute to projects with real adoption, such as 100+ GitHub stars or clear package usage",
       "requisitos": "",
       "remuneracao": "USD 120 / hora"
+    },
+    {
+      "id": "477e84a7b9",
+      "empresa": "mercor",
+      "titulo": "Software Engineer – Retail Investing Platforms (Paid Expert Interview)",
+      "url": "https://work.mercor.com/jobs/list_AAABoWa5lPEq7jlqhxZNLqEJ/software-engineer-retail-investing-platforms-paid-expert-interview",
+      "local": "Remoto · Brasil",
+      "categoria_badge": "Especialista",
+      "descricao": "Mercor is seeking experienced **software engineers at companies that serve retail investors** for a short, paid expert interview on behalf of a leading AI company building financial intelligence products. In a single **45–60 minute conversation**, you will share how engineering teams like yours evaluate, choose, and integrate third-party APIs and AI vendors. This is a good fit for backend, integrations, or platform engineers (or hands-on tech leads and engineering managers) at online brokerages, investing apps, robo-advisors, neobanks with investing, wealth platforms, or brokerage infrastructure providers.\n\n* * *\n\n### What You'll Do\n\n- Join one 45–60 minute remote interview at a time that works for you.\n \n- Walk through how your team evaluated or shortlisted an outside API or AI vendor (e.g. market data, news/research, identity, or AI chat), and what drove the final decision.\n \n- Share what made integrations go well or badly: documentation, reliability, pricing, security and compliance review, and support.\n \n- Give candid feedback on what you would want from vendors serving retail-investing products.\n\nPlease share only your own experience and opinions. You will **not** be asked for confidential or proprietary information about your employer.\n\n* * *\n\n### Requirements\n\n- Currently employed **in-house** (not freelancing or consulting) as a software engineer, backend or integrations engineer, platform engineer, tech lead, or engineering manager who is still hands-on.\n \n- Work at a company that reaches **retail investors**, such as an online brokerage, investing app, robo-advisor, neobank with investing, wealth platform, or brokerage infrastructure provider.\n \n- Work on the **retail product side**, not institutional, hedge fund, or asset management desks.\n \n- Evaluated or integrated a **third-party API or AI vendor in the past 12 months** (or will soon).\n \n- **Involved in choosing** the vendor (helped evaluate or shortlist), not only building it after the decision was made.\n\n* * *\n\n### Nice to Have\n\n- Integrated market data, news, research, or AI chat features.\n \n- Experience across different company sizes or seniority levels.\n\n* * *\n\n### Why Join?\n\n- Paid for your time, with a flexible, one-time commitment that fits alongside your current role.\n \n- Share your perspective to help shape AI and data products built for retail investors.",
+      "requisitos": "",
+      "remuneracao": "USD 100-120 / pagamento único"
     }
   ]
 }
