@@ -1,5 +1,5 @@
 {
-  "total": 279,
+  "total": 283,
   "vagas": [
     {
       "id": "65762fd387",
@@ -3030,6 +3030,51 @@
         "idioma": "en",
         "carga": "Até 40 h por semana (meio período de 25 a 30 h também serve)",
         "contrato": "Projeto de 8 a 10 semanas"
+      }
+    },
+    {
+      "id": "d3bffb967c",
+      "resumo": {
+        "frase": "Avaliar respostas de IA no atendimento de aplicativos de delivery de comida.",
+        "o_que_faz": "Você lê as respostas que uma IA dá a clientes de aplicativos de entrega de comida e avalia se estão certas, se fazem sentido e se resolvem o problema. Os casos são os do dia a dia do atendimento: dúvida sobre o pedido, situação da entrega e reclamação. Você aponta as respostas erradas, confusas ou inadequadas, sugere como melhorar e também escreve exemplos de conversa que pareçam de verdade.",
+        "requisitos": "Não precisa de experiência com IA: o que conta é conhecer o setor. O anúncio prefere quem já trabalhou com delivery, restaurante, hotelaria ou atendimento ao cliente, e quem já avaliou o atendimento de outras pessoas. Ótima escrita, atenção aos detalhes e disciplina para seguir as diretrizes do projeto trabalhando sozinho. Conhecer aplicativos de entrega ajuda.",
+        "idioma": "en+",
+        "remuneracao": "US$ 10 a 30 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "a9bd6041ac",
+      "resumo": {
+        "frase": "Criar perguntas sobre gráficos para testar se a IA sabe ler dados.",
+        "o_que_faz": "Você escolhe gráficos da sua área, do tipo que aparece em artigos, relatórios ou painéis, e escreve perguntas que exigem raciocínio para responder: contas, comparações, leitura de tendência ou cruzamento de duas séries de dados. Para cada pergunta, você dá a resposta certa e explica o passo a passo, com os termos corretos (eixos, escalas, unidades, legendas, barras de erro). Quando um gráfico ou uma pergunta fica ambíguo, você marca em vez de enviar.",
+        "requisitos": "Dois anos ou mais trabalhando com gráficos e dados numéricos, no trabalho, na faculdade ou em pesquisa, e graduação em área quantitativa ou técnica, ou experiência prática equivalente. A micro1 procura principalmente gente de medicina e bioestatística, finanças e economia, engenharia e física, geociências, ciência de dados e operações. Inglês escrito para explicar as contas. A seleção tem perguntas de triagem, entrevista com IA e análise do perfil.",
+        "idioma": "en",
+        "remuneracao": "US$ 25 a 50 por hora",
+        "carga": "Horário flexível",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "adb8485e4a",
+      "resumo": {
+        "frase": "Engenharia de software para um laboratório de IA, para quem já é sênior e contribui com código aberto.",
+        "o_que_faz": "A Mercor procura engenheiros de software sêniores para um projeto com um grande laboratório de pesquisa em IA. Você usa a sua experiência com projetos de código aberto em trabalho real de engenharia de software. O anúncio não detalha as tarefas do dia a dia.",
+        "requisitos": "Trabalhar hoje como engenheiro de software sênior, staff ou principal, ou num cargo técnico equivalente. Contribuir de forma ativa com projetos de código aberto, com pull requests ou commits aceitos nos últimos 6 meses. Manter ou contribuir com projetos usados de verdade, como os que têm mais de 100 estrelas no GitHub ou pacotes conhecidos.",
+        "idioma": "en",
+        "remuneracao": "US$ 120 por hora"
+      }
+    },
+    {
+      "id": "477e84a7b9",
+      "resumo": {
+        "frase": "Entrevista paga, de uma hora, com engenheiros de empresas de investimento.",
+        "o_que_faz": "É uma conversa única, de 45 a 60 minutos, a distância e no horário que você escolher. Você conta como a sua equipe avaliou e escolheu uma API ou um fornecedor de IA de fora (dados de mercado, notícias, identidade ou chat com IA), o que pesou na decisão e o que fez a integração dar certo ou errado. A ideia é ajudar uma empresa de IA a criar produtos para quem investe, e ninguém vai pedir informação confidencial do seu empregador.",
+        "requisitos": "Estar empregado hoje dentro da empresa, e não como freelancer ou consultor, como engenheiro de software, de backend, de integrações ou de plataforma, líder técnico ou gerente que ainda programa. Trabalhar numa empresa que atende quem investe como pessoa física, como corretora, aplicativo de investimento, banco digital com investimentos ou plataforma de patrimônio, no lado do produto para esse público. Ter avaliado ou integrado uma API ou fornecedor de IA nos últimos 12 meses e ter participado da escolha.",
+        "idioma": "en",
+        "remuneracao": "US$ 100 a 120, pagamento único",
+        "carga": "45 a 60 minutos",
+        "contrato": "Entrevista única"
       }
     }
   ]
