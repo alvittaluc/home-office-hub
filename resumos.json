@@ -1,5 +1,5 @@
 {
-  "total": 283,
+  "total": 294,
   "vagas": [
     {
       "id": "65762fd387",
@@ -3075,6 +3075,124 @@
         "remuneracao": "US$ 100 a 120, pagamento único",
         "carga": "45 a 60 minutos",
         "contrato": "Entrevista única"
+      }
+    },
+    {
+      "id": "760b708adb",
+      "resumo": {
+        "frase": "Explicar o dia a dia de um restaurante no sistema de caixa Toast para treinar uma IA.",
+        "o_que_faz": "A micro1 procura quem trabalha em restaurante e usa o Toast, um sistema de caixa e pedidos, para ensinar uma IA sobre esse trabalho. Você analisa e comenta como o Toast funciona na hora de lançar pedidos, receber pagamentos e tirar relatórios. Também escreve guias passo a passo com situações reais de restaurante e avalia cardápios, pedidos e transações. Pode haver reuniões com a equipe para ajustar prompts e tarefas.",
+        "requisitos": "O anúncio dá preferência a quem trabalha hoje em restaurante, bar ou hotel e usa o Toast no dia a dia. Pede que você entenda bem a rotina de pedidos e pagamentos e saiba explicar processos de um jeito claro, por escrito e falando. Não precisa ter experiência com IA. O Toast é pouco usado no Brasil, então a vaga serve mais para quem já trabalhou com ele em outro país.",
+        "idioma": "en",
+        "remuneracao": "US$ 28 a 92 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "c86034f6fe",
+      "resumo": {
+        "frase": "Avaliar e corrigir textos em português escritos por uma IA.",
+        "o_que_faz": "A Mercor procura especialistas em português para um projeto de pesquisa com um laboratório de IA. Você avalia se os textos que o modelo escreve em português estão corretos e naturais, em tarefas como tradução, resumo, conversa e correção gramatical. Também edita ou reescreve esses textos, marca nos textos pontos de gramática, sintaxe e sentido e aponta onde o modelo erra. Seus comentários ajudam os pesquisadores a melhorar o modelo.",
+        "requisitos": "Ter o português como língua nativa ou quase nativa, com ótimo domínio de gramática e estilo. Ter experiência profissional com tradução, revisão, anotação de textos ou dados de linguagem em português. Conhecer as diferenças regionais da língua e ter atenção aos detalhes para pegar frases que soam estranhas. Interesse por IA ajuda, mas não é obrigatório.",
+        "idioma": "pt",
+        "remuneracao": "US$ 50 por hora"
+      }
+    },
+    {
+      "id": "f0a681c0dc",
+      "resumo": {
+        "frase": "Avaliar e corrigir textos em inglês escritos por uma IA.",
+        "o_que_faz": "A Mercor procura especialistas em inglês para um projeto de pesquisa com um laboratório de IA. Você avalia se os textos que o modelo escreve em inglês estão corretos e naturais, em tarefas como tradução, resumo, conversa e correção gramatical. Também edita ou reescreve esses textos, marca pontos de gramática, sintaxe e sentido e aponta onde o modelo erra. É a vaga parecida com a de português da mesma empresa.",
+        "requisitos": "Ter inglês nativo ou quase nativo, com ótimo domínio de gramática e estilo. Ter experiência profissional com tradução, revisão, anotação de textos ou dados de linguagem em inglês. Conhecer as variações regionais da língua e ter atenção aos detalhes. Interesse por IA ajuda, mas não é obrigatório.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 por hora"
+      }
+    },
+    {
+      "id": "e4b6542572",
+      "resumo": {
+        "frase": "Cuidar da relação com os clientes da Alignerr e dos programas de dados de cada um.",
+        "o_que_faz": "Você é o contato principal dos clientes, manda atualizações de andamento, qualidade e prazos e avisa cedo quando algo vai atrasar. Também entende os objetivos de cada cliente, monta um plano para cada conta e procura novas oportunidades junto com a equipe comercial. Leva as necessidades dos clientes para a equipe de pesquisa e mantém o CRM e as planilhas de acompanhamento em dia, com relatórios para a diretoria.",
+        "requisitos": "Ter pelo menos 3 anos em consultoria, gestão de programas, gestão de contas ou operações com clientes, de preferência cuidando de vários clientes ao mesmo tempo. Escrever muito bem e saber dar más notícias junto com um plano. Ser organizado e conseguir explicar assuntos técnicos para quem é de negócios e o contrário. Experiência com dados para treinar IA ou com plataformas como o Labelbox conta pontos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 85 a 120 por hora"
+      }
+    },
+    {
+      "id": "054b6117a8",
+      "resumo": {
+        "frase": "Gerente de operações que coloca novos projetos de dados no ar e organiza o recrutamento de especialistas.",
+        "o_que_faz": "Você transforma o pedido de um cliente num projeto funcionando, das decisões iniciais até as instruções e o recrutamento dos colaboradores. Monta e toca processos para achar e selecionar especialistas de várias áreas e línguas. Analisa os dados para entender por que colaboradores desistem ou a qualidade cai, cria modelos e planilhas que outras pessoas consigam usar e mantém a diretoria informada.",
+        "requisitos": "Ter de 4 a 8 anos em crescimento, operações, estratégia, recrutamento ou função parecida, de preferência em startup. Saber analisar dados com planilhas e conhecer SQL ou estar disposto a aprender rápido. Escrever bem e explicar coisas complicadas de forma simples. O anúncio ainda deixa em aberto se o trabalho é remoto ou híbrido e qual é o salário.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 80 por hora"
+      }
+    },
+    {
+      "id": "6a3221614a",
+      "resumo": {
+        "frase": "Criar e revisar questões difíceis de economia e finanças para testar modelos de IA.",
+        "o_que_faz": "Você recebe um de dois tipos de tarefa. Na criação, escreve questões originais de múltipla escolha, com 1 resposta certa e 9 erradas que parecem certas, uma solução passo a passo e de 1 a 5 referências acadêmicas. Na revisão, confere questões prontas, corrige o que for preciso e explica o que mudou. Os temas incluem negociação algorítmica, política macroprudencial, finanças comportamentais, economia urbana e finanças descentralizadas.",
+        "requisitos": "O ideal é ter doutorado em economia, finanças ou área próxima, ou estar fazendo um. Mestrado é aceito para quem conhece muito bem um tema específico. Pede ótimo domínio de teoria econômica, métodos quantitativos e modelagem financeira, e escrever bem em inglês. Experiência em pesquisa ou certificação como CFA conta pontos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 77 a 98 por hora",
+        "carga": "10 h ou mais por semana"
+      }
+    },
+    {
+      "id": "de9b101283",
+      "resumo": {
+        "frase": "Profissional de marketing que escreve e avalia textos de marketing para treinar IA.",
+        "o_que_faz": "Apesar do título genérico, a vaga é para marketing. Você cria e avalia situações realistas de escrita profissional sobre marketing, como campanhas, estudos de caso e documentos de estratégia. Ajusta o tom e o formato a cada público, aponta informações erradas ou sem base e leva em conta as regras de marketing dos Estados Unidos.",
+        "requisitos": "O anúncio prefere de 8 a 10 anos de experiência em marketing, com domínio de pelo menos uma das áreas listadas, como SEO, e-mail marketing, mídia paga ou redes sociais. Pede que você conheça bem as práticas e regras de marketing dos Estados Unidos e escreva muito bem. A seleção começa com um formulário de interesse e depois uma análise do perfil.",
+        "idioma": "en+",
+        "carga": "40 h por semana, com 8 h no horário da Califórnia",
+        "contrato": "Autônomo, até 2 semanas"
+      }
+    },
+    {
+      "id": "5beabdb0cd",
+      "resumo": {
+        "frase": "Pesquisar, conferir informações e corrigir respostas de IA, para quem usa o Gemini para estudar.",
+        "o_que_faz": "Você pesquisa e confere informações em fontes da internet, analisa problemas de lógica e conteúdos complexos e revisa respostas escritas por IA, achando e corrigindo erros. Também escreve explicações e anotações que ajudam a treinar os modelos. O projeto dura 16 semanas e pode ser prorrogado.",
+        "requisitos": "Ter uma conta ativa no app do Gemini com conversas de pelo menos 18 meses atrás e no mínimo 10 conversas usadas para estudar, entender conceitos ou tirar dúvidas. A vaga é para estudantes e profissionais que usam o Gemini para aprender. Na seleção você preenche um formulário e um questionário sobre ano de formatura, línguas e uso do Gemini. Quem passar manda um print datado do histórico e os links ou prints das conversas, que a equipe confere antes de chamar.",
+        "idioma": "en",
+        "remuneracao": "US$ 20 por hora",
+        "carga": "20 a 40 h por semana",
+        "contrato": "16 semanas, com possível prorrogação"
+      }
+    },
+    {
+      "id": "506a461721",
+      "resumo": {
+        "frase": "Especialista em varejo que cria e corrige exercícios de planejamento de sortimento e estoque para avaliar IA.",
+        "o_que_faz": "Você cria exercícios realistas e difíceis de varejo, como planejamento de sortimento, promoções e planogramas, com as soluções certas. Depois avalia respostas usando rubricas, participa de reuniões para alinhar notas com outros avaliadores e monta cenários com indicadores como giro de estoque, margem e GMROI (retorno sobre o estoque). Quem tem mais experiência pode entrar como revisor.",
+        "requisitos": "Ter de 3 a 15 anos de experiência prática em merchandising, compras, gestão de categorias ou distribuição de estoque no varejo. Dominar os cálculos básicos do varejo, como margem, remarcação e semanas de estoque, e escrever bem para justificar as soluções. Pede graduação em qualquer área ou experiência prática equivalente. A seleção tem um formulário de interesse e um teste.",
+        "idioma": "en+",
+        "carga": "Pelo menos 4 h por dia, até 40 h por semana, com 4 h no horário da Califórnia",
+        "contrato": "Autônomo, 12 semanas"
+      }
+    },
+    {
+      "id": "ee380137eb",
+      "resumo": {
+        "frase": "Especialista em vendas B2B e sucesso do cliente que cria e avalia exercícios de vendas para IA.",
+        "o_que_faz": "Você cria exercícios realistas de vendas e retenção de clientes empresariais, como simulações de reunião de descoberta, respostas a RFP, renegociação de contrato e clientes insatisfeitos, com as soluções certas. Também avalia respostas usando rubricas e, no nível sênior, revisa o trabalho de outros colaboradores. O trabalho é feito em ciclos, com correções e ajustes a cada rodada.",
+        "requisitos": "Ter de 3 a mais de 12 anos em vendas B2B para empresas, gestão de contas ou sucesso do cliente, em empresas de software, tecnologia ou serviços. Conhecer métodos de vendas como MEDDPICC, Challenger ou SPICED e ter histórico de bater metas ou renovar contratos. Pede graduação em qualquer área ou experiência prática equivalente. A seleção tem um formulário de interesse e um teste.",
+        "idioma": "en+",
+        "carga": "Pelo menos 4 h por dia, até 40 h por semana, com 4 h no horário da Califórnia",
+        "contrato": "Autônomo, 12 semanas"
+      }
+    },
+    {
+      "id": "5f0ade76a9",
+      "resumo": {
+        "frase": "Especialista em pesquisa de mercado, produção de mídia ou comunicação técnica que cria e avalia tarefas para IA.",
+        "o_que_faz": "A vaga junta três áreas: pesquisa de mercado e análise, produção e direção de mídia e redação editorial ou técnica. Você cria tarefas difíceis e situações reais de trabalho na sua área, com as soluções certas, e avalia respostas seguindo rubricas. No nível sênior, também revisa o trabalho de outros colaboradores e resolve dúvidas sobre os critérios.",
+        "requisitos": "Ter de 3 a mais de 15 anos de experiência numa dessas três áreas. Escrever bem para justificar as suas críticas e ter atenção aos detalhes para achar erros pequenos. Pede graduação em qualquer área ou experiência prática equivalente; experiência com avaliação de IA ou anotação de dados ajuda, mas não é obrigatória. A seleção tem um formulário de interesse e um teste.",
+        "idioma": "en+",
+        "carga": "Pelo menos 4 h por dia, até 40 h por semana, com 4 h no horário da Califórnia",
+        "contrato": "Autônomo, 12 semanas"
       }
     }
   ]

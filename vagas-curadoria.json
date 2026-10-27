@@ -1078,6 +1078,20 @@
       "titulo": "Food Delivery AI Response Evaluator",
       "revisado_em": "2026-10-26",
       "motivo": "Avaliação de respostas de IA para atendimento de delivery, remota e aberta ao mundo. Não pede diploma nem experiência com IA; prefere quem já trabalhou com atendimento."
+    },
+    {
+      "id": "c86034f6fe",
+      "empresa": "mercor",
+      "titulo": "Portuguese Linguistic Experts",
+      "revisado_em": "2026-10-27",
+      "motivo": "Remota e aberta ao mundo. Pede português nativo e experiência com tradução ou revisão, sem diploma: vaga de língua, fica na lista geral."
+    },
+    {
+      "id": "760b708adb",
+      "empresa": "micro1",
+      "titulo": "Hospitality Worker (Toast POS User)",
+      "revisado_em": "2026-10-27",
+      "motivo": "Mesmo anúncio da 059a387ef0, aprovada em 15/10: remota, sem país exigido e sem diploma. Prefere quem usa o sistema Toast, pouco comum no Brasil, mas não exige."
     }
   ],
   "bloqueadas": [
@@ -1192,6 +1206,13 @@
       "titulo": "English Voice Coach",
       "revisado_em": "2026-10-21",
       "motivo": "Só para quem tem inglês nativo da Irlanda, da Austrália ou do Reino Unido."
+    },
+    {
+      "id": "1cde65b8e8",
+      "empresa": "micro1",
+      "titulo": "Paralegal",
+      "revisado_em": "2026-10-27",
+      "motivo": "Só aceita paralegais com experiência de prática jurídica nos EUA, o que quem trabalha no Brasil não tem."
     }
   ]
 }
