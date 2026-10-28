@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-10-27T21:12:04.435944+00:00",
-  "total": 1241,
+  "atualizado_em": "2026-10-28T14:42:00.753759+00:00",
+  "total": 1243,
   "primeira_vez": {
     "alignerr|accounting & finance expert": "2026-10-02",
     "alignerr|accounting instructor": "2026-10-02",
@@ -1025,6 +1025,7 @@
     "turing|cad & simulation consultant engineering design and simulation aerospace mechanical electrical engineering": "2026-09-11",
     "turing|chemistry expert": "2026-09-11",
     "turing|chemistry expert phd master's": "2026-09-11",
+    "turing|clinical & health specialist": "2026-10-28",
     "turing|coding multilingual expert": "2026-10-14",
     "turing|commercial go to market specialist": "2026-10-27",
     "turing|computer science stem": "2026-09-30",
@@ -1172,6 +1173,7 @@
     "turing|senior artist graphic designer": "2026-09-11",
     "turing|senior backend engineer python sql & ai integration": "2026-09-11",
     "turing|senior code quality engineer llm training and evaluation": "2026-09-29",
+    "turing|senior devops engineer cloud infrastructure ci cd llmops": "2026-10-28",
     "turing|senior digital high speed hardware design engineer": "2026-10-13",
     "turing|senior financial & investment analysts europe & & na": "2026-09-11",
     "turing|senior general hardware design engineer analog mixed signal and rf": "2026-10-13",
