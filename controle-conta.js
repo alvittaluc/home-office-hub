@@ -694,7 +694,57 @@ const Conta = (function () {
     usuario = null;
   }
 
+  /* ══════════════════════════════════════════════════════════
+     PDF DO CURRÍCULO (banco/curriculos.sql)
+
+     O arquivo vai para a pasta da própria conta, com nome sorteado.
+     A candidatura guarda só { caminho, nome, tamanho }.
+     ══════════════════════════════════════════════════════════ */
+
+  const BALDE_CV = "curriculos";
+  const MAX_CV = 2 * 1024 * 1024;
+
+  function erroDoPdf(erro) {
+    const m = (erro && (erro.message || String(erro))) || "";
+    if (/row-level security|policy|unauthorized|403/i.test(m)) return "Não deu para guardar o PDF. Se você já tem muitos currículos anexados, apague as candidaturas antigas que não usa mais.";
+    if (/too large|exceeded|size/i.test(m)) return "O PDF passa de 2 MB. Salve uma versão menor e tente de novo.";
+    if (/mime|type/i.test(m)) return "O arquivo precisa ser PDF.";
+    return traduzir(erro);
+  }
+
+  async function enviarPdf(arquivo) {
+    if (!usuario) throw new Error("Entre na sua conta para anexar o PDF.");
+    if (arquivo.type !== "application/pdf" && !/\.pdf$/i.test(arquivo.name)) throw new Error("O arquivo precisa ser PDF.");
+    if (arquivo.size > MAX_CV) throw new Error("O PDF passa de 2 MB. Salve uma versão menor e tente de novo.");
+    const caminho = usuario.id + "/" + crypto.randomUUID() + ".pdf";
+    const r = await cliente().storage.from(BALDE_CV).upload(caminho, arquivo, { contentType: "application/pdf", upsert: false, cacheControl: "3600" });
+    if (r.error) throw new Error(erroDoPdf(r.error));
+    const nome = String(arquivo.name || "curriculo.pdf").replace(/[\u0000-\u001f]/g, "").slice(0, 120);
+    return { caminho, nome, tamanho: arquivo.size };
+  }
+
+  async function baixarPdf(caminho) {
+    const r = await cliente().storage.from(BALDE_CV).download(caminho);
+    if (r.error) throw new Error(/not found/i.test(r.error.message || "") ? "Este PDF não está mais guardado." : traduzir(r.error));
+    return r.data;
+  }
+
+  /* Ao apagar a conta, os PDFs saem antes: o banco apaga a conta, mas não
+     os arquivos do armazenamento. */
+  async function apagarPdfs() {
+    if (!usuario) return;
+    const lista = await cliente().storage.from(BALDE_CV).list(usuario.id, { limit: 100 });
+    if (lista.error) throw lista.error;
+    const caminhos = (lista.data || []).map(o => usuario.id + "/" + o.name);
+    if (caminhos.length) {
+      const r = await cliente().storage.from(BALDE_CV).remove(caminhos);
+      if (r.error) throw r.error;
+    }
+  }
+
   async function apagarConta() {
+    try { await apagarPdfs(); }
+    catch (e) { throw new Error("Não deu para apagar os PDFs dos seus currículos. Confira a internet e tente de novo."); }
     const r = await cliente().rpc("apagar_minha_conta");
     if (r.error) throw r.error;
     try { await cliente().auth.signOut({ scope: "local" }); } catch (e) { /* a conta já não existe */ }
@@ -704,7 +754,7 @@ const Conta = (function () {
   }
 
   return {
-    entrar, sincronizar, empurrar, sair, apagarConta, traduzir, telaAreas,
+    entrar, sincronizar, empurrar, sair, apagarConta, traduzir, telaAreas, enviarPdf, baixarPdf,
     get usuario() { return usuario; },
     get obrigatorio() { return loginObrigatorio(); },
     get disponivel() { return disponivel(); },

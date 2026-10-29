@@ -59,6 +59,8 @@ const Leitor = (function () {
     stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${IC[nome] || ""}</svg>`;
 
   const CSS = `
+  dialog.lt-casca { padding:0; border:0; margin:0; width:100vw; height:100vh; max-width:none; max-height:none; background:transparent; overflow:hidden; }
+  dialog.lt-casca::backdrop { background:transparent; }
   .lt { position:fixed; inset:0; z-index:220; display:flex; flex-direction:column; background:rgba(10,18,32,.94); color:#F2EFE9;
     font-family:var(--body,'Geist',system-ui,sans-serif); }
   .lt-topo { display:flex; align-items:center; gap:12px; padding:10px 14px; background:#0F1D33; border-bottom:1px solid #26374F; flex-shrink:0; }
@@ -199,7 +201,20 @@ const Leitor = (function () {
     });
     document.addEventListener("keydown", tecla, true);
     document.documentElement.style.overflow = "hidden";
-    document.body.appendChild(cx);
+    /* Aberto de dentro de uma janela (um <dialog> aberto, como a da candidatura),
+       o leitor vai para a mesma camada de cima, senão fica escondido por baixo dela. */
+    const janela = document.querySelector("dialog[open]");
+    if (janela) {
+      const casca = document.createElement("dialog");
+      casca.className = "lt-casca";
+      casca.addEventListener("cancel", ev => { ev.preventDefault(); fechar(); });
+      casca.appendChild(cx);
+      document.body.appendChild(casca);
+      casca.showModal();
+      aoFechar.push(() => { casca.close(); casca.remove(); });
+    } else {
+      document.body.appendChild(cx);
+    }
     cx.querySelector("[data-fechar]").focus();
     aberto = { fechar };
 

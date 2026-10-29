@@ -359,7 +359,7 @@ body > header.site .hd { max-width:1460px; }
 <script src="layout.js"></script>
 <script src="controle-dados.js?v=5"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js" integrity="sha384-WgXwGL6fUsYJWNaKJgVbrJKGRQwc1vieh2oy4kw9nXqpNDz3tdSsqEYUgeHD/NuF" crossorigin="anonymous"></script>
-<script src="controle-conta.js?v=8"></script>
+<script src="controle-conta.js?v=9"></script>
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
 <script src="controle-ui.js?v=5"></script>
@@ -369,7 +369,8 @@ body > header.site .hd { max-width:1460px; }
 <script src="controle-cambio.js?v=1"></script>
 <script src="controle-pago.js?v=1"></script>
 <script src="controle-imposto.js?v=1"></script>
-<script src="controle-candidatura.js?v=1"></script>
+<script src="leitor.js?v=2"></script>
+<script src="controle-candidatura.js?v=2"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
    junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
@@ -1237,6 +1238,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
                    dica: "Currículo IA 2026",
                    ajuda: "Dê um apelido à versão. Nas próximas candidaturas ele aparece na lista, e depois dá para ver qual teve mais resposta." })}
       <datalist id="listaCurriculos">${curriculos.map(c => `<option value="${esc(c)}">`).join("")}</datalist>
+      ${Candidatura.pdfHtml(ap, CFG.curriculosPdf)}
       <div class="u-tripla">
         ${UI.campo({ nome: "proximo", rotulo: "Próximo passo", valor: ap.proximo, dica: "Fazer a prova de qualificação" })}
         ${UI.campo({ nome: "proximoEm", rotulo: "Quando", tipo: "date", valor: ap.proximoEm })}
@@ -1268,6 +1270,9 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
         const estadoNovo = UI.ler(d, "estado") || ap.estado;
         const curriculo = UI.ler(d, "curriculo");
+        const erroPdf = await Candidatura.subirPdf();
+        if (erroPdf) { UI.erroNoPainel(d, erroPdf); return false; }
+        const campos = Candidatura.campos(d);
 
         const salvo = await Dados.salvar("aplicacoes", Object.assign({}, ap, {
           empresa, titulo,
@@ -1281,10 +1286,14 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           proximo: UI.ler(d, "proximo"),
           proximoEm: UI.ler(d, "proximoEm"),
           observacoes: UI.ler(d, "observacoes"),
-        }, Candidatura.campos(d)));
+        }, campos));
 
-        if (curriculo && (CFG.curriculos || []).indexOf(curriculo) < 0) {
-          CFG.curriculos = (CFG.curriculos || []).concat([curriculo]);
+        // o apelido do currículo guarda também o último PDF ligado a ele
+        const pdfNovo = campos.curriculoPdf && (!CFG.curriculosPdf || !CFG.curriculosPdf[curriculo]
+          || CFG.curriculosPdf[curriculo].caminho !== campos.curriculoPdf.caminho);
+        if (curriculo && ((CFG.curriculos || []).indexOf(curriculo) < 0 || pdfNovo)) {
+          if ((CFG.curriculos || []).indexOf(curriculo) < 0) CFG.curriculos = (CFG.curriculos || []).concat([curriculo]);
+          if (pdfNovo) CFG.curriculosPdf = Object.assign({}, CFG.curriculosPdf, { [curriculo]: campos.curriculoPdf });
           await Dados.salvarConfig(CFG);
         }
 

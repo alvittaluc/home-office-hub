@@ -7,6 +7,8 @@
       não tem (ordem). Etapa pulada aparece como "não teve".
    2. Recusado e Sem resposta: etapa, motivo e o que aconteceu, contado
       pela pessoa, ali mesmo na aba "A vaga".
+   3. O PDF do currículo enviado, guardado na conta (banco/curriculos.sql)
+      e aberto pelo leitor do site.
    ══════════════════════════════════════════════════════════════ */
 const Candidatura = (function () {
   const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -47,7 +49,67 @@ const Candidatura = (function () {
     </div>`;
   }
 
+  /* ── o PDF do currículo que a pessoa mandou ──
+     O arquivo escolhido fica só no navegador até a pessoa salvar; aí sobe para a
+     conta (Conta.enviarPdf) e a candidatura guarda { caminho, nome, tamanho }.
+     O mesmo PDF fica ligado ao apelido do currículo, para as próximas candidaturas. */
+  let pdf = null, pendente = null, porApelido = {};
+
+  function kb(n) { return n ? (n / 1024 < 1024 ? Math.round(n / 1024) + " KB" : (n / 1048576).toFixed(1).replace(".", ",") + " MB") : ""; }
+
+  function pdfHtml(ap, mapa) {
+    pdf = ap.curriculoPdf || null; pendente = null; porApelido = mapa || {};
+    return `<div class="pc-pdf" id="pcPdf"></div>`;
+  }
+
+  function desenharPdf(caixa) {
+    const atual = pendente || pdf;
+    const semConta = typeof Conta === "undefined" || !Conta.usuario;
+    const botao = semConta ? "" : `<label class="ct-b pequeno pc-trocar">${atual ? "Trocar" : "Anexar PDF"}<input type="file" accept="application/pdf,.pdf" data-pc-arq hidden></label>`;
+    caixa.innerHTML = atual
+      ? `<span class="pc-ic">PDF</span><span class="pc-nm"><b>${esc(atual.nome)}</b><small>${esc(kb(atual.tamanho) || "anexado")}${pendente ? " · é guardado quando você salvar" : ""}</small></span>
+         <button type="button" class="ct-b pequeno" data-pc-ver>Ver</button>${botao}`
+      : `<span class="pc-ic vazio">PDF</span><span class="pc-nm"><b>Anexe o PDF que você mandou</b><small>${semConta ? "entre na sua conta para anexar" : "até 2 MB. Fica guardado e serve para as próximas candidaturas"}</small></span>${botao}`;
+    const arq = caixa.querySelector("[data-pc-arq]");
+    if (arq) arq.addEventListener("change", () => {
+      const f = arq.files[0];
+      if (!f) return;
+      if (f.type !== "application/pdf" && !/\.pdf$/i.test(f.name)) { UI.aviso("O arquivo precisa ser PDF.", "ruim"); return; }
+      if (f.size > 2 * 1024 * 1024) { UI.aviso("O PDF passa de 2 MB. Salve uma versão menor e tente de novo.", "ruim"); return; }
+      pendente = { nome: f.name, tamanho: f.size, blob: f };
+      desenharPdf(caixa);
+    });
+    const ver = caixa.querySelector("[data-pc-ver]");
+    if (ver) ver.addEventListener("click", () => abrirPdf(pendente || pdf));
+  }
+
+  function abrirPdf(p) {
+    if (!p || typeof Leitor === "undefined") return;
+    Leitor.abrir({ nome: p.nome, tipo: "application/pdf", tamanho: p.tamanho || 0,
+      buscar: () => p.blob ? Promise.resolve(p.blob) : Conta.baixarPdf(p.caminho) });
+  }
+
+  /* Chamado ao salvar. Devolve a mensagem de erro, ou "" se deu certo. */
+  async function subirPdf() {
+    if (!pendente) return "";
+    try {
+      pdf = await Conta.enviarPdf(pendente.blob);
+      pendente = null;
+      return "";
+    } catch (e) { return e.message || "Não deu para guardar o PDF."; }
+  }
+
   function ligar(dlg) {
+    const caixa = dlg.querySelector("#pcPdf");
+    if (caixa) {
+      desenharPdf(caixa);
+      // escolheu um apelido que já tem PDF: ele vem junto, se nada foi anexado ainda
+      const apelido = dlg.querySelector('[name="curriculo"]');
+      if (apelido) apelido.addEventListener("change", () => {
+        const achado = porApelido[apelido.value.trim()];
+        if (achado && !pdf && !pendente) { pdf = achado; desenharPdf(caixa); }
+      });
+    }
     const sel = dlg.querySelector('select[name="estado"]');
     const rec = dlg.querySelector("#pcRecusa");
     if (rec) ligarOutro(rec, "recMotivo", "pcOutro");
@@ -245,7 +307,8 @@ const Candidatura = (function () {
 
   function campos(d) {
     // candidatura já registrada: etapa, recusa e o que aconteceu mudam na aba "A vaga", não aqui
-    if (!d.querySelector("#pcRecusa")) return {};
+    const comPdf = d.querySelector("#pcPdf") ? { curriculoPdf: pdf } : {};
+    if (!d.querySelector("#pcRecusa")) return comPdf;
     const v = n => { const x = d.querySelector(`input[name="${n}"]:checked`); return x ? x.value : ""; };
     const est = (d.querySelector('select[name="estado"]') || {}).value, recusado = est === "recusado";
     const relato = d.querySelector("#pcRelato");
@@ -254,13 +317,21 @@ const Candidatura = (function () {
     const passos = { aplicado: enviada };
     CAMINHO.slice(1, i + 1).forEach(k => { passos[k] = k === est ? Dados.hoje() : "?"; });
     const outro = d.querySelector("#pcOutro");
-    return { recusaEtapa: recusado ? v("recEtapa") : "", recusaMotivo: recusado ? v("recMotivo") : "",
+    return { ...comPdf, recusaEtapa: recusado ? v("recEtapa") : "", recusaMotivo: recusado ? v("recMotivo") : "",
              recusaMotivoOutro: recusado && v("recMotivo") === "Outros" && outro ? outro.value.trim() : "",
              relato: comRelato(est) && relato ? relato.value.trim() : "", passos };
   }
 
   const st = document.createElement("style");
   st.textContent = `
+    .pc-pdf { display:flex; align-items:center; gap:12px; margin:-4px 0 16px; padding:11px 14px; border-radius:12px;
+      border:1.5px dashed #9DB8DE; background:var(--signal-suave,#EAF1F8); }
+    .pc-ic { width:34px; height:42px; border-radius:5px; background:#fff; border:1px solid #D3E2F1; display:grid; place-items:center;
+      font-size:10px; font-weight:700; color:#8E2233; flex-shrink:0; }
+    .pc-ic.vazio { color:var(--ink-3,#66717F); }
+    .pc-nm { flex:1; min-width:0; } .pc-nm b { display:block; font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .pc-nm small { display:block; font-size:12px; color:var(--ink-3,#66717F); }
+    .pc-trocar { cursor:pointer; }
     .pc-recusa { border:2px solid var(--signal,#1A4893); background:var(--signal-suave,#EAF1F8); border-radius:14px; padding:14px 16px; margin:-4px 0 16px; }
     .pc-recusa[hidden] { display:none; }
     .pc-q { font-size:13.5px; font-weight:600; margin:2px 0 8px; } .pc-q + .pc-chips + .pc-q { margin-top:12px; }
@@ -317,5 +388,5 @@ const Candidatura = (function () {
   `;
   document.head.appendChild(st);
 
-  return { recusaHtml, ligar, ligarVaga, ligarOrdem, caminho, campos, passosAo, classePasso, notaPasso };
+  return { pdfHtml, subirPdf, abrirPdf, recusaHtml, ligar, ligarVaga, ligarOrdem, caminho, campos, passosAo, classePasso, notaPasso };
 })();
