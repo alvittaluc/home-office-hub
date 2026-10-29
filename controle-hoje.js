@@ -78,6 +78,11 @@ const Hoje = (function () {
 .h-num { font-size:26px; font-weight:600; letter-spacing:-.015em; }
 .h-num-sub { font-size:13px; color:var(--ink-3,#66717F); }
 .h-nota { font-size:12.5px; color:var(--ink-3,#66717F); margin-top:9px; }
+.h-cb-linha { display:flex; gap:30px; flex-wrap:wrap; }
+.h-cb-rot { display:block; font-size:12.5px; color:var(--ink-3,#66717F); }
+.h-cb-val { display:block; font-size:28px; font-weight:600; letter-spacing:-0.02em; }
+.h-cb-var { display:block; font-size:12.5px; font-weight:500; }
+.h-cb-var.sobe { color:#1F7A6E; } .h-cb-var.desce { color:#8E2233; }
 .h-per { display:inline-flex; align-items:center; gap:8px; font-size:12.5px; color:var(--ink-3,#66717F); margin:0 0 12px; }
 .h-per select { font:inherit; font-size:13.5px; font-weight:500; color:var(--ink,#10203A); background:var(--panel,#fff);
   border:1px solid var(--line,#DED7CA); border-radius:10px; padding:6px 10px; cursor:pointer; }
@@ -207,6 +212,30 @@ const Hoje = (function () {
       });
     }
 
+    /* 1a. CÂMBIO DE HOJE, pela cotação do Banco Central do Brasil (PTAX) */
+    if (typeof Ptax !== "undefined") {
+      blocos.push({
+        peso: 1.6,
+        html: cartao("Câmbio de hoje", "Banco Central do Brasil", `<div data-cambio><p class="h-ag-vazio">Buscando a cotação…</p></div>`),
+        ligar: async el => {
+          const caixa = el.querySelector("[data-cambio]");
+          try {
+            const [usd, eur] = await Promise.all([Ptax.agora("USD", hoje), Ptax.agora("EUR", hoje)]);
+            const pct = v => String(Math.abs(v * 100).toFixed(1)).replace(".", ",");
+            const linha = (nome, x) => !x ? "" : `<div><span class="h-cb-rot">${nome}</span>
+              <span class="h-cb-val">${esc(Dados.escreverDinheiro(x.atual.compra, "BRL"))}</span>
+              ${x.variacao != null ? `<span class="h-cb-var ${x.variacao >= 0 ? "sobe" : "desce"}">${x.variacao >= 0 ? "▲" : "▼"} ${pct(x.variacao)}% desde ${Ptax.nomeDia(x.anterior.dia)}</span>` : ""}</div>`;
+            const r = await UI.resumo({ trabalhos: ctx.trabalhos, registros: ctx.registros, pagamentos: [], de: hoje.slice(0, 8) + "01", ate: hoje });
+            const emUsd = r.previstoPorMoeda && r.previstoPorMoeda.USD;
+            const hora = usd.atual.quando.slice(11, 16).replace(":", "h");
+            caixa.innerHTML = `<div class="h-cb-linha">${linha("Dólar", usd)}${linha("Euro", eur)}</div>
+              ${emUsd ? `<div class="h-nota">Com o dólar de hoje, os seus <b>${esc(Dados.escreverDinheiro(emUsd, "USD"))}</b> deste mês valem <b>${esc(Dados.escreverDinheiro(emUsd * usd.atual.compra, "BRL"))}</b>.</div>` : ""}
+              <div class="h-nota">Cotação de compra de ${esc(Dados.dataBonita(usd.atual.dia))}, às ${esc(hora)}${usd.atual.tipo.indexOf("Fechamento") === 0 ? ", fechamento do dia" : ", parcial do dia"}. O valor que cai na sua conta depende da plataforma que você usa para receber.</div>`;
+          } catch (e) { caixa.innerHTML = `<p class="h-ag-vazio">Não deu para buscar a cotação agora.</p>`; }
+        },
+      });
+    }
+
     /* 1b. NA AGENDA ─────────────────────────────────────────────────────
        O que está marcado para hoje e amanhã: entrevistas, testes, prazos,
        estudo, fim de período e pagamento previsto. Sem nada marcado, o
@@ -251,7 +280,7 @@ const Hoje = (function () {
     /* 2. PRECISA DE VOCÊ ────────────────────────────────────────────────
        Próximo passo marcado para hoje ou para trás, em aplicação que ainda
        está de pé. Atrasado primeiro. */
-    const vivos = ["aplicado", "teste", "entrevista", "banco"];
+    const vivos = ["aplicado", "teste", "prova", "entrevista", "banco"];
     const pendentes = ctx.aplicacoes
       .filter(a => a.proximo && a.proximoEm && a.proximoEm <= hoje && vivos.indexOf(a.estado) >= 0)
       .sort((a, b) => (a.proximoEm > b.proximoEm ? 1 : -1));
@@ -280,7 +309,7 @@ const Hoje = (function () {
        Aplicado ou Teste há 21 dias ou mais. Dos 30 em diante, oferece
        marcar como sem resposta ali mesmo. */
     const paradas = ctx.aplicacoes
-      .filter(a => ["aplicado", "teste"].indexOf(a.estado) >= 0 && a.data &&
+      .filter(a => ["aplicado", "teste", "prova"].indexOf(a.estado) >= 0 && a.data &&
                    Dados.diasEntre(a.data, hoje) >= 21)
       .sort((a, b) => (a.data > b.data ? 1 : -1));
 
@@ -462,7 +491,7 @@ const Hoje = (function () {
 
     const bt = alvo.querySelector("[data-sem-resposta]");
     if (bt) bt.addEventListener("click", async () => {
-      const velhas = ctx.aplicacoes.filter(a => ["aplicado", "teste"].indexOf(a.estado) >= 0 &&
+      const velhas = ctx.aplicacoes.filter(a => ["aplicado", "teste", "prova"].indexOf(a.estado) >= 0 &&
                                                 a.data && Dados.diasEntre(a.data, hoje) >= 30);
       const ok = await UI.confirmar({
         titulo: "Marcar como sem resposta",

@@ -28,7 +28,7 @@
 
   const ARQUIVO = "pulso.json";
   const EVENTOS = ["aplicou", "resposta"];
-  const RESPOSTA = ["teste", "entrevista", "aprovado"];
+  const RESPOSTA = ["teste", "prova", "entrevista", "aprovado"];
 
   const SELOS = {
     alta: { texto: "em alta", titulo: "Muita gente do Hub se candidatou nos últimos dias" },

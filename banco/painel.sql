@@ -113,7 +113,7 @@ begin
       select jsonb_build_object(
         'total',     count(*),
         'do_hub',    count(*) filter (where ap.vaga_id is not null),
-        'positivas', count(*) filter (where ap.estado in ('teste', 'entrevista', 'aprovado')),
+        'positivas', count(*) filter (where ap.estado in ('teste', 'prova', 'entrevista', 'aprovado')),
         'aprovadas', count(*) filter (where ap.estado = 'aprovado'))
       from ap),
 
@@ -141,7 +141,7 @@ begin
                    max(ap.titulo)   as titulo,
                    count(*)                 as candidaturas,
                    count(distinct ap.user_id) as pessoas,
-                   count(*) filter (where ap.estado in ('teste', 'entrevista', 'aprovado')) as positivas,
+                   count(*) filter (where ap.estado in ('teste', 'prova', 'entrevista', 'aprovado')) as positivas,
                    count(*) filter (where ap.estado = 'aprovado')                           as aprovadas,
                    coalesce(max(tv.n), 0)                                                   as trabalhando
             from ap
@@ -163,7 +163,7 @@ begin
                          max(ap.empresa)   as empresa,
                          count(*)                   as candidaturas,
                          count(distinct ap.user_id) as pessoas,
-                         count(*) filter (where ap.estado in ('teste', 'entrevista', 'aprovado')) as positivas,
+                         count(*) filter (where ap.estado in ('teste', 'prova', 'entrevista', 'aprovado')) as positivas,
                          count(*) filter (where ap.estado = 'aprovado')                           as aprovadas,
                          count(*) filter (where ap.estado = 'recusado')                           as recusadas
                   from ap

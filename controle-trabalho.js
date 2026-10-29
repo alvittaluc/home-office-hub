@@ -189,8 +189,9 @@ const Trabalho = (function () {
           <div><div class="t-num">${esc(Dados.escreverDinheiro(brutoMoeda, moeda))}</div>
             <div class="t-rot">bruto no período</div>
             ${moeda !== "BRL" ? `<div class="t-menor">${esc(Dados.escreverDinheiro(resumo.previstoBRL, "BRL"))}${resumo.estimado ? " (câmbio estimado)" : ""}</div>` : ""}</div>
-          <div><div class="t-num">${resumo.horas || !porTarefa ? esc(Dados.escreverDinheiro(resumo.porHoraBRL, "BRL")) : "—"}</div>
-            <div class="t-rot">por hora, na prática</div>
+          ${Pago.celula(T, per, brutoMoeda, PAGAMENTOS)}
+          ${(ph => `<div><div class="t-num">${resumo.horas || !porTarefa ? esc(Dados.escreverDinheiro(ph.valor, "BRL")) : "—"}</div>
+            <div class="t-rot">por hora, na prática</div>${ph.pago ? `<div class="t-menor">pelo valor pago</div>` : ""}`)(Pago.porHora(T, per, resumo, brutoMoeda, PAGAMENTOS))}
             ${porTarefa && !resumo.horas ? `<div class="t-menor">aparece quando você lança as horas</div>` : ""}</div>
         </div>
       </div>
@@ -232,13 +233,14 @@ const Trabalho = (function () {
     const comTarefas = T.pagamento === "tarefa" || linhas.some(l => l.tarefas);
 
     return `<table class="t-hist t-pers">
-      <thead><tr><th>Período</th>${comTarefas ? "<th>Tarefas</th>" : ""}<th>Horas</th><th>Dias</th><th>Bruto</th></tr></thead>
+      <thead><tr><th>Período</th>${comTarefas ? "<th>Tarefas</th>" : ""}<th>Horas</th><th>Dias</th><th>Bruto</th><th>Pago</th></tr></thead>
       <tbody>${linhas.map(l => `<tr data-abrir-per="${esc(l.per.de)}"${l.per.de === naTela.de ? ' class="t-sel"' : ""}>
         <td class="t-dia">${esc(UI.nomeDoPeriodo(l.per, dia))}${ehOAtual(l.per) ? ' <span class="t-agora">atual</span>' : ""}</td>
         ${comTarefas ? `<td class="t-h">${l.tarefas ? esc(UI.escreverQtd(l.tarefas)) : "—"}</td>` : ""}
         <td class="t-h">${esc(Dados.escreverHoras(l.horas) || "—")}</td>
         <td class="t-h">${l.dias.size || "—"}</td>
         <td class="t-h">${l.bruto ? esc(Dados.escreverDinheiro(l.bruto, moeda)) : "—"}</td>
+        <td class="t-h">${(pg => pg ? esc(Dados.escreverDinheiro(pg.valor, pg.moeda || moeda)) : '<span style="color:var(--ink-3,#66717F)">—</span>')(Pago.doPeriodo(PAGAMENTOS, T.id, l.per.de))}</td>
       </tr>`).join("")}</tbody></table>
       <p class="t-menor" style="padding:11px 10px 0;">Clique em um período para ver os dias e os números dele.</p>`;
   }
@@ -410,6 +412,10 @@ const Trabalho = (function () {
     }));
 
     CAIXA.querySelectorAll("#tFixos [data-dia]").forEach(b => b.addEventListener("click", abrirDia));
+    CAIXA.querySelectorAll("#tFixos [data-pago]").forEach(b => b.addEventListener("click", async () => {
+      const per = periodoNaTela(), r = await resumoDoPeriodo(per);
+      Pago.abrir(T, per, r.previstoPorMoeda[T.moeda || "BRL"] || 0, Pago.doPeriodo(PAGAMENTOS, T.id, per.de), recarregar);
+    }));
     CAIXA.querySelectorAll("[data-reg]").forEach(tr => tr.addEventListener("click", () =>
       UI.abrirRegistroDia(T, { data: tr.dataset.reg, aoSalvar: recarregar })));
   }

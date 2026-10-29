@@ -177,7 +177,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
   const painel = document.getElementById("painel");
 
   const ESTADOS = [
-    ["aplicado", "Currículo enviado"], ["teste", "Teste"], ["entrevista", "Entrevista"],
+    ["aplicado", "Currículo enviado"], ["teste", "Teste de proficiência"], ["prova", "Prova específica"], ["entrevista", "Entrevista"],
     ["aprovado", "Aprovado"], ["recusado", "Recusado"], ["banco", "Banco de talentos"],
     ["semresposta", "Sem resposta"], ["desisti", "Desisti"],
   ];
@@ -209,7 +209,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
       ${cartao("Contas", num(c.total), `${num(c.novas_7d)} nos últimos 7 dias · ${num(c.novas_30d)} em 30 dias`)}
       ${cartao("Entraram em 30 dias", num(c.ativas_30d), `${num(c.ativas_7d)} nos últimos 7 dias · ${num(c.confirmadas)} com e-mail confirmado`)}
       ${cartao("Candidaturas", num(ca.total), `${num(ca.do_hub)} em vagas do Hub · ${num(u.com_candidaturas)} ${u.com_candidaturas === 1 ? "pessoa registra" : "pessoas registram"}`)}
-      ${cartao("Avançaram", pct(ca.positivas, ca.total), `${num(ca.positivas)} chegaram a teste, entrevista ou aprovação · ${num(ca.aprovadas)} aprovadas`)}
+      ${cartao("Avançaram", pct(ca.positivas, ca.total), `${num(ca.positivas)} chegaram a teste, prova, entrevista ou aprovação · ${num(ca.aprovadas)} aprovadas`)}
     </div>`;
 
     const vagas = (t.vagas || []);
@@ -274,7 +274,7 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
 
         <section class="p-cx larga">
           <h2>Empresas</h2>
-          <p class="sub">Somando todas as vagas de cada empresa. "Avançaram" conta teste, entrevista e aprovação; "Trabalhando", as pessoas com trabalho ativo lá.</p>
+          <p class="sub">Somando todas as vagas de cada empresa. "Avançaram" conta teste, prova, entrevista e aprovação; "Trabalhando", as pessoas com trabalho ativo lá.</p>
           ${tabEmpresas}
         </section>
 
@@ -343,10 +343,10 @@ try { montarLayout(""); } catch (e) { console.warn("layout.js não carregou", e)
      ══════════════════════════════════════════════════════════ */
   const secPessoas = document.getElementById("secPessoas");
   const COR_ETAPA = {   // as mesmas cores das etapas no Meu Controle
-    aplicado: ["#F1ECE3", "#54606F", "#DED7CA"], teste: ["#EAF1F8", "#1A4893", "#D3E2F1"],
+    aplicado: ["#F1ECE3", "#54606F", "#DED7CA"], teste: ["#EAF1F8", "#1A4893", "#D3E2F1"], prova: ["#EEF0FA", "#3D4A9C", "#D9DDF2"],
     entrevista: ["#FBF0E4", "#A85D24", "#F0DCC6"], aprovado: ["#E4F3F0", "#1F7A6E", "#C6E5DE"],
     recusado: ["#FBE9EB", "#8E2233", "#F1CDD2"], semresposta: ["#F7F4EF", "#66717F", "#EAE4D9"],
-    banco: ["#F1EEF7", "#5B4B9E", "#DFD8EE"],
+    banco: ["#F1EEF7", "#5B4B9E", "#DFD8EE"], desisti: ["#F3EFF6", "#6E4590", "#E2D6EC"],
   };
   const SITUACAO = {
     ativo: ["#E4F3F0", "#1F7A6E", "#C6E5DE", "Ativo"], pausado: ["#FBF0E4", "#A85D24", "#F0DCC6", "Pausado"],

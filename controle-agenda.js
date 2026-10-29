@@ -48,7 +48,7 @@ const Agenda = (function () {
   const DSEM_LONGO = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
   const MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
                  "agosto", "setembro", "outubro", "novembro", "dezembro"];
-  const VIVOS = ["aplicado", "teste", "entrevista", "banco"];
+  const VIVOS = ["aplicado", "teste", "prova", "entrevista", "banco"];
 
   /* ── estilo ──────────────────────────────────────────────────────────── */
 

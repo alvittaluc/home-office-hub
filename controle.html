@@ -344,6 +344,7 @@ body > header.site .hd { max-width:1460px; }
       <section id="hoje" hidden></section>
       <section id="agenda" hidden></section>
       <section id="painel" hidden></section>
+      <section id="imposto" hidden></section>
       <section id="aplicacoes" hidden></section>
       <section id="trabalhos" hidden></section>
       <section id="trabalho" hidden></section>
@@ -362,9 +363,13 @@ body > header.site .hd { max-width:1460px; }
 <script src="controle-graficos.js"></script>
 <script src="controle-blocos.js?v=2"></script>
 <script src="controle-ui.js?v=5"></script>
-<script src="controle-trabalho.js?v=5"></script>
-<script src="controle-hoje.js?v=8"></script>
-<script src="controle-agenda.js?v=5"></script>
+<script src="controle-trabalho.js?v=6"></script>
+<script src="controle-hoje.js?v=9"></script>
+<script src="controle-agenda.js?v=6"></script>
+<script src="controle-cambio.js?v=1"></script>
+<script src="controle-pago.js?v=1"></script>
+<script src="controle-imposto.js?v=1"></script>
+<script src="controle-candidatura.js?v=1"></script>
 <script>
 /* O layout compartilhado é opcional de propósito: se o layout.js não vier
    junto, a ferramenta continua funcionando. Foi o erro do transcricao.html. */
@@ -382,12 +387,14 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
 
   const ESTADOS = [
     { id: "aplicado",    nome: "Currículo enviado", fundo: "#F1ECE3", texto: "#54606F", borda: "#DED7CA" },
-    { id: "teste",       nome: "Teste",             fundo: "#EAF1F8", texto: "#1A4893", borda: "#D3E2F1" },
+    { id: "teste",       nome: "Teste de proficiência", fundo: "#EAF1F8", texto: "#1A4893", borda: "#D3E2F1" },
+    { id: "prova",       nome: "Prova específica",  fundo: "#EEF0FA", texto: "#3D4A9C", borda: "#D9DDF2" },
     { id: "entrevista",  nome: "Entrevista",        fundo: "#FBF0E4", texto: "#A85D24", borda: "#F0DCC6" },
     { id: "aprovado",    nome: "Aprovado",          fundo: "#E4F3F0", texto: "#1F7A6E", borda: "#C6E5DE" },
     { id: "recusado",    nome: "Recusado",          fundo: "#FBE9EB", texto: "#8E2233", borda: "#F1CDD2" },
     { id: "semresposta", nome: "Sem resposta",      fundo: "#F7F4EF", texto: "#66717F", borda: "#EAE4D9" },
     { id: "banco",       nome: "Banco de talentos", fundo: "#F1EEF7", texto: "#5B4B9E", borda: "#DFD8EE" },
+    { id: "desisti",     nome: "Desisti",           fundo: "#F3EFF6", texto: "#6E4590", borda: "#E2D6EC" },
   ];
   const estadoDe = id => ESTADOS.find(e => e.id === id) || ESTADOS[0];
   const ORIGENS = ["Home Office Hub", "LinkedIn", "Site da empresa", "Indicação", "E-mail", "Outro"];
@@ -463,10 +470,10 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      ══════════════════════════════════════════════════════════ */
 
   function desenharLado() {
-    const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "entrevista"].indexOf(a.estado) >= 0).length;
+    const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "prova", "entrevista"].indexOf(a.estado) >= 0).length;
     // Contador da tela Hoje: só o que tem data marcada para hoje ou para trás.
     const aFazer = APLICACOES.filter(a => a.proximo && a.proximoEm && a.proximoEm <= Dados.hoje() &&
-      ["aplicado", "teste", "entrevista", "banco"].indexOf(a.estado) >= 0).length;
+      ["aplicado", "teste", "prova", "entrevista", "banco"].indexOf(a.estado) >= 0).length;
     // Contador da Agenda: o que a pessoa marcou para hoje.
     const naAgendaHoje = typeof Agenda !== "undefined" ? Agenda.quantosHoje(AGENDA) : 0;
 
@@ -496,6 +503,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         <span class="ct-cont">${naAgendaHoje || ""}</span></button>
       <button class="ct-item" data-ir="painel" aria-current="${rota.tela === "painel"}">
         ${IC.painel}<span class="ct-txt">Painel</span></button>
+      <button class="ct-item" data-ir="imposto" aria-current="${rota.tela === "imposto"}">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="1.8" width="10" height="12.4" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M5.6 5h4.8M5.6 8h4.8M5.6 11h2.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="ct-txt">Imposto</span><span class="ct-cont" style="color:#A85D24">novo</span></button>
       <button class="ct-item" data-ir="aplicacoes" aria-current="${rota.tela === "aplicacoes"}">
         ${IC.aplicacoes}<span class="ct-txt">Candidaturas</span>
         <span class="ct-cont">${emProcesso ? emProcesso + "/" + APLICACOES.length : (APLICACOES.length || "")}</span></button>
@@ -520,7 +529,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      ROTAS
      ══════════════════════════════════════════════════════════ */
 
-  const TELAS = ["hoje", "agenda", "painel", "aplicacoes", "trabalhos", "trabalho", "dados"];
+  const TELAS = ["hoje", "agenda", "painel", "imposto", "aplicacoes", "trabalhos", "trabalho", "dados"];
 
   function irPara(caminho) {
     if (location.hash.slice(1) === caminho) return abrir(caminho);
@@ -544,6 +553,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     if (tela === "hoje")       await desenharHoje();
     if (tela === "agenda")     await desenharAgenda();
     if (tela === "painel")     await desenharPainel();
+    if (tela === "imposto")    await Imposto.montar($("#imposto"), { trabalhos: TRABALHOS, pagamentos: PAGAMENTOS, cfg: CFG });
     if (tela === "aplicacoes") desenharAplicacoes();
     if (tela === "trabalhos")  await desenharTrabalhos();
     if (tela === "dados")      desenharDados();
@@ -634,7 +644,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     const filtro = PERIODOS[periodo];
     const r = await UI.resumo({ trabalhos: TRABALHOS, registros: REGISTROS, pagamentos: PAGAMENTOS,
                                 cabe: filtro.cabe, cabePg: filtro.cabePg });
-    const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "entrevista"].indexOf(a.estado) >= 0).length;
+    const emProcesso = APLICACOES.filter(a => ["aplicado", "teste", "prova", "entrevista"].indexOf(a.estado) >= 0).length;
 
     alvo.innerHTML = `
       <div class="ct-cab-tela">
@@ -947,7 +957,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     alvo.innerHTML = `<div class="ct-lista">${lista.map(a => {
       const e = estadoDe(a.estado);
       const dias = a.data ? Dados.diasEntre(a.data, Dados.hoje()) : null;
-      const parado = ["aplicado", "teste"].indexOf(a.estado) >= 0 && dias !== null && dias >= 14;
+      const parado = ["aplicado", "teste", "prova"].indexOf(a.estado) >= 0 && dias !== null && dias >= 14;
       return `<button class="ct-linha" data-ap="${esc(a.id)}">
         ${marcaHtml(a.empresa, 38)}
         <span>
@@ -1000,8 +1010,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
      A etapa muda com um clique, e cada etapa pode ter links de estudo
      (campo "estudo" do resumo da vaga), que aparecem quando existirem.
      ══════════════════════════════════════════════════════════ */
-  const CAMINHO = ["aplicado", "teste", "entrevista", "aprovado"];
-  const DESFECHOS = ["recusado", "semresposta", "banco"];
+  const CAMINHO = ["aplicado", "teste", "prova", "entrevista", "aprovado"];
+  const DESFECHOS = ["recusado", "semresposta", "desisti", "banco"];
 
   /* link de estudo: endereço completo (https) ou página do próprio site */
   function linkDeEstudo(u) {
@@ -1118,19 +1128,47 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
   function desenharEtapas(dlg, ap, foto) {
     const caixa = dlg.querySelector("[data-etapas]");
     if (!caixa) return;
-    const atual = ap.estado || "aplicado", iAtual = CAMINHO.indexOf(atual);
+    const atual = ap.estado || "aplicado", CAM = Candidatura.caminho(ap), iAtual = CAM.indexOf(atual);
     caixa.innerHTML = `
-      <div class="cv-etapas-tit">Em que etapa está <span>clique na etapa para atualizar</span></div>
-      <ol class="cv-trilho">${CAMINHO.map((id, i) => {
-        const classe = id === atual ? " atual" : (iAtual >= 0 && i < iAtual ? " feita" : "");
-        return `<li class="cv-passo${classe}"><button type="button" data-estado="${id}" aria-pressed="${id === atual}"><i></i><span>${esc(estadoDe(id).nome)}</span></button></li>`;
+      <div class="cv-etapas-tit">Em que etapa está <span>clique na etapa para atualizar. Se a vaga não tiver alguma delas, é só pular</span></div>
+      <ol class="cv-trilho">${CAM.map((id, i) => {
+        const classe = Candidatura.classePasso(ap, id, i, iAtual);
+        return `<li class="cv-passo${classe}"><button type="button" data-estado="${id}" aria-pressed="${id === atual}"${classe === " pulada" ? ' title="Teve esta etapa? Clique para marcar."' : ""}><i></i><span>${esc(estadoDe(id).nome)}</span>${Candidatura.notaPasso(ap, id, classe)}</button></li>`;
       }).join("")}</ol>
       <div class="cv-desfechos"><span>Outro desfecho:</span>${DESFECHOS.map(id => {
         const e = estadoDe(id), ativo = id === atual;
         return `<button type="button" class="cv-desf${ativo ? " atual" : ""}" data-estado="${id}" aria-pressed="${ativo}"
           ${ativo ? `style="background:${e.fundo};color:${e.texto};border-color:${e.borda};"` : ""}>${esc(e.nome)}</button>`;
-      }).join("")}</div>`;
-    caixa.querySelectorAll("[data-estado]").forEach(b => b.addEventListener("click", () => mudarEtapa(dlg, ap, foto, b.dataset.estado)));
+      }).join("")}</div>
+      <div data-pcv></div>`;
+    caixa.querySelectorAll("[data-estado]").forEach(b => b.addEventListener("click", async () => {
+      if (caixa.dataset.ordenando === "1") return;   // mudando a ordem: o clique não muda a etapa
+      // etapa pulada: o clique avisa que ela aconteceu, sem mudar a etapa de agora
+      if (b.closest(".pulada")) {
+        ap.passos = Object.assign({}, ap.passos, { [b.dataset.estado]: "?" });
+        await Dados.salvar("aplicacoes", Object.assign({}, ap));
+        await recarregar();
+        if (rota.tela === "aplicacoes") desenharAplicacoes();
+        desenharEtapas(dlg, ap, foto);
+        UI.aviso("Marcado: esta vaga teve " + estadoDe(b.dataset.estado).nome.toLowerCase() + ".");
+        return;
+      }
+      mudarEtapa(dlg, ap, foto, b.dataset.estado);
+    }));
+    Candidatura.ligarVaga(caixa.querySelector("[data-pcv]"), ap, async campos => {
+      Object.assign(ap, campos);
+      await Dados.salvar("aplicacoes", Object.assign({}, ap));
+      await recarregar();
+      if (rota.tela === "aplicacoes") desenharAplicacoes();
+      UI.aviso("Guardado na sua candidatura.");
+    });
+    Candidatura.ligarOrdem(caixa, ap, async (ordem, aviso) => {
+      ap.ordem = ordem;
+      await Dados.salvar("aplicacoes", Object.assign({}, ap));
+      await recarregar();
+      if (rota.tela === "aplicacoes") desenharAplicacoes();
+      UI.aviso(aviso || "Ordem das etapas salva para esta vaga.");
+    }, () => desenharEtapas(dlg, ap, foto));
     desenharEstudo(dlg, ap, foto);
   }
 
@@ -1150,9 +1188,11 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
     if (!novo || novo === ap.estado) return;
     const antigo = ap.estado;
     let salvo;
-    try { salvo = await Dados.salvar("aplicacoes", Object.assign({}, ap, { estado: novo })); }
+    const passos = Candidatura.passosAo(ap, novo);
+    try { salvo = await Dados.salvar("aplicacoes", Object.assign({}, ap, { estado: novo }, passos)); }
     catch (e) { console.error(e); UI.aviso("Não deu para salvar agora.", "erro"); return; }
     ap.estado = novo;
+    Object.assign(ap, passos);
     const campo = dlg.querySelector('[name="estado"]');
     if (campo) campo.value = novo;
     desenharEtapas(dlg, ap, foto);
@@ -1183,11 +1223,12 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
       ${UI.campo({ nome: "titulo", rotulo: "Título da vaga", valor: ap.titulo, obrigatorio: true, dica: "AI Data Annotator - Portuguese (Brazil)" })}
       ${UI.campo({ nome: "url", rotulo: "Link do anúncio", tipo: "url", valor: ap.url, dica: "https://" })}
       <div class="u-tripla">
-        ${UI.campo({ nome: "estado", rotulo: "Em que etapa está", tipo: "escolha", valor: ap.estado,
-                     opcoes: ESTADOS.map(e => ({ valor: e.id, nome: e.nome })) })}
+        ${novo ? UI.campo({ nome: "estado", rotulo: "Em que etapa está", tipo: "escolha", valor: ap.estado,
+                     opcoes: ESTADOS.map(e => ({ valor: e.id, nome: e.nome })) }) : ""}
         ${UI.campo({ nome: "origem", rotulo: "Onde você viu", tipo: "escolha", valor: ap.origem,
                      opcoes: [{ valor: "", nome: "Não informado" }].concat(ORIGENS.map(o => ({ valor: o, nome: o }))) })}
       </div>
+      ${novo ? Candidatura.recusaHtml(ap) : ""}
       <div class="u-tripla">
         ${UI.campo({ nome: "email", rotulo: "E-mail que você usou", tipo: "email", valor: ap.email, dica: "para lembrar em qual caixa procurar" })}
         ${UI.campo({ nome: "remuneracao", rotulo: "Valor anunciado", valor: ap.remuneracao, dica: "US$ 12/h" })}
@@ -1225,7 +1266,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         if (!empresa) { UI.erroNoPainel(d, "Escreva o nome da empresa."); return false; }
         if (!titulo) { UI.erroNoPainel(d, "Escreva o título da vaga."); return false; }
 
-        const estadoNovo = UI.ler(d, "estado");
+        const estadoNovo = UI.ler(d, "estado") || ap.estado;
         const curriculo = UI.ler(d, "curriculo");
 
         const salvo = await Dados.salvar("aplicacoes", Object.assign({}, ap, {
@@ -1240,7 +1281,7 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
           proximo: UI.ler(d, "proximo"),
           proximoEm: UI.ler(d, "proximoEm"),
           observacoes: UI.ler(d, "observacoes"),
-        }));
+        }, Candidatura.campos(d)));
 
         if (curriculo && (CFG.curriculos || []).indexOf(curriculo) < 0) {
           CFG.curriculos = (CFG.curriculos || []).concat([curriculo]);
@@ -1256,6 +1297,8 @@ try { montarLayout("ferramentas"); } catch (e) { console.warn("layout.js não ca
         depoisDaEtapa(salvo, estadoNovo, ap.estado, titulo, empresa);
       },
     });
+
+    Candidatura.ligar(dlg);
 
     async function conferirRepetida() {
       const caixa = dlg.querySelector("#avisoRepetida");
