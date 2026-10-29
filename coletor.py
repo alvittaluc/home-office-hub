@@ -564,6 +564,15 @@ def normalizar_data(valor) -> str:
 #  BUSCA — Lever
 # ═══════════════════════════════════════════════════════════════════
 
+def _idioma_estrangeiro(titulo: str) -> bool:
+    """O título pede outro idioma que não português nem inglês (regra do scraper_extras)."""
+    try:
+        from scraper_extras import idioma_estrangeiro
+    except Exception:
+        return True   # sem a regra, não arrisca
+    return idioma_estrangeiro(titulo)
+
+
 def buscar_lever(nome_interno: str, slug: str) -> list:
     url = f"https://api.lever.co/v0/postings/{slug}?mode=json"
     print(f"  → Lever: {slug} ...", end=" ")
@@ -649,13 +658,30 @@ def buscar_lever(nome_interno: str, slug: str) -> list:
         if local_estrangeiro and not loc_worldwide:
             entra = False
 
+        # (4) vaga REMOTA com o Brasil na lista curta de países aceitos, sem
+        #     pedir outro idioma no título. Era o "Project Cursa" da Welocalize
+        #     (out/2026): local principal Filipinas, mas aberto a Brasil, México,
+        #     Índia e mais cinco, para anotar vídeo em inglês. A lista curta
+        #     separa isso do caso Barcelona/Malta, com o Brasil perdido entre
+        #     dezenas de escritórios.
+        brasil_na_lista = any(local_eh_brasil(l) for l in lista_locs)
+        remota = (v.get("workplaceType") or "").lower() == "remote"
+        if (not entra and remota and brasil_na_lista and len(lista_locs) <= 12
+                and not so_portugal and not _idioma_estrangeiro(titulo)):
+            entra = True
+            lista_curta = True
+        else:
+            lista_curta = False
+
         if not entra or so_portugal or eh_presencial:
             continue
 
         # ─── Texto do local na tela ───
         # Vaga aberta ao mundo virava "Remoto · Remote - Europe", que fica feio
         # e ainda por cima engana, porque ela aceita o Brasil.
-        if local_principal_brasil:
+        if lista_curta:
+            local_exib = "Remoto · Brasil e outros países"
+        elif local_principal_brasil:
             local_exib = limpar_local(local)
         elif loc_worldwide:
             local_exib = "Remoto · Mundial"
