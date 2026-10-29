@@ -215,6 +215,12 @@ EXCECOES = {
     "=Fighter Pilot": "Outras areas",
     "=Humanitarian Aid Representative": "Outras areas",
     "=Intelligence Analyst": "Outras areas",
+    # Rotina de 28/10/2026: micro1 pede piloto profissional ou controlador
+    # de voo certificado para transcrever radio de aviacao, e 5 anos de
+    # redacao tecnica de engenharia, pecas industriais ou modelagem
+    "=Air Traffic Controller": "Outras areas",
+    "=Aircraft Pilot": "Outras areas",
+    "Senior Technical Documentation, Parts and Annotation Specialist": "Engenharia",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -878,6 +884,9 @@ if __name__ == "__main__":
         ("Fighter Pilot", "", "Outras areas"),
         ("Humanitarian Aid Representative", "", "Outras areas"),
         ("Intelligence Analyst", "", "Outras areas"),
+        ("Air Traffic Controller", "", "Outras areas"),
+        ("Aircraft Pilot", "", "Outras areas"),
+        ("Senior Technical Documentation, Parts and Annotation Specialist", "", "Engenharia"),
     ]
 
     falhas = 0
