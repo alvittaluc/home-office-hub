@@ -5,7 +5,21 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 29 Oct 2026 14:46:26 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 29 Oct 2026 15:28:27 +0000</lastBuildDate>
+    <item>
+      <title>Project Cursa - Robot Manipulation Video Annotation QC (V2) — Welocalize</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=e1680c26d9</link>
+      <guid isPermaLink="false">e1680c26d9</guid>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você revisa as anotações de vídeos curtos de robôs pegando e mexendo em objetos, filmados por três câmeras: uma de cima e uma em cada pulso do robô. Confere se o texto descreve o que aconteceu de verdade, inclusive quando o robô deixa cair ou erra a pegada, e se não ficou nenhum trecho do vídeo sem descrição. Depois escreve comentários claros para cada anotador, aponta os erros que se repetem e participa de reuniões para alinhar os critérios com a equipe e o cliente.</description>
+    </item>
+    <item>
+      <title>Project Cursa - Robot Manipulation Video Annotator (V2) — Welocalize</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=aaf9c821e4</link>
+      <guid isPermaLink="false">aaf9c821e4</guid>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você assiste a vídeos curtos de robôs fazendo tarefas com objetos, filmados por três câmeras ao mesmo tempo, divide cada vídeo em trechos e escreve frases curtas e precisas sobre o que acontece. Cada trecho ganha descrição em três níveis: o movimento pequeno (fechar os dedos na alça vermelha), a ação completa (pegar o bloco pela borda) e o objetivo da sequência (guardar todos os blocos na caixa). Quando algo dá errado, como um objeto que cai, você descreve exatamente o que houve, seguindo um guia de estilo.</description>
+    </item>
     <item>
       <title>Smartwatch User — micro1</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1c3d2166ef</link>
@@ -245,46 +259,32 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
-      <title>AI Data Quality Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4bdb89f9f0</link>
-      <guid isPermaLink="false">4bdb89f9f0</guid>
+      <title>E-commerce Data Analyst — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3d82b44c66</link>
+      <guid isPermaLink="false">3d82b44c66</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você revisa e avalia o que a IA produz, em texto, imagem e tabelas de dados, seguindo as diretrizes e as rubricas do projeto. Lê, critica e explica por escrito o que está errado. O anúncio resume o perfil assim: se você percebe quando algo está fora do lugar, você serve.</description>
+      <description>Você revisa, categoriza e melhora os dados de produtos que alimentam sistemas de IA de compras e recomendação: categoria certa, descrição coerente, informação que bate. É trabalho com tabelas de dados, em ferramentas online.</description>
     </item>
     <item>
-      <title>Audio Transcription Specialist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4e6565c964</link>
-      <guid isPermaLink="false">4e6565c964</guid>
+      <title>Voice Recording Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4ce708dfd2</link>
+      <guid isPermaLink="false">4ce708dfd2</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você transforma gravações de áudio em texto correto e bem formatado, seguindo diretrizes claras. Os áudios variam em sotaque, velocidade e qualidade de gravação. Você aplica as regras de pontuação e de identificação de quem fala e marca os trechos que não dá para entender.</description>
+      <description>Você grava amostras de fala natural para treinar sistemas de voz: lê roteiros e responde a perguntas abertas, variando tom, ritmo e estilo conforme a orientação. As gravações precisam sair limpas, sem ruído nem distorção, e cada sessão vem com um formulário de dados para preencher.</description>
     </item>
     <item>
-      <title>Audio Quality Reviewer — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4d2631e64e</link>
-      <guid isPermaLink="false">4d2631e64e</guid>
+      <title>Conversation Quality Analyst — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=de9ad63069</link>
+      <guid isPermaLink="false">de9ad63069</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você ouve gravações usadas para treinar IA e avalia se cada uma está clara, correta e com boa qualidade. Aponta ruído de fundo, distorção, pronúncia errada e falhas de gravação, confere se a transcrição bate com o que foi dito e dá nota seguindo critérios definidos.</description>
+      <description>Você avalia diálogos gerados por IA e diz se parecem conversa de gente: claros, úteis e naturais. Dá nota a muitas conversas, sempre com o mesmo critério, e explica por escrito o motivo de cada avaliação.</description>
     </item>
     <item>
-      <title>Film Scene Description Specialist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=33facbb56d</link>
-      <guid isPermaLink="false">33facbb56d</guid>
+      <title>Search Quality Evaluator — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=639ef7c927</link>
+      <guid isPermaLink="false">639ef7c927</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você assiste a clipes curtos e descreve cada cena seguindo um roteiro fixo: o que acontece, o clima, a emoção e como a imagem conta a história. O material ensina IA a entender a linguagem do cinema.</description>
-    </item>
-    <item>
-      <title>AI Training Specialist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1fc54d7ed5</link>
-      <guid isPermaLink="false">1fc54d7ed5</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você faz tarefas de rotular, classificar e avaliar, sempre com regras definidas, que ensinam sistemas de IA a responder melhor. O conteúdo pode ser texto, imagem ou áudio, e para cada item você segue um guia e uma rubrica, apontando erros e respostas de baixa qualidade. É uma das vagas da Alignerr mais acessíveis para quem está começando.</description>
-    </item>
-    <item>
-      <title>Prompt Writer — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f77d5d9d3</link>
-      <guid isPermaLink="false">3f77d5d9d3</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você cria prompts originais, ou seja, perguntas, cenários e tarefas, em assuntos e níveis de dificuldade variados, para desafiar o raciocínio, a criatividade e a precisão dos modelos. Parte dos prompts testa como a IA se sai em temas de segurança, em situações delicadas e em casos extremos. Você segue os formatos e os guias de estilo do projeto e ajusta o texto conforme as correções que recebe.</description>
+      <description>Você avalia se os resultados de um buscador são relevantes, corretos e úteis, e dá nota a respostas e recomendações geradas por IA usando rubricas. Compara resultados lado a lado, ordena por qualidade e justifica a nota em poucas linhas.</description>
     </item>
   </channel>
 </rss>

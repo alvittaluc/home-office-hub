@@ -1106,6 +1106,20 @@
       "titulo": "Wearable Electronic User",
       "revisado_em": "2026-10-28",
       "motivo": "Remota e aberta ao mundo, tarefa única sem diploma. Basta ter um relógio ou anel inteligente com 18 meses de dados e exportá-los em inglês."
+    },
+    {
+      "id": "e1680c26d9",
+      "empresa": "welocalize",
+      "titulo": "Project Cursa - Robot Manipulation Video Annotation QC (V2)",
+      "revisado_em": "2026-10-29",
+      "motivo": "Remota e freelancer, com o Brasil na lista de países aceitos (junto com México, Índia e outros). Pede ótimo inglês escrito, sem diploma."
+    },
+    {
+      "id": "aaf9c821e4",
+      "empresa": "welocalize",
+      "titulo": "Project Cursa - Robot Manipulation Video Annotator (V2)",
+      "revisado_em": "2026-10-29",
+      "motivo": "Remota e freelancer, com o Brasil na lista de países aceitos. Descrever vídeos de robôs em inglês seguindo um guia; sem diploma nem experiência obrigatória."
     }
   ],
   "bloqueadas": [

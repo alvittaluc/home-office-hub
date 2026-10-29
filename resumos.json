@@ -1,5 +1,5 @@
 {
-  "total": 336,
+  "total": 346,
   "vagas": [
     {
       "id": "65762fd387",
@@ -3674,6 +3674,113 @@
         "o_que_faz": "Você lê conversas entre pessoas e modelos de IA sobre relacionamentos e decisões do dia a dia e avalia se a IA reuniu informação suficiente antes de dar uma recomendação. Aponta o que faltou perguntar, diz se essa informação teria mudado o conselho e separa o que é essencial do que é só detalhe. Tudo é registrado seguindo diretrizes de avaliação, junto com a equipe de pesquisa.",
         "requisitos": "Pede de 3 a 5 anos de prática direta numa destas áreas: serviço social com registro, psicologia ou terapia com registro ou doutorado, pesquisa qualitativa, experiência do usuário ou comunicação com mestrado ou doutorado, ou mediação, coaching e orientação de pessoas. O anúncio diz que só aceita quem mora na América Latina, no sudeste da Europa, na Ásia ou na África, então o Brasil está incluído.",
         "idioma": "en+"
+      }
+    },
+    {
+      "id": "e1680c26d9",
+      "resumo": {
+        "frase": "Revisor que confere as descrições em inglês de vídeos de braços robóticos feitas pela equipe de anotação.",
+        "o_que_faz": "Você revisa as anotações de vídeos curtos de robôs pegando e mexendo em objetos, filmados por três câmeras: uma de cima e uma em cada pulso do robô. Confere se o texto descreve o que aconteceu de verdade, inclusive quando o robô deixa cair ou erra a pegada, e se não ficou nenhum trecho do vídeo sem descrição. Depois escreve comentários claros para cada anotador, aponta os erros que se repetem e participa de reuniões para alinhar os critérios com a equipe e o cliente.",
+        "requisitos": "Pede ótima escrita e leitura em inglês, porque você vai avaliar a escolha das palavras, não só erros de digitação. Também pede muita atenção aos detalhes, facilidade para descrever posição e movimento (esquerda e direita, alça, tampa, borda) e disciplina para seguir um guia de estilo detalhado sem supervisão o tempo todo. Experiência com revisão, anotação de vídeo ou ferramentas como o Label Studio conta a favor, mas não é obrigatória.",
+        "idioma": "en+",
+        "contrato": "Freelancer"
+      }
+    },
+    {
+      "id": "aaf9c821e4",
+      "resumo": {
+        "frase": "Anotador que assiste a vídeos de braços robóticos e descreve em inglês cada movimento.",
+        "o_que_faz": "Você assiste a vídeos curtos de robôs fazendo tarefas com objetos, filmados por três câmeras ao mesmo tempo, divide cada vídeo em trechos e escreve frases curtas e precisas sobre o que acontece. Cada trecho ganha descrição em três níveis: o movimento pequeno (fechar os dedos na alça vermelha), a ação completa (pegar o bloco pela borda) e o objetivo da sequência (guardar todos os blocos na caixa). Quando algo dá errado, como um objeto que cai, você descreve exatamente o que houve, seguindo um guia de estilo.",
+        "requisitos": "Pede boa escrita em inglês, porque são dezenas de frases por vídeo e é preciso variar o jeito de dizer. Também pede atenção aos detalhes para notar diferenças pequenas, como empurrar e arrastar, e facilidade para seguir um guia detalhado trabalhando sozinho. Experiência com anotação, transcrição ou robótica ajuda, mas o anúncio diz que o guia explica tudo o que é preciso.",
+        "idioma": "en+",
+        "contrato": "Freelancer"
+      }
+    },
+    {
+      "id": "f79e09858c",
+      "resumo": {
+        "frase": "Profissional de serviço de inteligência que avalia cenários de coleta de informação criados por IA.",
+        "o_que_faz": "Você avalia cenários gerados por modelos de IA sobre coleta de informações de inteligência, planejamento de operações e decisões de segurança nacional. Confere se os métodos e processos descritos são corretos e realistas, revisa estudos de caso e resumos de análise e aponta lacunas e suposições irreais. Seus comentários ajudam a IA a raciocinar melhor sobre operações de inteligência.",
+        "requisitos": "A empresa dá preferência a quem trabalha ou trabalhou num serviço de inteligência civil, como CIA, NSA, MI6 ou um órgão equivalente de outro país, principalmente em operações e coleta. Também pede domínio de disciplinas de coleta como fontes humanas (HUMINT), sinais (SIGINT) ou fontes abertas (OSINT), conhecimento dos procedimentos e das bases legais desses órgãos e ótima escrita em inglês.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "contrato": "Por hora, autônomo"
+      }
+    },
+    {
+      "id": "d205aa6369",
+      "resumo": {
+        "frase": "Oficial de inteligência que cria e revisa material sobre operações de inteligência para treinar IA.",
+        "o_que_faz": "Você analisa dados de inteligência e dá comentários detalhados para cenários de treino de IA. Também cria cenários e relatos realistas de missões, redige e revisa comunicações no estilo das trocas reais entre agências e aponta tendências e anomalias em conjuntos de informação. O trabalho é remoto e sem horário fixo, com respostas por escrito à equipe do projeto.",
+        "requisitos": "A empresa dá preferência a quem trabalha ou trabalhou num serviço de inteligência civil, como CIA, NSA, MI6 ou um órgão nacional equivalente. Também pede experiência com métodos de coleta, análise de ameaças e planejamento de operações, conhecimento de HUMINT, SIGINT e OSINT, capacidade de resumir muita informação em pouco texto e ótima comunicação em inglês, escrita e falada.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "contrato": "Por hora, autônomo"
+      }
+    },
+    {
+      "id": "15749914a0",
+      "resumo": {
+        "frase": "Especialista em tecnologia de serviços de inteligência que avalia conteúdo técnico gerado por IA.",
+        "o_que_faz": "Você avalia conteúdo de modelos de IA sobre tecnologias e sistemas usados em serviços de inteligência, como processamento de dados e ferramentas de coleta e análise. Confere se os fluxos de trabalho e as arquiteturas de sistema descritos são corretos e possíveis de verdade, aponta lacunas e suposições irreais e revisa documentação técnica e estudos de caso.",
+        "requisitos": "A empresa dá preferência a quem trabalha ou trabalhou num serviço de inteligência civil, como CIA, NSA, MI6 ou equivalente, na área de tecnologia, engenharia de sistemas ou operações técnicas. Também pede experiência em desenvolver ou avaliar sistemas de apoio à inteligência, arquitetura de sistemas ou engenharia de dados, conhecimento das exigências de segurança desses órgãos e ótima escrita em inglês.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "contrato": "Por hora, autônomo"
+      }
+    },
+    {
+      "id": "33763c263b",
+      "resumo": {
+        "frase": "Geólogo marinho que revisa respostas de IA sobre sedimentos e testemunhos do fundo do mar.",
+        "o_que_faz": "Você confere, frase por frase, respostas de referência sobre geologia marinha e sedimentologia, para garantir que estão corretas e claras. Avalia respostas de modelos de IA sobre tipos de rocha e sedimento do fundo do mar, estruturas sedimentares, classificação por tamanho de grão e coleta de testemunhos (as amostras cilíndricas tiradas do fundo). Também sugere correções e anota as dúvidas e os casos extremos que encontrar.",
+        "requisitos": "Pede formação avançada em geologia marinha, sedimentologia marinha ou área próxima, e bastante prática com descrição e amostragem de testemunhos em projetos no mar. Também pede saber identificar sedimentos e camadas de solo e rocha no fundo do oceano e ótima escrita em inglês. Não precisa ter experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 100 por hora",
+        "contrato": "Por hora, autônomo"
+      }
+    },
+    {
+      "id": "6e934e9fd0",
+      "resumo": {
+        "frase": "Perito em balística e marcas de ferramenta que avalia respostas de IA sobre casos forenses.",
+        "o_que_faz": "Você revisa as respostas de modelos de IA para 10 casos de teste de perícia em armas de fogo e marcas de ferramenta. Confere se a análise das marcas do percussor e da culatra, a comparação no microscópio e a leitura das raias do cano seguem os métodos de laboratório forense. Depois escreve comentários e recomendações para melhorar a IA.",
+        "requisitos": "Pede bastante experiência em perícia de armas de fogo, identificação de marcas de ferramenta e casos de balística, com prática em comparação microscópica. Também pede conhecer as normas e os protocolos de laboratório forense e ótima comunicação em inglês, escrita e falada. Não precisa ter experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 100 por hora",
+        "contrato": "Por hora, autônomo"
+      }
+    },
+    {
+      "id": "025138e0d1",
+      "resumo": {
+        "frase": "Piloto comercial que revisa respostas de IA sobre procedimentos de aproximação e briefings de cabine.",
+        "o_que_faz": "Você revisa conteúdo de modelos de IA sobre procedimentos de aproximação por instrumentos e briefings na cabine. Confere se as cartas de aproximação e os procedimentos de terminal citados estão certos, se a fraseologia segue as normas de operação e segurança da aviação americana (Part 135) e se tudo bate com os procedimentos de voo por instrumentos (IFR). Depois aponta os erros e sugere correções.",
+        "requisitos": "A empresa dá preferência a piloto comercial com licença da FAA, a autoridade de aviação dos Estados Unidos, com habilitação multimotor e por instrumentos, e de preferência com experiência como instrutor de voo por instrumentos (CFII) ou checador em operação Part 135. Também pede conhecer bem as cartas da FAA e as regras de voo por instrumentos e ótima escrita em inglês. Não precisa ter experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 100 por hora",
+        "contrato": "Por hora, autônomo"
+      }
+    },
+    {
+      "id": "52920f0617",
+      "resumo": {
+        "frase": "Engenheiro de hardware sênior que projeta placas de circuito no KiCad, do esquema ao protótipo.",
+        "o_que_faz": "Você transforma requisitos de produto em circuitos e placas prontas: desenha o esquema, posiciona os componentes, faz o roteamento de placas com várias camadas e roda as verificações do KiCad. Escolhe componentes lendo as folhas de dados, prepara a lista de materiais, faz os cálculos de engenharia e cuida de aterramento, alimentação, integridade de sinal, temperatura e interferência. Também prepara a documentação de fabricação e ajuda a testar e corrigir os protótipos.",
+        "requisitos": "Pede mais de 10 anos de prática em projeto de hardware eletrônico (o anúncio também fala em 8 anos ou mais) e muita experiência com KiCad em esquema, layout e verificação de regras. Também pede boa base em análise de circuitos e experiência numa destas áreas: hardware digital de alta velocidade, eletrônica de potência, circuitos analógicos ou mistos, sensores, comunicação ou RF.",
+        "idioma": "en",
+        "carga": "40 h por semana",
+        "contrato": "Contrato de cerca de 13 semanas, pode ser estendido"
+      }
+    },
+    {
+      "id": "f3231b69e0",
+      "resumo": {
+        "frase": "Líder de qualidade sênior que resolve os casos difíceis e calibra as equipes de revisão em projetos de anotação de IA.",
+        "o_que_faz": "Você transforma as diretrizes do cliente em instruções claras para a equipe, confere a montagem do projeto antes de a produção começar e conduz sessões de calibração para os revisores avaliarem do mesmo jeito. Também decide os casos ambíguos que sobem para você, registra essas decisões, orienta os líderes de QA e usa os resultados das auditorias para melhorar as diretrizes e o treinamento.",
+        "requisitos": "Pede de 4 a 6 anos de experiência, com pelo menos 2 liderando revisores de QA, e prática em auditar trabalho com base em diretrizes detalhadas. Também pede bom julgamento em casos complexos e ótima comunicação e documentação em inglês. Experiência com anotação ou dados de treino de IA conta a favor. A jornada é das 7h às 16h no horário da costa oeste dos EUA (PST, a partir do meio-dia em Brasília), cinco dias por semana, que podem incluir fim de semana.",
+        "idioma": "en+",
+        "contrato": "Projeto de 16 semanas"
       }
     }
   ]

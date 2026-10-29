@@ -1,16 +1,4 @@
 {
-  "total": 1,
-  "vagas": [
-    {
-      "id": "52920f0617",
-      "empresa": "turing",
-      "titulo": "Hardware Design Engineer – KiCad, PCB Design and Verification Expert",
-      "url": "https://work.turing.com/job/home?jobCode=PYXMxxND65GN",
-      "local": "Remoto · Mundial",
-      "categoria_badge": "Especialista",
-      "descricao": "About Turing:\n Based in San Francisco, California, Turing is the world’s leading research accelerator for frontier AI labs and a trusted partner for global enterprises deploying advanced AI systems.\n\n Role Overview \n We are seeking a senior Hardware Design Engineer to develop electronic hardware from requirements through schematic capture, PCB layout, verification, and prototype debugging. The role spans digital and high-speed, power electronics, analog, mixed-signal, sensor, communication, and RF designs.\n\n Experience: 8+ years of experience\n\n Key Responsibilities \n • Translate product requirements into circuit architectures, hardware specifications, and validated designs.\n • Use KiCad for schematic capture, component placement, routing, multilayer PCB layout, design rules, and project management.\n • Select components by analyzing datasheets, ratings, footprints, performance, availability, and compatibility; prepare BOMs and alternatives.\n • Design PCBs with sound grounding, power distribution, signal integrity, impedance control, thermal management, EMI/EMC, and manufacturability in mind.\n • Apply relevant design practices for high-speed interfaces, power circuits, analog and mixed-signal systems, sensors, and RF applications.\n • Perform engineering calculations and verify electrical, thermal, and protection requirements.\n • Run KiCad ERC and DRC checks, netlist and connectivity checks, schematic reviews, and DFM/DFT assessments.\n • Prepare manufacturing documentation and support prototype bring-up, debugging, and validation.\n Required Skills \n • 10+ years of hands-on electronics hardware design experience.\n • Strong KiCad experience across schematic design, PCB layout, routing, design-rule checks, and project files.\n • Solid electronics engineering and circuit analysis skills, including interpreting requirements and component datasheets.\n • Practical knowledge of PCB design principles, DFM/DFT, component selection, BOM preparation, verification, and debugging.\n • Experience with one or more of these areas: digital/high-speed hardware, power electronics, analog or mixed-signal circuits, sensors, communication systems, or RF.\n Project Details: \n • Contract Start Date: Expected to start as soon as possible\n • Engagement: ~13 weeks (with potential chances of extension)\n • Commitment - 40 hours/week\n • Engagement Type: Contract",
-      "requisitos": "KiCad, Electronics",
-      "remuneracao": ""
-    }
-  ]
+  "total": 0,
+  "vagas": []
 }
