@@ -1092,6 +1092,20 @@
       "titulo": "Hospitality Worker (Toast POS User)",
       "revisado_em": "2026-10-27",
       "motivo": "Mesmo anúncio da 059a387ef0, aprovada em 15/10: remota, sem país exigido e sem diploma. Prefere quem usa o sistema Toast, pouco comum no Brasil, mas não exige."
+    },
+    {
+      "id": "1c3d2166ef",
+      "empresa": "micro1",
+      "titulo": "Smartwatch User",
+      "revisado_em": "2026-10-28",
+      "motivo": "Remota e aberta ao mundo, sem diploma nem experiência com IA. Basta ter um relógio ou anel inteligente com 18 meses de dados."
+    },
+    {
+      "id": "d53fa9a6e0",
+      "empresa": "micro1",
+      "titulo": "Wearable Electronic User",
+      "revisado_em": "2026-10-28",
+      "motivo": "Remota e aberta ao mundo, tarefa única sem diploma. Basta ter um relógio ou anel inteligente com 18 meses de dados e exportá-los em inglês."
     }
   ],
   "bloqueadas": [
