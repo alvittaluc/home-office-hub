@@ -1,5 +1,5 @@
 {
-  "total": 346,
+  "total": 348,
   "vagas": [
     {
       "id": "65762fd387",
@@ -3781,6 +3781,28 @@
         "requisitos": "Pede de 4 a 6 anos de experiência, com pelo menos 2 liderando revisores de QA, e prática em auditar trabalho com base em diretrizes detalhadas. Também pede bom julgamento em casos complexos e ótima comunicação e documentação em inglês. Experiência com anotação ou dados de treino de IA conta a favor. A jornada é das 7h às 16h no horário da costa oeste dos EUA (PST, a partir do meio-dia em Brasília), cinco dias por semana, que podem incluir fim de semana.",
         "idioma": "en+",
         "contrato": "Projeto de 16 semanas"
+      }
+    },
+    {
+      "id": "f58a2b3a06",
+      "resumo": {
+        "frase": "Pesquisas diárias na internet para dar nota aos resultados de busca.",
+        "o_que_faz": "Todo dia você recebe uma lista de pesquisas para fazer na internet e dá nota aos resultados, dizendo se a página encontrada responde mesmo à pergunta. As pesquisas do dia precisam ser feitas no mesmo dia em que chegam. Em cada uma você deixa uma anotação curta explicando a sua avaliação.",
+        "requisitos": "A vaga é para quem usa a busca da internet no dia a dia e sabe julgar se uma página responde ao que foi perguntado. Pede ótima escrita em inglês; outras línguas contam a favor, assim como gostar muito de algum assunto, como basquete ou reality show. Também pede cuidado e constância nas avaliações. Antes de começar, você preenche um questionário rápido com idade, país, línguas, formação e interesses.",
+        "idioma": "en+",
+        "carga": "40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "ae73de96bf",
+      "resumo": {
+        "frase": "Analista de defesa que revisa cenários militares escritos por IA.",
+        "o_que_faz": "Você avalia cenários criados por IA sobre operações militares, conflitos armados e planejamento de defesa. Confere se as capacidades militares e as suposições sobre as operações são realistas e se a análise dos conflitos faz sentido. Também revisa cenários que envolvem proteção de civis e direito internacional humanitário, aponta informações erradas e raciocínios falhos e escreve comentários claros para melhorar o conteúdo.",
+        "requisitos": "Pede experiência profissional como analista de defesa, de operações militares, de conflitos ou pesquisador de segurança nacional, com boa base em pesquisa de defesa ou planejamento de operações. Também pede saber explicar por escrito o que encontrou, em inglês. Experiência em órgão de defesa, governo, instituto de pesquisa ou organização internacional conta muito a favor, assim como conhecer direito internacional humanitário e regras de engajamento.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "contrato": "Autônomo"
       }
     }
   ]
