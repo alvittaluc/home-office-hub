@@ -1127,6 +1127,20 @@
       "titulo": "Search Generalist",
       "revisado_em": "2026-10-29",
       "motivo": "Remota, sem país definido no anúncio e sem pedido de diploma: só pede bom inglês escrito e costume de pesquisar na internet."
+    },
+    {
+      "id": "068eb483dd",
+      "empresa": "micro1",
+      "titulo": "Portuguese Language Expert (Brazil)",
+      "revisado_em": "2026-10-30",
+      "motivo": "Remota, para quem fala português do Brasil. Pede experiência com anotação de dados, mas não exige diploma."
+    },
+    {
+      "id": "37f8a23a09",
+      "empresa": "mercor",
+      "titulo": "AI Chat Generalist",
+      "revisado_em": "2026-10-30",
+      "motivo": "Remota, sem mínimo de anos de experiência, só pede inglês escrito. Vale para os países onde o assistente avaliado funciona, e o anúncio não diz qual é."
     }
   ],
   "bloqueadas": [
@@ -1248,6 +1262,13 @@
       "titulo": "Paralegal",
       "revisado_em": "2026-10-27",
       "motivo": "Só aceita paralegais com experiência de prática jurídica nos EUA, o que quem trabalha no Brasil não tem."
+    },
+    {
+      "id": "19ea92614b",
+      "empresa": "micro1",
+      "titulo": "Tax Practitioner, Federal Individual Income Tax (CPA/EA/Tax Attorney)",
+      "revisado_em": "2026-10-30",
+      "motivo": "Pede registro de contador ou de agente fiscal nos EUA, ou ser advogado tributarista americano, com prática na declaração de imposto de renda de pessoas nos EUA."
     }
   ]
 }

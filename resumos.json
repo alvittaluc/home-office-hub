@@ -1,5 +1,5 @@
 {
-  "total": 348,
+  "total": 365,
   "vagas": [
     {
       "id": "65762fd387",
@@ -3802,6 +3802,190 @@
         "requisitos": "Pede experiência profissional como analista de defesa, de operações militares, de conflitos ou pesquisador de segurança nacional, com boa base em pesquisa de defesa ou planejamento de operações. Também pede saber explicar por escrito o que encontrou, em inglês. Experiência em órgão de defesa, governo, instituto de pesquisa ou organização internacional conta muito a favor, assim como conhecer direito internacional humanitário e regras de engajamento.",
         "idioma": "en+",
         "remuneracao": "US$ 50 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "37f8a23a09",
+      "resumo": {
+        "frase": "Conversas com um assistente de IA sobre tarefas do dia a dia, para dar nota ao resultado.",
+        "o_que_faz": "Você escreve pedidos curtos e realistas, do jeito que uma pessoa comum digitaria, parecidos com o que você mesmo pediria no trabalho ou em casa. Depois conversa com o assistente por várias mensagens: orienta, responde às perguntas dele e corrige quando ele erra. No fim você dá nota à conversa e ao que ele entregou e escreve um comentário curto sobre o que foi bem e o que foi mal.",
+        "requisitos": "A vaga é para quem usa assistentes de IA com frequência para perguntas pessoais e do trabalho. Não pede tempo mínimo de experiência, só boa escrita em inglês. Só vale para os países onde o assistente avaliado funciona, e o anúncio não diz qual assistente é.",
+        "idioma": "en",
+        "remuneracao": "US$ 30 por hora",
+        "carga": "Cerca de 10 h por semana, em horário flexível",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "1f420061e6",
+      "resumo": {
+        "frase": "Cientista ou engenheiro que testa um assistente de IA com tarefas da própria área.",
+        "o_que_faz": "Você passa ao assistente uma tarefa de ciências ou de engenharia parecida com as do seu trabalho, escrita do jeito que um usuário de verdade escreveria. Conversa com ele por várias mensagens, orienta, responde às perguntas e corrige quando ele erra. No fim dá nota ao resultado comparando com o que um profissional entregaria e escreve um comentário curto sobre o que foi bem e o que foi mal.",
+        "requisitos": "Pede diploma e pelo menos 3 anos de experiência profissional em ciências exatas ou engenharia, como química, física ou engenharia civil, mecânica, elétrica ou química. Também pede usar assistentes de IA de vez em quando e escrever bem em inglês. Só vale para os países onde o assistente avaliado funciona, e o anúncio não diz qual é.",
+        "idioma": "en",
+        "remuneracao": "US$ 84 por hora",
+        "carga": "Cerca de 10 h por semana, em horário flexível",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "a8cab98706",
+      "resumo": {
+        "frase": "Profissional de saúde que testa um assistente de IA com tarefas da própria área.",
+        "o_que_faz": "Você passa ao assistente uma tarefa de saúde parecida com as do seu trabalho, escrita do jeito que um usuário de verdade escreveria. Conversa com ele por várias mensagens, orienta, responde às perguntas e corrige quando ele erra. No fim dá nota ao resultado comparando com o que um profissional entregaria e escreve um comentário curto sobre o que foi bem e o que foi mal.",
+        "requisitos": "Pede pelo menos 3 anos de experiência como profissional de saúde, por exemplo enfermeiro, médico, farmacêutico ou terapeuta. Ter registro profissional ativo conta a favor. Também pede usar assistentes de IA de vez em quando e escrever bem em inglês. Só vale para os países onde o assistente avaliado funciona, e o anúncio não diz qual é.",
+        "idioma": "en",
+        "remuneracao": "US$ 39 por hora",
+        "carga": "Cerca de 10 h por semana, em horário flexível",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "0ece07d5fa",
+      "resumo": {
+        "frase": "Professor ou profissional de treinamento que testa um assistente de IA com tarefas de ensino.",
+        "o_que_faz": "Você passa ao assistente uma tarefa de ensino ou de treinamento parecida com as do seu trabalho, escrita do jeito que um usuário de verdade escreveria. Conversa com ele por várias mensagens, orienta, responde às perguntas e corrige quando ele erra. No fim dá nota ao resultado comparando com o que um profissional entregaria e escreve um comentário curto sobre o que foi bem e o que foi mal.",
+        "requisitos": "Pede pelo menos 3 anos de experiência como professor, tutor, designer instrucional, criador de currículo ou na área de treinamento de empresas. Também pede usar assistentes de IA de vez em quando e escrever bem em inglês. Só vale para os países onde o assistente avaliado funciona, e o anúncio não diz qual é.",
+        "idioma": "en",
+        "remuneracao": "US$ 30 por hora",
+        "carga": "Cerca de 10 h por semana, em horário flexível",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "d157409292",
+      "resumo": {
+        "frase": "Profissional de marketing, conteúdo ou design que testa um assistente de IA com tarefas da área.",
+        "o_que_faz": "Você passa ao assistente uma tarefa de marketing, conteúdo ou design parecida com as do seu trabalho, escrita do jeito que um usuário de verdade escreveria. Conversa com ele por várias mensagens, orienta, responde às perguntas e corrige quando ele erra. No fim dá nota ao resultado comparando com o que um profissional entregaria e escreve um comentário curto sobre o que foi bem e o que foi mal.",
+        "requisitos": "Pede pelo menos 3 anos de experiência em marketing digital ou de redes sociais, produção de conteúdo, redação publicitária, marca ou design visual e de UX. Ter portfólio conta a favor. Também pede usar assistentes de IA de vez em quando e escrever bem em inglês. Só vale para os países onde o assistente avaliado funciona, e o anúncio não diz qual é.",
+        "idioma": "en",
+        "remuneracao": "US$ 36 por hora",
+        "carga": "Cerca de 10 h por semana, em horário flexível",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "b3aab784cf",
+      "resumo": {
+        "frase": "Profissional de finanças ou contabilidade que testa um assistente de IA com tarefas da área.",
+        "o_que_faz": "Você passa ao assistente uma tarefa de finanças ou de contabilidade parecida com as do seu trabalho, escrita do jeito que um usuário de verdade escreveria. Conversa com ele por várias mensagens, orienta, responde às perguntas e corrige quando ele erra. No fim dá nota ao resultado comparando com o que um profissional entregaria e escreve um comentário curto sobre o que foi bem e o que foi mal.",
+        "requisitos": "Pede pelo menos 3 anos de experiência em finanças corporativas, contabilidade, planejamento financeiro, auditoria ou impostos, e uso diário de planilhas. Também pede usar assistentes de IA de vez em quando e escrever bem em inglês. Só vale para os países onde o assistente avaliado funciona, e o anúncio não diz qual é.",
+        "idioma": "en",
+        "remuneracao": "US$ 42 por hora",
+        "carga": "Cerca de 10 h por semana, em horário flexível",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "917529c7f0",
+      "resumo": {
+        "frase": "Profissional da área jurídica ou de compliance que testa um assistente de IA com tarefas da área.",
+        "o_que_faz": "Você passa ao assistente uma tarefa jurídica ou de compliance parecida com as do seu trabalho, escrita do jeito que um usuário de verdade escreveria. Conversa com ele por várias mensagens, orienta, responde às perguntas e corrige quando ele erra. No fim dá nota ao resultado comparando com o que um profissional entregaria e escreve um comentário curto sobre o que foi bem e o que foi mal.",
+        "requisitos": "Pede pelo menos 3 anos de experiência como advogado, paralegal, profissional de operações jurídicas ou de compliance. Também pede usar assistentes de IA de vez em quando e escrever bem em inglês. Só vale para os países onde o assistente avaliado funciona, e o anúncio não diz qual é.",
+        "idioma": "en",
+        "remuneracao": "US$ 57 por hora",
+        "carga": "Cerca de 10 h por semana, em horário flexível",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "e50e6c60a7",
+      "resumo": {
+        "frase": "Gerente de projetos de anotação para IA, à frente de clientes, equipes, prazos e orçamento.",
+        "o_que_faz": "Você cuida do projeto do começo ao fim: escopo, pessoas, prazos, orçamento e entregas, muitas vezes com prazo de 24 horas. É o principal contato do cliente, orienta os líderes de equipe e trabalha junto com os gerentes de qualidade. Também acompanha produção, precisão e prazo de entrega, percebe os riscos cedo e ajusta o tamanho da equipe e os processos conforme o projeto pede. O fim do anúncio fala em comparar chatbots e em IA para contabilidade e finanças, o que não combina com o resto da descrição.",
+        "requisitos": "Pede mais de 7 anos de experiência, com pelo menos 4 liderando equipes, e prática com projetos complexos e com muitas entregas. Também pede boa comunicação com clientes e costume de decidir com base em números e indicadores. Experiência com anotação, rotulagem de dados, RLHF ou avaliação de modelos conta a favor. A jornada é das 7h às 16h no horário da costa oeste dos EUA (PST, a partir do meio-dia em Brasília), cinco dias por semana, que podem incluir fim de semana.",
+        "idioma": "en+",
+        "contrato": "Projeto de 16 semanas"
+      }
+    },
+    {
+      "id": "0dc05e0976",
+      "resumo": {
+        "frase": "Profissional de serviço de inteligência que avalia conteúdo de IA sobre como essas agências funcionam.",
+        "o_que_faz": "Você avalia textos e cenários criados por IA sobre agências de inteligência: como se organizam, como trabalham, como tomam decisões e como usam tecnologia. Confere se as respostas são corretas e realistas com base na sua experiência, aponta informações erradas e suposições que não batem com a realidade e sugere melhorias. Também ajuda a criar e revisar cenários realistas e sem informação sigilosa, e escreve avaliações claras.",
+        "requisitos": "A preferência é por quem trabalha ou trabalhou como civil numa agência de inteligência dos EUA ou de um país aliado, como CIA, NSA, MI5, MI6 ou um órgão equivalente. Serve experiência em operações, análise, tecnologia, gestão de programas, política de inteligência ou direção. Também pede ótima escrita em inglês.",
+        "idioma": "en+",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "c2466163b2",
+      "resumo": {
+        "frase": "Especialista em ParaView que analisa dados de simulação e grava o passo a passo para treinar IA.",
+        "o_que_faz": "Você usa o ParaView para visualizar e analisar dados científicos e de engenharia, como modelos 3D e resultados de simulação de fluidos (CFD) e de estruturas (FEA). Mostra como faz o trabalho na prática e explica e documenta cada passo. Também revisa tarefas técnicas e escreve comentários para melhorar o modelo de IA.",
+        "requisitos": "Pede experiência profissional com o ParaView e acesso ao programa, além de boa base em visualização científica, simulação de engenharia e análise de dados. Formação em engenharia mecânica, aeroespacial, física, engenharia computacional ou área parecida conta a favor, assim como experiência em projetos de simulação. Também pede saber explicar o trabalho com clareza.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "9588e130fa",
+      "resumo": {
+        "frase": "Especialista em CATIA que faz projetos mecânicos em 3D e explica o passo a passo para treinar IA.",
+        "o_que_faz": "Você usa o CATIA para criar e editar modelos 3D e peças mecânicas, com montagens, superfícies e desenhos técnicos. Mostra como faz o trabalho na prática e explica e documenta cada passo do projeto. Também revisa tarefas técnicas e escreve comentários para melhorar o modelo de IA.",
+        "requisitos": "Pede experiência profissional com o CATIA e acesso ao programa, além de boa base em projeto mecânico, modelagem 3D e montagens. Formação em engenharia mecânica, aeroespacial, automotiva ou área parecida conta a favor, assim como experiência em projetos profissionais de CAD. Também pede saber explicar o trabalho com clareza.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "b3a8581429",
+      "resumo": {
+        "frase": "Arquiteto ou profissional de BIM que mostra como trabalha no Vectorworks para treinar IA.",
+        "o_que_faz": "Você faz tarefas de arquitetura e BIM no Vectorworks, como modelagem 3D e desenho técnico, grava a tela e comenta o que está fazendo e por quê. Também anota e classifica dados e modelos de arquitetura, avalia se as respostas do modelo de IA estão certas e fazem sentido e explica por escrito e em voz como raciocina e usa o programa.",
+        "requisitos": "A preferência é por quem tem muita experiência com o Vectorworks em projetos de arquitetura ou BIM, trabalhando como arquiteto ou profissional de BIM, e conhece as normas e métodos atuais da área. Experiência anterior com anotação de dados, RLHF ou avaliação de modelos conta a favor. Não precisa ter trabalhado com IA, mas é preciso topar compartilhar a tela e gravar o trabalho.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "ea18bd4d26",
+      "resumo": {
+        "frase": "Especialista em SolveSpace que faz modelos de CAD em 2D e 3D e explica o passo a passo para treinar IA.",
+        "o_que_faz": "Você usa o SolveSpace para criar e editar modelos de CAD em 2D e 3D, trabalhando com esboços paramétricos, cotas e restrições geométricas. Mostra como faz o trabalho na prática e explica e documenta cada passo do projeto. Também revisa tarefas técnicas e escreve comentários para melhorar o modelo de IA.",
+        "requisitos": "Pede experiência profissional com o SolveSpace e acesso ao programa, além de boa base em modelagem paramétrica, esboços 2D e projeto 3D. Formação em engenharia mecânica, design de produto ou design industrial conta a favor, assim como experiência em projetos profissionais de CAD. Também pede saber explicar o trabalho com clareza.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "22f84c4cc9",
+      "resumo": {
+        "frase": "Especialista em DesignSpark PCB que projeta placas de circuito e explica o passo a passo para treinar IA.",
+        "o_que_faz": "Você usa o DesignSpark PCB para criar e editar projetos de eletrônica: esquemas de circuito, posição dos componentes e desenho das placas. Mostra como faz o trabalho na prática e explica e documenta cada passo. Também revisa tarefas técnicas e escreve comentários para melhorar o modelo de IA.",
+        "requisitos": "Pede experiência profissional com o DesignSpark PCB e acesso ao programa, além de boa base em circuitos eletrônicos, esquemas e desenho de placas. Formação em engenharia eletrônica, elétrica ou área parecida conta a favor, assim como experiência em projetos profissionais de placas de circuito. Também pede saber explicar o trabalho com clareza.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "bcff9ead6e",
+      "resumo": {
+        "frase": "Profissional de arquitetura que faz tarefas de BIM no Blender Bonsai e grava o passo a passo para treinar IA.",
+        "o_que_faz": "Você usa o Bonsai, a extensão de BIM do Blender, para fazer tarefas de projeto de arquitetura com modelos 3D de edifícios e arquivos IFC (o formato aberto de troca de modelos BIM). Grava a tela, mostra como trabalha na prática e explica e documenta cada passo. Também revisa tarefas técnicas e escreve comentários para melhorar o modelo de IA.",
+        "requisitos": "Pede experiência profissional com o Blender Bonsai e boa base em arquitetura, projeto arquitetônico ou BIM, além de acesso ao programa e disposição para gravar e compartilhar a tela. Diploma em arquitetura ou área parecida conta a favor, assim como experiência em projetos profissionais de BIM. Também pede saber explicar o trabalho com clareza.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "5463914c56",
+      "resumo": {
+        "frase": "Editor de áudio que faz tarefas no Audacity e grava o passo a passo para treinar IA.",
+        "o_que_faz": "Você usa o Audacity para editar e produzir áudio: cortar trechos, mixar, tirar ruído e melhorar o som. Grava a tela, mostra como faz o trabalho na prática e explica e documenta cada passo. Também revisa tarefas de áudio e escreve comentários para melhorar o modelo de IA.",
+        "requisitos": "Pede bastante prática com o Audacity em edição ou produção de áudio profissional, boa base em mixagem, redução de ruído e formatos de arquivo de áudio, acesso ao programa e disposição para gravar e compartilhar a tela. Experiência profissional em produção de áudio, engenharia de som, edição de podcast ou mídia digital conta a favor, assim como experiência com anotação de dados ou avaliação de modelos de IA.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "dd1636066c",
+      "resumo": {
+        "frase": "Designer ou editor de imagens que faz tarefas no GIMP e grava o passo a passo para treinar IA.",
+        "o_que_faz": "Você usa o GIMP para editar imagens, retocar fotos e fazer peças de design gráfico, trabalhando com camadas, fundos e cores. Grava a tela, mostra como faz o trabalho na prática e explica e documenta cada passo. Também revisa tarefas de edição de imagem e escreve comentários para melhorar o modelo de IA.",
+        "requisitos": "Pede bastante prática com o GIMP em edição de imagem ou design gráfico profissional, boa base em retoque de fotos e uso de camadas, acesso ao programa e disposição para gravar e compartilhar a tela. Experiência profissional em design gráfico, arte digital ou edição de imagem conta a favor, assim como já ter avaliado imagens criadas por IA.",
+        "idioma": "en",
         "contrato": "Autônomo"
       }
     }

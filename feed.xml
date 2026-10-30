@@ -5,7 +5,14 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Fri, 30 Oct 2026 14:43:19 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Oct 2026 23:44:50 +0000</lastBuildDate>
+    <item>
+      <title>AI Chat Generalist — Mercor</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=37f8a23a09</link>
+      <guid isPermaLink="false">37f8a23a09</guid>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você escreve pedidos curtos e realistas, do jeito que uma pessoa comum digitaria, parecidos com o que você mesmo pediria no trabalho ou em casa. Depois conversa com o assistente por várias mensagens: orienta, responde às perguntas dele e corrige quando ele erra. No fim você dá nota à conversa e ao que ele entregou e escreve um comentário curto sobre o que foi bem e o que foi mal.</description>
+    </item>
     <item>
       <title>Search Generalist — Mercor</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f58a2b3a06</link>
@@ -259,32 +266,25 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
+      <title>AI Policy, Ethics &amp; Compliance Analyst — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=b462172903</link>
+      <guid isPermaLink="false">b462172903</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você avalia se o conteúdo gerado por IA respeita padrões de segurança, imparcialidade e ética. Analisa com objetividade casos delicados, em que a resposta certa não é óbvia, aplica os critérios do projeto com constância e escreve comentários claros e precisos.</description>
+    </item>
+    <item>
+      <title>Prompt Writer — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f77d5d9d3</link>
+      <guid isPermaLink="false">3f77d5d9d3</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você cria prompts originais, ou seja, perguntas, cenários e tarefas, em assuntos e níveis de dificuldade variados, para desafiar o raciocínio, a criatividade e a precisão dos modelos. Parte dos prompts testa como a IA se sai em temas de segurança, em situações delicadas e em casos extremos. Você segue os formatos e os guias de estilo do projeto e ajusta o texto conforme as correções que recebe.</description>
+    </item>
+    <item>
       <title>Generalist — Alignerr</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=7cd96ed4ad</link>
       <guid isPermaLink="false">7cd96ed4ad</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
       <description>Você lê conteúdo gerado por IA sobre os mais variados assuntos, de ciência e cultura a tecnologia e dia a dia, e avalia se está correto, claro e no tom certo. Para cada resposta, você escreve um comentário organizado, seguindo as diretrizes do projeto. É a vaga de generalista da Alignerr: aberta a qualquer pessoa que leia bem e saiba reconhecer um texto bem-feito, sem exigir experiência com IA.</description>
-    </item>
-    <item>
-      <title>Film Scene Description Specialist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=33facbb56d</link>
-      <guid isPermaLink="false">33facbb56d</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você assiste a clipes curtos e descreve cada cena seguindo um roteiro fixo: o que acontece, o clima, a emoção e como a imagem conta a história. O material ensina IA a entender a linguagem do cinema.</description>
-    </item>
-    <item>
-      <title>AI Training Specialist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1fc54d7ed5</link>
-      <guid isPermaLink="false">1fc54d7ed5</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você faz tarefas de rotular, classificar e avaliar, sempre com regras definidas, que ensinam sistemas de IA a responder melhor. O conteúdo pode ser texto, imagem ou áudio, e para cada item você segue um guia e uma rubrica, apontando erros e respostas de baixa qualidade. É uma das vagas da Alignerr mais acessíveis para quem está começando.</description>
-    </item>
-    <item>
-      <title>AI Ethics Reviewer — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=13ea107c0b</link>
-      <guid isPermaLink="false">13ea107c0b</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você revisa conteúdo gerado por IA procurando viés, estereótipo e material que possa ser nocivo, e avalia se as respostas são seguras, justas e adequadas a públicos diferentes. Para cada problema, escreve um comentário claro, aplicando as diretrizes de segurança e de imparcialidade do projeto.</description>
     </item>
   </channel>
 </rss>
