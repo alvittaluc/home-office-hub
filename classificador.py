@@ -175,6 +175,7 @@ EXCECOES = {
     "=Audio Expert": "Musica e Audio",
     "Sound Engineer": "Musica e Audio",
     "Audio Engineer": "Musica e Audio",
+    "Audacity": "Musica e Audio",   # pede experiencia profissional de edicao de audio
     # Mercor, outubro de 2026: pedem carreira na area (memorandos de CEO em
     # grande empresa, redacao de jornal, documentacao para programadores,
     # cinco anos de banco de dados ou doutorado)
@@ -838,6 +839,7 @@ if __name__ == "__main__":
         # ── revisao geral das areas ──
         ("Dockerfile Data Validation Engineer", "", "Programacao e Software"),
         ("Audio Engineer - Pro Tools", "", "Musica e Audio"),
+        ("Audio Editing & Production Expert (Audacity)", "", "Musica e Audio"),
         ("Environmental Engineering - AI Data Trainer", "", "Meio Ambiente e Ciencias da Terra"),
         ("Mathematical Physicist (PhD)", "", "Fisica e Astronomia"),
         ("Quantitative Analyst (Quant)", "", "Financas e Contabilidade"),
