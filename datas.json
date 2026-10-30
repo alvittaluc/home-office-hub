@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-10-30T00:36:51.064419+00:00",
-  "total": 1293,
+  "atualizado_em": "2026-10-30T14:43:19.537101+00:00",
+  "total": 1296,
   "primeira_vez": {
     "alignerr|accounting & finance expert": "2026-10-02",
     "alignerr|accounting instructor": "2026-10-02",
@@ -313,6 +313,7 @@
     "mercor|ai assistant user weekly feedback study": "2026-10-18",
     "mercor|analytical chemist": "2026-09-15",
     "mercor|analytical chemist <div class=\"ml auto flex items center gap 2 group h": "2026-09-16",
+    "mercor|anesthesiologist": "2026-10-30",
     "mercor|apple watch users: opportunity for you": "2026-10-02",
     "mercor|application users adobe illustrator on windows generalist": "2026-10-02",
     "mercor|application users android studio on macos code": "2026-10-02",
@@ -502,6 +503,7 @@
     "mercor|nursing talent network": "2026-10-02",
     "mercor|obstetrician gynecologist ob gyn": "2026-10-24",
     "mercor|office & productivity software expert": "2026-10-02",
+    "mercor|ophthalmologist": "2026-10-30",
     "mercor|orthopedic surgeon": "2026-10-24",
     "mercor|otolaryngologist ent": "2026-10-24",
     "mercor|pdf annotation & transcription experts odiya": "2026-09-15",
@@ -1091,6 +1093,7 @@
     "turing|domain expert: biology": "2026-09-24",
     "turing|domain expert: chemistry": "2026-10-14",
     "turing|domain expert: computer science stem": "2026-10-07",
+    "turing|domain expert: earth science": "2026-10-30",
     "turing|domain expert: electronics & eda kicad": "2026-09-11",
     "turing|domain expert: engineering": "2026-10-07",
     "turing|domain expert: life science": "2026-09-22",

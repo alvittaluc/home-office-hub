@@ -5,7 +5,7 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Fri, 30 Oct 2026 00:36:51 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Oct 2026 14:43:19 +0000</lastBuildDate>
     <item>
       <title>Search Generalist — Mercor</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f58a2b3a06</link>
@@ -259,6 +259,13 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
+      <title>Generalist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=7cd96ed4ad</link>
+      <guid isPermaLink="false">7cd96ed4ad</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você lê conteúdo gerado por IA sobre os mais variados assuntos, de ciência e cultura a tecnologia e dia a dia, e avalia se está correto, claro e no tom certo. Para cada resposta, você escreve um comentário organizado, seguindo as diretrizes do projeto. É a vaga de generalista da Alignerr: aberta a qualquer pessoa que leia bem e saiba reconhecer um texto bem-feito, sem exigir experiência com IA.</description>
+    </item>
+    <item>
       <title>Film Scene Description Specialist — Alignerr</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=33facbb56d</link>
       <guid isPermaLink="false">33facbb56d</guid>
@@ -266,25 +273,18 @@
       <description>Você assiste a clipes curtos e descreve cada cena seguindo um roteiro fixo: o que acontece, o clima, a emoção e como a imagem conta a história. O material ensina IA a entender a linguagem do cinema.</description>
     </item>
     <item>
-      <title>Product Review Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=5e946f33e8</link>
-      <guid isPermaLink="false">5e946f33e8</guid>
+      <title>AI Training Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1fc54d7ed5</link>
+      <guid isPermaLink="false">1fc54d7ed5</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você lê avaliações, descrições e comparações de produtos geradas por IA, em categorias como eletrônicos, casa e moda, e dá nota a cada texto: se está correto, se é útil, se parece escrito por um comprador de verdade e se soa natural. Aponta afirmação enganosa, texto com cara de falso e informação errada, com comentários por escrito.</description>
+      <description>Você faz tarefas de rotular, classificar e avaliar, sempre com regras definidas, que ensinam sistemas de IA a responder melhor. O conteúdo pode ser texto, imagem ou áudio, e para cada item você segue um guia e uma rubrica, apontando erros e respostas de baixa qualidade. É uma das vagas da Alignerr mais acessíveis para quem está começando.</description>
     </item>
     <item>
-      <title>AI Policy, Ethics &amp; Compliance Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=b462172903</link>
-      <guid isPermaLink="false">b462172903</guid>
+      <title>AI Ethics Reviewer — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=13ea107c0b</link>
+      <guid isPermaLink="false">13ea107c0b</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você avalia se o conteúdo gerado por IA respeita padrões de segurança, imparcialidade e ética. Analisa com objetividade casos delicados, em que a resposta certa não é óbvia, aplica os critérios do projeto com constância e escreve comentários claros e precisos.</description>
-    </item>
-    <item>
-      <title>Map &amp; Location Data Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=e0f426ba23</link>
-      <guid isPermaLink="false">e0f426ba23</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você usa o que conhece da sua cidade, como ruas, pontos de referência, comércios e bairros, para conferir e corrigir dados de mapa e de localização gerados por IA. É trabalho de achar erro com método, usando mapas digitais.</description>
+      <description>Você revisa conteúdo gerado por IA procurando viés, estereótipo e material que possa ser nocivo, e avalia se as respostas são seguras, justas e adequadas a públicos diferentes. Para cada problema, escreve um comentário claro, aplicando as diretrizes de segurança e de imparcialidade do projeto.</description>
     </item>
   </channel>
 </rss>
