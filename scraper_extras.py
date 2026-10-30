@@ -1081,6 +1081,9 @@ def coletar_imerit():
 # e "workArrangement" diz se é remoto, híbrido ou presencial.
 
 URL_MERCOR = "https://work.mercor.com/explore"
+# Fim de outubro de 2026: o /explore parou de trazer a lista no __NEXT_DATA__
+# e passou a buscá-la no navegador, neste endereço público (mesmos campos).
+URL_MERCOR_API = "https://aws.api.mercor.com/work/listings-explore-page"
 URL_MERCOR_VAGA = "https://work.mercor.com/jobs/{id}/{slug}"
 ORIGEM_MERCOR = "https://work.mercor.com"
 
@@ -1158,8 +1161,14 @@ def coletar_mercor(pausa=0.8, max_paginas=None):
     (pausa e max_paginas ficaram só para não quebrar quem chama.)
     """
     print("  → Mercor ...", end=" ")
-    html = _baixar(URL_MERCOR, tipo_json=False, origem=ORIGEM_MERCOR)
-    listagens = _listagens_mercor(html)
+    html, listagens = "", []
+    try:
+        listagens = (_baixar(URL_MERCOR_API, origem=ORIGEM_MERCOR) or {}).get("listings") or []
+    except Exception as e:
+        print(f"(API falhou: {e}; tentando a página)", end=" ")
+    if not listagens:
+        html = _baixar(URL_MERCOR, tipo_json=False, origem=ORIGEM_MERCOR)
+        listagens = _listagens_mercor(html)
     if not listagens:
         raise RuntimeError("a página /explore veio sem a lista de vagas (mudou de formato?)")
     enderecos = {i: u for u, i in _URL_MERCOR.findall(html)}
