@@ -5,7 +5,7 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Fri, 30 Oct 2026 23:44:50 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2026 14:02:55 +0000</lastBuildDate>
     <item>
       <title>AI Chat Generalist — Mercor</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=37f8a23a09</link>
@@ -140,13 +140,6 @@
       <description>Você confere avaliações de segurança de IA feitas por outros avaliadores, procurando regra aplicada errado, raciocínio incompleto, nota fora do padrão, erro de formato e incoerência. Aponta os erros de cada pessoa e os que se repetem, dá feedback direto e ajuda a melhorar o treinamento da equipe. O conteúdo inclui temas sensíveis, como automutilação, violência e abuso. O anúncio é confuso: no começo fala em liderar uma equipe de analistas, mas as tarefas descritas são de revisão.</description>
     </item>
     <item>
-      <title>AI Assistant User – Weekly Feedback Study — Mercor</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=6f79c729a9</link>
-      <guid isPermaLink="false">6f79c729a9</guid>
-      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
-      <description>É um estudo contínuo, com o mesmo grupo de pessoas toda semana. Você continua usando o assistente (Meta Muse ou Instinct) em pelo menos três partes da sua vida, como trabalho, saúde, tarefas e vida social, e registra e dá nota às mensagens que ele manda por conta própria. Toda semana você também exporta as suas conversas, tirando antes os dados pessoais.</description>
-    </item>
-    <item>
       <title>Quality Analyst - US — Turing</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1db174c7e5</link>
       <guid isPermaLink="false">1db174c7e5</guid>
@@ -266,25 +259,32 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
-      <title>AI Policy, Ethics &amp; Compliance Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=b462172903</link>
-      <guid isPermaLink="false">b462172903</guid>
+      <title>Data Labeling Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f36c6295d2</link>
+      <guid isPermaLink="false">f36c6295d2</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você avalia se o conteúdo gerado por IA respeita padrões de segurança, imparcialidade e ética. Analisa com objetividade casos delicados, em que a resposta certa não é óbvia, aplica os critérios do projeto com constância e escreve comentários claros e precisos.</description>
+      <description>Você classifica, etiqueta e anota dados de texto, imagem ou áudio usando categorias e diretrizes definidas. São muitos itens parecidos, com a mesma regra aplicada do começo ao fim, e há exercícios de calibragem para você se ajustar ao padrão do projeto.</description>
     </item>
     <item>
-      <title>Prompt Writer — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f77d5d9d3</link>
-      <guid isPermaLink="false">3f77d5d9d3</guid>
+      <title>AI Data Quality Analyst — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4bdb89f9f0</link>
+      <guid isPermaLink="false">4bdb89f9f0</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você cria prompts originais, ou seja, perguntas, cenários e tarefas, em assuntos e níveis de dificuldade variados, para desafiar o raciocínio, a criatividade e a precisão dos modelos. Parte dos prompts testa como a IA se sai em temas de segurança, em situações delicadas e em casos extremos. Você segue os formatos e os guias de estilo do projeto e ajusta o texto conforme as correções que recebe.</description>
+      <description>Você revisa e avalia o que a IA produz, em texto, imagem e tabelas de dados, seguindo as diretrizes e as rubricas do projeto. Lê, critica e explica por escrito o que está errado. O anúncio resume o perfil assim: se você percebe quando algo está fora do lugar, você serve.</description>
     </item>
     <item>
-      <title>Generalist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=7cd96ed4ad</link>
-      <guid isPermaLink="false">7cd96ed4ad</guid>
+      <title>AI Training Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1fc54d7ed5</link>
+      <guid isPermaLink="false">1fc54d7ed5</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você lê conteúdo gerado por IA sobre os mais variados assuntos, de ciência e cultura a tecnologia e dia a dia, e avalia se está correto, claro e no tom certo. Para cada resposta, você escreve um comentário organizado, seguindo as diretrizes do projeto. É a vaga de generalista da Alignerr: aberta a qualquer pessoa que leia bem e saiba reconhecer um texto bem-feito, sem exigir experiência com IA.</description>
+      <description>Você faz tarefas de rotular, classificar e avaliar, sempre com regras definidas, que ensinam sistemas de IA a responder melhor. O conteúdo pode ser texto, imagem ou áudio, e para cada item você segue um guia e uma rubrica, apontando erros e respostas de baixa qualidade. É uma das vagas da Alignerr mais acessíveis para quem está começando.</description>
+    </item>
+    <item>
+      <title>Robotics Technician — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=963f23f487</link>
+      <guid isPermaLink="false">963f23f487</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Apesar do nome, não é trabalho técnico. Você grava em vídeo ações comuns, como fazer café, arrumar uma prateleira ou abrir uma porta, seguindo instruções detalhadas. As gravações viram dados de treino para robôs aprenderem a lidar com o mundo real.</description>
     </item>
   </channel>
 </rss>
