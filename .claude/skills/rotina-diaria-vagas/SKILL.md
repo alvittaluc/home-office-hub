@@ -14,7 +14,7 @@ Numa tarefa agendada ninguém está olhando: faça tudo do começo ao fim sem pe
 - **Pasta de trabalho:** a raiz deste repositório (dois níveis acima de `.claude/skills`). O ramo é `main`, e cada push em `main` publica o site pelo workflow "Publicar site".
 - **Repositório no GitHub:** o que `git remote get-url origin` mostrar. Dele sai o `dono/nome` usado na API do GitHub.
 - **Endereço do site:** a constante `SITE_PUBLICADO` no `coletor.py`.
-- **Python:** 3.12 ou mais novo, só com a biblioteca padrão (o `certifi` é opcional). No Windows o comando é `py` e vale definir `PYTHONIOENCODING=utf-8` antes. No Linux e no Mac, `python3`.
+- **Python:** 3.12 ou mais novo, só com a biblioteca padrão (o `certifi` é opcional). No Windows o comando é `py -X utf8` (assim a saída sai em UTF-8 sem precisar de variável antes do comando). No Linux e no Mac, `python3`.
 - **O robô do GitHub:** o workflow "Atualizar vagas" (`.github/workflows/atualizar-vagas.yml`) roda o mesmo coletor todo dia e manda o alerta por e-mail. Ele está marcado para 5h de Brasília, mas costuma começar com atraso, entre 9h e 13h30. Ele não lê micro1 nem TELUS, que bloqueiam servidores de fora do Brasil (`FONTES_SO_NO_PC` no `coletor.py`), e não revisa nem resume vagas. Por isso esta rotina precisa rodar numa máquina com internet no Brasil.
 - **Diário da rotina:** `rotina-diaria.log` na raiz. Fica fora do Git e guarda as contagens de cada rodada.
 
@@ -46,11 +46,10 @@ Numa tarefa agendada ninguém está olhando: faça tudo do começo ao fim sem pe
 
 Rode `coletor.py` na raiz como processo separado, com a saída num arquivo de log fora do repositório. Ele leva uns 10 minutos (micro1 e Alignerr abrem centenas de páginas), e uma chamada direta estoura o tempo.
 
-No Windows (PowerShell):
+No Windows, pela ferramenta Bash com `run_in_background`, na pasta do repositório. Use só comandos que começam com `git`, `py`, `curl`, `cat`, `grep`, `tail` ou `head`, que já estão liberados; PowerShell, `cd ... &&`, `sleep` e variável antes do comando fazem a rodada agendada parar esperando aprovação:
 
 ```
-$env:PYTHONIOENCODING="utf-8"; $env:PYTHONUNBUFFERED="1"
-$p = Start-Process -FilePath "py" -ArgumentList "coletor.py" -WorkingDirectory "<raiz do repositório>" -RedirectStandardOutput "<pasta temporária>\coletor.log" -RedirectStandardError "<pasta temporária>\coletor.err" -WindowStyle Hidden -PassThru
+py -X utf8 -u coletor.py > <pasta temporária>/coletor.log 2> <pasta temporária>/coletor.err
 ```
 
 No Linux ou no Mac:
