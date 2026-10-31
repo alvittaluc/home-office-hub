@@ -1,5 +1,5 @@
 {
-  "total": 365,
+  "total": 370,
   "vagas": [
     {
       "id": "65762fd387",
@@ -3986,6 +3986,65 @@
         "o_que_faz": "Você usa o GIMP para editar imagens, retocar fotos e fazer peças de design gráfico, trabalhando com camadas, fundos e cores. Grava a tela, mostra como faz o trabalho na prática e explica e documenta cada passo. Também revisa tarefas de edição de imagem e escreve comentários para melhorar o modelo de IA.",
         "requisitos": "Pede bastante prática com o GIMP em edição de imagem ou design gráfico profissional, boa base em retoque de fotos e uso de camadas, acesso ao programa e disposição para gravar e compartilhar a tela. Experiência profissional em design gráfico, arte digital ou edição de imagem conta a favor, assim como já ter avaliado imagens criadas por IA.",
         "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "2252f79c1f",
+      "resumo": {
+        "frase": "Avaliação de áudios em português do Brasil, julgando se a fala soa nativa e natural, para treinar IA.",
+        "o_que_faz": "Você escuta trechos de áudio em português e avalia se quem fala, pessoa ou modelo de IA, soa como nativo e fluente. Analisa pronúncia, entonação e naturalidade seguindo diretrizes do projeto. Para cada avaliação, escreve em inglês uma justificativa curta e clara, apontando o que pesou na nota.",
+        "requisitos": "Pede português do Brasil em nível nativo, com fala clara e natural, e inglês pelo menos no nível B2, principalmente para escrever. Formação ou prática com voz, linguística, fonética ou áudio conta a favor, assim como experiência com transcrição ou avaliação de linguagem, mas nada disso é exigido. Não precisa ter trabalhado com IA antes; o que pesa é atenção aos detalhes e saber explicar diferenças sutis de fala.",
+        "idioma": "en",
+        "remuneracao": "US$ 30 a 60 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "983c18dc87",
+      "resumo": {
+        "frase": "Engenheiro, cientista ou professor de alto nível que cria problemas técnicos difíceis para medir o que a IA consegue resolver.",
+        "o_que_faz": "Você cria problemas técnicos difíceis da sua especialidade (engenharia aeroespacial, semicondutores, manufatura e engenharia industrial ou ciência dos materiais), com restrições realistas e dados de apoio, do tipo em que a resposta de livro não basta. Para cada um, entrega a solução certa com o raciocínio passo a passo e define critérios objetivos de correção, para que outro especialista chegue ao mesmo veredito. Também revisa problemas de outros colaboradores e marca os que ficaram ambíguos ou impossíveis de corrigir.",
+        "requisitos": "Pede mestrado ou doutorado em engenharia, física, materiais ou área próxima e experiência de nível principal ou staff numa grande empresa de engenharia ou num laboratório nacional, ou cargo de professor numa universidade de ponta. Precisa ter domínio profundo de pelo menos uma subárea e saber explicar por que uma resposta está certa. Publicações, patentes ou histórico de liderança técnica contam a favor; experiência com avaliação de IA ajuda, mas não é obrigatória. A seleção tem perguntas de triagem, uma entrevista feita por IA e uma análise do perfil.",
+        "idioma": "en",
+        "remuneracao": "US$ 80 a 185 por hora",
+        "carga": "Flexível, dá para conciliar com o emprego atual",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "f5c17f7db2",
+      "resumo": {
+        "frase": "Engenheiro de manufatura ou industrial de alto nível que cria problemas técnicos difíceis para medir o que a IA consegue resolver.",
+        "o_que_faz": "Você cria problemas técnicos difíceis da sua especialidade (projeto de processos, sistemas de produção, engenharia da qualidade, automação e modelagem de cadeia de suprimentos e operações), com restrições realistas e dados de apoio, do tipo em que a resposta de livro não basta. Para cada um, entrega a solução certa com o raciocínio passo a passo e define critérios objetivos de correção, para que outro especialista chegue ao mesmo veredito. Também revisa problemas de outros colaboradores e marca os que ficaram ambíguos ou impossíveis de corrigir.",
+        "requisitos": "Pede mestrado ou doutorado em engenharia de manufatura, industrial, mecânica ou área próxima e experiência de nível principal ou staff numa grande indústria, ou cargo de professor numa universidade de ponta. Precisa ter domínio profundo de pelo menos uma subárea e saber explicar por que uma resposta está certa. Publicações, patentes ou histórico de liderança técnica contam a favor; experiência com avaliação de IA ajuda, mas não é obrigatória. A seleção tem perguntas de triagem, uma entrevista feita por IA e uma análise do perfil.",
+        "idioma": "en",
+        "remuneracao": "US$ 80 a 185 por hora",
+        "carga": "Flexível, dá para conciliar com o emprego atual",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "33a3f3299c",
+      "resumo": {
+        "frase": "Engenheiro de semicondutores de alto nível que cria problemas técnicos difíceis para medir o que a IA consegue resolver.",
+        "o_que_faz": "Você cria problemas técnicos difíceis da sua especialidade (física de dispositivos, integração de processos, projeto de circuitos, litografia, encapsulamento, rendimento e confiabilidade), com restrições realistas e dados de apoio, do tipo em que a resposta de livro não basta. Para cada um, entrega a solução certa com o raciocínio passo a passo e define critérios objetivos de correção, para que outro especialista chegue ao mesmo veredito. Também revisa problemas de outros colaboradores e marca os que ficaram ambíguos ou impossíveis de corrigir.",
+        "requisitos": "Pede mestrado ou doutorado em engenharia elétrica, ciência dos materiais, física aplicada ou área próxima e experiência de nível principal ou staff numa grande empresa de semicondutores, ou cargo de professor numa universidade de ponta. Precisa ter domínio profundo de pelo menos uma subárea e saber explicar por que uma resposta está certa. Publicações, patentes ou histórico de liderança técnica contam a favor; experiência com avaliação de IA ajuda, mas não é obrigatória. A seleção tem perguntas de triagem, uma entrevista feita por IA e uma análise do perfil.",
+        "idioma": "en",
+        "remuneracao": "US$ 80 a 185 por hora",
+        "carga": "Flexível, dá para conciliar com o emprego atual",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "c9899da996",
+      "resumo": {
+        "frase": "Engenheiro aeroespacial de alto nível que cria problemas técnicos difíceis para medir o que a IA consegue resolver.",
+        "o_que_faz": "Você cria problemas técnicos difíceis da sua especialidade (aerodinâmica, propulsão, estruturas, guiagem e controle, mecânica orbital e engenharia de sistemas), com restrições realistas e dados de apoio, do tipo em que a resposta de livro não basta. Para cada um, entrega a solução certa com o raciocínio passo a passo e define critérios objetivos de correção, para que outro especialista chegue ao mesmo veredito. Também revisa problemas de outros colaboradores e marca os que ficaram ambíguos ou impossíveis de corrigir.",
+        "requisitos": "Pede mestrado ou doutorado em engenharia aeroespacial, mecânica ou área próxima e experiência de nível principal ou staff numa grande organização aeroespacial, ou cargo de professor numa universidade de ponta. Precisa ter domínio profundo de pelo menos uma subárea e saber explicar por que uma resposta está certa. Publicações, patentes ou histórico de liderança técnica contam a favor; experiência com avaliação de IA ajuda, mas não é obrigatória. A seleção tem perguntas de triagem, uma entrevista feita por IA e uma análise do perfil.",
+        "idioma": "en",
+        "remuneracao": "US$ 80 a 185 por hora",
+        "carga": "Flexível, dá para conciliar com o emprego atual",
         "contrato": "Autônomo"
       }
     }
