@@ -1439,6 +1439,16 @@ def processar(todas):
         v.pop("data_reaberta", None)
         reaberta = data_em_que_reabriu(v, v.pop("_data_alterada", ""),
                                        guardada, hoje, antes.get(ch))
+        # vaga que entrou na lista hoje com data da empresa de mais de 30 dias:
+        # a empresa reabriu (micro1 e Welocalize deixam a data original no
+        # anúncio). Pedido do dono em 31/10/2026. Sem lista anterior (primeira
+        # rodada, arquivo perdido) a regra não vale, senão marcaria tudo.
+        try:
+            if (not reaberta and antes and ch not in antes and v.get("data_post")
+                    and dias_entre(v["data_post"], hoje) > 30):
+                reaberta = hoje
+        except ValueError:
+            pass
         if reaberta:
             v["data_reaberta"] = reaberta
             if dias_entre(reaberta, hoje) <= 7:

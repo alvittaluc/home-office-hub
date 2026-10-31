@@ -119,7 +119,8 @@
         "idioma": "en+",
         "contrato": "Freelancer"
       },
-      "indicacao": false
+      "indicacao": false,
+      "data_reaberta": "2026-10-29"
     },
     {
       "empresa": "welocalize",
@@ -142,7 +143,8 @@
         "idioma": "en+",
         "contrato": "Freelancer"
       },
-      "indicacao": false
+      "indicacao": false,
+      "data_reaberta": "2026-10-29"
     },
     {
       "empresa": "rws",
@@ -818,7 +820,8 @@
         "requisitos": "Português do Brasil nativo e inglês sólido, porque o trabalho é descrito como bilíngue e a plataforma opera em inglês. Formação ou experiência prática em linguística conta bastante. Experiência anterior em anotação de dados é pedida de forma explícita. Computador com internet estável e disposição para passar pela entrevista de triagem da micro1.",
         "dica_cv": "Preencha o perfil na plataforma com os termos exatos do anúncio, ou seja, data annotation, bilingual e linguistics, porque a busca interna é por essas palavras. Descreva projetos de anotação que você já fez, com tipo de dado e volume. Se tem formação em letras ou linguística, ponha em destaque. Como a faixa de pagamento é alta, espere uma triagem mais exigente e prepare exemplos concretos do seu trabalho."
       },
-      "indicacao": true
+      "indicacao": true,
+      "data_reaberta": "2026-10-30"
     },
     {
       "empresa": "micro1",
