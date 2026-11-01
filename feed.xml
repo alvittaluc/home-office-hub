@@ -5,7 +5,14 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Sun, 01 Nov 2026 14:38:43 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2026 20:14:37 +0000</lastBuildDate>
+    <item>
+      <title>Video Annotation — micro1</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=25c91c8cf3</link>
+      <guid isPermaLink="false">25c91c8cf3</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Você assiste a trechos de vídeo e coloca etiquetas, classificações ou marcações em cada parte, seguindo diretrizes e rubricas detalhadas do cliente. Precisa manter o mesmo critério do começo ao fim e explicar por escrito as decisões que tomou. Também conversa com os líderes do projeto e com a equipe de qualidade para tirar dúvidas, entrega as anotações dentro dos prazos combinados e pode sugerir melhorias nas diretrizes.</description>
+    </item>
     <item>
       <title>Portuguese Bilingual Expert (Brazil) — micro1</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=2252f79c1f</link>
@@ -224,25 +231,11 @@
       <description>Você assiste a clipes curtos de vídeo e áudio e confere se as descrições geradas por IA estão corretas. Quando encontra erro, ambiguidade ou algo fora das regras do projeto, registra isso em um comentário curto e claro. É trabalho de anotação repetitivo, guiado por diretrizes, e serve como porta de entrada na área.</description>
     </item>
     <item>
-      <title>Vlogger (Insta360, DJI Osmo, GoPro MAX) — micro1</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=af3319b4b0</link>
-      <guid isPermaLink="false">af3319b4b0</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você grava clipes contínuos, de pelo menos 60 segundos, de atividades do dia a dia em ambientes variados, dentro de casa, na rua e dentro do carro. A câmera fica presa atrás de você, em mochila ou no veículo, para que o seu corpo inteiro e o entorno apareçam. Depois você organiza e envia os arquivos no formato pedido. É o mesmo projeto das outras vagas de gravação 360° da micro1, com outro nome.</description>
-    </item>
-    <item>
       <title>360° Video Recorder (Insta360 / GoPro MAX) — micro1</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3d2bc67c67</link>
       <guid isPermaLink="false">3d2bc67c67</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
       <description>Você grava vídeos em terceira pessoa com uma câmera 360° ou de ação presa atrás de você, de forma que o seu corpo inteiro e o ambiente apareçam. As gravações mostram atividades do dia a dia, caminhadas, trajetos de carro e até passeios com a câmera presa em animais. Cada clipe precisa ter pelo menos 60 segundos. O anúncio fala em US$ 20 por hora de vídeo aprovado, enquanto a listagem da micro1 mostra de US$ 10 a US$ 15.</description>
-    </item>
-    <item>
-      <title>Exocentric Video Recorder — micro1</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=aab631f1da</link>
-      <guid isPermaLink="false">aab631f1da</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Vaga parecida com a de gravação 360° da micro1. Você grava vídeos em terceira pessoa, com a câmera atrás e acima de você, mostrando movimento contínuo por ambientes diferentes: atividades do dia a dia, caminhadas e trajetos de carro. Os vídeos treinam sistemas de IA a entender como as pessoas se deslocam e agem no mundo real.</description>
     </item>
     <item>
       <title>Data Operations Specialist — Alignerr</title>
@@ -266,11 +259,11 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
-      <title>Conversation Quality Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=de9ad63069</link>
-      <guid isPermaLink="false">de9ad63069</guid>
+      <title>Audio Transcription Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4e6565c964</link>
+      <guid isPermaLink="false">4e6565c964</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você avalia diálogos gerados por IA e diz se parecem conversa de gente: claros, úteis e naturais. Dá nota a muitas conversas, sempre com o mesmo critério, e explica por escrito o motivo de cada avaliação.</description>
+      <description>Você transforma gravações de áudio em texto correto e bem formatado, seguindo diretrizes claras. Os áudios variam em sotaque, velocidade e qualidade de gravação. Você aplica as regras de pontuação e de identificação de quem fala e marca os trechos que não dá para entender.</description>
     </item>
     <item>
       <title>Generalist — Alignerr</title>
@@ -280,11 +273,18 @@
       <description>Você lê conteúdo gerado por IA sobre os mais variados assuntos, de ciência e cultura a tecnologia e dia a dia, e avalia se está correto, claro e no tom certo. Para cada resposta, você escreve um comentário organizado, seguindo as diretrizes do projeto. É a vaga de generalista da Alignerr: aberta a qualquer pessoa que leia bem e saiba reconhecer um texto bem-feito, sem exigir experiência com IA.</description>
     </item>
     <item>
-      <title>Prompt Writer — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f77d5d9d3</link>
-      <guid isPermaLink="false">3f77d5d9d3</guid>
+      <title>Video Annotation Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=8c5731ee06</link>
+      <guid isPermaLink="false">8c5731ee06</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você cria prompts originais, ou seja, perguntas, cenários e tarefas, em assuntos e níveis de dificuldade variados, para desafiar o raciocínio, a criatividade e a precisão dos modelos. Parte dos prompts testa como a IA se sai em temas de segurança, em situações delicadas e em casos extremos. Você segue os formatos e os guias de estilo do projeto e ajusta o texto conforme as correções que recebe.</description>
+      <description>Você divide vídeos em planos e cenas e anota, para cada trecho, o ângulo e o tamanho do plano, o movimento de câmera e a ação que aparece. As marcações seguem categorias definidas e servem para ensinar IA a interpretar vídeo. São muitos vídeos, e o trabalho pede ritmo e precisão.</description>
+    </item>
+    <item>
+      <title>Conversation Quality Analyst — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=de9ad63069</link>
+      <guid isPermaLink="false">de9ad63069</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você avalia diálogos gerados por IA e diz se parecem conversa de gente: claros, úteis e naturais. Dá nota a muitas conversas, sempre com o mesmo critério, e explica por escrito o motivo de cada avaliação.</description>
     </item>
   </channel>
 </rss>

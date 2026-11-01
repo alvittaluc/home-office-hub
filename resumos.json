@@ -1,5 +1,5 @@
 {
-  "total": 370,
+  "total": 372,
   "vagas": [
     {
       "id": "65762fd387",
@@ -4046,6 +4046,27 @@
         "remuneracao": "US$ 80 a 185 por hora",
         "carga": "Flexível, dá para conciliar com o emprego atual",
         "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "25c91c8cf3",
+      "resumo": {
+        "frase": "Anotar vídeos seguindo as diretrizes de um projeto para treinar IA.",
+        "o_que_faz": "Você assiste a trechos de vídeo e coloca etiquetas, classificações ou marcações em cada parte, seguindo diretrizes e rubricas detalhadas do cliente. Precisa manter o mesmo critério do começo ao fim e explicar por escrito as decisões que tomou. Também conversa com os líderes do projeto e com a equipe de qualidade para tirar dúvidas, entrega as anotações dentro dos prazos combinados e pode sugerir melhorias nas diretrizes.",
+        "requisitos": "Experiência com anotação de vídeo e com rubricas conta muito, e quem já trabalhou com anotação ou rotulagem de dados em geral também é bem-vindo. Pede boa comunicação escrita e falada em inglês, atenção aos detalhes e facilidade para seguir instruções e se adaptar a ferramentas novas. Não precisa saber editar vídeo.",
+        "idioma": "en",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "ef618e9b8a",
+      "resumo": {
+        "frase": "Especialista em ciências da vida que cria problemas científicos difíceis para testar a IA, sem programação.",
+        "o_que_faz": "Apesar do título falar em engenharia de software, o anúncio descreve outra coisa: criar problemas de raciocínio científico para o LifeSciBench, um teste de IA em biologia. Você monta perguntas difíceis, do nível de pós-graduação, a partir de cenários reais de pesquisa, resultados de experimentos, dados biológicos e figuras, e escreve a resposta de referência com a justificativa científica. Também confere cálculos e conclusões, aponta perguntas ambíguas ou com mais de uma interpretação e ajusta o trabalho conforme as correções dos revisores. O anúncio diz que não envolve programação.",
+        "requisitos": "Pede doutorado, pós-doutorado ou experiência de pesquisa equivalente em ciências da vida, com domínio profundo de pelo menos uma área, como biologia molecular, genética, bioquímica, neurociência, microbiologia, imunologia ou farmacologia. Precisa saber interpretar experimentos e dados e escrever textos científicos com precisão. Experiência criando questões de pós-graduação, revisando artigos ou avaliando respostas de IA conta a favor. A seleção tem um formulário de interesse e uma avaliação.",
+        "idioma": "en+",
+        "carga": "40 h por semana, 8 h por dia, com 4 h em comum com o horário do Pacífico (EUA)",
+        "contrato": "Freelancer, 1 mês"
       }
     }
   ]
