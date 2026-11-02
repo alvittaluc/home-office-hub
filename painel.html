@@ -214,10 +214,6 @@ textarea.pn-in { min-height:80px; resize:vertical; line-height:1.5; }
 .pn-grupo { margin:10px 0 2px; }
 .pn-grupo > span { display:block; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); margin:0 2px 6px; }
 .pn-grupo .pn-chips { margin:0; }
-.pn-espera-bt { display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; font:inherit; font-size:13px; color:var(--ink-2); background:var(--panel-2); border:1px dashed var(--line); border-radius:12px; padding:9px 12px; cursor:pointer; margin-top:10px; text-align:left; }
-.pn-espera-bt:hover { border-color:var(--ink-3); }
-.pn-form-espera { display:grid; grid-template-columns:minmax(0,1fr) 150px auto; gap:8px; align-items:center; }
-@media (max-width:560px){ .pn-form-espera { grid-template-columns:1fr; } }
 .pn-zap { color:#1F7A6E; font-weight:500; text-decoration:none; }
 .pn-zap:hover { text-decoration:underline; }
 .pn-mix { display:flex; height:8px; width:110px; border-radius:99px; overflow:hidden; background:var(--bg-soft); }
@@ -354,7 +350,6 @@ function paraCand(ap) {
 }
 function montar(d) {
   GERADO = d.gerado_em || "";
-  ESPERA = Array.isArray(d.espera) ? d.espera : [];
   ALUNOS = (d.alunos || []).map((p, i) => {
     const pf = p.perfil || {};
     const a = { id: p.id, nome: (p.nome || "").trim() || String(p.email || "").split("@")[0] || "Sem nome", email: p.email || "",
@@ -410,7 +405,6 @@ const icone = p => `<svg aria-hidden="true"><use href="#i-${p}"/></svg>`;
 const selo = (p, mini) => PLANOS[p] ? `<span class="selo ${p}${mini ? " mini" : ""}">${icone(p)}${PLANOS[p]}</span>` : "";
 const plCurto = p => PLANOS[p] ? `<span class="pl ${p}">${icone(p)}${p === "black" ? "Black" : "Pro"}</span>` : "";
 const nomePlano = p => PLANOS[p] || "Sem plano";
-let ESPERA = [];   // e-mails cadastrados com plano, à espera de a pessoa criar a conta
 
 /* a empresa que o aluno escreveu, achada no empresas.json do site: "Appen" é a CrowdGen, "Telus" é a TELUS Digital */
 let EMPRESAS_HUB = [];
@@ -656,7 +650,6 @@ function alunos() {
         ${x.alertas.length ? (x.jaFalamos ? `<span class="pill p-ja">contato feito</span>` : `<span class="pill p-falta">contato pendente</span>`) : ""}</button></li>`).join("")}</ul>
       ${L.length > vis.length ? `<button class="pn-bt" id="mais" style="width:100%;justify-content:center;margin-top:8px">Mostrar mais ${Math.min(20, L.length - vis.length)}</button>` : ""}
       ${!L.length ? `<p class="pn-vazio" style="margin-top:8px">Ninguém neste filtro.</p>` : ""}
-      <button class="pn-espera-bt" data-espera><span>E-mails à espera da conta</span><span class="pn-cnt cinza">${ESPERA.length}</span></button>
     </div>
     <div class="pn-det">${fichaAluno(a)}</div>
   </div>`;
@@ -691,49 +684,6 @@ function contaLista(n) {
   const pl = S.planoF === "black" ? " do plano Black" : S.planoF === "pro" ? " do plano Pro" : S.planoF === "sem" ? " sem plano" : "";
   if (S.filtro === "atencao") return `${n} ${n === 1 ? "aluno" : "alunos"}${pl} ${n === 1 ? "precisa" : "precisam"} de atenção`;
   return `${n} de ${ALUNOS.length} ${ALUNOS.length === 1 ? "aluno" : "alunos"}${pl ? " ·" + pl : ""}`;
-}
-
-/* e-mails à espera: a pessoa ainda não tem conta; quando criar com este e-mail, já entra no plano */
-function abrirEspera(msg) {
-  if (fecharGaveta) document.removeEventListener("keydown", fecharGaveta);
-  const g = document.getElementById("gaveta");
-  g.innerHTML = `<div class="pn-veu" data-fechar></div><aside class="pn-gaveta" role="dialog" aria-modal="true" aria-label="E-mails à espera da conta">
-    <button class="pn-bt pn-fecha" data-fechar>Fechar ✕</button>
-    <div class="rot">Planos</div><h2>E-mails à espera da conta</h2>
-    <p class="pn-sub">Para quem já é aluno Black ou Pro mas ainda não criou conta no site. Quando a pessoa criar a conta com este mesmo e-mail, ela já entra com o selo, sem ninguém precisar lembrar de marcar depois.</p>
-    <form class="pn-form-espera" id="formEspera" novalidate><input class="pn-in" name="email" type="email" maxlength="200" placeholder="E-mail da pessoa" autocomplete="off">
-      <select class="pn-in" name="plano"><option value="black">Plano Black</option><option value="pro">Plano Pro</option></select>
-      <button class="pn-bt forte">Cadastrar</button></form>
-    ${msg ? `<div class="pn-auto">${esc(msg)}</div>` : ""}
-    ${ESPERA.length ? `<div class="pn-rolagem"><table class="pn-t"><tr><th>E-mail</th><th>Plano</th><th>Cadastrado</th><th></th></tr>
-      ${ESPERA.map(x => `<tr><td class="forte" style="word-break:break-all">${esc(x.email)}</td><td>${selo(x.plano, true)}</td><td>${br(String(x.criado_em || "").slice(0, 10))}<small>por ${esc(x.por || "equipe")}</small></td>
-        <td style="text-align:right"><button class="pn-lnk" data-tirar-espera="${esc(x.email)}">tirar</button></td></tr>`).join("")}</table></div>`
-      : `<p class="pn-vazio">Nenhum e-mail à espera.</p>`}
-  </aside>`;
-  const fechar = () => { g.innerHTML = ""; document.removeEventListener("keydown", fecharGaveta); fecharGaveta = null; };
-  fecharGaveta = ev => { if (ev.key === "Escape") fechar(); };
-  document.addEventListener("keydown", fecharGaveta);
-  g.querySelectorAll("[data-fechar]").forEach(b => b.onclick = fechar);
-  const f = g.querySelector("#formEspera");
-  f.onsubmit = async ev => {
-    ev.preventDefault();
-    const email = f.elements.email.value.trim().toLowerCase(), plano = f.elements.plano.value;
-    if (!/^\S+@\S+\.\S+$/.test(email)) { f.elements.email.focus(); avisar("Escreva o e-mail da pessoa.", true); return; }
-    const bt = f.querySelector(".forte"); bt.disabled = true;
-    const r = await cli.rpc("admin_espera_cadastrar", { p_email: email, p_plano: plano });
-    if (r.error) { console.warn(r.error); bt.disabled = false; avisar("Não deu para cadastrar agora. Confira a internet e tente de novo.", true); return; }
-    await carregar();
-    render();
-    abrirEspera(r.data && r.data.ja_tem_conta
-      ? `Essa pessoa já tem conta: ${r.data.nome || email} recebeu o ${nomePlano(plano)} direto e já aparece na lista de alunos.`
-      : `${email} ficou à espera. O ${nomePlano(plano)} entra quando a pessoa criar a conta.`);
-  };
-  g.querySelectorAll("[data-tirar-espera]").forEach(b => b.onclick = async () => {
-    if (!confirm(`Tirar ${b.dataset.tirarEspera} da espera? Se a pessoa criar a conta depois, ela entra sem plano.`)) return;
-    const r = await cli.rpc("admin_espera_tirar", { p_email: b.dataset.tirarEspera });
-    if (r.error) { console.warn(r.error); avisar("Não deu para tirar agora.", true); return; }
-    ESPERA = ESPERA.filter(x => x.email !== b.dataset.tirarEspera); render(); abrirEspera();
-  });
 }
 
 /* qualquer pessoa da equipe pode falar com o aluno, e cada contato mostra quem registrou */
@@ -969,7 +919,6 @@ function render() {
   alvo.querySelectorAll("[data-cand]").forEach(tr => tr.onclick = () => { const [id, i] = tr.dataset.cand.split("|"); abrirCand(id, +i); });
   alvo.querySelectorAll("[data-filtro]").forEach(b => b.onclick = () => { S.filtro = b.dataset.filtro; S.mostrar = 20; render(); });
   alvo.querySelectorAll("[data-filtro-plano]").forEach(b => b.onclick = () => { S.planoF = b.dataset.filtroPlano; S.mostrar = 20; render(); });
-  alvo.querySelectorAll("[data-espera]").forEach(b => b.onclick = () => abrirEspera());
   alvo.querySelectorAll("[data-mudar-plano]").forEach(b => b.onclick = () => { S.mudandoPlano = true; render(); });
   alvo.querySelectorAll("[data-cancelar-plano]").forEach(b => b.onclick = () => { S.mudandoPlano = false; render(); });
   const fpl = alvo.querySelector("#formPlano");

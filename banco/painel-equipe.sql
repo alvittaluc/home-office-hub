@@ -8,6 +8,8 @@
 --  O que fica guardado aqui:
 --    · painel_perfis: cidade, inglês, área de foco, disponibilidade, telefone e
 --      observações da equipe sobre o aluno. O aluno não vê;
+--    · planos: o plano Black ou Pro de cada aluno, que ele mesmo lê
+--      (só a linha dele) para ver o selo;
 --    · painel_contatos: cada contato da equipe com o aluno (mensagem,
 --      chamada ou revisão de currículo), com data e quem registrou.
 --
@@ -56,6 +58,23 @@ alter table public.painel_perfis add column if not exists telefone text not null
 alter table public.painel_perfis enable row level security;
 alter table public.painel_contatos enable row level security;
 revoke all on public.painel_perfis, public.painel_contatos from anon, authenticated;
+
+-- ── 1b. O plano de cada aluno (terceira versão, 02/11/2026) ──
+-- Black ou Pro. Só a equipe coloca, pela função admin_plano_definir; o aluno
+-- lê só a linha dele, para o selo aparecer no menu, no perfil e no Meu Controle.
+create table if not exists public.planos (
+  user_id      uuid primary key references auth.users (id) on delete cascade,
+  plano        text not null check (plano in ('black', 'pro')),
+  definido_por uuid references auth.users (id) on delete set null,
+  definido_em  timestamptz not null default now()
+);
+alter table public.planos enable row level security;
+revoke all on public.planos from anon, authenticated;
+grant select on public.planos to authenticated;
+drop policy if exists "planos: cada um lê o seu" on public.planos;
+create policy "planos: cada um lê o seu" on public.planos
+  for select to authenticated
+  using (user_id = auth.uid());
 
 -- ── 2. A leitura do painel ──
 create or replace function public.admin_painel()
@@ -131,6 +150,11 @@ begin
         'perfil', case when pp.user_id is null then '{}'::jsonb else jsonb_build_object(
             'cidade', pp.cidade, 'ingles', pp.ingles, 'foco', pp.foco, 'horas', pp.horas, 'telefone', pp.telefone, 'obs', pp.obs) end,
         'tem_foto', coalesce(pf.foto, '') <> '',
+        'plano', coalesce(pl.plano, ''),
+        'plano_em', pl.definido_em,
+        'plano_por', case when pl.user_id is null then '' else
+          coalesce(nullif((select p2.nome from public.perfis p2 where p2.user_id = pl.definido_por), ''),
+                   (select split_part(u2.email, '@', 1) from auth.users u2 where u2.id = pl.definido_por), 'equipe') end,
         'contatos', coalesce(ct.contatos, '[]'::jsonb),
         'candidaturas', coalesce(ap.candidaturas, '[]'::jsonb),
         'trabalhos', coalesce(tr.trabalhos, '[]'::jsonb))
@@ -139,6 +163,7 @@ begin
   from alunos al
   left join public.perfis pf on pf.user_id = al.id
   left join public.painel_perfis pp on pp.user_id = al.id
+  left join public.planos pl on pl.user_id = al.id
   left join ap on ap.user_id = al.id
   left join tr on tr.user_id = al.id
   left join ct on ct.aluno_id = al.id;
@@ -168,6 +193,31 @@ end;
 $$;
 
 -- ── 3. O que a equipe grava ──
+-- o plano: '' tira o aluno do plano
+create or replace function public.admin_plano_definir(p_aluno uuid, p_plano text)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if auth.uid() is null
+     or not exists (select 1 from public.administradores a where a.user_id = auth.uid()) then
+    raise exception 'Somente a administração.' using errcode = '42501';
+  end if;
+  if coalesce(p_plano, '') = '' then
+    delete from public.planos where user_id = p_aluno;
+  elsif p_plano in ('black', 'pro') then
+    insert into public.planos (user_id, plano, definido_por, definido_em)
+    values (p_aluno, p_plano, auth.uid(), now())
+    on conflict (user_id) do update
+      set plano = excluded.plano, definido_por = excluded.definido_por, definido_em = excluded.definido_em;
+  else
+    raise exception 'Plano desconhecido.' using errcode = '22023';
+  end if;
+end;
+$$;
+
 -- a primeira versão, sem o telefone, sai
 drop function if exists public.admin_perfil_salvar(uuid, text, text, text, text, text);
 create or replace function public.admin_perfil_salvar(p_aluno uuid, p_cidade text, p_ingles text, p_foco text, p_horas text, p_telefone text, p_obs text)
@@ -210,7 +260,7 @@ begin
 end;
 $$;
 
-revoke all on function public.admin_painel(), public.admin_painel_fotos(), public.admin_perfil_salvar(uuid, text, text, text, text, text, text),
+revoke all on function public.admin_painel(), public.admin_painel_fotos(), public.admin_plano_definir(uuid, text), public.admin_perfil_salvar(uuid, text, text, text, text, text, text),
                        public.admin_contato_registrar(uuid, text, text) from public, anon;
-grant execute on function public.admin_painel(), public.admin_painel_fotos(), public.admin_perfil_salvar(uuid, text, text, text, text, text, text),
+grant execute on function public.admin_painel(), public.admin_painel_fotos(), public.admin_plano_definir(uuid, text), public.admin_perfil_salvar(uuid, text, text, text, text, text, text),
                           public.admin_contato_registrar(uuid, text, text) to authenticated;

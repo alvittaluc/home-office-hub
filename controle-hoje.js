@@ -415,7 +415,7 @@ const Hoje = (function () {
 
     const cabecalho = `
       <div class="h-cab">
-        <h1>Hoje</h1>
+        <h1>Hoje <span data-plano-selo style="vertical-align:6px">${typeof Acesso !== "undefined" && Acesso.seloPlano ? Acesso.seloPlano() : ""}</span></h1>
         <p>${esc(DIA_SEMANA[diaDaSemana(hoje)].replace(/^./, c => c.toUpperCase()))}, ${esc(Dados.dataBonita(hoje))}</p>
       </div>`;
 

@@ -71,7 +71,7 @@ try { montarLayout(""); } catch (e) { console.warn(e); }
   U.porCss();
   tela.innerHTML = `
     <div class="eyebrow">Sua conta</div>
-    <h1>Meu perfil</h1>
+    <h1>Meu perfil <span data-plano-selo style="vertical-align:8px">${typeof Acesso !== "undefined" && Acesso.seloPlano ? Acesso.seloPlano() : ""}</span></h1>
     <p class="pf-lead">É assim que você aparece para as outras pessoas. O seu e-mail nunca é mostrado.</p>
     <form class="pf-cx" novalidate>
       <div class="pf-foto">

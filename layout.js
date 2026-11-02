@@ -96,6 +96,45 @@ const Acesso = (function () {
     }).catch(() => {});
   }
 
+  /* O plano da pessoa (Black ou Pro), que só a equipe coloca, pelo Painel
+     (banco/painel-equipe.sql). O banco entrega a cada um só a linha dele.
+     Fica guardado por 10 minutos; quando a resposta chega, os selos da
+     página (os lugares marcados com data-plano-selo) são redesenhados. */
+  const PLANOS = { black: "Plano Black", pro: "Plano Pro" };
+  const ICONE_PLANO = {
+    black: '<path fill="currentColor" d="M4.2 2h7.6l3 4.1L8 14.5 1.2 6.1 4.2 2Zm.6 1.3L3 5.6h3.1l-1.3-2.3Zm6.4 0L9.9 5.6H13l-1.8-2.3ZM8 3.4 6.8 5.6h2.4L8 3.4ZM3.1 7l3.7 4.6L5.3 7H3.1Zm3.6 0L8 11.1 9.3 7H6.7Zm4 0-1.5 4.6L12.9 7h-2.2Z"/>',
+    pro: '<path fill="currentColor" d="M8 1.2l2 4.3 4.7.5-3.5 3.2 1 4.6L8 11.5l-4.2 2.3 1-4.6L1.3 6l4.7-.5L8 1.2Z"/>',
+  };
+  function planoGuardado() {
+    const s = sessao(), uid = s && s.user && s.user.id;
+    if (!uid) return "";
+    try { const g = JSON.parse(localStorage.getItem("hub-plano") || "null"); return g && g.uid === uid && PLANOS[g.plano] ? g.plano : ""; } catch (e) { return ""; }
+  }
+  function seloPlano(mini) {
+    const p = planoGuardado();
+    if (!p) return "";
+    porCss();
+    return `<span class="hub-selo ${p}${mini ? " mini" : ""}"><svg viewBox="0 0 16 16" aria-hidden="true">${ICONE_PLANO[p]}</svg>${PLANOS[p]}</span>`;
+  }
+  function pintarPlano(raiz) {
+    (raiz || document).querySelectorAll("[data-plano-selo]").forEach(el => { el.innerHTML = seloPlano(el.dataset.planoSelo === "mini"); });
+  }
+  function buscarPlano() {
+    const s = sessao(), uid = s && s.user && s.user.id;
+    if (!uid) return;
+    let g = null;
+    try { g = JSON.parse(localStorage.getItem("hub-plano") || "null"); } catch (e) {}
+    if (g && g.uid === uid && Date.now() - g.quando < 600e3) return;
+    if (!s.access_token || (s.expires_at && s.expires_at * 1000 < Date.now())) return;
+    fetch("https://" + PROJETO + ".supabase.co/rest/v1/planos?select=plano&user_id=eq." + encodeURIComponent(uid), {
+      headers: { apikey: CHAVE_PUBLICA, Authorization: "Bearer " + s.access_token },
+    }).then(r => r.ok ? r.json() : Promise.reject(r.status)).then(linhas => {
+      const plano = (Array.isArray(linhas) && linhas[0] && linhas[0].plano) || "";
+      try { localStorage.setItem("hub-plano", JSON.stringify({ uid, plano, quando: Date.now() })); } catch (e) {}
+      if (!g || g.uid !== uid || g.plano !== plano) pintarPlano();
+    }).catch(() => {});
+  }
+
   /* As áreas de formação. O primeiro nome é o que vem nos arquivos de vagas
      (sem acento, do classificador.py); o segundo é o que a pessoa lê. */
   const AREAS = [
@@ -229,6 +268,17 @@ const Acesso = (function () {
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:250px; }
   .hd-menu-cx a.hd-menu-equipe { border-top:1px solid var(--line-soft,#EAE4D9); border-radius:0 0 10px 10px; margin-top:6px; padding-top:12px; color:var(--signal,#1A4893); }
   @media (max-width:900px){ .hd-menu { order:2; margin-left:auto; } }
+  /* selo do plano (Black ou Pro) */
+  .hub-selo { display:inline-flex; align-items:center; gap:6px; font-family:inherit; font-size:12.5px; font-weight:600; line-height:1; letter-spacing:0;
+    border-radius:99px; padding:6px 11px 6px 9px; white-space:nowrap; vertical-align:middle; text-transform:none; }
+  .hub-selo svg { width:13px; height:13px; flex-shrink:0; }
+  .hub-selo.black { background:linear-gradient(135deg,#15171C 0%,#2B2E36 100%); color:#F2E3BF; box-shadow:inset 0 0 0 1px #3B3E47; }
+  .hub-selo.black svg { color:#D9B86C; }
+  .hub-selo.pro { background:var(--signal,#1A4893); color:#fff; } .hub-selo.pro svg { color:#BBD3F2; }
+  .hub-selo.mini { font-size:11px; padding:4px 8px 4px 7px; gap:4px; } .hub-selo.mini svg { width:11px; height:11px; }
+  .hd-conta [data-plano-selo]:not(:empty) { margin-left:7px; }
+  @media (max-width:560px){ .hd-conta [data-plano-selo] { display:none; } }
+  .hd-menu-quem [data-plano-selo]:not(:empty) { display:block; margin-top:7px; }
 
   .ac-aviso { max-width:520px; margin:44px auto; padding:30px 28px; text-align:center; background:var(--panel,#fff);
     border:1px solid var(--line-soft,#EAE4D9); border-radius:var(--raio,18px); box-shadow:var(--sombra,none); }
@@ -296,9 +346,9 @@ const Acesso = (function () {
       const volta = encodeURIComponent(paginaAtual() === "entrar.html" ? "vagas.html" : paginaAtual());
       const d = document.createElement("details");
       d.className = "hd-menu";
-      d.innerHTML = `<summary class="hd-conta dentro">Minha conta</summary>
+      d.innerHTML = `<summary class="hd-conta dentro">Minha conta<span data-plano-selo="mini">${seloPlano(true)}</span></summary>
         <div class="hd-menu-cx">
-          <div class="hd-menu-quem">${esc(email())}</div>
+          <div class="hd-menu-quem">${esc(email())}<span data-plano-selo="mini">${seloPlano(true)}</span></div>
           <a href="perfil.html?voltar=${volta}">Meu perfil<small>nome, apresentação e foto</small></a>
           <a href="entrar.html?areas=1&voltar=${volta}">Minhas áreas de formação<small>${esc(resumo)}</small></a>
           <a href="vagas.html${minhas && minhas.length ? "?ver=voce" : ""}">Vagas para mim</a>
@@ -307,6 +357,7 @@ const Acesso = (function () {
           <a href="controle.html#dados">Dados da conta e sair</a>
         </div>`;
       hd.appendChild(d);
+      buscarPlano();
       daEquipe(() => {
         if (d.querySelector(".hd-menu-equipe")) return;
         d.querySelector(".hd-menu-cx").insertAdjacentHTML("beforeend",
@@ -350,6 +401,7 @@ const Acesso = (function () {
 
   return {
     logado, email, trancado, linkEntrar, cortina, htmlAviso, botaoNoCabecalho, aplicarRegras,
+    planoGuardado, seloPlano, pintarPlano, buscarPlano,
     AREAS, nomeArea, areas, SUBAREAS, nomeSub, subareas, vagaDasMinhasAreas, resumoDasAreas,
     get portasLigadas() { return portasLigadas(); },
   };
