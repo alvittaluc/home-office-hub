@@ -182,7 +182,14 @@ textarea.pn-in { min-height:80px; resize:vertical; line-height:1.5; }
 .pn-t .rk { font-family:var(--display); font-size:19px; color:var(--signal); width:34px; text-align:center; padding-right:8px; }
 .pn-t .rk.cinza { color:var(--ink-3); }
 .pn-t td small { display:block; font-size:12px; color:var(--ink-3); font-weight:400; }
-.pn-ini { display:inline-grid; place-items:center; width:30px; height:30px; border-radius:9px; background:#1A4893; color:#fff; font-size:12px; font-weight:600; margin-right:10px; vertical-align:middle; }
+/* logo da empresa (o mesmo do resto do site) e foto do aluno */
+.pn-logo { display:inline-grid; place-items:center; flex-shrink:0; overflow:hidden; border-radius:9px; font-weight:600; vertical-align:middle; }
+.pn-logo:has(img) { background:#fff !important; box-shadow:inset 0 0 0 1px var(--line-soft); }
+.pn-logo img { display:block; }
+.pn-av.foto { background:var(--bg-soft) !important; overflow:hidden; }
+.pn-av.foto img { width:100%; height:100%; object-fit:cover; display:block; }
+.pn-zap { color:#1F7A6E; font-weight:500; text-decoration:none; }
+.pn-zap:hover { text-decoration:underline; }
 .pn-mix { display:flex; height:8px; width:110px; border-radius:99px; overflow:hidden; background:var(--bg-soft); }
 .pn-mix i { display:block; height:100%; }
 .pn-leg { display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:12px; font-size:12px; color:var(--ink-3); }
@@ -316,7 +323,8 @@ function montar(d) {
   ALUNOS = (d.alunos || []).map((p, i) => {
     const pf = p.perfil || {};
     const a = { id: p.id, nome: (p.nome || "").trim() || String(p.email || "").split("@")[0] || "Sem nome", email: p.email || "",
-      cidade: pf.cidade || "", ingles: pf.ingles || "", foco: pf.foco || "", horas: pf.horas || "", obs: pf.obs || "",
+      cidade: pf.cidade || "", ingles: pf.ingles || "", foco: pf.foco || "", horas: pf.horas || "", telefone: pf.telefone || "", obs: pf.obs || "",
+      temFoto: !!p.tem_foto, foto: (ALUNOS.find(x => x.id === p.id) || {}).foto || "",
       contatos: (p.contatos || []).map(c => ({ data: String(c.criado_em || "").slice(0, 10), tipo: c.tipo, texto: c.texto, por: c.por })),
       cand: (p.candidaturas || []).map(paraCand),
       proj: (p.trabalhos || []).filter(t => t.estado === "ativo").map(t => ({ empresa: t.empresa, nome: t.projeto || t.empresa, desde: t.inicio, ultimo: t.ultimo_dia })) };
@@ -357,7 +365,30 @@ const situacao = a => a.jaFalamos ? `<span class="pill p-ja">Contato feito</span
 const quem = a => `<span class="pn-quem">${av(a)}<span class="nm" title="${esc(a.nome)}">${esc(a.nome)}</span></span>`;
 const pill = st => `<span class="pill ${ST[st].cls}">${esc(ST[st].rot || st)}</span>`;
 const pdfVer = x => x.cv ? `<button class="pdf" data-pdf="${esc(x.cv.caminho)}" data-nome="${esc(x.cv.nome || "curriculo.pdf")}" title="${esc(x.cv.nome || "")}"><i>PDF</i>Ver</button>` : "";
-const av = (a, t) => `<span class="pn-av" style="background:${a.cor};${t ? `width:${t}px;height:${t}px;font-size:${Math.round(t / 2.7)}px` : ""}">${esc(a.ini)}</span>`;
+const av = (a, t) => `<span class="pn-av${a.foto ? " foto" : ""}" style="background:${a.cor};${t ? `width:${t}px;height:${t}px;font-size:${Math.round(t / 2.7)}px` : ""}">${a.foto
+  ? `<img src="${esc(a.foto)}" alt="">` : esc(a.ini)}</span>`;
+
+/* a empresa que o aluno escreveu, achada no empresas.json do site: "Appen" é a CrowdGen, "Telus" é a TELUS Digital */
+let EMPRESAS_HUB = [];
+const compacto = s => norm(s).replace(/[^a-z0-9]/g, "");
+function empresaHub(nome) {
+  const s = compacto(nome);
+  if (s.length < 3) return null;
+  return EMPRESAS_HUB.find(e => s === e.id || s.includes(e.id) || compacto(e.nome).includes(s) || s.includes(compacto(e.nome.split(" ")[0]))) || null;
+}
+function marca(nome, t) {
+  const e = empresaHub(nome);
+  const tam = `width:${t}px;height:${t}px;font-size:${Math.round(t / 2.6)}px;border-radius:${Math.round(t / 3.6)}px`;
+  if (e && typeof logoHtml === "function") return `<span class="pn-logo" style="${tam};background:${esc(e.bg || "#1A4893")};color:${esc(e.cor || "#fff")}">${logoHtml(e, t)}</span>`;
+  return `<span class="pn-logo" style="${tam};background:#1A4893;color:#fff">${esc((String(nome || "?").trim()[0] || "?").toUpperCase())}</span>`;
+}
+/* telefone com DDD vira link do WhatsApp; sem o código do país, entende que é do Brasil */
+function zap(tel) {
+  let d = String(tel || "").replace(/\D/g, "");
+  if (d.length < 10) return "";
+  if (d.length <= 11) d = "55" + d;
+  return `https://wa.me/${d}`;
+}
 
 function empresas() {
   const m = {}, chave = n => norm(n);
@@ -500,7 +531,7 @@ function geral() {
     <div class="pn-g2">
       <div class="pn-cx"><div class="pn-cab"><div><h2>Como os alunos vão em cada empresa</h2><p class="sub">as ${Math.min(6, E.length)} com mais candidaturas, de ${E.length}</p></div><button class="pn-lnk" data-ir="empresas">Ver todas →</button></div>
         ${E.length ? `<div class="pn-rolagem"><table class="pn-t"><tr><th>Empresa</th><th class="n">Candid.</th><th>Situação</th><th class="n">Aprovação</th><th class="n">Trabalhando</th></tr>
-        ${E.slice(0, 6).map(e => `<tr class="clica" data-emp="${esc(e.nome)}"><td class="forte"><span class="pn-ini">${esc(e.nome[0].toUpperCase())}</span>${esc(e.nome)}</td>
+        ${E.slice(0, 6).map(e => `<tr class="clica" data-emp="${esc(e.nome)}"><td class="forte"><span class="pn-quem">${marca(e.nome, 30)}<span>${esc(e.nome)}</span></span></td>
           <td class="n">${e.cands.length}</td><td>${e.cands.length ? mix(e.cands) : ""}</td><td class="n">${taxa(e)}</td><td class="n">${e.trab.length}</td></tr>`).join("")}</table></div>
         ${legenda()}` : `<p class="pn-vazio">Ainda sem candidaturas.</p>`}</div>
       <div class="pn-cx"><div class="pn-cab"><div><h2>Vagas mais procuradas</h2><p class="sub">quantos alunos se candidataram a cada vaga</p></div><button class="pn-lnk" data-ir="vagas">Ver o ranking →</button></div>
@@ -587,7 +618,7 @@ function fichaAluno(a) {
   const ajuda = { perfil: "Quem o aluno é. A equipe preenche; o aluno não vê.", cand: "Tudo o que o aluno lançou no Meu Controle. Clique numa linha para abrir a candidatura.", acomp: "Cada conversa com o aluno vira um registro com data." };
   return `
     <div class="pn-cabal">${av(a, 60)}<div style="flex:1;min-width:220px"><div class="nm">${esc(a.nome)}</div>
-      <div class="pn-sub">${esc(a.email)}${a.cidade ? " · " + esc(a.cidade) : ""} · último contato ${contato(a.dContato)}</div></div>
+      <div class="pn-sub">${esc(a.email)}${a.telefone ? " · " + (zap(a.telefone) ? `<a class="pn-zap" href="${zap(a.telefone)}" target="_blank" rel="noopener noreferrer">${esc(a.telefone)}</a>` : esc(a.telefone)) : ""}${a.cidade ? " · " + esc(a.cidade) : ""} · último contato ${contato(a.dContato)}</div></div>
       <button class="pn-bt ambar" data-novo-contato>Registrar contato</button></div>
     ${a.alertas.length ? `<div class="pn-alerta"><b>Precisa de atenção</b> · ${situacao(a)}<ul>${a.alertas.map(x => `<li>${esc(x.texto)}. Próximo passo: ${esc(x.passo)}.</li>`).join("")}</ul></div>` : ""}
     <div class="pn-abas2">${[["perfil", "Perfil", ""], ["cand", "Candidaturas", a.cand.length], ["acomp", "Acompanhamento", a.contatos.length]].map(([k2, n, q]) =>
@@ -597,14 +628,15 @@ function fichaAluno(a) {
 }
 
 /* qualquer pessoa da equipe pode falar com o aluno, e cada contato mostra quem registrou */
-const CAMPOS = [["cidade", "Cidade", 80], ["ingles", "Inglês", 60], ["foco", "Área de foco", 80], ["horas", "Disponibilidade", 60]];
+const CAMPOS = [["cidade", "Cidade", 80], ["ingles", "Inglês", 60], ["foco", "Área de foco", 80], ["horas", "Disponibilidade", 60], ["telefone", "Telefone", 30]];
 function abaPerfil(a) {
   if (S.editando) return `<form class="pn-cx" id="formPerfil" style="border-color:var(--signal)">
     <div class="pn-campos">${CAMPOS.map(([k2, n, max]) => `<div><label for="f-${k2}">${n}</label><input class="pn-in" id="f-${k2}" name="${k2}" maxlength="${max}" value="${esc(a[k2])}"></div>`).join("")}</div>
     <div style="margin-top:14px"><label class="pn-sub" for="f-obs">Observações da equipe</label><textarea class="pn-in" id="f-obs" name="obs" maxlength="2000">${esc(a.obs)}</textarea></div>
     <div class="pn-acoes"><button type="button" class="pn-bt" data-cancelar>Cancelar</button><button class="pn-bt forte">Salvar perfil</button></div></form>`;
   return `<div class="pn-cx"><div class="pn-cab"><h2>Perfil</h2><button class="pn-bt" data-editar>Editar perfil</button></div>
-    <dl class="pn-campos">${CAMPOS.map(([k2, n]) => `<div><dt>${n}</dt><dd>${esc(a[k2]) || '<span class="pn-sub">não preenchido</span>'}</dd></div>`).join("")}</dl>
+    <dl class="pn-campos">${CAMPOS.map(([k2, n]) => `<div><dt>${n}</dt><dd>${esc(a[k2]) || '<span class="pn-sub">não preenchido</span>'}${k2 === "telefone" && zap(a.telefone)
+      ? ` · <a class="pn-zap" href="${zap(a.telefone)}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>` : ""}</dd></div>`).join("")}</dl>
     <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft)"><dt class="pn-sub" style="text-transform:uppercase;letter-spacing:.05em;font-size:11.5px">Observações da equipe</dt>
     <p style="font-size:14.5px;color:var(--ink-2);margin-top:6px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere">${esc(a.obs) || '<span class="pn-sub">Sem observações ainda.</span>'}</p></div></div>`;
 }
@@ -645,10 +677,10 @@ function empresasTela() {
         `<option value="${k2}"${S.empOrdem === k2 ? " selected" : ""}>${n}</option>`).join("")}</select></label>
       <p class="pn-sub" style="margin:0 4px 6px">${L.length} de ${plural(E.length, "empresa", "empresas")}</p>
       <ul class="pn-itens">${L.map(x => `<li><button class="pn-item" data-emp="${esc(x.nome)}" aria-current="${x.nome === e.nome}">
-      <span class="pn-av" style="background:#1A4893;border-radius:9px">${esc(x.nome[0].toUpperCase())}</span>
+      ${marca(x.nome, 34)}
       <span class="t"><b>${esc(x.nome)}</b><small>${plural(x.cands.length, "candidatura", "candidaturas")} · ${x.trab.length} trabalhando</small></span></button></li>`).join("")}</ul></div>
     <div class="pn-det">
-      <div class="pn-cabal"><span class="pn-av" style="background:#1A4893;width:60px;height:60px;font-size:24px;border-radius:16px;margin:0">${esc(e.nome[0].toUpperCase())}</span>
+      <div class="pn-cabal">${marca(e.nome, 60)}
         <div><div class="nm">${esc(e.nome)}</div><div class="pn-sub">${plural(new Set(e.cands.map(x => x.aluno.id)).size, "aluno candidato", "alunos candidatos")} · ${e.trab.length} trabalhando agora · aprovação ${taxa(e)}</div></div></div>
       ${tiles(e.cands, true)}
       ${mot.length ? `<p class="pn-sub" style="font-size:14px">Motivo mais comum das recusas aqui: <b style="color:var(--ink)">${esc(mot[0].rot.toLowerCase())}</b> (${mot[0].n} de ${e.rec}).</p>` : ""}
@@ -841,7 +873,7 @@ function render() {
     const a = ALUNOS.find(x => x.id === S.sel), perfil = {};
     CAMPOS.forEach(([k2]) => perfil[k2] = fp.elements[k2].value.trim()); perfil.obs = fp.elements.obs.value.trim();
     const bt = fp.querySelector(".forte"); bt.disabled = true;
-    const r = await cli.rpc("admin_perfil_salvar", { p_aluno: a.id, p_cidade: perfil.cidade, p_ingles: perfil.ingles, p_foco: perfil.foco, p_horas: perfil.horas, p_obs: perfil.obs });
+    const r = await cli.rpc("admin_perfil_salvar", { p_aluno: a.id, p_cidade: perfil.cidade, p_ingles: perfil.ingles, p_foco: perfil.foco, p_horas: perfil.horas, p_telefone: perfil.telefone, p_obs: perfil.obs });
     if (r.error) { console.warn(r.error); bt.disabled = false; avisar("Não deu para salvar o perfil. Confira a internet e tente de novo.", true); return; }
     Object.assign(a, perfil); S.editando = false; render(); avisar("Perfil salvo.");
   };
@@ -865,10 +897,25 @@ document.getElementById("csv").onclick = () => {
   const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = "candidaturas-" + hojeIso() + ".csv"; a.click();
 };
 
+/* logos das empresas, os mesmos da página Empresas */
+async function carregarEmpresas() {
+  try { EMPRESAS_HUB = ((await fetch("empresas.json").then(r => r.json())).empresas || []).filter(e => e && e.id && e.nome); } catch (e) { EMPRESAS_HUB = []; }
+}
+/* as fotos chegam depois do resto; quando chegam, as iniciais viram foto */
+async function carregarFotos() {
+  if (!ALUNOS.some(a => a.temFoto && !a.foto)) return;
+  const r = await cli.rpc("admin_painel_fotos");
+  if (r.error || !r.data) { console.warn(r.error); return; }
+  let mudou = false;
+  ALUNOS.forEach(a => { const f = r.data[a.id]; if (typeof f === "string" && /^data:image\/(png|jpeg|webp);base64,/.test(f)) { a.foto = f; mudou = true; } });
+  if (mudou && S.aba !== "equipe" && !document.querySelector("#formPerfil, #formContato")) render();
+}
+
 async function carregar() {
   const r = await cli.rpc("admin_painel");
   if (r.error) return r.error;
   montar(r.data || {});
+  carregarFotos();
   const quando = GERADO ? new Date(GERADO).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }) : "";
   document.getElementById("pnData").textContent = quando ? "Lido em " + quando : "";
   return null;
@@ -942,7 +989,7 @@ async function equipe(aviso) {
     return;
   }
   // a primeira leitura também serve de porteiro: o banco recusa quem não é da equipe
-  const erro = await carregar();
+  const [erro] = await Promise.all([carregar(), carregarEmpresas()]);
   if (erro) {
     console.warn(erro);
     espera.textContent = erro.code === "42501" || /administra/i.test(erro.message || "")

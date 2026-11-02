@@ -6,7 +6,7 @@
 --  Controle, preenche um perfil curto dele e registra cada conversa.
 --
 --  O que fica guardado aqui:
---    · painel_perfis: cidade, inglês, área de foco, disponibilidade e
+--    · painel_perfis: cidade, inglês, área de foco, disponibilidade, telefone e
 --      observações da equipe sobre o aluno. O aluno não vê;
 --    · painel_contatos: cada contato da equipe com o aluno (mensagem,
 --      chamada ou revisão de currículo), com data e quem registrou.
@@ -48,6 +48,9 @@ create table if not exists public.painel_contatos (
   criado_em timestamptz not null default now()
 );
 create index if not exists painel_contatos_por_aluno on public.painel_contatos (aluno_id, criado_em desc);
+
+-- segunda versão (01/11/2026): o telefone do aluno no perfil da equipe
+alter table public.painel_perfis add column if not exists telefone text not null default '' check (char_length(telefone) <= 30);
 
 -- Ninguém lê nem escreve nelas pelo site. Só as funções abaixo.
 alter table public.painel_perfis enable row level security;
@@ -126,7 +129,8 @@ begin
         'criado_em', al.created_at,
         'ultima', greatest(ap.ultima, tr.ultima),
         'perfil', case when pp.user_id is null then '{}'::jsonb else jsonb_build_object(
-            'cidade', pp.cidade, 'ingles', pp.ingles, 'foco', pp.foco, 'horas', pp.horas, 'obs', pp.obs) end,
+            'cidade', pp.cidade, 'ingles', pp.ingles, 'foco', pp.foco, 'horas', pp.horas, 'telefone', pp.telefone, 'obs', pp.obs) end,
+        'tem_foto', coalesce(pf.foto, '') <> '',
         'contatos', coalesce(ct.contatos, '[]'::jsonb),
         'candidaturas', coalesce(ap.candidaturas, '[]'::jsonb),
         'trabalhos', coalesce(tr.trabalhos, '[]'::jsonb))
@@ -143,8 +147,30 @@ begin
 end;
 $$;
 
+-- as fotos vêm à parte, porque cada uma pesa até 70 KB: o painel abre sem
+-- esperar por elas e troca as iniciais pela foto quando chegam
+create or replace function public.admin_painel_fotos()
+returns jsonb
+language plpgsql
+stable
+security definer
+set search_path = ''
+as $$
+begin
+  if auth.uid() is null
+     or not exists (select 1 from public.administradores a where a.user_id = auth.uid()) then
+    raise exception 'Somente a administração.' using errcode = '42501';
+  end if;
+  return coalesce((select jsonb_object_agg(p.user_id, p.foto) from public.perfis p
+                   where p.foto <> ''
+                     and not exists (select 1 from public.administradores a where a.user_id = p.user_id)), '{}'::jsonb);
+end;
+$$;
+
 -- ── 3. O que a equipe grava ──
-create or replace function public.admin_perfil_salvar(p_aluno uuid, p_cidade text, p_ingles text, p_foco text, p_horas text, p_obs text)
+-- a primeira versão, sem o telefone, sai
+drop function if exists public.admin_perfil_salvar(uuid, text, text, text, text, text);
+create or replace function public.admin_perfil_salvar(p_aluno uuid, p_cidade text, p_ingles text, p_foco text, p_horas text, p_telefone text, p_obs text)
 returns void
 language plpgsql
 security definer
@@ -155,12 +181,12 @@ begin
      or not exists (select 1 from public.administradores a where a.user_id = auth.uid()) then
     raise exception 'Somente a administração.' using errcode = '42501';
   end if;
-  insert into public.painel_perfis (user_id, cidade, ingles, foco, horas, obs, atualizado_por, atualizado_em)
+  insert into public.painel_perfis (user_id, cidade, ingles, foco, horas, telefone, obs, atualizado_por, atualizado_em)
   values (p_aluno, btrim(coalesce(p_cidade, '')), btrim(coalesce(p_ingles, '')), btrim(coalesce(p_foco, '')),
-          btrim(coalesce(p_horas, '')), btrim(coalesce(p_obs, '')), auth.uid(), now())
+          btrim(coalesce(p_horas, '')), btrim(coalesce(p_telefone, '')), btrim(coalesce(p_obs, '')), auth.uid(), now())
   on conflict (user_id) do update
     set cidade = excluded.cidade, ingles = excluded.ingles, foco = excluded.foco, horas = excluded.horas,
-        obs = excluded.obs, atualizado_por = excluded.atualizado_por, atualizado_em = excluded.atualizado_em;
+        telefone = excluded.telefone, obs = excluded.obs, atualizado_por = excluded.atualizado_por, atualizado_em = excluded.atualizado_em;
 end;
 $$;
 
@@ -184,7 +210,7 @@ begin
 end;
 $$;
 
-revoke all on function public.admin_painel(), public.admin_perfil_salvar(uuid, text, text, text, text, text),
+revoke all on function public.admin_painel(), public.admin_painel_fotos(), public.admin_perfil_salvar(uuid, text, text, text, text, text, text),
                        public.admin_contato_registrar(uuid, text, text) from public, anon;
-grant execute on function public.admin_painel(), public.admin_perfil_salvar(uuid, text, text, text, text, text),
+grant execute on function public.admin_painel(), public.admin_painel_fotos(), public.admin_perfil_salvar(uuid, text, text, text, text, text, text),
                           public.admin_contato_registrar(uuid, text, text) to authenticated;
