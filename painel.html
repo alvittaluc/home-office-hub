@@ -186,8 +186,38 @@ textarea.pn-in { min-height:80px; resize:vertical; line-height:1.5; }
 .pn-logo { display:inline-grid; place-items:center; flex-shrink:0; overflow:hidden; border-radius:9px; font-weight:600; vertical-align:middle; }
 .pn-logo:has(img) { background:#fff !important; box-shadow:inset 0 0 0 1px var(--line-soft); }
 .pn-logo img { display:block; }
-.pn-av.foto { background:var(--bg-soft) !important; overflow:hidden; }
+.pn-av.foto { background:var(--bg-soft) !important; }
 .pn-av.foto img { width:100%; height:100%; object-fit:cover; display:block; }
+/* planos Black e Pro: selo, anel na foto e o quadro do plano na aba Perfil */
+.selo { display:inline-flex; align-items:center; gap:6px; font-family:'Geist',system-ui,sans-serif; font-size:12.5px; font-weight:600; line-height:1; letter-spacing:0; border-radius:99px; padding:6px 11px 6px 9px; white-space:nowrap; vertical-align:middle; }
+.selo svg { width:13px; height:13px; flex-shrink:0; }
+.selo.black { background:linear-gradient(135deg,#15171C 0%,#2B2E36 100%); color:#F2E3BF; box-shadow:inset 0 0 0 1px #3B3E47; }
+.selo.black svg { color:#D9B86C; }
+.selo.pro { background:var(--signal); color:#fff; } .selo.pro svg { color:#BBD3F2; }
+.selo.mini { font-size:11px; padding:4px 8px 4px 7px; gap:4px; } .selo.mini svg { width:11px; height:11px; }
+.pl { display:inline-flex; align-items:center; gap:4px; font-weight:600; }
+.pl svg { width:11px; height:11px; }
+.pl.black { color:#1B1D23; } .pl.black svg { color:#B8923D; } .pl.pro { color:var(--signal); }
+.pn-av { position:relative; }
+.pn-av.black { box-shadow:0 0 0 2px var(--panel), 0 0 0 4px #C9A85C; }
+.pn-av.pro { box-shadow:0 0 0 2px var(--panel), 0 0 0 4px var(--signal); }
+.pn-av .canto { position:absolute; right:-5px; bottom:-5px; width:17px; height:17px; border-radius:50%; display:grid; place-items:center; border:2px solid var(--panel); }
+.pn-av .canto svg { width:8px; height:8px; }
+.pn-av .canto.black { background:#1B1D23; color:#D9B86C; } .pn-av .canto.pro { background:var(--signal); color:#fff; }
+.pn-av.foto .canto { overflow:visible; }
+.pn-plano { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.pn-plano .txt { flex:1; min-width:200px; font-size:13.5px; color:var(--ink-2); line-height:1.5; }
+.pn-opc { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:4px; }
+.pn-opc label { display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:14px; padding:12px 14px; cursor:pointer; font-size:14px; color:var(--ink-2); background:var(--panel); }
+.pn-opc input { accent-color:var(--signal); width:16px; height:16px; margin:0; }
+.pn-opc label:has(input:checked) { border-color:var(--ink); box-shadow:0 0 0 1px var(--ink); color:var(--ink); }
+.pn-grupo { margin:10px 0 2px; }
+.pn-grupo > span { display:block; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); margin:0 2px 6px; }
+.pn-grupo .pn-chips { margin:0; }
+.pn-espera-bt { display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; font:inherit; font-size:13px; color:var(--ink-2); background:var(--panel-2); border:1px dashed var(--line); border-radius:12px; padding:9px 12px; cursor:pointer; margin-top:10px; text-align:left; }
+.pn-espera-bt:hover { border-color:var(--ink-3); }
+.pn-form-espera { display:grid; grid-template-columns:minmax(0,1fr) 150px auto; gap:8px; align-items:center; }
+@media (max-width:560px){ .pn-form-espera { grid-template-columns:1fr; } }
 .pn-zap { color:#1F7A6E; font-weight:500; text-decoration:none; }
 .pn-zap:hover { text-decoration:underline; }
 .pn-mix { display:flex; height:8px; width:110px; border-radius:99px; overflow:hidden; background:var(--bg-soft); }
@@ -238,6 +268,10 @@ button.pn-tl[aria-pressed="true"] { border-color:var(--signal); box-shadow:0 0 0
   <div id="equipe" hidden></div>
 </main>
 <div id="gaveta"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-black" viewBox="0 0 16 16"><path fill="currentColor" d="M4.2 2h7.6l3 4.1L8 14.5 1.2 6.1 4.2 2Zm.6 1.3L3 5.6h3.1l-1.3-2.3Zm6.4 0L9.9 5.6H13l-1.8-2.3ZM8 3.4 6.8 5.6h2.4L8 3.4ZM3.1 7l3.7 4.6L5.3 7H3.1Zm3.6 0L8 11.1 9.3 7H6.7Zm4 0-1.5 4.6L12.9 7h-2.2Z"/></symbol>
+  <symbol id="i-pro" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.2l2 4.3 4.7.5-3.5 3.2 1 4.6L8 11.5l-4.2 2.3 1-4.6L1.3 6l4.7-.5L8 1.2Z"/></symbol>
+</svg>
 
 <script src="layout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js" integrity="sha384-WgXwGL6fUsYJWNaKJgVbrJKGRQwc1vieh2oy4kw9nXqpNDz3tdSsqEYUgeHD/NuF" crossorigin="anonymous"></script>
@@ -320,10 +354,12 @@ function paraCand(ap) {
 }
 function montar(d) {
   GERADO = d.gerado_em || "";
+  ESPERA = Array.isArray(d.espera) ? d.espera : [];
   ALUNOS = (d.alunos || []).map((p, i) => {
     const pf = p.perfil || {};
     const a = { id: p.id, nome: (p.nome || "").trim() || String(p.email || "").split("@")[0] || "Sem nome", email: p.email || "",
       cidade: pf.cidade || "", ingles: pf.ingles || "", foco: pf.foco || "", horas: pf.horas || "", telefone: pf.telefone || "", obs: pf.obs || "",
+      plano: PLANOS[p.plano] ? p.plano : "", planoPor: p.plano_por || "", planoEm: String(p.plano_em || "").slice(0, 10),
       temFoto: !!p.tem_foto, foto: (ALUNOS.find(x => x.id === p.id) || {}).foto || "",
       contatos: (p.contatos || []).map(c => ({ data: String(c.criado_em || "").slice(0, 10), tipo: c.tipo, texto: c.texto, por: c.por })),
       cand: (p.candidaturas || []).map(paraCand),
@@ -357,7 +393,7 @@ function calcular(a) {
 }
 
 const FILTROS = () => ({ busca: "", etapa: "", motivo: "", vaga: "", ordem: "recente", mostrar: 20 });
-const S = { aba: "geral", sel: null, filtro: "atencao", busca: "", ordem: "atencao", mostrar: 20, abaAl: "cand", editando: false, novoContato: false, selEmp: null, selVaga: null, top: 5,
+const S = { aba: "geral", sel: null, filtro: "atencao", planoF: "todos", mudandoPlano: false, busca: "", ordem: "atencao", mostrar: 20, abaAl: "cand", editando: false, novoContato: false, selEmp: null, selVaga: null, top: 5,
   f: FILTROS(), trabMostrar: 6, empBusca: "", empOrdem: "cand", vagaBusca: "" };
 const todas = () => ALUNOS.flatMap(a => a.cand.map(x => Object.assign({ aluno: a }, x)));
 const contato = d => d === null ? "nenhum" : d <= 0 ? "hoje" : d === 1 ? "ontem" : `há ${d} dias`;
@@ -365,8 +401,16 @@ const situacao = a => a.jaFalamos ? `<span class="pill p-ja">Contato feito</span
 const quem = a => `<span class="pn-quem">${av(a)}<span class="nm" title="${esc(a.nome)}">${esc(a.nome)}</span></span>`;
 const pill = st => `<span class="pill ${ST[st].cls}">${esc(ST[st].rot || st)}</span>`;
 const pdfVer = x => x.cv ? `<button class="pdf" data-pdf="${esc(x.cv.caminho)}" data-nome="${esc(x.cv.nome || "curriculo.pdf")}" title="${esc(x.cv.nome || "")}"><i>PDF</i>Ver</button>` : "";
-const av = (a, t) => `<span class="pn-av${a.foto ? " foto" : ""}" style="background:${a.cor};${t ? `width:${t}px;height:${t}px;font-size:${Math.round(t / 2.7)}px` : ""}">${a.foto
-  ? `<img src="${esc(a.foto)}" alt="">` : esc(a.ini)}</span>`;
+const av = (a, t) => `<span class="pn-av${a.foto ? " foto" : ""}${a.plano ? " " + a.plano : ""}" style="background:${a.cor};${t ? `width:${t}px;height:${t}px;font-size:${Math.round(t / 2.7)}px` : ""}">${a.foto
+  ? `<img src="${esc(a.foto)}" alt="" style="border-radius:50%">` : esc(a.ini)}${a.plano ? `<span class="canto ${a.plano}">${icone(a.plano)}</span>` : ""}</span>`;
+
+/* ── planos: só a equipe coloca, e só pela aba Perfil do aluno ── */
+const PLANOS = { black: "Plano Black", pro: "Plano Pro" };
+const icone = p => `<svg aria-hidden="true"><use href="#i-${p}"/></svg>`;
+const selo = (p, mini) => PLANOS[p] ? `<span class="selo ${p}${mini ? " mini" : ""}">${icone(p)}${PLANOS[p]}</span>` : "";
+const plCurto = p => PLANOS[p] ? `<span class="pl ${p}">${icone(p)}${p === "black" ? "Black" : "Pro"}</span>` : "";
+const nomePlano = p => PLANOS[p] || "Sem plano";
+let ESPERA = [];   // e-mails cadastrados com plano, à espera de a pessoa criar a conta
 
 /* a empresa que o aluno escreveu, achada no empresas.json do site: "Appen" é a CrowdGen, "Telus" é a TELUS Digital */
 let EMPRESAS_HUB = [];
@@ -514,7 +558,7 @@ function geral() {
   const E = empresas(), V = vagas().slice(0, 5);
   return `
     <div class="pn-nums">
-      <div class="pn-num"><div class="r">Alunos</div><div class="v">${ALUNOS.length}</div><div class="d">${ALUNOS.filter(a => a.proj.length).length} trabalhando agora</div></div>
+      <div class="pn-num"><div class="r">Alunos</div><div class="v">${ALUNOS.length}</div><div class="d">${ALUNOS.filter(a => a.plano === "black").length} no Black, ${ALUNOS.filter(a => a.plano === "pro").length} no Pro · ${ALUNOS.filter(a => a.proj.length).length} trabalhando agora</div></div>
       <div class="pn-num"><div class="r">Precisam de contato</div><div class="v" style="color:#A85D24">${falta.length}</div><div class="d">têm alerta e ninguém da equipe falou com eles nos últimos 7 dias</div></div>
       <div class="pn-num"><div class="r">Empresas</div><div class="v">${E.length}</div><div class="d">com candidaturas ou trabalhos de alunos</div></div>
       <div class="pn-num"><div class="r">Candidaturas</div><div class="v">${T.length}</div><div class="d">${plural(ALUNOS.filter(a => a.emProcesso).length, "aluno", "alunos")} em teste, prova ou entrevista</div></div>
@@ -523,8 +567,8 @@ function geral() {
     <div class="pn-cx" style="margin-top:14px">
       <div class="pn-cab"><div><h2>Fila de atenção <span class="pn-sub">(${fila.length})</span></h2><p class="sub">alunos com algum alerta: recusas, candidaturas sem resposta, nada andando ou três semanas parado. Quem ainda não recebeu contato aparece primeiro.</p></div>
         <button class="pn-lnk" data-ir-alunos>Ver todos na aba Alunos →</button></div>
-      ${fila.length ? `<div class="pn-rolagem"><table class="pn-t"><tr><th>Aluno</th><th>O que aconteceu</th><th>Próximo passo</th><th>Último contato</th><th>Situação</th></tr>
-      ${fila.slice(0, 6).map(a => `<tr class="clica" data-aluno="${a.id}"><td class="forte">${quem(a)}</td><td>${esc(a.alertas[0].texto)}</td>
+      ${fila.length ? `<div class="pn-rolagem"><table class="pn-t"><tr><th>Aluno</th><th>Plano</th><th>O que aconteceu</th><th>Próximo passo</th><th>Último contato</th><th>Situação</th></tr>
+      ${fila.slice(0, 6).map(a => `<tr class="clica" data-aluno="${a.id}"><td class="forte">${quem(a)}</td><td>${plCurto(a.plano) || '<span class="pn-sub">Sem plano</span>'}</td><td>${esc(a.alertas[0].texto)}</td>
         <td>${esc(a.alertas[0].passo.replace(/^./, x => x.toUpperCase()))}</td><td>${contato(a.dContato)}</td><td>${situacao(a)}</td></tr>`).join("")}</table></div>`
         : `<p class="pn-vazio">Nenhum aluno com alerta agora.</p>`}
     </div>
@@ -584,7 +628,8 @@ async function numerosSite() {
 function listaAlunos() {
   const q = norm(S.busca.trim());
   let L = ALUNOS.filter(a => !q || norm(a.nome + " " + a.email).includes(q))
-    .filter(a => S.filtro === "todos" || (S.filtro === "atencao" && a.alertas.length) || (S.filtro === "processo" && a.emProcesso) || (S.filtro === "trabalhando" && a.proj.length));
+    .filter(a => S.filtro === "todos" || (S.filtro === "atencao" && a.alertas.length) || (S.filtro === "processo" && a.emProcesso) || (S.filtro === "trabalhando" && a.proj.length))
+    .filter(a => S.planoF === "todos" || (S.planoF === "sem" ? !a.plano : a.plano === S.planoF));
   if (S.ordem === "nome") L.sort((x, y) => x.nome.localeCompare(y.nome, "pt-BR"));
   else if (S.ordem === "recente") L.sort((x, y) => (x.cand[0] ? diasDesde(x.cand[0].data) : 999) - (y.cand[0] ? diasDesde(y.cand[0].data) : 999));
   else L.sort((x, y) => ((y.alertas.length && !y.jaFalamos) - (x.alertas.length && !x.jaFalamos)) || (y.alertas.length - x.alertas.length) || x.nome.localeCompare(y.nome, "pt-BR"));
@@ -599,16 +644,19 @@ function alunos() {
   return `<div class="pn-duas">
     <div class="pn-lista">
       <input class="pn-busca" id="busca" placeholder="Buscar por nome ou e-mail" value="${esc(S.busca)}" autocomplete="off">
-      <div class="pn-chips">${[["todos", "Todos"], ["atencao", "Precisa de atenção"], ["processo", "Em processo"], ["trabalhando", "Trabalhando"]].map(([k2, n]) =>
-        `<button class="pn-chip" data-filtro="${k2}" aria-pressed="${S.filtro === k2}">${n}</button>`).join("")}</div>
+      <div class="pn-grupo"><span>Situação</span><div class="pn-chips">${[["todos", "Todos"], ["atencao", "Precisa de atenção"], ["processo", "Em processo"], ["trabalhando", "Trabalhando"]].map(([k2, n]) =>
+        `<button class="pn-chip" data-filtro="${k2}" aria-pressed="${S.filtro === k2}">${n}</button>`).join("")}</div></div>
+      <div class="pn-grupo"><span>Plano</span><div class="pn-chips">${[["todos", "Todos"], ["black", "Black"], ["pro", "Pro"], ["sem", "Sem plano"]].map(([k2, n]) =>
+        `<button class="pn-chip" data-filtro-plano="${k2}" aria-pressed="${S.planoF === k2}">${n}</button>`).join("")}</div></div>
       <label class="pn-ordem">Ordenar <select id="ordem">${[["atencao", "Precisa de atenção primeiro"], ["nome", "Nome, de A a Z"], ["recente", "Candidatura mais recente"]].map(([k2, n]) =>
         `<option value="${k2}"${S.ordem === k2 ? " selected" : ""}>${n}</option>`).join("")}</select></label>
-      <p class="pn-sub" style="margin:0 4px 6px">${L.length} de ${ALUNOS.length}</p>
+      <p class="pn-sub" style="margin:10px 4px 6px">${contaLista(L.length)}</p>
       <ul class="pn-itens">${vis.map(x => `<li><button class="pn-item" data-aluno="${x.id}" aria-current="${x.id === a.id}">${av(x, 36)}
-        <span class="t"><b>${esc(x.nome)}</b><small>${plural(x.cand.length, "candidatura", "candidaturas")}${x.proj.length ? " · trabalhando" : ""}</small></span>
+        <span class="t"><b>${esc(x.nome)}</b><small>${x.plano ? plCurto(x.plano) + " · " : ""}${plural(x.cand.length, "candidatura", "candidaturas")}${x.proj.length ? " · trabalhando" : ""}</small></span>
         ${x.alertas.length ? (x.jaFalamos ? `<span class="pill p-ja">contato feito</span>` : `<span class="pill p-falta">contato pendente</span>`) : ""}</button></li>`).join("")}</ul>
       ${L.length > vis.length ? `<button class="pn-bt" id="mais" style="width:100%;justify-content:center;margin-top:8px">Mostrar mais ${Math.min(20, L.length - vis.length)}</button>` : ""}
       ${!L.length ? `<p class="pn-vazio" style="margin-top:8px">Ninguém neste filtro.</p>` : ""}
+      <button class="pn-espera-bt" data-espera><span>E-mails à espera da conta</span><span class="pn-cnt cinza">${ESPERA.length}</span></button>
     </div>
     <div class="pn-det">${fichaAluno(a)}</div>
   </div>`;
@@ -617,7 +665,7 @@ function alunos() {
 function fichaAluno(a) {
   const ajuda = { perfil: "Quem o aluno é. A equipe preenche; o aluno não vê.", cand: "Tudo o que o aluno lançou no Meu Controle. Clique numa linha para abrir a candidatura.", acomp: "Cada conversa com o aluno vira um registro com data." };
   return `
-    <div class="pn-cabal">${av(a, 60)}<div style="flex:1;min-width:220px"><div class="nm">${esc(a.nome)}</div>
+    <div class="pn-cabal">${av(a, 60)}<div style="flex:1;min-width:220px"><div class="nm">${esc(a.nome)} ${selo(a.plano, true)}</div>
       <div class="pn-sub">${esc(a.email)}${a.telefone ? " · " + (zap(a.telefone) ? `<a class="pn-zap" href="${zap(a.telefone)}" target="_blank" rel="noopener noreferrer">${esc(a.telefone)}</a>` : esc(a.telefone)) : ""}${a.cidade ? " · " + esc(a.cidade) : ""} · último contato ${contato(a.dContato)}</div></div>
       <button class="pn-bt ambar" data-novo-contato>Registrar contato</button></div>
     ${a.alertas.length ? `<div class="pn-alerta"><b>Precisa de atenção</b> · ${situacao(a)}<ul>${a.alertas.map(x => `<li>${esc(x.texto)}. Próximo passo: ${esc(x.passo)}.</li>`).join("")}</ul></div>` : ""}
@@ -627,6 +675,67 @@ function fichaAluno(a) {
     ${S.abaAl === "perfil" ? abaPerfil(a) : S.abaAl === "cand" ? abaCand(a) : abaAcomp(a)}`;
 }
 
+/* O plano fica salvo e só muda em dois passos (Mudar plano, escolher, Salvar plano):
+   um clique sem querer não troca o plano de ninguém. */
+function quadroPlano(a) {
+  if (S.mudandoPlano) return `<form class="pn-cx" id="formPlano" style="border-color:var(--signal)">
+    <h2 style="margin-bottom:4px">Mudar o plano de ${esc(a.nome.split(" ")[0])}</h2>
+    <p class="pn-sub" style="margin-bottom:12px">Agora: ${esc(nomePlano(a.plano))}. O aluno vê o selo novo na próxima vez que abrir o site.</p>
+    <div class="pn-opc">${["black", "pro", ""].map(p => `<label><input type="radio" name="plano" value="${p}"${a.plano === p ? " checked" : ""}>${p ? selo(p, true) : "Sem plano"}</label>`).join("")}</div>
+    <div class="pn-acoes"><button type="button" class="pn-bt" data-cancelar-plano>Cancelar</button><button class="pn-bt forte" disabled>Salvar plano</button></div></form>`;
+  return `<div class="pn-cx"><div class="pn-plano">${a.plano ? selo(a.plano) : `<span class="pn-sub" style="font-size:14px">Sem plano</span>`}
+    <span class="txt">${a.plano ? `Colocado por <b>${esc(a.planoPor || "equipe")}</b>${ehData(a.planoEm) ? " em " + br(a.planoEm) : ""}.` : "Este aluno ainda não está no plano Black nem no Pro."}</span>
+    <button class="pn-bt" data-mudar-plano>${a.plano ? "Mudar plano" : "Colocar plano"}</button></div></div>`;
+}
+function contaLista(n) {
+  const pl = S.planoF === "black" ? " do plano Black" : S.planoF === "pro" ? " do plano Pro" : S.planoF === "sem" ? " sem plano" : "";
+  if (S.filtro === "atencao") return `${n} ${n === 1 ? "aluno" : "alunos"}${pl} ${n === 1 ? "precisa" : "precisam"} de atenção`;
+  return `${n} de ${ALUNOS.length} ${ALUNOS.length === 1 ? "aluno" : "alunos"}${pl ? " ·" + pl : ""}`;
+}
+
+/* e-mails à espera: a pessoa ainda não tem conta; quando criar com este e-mail, já entra no plano */
+function abrirEspera(msg) {
+  if (fecharGaveta) document.removeEventListener("keydown", fecharGaveta);
+  const g = document.getElementById("gaveta");
+  g.innerHTML = `<div class="pn-veu" data-fechar></div><aside class="pn-gaveta" role="dialog" aria-modal="true" aria-label="E-mails à espera da conta">
+    <button class="pn-bt pn-fecha" data-fechar>Fechar ✕</button>
+    <div class="rot">Planos</div><h2>E-mails à espera da conta</h2>
+    <p class="pn-sub">Para quem já é aluno Black ou Pro mas ainda não criou conta no site. Quando a pessoa criar a conta com este mesmo e-mail, ela já entra com o selo, sem ninguém precisar lembrar de marcar depois.</p>
+    <form class="pn-form-espera" id="formEspera" novalidate><input class="pn-in" name="email" type="email" maxlength="200" placeholder="E-mail da pessoa" autocomplete="off">
+      <select class="pn-in" name="plano"><option value="black">Plano Black</option><option value="pro">Plano Pro</option></select>
+      <button class="pn-bt forte">Cadastrar</button></form>
+    ${msg ? `<div class="pn-auto">${esc(msg)}</div>` : ""}
+    ${ESPERA.length ? `<div class="pn-rolagem"><table class="pn-t"><tr><th>E-mail</th><th>Plano</th><th>Cadastrado</th><th></th></tr>
+      ${ESPERA.map(x => `<tr><td class="forte" style="word-break:break-all">${esc(x.email)}</td><td>${selo(x.plano, true)}</td><td>${br(String(x.criado_em || "").slice(0, 10))}<small>por ${esc(x.por || "equipe")}</small></td>
+        <td style="text-align:right"><button class="pn-lnk" data-tirar-espera="${esc(x.email)}">tirar</button></td></tr>`).join("")}</table></div>`
+      : `<p class="pn-vazio">Nenhum e-mail à espera.</p>`}
+  </aside>`;
+  const fechar = () => { g.innerHTML = ""; document.removeEventListener("keydown", fecharGaveta); fecharGaveta = null; };
+  fecharGaveta = ev => { if (ev.key === "Escape") fechar(); };
+  document.addEventListener("keydown", fecharGaveta);
+  g.querySelectorAll("[data-fechar]").forEach(b => b.onclick = fechar);
+  const f = g.querySelector("#formEspera");
+  f.onsubmit = async ev => {
+    ev.preventDefault();
+    const email = f.elements.email.value.trim().toLowerCase(), plano = f.elements.plano.value;
+    if (!/^\S+@\S+\.\S+$/.test(email)) { f.elements.email.focus(); avisar("Escreva o e-mail da pessoa.", true); return; }
+    const bt = f.querySelector(".forte"); bt.disabled = true;
+    const r = await cli.rpc("admin_espera_cadastrar", { p_email: email, p_plano: plano });
+    if (r.error) { console.warn(r.error); bt.disabled = false; avisar("Não deu para cadastrar agora. Confira a internet e tente de novo.", true); return; }
+    await carregar();
+    render();
+    abrirEspera(r.data && r.data.ja_tem_conta
+      ? `Essa pessoa já tem conta: ${r.data.nome || email} recebeu o ${nomePlano(plano)} direto e já aparece na lista de alunos.`
+      : `${email} ficou à espera. O ${nomePlano(plano)} entra quando a pessoa criar a conta.`);
+  };
+  g.querySelectorAll("[data-tirar-espera]").forEach(b => b.onclick = async () => {
+    if (!confirm(`Tirar ${b.dataset.tirarEspera} da espera? Se a pessoa criar a conta depois, ela entra sem plano.`)) return;
+    const r = await cli.rpc("admin_espera_tirar", { p_email: b.dataset.tirarEspera });
+    if (r.error) { console.warn(r.error); avisar("Não deu para tirar agora.", true); return; }
+    ESPERA = ESPERA.filter(x => x.email !== b.dataset.tirarEspera); render(); abrirEspera();
+  });
+}
+
 /* qualquer pessoa da equipe pode falar com o aluno, e cada contato mostra quem registrou */
 const CAMPOS = [["cidade", "Cidade", 80], ["ingles", "Inglês", 60], ["foco", "Área de foco", 80], ["horas", "Disponibilidade", 60], ["telefone", "Telefone", 30]];
 function abaPerfil(a) {
@@ -634,7 +743,7 @@ function abaPerfil(a) {
     <div class="pn-campos">${CAMPOS.map(([k2, n, max]) => `<div><label for="f-${k2}">${n}</label><input class="pn-in" id="f-${k2}" name="${k2}" maxlength="${max}" value="${esc(a[k2])}"></div>`).join("")}</div>
     <div style="margin-top:14px"><label class="pn-sub" for="f-obs">Observações da equipe</label><textarea class="pn-in" id="f-obs" name="obs" maxlength="2000">${esc(a.obs)}</textarea></div>
     <div class="pn-acoes"><button type="button" class="pn-bt" data-cancelar>Cancelar</button><button class="pn-bt forte">Salvar perfil</button></div></form>`;
-  return `<div class="pn-cx"><div class="pn-cab"><h2>Perfil</h2><button class="pn-bt" data-editar>Editar perfil</button></div>
+  return `${quadroPlano(a)}<div class="pn-cx"><div class="pn-cab"><h2>Perfil</h2><button class="pn-bt" data-editar>Editar perfil</button></div>
     <dl class="pn-campos">${CAMPOS.map(([k2, n]) => `<div><dt>${n}</dt><dd>${esc(a[k2]) || '<span class="pn-sub">não preenchido</span>'}${k2 === "telefone" && zap(a.telefone)
       ? ` · <a class="pn-zap" href="${zap(a.telefone)}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>` : ""}</dd></div>`).join("")}</dl>
     <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft)"><dt class="pn-sub" style="text-transform:uppercase;letter-spacing:.05em;font-size:11.5px">Observações da equipe</dt>
@@ -836,7 +945,7 @@ function render() {
   ligarPdf(alvo);
   const mn = alvo.querySelector("#maisNumeros"); if (mn) mn.addEventListener("toggle", () => { if (mn.open) numerosSite(); });
   alvo.querySelectorAll("[data-aluno]").forEach(b => b.onclick = () => {
-    S.aba = "alunos"; S.sel = b.dataset.aluno; S.editando = false; S.novoContato = false; render();
+    S.aba = "alunos"; S.sel = b.dataset.aluno; S.editando = false; S.novoContato = false; S.mudandoPlano = false; render();
     const det = document.querySelector(".pn-det");
     if (window.innerWidth < 980 && det) det.scrollIntoView(); else window.scrollTo(0, 0);
   });
@@ -859,7 +968,27 @@ function render() {
   const eo = alvo.querySelector("#empOrdem"); if (eo) eo.onchange = () => { S.empOrdem = eo.value; render(); };
   alvo.querySelectorAll("[data-cand]").forEach(tr => tr.onclick = () => { const [id, i] = tr.dataset.cand.split("|"); abrirCand(id, +i); });
   alvo.querySelectorAll("[data-filtro]").forEach(b => b.onclick = () => { S.filtro = b.dataset.filtro; S.mostrar = 20; render(); });
-  alvo.querySelectorAll("[data-abaal]").forEach(b => b.onclick = () => { S.abaAl = b.dataset.abaal; S.editando = false; render(); });
+  alvo.querySelectorAll("[data-filtro-plano]").forEach(b => b.onclick = () => { S.planoF = b.dataset.filtroPlano; S.mostrar = 20; render(); });
+  alvo.querySelectorAll("[data-espera]").forEach(b => b.onclick = () => abrirEspera());
+  alvo.querySelectorAll("[data-mudar-plano]").forEach(b => b.onclick = () => { S.mudandoPlano = true; render(); });
+  alvo.querySelectorAll("[data-cancelar-plano]").forEach(b => b.onclick = () => { S.mudandoPlano = false; render(); });
+  const fpl = alvo.querySelector("#formPlano");
+  if (fpl) {
+    const a = ALUNOS.find(x => x.id === S.sel), bt = fpl.querySelector(".forte");
+    fpl.querySelectorAll("input[name=plano]").forEach(r => r.onchange = () => { bt.disabled = r.value === a.plano; });
+    fpl.onsubmit = async ev => {
+      ev.preventDefault();
+      const novo = (fpl.querySelector("input[name=plano]:checked") || {}).value;
+      if (novo === undefined || novo === a.plano) return;
+      bt.disabled = true;
+      const r = await cli.rpc("admin_plano_definir", { p_aluno: a.id, p_plano: novo });
+      if (r.error) { console.warn(r.error); bt.disabled = false; avisar("Não deu para salvar o plano. Confira a internet e tente de novo.", true); return; }
+      a.plano = novo; a.planoPor = EU_NOME || "você"; a.planoEm = hojeIso();
+      S.mudandoPlano = false; render();
+      avisar(novo ? `${a.nome.split(" ")[0]} agora está no ${nomePlano(novo)}.` : `${a.nome.split(" ")[0]} ficou sem plano.`);
+    };
+  }
+  alvo.querySelectorAll("[data-abaal]").forEach(b => b.onclick = () => { S.abaAl = b.dataset.abaal; S.editando = false; S.mudandoPlano = false; render(); });
   const ordem = alvo.querySelector("#ordem"); if (ordem) ordem.onchange = () => { S.ordem = ordem.value; render(); };
   const mais = alvo.querySelector("#mais"); if (mais) mais.onclick = () => { S.mostrar += 20; render(); };
   alvo.querySelectorAll("[data-editar]").forEach(b => b.onclick = () => { S.editando = true; render(); });
@@ -891,8 +1020,8 @@ function render() {
 }
 
 document.getElementById("csv").onclick = () => {
-  const linhas = [["Aluno", "E-mail da conta", "Empresa", "Vaga", "Etapa", "Motivo", "Enviada em", "Currículo"]].concat(todas().map(x =>
-    [x.aluno.nome, x.aluno.email, x.empresa, x.vaga, ST[x.status].rot || x.status, ST[x.status].grupo === "rec" ? motivoTxt(x) : "", br(x.data), x.apelido || (x.cv && x.cv.nome) || ""]));
+  const linhas = [["Aluno", "E-mail da conta", "Plano", "Empresa", "Vaga", "Etapa", "Motivo", "Enviada em", "Currículo"]].concat(todas().map(x =>
+    [x.aluno.nome, x.aluno.email, PLANOS[x.aluno.plano] || "", x.empresa, x.vaga, ST[x.status].rot || x.status, ST[x.status].grupo === "rec" ? motivoTxt(x) : "", br(x.data), x.apelido || (x.cv && x.cv.nome) || ""]));
   const csv = "﻿" + linhas.map(l => l.map(v => `"${String(v || "").replace(/"/g, '""')}"`).join(";")).join("\n");
   const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = "candidaturas-" + hojeIso() + ".csv"; a.click();
 };
