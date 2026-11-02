@@ -388,7 +388,7 @@ function calcular(a) {
 }
 
 const FILTROS = () => ({ busca: "", etapa: "", motivo: "", vaga: "", ordem: "recente", mostrar: 20 });
-const S = { aba: "geral", sel: null, filtro: "atencao", planoF: "todos", mudandoPlano: false, busca: "", ordem: "atencao", mostrar: 20, abaAl: "cand", editando: false, novoContato: false, selEmp: null, selVaga: null, top: 5,
+const S = { aba: "geral", sel: null, filtro: "todos", planoF: "todos", mudandoPlano: false, busca: "", ordem: "atencao", mostrar: 20, abaAl: "cand", editando: false, novoContato: false, selEmp: null, selVaga: null, top: 5,
   f: FILTROS(), trabMostrar: 6, empBusca: "", empOrdem: "cand", vagaBusca: "" };
 const todas = () => ALUNOS.flatMap(a => a.cand.map(x => Object.assign({ aluno: a }, x)));
 const contato = d => d === null ? "nenhum" : d <= 0 ? "hoje" : d === 1 ? "ontem" : `há ${d} dias`;
