@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-11-02T17:33:48.269670+00:00",
-  "total": 1325,
+  "atualizado_em": "2026-11-02T20:14:53.060911+00:00",
+  "total": 1328,
   "primeira_vez": {
     "alignerr|accounting & finance expert": "2026-10-02",
     "alignerr|accounting instructor": "2026-10-02",
@@ -729,6 +729,7 @@
     "micro1|filmmaker": "2026-10-02",
     "micro1|final cut pro video editor": "2026-10-02",
     "micro1|finance & accounting expert": "2026-10-24",
+    "micro1|finance research expert": "2026-11-02",
     "micro1|finance specialist": "2026-09-30",
     "micro1|financial aid advisor": "2026-10-15",
     "micro1|financial due diligence & transaction accounting": "2026-10-29",
@@ -743,6 +744,7 @@
     "micro1|gaming gambling regulatory attorney": "2026-10-29",
     "micro1|general counsel": "2026-10-02",
     "micro1|github contributor": "2026-10-02",
+    "micro1|godot game developer": "2026-11-02",
     "micro1|gpu programming software engineer": "2026-09-11",
     "micro1|graphic designer": "2026-10-15",
     "micro1|graphic designer editorial poster & marketing layout": "2026-09-11",
@@ -914,6 +916,7 @@
     "micro1|rust architect backend developer": "2026-10-24",
     "micro1|saas contracts counsel": "2026-10-06",
     "micro1|sales agent securities & commodities": "2026-10-02",
+    "micro1|sales and business development expert": "2026-11-02",
     "micro1|sales representatives technical & scientific materials": "2026-10-02",
     "micro1|sales representatives wholesale": "2026-10-02",
     "micro1|sales revenue cs operations expert": "2026-10-02",

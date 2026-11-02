@@ -1,5 +1,5 @@
 {
-  "total": 372,
+  "total": 378,
   "vagas": [
     {
       "id": "65762fd387",
@@ -4067,6 +4067,71 @@
         "idioma": "en+",
         "carga": "40 h por semana, 8 h por dia, com 4 h em comum com o horário do Pacífico (EUA)",
         "contrato": "Freelancer, 1 mês"
+      }
+    },
+    {
+      "id": "26fa37197c",
+      "resumo": {
+        "frase": "Criar perguntas difíceis de finanças sobre empresas americanas para testar modelos de IA.",
+        "o_que_faz": "Você escreve perguntas sobre empresas de capital aberto dos EUA cuja resposta está escondida em relatórios longos, como o 10-K, o 10-Q e apresentações a investidores. Algumas perguntas dependem de comparar dois documentos com números diferentes, por exemplo o balanço original e o republicado. Cada pergunta precisa ter resposta conferida e com fonte, e você testa nos modelos de IA, ficando só com as que eles erram. Cada tarefa leva de 4 a 8 horas.",
+        "requisitos": "Prática de verdade com relatórios entregues à SEC, a comissão de valores mobiliários americana, e familiaridade com US GAAP, as normas contábeis dos EUA. O anúncio busca quem vem de análise de ações, banco de investimento, análise de crédito, auditoria ou direito societário. Você precisa ler relatórios longos, com notas e tabelas, e escrever bem em inglês. A seleção tem uma entrevista curta sobre sua experiência e, se você for escolhido, uma primeira tarefa revisada antes de seguir.",
+        "idioma": "en",
+        "remuneracao": "US$ 30 a 60 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "99a79b0235",
+      "resumo": {
+        "frase": "Desenvolver jogos no Godot para treinar modelos de IA.",
+        "o_que_faz": "Você cria sistemas de jogo, mecânicas e cenas no motor Godot dentro de um projeto que treina modelos de IA. Também escreve documentação, revisa o código de outras pessoas e resolve problemas técnicos e de desempenho. O trabalho anda em ciclos, com testes jogando para melhorar a jogabilidade.",
+        "requisitos": "Experiência comprovada em desenvolvimento de jogos, seja em estúdio grande, independente ou como hobby sério. O portfólio é a parte mais importante da candidatura: site, itch.io, Steam, GitHub ou jogos de game jam. Pede domínio de um motor como Godot, Unity ou Unreal e de linguagens como GDScript, C# ou C++, além de ótima escrita em inglês. O pagamento é por tarefa aprovada e há um mínimo de tarefas por semana.",
+        "idioma": "en+",
+        "remuneracao": "US$ 20 a 60 por hora",
+        "contrato": "Autônomo, pago por tarefa"
+      }
+    },
+    {
+      "id": "ff796cfcd3",
+      "resumo": {
+        "frase": "Avaliar modelos de IA que fazem entrevistas sobre vendas.",
+        "o_que_faz": "Você responde a perguntas de situações de vendas e desenvolvimento de negócios feitas por modelos de IA de entrevista. Depois comenta se as perguntas e respostas fazem sentido, estão certas e parecem reais. Também simula conversas de venda em vários setores e anota onde o modelo vai bem e onde precisa melhorar.",
+        "requisitos": "Pelo menos três anos de experiência em vendas e desenvolvimento de negócios, de preferência em mais de um setor ou mercado. Não precisa ter experiência com IA. Pede ótima escrita e boa comunicação em inglês, além de facilidade para dar comentários claros e práticos.",
+        "idioma": "en+",
+        "remuneracao": "US$ 15 a 35 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "eeacd61ea4",
+      "resumo": {
+        "frase": "Usar e avaliar um produto de IA de pesquisa de mercado como se fosse no seu dia a dia de trabalho.",
+        "o_que_faz": "Você usa um produto de IA que resume pesquisas de mercado, tira conclusões sobre consumidores e sugere estratégias de marketing. Depois avalia se o que ele entrega é útil, claro e aplicável a decisões reais de negócio, apontando falhas, informações erradas e o que falta. Parte do trabalho é simular rotinas reais, como revisar relatórios e tomar decisões a partir deles.",
+        "requisitos": "Pelo menos 3 anos de experiência em pesquisa de mercado, estudo do consumidor ou estratégia de marketing. O anúncio pede experiência atual ou recente numa empresa da lista Fortune 1000, numa consultoria de ponta ou numa agência de destaque. Também pede prática em usar pesquisas para tomar decisões, não só em produzir relatórios, e inglês fluente. É um trabalho flexível, pensado para fazer junto com o emprego atual.",
+        "idioma": "en+",
+        "remuneracao": "US$ 120 por hora"
+      }
+    },
+    {
+      "id": "d995b44df1",
+      "resumo": {
+        "frase": "Criar problemas de biologia de nível de pesquisa para testar modelos de IA.",
+        "o_que_faz": "Você cria problemas e tarefas difíceis de biologia e ciências da vida, além do que se aprende nos livros, para medir os limites dos modelos de IA. Também avalia se as respostas dos modelos estão certas e bem fundamentadas, explica onde eles erram e ajuda a montar conjuntos de testes da sua área. O trabalho é feito junto com as equipes de pesquisa de um laboratório de IA.",
+        "requisitos": "Doutorado em biologia ou numa área das ciências da vida, como genética, bioquímica, neurociência, imunologia ou bioinformática. Pede experiência prática em pesquisa, de preferência com artigos publicados, e ótima escrita em inglês. Saber Python ou R conta a favor. São 40 horas por semana, com 8 horas no mesmo horário da costa oeste dos EUA (PST). A seleção tem análise do perfil e uma entrevista obrigatória feita por IA.",
+        "idioma": "en+",
+        "carga": "40 h por semana",
+        "contrato": "Autônomo, até 5 semanas"
+      }
+    },
+    {
+      "id": "a02a64e2c7",
+      "resumo": {
+        "frase": "Criar tarefas de projeto de chips em RTL para medir modelos de IA.",
+        "o_que_faz": "Você transforma projetos reais de hardware digital em tarefas para avaliar modelos de IA: cada uma tem especificação, um projeto inicial, uma solução de referência e os testes que dão a nota. As tarefas pedem para projetar em RTL, corrigir erros ou melhorar consumo, desempenho e área do circuito. Você também tenta quebrar suas próprias tarefas do jeito que um modelo faria e fecha as brechas antes de entregar.",
+        "requisitos": "Graduação ou mestrado em engenharia elétrica, eletrônica ou de computação, ou experiência prática equivalente, e pelo menos 3 anos de projeto digital em ASIC ou FPGA. Pede domínio de Verilog e SystemVerilog, síntese lógica com ferramentas comerciais (Cadence, Synopsys ou Vivado) e abertas (Yosys, Verilator), testes em cocotb ou SystemVerilog, e Python e Tcl. São no mínimo 40 horas por semana, com 4 horas por dia no horário da costa oeste dos EUA (PST). A seleção tem uma entrevista técnica.",
+        "idioma": "en+",
+        "carga": "40 h por semana",
+        "contrato": "Autônomo, 2 meses"
       }
     }
   ]

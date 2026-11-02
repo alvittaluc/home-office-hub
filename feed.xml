@@ -5,7 +5,7 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Mon, 02 Nov 2026 17:33:48 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Nov 2026 20:14:53 +0000</lastBuildDate>
     <item>
       <title>Video Annotation — micro1</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=25c91c8cf3</link>
@@ -231,13 +231,6 @@
       <description>Você assiste a clipes curtos de vídeo e áudio e confere se as descrições geradas por IA estão corretas. Quando encontra erro, ambiguidade ou algo fora das regras do projeto, registra isso em um comentário curto e claro. É trabalho de anotação repetitivo, guiado por diretrizes, e serve como porta de entrada na área.</description>
     </item>
     <item>
-      <title>360° Video Recorder (Insta360 / GoPro MAX) — micro1</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3d2bc67c67</link>
-      <guid isPermaLink="false">3d2bc67c67</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você grava vídeos em terceira pessoa com uma câmera 360° ou de ação presa atrás de você, de forma que o seu corpo inteiro e o ambiente apareçam. As gravações mostram atividades do dia a dia, caminhadas, trajetos de carro e até passeios com a câmera presa em animais. Cada clipe precisa ter pelo menos 60 segundos. O anúncio fala em US$ 20 por hora de vídeo aprovado, enquanto a listagem da micro1 mostra de US$ 10 a US$ 15.</description>
-    </item>
-    <item>
       <title>Data Operations Specialist — Alignerr</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=5d3469d264</link>
       <guid isPermaLink="false">5d3469d264</guid>
@@ -259,20 +252,6 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
-      <title>Image Description Specialist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=b85d28d5bc</link>
-      <guid isPermaLink="false">b85d28d5bc</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você escreve descrições ricas e precisas de imagens, para ensinar sistemas de IA a interpretar conteúdo visual. É um trabalho de observação e de texto claro, repetido com método em muitas imagens.</description>
-    </item>
-    <item>
-      <title>E-commerce Data Analyst — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3d82b44c66</link>
-      <guid isPermaLink="false">3d82b44c66</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você revisa, categoriza e melhora os dados de produtos que alimentam sistemas de IA de compras e recomendação: categoria certa, descrição coerente, informação que bate. É trabalho com tabelas de dados, em ferramentas online.</description>
-    </item>
-    <item>
       <title>English Writing Generalist — Alignerr</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4594ab3713</link>
       <guid isPermaLink="false">4594ab3713</guid>
@@ -285,6 +264,27 @@
       <guid isPermaLink="false">6c68607432</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
       <description>Você lê ficção, ensaios, poesia e outros textos criativos gerados por IA e avalia o que funciona e o que não funciona, explicando o porquê. São muitos textos para ler, sempre com o mesmo critério.</description>
+    </item>
+    <item>
+      <title>AI Chatbot Tester — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=bd7cf3a141</link>
+      <guid isPermaLink="false">bd7cf3a141</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você conversa com chatbots de IA sobre assuntos e situações variadas e avalia se cada resposta é útil, correta, segura e tem o tom adequado. Também põe o modelo à prova com perguntas criativas e casos difíceis, e registra informação errada, frase estranha, conteúdo nocivo ou viés em um formulário padronizado.</description>
+    </item>
+    <item>
+      <title>Prompt Writer — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f77d5d9d3</link>
+      <guid isPermaLink="false">3f77d5d9d3</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você cria prompts originais, ou seja, perguntas, cenários e tarefas, em assuntos e níveis de dificuldade variados, para desafiar o raciocínio, a criatividade e a precisão dos modelos. Parte dos prompts testa como a IA se sai em temas de segurança, em situações delicadas e em casos extremos. Você segue os formatos e os guias de estilo do projeto e ajusta o texto conforme as correções que recebe.</description>
+    </item>
+    <item>
+      <title>AI Ethics Reviewer — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=13ea107c0b</link>
+      <guid isPermaLink="false">13ea107c0b</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você revisa conteúdo gerado por IA procurando viés, estereótipo e material que possa ser nocivo, e avalia se as respostas são seguras, justas e adequadas a públicos diferentes. Para cada problema, escreve um comentário claro, aplicando as diretrizes de segurança e de imparcialidade do projeto.</description>
     </item>
   </channel>
 </rss>
