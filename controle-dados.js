@@ -480,14 +480,17 @@ const Dados = (function () {
   /* ══════════════════════════════════════════════════════════
      CÂMBIO
 
-     Fonte: api.frankfurter.dev, do Banco Central Europeu.
-     Gratuita, sem chave, sem cadastro, e responde direto do navegador.
+     Fonte: a cotação oficial do Banco Central do Brasil (PTAX), a mesma
+     do card de câmbio da tela Hoje e da tela Imposto. Consulta aberta,
+     sem chave, que responde direto do navegador.
 
      Regras:
      - o valor guardado é SEMPRE na moeda original; a conversão é só vista
-     - a cotação de cada dia é buscada uma vez e fica guardada
-     - o BCE só publica em dia útil, então fim de semana devolve a sexta,
-       e a resposta traz a data que valeu de verdade
+     - vale a cotação de COMPRA do fechamento do dia
+     - o Banco Central só publica em dia útil: fim de semana e feriado
+       usam o último dia útil antes, e a resposta traz a data que valeu
+     - o fechamento de cada dia é buscado uma vez e fica guardado; o de
+       hoje, enquanto o dia não fecha, vale só para esta visita
      - sem internet, usa a última cotação conhecida e marca como estimada
      ══════════════════════════════════════════════════════════ */
 
@@ -501,17 +504,39 @@ const Dados = (function () {
   // de propósito, e a tela sempre marca o valor como estimado quando usa isto.
   const COTACAO_RESERVA = { USD: 5.4, EUR: 6.2, BRL: 1 };
 
+  // até 01/11/2026 a fonte era outra; o que ficou guardado dela não vale mais
+  const FONTE = "bcb";
+  const PTAX = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/";
+
   function hojeISO() {
     const d = new Date();
     return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
   }
+  const mdY = iso => { const [a, m, d] = iso.split("-"); return `${m}-${d}-${a}`; };
+  function somarDias(iso, n) { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
 
   const buscasEmAndamento = {};
+  const deHoje = {};   // a cotação de hoje antes do fechamento, só nesta visita
 
   /* Quando a busca de câmbio falha, o resto da sessão para de tentar aquela
      moeda. Sem isto, offline, o painel esperava uma falha de rede por mês,
      e a página levava segundos para desenhar. */
   const semRede = {};
+
+  /* Os boletins do Banco Central nos 10 dias até a data pedida. Devolve o
+     fechamento mais recente e, se for hoje, também o último boletim do dia. */
+  async function buscarPtax(moeda, dia) {
+    const url = PTAX + "CotacaoMoedaPeriodo(moeda=@moeda,dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)" +
+      `?@moeda='${moeda}'&@dataInicial='${mdY(somarDias(dia, -10))}'&@dataFinalCotacao='${mdY(dia)}'&$format=json&$select=cotacaoCompra,dataHoraCotacao,tipoBoletim`;
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const lista = ((await resp.json()).value || []).filter(b => b && b.cotacaoCompra && b.dataHoraCotacao);
+    if (!lista.length) throw new Error("sem boletim");
+    const fechamentos = lista.filter(b => String(b.tipoBoletim || "").indexOf("Fechamento") === 0);
+    const ultimo = lista[lista.length - 1];
+    const fechou = fechamentos.length ? fechamentos[fechamentos.length - 1] : null;
+    return { fechou, ultimo };
+  }
 
   /* Devolve { taxa, data, estimada } para converter 1 unidade da moeda em reais. */
   async function cotacao(moeda, data) {
@@ -524,24 +549,33 @@ const Dados = (function () {
 
     const chave = moeda + "-" + dia;
     const guardada = await mot.um("cotacoes", chave);
-    if (guardada) return { taxa: guardada.taxa, data: guardada.dataReal || dia, estimada: !!guardada.estimada };
+    if (guardada && guardada.fonte === FONTE) return { taxa: guardada.taxa, data: guardada.dataReal || dia, estimada: !!guardada.estimada };
+    if (deHoje[chave]) return deHoje[chave];
 
     if (buscasEmAndamento[chave]) return await buscasEmAndamento[chave];
 
     if (semRede[moeda]) return await ultimaConhecida(moeda, dia);
 
     buscasEmAndamento[chave] = (async () => {
-      const alvo = (dia === hoje ? "latest" : dia);
       try {
-        const resp = await fetch("https://api.frankfurter.dev/v1/" + alvo + "?base=" + moeda + "&symbols=BRL");
-        if (!resp.ok) throw new Error("HTTP " + resp.status);
-        const j = await resp.json();
-        const taxa = j && j.rates && j.rates.BRL;
-        if (!taxa) throw new Error("resposta sem BRL");
-        await mot.por("cotacoes", { id: chave, moeda, data: dia, dataReal: j.date || dia, taxa, estimada: false, criadoEm: agora() });
-        return { taxa, data: j.date || dia, estimada: false };
+        const { fechou, ultimo } = await buscarPtax(moeda, dia);
+        const diaUltimo = ultimo.dataHoraCotacao.slice(0, 10);
+        // hoje, antes do fechamento: vale o boletim mais recente, sem guardar
+        if (dia === hoje && diaUltimo === hoje && !(fechou && fechou.dataHoraCotacao.slice(0, 10) === hoje)) {
+          deHoje[chave] = { taxa: ultimo.cotacaoCompra, data: hoje, estimada: false };
+          return deHoje[chave];
+        }
+        const b = fechou || ultimo;
+        const dataReal = b.dataHoraCotacao.slice(0, 10);
+        // o dia de hoje sem pregão ainda pode ganhar boletim mais tarde: também não é guardado
+        if (dia === hoje && dataReal !== hoje) {
+          deHoje[chave] = { taxa: b.cotacaoCompra, data: dataReal, estimada: false };
+          return deHoje[chave];
+        }
+        await mot.por("cotacoes", { id: chave, moeda, data: dia, dataReal, taxa: b.cotacaoCompra, estimada: false, fonte: FONTE, criadoEm: agora() });
+        return { taxa: b.cotacaoCompra, data: dataReal, estimada: false };
       } catch (e) {
-        // Sem internet ou API fora do ar: pega a cotação mais recente que já temos.
+        // Sem internet ou consulta fora do ar: pega a cotação mais recente que já temos.
         semRede[moeda] = true;
         return await ultimaConhecida(moeda, dia);
       } finally {
@@ -556,9 +590,10 @@ const Dados = (function () {
      Sempre marcada como estimada, para a tela poder dizer isso. */
   async function ultimaConhecida(moeda, dia) {
     const todas = (await mot.todos("cotacoes"))
-      .filter(c => c.moeda === moeda)
-      .sort((a, b) => (a.data < b.data ? 1 : -1));
-    if (todas.length) return { taxa: todas[0].taxa, data: todas[0].data, estimada: true };
+      .filter(c => c.moeda === moeda && c.data <= dia)
+      .sort((a, b) => ((a.fonte === FONTE) - (b.fonte === FONTE)) || (a.data < b.data ? -1 : 1));
+    const c = todas[todas.length - 1];
+    if (c) return { taxa: c.taxa, data: c.dataReal || c.data, estimada: true };
     return { taxa: COTACAO_RESERVA[moeda] || 1, data: dia, estimada: true };
   }
 
