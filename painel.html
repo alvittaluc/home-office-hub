@@ -195,14 +195,11 @@ textarea.pn-in { min-height:80px; resize:vertical; line-height:1.5; }
 .selo.black svg { color:#D9B86C; }
 .selo.pro { background:var(--signal); color:#fff; } .selo.pro svg { color:#BBD3F2; }
 .selo.mini { font-size:11px; padding:4px 8px 4px 7px; gap:4px; } .selo.mini svg { width:11px; height:11px; }
-.pl { display:inline-flex; align-items:center; gap:4px; font-weight:600; }
-.pl svg { width:11px; height:11px; }
-.pl.black { color:#1B1D23; } .pl.black svg { color:#B8923D; } .pl.pro { color:var(--signal); }
 .pn-av { position:relative; }
 .pn-av.black { box-shadow:0 0 0 2px var(--panel), 0 0 0 4px #C9A85C; }
 .pn-av.pro { box-shadow:0 0 0 2px var(--panel), 0 0 0 4px var(--signal); }
-.pn-av .canto { position:absolute; right:-5px; bottom:-5px; width:17px; height:17px; border-radius:50%; display:grid; place-items:center; border:2px solid var(--panel); }
-.pn-av .canto svg { width:8px; height:8px; }
+.pn-av .canto { position:absolute; right:-5px; bottom:-5px; width:18px; height:18px; box-sizing:border-box; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid var(--panel); line-height:0; }
+.pn-av .canto svg { display:block; width:9px; height:9px; }
 .pn-av .canto.black { background:#1B1D23; color:#D9B86C; } .pn-av .canto.pro { background:var(--signal); color:#fff; }
 .pn-av.foto .canto { overflow:visible; }
 .pn-plano { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
@@ -265,8 +262,8 @@ button.pn-tl[aria-pressed="true"] { border-color:var(--signal); box-shadow:0 0 0
 </main>
 <div id="gaveta"></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-black" viewBox="0 0 16 16"><path fill="currentColor" d="M4.2 2h7.6l3 4.1L8 14.5 1.2 6.1 4.2 2Zm.6 1.3L3 5.6h3.1l-1.3-2.3Zm6.4 0L9.9 5.6H13l-1.8-2.3ZM8 3.4 6.8 5.6h2.4L8 3.4ZM3.1 7l3.7 4.6L5.3 7H3.1Zm3.6 0L8 11.1 9.3 7H6.7Zm4 0-1.5 4.6L12.9 7h-2.2Z"/></symbol>
-  <symbol id="i-pro" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.2l2 4.3 4.7.5-3.5 3.2 1 4.6L8 11.5l-4.2 2.3 1-4.6L1.3 6l4.7-.5L8 1.2Z"/></symbol>
+  <symbol id="i-black" viewBox="0 0.25 16 16"><path fill="currentColor" d="M4.2 2h7.6l3 4.1L8 14.5 1.2 6.1 4.2 2Zm.6 1.3L3 5.6h3.1l-1.3-2.3Zm6.4 0L9.9 5.6H13l-1.8-2.3ZM8 3.4 6.8 5.6h2.4L8 3.4ZM3.1 7l3.7 4.6L5.3 7H3.1Zm3.6 0L8 11.1 9.3 7H6.7Zm4 0-1.5 4.6L12.9 7h-2.2Z"/></symbol>
+  <symbol id="i-pro" viewBox="0 -0.5 16 16"><path fill="currentColor" d="M8 1.2l2 4.3 4.7.5-3.5 3.2 1 4.6L8 11.5l-4.2 2.3 1-4.6L1.3 6l4.7-.5L8 1.2Z"/></symbol>
 </svg>
 
 <script src="layout.js"></script>
@@ -403,7 +400,6 @@ const av = (a, t) => `<span class="pn-av${a.foto ? " foto" : ""}${a.plano ? " " 
 const PLANOS = { black: "Plano Black", pro: "Plano Pro" };
 const icone = p => `<svg aria-hidden="true"><use href="#i-${p}"/></svg>`;
 const selo = (p, mini) => PLANOS[p] ? `<span class="selo ${p}${mini ? " mini" : ""}">${icone(p)}${PLANOS[p]}</span>` : "";
-const plCurto = p => PLANOS[p] ? `<span class="pl ${p}">${icone(p)}${p === "black" ? "Black" : "Pro"}</span>` : "";
 const nomePlano = p => PLANOS[p] || "Sem plano";
 
 /* a empresa que o aluno escreveu, achada no empresas.json do site: "Appen" é a CrowdGen, "Telus" é a TELUS Digital */
@@ -561,8 +557,8 @@ function geral() {
     <div class="pn-cx" style="margin-top:14px">
       <div class="pn-cab"><div><h2>Fila de atenção <span class="pn-sub">(${fila.length})</span></h2><p class="sub">alunos com algum alerta: recusas, candidaturas sem resposta, nada andando ou três semanas parado. Quem ainda não recebeu contato aparece primeiro.</p></div>
         <button class="pn-lnk" data-ir-alunos>Ver todos na aba Alunos →</button></div>
-      ${fila.length ? `<div class="pn-rolagem"><table class="pn-t"><tr><th>Aluno</th><th>Plano</th><th>O que aconteceu</th><th>Próximo passo</th><th>Último contato</th><th>Situação</th></tr>
-      ${fila.slice(0, 6).map(a => `<tr class="clica" data-aluno="${a.id}"><td class="forte">${quem(a)}</td><td>${plCurto(a.plano) || '<span class="pn-sub">Sem plano</span>'}</td><td>${esc(a.alertas[0].texto)}</td>
+      ${fila.length ? `<div class="pn-rolagem"><table class="pn-t"><tr><th>Aluno</th><th>O que aconteceu</th><th>Próximo passo</th><th>Último contato</th><th>Situação</th></tr>
+      ${fila.slice(0, 6).map(a => `<tr class="clica" data-aluno="${a.id}"><td class="forte">${quem(a)}</td><td>${esc(a.alertas[0].texto)}</td>
         <td>${esc(a.alertas[0].passo.replace(/^./, x => x.toUpperCase()))}</td><td>${contato(a.dContato)}</td><td>${situacao(a)}</td></tr>`).join("")}</table></div>`
         : `<p class="pn-vazio">Nenhum aluno com alerta agora.</p>`}
     </div>
@@ -646,7 +642,7 @@ function alunos() {
         `<option value="${k2}"${S.ordem === k2 ? " selected" : ""}>${n}</option>`).join("")}</select></label>
       <p class="pn-sub" style="margin:10px 4px 6px">${contaLista(L.length)}</p>
       <ul class="pn-itens">${vis.map(x => `<li><button class="pn-item" data-aluno="${x.id}" aria-current="${x.id === a.id}">${av(x, 36)}
-        <span class="t"><b>${esc(x.nome)}</b><small>${x.plano ? plCurto(x.plano) + " · " : ""}${plural(x.cand.length, "candidatura", "candidaturas")}${x.proj.length ? " · trabalhando" : ""}</small></span>
+        <span class="t"><b>${esc(x.nome)}</b><small>${plural(x.cand.length, "candidatura", "candidaturas")}${x.proj.length ? " · trabalhando" : ""}</small></span>
         ${x.alertas.length ? (x.jaFalamos ? `<span class="pill p-ja">contato feito</span>` : `<span class="pill p-falta">contato pendente</span>`) : ""}</button></li>`).join("")}</ul>
       ${L.length > vis.length ? `<button class="pn-bt" id="mais" style="width:100%;justify-content:center;margin-top:8px">Mostrar mais ${Math.min(20, L.length - vis.length)}</button>` : ""}
       ${!L.length ? `<p class="pn-vazio" style="margin-top:8px">Ninguém neste filtro.</p>` : ""}
