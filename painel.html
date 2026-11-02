@@ -198,8 +198,9 @@ textarea.pn-in { min-height:80px; resize:vertical; line-height:1.5; }
 .pn-av { position:relative; }
 .pn-av.black { box-shadow:0 0 0 2px var(--panel), 0 0 0 4px #C9A85C; }
 .pn-av.pro { box-shadow:0 0 0 2px var(--panel), 0 0 0 4px var(--signal); }
-.pn-av .canto { position:absolute; right:-5px; bottom:-5px; width:18px; height:18px; box-sizing:border-box; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid var(--panel); line-height:0; }
-.pn-av .canto svg { display:block; width:9px; height:9px; }
+/* tamanhos pares (círculo de 14px, ícone de 8px): sobra 3px de cada lado e o ícone não cai em meio pixel no zoom de 100% */
+.pn-av .canto { position:absolute; right:-3px; bottom:-3px; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 2px var(--panel); line-height:0; }
+.pn-av .canto svg { display:block; width:8px; height:8px; flex:none; }
 .pn-av .canto.black { background:#1B1D23; color:#D9B86C; } .pn-av .canto.pro { background:var(--signal); color:#fff; }
 .pn-av.foto .canto { overflow:visible; }
 .pn-plano { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
