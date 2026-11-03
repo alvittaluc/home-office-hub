@@ -1155,6 +1155,13 @@
       "titulo": "Video Annotation",
       "revisado_em": "2026-11-01",
       "motivo": "Location: Remote, sem país. Li a descrição inteira e não há exigência de morar em outro lugar nem de diploma; aceita generalistas com experiência em anotação."
+    },
+    {
+      "id": "5315e2efcb",
+      "empresa": "turing",
+      "titulo": "Audio/Voice/Annotation Trainer - Portuguese (Brazil) Language",
+      "revisado_em": "2026-11-03",
+      "motivo": "Remota e aberta ao mundo, gravação de voz sem diploma. O texto do anúncio fala em dublador de alemão, o que contradiz o título; o resumo avisa."
     }
   ],
   "bloqueadas": [
@@ -1283,6 +1290,41 @@
       "titulo": "Tax Practitioner, Federal Individual Income Tax (CPA/EA/Tax Attorney)",
       "revisado_em": "2026-10-30",
       "motivo": "Pede registro de contador ou de agente fiscal nos EUA, ou ser advogado tributarista americano, com prática na declaração de imposto de renda de pessoas nos EUA."
+    },
+    {
+      "id": "b562cb0764",
+      "empresa": "micro1",
+      "titulo": "Veterans Service Representative",
+      "revisado_em": "2026-11-03",
+      "motivo": "Pede experiência como servidor do departamento de veteranos dos EUA, com o sistema interno deles (VBMS), o que quem trabalha no Brasil não tem."
+    },
+    {
+      "id": "6f91859e75",
+      "empresa": "micro1",
+      "titulo": "Federal IT Specialist",
+      "revisado_em": "2026-11-03",
+      "motivo": "Pede 5 anos ou mais em cargo de TI do governo federal americano (GS-2210), com as normas de segurança dele."
+    },
+    {
+      "id": "c40ca3561c",
+      "empresa": "micro1",
+      "titulo": "Federal Criminal Investigator",
+      "revisado_em": "2026-11-03",
+      "motivo": "Pede experiência como investigador criminal do governo federal americano (GS-1811 ou GS-1801)."
+    },
+    {
+      "id": "cc7ad3a978",
+      "empresa": "micro1",
+      "titulo": "Federal Grants Management Specialist",
+      "revisado_em": "2026-11-03",
+      "motivo": "Pede experiência na gestão de verbas do governo americano (GS-1109 ou cargo de governo estadual ou municipal dos EUA)."
+    },
+    {
+      "id": "99c7b93a1d",
+      "empresa": "micro1",
+      "titulo": "Federal Budget Analyst",
+      "revisado_em": "2026-11-03",
+      "motivo": "Pede 5 anos ou mais de orçamento no governo federal americano, em cargos GS-11 ou GS-12."
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "total": 378,
+  "total": 401,
   "vagas": [
     {
       "id": "65762fd387",
@@ -4132,6 +4132,256 @@
         "idioma": "en+",
         "carga": "40 h por semana",
         "contrato": "Autônomo, 2 meses"
+      }
+    },
+    {
+      "id": "5315e2efcb",
+      "resumo": {
+        "frase": "Gravar conversas em grupo, sem roteiro, para treinar modelos de IA de áudio.",
+        "o_que_faz": "Você participa de uma sessão de gravação com outras pessoas, conversando de forma natural sobre temas definidos pela equipe do projeto. Precisa falar com clareza, responder aos outros, fazer perguntas e participar da conversa o tempo todo, sem ler texto pronto. As gravações servem para ensinar modelos de IA a separar quem está falando em cada momento. Atenção: o título fala em português do Brasil, mas o texto do anúncio pede dublador de alemão, então confirme o idioma antes de se candidatar.",
+        "requisitos": "Você precisa estar disponível no dia, no horário e no fuso marcados e ficar até o fim da sessão; quem fica calado não é aceito. Pede microfone externo com fone com fio, ou um headset com fio de boa qualidade, e um lugar silencioso, sem eco nem barulho de fundo. Fone Bluetooth e alto-falante do notebook não servem, e o equipamento da amostra de áudio da candidatura tem que ser o mesmo da sessão. A seleção começa pela análise do perfil e tem uma avaliação de entrega antes de começar.",
+        "idioma": "Português do Brasil pelo título; o texto fala em alemão",
+        "contrato": "Contrato flexível, sem vínculo de emprego"
+      }
+    },
+    {
+      "id": "13b01241fa",
+      "resumo": {
+        "frase": "Avaliar e criar textos em português do Brasil para treinar modelos de IA.",
+        "o_que_faz": "Você avalia textos escritos por IA em português do Brasil e diz se estão corretos, naturais, com expressões bem usadas e de acordo com a cultura brasileira de hoje. Também cria prompts e situações de teste, do papo do dia a dia a expressões regionais, e compara duas respostas para dizer qual soa mais como um nativo. Às vezes revisa o raciocínio passo a passo do modelo e aponta erros de cultura, de expressão ou de região, explicando por escrito cada caso. Tudo segue rubricas de avaliação da própria língua.",
+        "requisitos": "Português do Brasil nativo, com ótimo domínio de gírias, variações regionais e expressões atuais, e inglês intermediário (B1 ou mais) para ler as diretrizes. Pede graduação em qualquer área e experiência com anotação de dados, escrita criativa, linguística ou tradução. Pós-graduação em linguística, letras, tradução ou área parecida e experiência com avaliação de língua, localização ou pesquisa contam a favor.",
+        "idioma": "pt"
+      }
+    },
+    {
+      "id": "8c51a68b03",
+      "resumo": {
+        "frase": "Fazer trabalhos de design vetorial no Inkscape para treinar IA.",
+        "o_que_faz": "Você cria e edita ilustrações, logotipos e outros desenhos vetoriais no Inkscape, trabalhando com arquivos SVG. Usa ferramentas como curvas de Bézier, edição de nós, camadas e operações com caminhos. Cada tarefa é feita de verdade e explicada passo a passo, com a tela gravada, e você também revisa desenhos já prontos e escreve instruções e prompts detalhados para tarefas mais avançadas.",
+        "requisitos": "Pede ótima experiência profissional com Inkscape, prática com gráficos vetoriais, edição de SVG e ilustração, e conhecimento das ferramentas mais avançadas do programa. Você precisa ter o Inkscape, conseguir gravar a tela e ter inglês B2 ou mais. Portfólio de design vetorial, mestrado ou doutorado na área e experiência com anotação de dados ou avaliação de IA contam a favor.",
+        "idioma": "en+",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "fe4b1c5a48",
+      "resumo": {
+        "frase": "Analisar inspeções por shearografia a laser em peças de avião para treinar IA.",
+        "o_que_faz": "Você analisa à mão dados de shearografia a laser, um ensaio não destrutivo, interpretando padrões de franjas e interferogramas para achar e descrever defeitos em materiais compostos. Também lê relatórios técnicos, registros de testes e limites de inspeção da indústria aeroespacial e avalia o tipo, a gravidade e o efeito de cada defeito na estrutura. Escreve comentários detalhados sobre o que encontrou e conversa a distância com a equipe do projeto. Todo o trabalho é feito sem ajuda de ferramentas de IA.",
+        "requisitos": "Certificação nível II ou III em shearografia a laser ou outro ensaio não destrutivo (ASNT, NAS 410 ou ISO 9712) conta muito a favor. Pede bastante prática com shearografia, de preferência em peças aeroespaciais ou de material composto, e experiência em achar a causa de defeitos e escrever relatórios dentro das normas do setor. O anúncio diz que não precisa ter experiência com IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 40 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "6f2f404108",
+      "resumo": {
+        "frase": "Criar modelos de engenharia de sistemas em SysML v2 para avaliar IA.",
+        "o_que_faz": "Você transforma requisitos de engenharia em modelos de texto em SysML v2, uma linguagem de modelagem de sistemas, mantendo a ligação entre cada requisito e o modelo. Cria soluções de referência que servem de gabarito, monta rubricas para avaliar os modelos feitos pela IA e corrige esses modelos com comentários. Para isso, analisa documentos como conceito de operação (ConOps), documentos de controle de interface (ICDs) e especificações de arquitetura. O trabalho é sem horário fixo.",
+        "requisitos": "Pede experiência profissional em engenharia de sistemas, com prática em modelagem textual em SysML v2, e bom conhecimento de engenharia de requisitos, arquitetura de sistemas e controle de interfaces. Ótima escrita técnica em inglês. Experiência em setores como aeroespacial, defesa, automotivo ou telecomunicações e com criação de rubricas contam a favor, mas não são obrigatórias.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 120 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "b41d3a5df8",
+      "resumo": {
+        "frase": "Projetar placas de circuito no KiCad para treinar IA.",
+        "o_que_faz": "Você cria e altera projetos de placas de circuito impresso e esquemas eletrônicos no KiCad. Cuida do posicionamento dos componentes, do roteamento das trilhas e de placas com várias camadas, roda a verificação de regras de projeto (DRC) e gera os arquivos Gerber para fabricação. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de projeto de placas.",
+        "requisitos": "Pede ótima experiência profissional com KiCad, com desenho de placas, captura de esquemas e projeto de circuitos eletrônicos. Você precisa ter o KiCad, conseguir gravar a tela e ter inglês B2 ou mais. Mestrado ou doutorado em engenharia elétrica ou eletrônica, experiência em fabricação de placas e com anotação de dados ou avaliação de IA contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 65 a 123 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "0adf256840",
+      "resumo": {
+        "frase": "Fazer modelos de construção em BIM no FreeCAD para treinar IA.",
+        "o_que_faz": "Você cria e altera modelos 3D e modelos BIM (o modelo digital completo de uma construção) no FreeCAD, trabalhando com elementos de arquitetura, estruturas e arquivos IFC. Valida os modelos com as ferramentas de BIM do programa e resolve problemas de compatibilidade com o formato IFC. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para esse tipo de trabalho.",
+        "requisitos": "Pede ótima experiência profissional com FreeCAD, prática com modelagem BIM e arquivos IFC, e bom conhecimento de modelagem de arquitetura e CAD 3D. Você precisa ter o FreeCAD, conseguir gravar a tela e ter inglês B2 ou mais. Mestrado ou doutorado em arquitetura ou engenharia civil, experiência com AutoCAD ou Revit e trabalho na área de construção contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 65 a 123 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "408f7d8a6f",
+      "resumo": {
+        "frase": "Fazer ilustrações digitais no Krita para treinar IA.",
+        "o_que_faz": "Você cria e edita ilustrações e artes digitais no Krita, com pintura digital, criação de personagens e arte conceitual. Usa pincéis, camadas, máscaras e controle de cores, e também faz pequenas animações 2D e outros elementos visuais. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de arte digital.",
+        "requisitos": "Pede ótima experiência profissional com Krita e prática com pintura digital, ilustração e arte conceitual. Você precisa ter o Krita, conseguir gravar a tela e ter inglês B2 ou mais. Portfólio de ilustração, mestrado ou doutorado em artes ou design gráfico e experiência com animação 2D ou arte para jogos contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 21 a 70 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "bdf1b77137",
+      "resumo": {
+        "frase": "Desenvolver jogos no Godot para treinar IA.",
+        "o_que_faz": "Você cria e altera jogos 2D e 3D no Godot, programando mecânicas de jogo, animações e telas de interface. Trabalha com GDScript, cenas, nós e física do jogo, e corrige erros e problemas de desempenho. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de desenvolvimento de jogos.",
+        "requisitos": "Pede ótima experiência profissional com o Godot e com programação em GDScript ou C#. Você precisa ter o Godot, conseguir gravar a tela e ter inglês B2 ou mais. Portfólio de jogos feitos no Godot, mestrado ou doutorado em computação ou desenvolvimento de jogos e experiência com jogos multijogador contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 130 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "4a778a7582",
+      "resumo": {
+        "frase": "Fazer pixel art e animações 2D no LibreSprite para treinar IA.",
+        "o_que_faz": "Você cria e edita pixel art e elementos de jogos 2D no LibreSprite, como personagens, cenários e animações. Trabalha com camadas, paletas de cores, quadros de animação e folhas de sprites, e melhora artes que estão com problema. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de pixel art.",
+        "requisitos": "Pede ótima experiência profissional com LibreSprite e prática com pixel art, criação de sprites e animação 2D. Você precisa ter o LibreSprite, conseguir gravar a tela e ter inglês B2 ou mais. Portfólio de pixel art ou arte para jogos 2D, mestrado ou doutorado em design ou artes digitais e experiência com Aseprite contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 21 a 70 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "82a61bf1e2",
+      "resumo": {
+        "frase": "Fazer desenhos técnicos 2D no LibreCAD para treinar IA.",
+        "o_que_faz": "Você cria e altera desenhos técnicos 2D no LibreCAD, com cotas, camadas e anotações. Faz plantas baixas, desenhos mecânicos e diagramas de engenharia e corrige erros de precisão. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de desenho em CAD.",
+        "requisitos": "Pede ótima experiência profissional com LibreCAD e prática com desenho técnico em CAD 2D e suas normas. Você precisa ter o LibreCAD, conseguir gravar a tela e ter inglês B2 ou mais. Mestrado ou doutorado em engenharia mecânica ou arquitetura, experiência com AutoCAD e trabalho na área de desenho técnico contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 65 a 165 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "a4ed86358d",
+      "resumo": {
+        "frase": "Simular circuitos eletrônicos no Ngspice para treinar IA.",
+        "o_que_faz": "Você projeta e simula circuitos eletrônicos no Ngspice, fazendo análises em corrente contínua, alternada e transitória. Trabalha com circuitos analógicos, componentes e modelos SPICE, corrige erros de simulação e melhora o desempenho dos circuitos. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de simulação.",
+        "requisitos": "Pede ótima experiência profissional com Ngspice, prática com projeto de circuitos e simulação SPICE e bom conhecimento de circuitos analógicos. Você precisa ter o Ngspice, conseguir gravar a tela e ter inglês B2 ou mais. Mestrado ou doutorado em engenharia elétrica ou eletrônica e experiência com outras ferramentas de simulação contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 65 a 123 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "701ea1efb1",
+      "resumo": {
+        "frase": "Criar modelos 3D por código no OpenSCAD para treinar IA.",
+        "o_que_faz": "Você cria e altera modelos 2D e 3D no OpenSCAD, um programa em que o desenho é feito escrevendo código. Monta modelos paramétricos com laços, funções e módulos reaproveitáveis e usa operações booleanas, transformações e extrusões. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de modelagem.",
+        "requisitos": "Pede ótima experiência profissional com OpenSCAD e prática com modelagem paramétrica feita por código. Você precisa ter o OpenSCAD, conseguir gravar a tela e ter inglês B2 ou mais. Mestrado ou doutorado em engenharia mecânica ou design de produto, projetos publicados no GitHub e experiência com impressão 3D contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 65 a 123 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "34307d60c5",
+      "resumo": {
+        "frase": "Segmentar exames de imagem médica no 3D Slicer para treinar IA.",
+        "o_que_faz": "Você analisa e segmenta imagens de tomografia, ressonância e outros exames no 3D Slicer, marcando as estruturas de interesse. Cria e edita máscaras de segmentação, modelos 3D e reconstruções de volume, além de anotar as imagens e conferir a qualidade. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de imagem médica.",
+        "requisitos": "Pede ótima experiência profissional com 3D Slicer, prática com segmentação e anotação de imagens médicas e bom conhecimento de tomografia, ressonância e arquivos DICOM. Você precisa ter o 3D Slicer, conseguir gravar a tela e ter inglês B2 ou mais. Mestrado ou doutorado em imagem médica ou engenharia biomédica e experiência clínica ou de pesquisa com esses exames contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 60 a 112 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "6595720b73",
+      "resumo": {
+        "frase": "Projetar e simular circuitos eletrônicos no Qucs-S para treinar IA.",
+        "o_que_faz": "Você projeta e simula circuitos analógicos, digitais e mistos no Qucs-S, com análises em corrente contínua, alternada e transitória. Corrige problemas nos circuitos e melhora o desempenho deles. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de simulação.",
+        "requisitos": "Pede ótima experiência profissional com Qucs-S, prática com projeto e simulação de circuitos e bom conhecimento de simulação SPICE e componentes eletrônicos. Você precisa ter o Qucs-S, conseguir gravar a tela e ter inglês B2 ou mais. Mestrado ou doutorado em engenharia elétrica ou eletrônica e experiência com outras ferramentas de simulação contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 65 a 123 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "285a3ed4e5",
+      "resumo": {
+        "frase": "Simular circuitos eletrônicos no LTspice para treinar IA.",
+        "o_que_faz": "Você cria e simula circuitos no LTspice, com circuitos analógicos, eletrônica de potência e esquemas elétricos. Faz análises transitórias, em corrente contínua e alternada, corrige problemas e melhora o desempenho dos circuitos. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de simulação.",
+        "requisitos": "Pede ótima experiência profissional com LTspice, prática com projeto e simulação de circuitos e bom conhecimento de circuitos analógicos e eletrônica de potência. Você precisa ter o LTspice, conseguir gravar a tela e ter inglês B2 ou mais. Mestrado ou doutorado em engenharia elétrica ou eletrônica e experiência com desenho de placas contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 65 a 123 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "c9fbc40666",
+      "resumo": {
+        "frase": "Desenvolver jogos 2D no Solar2D para treinar IA.",
+        "o_que_faz": "Você cria e altera jogos 2D no Solar2D (antigo Corona SDK), programando em Lua as mecânicas, animações e telas do jogo. Também cuida dos controles do jogador, da física e da detecção de colisões, e corrige erros e problemas de desempenho. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de desenvolvimento de jogos.",
+        "requisitos": "Pede bastante prática com Solar2D e bom conhecimento de programação em Lua e desenvolvimento de jogos 2D. Você precisa ter o Solar2D, conseguir gravar a tela e ter inglês B2 ou mais. Portfólio de jogos 2D, mestrado ou doutorado e experiência com jogos para Android ou iOS contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 130 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "de4a24c86f",
+      "resumo": {
+        "frase": "Desenvolver jogos 3D em Python com o Panda3D para treinar IA.",
+        "o_que_faz": "Você cria e altera jogos e simulações 3D no Panda3D, trabalhando com Python, modelos 3D, animações e lógica do jogo. Melhora mecânicas, controles e ambientes interativos e corrige erros e problemas de desempenho. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de desenvolvimento de jogos.",
+        "requisitos": "Pede ótima experiência profissional com Panda3D, prática com programação em Python e C++, bom conhecimento de gráficos 3D e uso do GitHub. Você precisa ter o Panda3D, conseguir gravar a tela e ter inglês B2 ou mais. Portfólio de jogos 3D e mestrado ou doutorado contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 120 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "7374c0ccdf",
+      "resumo": {
+        "frase": "Criar ambientes e simulações 3D no Open 3D Engine para treinar IA.",
+        "o_que_faz": "Você cria e edita ambientes 3D, cenas, objetos de jogo e simulações de física no Open 3D Engine (O3DE), usando ferramentas como o Atom Renderer, os Gems e o Asset Processor. Programa em Python ou C++ para desenvolver e automatizar tarefas e resolve problemas de desempenho. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de desenvolvimento 3D.",
+        "requisitos": "Pede ótima experiência profissional com O3DE, prática com ambientes 3D, renderização e simulações, e programação em Python ou C++. Você precisa ter o O3DE, conseguir gravar a tela e ter inglês B2 ou mais. Portfólio de jogos ou simulações 3D e mestrado ou doutorado contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 130 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "bbb681c951",
+      "resumo": {
+        "frase": "Desenvolver jogos 2D no Defold para treinar IA.",
+        "o_que_faz": "Você cria e altera jogos 2D no Defold, programando em Lua os objetos, componentes e animações do jogo. Melhora mecânicas, controles do jogador e telas de interface e corrige erros e problemas de desempenho. Cada tarefa é explicada passo a passo, com a tela gravada, e você também escreve instruções e prompts para tarefas de desenvolvimento de jogos.",
+        "requisitos": "Pede ótima experiência profissional com o Defold e prática com programação em Lua e jogos 2D. Você precisa ter o Defold, conseguir gravar a tela e ter inglês B2 ou mais. Portfólio de jogos 2D, mestrado ou doutorado e experiência com anotação de dados ou avaliação de IA contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 130 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "557cb370b8",
+      "resumo": {
+        "frase": "Comandar a busca e a compra de dados para treinar modelos de IA.",
+        "o_que_faz": "Você monta e toca a estratégia para encontrar conjuntos de dados de qualidade para treinar e avaliar IA, como textos, áudios, imagens e tabelas de dados. Procura, avalia e negocia com fornecedores e parceiros do mundo todo e confere qualidade, cobertura, licenças e se tudo segue as regras éticas e legais. Também define com as equipes de pesquisa o que é preciso, acompanha metas, orçamento e prazos e documenta os processos. É um cargo de direção, com bastante autonomia.",
+        "requisitos": "Pede experiência comprovada em busca de dados, compra de conteúdo, licenciamento, gestão de fornecedores ou parcerias, e um histórico de negociações fechadas. Precisa conhecer privacidade de dados e regras de licenciamento e ter ótima comunicação em inglês. O anúncio diz que não é preciso ter experiência com IA. Formação em ciência de dados, gestão da informação ou editoras, conhecimento de leis como a GDPR e falar várias línguas contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 20 a 100 por hora",
+        "carga": "20 a 40 h por semana",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "a97958367c",
+      "resumo": {
+        "frase": "Revisar conteúdo de IA sobre planos de saúde e benefícios nos EUA.",
+        "o_que_faz": "Você revisa situações criadas por IA sobre como orientar pessoas no uso de planos de saúde e benefícios, e confere se as rubricas usadas para dar nota a elas estão certas e completas. Aponta orientações erradas, irreais, confusas ou que podem prejudicar quem recebe, e diz quais situações precisam de validação de um especialista. Também avalia se a comunicação com o cliente segue as boas práticas do setor e sugere melhorias. Não é um trabalho clínico.",
+        "requisitos": "Pede bastante experiência profissional em administração de benefícios, orientação sobre planos de saúde ou área parecida, e é obrigatório conhecer bem o Medicare ou o Medicaid, os programas públicos de saúde dos EUA. Também pede conhecer o atendimento ao cliente desse setor e saber quando um caso precisa ser passado para um profissional licenciado. Experiência com benefícios oferecidos por empresas, previdência, central de atendimento e revisão de conteúdo conta a favor. A candidatura tem uma entrevista curta sobre a área.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 por hora",
+        "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "1a8a3449c0",
+      "resumo": {
+        "frase": "Avaliar a qualidade de pesquisas de opinião e de mercado para um laboratório de IA.",
+        "o_que_faz": "Você avalia questionários e diz se estão bem feitos, claros e servem para o que se propõem. Aponta perguntas que induzem a resposta, ambíguas, que perguntam duas coisas de uma vez ou com opções de resposta ruins, além de problemas na ordem das perguntas e no tamanho do questionário. Também confere filtros de entrada, lógica de pulos, escalas, amostra, cotas e controles de qualidade, aponta fontes de viés e explica por escrito o que está errado e como melhorar. Parte do trabalho é avaliar pesquisas e raciocínios feitos por IA.",
+        "requisitos": "Pede 3 anos ou mais de experiência profissional em pesquisa de opinião, pesquisa de mercado, comportamento do consumidor, ciência comportamental ou pesquisa com usuários, com prática em montar ou aplicar questionários. Não precisa ser acadêmico: profissionais de institutos de pesquisa, agências e equipes internas de pesquisa são bem-vindos. Pede ótima escrita em inglês e atenção aos detalhes. Conhecer ferramentas como Qualtrics ou SurveyMonkey ajuda, mas não é obrigatório.",
+        "idioma": "en+",
+        "remuneracao": "US$ 120 por hora",
+        "contrato": "Por hora"
       }
     }
   ]

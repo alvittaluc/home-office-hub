@@ -222,6 +222,10 @@ EXCECOES = {
     "=Air Traffic Controller": "Outras areas",
     "=Aircraft Pilot": "Outras areas",
     "Senior Technical Documentation, Parts and Annotation Specialist": "Engenharia",
+    # Rotina de 03/11/2026: a TELUS pede graduacao em qualquer area para a
+    # vaga de lingua; a micro1 pede experiencia profissional com Inkscape
+    "AI Language & Culture Pioneer": "Linguistica",
+    "Inkscape": "Design e Criacao",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -889,6 +893,8 @@ if __name__ == "__main__":
         ("Air Traffic Controller", "", "Outras areas"),
         ("Aircraft Pilot", "", "Outras areas"),
         ("Senior Technical Documentation, Parts and Annotation Specialist", "", "Engenharia"),
+        ("AI Language & Culture Pioneer - Portuguese (BR)", "", "Linguistica"),
+        ("Inkscape Design Specialist", "", "Design e Criacao"),
     ]
 
     falhas = 0
