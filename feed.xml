@@ -5,7 +5,7 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Mon, 02 Nov 2026 20:14:53 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2026 15:37:09 +0000</lastBuildDate>
     <item>
       <title>Video Annotation — micro1</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=25c91c8cf3</link>
@@ -126,20 +126,6 @@
       <description>Você cria pares de pergunta e resposta originais e difíceis, sobre assuntos variados, para testar os limites de modelos avançados de IA. Cada resposta exige pesquisa a fundo, conferida em mais de uma fonte, e as perguntas precisam juntar várias informações e raciocínio, não só uma busca simples. Depois você testa as perguntas na IA, ajusta a dificuldade e registra as fontes e o raciocínio de cada resposta. O pagamento é por tarefa aprovada, com um mínimo de tarefas por semana.</description>
     </item>
     <item>
-      <title>[LONG PROJECT] Anonymization Writer — Mercor</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=cc85f47c53</link>
-      <guid isPermaLink="false">cc85f47c53</guid>
-      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você trabalha em documentos e registros de empresas, como exportações de sistemas de clientes, e-mails, chamados de suporte, conversas e dados contábeis, e decide o que é informação pessoal e o que não é. Confirma, recusa, acrescenta e classifica cada dado pessoal, junta as menções à mesma pessoa ou empresa e acha o que a detecção automática deixou passar. Um revisor confere o seu trabalho antes da entrega. É um projeto interno e longo da Mercor, que quer montar uma equipe fixa.</description>
-    </item>
-    <item>
-      <title>[LONG PROJECT] Anonymization Quality Reviewer — Mercor</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1a63a7e098</link>
-      <guid isPermaLink="false">1a63a7e098</guid>
-      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você revisa o trabalho de quem marca dados pessoais em documentos e registros de empresas, como exportações de sistemas de clientes, e-mails, chamados e dados contábeis, e decide se cada tarefa pode ser aprovada ou precisa de correção. Procura dado pessoal que passou, classificação errada e agrupamento errado de pessoas e empresas, e só devolve o que tem defeito de verdade, com um comentário claro para a correção sair de uma vez. As regras mudam várias vezes por semana. É um projeto interno e longo da Mercor.</description>
-    </item>
-    <item>
       <title>Portuguese AI Evaluation Specialist (Brazil) — Handshake AI</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=6d22784714</link>
       <guid isPermaLink="false">6d22784714</guid>
@@ -252,11 +238,18 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
-      <title>English Writing Generalist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4594ab3713</link>
-      <guid isPermaLink="false">4594ab3713</guid>
+      <title>Prompt Writer — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f77d5d9d3</link>
+      <guid isPermaLink="false">3f77d5d9d3</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você escreve, edita e melhora textos em inglês sobre assuntos e formatos variados, e avalia se os textos gerados por IA estão claros, corretos, no tom certo e bem escritos. O trabalho inclui apontar erro de gramática, frase truncada e problema de estrutura, seguindo um guia de estilo. É vaga de generalista, sem exigir experiência com IA.</description>
+      <description>Você cria prompts originais, ou seja, perguntas, cenários e tarefas, em assuntos e níveis de dificuldade variados, para desafiar o raciocínio, a criatividade e a precisão dos modelos. Parte dos prompts testa como a IA se sai em temas de segurança, em situações delicadas e em casos extremos. Você segue os formatos e os guias de estilo do projeto e ajusta o texto conforme as correções que recebe.</description>
+    </item>
+    <item>
+      <title>Content Reviewer — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=dc72984de8</link>
+      <guid isPermaLink="false">dc72984de8</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você lê textos gerados por IA sobre assuntos variados, de notícias e cultura a ciência e tecnologia, e avalia se estão claros, corretos, no tom certo e bem escritos. Marca o que estiver enganoso, inadequado ou mal escrito e registra a avaliação com notas e comentários.</description>
     </item>
     <item>
       <title>Creative Writing Evaluator — Alignerr</title>
@@ -266,25 +259,32 @@
       <description>Você lê ficção, ensaios, poesia e outros textos criativos gerados por IA e avalia o que funciona e o que não funciona, explicando o porquê. São muitos textos para ler, sempre com o mesmo critério.</description>
     </item>
     <item>
-      <title>AI Chatbot Tester — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=bd7cf3a141</link>
-      <guid isPermaLink="false">bd7cf3a141</guid>
+      <title>Search Quality Evaluator — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=639ef7c927</link>
+      <guid isPermaLink="false">639ef7c927</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você conversa com chatbots de IA sobre assuntos e situações variadas e avalia se cada resposta é útil, correta, segura e tem o tom adequado. Também põe o modelo à prova com perguntas criativas e casos difíceis, e registra informação errada, frase estranha, conteúdo nocivo ou viés em um formulário padronizado.</description>
+      <description>Você avalia se os resultados de um buscador são relevantes, corretos e úteis, e dá nota a respostas e recomendações geradas por IA usando rubricas. Compara resultados lado a lado, ordena por qualidade e justifica a nota em poucas linhas.</description>
     </item>
     <item>
-      <title>Prompt Writer — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3f77d5d9d3</link>
-      <guid isPermaLink="false">3f77d5d9d3</guid>
+      <title>Video Annotation Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=8c5731ee06</link>
+      <guid isPermaLink="false">8c5731ee06</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você cria prompts originais, ou seja, perguntas, cenários e tarefas, em assuntos e níveis de dificuldade variados, para desafiar o raciocínio, a criatividade e a precisão dos modelos. Parte dos prompts testa como a IA se sai em temas de segurança, em situações delicadas e em casos extremos. Você segue os formatos e os guias de estilo do projeto e ajusta o texto conforme as correções que recebe.</description>
+      <description>Você divide vídeos em planos e cenas e anota, para cada trecho, o ângulo e o tamanho do plano, o movimento de câmera e a ação que aparece. As marcações seguem categorias definidas e servem para ensinar IA a interpretar vídeo. São muitos vídeos, e o trabalho pede ritmo e precisão.</description>
     </item>
     <item>
-      <title>AI Ethics Reviewer — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=13ea107c0b</link>
-      <guid isPermaLink="false">13ea107c0b</guid>
+      <title>Generalist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=7cd96ed4ad</link>
+      <guid isPermaLink="false">7cd96ed4ad</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você revisa conteúdo gerado por IA procurando viés, estereótipo e material que possa ser nocivo, e avalia se as respostas são seguras, justas e adequadas a públicos diferentes. Para cada problema, escreve um comentário claro, aplicando as diretrizes de segurança e de imparcialidade do projeto.</description>
+      <description>Você lê conteúdo gerado por IA sobre os mais variados assuntos, de ciência e cultura a tecnologia e dia a dia, e avalia se está correto, claro e no tom certo. Para cada resposta, você escreve um comentário organizado, seguindo as diretrizes do projeto. É a vaga de generalista da Alignerr: aberta a qualquer pessoa que leia bem e saiba reconhecer um texto bem-feito, sem exigir experiência com IA.</description>
+    </item>
+    <item>
+      <title>E-commerce Data Analyst — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=3d82b44c66</link>
+      <guid isPermaLink="false">3d82b44c66</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Você revisa, categoriza e melhora os dados de produtos que alimentam sistemas de IA de compras e recomendação: categoria certa, descrição coerente, informação que bate. É trabalho com tabelas de dados, em ferramentas online.</description>
     </item>
   </channel>
 </rss>
