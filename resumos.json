@@ -1,5 +1,5 @@
 {
-  "total": 401,
+  "total": 417,
   "vagas": [
     {
       "id": "65762fd387",
@@ -4382,6 +4382,176 @@
         "idioma": "en+",
         "remuneracao": "US$ 120 por hora",
         "contrato": "Por hora"
+      }
+    },
+    {
+      "id": "2a94e7fd7a",
+      "resumo": {
+        "frase": "Medir nanopartículas em imagens de microscópio eletrônico para treinar IA.",
+        "o_que_faz": "Você analisa à mão imagens de microscopia eletrônica (TEM e SEM) para medir o tamanho e a forma de nanopartículas. Calcula a distribuição de tamanhos, calibra as medidas e confere tudo com dados de referência, sem usar ferramentas automáticas ou de IA. Também define os critérios para aprovar ou reprovar um lote de material e escreve relatórios explicando o método e as conclusões.",
+        "requisitos": "Pede conhecimento avançado em caracterização de nanomateriais com TEM e SEM e prática real em medir partículas e aprovar lotes. Precisa saber fazer análise manual de imagem, com calibração e limiar de corte, e conhecer normas de controle de qualidade. Também pede ótima comunicação escrita e falada em inglês. Experiência em consultoria científica, ciência dos materiais ou laboratório de análises conta a favor.",
+        "idioma": "en+",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "b7859fecc0",
+      "resumo": {
+        "frase": "Revisar estudos de proteção de redes elétricas de média tensão para treinar IA.",
+        "o_que_faz": "Você confere casos de proteção de redes de distribuição de média tensão, como ajustes de relés, curvas de coordenação e registros de proteção. Analisa estudos de curto-circuito e de proteção de equipamentos, avalia o uso de relés digitais (SEL, GE ou parecidos) e explica por escrito o que está certo e o que precisa mudar. Também ajuda a criar situações realistas baseadas nas normas das distribuidoras e indústrias dos EUA.",
+        "requisitos": "Pede no mínimo 8 anos de prática em engenharia de proteção de média tensão (2,4 kV a 38 kV) em distribuidoras ou indústrias dos EUA. Precisa dominar ajuste e coordenação de relés e análise de sistemas de potência, e usar programas como ETAP, ASPEN ou CAPE. Também pede ótima comunicação em inglês. Experiência anterior criando ou validando estudos de coordenação conta bastante.",
+        "idioma": "en+",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "186d8d435e",
+      "resumo": {
+        "frase": "Produzir e avaliar vídeos para ajudar a treinar modelos de IA.",
+        "o_que_faz": "Você produz, edita e entrega vídeos seguindo as orientações de cada pedido. Assiste a gravações e avalia se a história faz sentido, se o visual funciona e se a parte técnica está correta, e escreve comentários que servem para treinar e avaliar a IA. Também documenta como faz o trabalho, junta vídeos que sirvam de exemplo de gêneros e técnicas diferentes e conversa com a equipe do projeto pela internet.",
+        "requisitos": "Pede bastante experiência em todas as etapas da produção de vídeo, da preparação à edição final, e portfólio com trabalhos variados. Precisa dominar programas como Premiere Pro, Final Cut Pro ou DaVinci Resolve e conhecer formatos, codecs e plataformas de publicação. Também pede saber explicar suas opiniões com clareza em inglês. Não precisa ter experiência com IA.",
+        "idioma": "en+",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "cbb6f05e98",
+      "resumo": {
+        "frase": "Avaliar contratações e licenças de fotografia e arte para treinar IA.",
+        "o_que_faz": "Você lê pedidos de trabalho, orçamentos e casos de licenciamento de imagens e diz o que faz sentido, o que está faltando e por quê. Escolhe que tipo de fotógrafo ou artista combina com cada pedido, aponta itens de orçamento que faltam ou estão inflados e confere se os direitos de uso (mídia, território, prazo, exclusividade) batem com o que o cliente precisa e pagou. Também aponta falhas de contrato, autorização de imagem, seguro ou logística e escreve uma explicação curta para cada decisão.",
+        "requisitos": "Pede experiência profissional contratando, licenciando ou representando fotógrafos e outros artistas para agências, marcas, editoras ou estúdios, como comprador de arte, produtor ou agente. Precisa ter vivido trabalhos reais, com orçamento, negociação, contrato e entrega, e conhecer bem licenciamento de imagens. Também pede escrita clara em inglês. A seleção tem uma entrevista curta sem preparação, que o anúncio descreve como conversa sobre exposições, acervos e atribuição de obras, o que não combina com esta vaga.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "d5c81b62b0",
+      "resumo": {
+        "frase": "Avaliar projetos de cenografia e direção de arte para treinar IA.",
+        "o_que_faz": "Você olha projetos de cenário, montagens de ambiente e conceitos de produção e diz qual funciona melhor para um roteiro, pedido ou orçamento. Confere escala, planta, pontos de vista, cores, materiais e se o espaço funciona para os atores e para a câmera. Também aponta problemas que apareceriam no dia da gravação, como um cenário que não cabe no plano ou objetos fora da época, e escreve uma explicação curta para cada decisão.",
+        "requisitos": "Pede experiência profissional como diretor de arte, cenógrafo, produtor de arte ou decorador de set em produções reais de cinema, TV, teatro, eventos, publicidade ou fotografia. Precisa conhecer orçamento, construção e o trabalho junto com outros departamentos. Ajuda usar programas como SketchUp, AutoCAD, Vectorworks, Rhino ou Photoshop, ou desenhar bem à mão, mas nem todos são obrigatórios. Também pede escrita clara em inglês. A seleção tem uma entrevista curta sem preparação, que o anúncio descreve como conversa sobre exposições, acervos e atribuição de obras, o que não combina com esta vaga.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "0aed95441c",
+      "resumo": {
+        "frase": "Avaliar fotos e vídeos profissionais para treinar IA.",
+        "o_que_faz": "Você compara fotos e trechos de vídeo e diz qual funciona melhor para um pedido e um público. Confere exposição, foco, cor, enquadramento, escolha de lente e movimento de câmera, e aponta problemas técnicos como ruído, cintilação, áreas estouradas ou formato errado. Também verifica se o material serve para o uso pretendido (impresso, internet, redes sociais, TV, cinema) e escreve uma explicação curta para cada decisão.",
+        "requisitos": "Pede experiência profissional como fotógrafo, diretor de fotografia, operador de câmera ou produtor de vídeo, fotografando ou filmando para clientes, produções ou publicações. Precisa usar no dia a dia câmeras profissionais e programas como Lightroom, Photoshop, DaVinci Resolve ou Premiere. Também pede escrita clara em inglês. A seleção tem uma entrevista curta sem preparação, que o anúncio descreve como conversa sobre exposições, acervos e atribuição de obras, o que não combina com esta vaga.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "3c1c1ceadf",
+      "resumo": {
+        "frase": "Avaliar peças de design gráfico e editorial para treinar IA.",
+        "o_que_faz": "Você olha cartazes, capas, páginas diagramadas e peças de marca e diz qual funciona melhor para um pedido e um público. Confere hierarquia, espaçamento, escolha de fontes, cores e como texto e imagem conversam. Também aponta problemas que apareceriam na produção, como formato errado, baixa resolução, margens e cor de impressão, e escreve uma explicação curta para cada decisão.",
+        "requisitos": "Pede experiência profissional como designer gráfico, designer editorial, diagramador, diretor de arte ou designer de marca, com trabalhos reais entregues a clientes ou editoras. Precisa usar no dia a dia programas como InDesign, Illustrator, Photoshop ou Figma. Também pede escrita clara em inglês. A seleção tem uma entrevista curta sem preparação, que o anúncio descreve como conversa sobre exposições, acervos e atribuição de obras, o que não combina com esta vaga.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "6f3142632a",
+      "resumo": {
+        "frase": "Avaliar produções de moda e de decoração de ambientes para treinar IA.",
+        "o_que_faz": "Você compara looks e ambientes montados e diz qual funciona melhor para um pedido, uma estação ou um cliente. Confere proporção, caimento, escala, cores e materiais, e aponta o que não funcionaria na prática, como tamanho ou tecido errado ou móvel que não cabe no espaço. Também escreve uma explicação curta para cada decisão e pode escrever ou melhorar pedidos de produção, descrições de clima e listas de compras.",
+        "requisitos": "Pede experiência profissional como stylist de moda, figurinista, personal stylist ou produtor de ambientes, de objetos ou de casas, com trabalhos reais para editoriais, marcas, lojas, produções ou clientes particulares. Precisa conhecer o processo de pesquisa de peças, provas ou montagem e entrega. Também pede escrita clara em inglês. A seleção tem uma entrevista curta sem preparação, que o anúncio descreve como conversa sobre exposições, acervos e atribuição de obras, o que não combina com esta vaga.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "07d1155ef3",
+      "resumo": {
+        "frase": "Avaliar peças de marca e de redes sociais para treinar IA.",
+        "o_que_faz": "Você compara posts, anúncios, vídeos e ideias de campanha e diz qual funciona melhor para um objetivo e um público. Confere se a peça segue o pedido, o tom e as regras da marca, e se combina com a plataforma onde vai rodar. Também aponta problemas com promessas, avisos obrigatórios, direitos de uso ou regras das plataformas, e escreve uma explicação curta para cada decisão.",
+        "requisitos": "Pede experiência profissional criando ou dirigindo peças de marca, marketing ou redes sociais, como diretor de arte, redator, estrategista de criação ou responsável por conteúdo, com campanhas reais publicadas. Precisa conhecer como funcionam pelo menos duas grandes plataformas, como Instagram, TikTok, YouTube, LinkedIn ou mídia paga. Também pede escrita clara em inglês. A seleção tem uma entrevista curta sem preparação, que o anúncio descreve como conversa sobre exposições, acervos e atribuição de obras, o que não combina com esta vaga.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "31ebf1b6a4",
+      "resumo": {
+        "frase": "Avaliar obras de arte e fotografias como curador para treinar IA.",
+        "o_que_faz": "Você olha obras e conjuntos de obras e decide quais combinam com um tema, uma exposição ou um acervo. Avalia autoria, data, técnica, tiragem e tipo de cópia fotográfica a partir do que é mostrado e descrito. Também aponta lacunas na origem das obras, autorias duvidosas, riscos de conservação ou de exposição e problemas de direitos, confere se títulos e legendas estão corretos e escreve uma explicação curta para cada decisão.",
+        "requisitos": "Pede experiência profissional como curador, assistente de curadoria, especialista em acervos ou exposições, diretor de galeria, especialista de casa de leilões, arquivista de arte ou fotografia ou registrador de acervo. Precisa ter tomado decisões reais de seleção, atribuição, montagem de exposição, empréstimos ou aquisições. Para fotografia, pede conhecer cópias, tiragens e processos fotográficos. Também pede escrita clara em inglês. A seleção tem uma entrevista curta sobre sua experiência, sem preparação.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "e0b7cf27a8",
+      "resumo": {
+        "frase": "Escolher, avaliar e tratar imagens como editor de fotografia para treinar IA.",
+        "o_que_faz": "Você olha conjuntos de imagens e escolhe a melhor para cada uso. Avalia exposição, foco, cor, ruído e corte, marca imagens que foram alteradas a ponto de mudar o que mostram e confere se legendas e descrições batem com a imagem. Também trata ou retoca fotos seguindo orientações e escreve uma explicação curta para cada decisão.",
+        "requisitos": "Pede experiência profissional como editor de fotografia, editor de imagem, retocador ou produtor de fotografia, com imagens entregues para impresso, internet, redes sociais, TV ou marcas. Precisa usar no dia a dia programas como Lightroom, Photoshop ou Capture One. Também pede escrita clara em inglês. A seleção tem uma entrevista curta sobre sua experiência com escolha e edição de imagens, sem preparação, e depois uma primeira tarefa revisada antes de continuar.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 100 por hora",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "641fc22846",
+      "resumo": {
+        "frase": "Montar projetos de engenharia mecânica realistas para treinar IA.",
+        "o_que_faz": "Você cria projetos de engenharia realistas, com projeto mecânico, análise, fabricação e testes, envolvendo também outras áreas. Transforma os objetivos em requisitos de projeto, limites de operação e critérios de aceitação que dá para medir. Também divide problemas complexos em tarefas ligadas entre si, com entradas, entregas, dependências e o especialista responsável por cada uma.",
+        "requisitos": "Pede bastante experiência profissional como engenheiro-chefe, engenheiro mecânico sênior ou em cargo parecido de liderança técnica, comandando projetos com várias áreas da engenharia. Precisa dominar projeto e análise mecânica, projeto para fabricação e montagem, testes e análise de causa raiz. Pede inglês B2 ou mais. Mestrado ou doutorado na área e experiência com CAD ou simulação por elementos finitos contam a favor. O anúncio prefere quem mora nos EUA, mas aceita gente do mundo todo com boa experiência.",
+        "idioma": "en+",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "a794af47f1",
+      "resumo": {
+        "frase": "Criar projetos de arquitetura de sistemas de engenharia para treinar IA.",
+        "o_que_faz": "Você monta projetos de engenharia realistas que exigem decisões de arquitetura entre várias áreas, como mecânica, elétrica, hardware, software e fabricação. Transforma os objetivos em arquiteturas de sistema com limites, responsabilidades de cada parte, interfaces e restrições técnicas. Também divide problemas complexos em tarefas ligadas entre si, com entradas, entregas, dependências e o especialista responsável por cada uma.",
+        "requisitos": "Pede bastante experiência profissional como arquiteto de sistemas ou em cargo parecido de liderança técnica, sendo responsável pela arquitetura de sistemas complexos e liderando equipes de várias áreas. Precisa dominar comparação de alternativas técnicas, gestão de interfaces e revisão de arquitetura. Pede inglês B2 ou mais. Mestrado ou doutorado na área e experiência com engenharia de sistemas baseada em modelos (MBSE, SysML) contam a favor. O anúncio prefere quem mora nos EUA, mas aceita gente do mundo todo com boa experiência.",
+        "idioma": "en+",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "52ef6b1341",
+      "resumo": {
+        "frase": "Planejar projetos de engenharia de sistemas realistas para treinar IA.",
+        "o_que_faz": "Você cria projetos de engenharia realistas envolvendo várias áreas, como mecânica, elétrica, hardware, software e fabricação. Transforma os objetivos em requisitos claros, restrições técnicas e critérios de aceitação que dá para medir. Também divide projetos complexos em tarefas ligadas entre si, com entradas, entregas, dependências e o especialista responsável por cada uma.",
+        "requisitos": "Pede bastante experiência profissional como engenheiro de sistemas principal ou líder, ou em cargo parecido de liderança técnica, comandando projetos com várias áreas da engenharia. Precisa dominar engenharia de requisitos, gestão de interfaces, integração de sistemas, verificação e validação. Pede inglês B2 ou mais. Mestrado ou doutorado na área e experiência com MBSE, SysML ou ferramentas de gestão de requisitos contam a favor. O anúncio prefere quem mora nos EUA, mas aceita gente do mundo todo com boa experiência.",
+        "idioma": "en+",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "02d62e7566",
+      "resumo": {
+        "frase": "Criar problemas de engenharia com respostas corretas num projeto curto para treinar IA.",
+        "o_que_faz": "Você monta problemas técnicos tirados do trabalho real de engenharia na sua área, com restrições e dados realistas, e não exercícios de livro. Escreve a solução correta com o raciocínio que leva até ela e define critérios objetivos para que outro engenheiro chegue ao mesmo veredito. Também revisa problemas de outros colaboradores e descarta os que ficarem ambíguos ou impossíveis de corrigir.",
+        "requisitos": "Pede doutorado completo ou em andamento em engenharia elétrica, mecânica, química, de produção ou aeroespacial, de preferência numa instituição forte em pesquisa. Precisa ter prática real de pesquisa ou de trabalho, com problemas que você mesmo resolveu. Publicações e experiência com avaliação de IA contam a favor, mas não são obrigatórias. A seleção tem perguntas iniciais, uma entrevista com IA e análise do perfil; o projeto começa por volta de 8 de novembro e quem for escolhido começa logo.",
+        "idioma": "en+",
+        "remuneracao": "US$ 80 a 95 por hora",
+        "contrato": "Projeto piloto de 2 a 3 semanas"
+      }
+    },
+    {
+      "id": "59686c9ca9",
+      "resumo": {
+        "frase": "Avaliar código escrito por IA como mantenedor de projeto de código aberto.",
+        "o_que_faz": "Você cria tarefas de programação realistas baseadas no projeto de código aberto que conhece melhor, como as melhorias e correções que um mantenedor passaria, e escreve as soluções de referência. Avalia código, testes e rubricas escritos por IA conforme a arquitetura, as convenções e o nível de qualidade do repositório, e explica por escrito onde a IA errou. Também compila, roda e testa o projeto no seu computador, inclusive com Docker, para confirmar que tudo funciona.",
+        "requisitos": "Pede ser mantenedor (com nome no MAINTAINERS ou CODEOWNERS, ou 10 revisões de PR no último ano) ou colaborador principal (3 PRs relevantes aceitos no último ano) de um projeto de código aberto muito usado, com 2 anos ou mais e revisão de código ativa. O histórico precisa ser verificável na sua conta do GitHub, e pede saber revisar código no nível de um profissional sênior. Exige dedicação exclusiva de 30 a 40 horas por semana em dias úteis, sem outro emprego em tempo integral nem outros projetos de IA, inclusive da Mercor. Também pede autorização para trabalhar no país onde você mora, aceitar verificação de antecedentes e acordo de confidencialidade e usar um computador fornecido pela empresa.",
+        "idioma": "en+",
+        "carga": "30 a 40 h por semana",
+        "contrato": "Pela Cincinnatus LLC, que contrata para um laboratório de IA"
       }
     }
   ]

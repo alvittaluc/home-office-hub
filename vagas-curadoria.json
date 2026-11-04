@@ -1325,6 +1325,34 @@
       "titulo": "Federal Budget Analyst",
       "revisado_em": "2026-11-03",
       "motivo": "Pede 5 anos ou mais de orçamento no governo federal americano, em cargos GS-11 ou GS-12."
+    },
+    {
+      "id": "233d8fd2bc",
+      "empresa": "micro1",
+      "titulo": "Federal Management & Program Analyst",
+      "revisado_em": "2026-11-04",
+      "motivo": "Pede quem more nos EUA e tenha experiência em programas do governo federal americano (cargos GS-0343, GS-0301)."
+    },
+    {
+      "id": "0a0ddecd6b",
+      "empresa": "micro1",
+      "titulo": "Federal Auditor, Performance / Financial (OIG/GAO)",
+      "revisado_em": "2026-11-04",
+      "motivo": "Pede quem more nos EUA e tenha experiência em auditoria do governo federal americano (OIG, GAO, cargo GS-0511)."
+    },
+    {
+      "id": "501da53598",
+      "empresa": "micro1",
+      "titulo": "Federal Regulatory Policy Analyst",
+      "revisado_em": "2026-11-04",
+      "motivo": "Pede profissional que more nos EUA, com experiência na criação de normas do governo federal americano (cargos GS-0301, GS-0905)."
+    },
+    {
+      "id": "25c999d41e",
+      "empresa": "turing",
+      "titulo": "Nurse Practitioner / Physician Assistant - US",
+      "revisado_em": "2026-11-04",
+      "motivo": "Exige morar nos EUA e ter licença ativa de Nurse Practitioner ou Physician Assistant."
     }
   ]
 }
