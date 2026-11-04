@@ -226,6 +226,10 @@ EXCECOES = {
     # vaga de lingua; a micro1 pede experiencia profissional com Inkscape
     "AI Language & Culture Pioneer": "Linguistica",
     "Inkscape": "Design e Criacao",
+    # Rotina de 04/11/2026: micro1 pede experiencia profissional e portfolio
+    # em producao de video, e trabalho profissional como editor de fotos
+    "=Video Production Specialist": "Design e Criacao",
+    "=Photo and Visual Editors": "Design e Criacao",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -895,6 +899,8 @@ if __name__ == "__main__":
         ("Senior Technical Documentation, Parts and Annotation Specialist", "", "Engenharia"),
         ("AI Language & Culture Pioneer - Portuguese (BR)", "", "Linguistica"),
         ("Inkscape Design Specialist", "", "Design e Criacao"),
+        ("Video Production Specialist", "", "Design e Criacao"),
+        ("Photo and Visual Editors", "", "Design e Criacao"),
     ]
 
     falhas = 0
