@@ -1,7 +1,7 @@
 {
   "nota": "Quando cada vaga apareceu no hub pela primeira vez. Este arquivo só cresce. Não edite à mão.",
-  "atualizado_em": "2026-11-03T20:17:53.117241+00:00",
-  "total": 1356,
+  "atualizado_em": "2026-11-04T15:53:25.483792+00:00",
+  "total": 1358,
   "primeira_vez": {
     "alignerr|accounting & finance expert": "2026-10-02",
     "alignerr|accounting instructor": "2026-10-02",
@@ -512,6 +512,7 @@
     "mercor|nursing talent network": "2026-10-02",
     "mercor|obstetrician gynecologist ob gyn": "2026-10-24",
     "mercor|office & productivity software expert": "2026-10-02",
+    "mercor|open source maintainer core contributor software engineer": "2026-11-04",
     "mercor|ophthalmologist": "2026-10-30",
     "mercor|orthopedic surgeon": "2026-10-24",
     "mercor|otolaryngologist ent": "2026-10-24",
@@ -1224,6 +1225,7 @@
     "turing|mortgage & home lending expert": "2026-10-29",
     "turing|music and audio experts": "2026-09-11",
     "turing|music professionals": "2026-10-22",
+    "turing|nurse practitioner physician assistant us": "2026-11-04",
     "turing|operations supply chain sme": "2026-09-11",
     "turing|personal consumer lending expert": "2026-10-29",
     "turing|personal finance sme": "2026-09-11",
