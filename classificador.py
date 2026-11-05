@@ -230,6 +230,11 @@ EXCECOES = {
     # em producao de video, e trabalho profissional como editor de fotos
     "=Video Production Specialist": "Design e Criacao",
     "=Photo and Visual Editors": "Design e Criacao",
+    # Rotina de 05/11/2026: micro1 pede bastante experiencia profissional em
+    # politica externa ou seguranca nacional; a Turing pede 1 ano ou mais de
+    # retoque de fotos, direcao de arte ou controle de qualidade de criacao
+    "=Geopolitical Risk Advisor": "Outras areas",
+    "=Image Editing QA": "Design e Criacao",
     # Sem area propria
     "Board Game Reasoning Expert": "Outras areas",
     "Web Research Specialist": "Outras areas",
@@ -901,6 +906,8 @@ if __name__ == "__main__":
         ("Inkscape Design Specialist", "", "Design e Criacao"),
         ("Video Production Specialist", "", "Design e Criacao"),
         ("Photo and Visual Editors", "", "Design e Criacao"),
+        ("Geopolitical Risk Advisor", "", "Outras areas"),
+        ("Image Editing QA", "", "Design e Criacao"),
     ]
 
     falhas = 0
