@@ -1,5 +1,5 @@
 {
-  "total": 417,
+  "total": 425,
   "vagas": [
     {
       "id": "65762fd387",
@@ -4552,6 +4552,98 @@
         "idioma": "en+",
         "carga": "30 a 40 h por semana",
         "contrato": "Pela Cincinnatus LLC, que contrata para um laboratório de IA"
+      }
+    },
+    {
+      "id": "708ce719fe",
+      "resumo": {
+        "frase": "Avaliar cenários de treinamento militar para ensinar IA.",
+        "o_que_faz": "Você cria cenários realistas, sem informação sigilosa, sobre treinamento militar, prontidão de tropas e preparo para missões. Revisa materiais de treinamento para ver se estão corretos e de acordo com a doutrina militar. Também analisa planos de treinamento e avaliações de prontidão, aponta falhas e explica por escrito o que pode melhorar.",
+        "requisitos": "Pede experiência profissional em treinamento militar, avaliação de prontidão, criação de doutrina ou ensino militar dentro de uma organização de defesa. Precisa entender bem como funciona o treinamento e o preparo de uma tropa, além de escrever bem e ter bom raciocínio crítico. Experiência no Departamento de Defesa americano ou em forças armadas aliadas conta a favor, mas não é obrigatória. A seleção tem uma entrevista feita por IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "carga": "Flexível, por projeto ou por tarefa",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "2d16b94707",
+      "resumo": {
+        "frase": "Analisar cenários de risco geopolítico para treinar IA.",
+        "o_que_faz": "Você cria cenários realistas, sem informação sigilosa, sobre riscos geopolíticos, segurança internacional e política externa. Revisa textos sobre esses temas para ver se estão corretos e bem fundamentados. Também avalia decisões estratégicas, aponta riscos, contradições e suposições sem base, e escreve recomendações com argumentos claros.",
+        "requisitos": "Pede bastante experiência profissional em análise de risco geopolítico, política externa, estratégia de segurança nacional ou segurança internacional. Precisa entender bem relações internacionais e saber avaliar situações políticas complexas, com ótima escrita e raciocínio crítico. Já ter trabalhado em órgão de governo, organização internacional, centro de pesquisa ou consultoria de risco conta a favor. A seleção tem uma entrevista feita por IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "carga": "Flexível, por projeto ou por tarefa",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "c3ea16f02a",
+      "resumo": {
+        "frase": "Avaliar cenários técnicos de defesa e segurança nacional para treinar IA.",
+        "o_que_faz": "Você cria cenários realistas, sem informação sigilosa, sobre tecnologias de defesa, sistemas de segurança nacional e programas técnicos. Revisa conteúdo técnico para ver se está correto e se faz sentido no mundo real. Também analisa decisões técnicas complexas, aponta falhas e suposições sem base e explica por escrito o que encontrou.",
+        "requisitos": "Pede bastante experiência profissional em programas de ciência e tecnologia de governo ou de defesa, em sistemas de segurança nacional ou em operações técnicas avançadas. Precisa entender de desenvolvimento de tecnologia, gestão de programas técnicos ou sistemas de defesa, e escrever bem. Experiência em órgãos como DoD, DARPA, laboratórios nacionais ou órgãos parecidos de países aliados conta a favor. A seleção tem uma entrevista feita por IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "carga": "Flexível, por projeto ou por tarefa",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "6094509dfe",
+      "resumo": {
+        "frase": "Avaliar cenários de operações especiais militares para treinar IA.",
+        "o_que_faz": "Você cria cenários realistas, sem informação sigilosa, sobre operações especiais, guerra irregular e planejamento militar. Revisa conteúdo militar para ver se é correto e realista. Também analisa decisões táticas e operacionais, aponta falhas e suposições sem base e explica por escrito o que encontrou.",
+        "requisitos": "Pede experiência profissional em forças de operações especiais, guerra irregular ou planejamento de operações especiais, dentro de forças armadas ou organizações de defesa. Precisa entender bem de guerra não convencional e planejamento de missões, e escrever bem. Passagem por unidades especiais americanas ou de países aliados conta a favor, mas não é obrigatória. A seleção tem uma entrevista feita por IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "carga": "Flexível, por projeto ou por tarefa",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "c7ed113d3e",
+      "resumo": {
+        "frase": "Avaliar análises de inteligência de sinais feitas por IA.",
+        "o_que_faz": "Você cria cenários e materiais de referência realistas, sem informação sigilosa, sobre inteligência de sinais (SIGINT, a coleta e análise de comunicações e sinais eletrônicos). Revisa análises de inteligência escritas pela IA para ver se estão corretas e bem feitas. Também monta e ajusta rubricas de avaliação e aponta falhas e contradições no raciocínio da IA.",
+        "requisitos": "Pede experiência profissional em operações, coleta ou análise de inteligência de sinais, no governo ou nas forças armadas. Precisa conhecer bem os métodos e o fluxo de trabalho da área de inteligência e saber explicar suas conclusões com clareza. Experiência na NSA, na comunidade de inteligência americana ou em órgãos parecidos de países aliados conta a favor, assim como já ter avaliado IA ou criado rubricas. A seleção tem uma entrevista feita por IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 50 a 100 por hora",
+        "carga": "Flexível, por projeto ou por tarefa",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "1fb80bf597",
+      "resumo": {
+        "frase": "Avaliar respostas do Gemini usando dados da sua própria conta do Google.",
+        "o_que_faz": "Você analisa perguntas e respostas criadas por IA, em inglês, que usam informações da sua conta pessoal do Google, como o Gmail e o Google Fotos. Avalia se cada resposta é relevante, correta, útil e se aproveita bem o que está na sua conta. Depois dá uma nota e explica por escrito o motivo, seguindo as diretrizes do projeto.",
+        "requisitos": "Precisa ter uma conta pessoal terminada em @gmail.com, usada de verdade há pelo menos um ano, com e-mails enviados e recebidos e fotos ou vídeos no Google Fotos da mesma conta. A conta precisa ter umas 10 conversas ou mais com o Gemini, e o Gmail e o Google Fotos têm que estar configurados em inglês. Pede experiência em avaliar textos em inglês e concordar com um termo de consentimento para o uso desses dados. A seleção é pelo formulário de candidatura e pela análise do perfil pela Turing e pelo cliente.",
+        "idioma": "en",
+        "carga": "Até 40 h por semana",
+        "contrato": "Projeto de 14 a 16 semanas, com início previsto por volta de 10 de novembro"
+      }
+    },
+    {
+      "id": "773efa097c",
+      "resumo": {
+        "frase": "Conferir imagens editadas que vão treinar IA de edição de fotos.",
+        "o_que_faz": "Você compara a imagem original com a editada e confere se a edição fez exatamente o que o pedido mandava, nada a mais e nada a menos. Olha luz, sombras, reflexos, perspectiva, bordas e cores, e verifica se o resto da foto ficou intacto. Depois dá a nota pela rubrica, aprova, faz pequenos ajustes ou devolve a tarefa com comentários claros para quem editou.",
+        "requisitos": "Pede 1 ano ou mais de experiência com retoque de fotos, montagem, direção de arte, controle de qualidade de criação ou função parecida. Precisa ter olho bom para perceber defeitos pequenos de edição, saber usar o Photoshop o suficiente para conferir e corrigir detalhes e ler e escrever bem em inglês. Também pede computador com tela de cores fiéis e boa internet. Experiência em agência ou estúdio e com ferramentas de imagem por IA conta a favor.",
+        "idioma": "en+",
+        "contrato": "Por projeto"
+      }
+    },
+    {
+      "id": "df58b412c3",
+      "resumo": {
+        "frase": "Editar e criar imagens 2D e 3D para um projeto de IA.",
+        "o_que_faz": "Você edita, anota e modifica imagens seguindo briefings, referências e diretrizes, e cria variações mantendo o mesmo estilo, composição, cores, luz e textura. Faz retoque, montagem, limpeza e troca de fundo, e recria ou melhora texturas, materiais, objetos, personagens e cenários. Também registra o seu processo e as escolhas de estilo e entrega tudo pronto para uso.",
+        "requisitos": "No mínimo 2 anos como artista 2D ou 3D ou em função parecida, com portfólio de trabalhos estilizados e de materiais. Precisa reproduzir bem materiais reais e texturas com aparência de feito à mão, conhecer renderização não fotorrealista e plug-ins de After Effects, 3ds Max e Cinema 4D, e entender modelagem, iluminação e renderização em 3D. A seleção tem análise do portfólio e um teste curto antes do início.",
+        "idioma": "en",
+        "carga": "Até 40 h por semana (meio período de 25 a 30 h também serve)",
+        "contrato": "Projeto de 8 a 10 semanas"
       }
     }
   ]

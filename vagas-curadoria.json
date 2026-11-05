@@ -1162,6 +1162,13 @@
       "titulo": "Audio/Voice/Annotation Trainer - Portuguese (Brazil) Language",
       "revisado_em": "2026-11-03",
       "motivo": "Remota e aberta ao mundo, gravação de voz sem diploma. O texto do anúncio fala em dublador de alemão, o que contradiz o título; o resumo avisa."
+    },
+    {
+      "id": "1fb80bf597",
+      "empresa": "turing",
+      "titulo": "Personal Account Raters (Google Account)",
+      "revisado_em": "2026-11-05",
+      "motivo": "Remota e aberta ao mundo, sem diploma nem profissão. Pede uma conta pessoal do Gmail com pelo menos um ano de uso, Google Fotos e o Gmail configurados em inglês, o que quem mora no Brasil pode ter."
     }
   ],
   "bloqueadas": [
