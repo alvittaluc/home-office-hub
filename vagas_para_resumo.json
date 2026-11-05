@@ -1,4 +1,16 @@
 {
-  "total": 0,
-  "vagas": []
+  "total": 1,
+  "vagas": [
+    {
+      "id": "1fb80bf597",
+      "empresa": "turing",
+      "titulo": "Personal Account Raters (Google Account)",
+      "url": "https://work.turing.com/job/home?jobCode=_Xmnzc1zx0uM",
+      "local": "Remoto · Mundial",
+      "categoria_badge": "QA",
+      "descricao": "About Turing: \n Turing’s mission is to accelerate superintelligence and drive real economic progress. The company works with frontier AI labs and Fortune 500 enterprises to improve AI capabilities and build AI systems for critical business workflows.\n\n Role Overview:\n This role involves working in an AI evaluation project focused on improving how Gemini uses personal context to deliver relevant, accurate, and helpful responses.\n \nAs a Personal Account Rater, you will review AI-generated prompts and responses using selected data from your primary personal Google account, including Gmail and Google Photos. Your feedback will help assess the quality of Gemini’s personalization using real account history and prior Gemini activity.\n\n Project Snapshot: \n • 14-16-week project (with potential chances of extension) \n • Commitment up to 40 hours/week \n • Fully remote | Paid in USD \n • Potential Start date - November 10 or nearby dates \n What You’ll Do \n • Review AI-generated prompts and responses in English.\n • Evaluate responses for relevance, accuracy, helpfulness, and personalization.\n • Assess how well Gemini uses context from Gmail and Google Photos.\n • Provide clear ratings, explanations, and feedback.\n • Follow project guidelines and maintain a high level of consistency.\n • Help improve the quality and reliability of next-generation AI systems.\n Who can apply? \n • Individuals who have experience and comfortable evaluating prompts and responses in English.\n • Users with a primary personal Google account ending in @gmail.com , an actively used Gmail inbox, and an associated Google Photos library.\n • Users with at least one year of Gmail history and activity , including sent and received emails, labels, or other account activity.\n • Users with at least one year of Google Photos content and activity on the same account, such as uploaded photos or videos, albums, or edits.\n • Users with approximately 10 or more prior Gemini queries or interactions associated with the account.\n • Users whose Gmail and Google Photos display languages are set to English.\n • Applicants who are willing to sign the consent form\n Why Join? \n • Gain hands-on experience working on a leading AI project , with the flexibility to contribute over a long term engagement .\n Next Steps - \n • Please fill the application form (with accurate information)\n • Talents will be selected based on the Internal Profile and Client Review",
+      "requisitos": "Communication",
+      "remuneracao": ""
+    }
+  ]
 }
