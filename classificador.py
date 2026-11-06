@@ -201,6 +201,10 @@ EXCECOES = {
     "Geoscience Teachers": "Meio Ambiente e Ciencias da Terra",
     "=Geoscientists": "Meio Ambiente e Ciencias da Terra",
     "=Ophthalmologists": "Medicina e Saude",
+    # Rotina de 06/11/2026: a Turing pede médico com prática nos últimos
+    # 3 anos e título de especialista
+    "Gastroenterologist": "Medicina e Saude",
+    "Endocrinologist": "Medicina e Saude",
     "=Table Games Managers": "Outras areas",
     # Rotina de 23/10/2026: a Alignerr pede recrutador com experiencia na
     # profissao; a Turing pede artista 2D e 3D senior, com 2 anos ou mais
@@ -890,6 +894,8 @@ if __name__ == "__main__":
         ("Lawyers", "", "Direito"),
         ("Physicians", "", "Medicina e Saude"),
         ("Ophthalmologists", "", "Medicina e Saude"),
+        ("Gastroenterologist/Hepatologist", "", "Medicina e Saude"),
+        ("Endocrinologist", "", "Medicina e Saude"),
         ("Table Games Managers", "", "Outras areas"),
         ("Talent Acquisition Specialist: Recruiting and Talent Sourcing", "", "Economia e Negocios"),
         ("Digital Imaging Specialist/ Digital Artist", "", "Design e Criacao"),
