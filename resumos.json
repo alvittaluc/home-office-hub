@@ -1,5 +1,5 @@
 {
-  "total": 425,
+  "total": 458,
   "vagas": [
     {
       "id": "65762fd387",
@@ -4644,6 +4644,373 @@
         "idioma": "en",
         "carga": "Até 40 h por semana (meio período de 25 a 30 h também serve)",
         "contrato": "Projeto de 8 a 10 semanas"
+      }
+    },
+    {
+      "id": "9761256b9d",
+      "resumo": {
+        "frase": "Tirar selfies e gravar vídeos de si mesmo para um banco de imagens de IA.",
+        "o_que_faz": "É uma participação paga numa coleta de imagens, e não um trabalho contínuo. Você tira 30 selfies e grava 60 vídeos de si mesmo com o celular, seguindo instruções simples, e responde a um questionário curto sobre você e sobre o material enviado. O projeto monta um conjunto de imagens de pessoas de origens e aparências variadas para desenvolver e avaliar sistemas de IA.",
+        "requisitos": "Ter 18 anos ou mais e um smartphone. O anúncio aceita participantes da América do Norte, da América Latina e da região que reúne Europa, Oriente Médio e África. Pessoas de todas as origens étnicas podem se inscrever, e quem usa roupa ou acessório religioso não precisa tirar. Como as imagens mostram o seu rosto, leia com atenção o termo de uso antes de aceitar.",
+        "idioma": "nenhum",
+        "remuneracao": "US$ 140 por tarefa aprovada",
+        "contrato": "Tarefa pontual"
+      }
+    },
+    {
+      "id": "51b2aae441",
+      "resumo": {
+        "frase": "Tirar selfies e gravar vídeos com o seu irmão gêmeo para um banco de imagens de IA.",
+        "o_que_faz": "Coleta de imagens paga para gêmeos, idênticos ou não. Cada um tira 30 selfies e grava 60 vídeos, sozinho ou junto com o outro, seguindo instruções simples, e responde a um questionário curto. O material ajuda sistemas de IA a lidar com a semelhança entre pessoas da mesma família.",
+        "requisitos": "Ter 18 anos ou mais, um smartphone e um irmão gêmeo ou irmã gêmea que também queira participar. Aceita participantes da América do Norte, da América Latina, da Europa, do Oriente Médio e da África. Leia o termo de uso das imagens antes de aceitar.",
+        "idioma": "nenhum",
+        "remuneracao": "US$ 140 por participante (até US$ 280 pelo par)",
+        "contrato": "Tarefa pontual"
+      }
+    },
+    {
+      "id": "145185e63c",
+      "resumo": {
+        "frase": "Tirar selfies e gravar vídeos com um irmão ou irmã para um banco de imagens de IA.",
+        "o_que_faz": "Coleta de imagens paga para irmãos, em dupla ou em grupo. Cada irmão tira 30 selfies e grava 60 vídeos, sozinho ou junto com os outros, seguindo instruções simples, e responde a um questionário curto. O material ajuda sistemas de IA a entender a semelhança entre pessoas da mesma família.",
+        "requisitos": "Ter 18 anos ou mais, um smartphone e pelo menos um irmão ou irmã que também queira participar. Aceita participantes da América do Norte, da América Latina, da Europa, do Oriente Médio e da África. Leia o termo de uso das imagens antes de aceitar.",
+        "idioma": "nenhum",
+        "remuneracao": "US$ 140 por participante",
+        "contrato": "Tarefa pontual"
+      }
+    },
+    {
+      "id": "16c51a207c",
+      "resumo": {
+        "frase": "Criar e avaliar modelos de sistemas em SysML v2 para treinar IA.",
+        "o_que_faz": "Você transforma requisitos de engenharia em modelos SysML v2 fiéis e rastreáveis e monta soluções de referência que servem de gabarito para avaliar a IA. Também cria rubricas para dizer se um modelo gerado pela IA está correto e comenta os modelos dela. O trabalho envolve ler requisitos, documentos de conceito de operação (ConOps) e de interfaces (ICD).",
+        "requisitos": "Experiência profissional em engenharia de sistemas, com prática em SysML v1 e algum contato com SysML v2, ou experiência comprovada em SysML v2. Precisa conhecer engenharia de sistemas baseada em modelos (MBSE) e ferramentas como Cameo Systems Modeler ou MagicDraw. Experiência em aeroespacial, defesa, automotivo ou telecomunicações conta a favor. A seleção tem uma entrevista feita por IA.",
+        "idioma": "en+",
+        "remuneracao": "US$ 55 a 120 por hora",
+        "carga": "Cerca de 15 h por semana",
+        "contrato": "Autônomo, por tarefa, de 4 semanas a 3 meses"
+      }
+    },
+    {
+      "id": "21655f057c",
+      "resumo": {
+        "frase": "Criar tarefas de programação de interface a partir de imagens e vídeos para treinar IA.",
+        "o_que_faz": "Você parte de capturas de tela, protótipos, diagramas ou gravações de tela e monta tarefas de programação de várias etapas, dizendo qual código está envolvido e o que deve acontecer no fim. Define critérios objetivos para conferir se a tarefa foi resolvida de verdade e entrega uma solução de referência que funciona. Também revisa tarefas de outros colaboradores e aponta as que ficaram ambíguas.",
+        "requisitos": "Um perfil público no GitHub com contribuições relevantes e fáceis de conferir é obrigatório. Precisa de ótimo domínio de front-end (React, TypeScript ou parecido) e experiência em interfaces complexas; trabalho com SVG, Canvas ou gráficos conta muito. Designers que também programam a interface e têm código público servem. A seleção tem perguntas iniciais, uma entrevista feita por IA e análise do perfil.",
+        "idioma": "en+",
+        "remuneracao": "US$ 80 a 100 por hora (cerca de US$ 640 a 800 por tarefa)",
+        "contrato": "Por tarefa aprovada, cerca de 8 h cada"
+      }
+    },
+    {
+      "id": "d057e0e480",
+      "resumo": {
+        "frase": "Criar peças em CAD e explicar o passo a passo para treinar IA em projeto mecânico.",
+        "o_que_faz": "Você cria e modifica modelos 3D de peças e montagens mecânicas a partir de especificações técnicas, usando CAD paramétrico (esboços, restrições, cotas e árvore de recursos). Confere medidas, tolerâncias e se a peça pode ser fabricada, e registra cada passo explicando as decisões. Também escreve instruções e prompts para tarefas de projeto mecânico.",
+        "requisitos": "Experiência prática com CAD paramétrico, de preferência SolidWorks ou parecido, e bom conhecimento de projeto mecânico, tolerâncias geométricas (GD&T) e processos de fabricação. Inglês nível B2 ou mais. Mestrado ou doutorado em engenharia mecânica e experiência com anotação de dados ou avaliação de IA contam a favor. A seleção tem uma entrevista feita por IA.",
+        "idioma": "en (B2 ou mais)",
+        "remuneracao": "US$ 65 a 123 por hora",
+        "carga": "Meio período, horário flexível",
+        "contrato": "Autônomo"
+      }
+    },
+    {
+      "id": "f491f040e0",
+      "resumo": {
+        "frase": "Revisar tarefas de engenharia mecânica usadas para avaliar IA.",
+        "o_que_faz": "Você revisa cenários de engenharia mecânica de grandes indústrias, as respostas de referência e as rubricas de correção. Refaz cálculos, confere hipóteses de projeto e análises seguindo normas americanas (ASME) ou internacionais (ISO), e olha documentos de projeto e simulações atrás de erros e omissões. Depois escreve comentários claros e confere se as correções resolveram os problemas.",
+        "requisitos": "5 anos ou mais como engenheiro mecânico ou líder de engenharia em grande empresa industrial, automotiva, aeroespacial ou de manufatura. Precisa ter sido responsável por projetos de produto, processos de fabricação ou certificações e conhecer normas e certificações (ASME, ISO, FAA, FDA). Registro profissional de engenheiro (o PE americano ou equivalente de outro país) conta a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 90 por hora"
+      }
+    },
+    {
+      "id": "3a60cbdb5a",
+      "resumo": {
+        "frase": "Criar tarefas de engenharia mecânica para avaliar IA.",
+        "o_que_faz": "Você monta cenários de engenharia mecânica de grandes indústrias, com ciclos de projeto, revisões com várias áreas e certificações. As tarefas cobrem CAD, análise térmica e de fluidos, análise estrutural, processos de fabricação e confiabilidade, com ferramentas como SolidWorks, ANSYS, CATIA e MATLAB. Você escreve as respostas de referência e as rubricas que separam o raciocínio de um engenheiro experiente de uma resposta de livro.",
+        "requisitos": "5 anos ou mais como engenheiro mecânico ou líder de engenharia em grande empresa industrial, automotiva, aeroespacial ou de manufatura. Precisa ter sido responsável por projetos de produto, processos de fabricação ou certificações e conhecer normas como ASME e ISO. Registro profissional de engenheiro (o PE americano ou equivalente de outro país) conta a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 80 por hora"
+      }
+    },
+    {
+      "id": "2e92d4f660",
+      "resumo": {
+        "frase": "Revisar tarefas de engenharia elétrica usadas para avaliar IA.",
+        "o_que_faz": "Você revisa cenários de engenharia elétrica de grandes empresas, as respostas de referência e as rubricas de correção. Refaz cálculos e confere hipóteses e conclusões seguindo normas internacionais (IEC) ou americanas (NEC, NESC, IEEE), e olha documentos de projeto e simulações atrás de erros. Depois escreve comentários claros e confere se as correções resolveram os problemas.",
+        "requisitos": "5 anos ou mais como engenheiro eletricista ou líder de engenharia em grande empresa de tecnologia, indústria ou energia. Precisa ter sido responsável por projetos de circuitos, sistemas de potência ou certificações e conhecer normas como IEC, IEEE e UL. Registro profissional de engenheiro (o PE americano ou equivalente de outro país) conta a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 90 por hora"
+      }
+    },
+    {
+      "id": "d17e65beae",
+      "resumo": {
+        "frase": "Criar tarefas de engenharia elétrica para avaliar IA.",
+        "o_que_faz": "Você monta cenários de engenharia elétrica de grandes empresas, sobre sistemas de potência e rede, semicondutores e placas de circuito, sistemas embarcados, processamento de sinais e controle. Usa ferramentas como Altium, Cadence, MATLAB/Simulink e simuladores SPICE, seguindo normas internacionais (IEC) ou americanas (NEC, IEEE). Escreve as respostas de referência e as rubricas que separam o raciocínio de um engenheiro experiente de uma resposta de livro.",
+        "requisitos": "5 anos ou mais como engenheiro eletricista ou líder de engenharia em grande empresa de tecnologia, indústria ou energia. Precisa ter sido responsável por projetos de circuitos, sistemas de potência ou certificações. Registro profissional de engenheiro (o PE americano ou equivalente de outro país) conta a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 80 por hora"
+      }
+    },
+    {
+      "id": "d4f80d86c8",
+      "resumo": {
+        "frase": "Revisar tarefas de engenharia civil usadas para avaliar IA.",
+        "o_que_faz": "Você revisa cenários de grandes obras de infraestrutura e construção, as respostas de referência e as rubricas de correção. Refaz cálculos e confere hipóteses e conclusões seguindo normas internacionais (Eurocódigos e ISO) ou americanas (ASCE, ACI, AISC, AASHTO). Depois escreve comentários claros e confere se as correções resolveram os problemas.",
+        "requisitos": "5 anos ou mais como engenheiro civil ou líder de engenharia, com responsabilidade sobre projetos de infraestrutura, licenciamento ou execução de obras grandes. Precisa entender aprovações de órgãos públicos e licenciamento ambiental. Registro profissional de engenheiro é bem-vindo (o PE americano ou equivalente de outro país).",
+        "idioma": "en+",
+        "remuneracao": "US$ 90 por hora"
+      }
+    },
+    {
+      "id": "8a4a30ded7",
+      "resumo": {
+        "frase": "Criar tarefas de engenharia civil para avaliar IA.",
+        "o_que_faz": "Você monta cenários de grandes obras de infraestrutura, com projeto, licenciamento e gestão de obra. As tarefas cobrem estruturas, transportes e rodovias, recursos hídricos e meio ambiente, geotecnia e gestão de projetos, com ferramentas como AutoCAD Civil 3D, Revit, STAAD.Pro, ETABS e HEC-RAS. Você escreve cálculos e planos de referência e as rubricas que separam o raciocínio de um engenheiro experiente de uma resposta de livro.",
+        "requisitos": "5 anos ou mais como engenheiro civil ou líder de engenharia, com responsabilidade sobre projetos de infraestrutura, licenciamento ou execução de obras grandes. Precisa conhecer normas americanas (ASCE 7, ACI 318) ou internacionais (Eurocódigos). Registro profissional de engenheiro é bem-vindo (o PE americano ou equivalente de outro país).",
+        "idioma": "en+",
+        "remuneracao": "US$ 80 por hora"
+      }
+    },
+    {
+      "id": "19c7d2f1d5",
+      "resumo": {
+        "frase": "Montar redes simuladas e testes automáticos para treinar IA em engenharia de redes.",
+        "o_que_faz": "Você cria tarefas reais de roteamento, switching, segmentação, redundância e desempenho de redes. Monta topologias simuladas com ferramentas como containerlab, GNS3, EVE-NG ou Mininet, configura BGP, OSPF, VLANs, VPNs e firewalls, e escreve testes automáticos de alcance, failover, latência e perda de pacotes. Também revisa configurações geradas pela IA e descobre por que falharam.",
+        "requisitos": "5 anos ou mais como engenheiro de redes, com responsabilidade sobre redes corporativas, de data center, nuvem ou operadora. Precisa saber montar laboratórios de rede, analisar tráfego (Wireshark, tcpdump, iperf) e escrever automação em Python, shell ou Ansible. Certificações como CCNP, CCIE ou JNCIP contam a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 80 por hora para quem cria tarefas, US$ 90 para quem revisa"
+      }
+    },
+    {
+      "id": "dfbd36ed2d",
+      "resumo": {
+        "frase": "Criar e conferir simulações de circuitos e sistemas elétricos para treinar IA.",
+        "o_que_faz": "Você cria tarefas em projeto de circuitos e placas, eletrônica de potência, sistemas de potência, embarcados ou controle industrial. Monta esquemáticos, netlists SPICE e modelos, roda as análises e escreve código que confere tensão, corrente, eficiência e estabilidade com unidades e tolerâncias. Também revisa projetos feitos pela IA e descobre se o erro está no projeto, na simulação ou no teste.",
+        "requisitos": "5 anos ou mais como engenheiro eletricista, com responsabilidade sobre projetos de circuitos, sistemas de potência, controle ou validação de produto. Precisa de prática recente com ferramentas como KiCad, Altium, Cadence, SPICE ou MATLAB/Simulink e saber escrever scripts em Python. Registro profissional de engenheiro conta a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 80 por hora para quem cria tarefas, US$ 90 para quem revisa"
+      }
+    },
+    {
+      "id": "3692b3c4a1",
+      "resumo": {
+        "frase": "Criar e conferir modelos de CAD e simulação mecânica para treinar IA.",
+        "o_que_faz": "Você cria problemas de engenharia com geometria, montagens, materiais, cargas e requisitos de projeto. Monta análises de tensão, térmica, vibração ou escoamento (CAD, elementos finitos ou CFD) com ferramentas como SolidWorks, FreeCAD, ANSYS ou OpenFOAM, confere malha e convergência e define testes para os resultados. Também revisa trabalhos feitos pela IA e descobre de onde vem cada erro.",
+        "requisitos": "5 anos ou mais como engenheiro mecânico, com responsabilidade sobre projetos de produto, análises de engenharia, fabricação ou validação. Precisa de prática recente em CAD, elementos finitos, CFD ou análise térmica e saber automatizar com Python, MATLAB ou scripts. Registro profissional de engenheiro conta a favor.",
+        "idioma": "en+",
+        "remuneracao": "US$ 70 a 80 por hora para quem cria tarefas, US$ 90 para quem revisa"
+      }
+    },
+    {
+      "id": "e9e0224d24",
+      "resumo": {
+        "frase": "Médico hematologista ou oncologista para treinar IA em casos clínicos.",
+        "o_que_faz": "Você cria e resolve casos clínicos difíceis de hematologia e oncologia, como escolha de quimioterapia, distúrbios de coagulação, anemias e cânceres do sangue. Avalia se as respostas da IA têm diagnóstico certo, bom julgamento clínico e base em evidências, e aponta onde ela erra em tumores sólidos, transplante de medula e cuidados paliativos. Trabalha junto com pesquisadores de IA e outros médicos.",
+        "requisitos": "Formação em medicina, com prática ativa nos últimos 3 anos ou mais, e título de especialista em hematologia ou oncologia (ou equivalente). Precisa explicar raciocínio médico complexo em linguagem simples e ter inglês excelente na escrita e na fala. O anúncio pede formação em instituição de ponta, como Harvard, Stanford ou Oxford.",
+        "idioma": "en+",
+        "carga": "20 a 40 h por semana, no mínimo 4 h por dia com parte no horário do Pacífico (EUA)",
+        "contrato": "Autônomo, 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "97d9e96750",
+      "resumo": {
+        "frase": "Médico gastroenterologista ou hepatologista para treinar IA em casos clínicos.",
+        "o_que_faz": "Você cria e resolve casos clínicos difíceis de gastroenterologia e hepatologia, como doença inflamatória intestinal, endoscopia complexa, cirrose, hepatites e cânceres do aparelho digestivo. Avalia se as respostas da IA têm diagnóstico certo, bom julgamento clínico e base em evidências, e aponta onde ela erra em motilidade, pâncreas e vias biliares e transplante de fígado. Trabalha junto com pesquisadores de IA e outros médicos.",
+        "requisitos": "Formação em medicina, com prática ativa nos últimos 3 anos ou mais, e título de especialista em gastroenterologia ou hepatologia (ou equivalente). Precisa explicar raciocínio médico complexo em linguagem simples e ter inglês excelente na escrita e na fala. O anúncio pede formação em instituição de ponta, como Harvard, Stanford ou Oxford.",
+        "idioma": "en+",
+        "carga": "20 a 40 h por semana, no mínimo 4 h por dia com parte no horário do Pacífico (EUA)",
+        "contrato": "Autônomo, 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "5bd4dc8c78",
+      "resumo": {
+        "frase": "Médico pneumologista ou intensivista para treinar IA em casos clínicos.",
+        "o_que_faz": "Você cria e resolve casos clínicos difíceis de pneumologia e terapia intensiva, como ventilação mecânica, SDRA, crise de DPOC e insuficiência respiratória por sepse. Avalia se as respostas da IA têm diagnóstico certo, bom julgamento clínico e base em evidências, e aponta onde ela erra em doenças intersticiais, hipertensão pulmonar e protocolos de UTI. Trabalha junto com pesquisadores de IA e outros médicos.",
+        "requisitos": "Formação em medicina, com prática ativa nos últimos 3 anos ou mais, e título de especialista em pneumologia ou medicina intensiva (ou equivalente). Precisa explicar raciocínio médico complexo em linguagem simples e ter inglês excelente na escrita e na fala. O anúncio pede formação em instituição de ponta, como Harvard, Stanford ou Oxford.",
+        "idioma": "en+",
+        "carga": "20 a 40 h por semana, no mínimo 4 h por dia com parte no horário do Pacífico (EUA)",
+        "contrato": "Autônomo, 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "ce2168b8fa",
+      "resumo": {
+        "frase": "Médico endocrinologista para treinar IA em casos clínicos.",
+        "o_que_faz": "Você cria e resolve casos clínicos difíceis de endocrinologia, como diabetes de difícil controle e doenças da tireoide, das adrenais e da hipófise. Avalia se as respostas da IA têm diagnóstico certo, bom julgamento clínico e base em evidências, e aponta onde ela erra em diabetes, metabolismo ósseo e endocrinologia reprodutiva. Trabalha junto com pesquisadores de IA e outros médicos.",
+        "requisitos": "Formação em medicina, com prática ativa nos últimos 3 anos ou mais, e título de especialista em endocrinologia (ou equivalente). Precisa explicar raciocínio médico complexo em linguagem simples e ter inglês excelente na escrita e na fala. O anúncio pede formação em instituição de ponta, como Harvard, Stanford ou Oxford.",
+        "idioma": "en+",
+        "carga": "20 a 40 h por semana, no mínimo 4 h por dia com parte no horário do Pacífico (EUA)",
+        "contrato": "Autônomo, 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "a644c0896d",
+      "resumo": {
+        "frase": "Médico emergencista para treinar IA em casos clínicos de urgência.",
+        "o_que_faz": "Você cria e resolve casos clínicos difíceis de medicina de emergência, do atendimento ao trauma ao diagnóstico diferencial rápido. Avalia se as respostas da IA têm diagnóstico certo, bom julgamento clínico e base em evidências em situações graves, e aponta onde ela erra em quadros e procedimentos de emergência. Trabalha junto com pesquisadores de IA e outros médicos.",
+        "requisitos": "Formação em medicina, com prática ativa nos últimos 3 anos ou mais, e título de especialista em medicina de emergência (ou equivalente). Precisa dominar trauma, reanimação, toxicologia e cuidados agudos, explicar raciocínio médico em linguagem simples e ter inglês excelente na escrita e na fala. O anúncio pede formação em instituição de ponta, como Harvard, Stanford ou Oxford.",
+        "idioma": "en+",
+        "carga": "20 a 40 h por semana, no mínimo 4 h por dia com parte no horário do Pacífico (EUA)",
+        "contrato": "Autônomo, 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "b788172c8b",
+      "resumo": {
+        "frase": "Profissional de finanças quantitativas para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de finanças quantitativas, como modelos estocásticos, precificação de derivativos, arbitragem estatística e medição de risco. Cria rubricas para avaliar tarefas como precificação de opções, simulação de Monte Carlo, modelos de fatores e backtesting. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em finanças quantitativas (trading quantitativo, pesquisa quantitativa, engenharia financeira ou modelagem de risco). Precisa dominar cálculo estocástico, modelagem estatística e precificação de derivativos e programar em Python, R ou C++. Inglês excelente na escrita. Não precisa de experiência com IA; CFA, FRM, CQF, doutorado ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "88be01be67",
+      "resumo": {
+        "frase": "Criar tarefas difíceis em Python para encontrar onde um modelo de IA de ponta erra.",
+        "o_que_faz": "Você cria problemas reais e difíceis, pensados para expor falhas de raciocínio de um modelo de IA de ponta. Monta cada tarefa num ambiente de agentes em Python, com instruções, uma solução de referência, os dados e bibliotecas necessários e um notebook de testes. Depois avalia o desempenho do modelo, separa as tarefas em que ele falha por erro de raciocínio e analisa os passos que ele deu.",
+        "requisitos": "Ser um colaborador de destaque no GitHub, com sólida experiência em ciência de dados, aprendizado de máquina, programação ou forte base quantitativa em ciências exatas. Precisa ter pelo menos 30 h por semana, em dias úteis. A candidatura leva cerca de 15 minutos e inclui uma entrevista em vídeo feita por IA.",
+        "idioma": "en",
+        "carga": "30 h ou mais por semana, em dias úteis"
+      }
+    },
+    {
+      "id": "5bea897706",
+      "resumo": {
+        "frase": "Profissional de finanças para avaliar e treinar IA na sua especialidade.",
+        "o_que_faz": "Você testa modelos de IA nos pontos de finanças em que eles ainda vão mal e cria rubricas para avaliar tarefas da sua especialidade, como análise de operações e de fusões e aquisições. A vaga aceita várias áreas: mercado de capitais, gestão de carteiras, pesquisa, trading, banco de investimento, private equity, finanças corporativas, contabilidade e outras. Trabalha junto com pesquisadores de IA e outros especialistas.",
+        "requisitos": "2 anos ou mais em alguma dessas áreas: mercado de capitais, gestão de carteiras, pesquisa, trading, quant, banco de investimento, private equity, venture capital, growth equity, planejamento financeiro, contabilidade ou consultoria financeira. Precisa dominar os conceitos financeiros da sua área e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA, CPA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "02128d2d22",
+      "resumo": {
+        "frase": "Consultor financeiro para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de consultoria financeira, como avaliação de empresas, due diligence, reestruturação e contabilidade forense. Cria rubricas para avaliar tarefas como alocação do preço de compra, teste de impairment, análise de capital de giro e risco financeiro. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em consultoria financeira, por exemplo em assessoria de Big 4, avaliação de empresas, reestruturação ou consultoria de gestão com foco em finanças. Precisa dominar métodos de avaliação, due diligence e reestruturação e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA, CPA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "825d6252c1",
+      "resumo": {
+        "frase": "Contador para avaliar e treinar IA em contabilidade.",
+        "o_que_faz": "Você testa modelos de IA em temas de contabilidade, como reconhecimento de receita, arrendamentos, consolidação e cálculo de provisão de impostos. Cria rubricas para avaliar tarefas como lançamentos contábeis, preparo de demonstrações financeiras, procedimentos de auditoria e aplicação de US GAAP ou IFRS. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em contabilidade, seja em escritório, em empresa, em auditoria, na área tributária ou de relatórios financeiros. Precisa dominar US GAAP ou IFRS, demonstrações financeiras e auditoria, e ter inglês excelente na escrita. Não precisa de experiência com IA; CPA, ACCA, CMA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "a293fd62eb",
+      "resumo": {
+        "frase": "Profissional de growth equity para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de investimento em empresas em fase de crescimento, como avaliação, economia por cliente e redação de memorandos de investimento. Cria rubricas para avaliar tarefas como projeção de receita, análise de coortes, métricas de SaaS e estrutura de rodadas de crescimento. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em growth equity, como investimento em empresas em fase de crescimento, venture capital de estágio avançado ou fundos de private equity voltados a crescimento. Precisa dominar avaliação, métricas de crescimento e estrutura de investimento, e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "566c528b0e",
+      "resumo": {
+        "frase": "Profissional de venture capital para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de venture capital, como avaliação de startups, análise de term sheet, tabela de participação societária (cap table) e tamanho de mercado. Cria rubricas para avaliar tarefas como due diligence de startups, estrutura de rodadas e montagem da carteira de um fundo. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em venture capital, como investimento em rodadas seed a série C, operação de fundos ou assessoria a startups. Precisa dominar avaliação de startups, negociação de term sheet e a economia dos fundos, e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "c9d943ebb8",
+      "resumo": {
+        "frase": "Profissional de private equity para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de private equity, como estrutura de compra alavancada (LBO), triagem de negócios, geração de valor nas empresas investidas e estratégia de saída. Cria rubricas para avaliar tarefas como cálculo de retorno de fundos (TIR, MOIC), due diligence e análise de empresas da carteira. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em private equity, como fundos de aquisição, growth equity, investimento em empresas em crise ou assessoria a fundos. Precisa dominar modelagem de LBO, avaliação de negócios e economia de fundos, e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA, CPA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "4649c3438c",
+      "resumo": {
+        "frase": "Analista de banco de investimento para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de banco de investimento, como análise de fusões e aquisições, modelagem de LBO, análise de diluição e preparo de apresentações para clientes (pitch books). Cria rubricas para avaliar tarefas como estrutura de operações, avaliação por fluxo de caixa descontado e por comparáveis, e due diligence. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em banco de investimento, como assessoria em fusões e aquisições, emissão de ações ou de dívida, financiamento alavancado ou reestruturação. Precisa dominar modelagem financeira, avaliação e finanças corporativas, e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "12250a7bda",
+      "resumo": {
+        "frase": "Operador do mercado financeiro (trader) para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de trading, como estratégias de execução, funcionamento do mercado, leitura do livro de ofertas e gestão de posições. Cria rubricas para avaliar tarefas como tamanho de operação, relação risco e retorno, análise técnica e impacto no mercado. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais operando ações, renda fixa, câmbio, commodities ou derivativos em banco, fundo ou mesa proprietária. Precisa dominar a dinâmica do mercado, algoritmos de execução e gestão de risco, e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA, FRM ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "cfb89cd7bd",
+      "resumo": {
+        "frase": "Analista de research de ações para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de análise de investimentos, como avaliação de ações, análise de setores, projeção de resultados e tese de investimento. Cria rubricas para avaliar tarefas como fluxo de caixa descontado, comparação com empresas parecidas, pesquisa de setor e relatórios de início de cobertura. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em research de ações ou de crédito, do lado da corretora ou da gestora. Precisa dominar análise de demonstrações financeiras, métodos de avaliação e recomendação de investimento, e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "8cd4823784",
+      "resumo": {
+        "frase": "Gestor de carteiras de investimento para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de gestão de carteiras, como alocação de ativos, retorno ajustado ao risco e otimização de carteira. Cria rubricas para avaliar tarefas como atribuição de desempenho, comparação com índices de referência, análise de fatores e rebalanceamento. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em gestão de carteiras, em fundos de investimento, fundos de pensão, fundações ou gestão de patrimônio. Precisa dominar teoria de carteiras, alocação de ativos, gestão de risco e medição de desempenho, e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA, CAIA ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
+      }
+    },
+    {
+      "id": "08c49707ad",
+      "resumo": {
+        "frase": "Profissional de mercado de capitais para avaliar e treinar IA.",
+        "o_que_faz": "Você testa modelos de IA em temas de mercado de capitais, como precificação de títulos, estrutura de IPO, sindicalização de emissões e renda fixa. Cria rubricas para avaliar tarefas como avaliação de títulos, curva de juros, precificação de derivativos e risco de mercado. Trabalha junto com pesquisadores de IA e outros especialistas em finanças.",
+        "requisitos": "2 anos ou mais em mercado de capitais, como emissão de ações ou de dívida, produtos estruturados, mesas de vendas e trading ou formação de mercado. Precisa dominar precificação, processos de emissão, análise de crédito e funcionamento do mercado, e ter inglês excelente na escrita. Não precisa de experiência com IA; CFA, FRM ou MBA são bem-vindos, mas não obrigatórios.",
+        "idioma": "en+",
+        "remuneracao": "Cerca de US$ 100 por hora ou mais, conforme a experiência",
+        "carga": "10 a 30 h por semana",
+        "contrato": "Autônomo, cerca de 1 mês, podendo ser estendido"
       }
     }
   ]

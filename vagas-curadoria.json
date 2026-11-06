@@ -1169,6 +1169,27 @@
       "titulo": "Personal Account Raters (Google Account)",
       "revisado_em": "2026-11-05",
       "motivo": "Remota e aberta ao mundo, sem diploma nem profissão. Pede uma conta pessoal do Gmail com pelo menos um ano de uso, Google Fotos e o Gmail configurados em inglês, o que quem mora no Brasil pode ter."
+    },
+    {
+      "id": "9761256b9d",
+      "empresa": "micro1",
+      "titulo": "Paid Photo Contributor Opportunity",
+      "revisado_em": "2026-11-06",
+      "motivo": "Vaga republicada com link novo. Location: Remote, elegibilidade NAMER, LATAM, EMEA, o que inclui o Brasil."
+    },
+    {
+      "id": "51b2aae441",
+      "empresa": "micro1",
+      "titulo": "Paid Photo Contributor Opportunity (Twins)",
+      "revisado_em": "2026-11-06",
+      "motivo": "Vaga republicada com link novo. Location: Remote, elegibilidade NAMER, LATAM, EMEA, o que inclui o Brasil."
+    },
+    {
+      "id": "145185e63c",
+      "empresa": "micro1",
+      "titulo": "Paid Photo Contributor Opportunity (Siblings)",
+      "revisado_em": "2026-11-06",
+      "motivo": "Vaga republicada com link novo. Location: Remote, elegibilidade NAMER, LATAM, EMEA, o que inclui o Brasil."
     }
   ],
   "bloqueadas": [
@@ -1360,6 +1381,13 @@
       "titulo": "Nurse Practitioner / Physician Assistant - US",
       "revisado_em": "2026-11-04",
       "motivo": "Exige morar nos EUA e ter licença ativa de Nurse Practitioner ou Physician Assistant."
+    },
+    {
+      "id": "f739fa84eb",
+      "empresa": "micro1",
+      "titulo": "在宅ビデオ撮影スタッフ（日本）",
+      "revisado_em": "2026-11-06",
+      "motivo": "Versão em japonês da At Home Video Recorder (Japan). Exige morar no Japão e ter uma casa japonesa equipada para as gravações."
     }
   ]
 }
