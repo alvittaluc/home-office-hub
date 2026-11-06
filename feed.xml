@@ -5,7 +5,21 @@
     <link>https://alvittaluc.github.io/home-office-hub/vagas.html</link>
     <description>Vagas remotas de IA, dados e tradução abertas para quem mora no Brasil.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 05 Nov 2026 20:16:26 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Nov 2026 15:30:19 +0000</lastBuildDate>
+    <item>
+      <title>Gastroenterologist/Hepatologist — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=97d9e96750</link>
+      <guid isPermaLink="false">97d9e96750</guid>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Mundial · IA &amp; Dados</description>
+    </item>
+    <item>
+      <title>Endocrinologist — Turing</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=ce2168b8fa</link>
+      <guid isPermaLink="false">ce2168b8fa</guid>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Remoto · Mundial · IA &amp; Dados</description>
+    </item>
     <item>
       <title>Personal Account Raters (Google Account) — Turing</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=1fb80bf597</link>
@@ -245,13 +259,6 @@
       <description>Você lê, anota e classifica documentos reais, de notícias a relatórios financeiros, para ajudar sistemas de IA a entender textos. O trabalho segue diretrizes detalhadas e pede o mesmo critério do primeiro ao último documento.</description>
     </item>
     <item>
-      <title>Data Labeling Specialist — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=f36c6295d2</link>
-      <guid isPermaLink="false">f36c6295d2</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você classifica, etiqueta e anota dados de texto, imagem ou áudio usando categorias e diretrizes definidas. São muitos itens parecidos, com a mesma regra aplicada do começo ao fim, e há exercícios de calibragem para você se ajustar ao padrão do projeto.</description>
-    </item>
-    <item>
       <title>AI Data Quality Analyst — Alignerr</title>
       <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=4bdb89f9f0</link>
       <guid isPermaLink="false">4bdb89f9f0</guid>
@@ -259,18 +266,11 @@
       <description>Você revisa e avalia o que a IA produz, em texto, imagem e tabelas de dados, seguindo as diretrizes e as rubricas do projeto. Lê, critica e explica por escrito o que está errado. O anúncio resume o perfil assim: se você percebe quando algo está fora do lugar, você serve.</description>
     </item>
     <item>
-      <title>AI Chatbot Tester — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=bd7cf3a141</link>
-      <guid isPermaLink="false">bd7cf3a141</guid>
+      <title>Video Annotation Specialist — Alignerr</title>
+      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=8c5731ee06</link>
+      <guid isPermaLink="false">8c5731ee06</guid>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você conversa com chatbots de IA sobre assuntos e situações variadas e avalia se cada resposta é útil, correta, segura e tem o tom adequado. Também põe o modelo à prova com perguntas criativas e casos difíceis, e registra informação errada, frase estranha, conteúdo nocivo ou viés em um formulário padronizado.</description>
-    </item>
-    <item>
-      <title>Search Quality Evaluator — Alignerr</title>
-      <link>https://alvittaluc.github.io/home-office-hub/vaga.html?id=639ef7c927</link>
-      <guid isPermaLink="false">639ef7c927</guid>
-      <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
-      <description>Você avalia se os resultados de um buscador são relevantes, corretos e úteis, e dá nota a respostas e recomendações geradas por IA usando rubricas. Compara resultados lado a lado, ordena por qualidade e justifica a nota em poucas linhas.</description>
+      <description>Você divide vídeos em planos e cenas e anota, para cada trecho, o ângulo e o tamanho do plano, o movimento de câmera e a ação que aparece. As marcações seguem categorias definidas e servem para ensinar IA a interpretar vídeo. São muitos vídeos, e o trabalho pede ritmo e precisão.</description>
     </item>
     <item>
       <title>AI Ethics Reviewer — Alignerr</title>
